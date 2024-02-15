@@ -30,3 +30,24 @@
 *.exe
 *.out
 *.app
+
+# Visual Studio files
+
+*.pdb
+*.idb
+
+# Folders
+
+[Bb]in/*
+[Tt]emp/
+[Ll]ib/
+.vs/
+
+[Dd]ependencies/[Bb]in/[Oo]gre/[Bb]uild
+[Dd]ependencies/[Bb]in/[Bb]ullet/[Bb]uild
+[Dd]ependencies/[Bb]in/[Ll]ua/[Bb]uild
+
+
+# Exceptions
+
+![Bb]in/[Aa]ssets/

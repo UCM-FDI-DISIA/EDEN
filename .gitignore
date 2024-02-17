@@ -43,9 +43,9 @@
 [Ll]ib/
 .vs/
 
-[Dd]ependencies/[Bb]in/[Oo]gre/[Bb]uild
-[Dd]ependencies/[Bb]in/[Bb]ullet/[Bb]uild
-[Dd]ependencies/[Bb]in/[Ll]ua/[Bb]uild
+[Dd]ependencies/[Oo]gre/[Bb]uild/
+[Dd]ependencies/[Bb]ullet/[Bb]uild/
+[Dd]ependencies/[Ll]ua/[Bb]uild/
 
 
 # Exceptions

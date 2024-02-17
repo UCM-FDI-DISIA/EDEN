@@ -3,7 +3,31 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.34601.136
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EDEN", "projects\EDEN\EDEN.vcxproj", "{8445B889-2769-4E51-83F9-BB45322FAC88}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ogre", "projects\Ogre\Ogre.vcxproj", "{F5CA8298-8ABD-4899-9D89-3C6D64D6985E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Bullet", "projects\Bullet\Bullet.vcxproj", "{5578E511-8EA7-4456-82F0-DC3334CEABED}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8445B889-2769-4E51-83F9-BB45322FAC88}.Debug|x64.ActiveCfg = Debug|x64
+		{8445B889-2769-4E51-83F9-BB45322FAC88}.Debug|x64.Build.0 = Debug|x64
+		{8445B889-2769-4E51-83F9-BB45322FAC88}.Release|x64.ActiveCfg = Release|x64
+		{8445B889-2769-4E51-83F9-BB45322FAC88}.Release|x64.Build.0 = Release|x64
+		{F5CA8298-8ABD-4899-9D89-3C6D64D6985E}.Debug|x64.ActiveCfg = Debug|x64
+		{F5CA8298-8ABD-4899-9D89-3C6D64D6985E}.Debug|x64.Build.0 = Debug|x64
+		{F5CA8298-8ABD-4899-9D89-3C6D64D6985E}.Release|x64.ActiveCfg = Release|x64
+		{F5CA8298-8ABD-4899-9D89-3C6D64D6985E}.Release|x64.Build.0 = Release|x64
+		{5578E511-8EA7-4456-82F0-DC3334CEABED}.Debug|x64.ActiveCfg = Debug|x64
+		{5578E511-8EA7-4456-82F0-DC3334CEABED}.Debug|x64.Build.0 = Debug|x64
+		{5578E511-8EA7-4456-82F0-DC3334CEABED}.Release|x64.ActiveCfg = Release|x64
+		{5578E511-8EA7-4456-82F0-DC3334CEABED}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection

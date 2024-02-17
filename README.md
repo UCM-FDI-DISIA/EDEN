@@ -1,9 +1,12 @@
 # EDEN Game Engine
 <br>
+
 ## Estructura de la solución y proyectos
+
 ### Repositorios y proyectos
 Utilizaremos 3 repositorios, cada uno con una solución. En el caso del motor, tendremos varios proyectos. La solución se dividirá en proyectos dependiendo de la funcionalidad que aporten (ej: Físicas, Render, Input…).
 <br>
+
 ### Soluciones
 La estructura de las soluciones tendrá la siguiente forma:
 

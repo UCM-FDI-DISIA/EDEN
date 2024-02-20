@@ -15,8 +15,8 @@ cd %BUILDDIR%
 cmake -DOGRE_BUILD_COMPONENT_BULLET:BOOL="0" -DOGRE_BUILD_COMPONENT_BITES:BOOL="0" %COMPILEDIR%
 
 :: Compilamos OGRE tanto en Debug como en Release (solo hemos creado para x64, no tenemos que preocuparnos por Win32)
-msbuild "OGRE.sln" /p:configuration=Debug
-msbuild "OGRE.sln" /p:configuration=Release
+msbuild "OGRE.sln" /p:configuration=Debug /maxcpucount
+msbuild "OGRE.sln" /p:configuration=Release /maxcpucount
 
 :: Movemos las DLLs de OGRE generadas a la carpeta con ruta DLLFOLDERS
 :: /y suprime la solicitud para confirmar que desea sobrescribir un archivo de destino existente.

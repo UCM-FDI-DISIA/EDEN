@@ -15,8 +15,8 @@ cd %BUILDDIR%
 cmake %COMPILEDIR%
 
 :: Compilamos SDL tanto en Debug como en Release (solo hemos creado para x64, no tenemos que preocuparnos por Win32)
-msbuild "SDL2.sln" /p:configuration=Debug
-msbuild "SDL2.sln" /p:configuration=Release
+msbuild "SDL2.sln" /p:configuration=Debug /maxcpucount
+msbuild "SDL2.sln" /p:configuration=Release /maxcpucount
 
 :: Movemos las DLLs de SDL generadas a la carpeta con ruta DLLFOLDERS
 :: /y suprime la solicitud para confirmar que desea sobrescribir un archivo de destino existente.
@@ -26,4 +26,5 @@ XCOPY /y /s .\Debug\SDL2d.dll %DLLFOLDERS%
 XCOPY /y /s .\Release\SDL2.dll %DLLFOLDERS%
 
 cd ..
+
 echo SDL compilado

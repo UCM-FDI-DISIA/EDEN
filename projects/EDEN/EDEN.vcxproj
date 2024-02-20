@@ -23,6 +23,7 @@
     <ClCompile Include="..\..\src\EDEN\Vector3.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\EDEN\Singleton.h" />
     <ClInclude Include="..\..\src\EDEN\Vector3.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

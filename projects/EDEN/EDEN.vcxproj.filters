@@ -26,5 +26,8 @@
     <ClInclude Include="..\..\src\EDEN\Vector3.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\EDEN\Singleton.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

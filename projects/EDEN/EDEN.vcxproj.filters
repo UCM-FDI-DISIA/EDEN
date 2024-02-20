@@ -21,12 +21,18 @@
     <ClCompile Include="..\..\src\EDEN\Vector3.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\EDEN\EdenMaster.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\EDEN\Vector3.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\EDEN\Singleton.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\EDEN\EdenMaster.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

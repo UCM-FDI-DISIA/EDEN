@@ -36,6 +36,9 @@
 *.pdb
 *.idb
 
+# Archivos de Mac
+**/.DS_Store
+
 # Folders
 
 [Bb]in/*

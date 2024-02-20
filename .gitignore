@@ -36,6 +36,9 @@
 *.pdb
 *.idb
 
+# Archivos de Mac
+**/.DS_Store
+
 # Folders
 
 [Bb]in/*
@@ -46,6 +49,7 @@
 [Dd]ependencies/[Oo]gre/[Bb]uild/
 [Dd]ependencies/[Bb]ulletPhysics/[Bb]uild/
 [Dd]ependencies/[Ll]ua/[Bb]uild/
+[Dd]ependencies/[Ss][Dd][Ll]/[Bb]uild/
 
 
 # Exceptions

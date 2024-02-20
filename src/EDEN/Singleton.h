@@ -42,6 +42,7 @@ public:
 	Singleton(const Singleton<T>& o) = delete;
 
 	virtual ~Singleton() {
+		_instance.release();
 	}
 
 	/// @brief Algunos singletons necesitan inicializarse con parametros. Se llama a este metodo al principio del programa
@@ -58,7 +59,7 @@ public:
 	}
 
 	/// @return El puntero a la instancia del singleton
-	inline static T* Instance() {
+	static T* Instance() {
 		/// @brief puedes sustituir el "if" por assert(_instance.get() != nullptr) para forzar la incializacion al principio
 		if (_instance.get() == nullptr) {
 			Init();

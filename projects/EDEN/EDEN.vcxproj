@@ -11,11 +11,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\EDEN\EdenMaster.cpp" />
     <ClCompile Include="..\..\src\EDEN\main.cpp" />
     <ClCompile Include="..\..\src\EDEN\Vector3.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\EDEN\Singleton.h" />
+    <ClInclude Include="..\..\src\EDEN\EdenMaster.h" />
     <ClInclude Include="..\..\src\EDEN\Vector3.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

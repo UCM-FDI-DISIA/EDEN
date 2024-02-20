@@ -1,9 +1,8 @@
-#include <OgreRoot.h>
+#include "EdenMaster.h"
 
 int main() {
-
-	Ogre::Root* root;
-	root = new Ogre::Root();
-
+	eden::Master* master = eden::Master::Instance();
+	master->Loop();
+	delete master;
 	return 0;
 }

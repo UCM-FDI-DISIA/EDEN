@@ -13,3 +13,6 @@ call %BAT%
 
 cd ..\SDL\
 call %BAT%
+
+cd ..\Bullet\
+call %BAT%

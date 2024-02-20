@@ -22,9 +22,8 @@ msbuild "BULLET_PHYSICS.sln" /p:configuration=Release
 :: /y suprime la solicitud para confirmar que desea sobrescribir un archivo de destino existente.
 :: /s copia directorios y subdirectorios, a menos que estén vacíos.
 
-XCOPY /y /s .\lib\Debug\OgreMain_d.dll %DLLFOLDERS%
-XCOPY /y /s .\lib\Release\OgreMain.dll %DLLFOLDERS%
+:: En teoría Bullet no tiene .dll que mover a la carpeta donde se generan los .exe del motor
 
 cd ..
 
-echo OGRE compilado
+echo Bullet compilado

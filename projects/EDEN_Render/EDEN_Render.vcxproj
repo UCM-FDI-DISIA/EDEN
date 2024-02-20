@@ -22,7 +22,7 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{f5ca8298-8abd-4899-9d89-3c6d64d6985e}</ProjectGuid>
-    <RootNamespace>Ogre</RootNamespace>
+    <RootNamespace>EDEN_Render</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

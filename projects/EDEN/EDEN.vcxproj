@@ -16,6 +16,10 @@
     <ClCompile Include="..\..\src\EDEN\Quaternion.cpp" />
     <ClCompile Include="..\..\src\EDEN\Transform.cpp" />
     <ClCompile Include="..\..\src\EDEN\Vector3.cpp" />
+    <ClCompile Include="..\..\src\EDEN\Component.cpp" />
+    <ClCompile Include="..\..\src\EDEN\ComponentFactory.cpp" />
+    <ClCompile Include="..\..\src\EDEN\Entity.cpp" />
+    <ClCompile Include="..\..\src\EDEN\TestComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\EDEN\Quaternion.h" />
@@ -23,6 +27,10 @@
     <ClInclude Include="..\..\src\EDEN\EdenMaster.h" />
     <ClInclude Include="..\..\src\EDEN\Transform.h" />
     <ClInclude Include="..\..\src\EDEN\Vector3.h" />
+    <ClInclude Include="..\..\src\EDEN\Component.h" />
+    <ClInclude Include="..\..\src\EDEN\ComponentFactory.h" />
+    <ClInclude Include="..\..\src\EDEN\Entity.h" />
+    <ClInclude Include="..\..\src\EDEN\TestComponent.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

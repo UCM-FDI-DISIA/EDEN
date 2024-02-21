@@ -2,6 +2,11 @@
 #include "Vector3.h"
 #include "Quaternion.h"
 
+const std::string eden_ec::Transform::_id = "TRASNFORM";
+
+eden_ec::Transform::Transform(eden_utils::Vector3 position, eden_utils::Quaternion rotation, eden_utils::Vector3 scale) : Component(),
+	_position(position), _rotation(rotation), _scale(scale) {};
+
 void eden_ec::Transform::translate(eden_utils::Vector3 position)
 {
 	_position += position;

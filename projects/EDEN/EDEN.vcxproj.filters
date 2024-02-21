@@ -29,6 +29,10 @@
     </ClCompile>
     <ClCompile Include="..\..\src\EDEN\Vector3.cpp">
       <Filter>Archivos de origen</Filter>
+    <ClCompile Include="..\..\src\EDEN\ComponentFactory.cpp" />
+    <ClCompile Include="..\..\src\EDEN\Component.cpp" />
+    <ClCompile Include="..\..\src\EDEN\Entity.cpp" />
+    <ClCompile Include="..\..\src\EDEN\TestComponent.cpp" />
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -46,6 +50,10 @@
     </ClInclude>
     <ClInclude Include="..\..\src\EDEN\Vector3.h">
       <Filter>Archivos de encabezado</Filter>
+          <ClInclude Include="..\..\src\EDEN\Component.h" />
+    <ClInclude Include="..\..\src\EDEN\ComponentFactory.h" />
+    <ClInclude Include="..\..\src\EDEN\Entity.h" />
+    <ClInclude Include="..\..\src\EDEN\TestComponent.h" />
     </ClInclude>
   </ItemGroup>
 </Project>

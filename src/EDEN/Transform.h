@@ -2,15 +2,22 @@
 #define TRANSFORM_H
 
 class Component {};
-class Vector3;
+
+#include <string>
+
+#include "Vector3.h"
+#include "Quaternion.h"
+
 
 namespace eden_ec {
 	/// @brief Componente que tiene toda entidad que gestiona su posición, rotación y escala
 	class Transform : public Component
 	{
+	protected:
+		const static std::string _id;
 	public:
 		/// @brief Constructora por defecto del Transform
-		Transform();
+		Transform() = default;
 
 		/// @brief Constructora con parámetros
 		/// @param position Posición de la entidad en la que se va a generar

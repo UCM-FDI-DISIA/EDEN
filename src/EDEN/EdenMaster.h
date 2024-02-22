@@ -21,7 +21,10 @@ namespace eden
 
 		~Master() override;
 	private:
-		float _deltaTime = 0.f;
+		/// @brief El tiempo entre frames 
+		double _deltaTime = 0;
+		/// @brief El tiempo transcurrido desde el inicio del bucle en milisegundos
+		double _elapsedTime = 0;
 		Ogre::Root* _root = nullptr;
 
 		Master();

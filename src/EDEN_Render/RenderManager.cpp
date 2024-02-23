@@ -9,6 +9,11 @@
 #include <OgreFileSystemLayer.h>
 // #include <OgreWindowEventUtilities.h>
 
+#include <SDL.h>
+#include <SDL_video.h>
+#include <SDL_syswm.h>
+// #include <SDLInputMapping.h>
+
 RenderManager::RenderManager(const std::string& appName)
 {
 	mAppName = appName;
@@ -95,53 +100,53 @@ void RenderManager::setup()
 	createWindow(mAppName);
 	setWindowGrab(false);
 
-	mRoot->showConfigDialog(OgreBites::getNativeConfigDialog());
+	// mRoot->showConfigDialog(OgreBites::getNativeConfigDialog());
 
 	locateResources();
 	initialiseRTShaderSystem();
 	loadResources();
 
-	mRoot->addFrameListener(this);
+	// mRoot->addFrameListener(this);
 }
 
 bool RenderManager::oneTimeConfig()
 {
-	if (!mRoot->restoreConfig()) {
-		return mRoot->showConfigDialog(OgreBites::getNativeConfigDialog());
-	}
-	else return true;
+	//if (!mRoot->restoreConfig()) {
+	//	return mRoot->showConfigDialog(OgreBites::getNativeConfigDialog());
+	//}
+	//else return true;
 }
 
 bool RenderManager::initialiseRTShaderSystem()
 {
-	if (Ogre::RTShader::ShaderGenerator::initialize()) {
-		mShaderGenerator = Ogre::RTShader::ShaderGenerator::getSingletonPtr();
+	//if (Ogre::RTShader::ShaderGenerator::initialize()) {
+	//	mShaderGenerator = Ogre::RTShader::ShaderGenerator::getSingletonPtr();
 
-		if (mRTShaderLibPath.empty()) return false;
+	//	if (mRTShaderLibPath.empty()) return false;
 
-		if (!mMaterialMgrListener) {
-			mMaterialMgrListener = new SGTechniqueResolverListener(mShaderGenerator);
-			Ogre::MaterialManager::getSingleton().addListener(mMaterialMgrListener);
-		}
-	}
+	//	if (!mMaterialMgrListener) {
+	//		mMaterialMgrListener = new SGTechniqueResolverListener(mShaderGenerator);
+	//		Ogre::MaterialManager::getSingleton().addListener(mMaterialMgrListener);
+	//	}
+	//}
 
-	return true;
+	//return true;
 }
 
 void RenderManager::destroyRTShaderSystem()
 {
-	Ogre::MaterialManager::getSingleton().setActiveScheme(Ogre::MaterialManager::DEFAULT_SCHEME_NAME);
+	//Ogre::MaterialManager::getSingleton().setActiveScheme(Ogre::MaterialManager::DEFAULT_SCHEME_NAME);
 
-	if (mMaterialMgrListener != nullptr) {
-		Ogre::MaterialManager::getSingleton().removeListener(mMaterialMgrListener);
-		delete mMaterialMgrListener;
-		mMaterialMgrListener = nullptr;
-	}
+	//if (mMaterialMgrListener != nullptr) {
+	//	Ogre::MaterialManager::getSingleton().removeListener(mMaterialMgrListener);
+	//	delete mMaterialMgrListener;
+	//	mMaterialMgrListener = nullptr;
+	//}
 
-	if (mShaderGenerator != nullptr) {
-		Ogre::RTShader::ShaderGenerator::destroy();
-		mShaderGenerator = nullptr;
-	}
+	//if (mShaderGenerator != nullptr) {
+	//	Ogre::RTShader::ShaderGenerator::destroy();
+	//	mShaderGenerator = nullptr;
+	//}
 }
 
 NativeWindowPair RenderManager::createWindow(const std::string& name)
@@ -173,7 +178,7 @@ NativeWindowPair RenderManager::createWindow(const std::string& name)
 	SDL_VERSION(&wmInfo.version);
 	SDL_GetWindowWMInfo(mWindow.native, &wmInfo);
 
-	miscParams["externalWindowHandle"] = Ogre::StringConverter::toString(size_t(wmInfo.info.win.window));
+	// miscParams["externalWindowHandle"] = Ogre::StringConverter::toString(size_t(wmInfo.info.win.window));
 
 	mWindow.render = mRoot->createRenderWindow(name, w, h, false, &miscParams);
 	return mWindow;
@@ -226,7 +231,7 @@ void RenderManager::locateResources()
 	sec = Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME;
 	const Ogre::ResourceGroupManager::LocationList genLocs = Ogre::ResourceGroupManager::getSingleton().getResourceLocationList(sec);
 
-	OgreAssert(!genLocs.empty(), ("Resource Group '" + sec + "' must contain at least one entry").c_str());
+	// OgreAssert(!genLocs.empty(), ("Resource Group '" + sec + "' must contain at least one entry").c_str());
 
 	arch = genLocs.front().archive->getName();
 	type = genLocs.front().archive->getType();

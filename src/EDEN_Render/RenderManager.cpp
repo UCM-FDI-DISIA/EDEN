@@ -30,6 +30,12 @@ RenderManager::~RenderManager()
 	delete mFSLayer;
 }
 
+void RenderManager::Init()
+{
+	initApp();
+	mRoot->startRendering();
+}
+
 Ogre::RenderWindow* RenderManager::getRenderWindow() const
 {
 	return mWindow.render;
@@ -111,10 +117,10 @@ void RenderManager::setup()
 
 bool RenderManager::oneTimeConfig()
 {
-	//if (!mRoot->restoreConfig()) {
-	//	return mRoot->showConfigDialog(OgreBites::getNativeConfigDialog());
-	//}
-	//else return true;
+	if (!mRoot->restoreConfig()) {
+		return mRoot->showConfigDialog(nullptr);
+	}
+	else return true;
 
 	return true;
 }
@@ -180,7 +186,7 @@ NativeWindowPair RenderManager::createWindow(const std::string& name)
 	SDL_VERSION(&wmInfo.version);
 	SDL_GetWindowWMInfo(mWindow.native, &wmInfo);
 
-	// miscParams["externalWindowHandle"] = Ogre::StringConverter::toString(size_t(wmInfo.info.win.window));
+	miscParams["externalWindowHandle"] = Ogre::StringConverter::toString(size_t(wmInfo.info.win.window));
 
 	mWindow.render = mRoot->createRenderWindow(name, w, h, false, &miscParams);
 	return mWindow;

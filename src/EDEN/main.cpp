@@ -10,13 +10,11 @@
 
 // Engine Render
 #include <RenderManager.h>
-// #include <OgreRoot.h>
 
 int main() {
-	RenderManager renderManager;
+	RenderManager* renderManager = RenderManager::Instance();
 
-	renderManager.initApp();
-	// renderManager.getRoot()->startRendering();
+	renderManager->Init();
 
 
 	eden::Master* master = eden::Master::Instance();
@@ -37,7 +35,7 @@ int main() {
 		ent->SetAlive(false);
 	}
 
-	renderManager.closeApp();
+	renderManager->closeApp();
 
 	delete ent;
 	return 0;

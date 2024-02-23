@@ -27,7 +27,6 @@ namespace eden
 		const double _physicsUpdateTimeInterval = 1;
 		/// @brief El tiempo transcurrido desde el inicio del bucle en milisegundos
 		double _elapsedTime = 0;
-		Ogre::Root* _root = nullptr;
 
 		Master();
 	};

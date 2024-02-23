@@ -85,19 +85,6 @@ set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} ${OGRE_DEP_SEARCH_PATH})
 set(CMAKE_FRAMEWORK_PATH ${CMAKE_FRAMEWORK_PATH} ${OGRE_DEP_SEARCH_PATH})
 
 if(OGRE_BUILD_DEPENDENCIES AND NOT EXISTS ${OGREDEPS_PATH})
-    message(STATUS "Building pugixml")
-    file(DOWNLOAD
-        https://github.com/zeux/pugixml/releases/download/v1.13/pugixml-1.13.tar.gz
-        ${PROJECT_BINARY_DIR}/pugixml-1.13.tar.gz)
-    execute_process(COMMAND ${CMAKE_COMMAND}
-        -E tar xf pugixml-1.13.tar.gz WORKING_DIRECTORY ${PROJECT_BINARY_DIR})
-    execute_process(COMMAND ${BUILD_COMMAND_COMMON}
-        -DCMAKE_POSITION_INDEPENDENT_CODE=TRUE # this will be linked into a shared lib
-        ${PROJECT_BINARY_DIR}/pugixml-1.13
-        WORKING_DIRECTORY ${PROJECT_BINARY_DIR}/pugixml-1.13)
-    execute_process(COMMAND ${CMAKE_COMMAND}
-        --build ${PROJECT_BINARY_DIR}/pugixml-1.13 ${BUILD_COMMAND_OPTS})
-
     #find_package(Freetype)
     if (NOT FREETYPE_FOUND)
         message(STATUS "Building freetype")
@@ -123,24 +110,6 @@ if(OGRE_BUILD_DEPENDENCIES AND NOT EXISTS ${OGREDEPS_PATH})
             WORKING_DIRECTORY ${PROJECT_BINARY_DIR}/freetype-2.13.0/objs)
         execute_process(COMMAND ${CMAKE_COMMAND}
             --build ${PROJECT_BINARY_DIR}/freetype-2.13.0/objs ${BUILD_COMMAND_OPTS})
-    endif()
-
-    if(MSVC OR MINGW OR SKBUILD) # other platforms dont need this
-        message(STATUS "Building SDL2")
-        file(DOWNLOAD
-            https://libsdl.org/release/SDL2-2.28.0.tar.gz
-            ${PROJECT_BINARY_DIR}/SDL2-2.28.0.tar.gz)
-        execute_process(COMMAND ${CMAKE_COMMAND} 
-            -E tar xf SDL2-2.28.0.tar.gz WORKING_DIRECTORY ${PROJECT_BINARY_DIR})
-        execute_process(COMMAND ${CMAKE_COMMAND}
-            -E make_directory ${PROJECT_BINARY_DIR}/SDL2-build)
-        execute_process(COMMAND ${BUILD_COMMAND_COMMON}
-            -DSDL_STATIC=FALSE
-            -DCMAKE_INSTALL_LIBDIR=lib
-            ${PROJECT_BINARY_DIR}/SDL2-2.28.0
-            WORKING_DIRECTORY ${PROJECT_BINARY_DIR}/SDL2-build)
-        execute_process(COMMAND ${CMAKE_COMMAND}
-            --build ${PROJECT_BINARY_DIR}/SDL2-build ${BUILD_COMMAND_OPTS})
     endif()
 
     if(MSVC OR MINGW OR SKBUILD) # other platforms dont need this
@@ -177,32 +146,6 @@ if(OGRE_BUILD_DEPENDENCIES AND NOT EXISTS ${OGREDEPS_PATH})
         --build ${PROJECT_BINARY_DIR}/assimp-5.2.5 ${BUILD_COMMAND_OPTS})
     endif()
 
-    message(STATUS "Building Bullet")
-    file(DOWNLOAD
-        https://github.com/bulletphysics/bullet3/archive/refs/tags/3.25.tar.gz
-        ${PROJECT_BINARY_DIR}/3.25.tar.gz)
-    execute_process(COMMAND ${CMAKE_COMMAND}
-        -E tar xf 3.25.tar.gz WORKING_DIRECTORY ${PROJECT_BINARY_DIR})
-    execute_process(COMMAND ${BUILD_COMMAND_COMMON}
-        -DBUILD_SHARED_LIBS=OFF
-        -DINSTALL_LIBS=ON
-        -DCMAKE_POSITION_INDEPENDENT_CODE=ON
-        -DUSE_MSVC_RUNTIME_LIBRARY_DLL=ON
-        -DBUILD_PYBULLET=OFF
-        -DUSE_DOUBLE_PRECISION=OFF
-        -DBUILD_CPU_DEMOS=OFF
-        -DBUILD_BULLET2_DEMOS=OFF
-        -DBUILD_EXTRAS=OFF
-        -DBUILD_EGL=OFF
-        -DBUILD_ENET=OFF
-        -DBUILD_UNIT_TESTS=OFF
-        -DCMAKE_RELWITHDEBINFO_POSTFIX= # fixes FindBullet on MSVC
-        -DBUILD_CLSOCKET=OFF
-        ${PROJECT_BINARY_DIR}/bullet3-3.25
-        WORKING_DIRECTORY ${PROJECT_BINARY_DIR}/bullet3-3.25)
-    execute_process(COMMAND ${CMAKE_COMMAND}
-        --build ${PROJECT_BINARY_DIR}/bullet3-3.25 ${BUILD_COMMAND_OPTS})
-    set(BULLET_ROOT ${OGREDEPS_PATH})
 endif()
 
 #######################################################################
@@ -283,10 +226,6 @@ macro_log_feature(PYTHONLIBS_FOUND "Python" "Language bindings to use OGRE from 
 find_package(SWIG 3.0.8 QUIET)
 macro_log_feature(SWIG_FOUND "SWIG" "Language bindings (Python, Java, C#) for OGRE" "http://www.swig.org/")
 
-# pugixml
-find_package(pugixml QUIET)
-macro_log_feature(pugixml_FOUND "pugixml" "Needed for XMLConverter and DotScene Plugin" "https://pugixml.org/")
-
 # Find zlib
 find_package(ZLIB)
 macro_log_feature(ZLIB_FOUND "zlib" "Simple data compression library" "http://www.zlib.net")
@@ -294,10 +233,6 @@ macro_log_feature(ZLIB_FOUND "zlib" "Simple data compression library" "http://ww
 # Assimp
 find_package(assimp QUIET)
 macro_log_feature(assimp_FOUND "Assimp" "Needed for the AssimpLoader Plugin" "https://www.assimp.org/")
-
-# Bullet
-find_package(Bullet QUIET)
-macro_log_feature(BULLET_FOUND "Bullet" "Bullet physics" "https://pybullet.org")
 
 if(assimp_FOUND)
   # workaround horribly broken assimp cmake, fixed with assimp 5.1
@@ -309,29 +244,6 @@ if(assimp_FOUND)
   if(EXISTS "${ASSIMP_INCLUDE_DIRS}")
     set_target_properties(fix::assimp PROPERTIES INTERFACE_INCLUDE_DIRECTORIES "${ASSIMP_INCLUDE_DIRS}")
   endif()
-endif()
-
-#######################################################################
-# Samples dependencies
-#######################################################################
-
-# Find sdl2
-if(NOT ANDROID AND NOT EMSCRIPTEN)
-  # find script does not work in cross compilation environment
-  find_package(SDL2 QUIET)
-  macro_log_feature(SDL2_FOUND "SDL2" "Simple DirectMedia Library needed for input handling in samples" "https://www.libsdl.org/")
-  if(SDL2_FOUND AND NOT TARGET SDL2::SDL2)
-    add_library(SDL2::SDL2 INTERFACE IMPORTED)
-    set_target_properties(SDL2::SDL2 PROPERTIES
-        INTERFACE_INCLUDE_DIRECTORIES "${SDL2_INCLUDE_DIRS}"
-        INTERFACE_LINK_LIBRARIES "${SDL2_LIBRARIES}"
-    )
-  endif()
-
-  find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Gui QUIET CONFIG)
-  find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Gui QUIET CONFIG)
-
-  macro_log_feature(QT_FOUND "Qt" "optional integration with the Qt Library for window creation and input" "http://www.qt.io/")
 endif()
 
 #######################################################################

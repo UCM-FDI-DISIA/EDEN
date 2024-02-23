@@ -5,6 +5,8 @@
 
 #include <OgreFrameListener.h>
 
+#include "Singleton.h"
+
 namespace Ogre {
 	class FileSystemLayer;
 	class RenderWindow;
@@ -34,12 +36,13 @@ struct NativeWindowPair
 Base class responsible for setting up a common context for applications.
 Subclass to implement specific event callbacks.
 */
-class RenderManager : public Ogre::FrameListener
+class RenderManager : public Ogre::FrameListener, public Singleton<RenderManager>
 {
 public:
-	explicit RenderManager(const std::string& appName = OGRE_VERSION_NAME);
+	friend Singleton<RenderManager>;
 
-	virtual ~RenderManager();
+
+	~RenderManager() override;
 
 	/**
 	get the main RenderWindow owns the context on OpenGL
@@ -47,6 +50,9 @@ public:
 	Ogre::RenderWindow* getRenderWindow() const;
 
 	Ogre::Root* getRoot() const;
+
+
+	void Init();
 
 	// Ogre::OverlaySystem* getOverlaySystem() const { return mOverlaySystem; }
 
@@ -59,13 +65,6 @@ public:
 	This function closes down the application - saves the configuration then shutdowns.
 	*/
 	void closeApp();
-
-	// callback interface copied from various listeners to be used by ApplicationContext
-	virtual void windowMoved(Ogre::RenderWindow* rw) {}
-	virtual void windowResized(Ogre::RenderWindow* rw) {}
-	virtual bool windowClosing(Ogre::RenderWindow* rw) { return true; }
-	virtual void windowClosed(Ogre::RenderWindow* rw) {}
-	virtual void windowFocusChange(Ogre::RenderWindow* rw) {}
 
 	/**
 	Initialize the RT Shader system.
@@ -129,6 +128,8 @@ public:
 	virtual NativeWindowPair createWindow(const std::string& name);
 
 protected:
+	explicit RenderManager(const std::string& appName = OGRE_VERSION_NAME);
+
 	Ogre::Root* mRoot;        // raíz de OGRE
 	NativeWindowPair mWindow; // ventana ppal
 

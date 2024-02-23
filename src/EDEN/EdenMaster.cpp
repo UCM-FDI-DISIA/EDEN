@@ -5,19 +5,16 @@
 
 #include <ctime>
 #include <chrono>
-#include <OgreRoot.h>
 #include "EdenMaster.h"
 
 
 
 eden::Master::Master()
 {
-	_root = new Ogre::Root();
 }
 
 eden::Master::~Master()
 {
-	delete _root;
 	Singleton::~Singleton();
 }
 

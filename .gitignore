@@ -36,6 +36,10 @@
 *.pdb
 *.idb
 
+# User files
+*.user
+*.log
+
 # Archivos de Mac
 **/.DS_Store
 

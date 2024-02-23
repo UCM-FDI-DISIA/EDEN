@@ -18,13 +18,42 @@
     <ClCompile Include="..\..\src\EDEN\main.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\EDEN\EdenMaster.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\EDEN\Quaternion.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\EDEN\Transform.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\EDEN\Vector3.cpp">
       <Filter>Archivos de origen</Filter>
+    <ClCompile Include="..\..\src\EDEN\ComponentFactory.cpp" />
+    <ClCompile Include="..\..\src\EDEN\Component.cpp" />
+    <ClCompile Include="..\..\src\EDEN\Entity.cpp" />
+    <ClCompile Include="..\..\src\EDEN\TestComponent.cpp" />
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\EDEN\Singleton.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\EDEN\EdenMaster.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\EDEN\Quaternion.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\EDEN\Transform.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\EDEN\Vector3.h">
       <Filter>Archivos de encabezado</Filter>
+          <ClInclude Include="..\..\src\EDEN\Component.h" />
+    <ClInclude Include="..\..\src\EDEN\ComponentFactory.h" />
+    <ClInclude Include="..\..\src\EDEN\Entity.h" />
+    <ClInclude Include="..\..\src\EDEN\TestComponent.h" />
     </ClInclude>
   </ItemGroup>
 </Project>

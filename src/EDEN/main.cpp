@@ -8,7 +8,17 @@
 #include "TestComponent.h"
 #include "Transform.h"
 
+// Engine Render
+#include <RenderManager.h>
+// #include <OgreRoot.h>
+
 int main() {
+	RenderManager renderManager;
+
+	renderManager.initApp();
+	// renderManager.getRoot()->startRendering();
+
+
 	eden::Master* master = eden::Master::Instance();
 	master->Loop();
 	delete master;
@@ -26,6 +36,9 @@ int main() {
 		ent->Update(0);
 		ent->SetAlive(false);
 	}
+
+	renderManager.closeApp();
+
 	delete ent;
 	return 0;
 }

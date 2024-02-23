@@ -115,6 +115,8 @@ bool RenderManager::oneTimeConfig()
 	//	return mRoot->showConfigDialog(OgreBites::getNativeConfigDialog());
 	//}
 	//else return true;
+
+	return true;
 }
 
 bool RenderManager::initialiseRTShaderSystem()
@@ -130,7 +132,7 @@ bool RenderManager::initialiseRTShaderSystem()
 	//	}
 	//}
 
-	//return true;
+	return true;
 }
 
 void RenderManager::destroyRTShaderSystem()

@@ -3,6 +3,8 @@
 
 #include <string>
 
+#include <OgreFrameListener.h>
+
 namespace Ogre {
 	class FileSystemLayer;
 	class RenderWindow;
@@ -32,10 +34,10 @@ struct NativeWindowPair
 Base class responsible for setting up a common context for applications.
 Subclass to implement specific event callbacks.
 */
-class RenderManager
+class RenderManager : public Ogre::FrameListener
 {
 public:
-	RenderManager(const std::string& appName);
+	explicit RenderManager(const std::string& appName = OGRE_VERSION_NAME);
 
 	virtual ~RenderManager();
 

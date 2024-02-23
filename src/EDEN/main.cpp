@@ -12,9 +12,9 @@
 #include <RenderManager.h>
 
 int main() {
-	RenderManager* renderManager = RenderManager::Instance();
+	eden_render::RenderManager* renderManager = eden_render::RenderManager::Instance();
 
-	renderManager->Init();
+	renderManager->InitManager();
 
 
 	eden::Master* master = eden::Master::Instance();
@@ -35,7 +35,7 @@ int main() {
 		ent->SetAlive(false);
 	}
 
-	renderManager->closeApp();
+	renderManager->CloseManager();
 
 	delete ent;
 	return 0;

@@ -7,125 +7,111 @@
 #include <OgreViewport.h>
 #include <OgreDataStream.h>
 #include <OgreFileSystemLayer.h>
-// #include <OgreWindowEventUtilities.h>
-
 #include <SDL.h>
 #include <SDL_video.h>
 #include <SDL_syswm.h>
-// #include <SDLInputMapping.h>
 
-RenderManager::RenderManager(const std::string& appName)
+eden_render::RenderManager::RenderManager(const std::string& appName)
 {
-	mAppName = appName;
-	mFSLayer = new Ogre::FileSystemLayer(mAppName);
-	mRoot = nullptr;
-	mFirstRun = true;
+	_appName = appName;
+	_fsLayer = new Ogre::FileSystemLayer(_appName);
+	_root = nullptr;
+	_firstRun = true;
 
-	mShaderGenerator = nullptr;
-	mMaterialMgrListener = nullptr;
+	_shaderGenerator = nullptr;
+	_materialMgrListener = nullptr;
 }
 
-RenderManager::~RenderManager()
+eden_render::RenderManager::~RenderManager()
 {
-	delete mFSLayer;
+	delete _fsLayer;
 }
 
-void RenderManager::Init()
+void eden_render::RenderManager::InitManager()
 {
-	initApp();
-	mRoot->startRendering();
-}
+	CreateRoot();
 
-Ogre::RenderWindow* RenderManager::getRenderWindow() const
-{
-	return mWindow.render;
-}
-
-Ogre::Root* RenderManager::getRoot() const
-{
-	return mRoot;
-}
-
-void RenderManager::initApp()
-{
-	createRoot();
-
-	if (oneTimeConfig()) {
-		setup();
+	if (OneTimeConfig()) {
+		Setup();
 	}
 }
 
-void RenderManager::closeApp()
+void eden_render::RenderManager::StartRendering()
 {
-	if (mRoot != nullptr) {
-		mRoot->saveConfig();
-	}
-	shutdown();
-	delete mRoot;
-	mRoot = nullptr;
+	_root->startRendering();
 }
 
-void RenderManager::createRoot()
+void eden_render::RenderManager::CloseManager()
+{
+	if (_root != nullptr) {
+		_root->saveConfig();
+	}
+	Shutdown();
+	delete _root;
+	_root = nullptr;
+}
+
+void eden_render::RenderManager::CreateRoot()
 {
 	std::string pluginsPath;
-	pluginsPath = mFSLayer->getConfigFilePath("plugins.cfg");
+	pluginsPath = _fsLayer->getConfigFilePath("plugins.cfg");
 
 	if (!Ogre::FileSystemLayer::fileExists(pluginsPath)) {
 		OGRE_EXCEPT(Ogre::Exception::ERR_FILE_NOT_FOUND, "plugins.cfg", "RenderManager::createRoot");
 	}
-	mSolutionPath = pluginsPath;
+	_solutionPath = pluginsPath;
 	
 
-	mRoot = new Ogre::Root(pluginsPath, mFSLayer->getWritablePath("ogre.cfg"), mFSLayer->getWritablePath("ogre.log"));
+	_root = new Ogre::Root(pluginsPath, _fsLayer->getWritablePath("ogre.cfg"), _fsLayer->getWritablePath("ogre.log"));
 
 	// mOverlaySystem = new Ogre::OverlaySystem;
 }
 
-void RenderManager::shutdown()
+void eden_render::RenderManager::Shutdown()
 {
-	destroyRTShaderSystem();
+	DestroyRTShaderSystem();
 
-	if (mWindow.render != nullptr) {
-		mRoot->destroyRenderTarget(mWindow.render);
-		mWindow.render = nullptr;
+	if (_window.render != nullptr) {
+		_root->destroyRenderTarget(_window.render);
+		_window.render = nullptr;
 	}
 
 	// delete mOverlaySystem;
 	// mOverlaySystem = nullptr;
 
-	if (mWindow.native != nullptr) {
-		SDL_DestroyWindow(mWindow.native);
+	if (_window.native != nullptr) {
+		SDL_DestroyWindow(_window.native);
 		SDL_QuitSubSystem(SDL_INIT_VIDEO);
-		mWindow.native = nullptr;
+		_window.native = nullptr;
 	}
 }
 
-void RenderManager::setup()
+void eden_render::RenderManager::Setup()
 {
-	mRoot->initialise(false);
-	createWindow(mAppName);
-	setWindowGrab(false);
+	_root->initialise(false);
+	CreateNewWindow(_appName);
+	SetWindowGrab(false);
 
 	// mRoot->showConfigDialog(OgreBites::getNativeConfigDialog());
 
-	locateResources();
-	initialiseRTShaderSystem();
-	loadResources();
+	LocateResources();
+	InitialiseRTShaderSystem();
+	LoadResources();
 
 	// mRoot->addFrameListener(this);
 }
 
-bool RenderManager::oneTimeConfig()
+bool eden_render::RenderManager::OneTimeConfig()
 {
-	if (!mRoot->restoreConfig()) {
-		return mRoot->showConfigDialog(nullptr);
+	if (!_root->restoreConfig()) {
+		return _root->showConfigDialog(nullptr);
 	}
 	else return true;
 
 	return true;
 }
 
-bool RenderManager::initialiseRTShaderSystem()
+bool eden_render::RenderManager::InitialiseRTShaderSystem()
 {
 	//if (Ogre::RTShader::ShaderGenerator::initialize()) {
 	//	mShaderGenerator = Ogre::RTShader::ShaderGenerator::getSingletonPtr();
@@ -141,7 +127,7 @@ bool RenderManager::initialiseRTShaderSystem()
 	return true;
 }
 
-void RenderManager::destroyRTShaderSystem()
+void eden_render::RenderManager::DestroyRTShaderSystem()
 {
 	//Ogre::MaterialManager::getSingleton().setActiveScheme(Ogre::MaterialManager::DEFAULT_SCHEME_NAME);
 
@@ -157,12 +143,12 @@ void RenderManager::destroyRTShaderSystem()
 	//}
 }
 
-NativeWindowPair RenderManager::createWindow(const std::string& name)
+NativeWindowPair eden_render::RenderManager::CreateNewWindow(const std::string& name)
 {
 	uint32_t w, h;
 	Ogre::NameValuePairList miscParams;
 
-	Ogre::ConfigOptionMap ropts = mRoot->getRenderSystem()->getConfigOptions();
+	Ogre::ConfigOptionMap ropts = _root->getRenderSystem()->getConfigOptions();
 
 	std::istringstream mode(ropts["Video Mode"].currentValue);
 	std::string token;
@@ -180,42 +166,42 @@ NativeWindowPair RenderManager::createWindow(const std::string& name)
 
 	if (ropts["Full Screen"].currentValue == "Yes") flags = SDL_WINDOW_FULLSCREEN;
 
-	mWindow.native = SDL_CreateWindow(name.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, w, h, flags);
+	_window.native = SDL_CreateWindow(name.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, w, h, flags);
 
 	SDL_SysWMinfo wmInfo;
 	SDL_VERSION(&wmInfo.version);
-	SDL_GetWindowWMInfo(mWindow.native, &wmInfo);
+	SDL_GetWindowWMInfo(_window.native, &wmInfo);
 
 	miscParams["externalWindowHandle"] = Ogre::StringConverter::toString(size_t(wmInfo.info.win.window));
 
-	mWindow.render = mRoot->createRenderWindow(name, w, h, false, &miscParams);
-	return mWindow;
+	_window.render = _root->createRenderWindow(name, w, h, false, &miscParams);
+	return _window;
 }
 
-void RenderManager::setWindowGrab(bool _grab)
+void eden_render::RenderManager::SetWindowGrab(bool _grab)
 {
 	SDL_bool grab = SDL_bool(_grab);
-	SDL_SetWindowGrab(mWindow.native, grab);
+	SDL_SetWindowGrab(_window.native, grab);
 	// SDL_SetRelativeMouseMode(grab);
 	SDL_ShowCursor(grab);
 }
 
-void RenderManager::loadResources()
+void eden_render::RenderManager::LoadResources()
 {
 	Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 }
 
-void RenderManager::locateResources()
+void eden_render::RenderManager::LocateResources()
 {
 	Ogre::ConfigFile cf;
 
-	std::string resourcesPath = mFSLayer->getConfigFilePath("resources.cfg");
+	std::string resourcesPath = _fsLayer->getConfigFilePath("resources.cfg");
 	if (Ogre::FileSystemLayer::fileExists(resourcesPath)) {
 		cf.load(resourcesPath);
 	}
 	else {
 		Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
-			Ogre::FileSystemLayer::resolveBundlePath(mSolutionPath + "\\media"),
+			Ogre::FileSystemLayer::resolveBundlePath(_solutionPath + "\\media"),
 			"FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 	}
 
@@ -272,24 +258,20 @@ void RenderManager::locateResources()
 		Ogre::ResourceGroupManager::getSingleton().addResourceLocation(arch + "/materials/programs/HLSL", type, sec);
 	}
 
-	mRTShaderLibPath = arch + "/RTShaderLib";
-	Ogre::ResourceGroupManager::getSingleton().addResourceLocation(mRTShaderLibPath + "/materials", type, sec);
+	_rtShaderLibPath = arch + "/RTShaderLib";
+	Ogre::ResourceGroupManager::getSingleton().addResourceLocation(_rtShaderLibPath + "/materials", type, sec);
 
 	if (Ogre::GpuProgramManager::getSingleton().isSyntaxSupported("glsles"))
 	{
-		Ogre::ResourceGroupManager::getSingleton().addResourceLocation(mRTShaderLibPath + "/GLSL", type, sec);
-		Ogre::ResourceGroupManager::getSingleton().addResourceLocation(mRTShaderLibPath + "/GLSLES", type, sec);
+		Ogre::ResourceGroupManager::getSingleton().addResourceLocation(_rtShaderLibPath + "/GLSL", type, sec);
+		Ogre::ResourceGroupManager::getSingleton().addResourceLocation(_rtShaderLibPath + "/GLSLES", type, sec);
 	}
 	else if (Ogre::GpuProgramManager::getSingleton().isSyntaxSupported("glsl"))
 	{
-		Ogre::ResourceGroupManager::getSingleton().addResourceLocation(mRTShaderLibPath + "/GLSL", type, sec);
+		Ogre::ResourceGroupManager::getSingleton().addResourceLocation(_rtShaderLibPath + "/GLSL", type, sec);
 	}
 	else if (Ogre::GpuProgramManager::getSingleton().isSyntaxSupported("hlsl"))
 	{
-		Ogre::ResourceGroupManager::getSingleton().addResourceLocation(mRTShaderLibPath + "/HLSL", type, sec);
+		Ogre::ResourceGroupManager::getSingleton().addResourceLocation(_rtShaderLibPath + "/HLSL", type, sec);
 	}
-}
-
-void RenderManager::pollEvents()
-{
 }

@@ -42,9 +42,9 @@ public:
 	/**
 	get the main RenderWindow owns the context on OpenGL
 	*/
-	Ogre::RenderWindow* getRenderWindow() const { return mWindow.render; }
+	Ogre::RenderWindow* getRenderWindow() const;
 
-	Ogre::Root* getRoot() const { return mRoot; }
+	Ogre::Root* getRoot() const;
 
 	// Ogre::OverlaySystem* getOverlaySystem() const { return mOverlaySystem; }
 
@@ -127,12 +127,13 @@ public:
 	virtual NativeWindowPair createWindow(const std::string& name);
 
 protected:
-	Ogre::Root* mRoot;        // OGRE root
-	NativeWindowPair mWindow; // the window
+	Ogre::Root* mRoot;        // raíz de OGRE
+	NativeWindowPair mWindow; // ventana ppal
 
 	Ogre::FileSystemLayer* mFSLayer; // File system abstraction layer
 	bool mFirstRun;
-	std::string mAppName;
+	std::string mAppName; // nombre de la ventana
+	std::string mSolutionPath;
 
 	std::string mRTShaderLibPath;
 	Ogre::RTShader::ShaderGenerator* mShaderGenerator; // The Shader generator instance.

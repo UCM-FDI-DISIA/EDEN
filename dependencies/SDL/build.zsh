@@ -15,10 +15,10 @@ then
     CHKBUILDVER=$(<$FILE)
     if [[ $SDLBUILDVER == $CHKBUILDVER ]]
     then
-        $COMPILE = 0
+        COMPILE=0
     fi
 else
-    echo $SDLBUILDVER>$FILE
+    echo $SDLBUILDVER >$FILE
 fi
 
 if [[ $COMPILE == 1 ]]

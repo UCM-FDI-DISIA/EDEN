@@ -15,10 +15,10 @@ then
     CHKBUILDVER=$(<$FILE)
     if [[ $OGREBUILDVER == $CHKBUILDVER ]]
     then
-        $COMPILE = 0
+        COMPILE=0
     fi
 else
-    echo $OGREBUILDVER>$FILE
+    echo $OGREBUILDVER >$FILE
 fi
 
 if [[ $COMPILE == 1 ]]

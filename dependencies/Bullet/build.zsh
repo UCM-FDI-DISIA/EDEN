@@ -15,10 +15,10 @@ then
     CHKBUILDVER=$(<$FILE)
     if [[ $BULLETBUILDVER == $CHKBUILDVER ]]
     then
-        $COMPILE = 0
+        COMPILE=0
     fi
 else
-    echo $BULLETBUILDVER>$FILE
+    echo $BULLETBUILDVER >$FILE
 fi
 
 if [[ $COMPILE == 1 ]]

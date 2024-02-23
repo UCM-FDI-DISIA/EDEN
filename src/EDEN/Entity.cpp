@@ -1,7 +1,7 @@
 #include "Entity.h"
 #include "Component.h"
 
-eden_ec::Component* eden_ec::Entity::getComponent(std::string id) {
+eden_ec::Component* eden_ec::Entity::GetComponent(std::string id) {
     auto it = _components.find(id);
     if (it == _components.end()) {
         return nullptr;
@@ -12,7 +12,7 @@ eden_ec::Component* eden_ec::Entity::getComponent(std::string id) {
 }
 
 /// WIP
-eden_ec::Component* eden_ec::Entity::addComponentByName(std::string id/*, Struct_Info info*/) {
+eden_ec::Component* eden_ec::Entity::AddComponentByName(std::string id/*, Struct_Info info*/) {
     Component* c = ComponentFactory::Instance()->CreateComponentByName(id);
     _components.emplace(id, c);
     c->SetContext(this);
@@ -22,11 +22,11 @@ eden_ec::Component* eden_ec::Entity::addComponentByName(std::string id/*, Struct
 }
 
 
-bool eden_ec::Entity::hasComponent(std::string id) {
+bool eden_ec::Entity::HasComponent(std::string id) {
     return _components.count(id);
 }
 
-void eden_ec::Entity::update(float t) {
+void eden_ec::Entity::Update(float t) {
     if (_active) {
         for (auto it = _components.begin(); it != _components.end(); ++it) {
             it->second->update(t);
@@ -34,7 +34,7 @@ void eden_ec::Entity::update(float t) {
     }
 }
 
-void eden_ec::Entity::handleInput() {
+void eden_ec::Entity::HandleInput() {
     if (_active) {
         auto n = _components.size();
         for (auto it = _components.begin(); it != _components.end(); ++it) {
@@ -43,7 +43,7 @@ void eden_ec::Entity::handleInput() {
     }
 }
 
-void eden_ec::Entity::removeComponent(std::string id) {
+void eden_ec::Entity::RemoveComponent(std::string id) {
     auto iter = _components.find(id);
     if (iter != _components.end()) {
         delete (*iter).second;

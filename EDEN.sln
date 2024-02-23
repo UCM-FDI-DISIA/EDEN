@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EDEN", "projects\EDEN\EDEN.vcxproj", "{8445B889-2769-4E51-83F9-BB45322FAC88}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F5CA8298-8ABD-4899-9D89-3C6D64D6985E} = {F5CA8298-8ABD-4899-9D89-3C6D64D6985E}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EDEN_Physics", "projects\EDEN_Physics\EDEN_Physics.vcxproj", "{5578E511-8EA7-4456-82F0-DC3334CEABED}"
 EndProject

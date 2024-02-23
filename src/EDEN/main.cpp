@@ -8,7 +8,15 @@
 #include "TestComponent.h"
 #include "Transform.h"
 
+// Engine Render
+#include <RenderManager.h>
+
 int main() {
+	RenderManager* renderManager = RenderManager::Instance();
+
+	renderManager->Init();
+
+
 	eden::Master* master = eden::Master::Instance();
 	master->Loop();
 	delete master;
@@ -19,13 +27,16 @@ int main() {
 	factory->RegisterComponent<eden_ec::cTestComponent>();
 	factory->RegisterComponent<eden_ec::Transform>();
 
-	ent->addComponent<eden_ec::cTestComponent>();
-	ent->addComponent<eden_ec::Transform>();
+	ent->AddComponent<eden_ec::cTestComponent>();
+	ent->AddComponent<eden_ec::Transform>();
 
 	while (ent->IsAlive()) {
-		ent->update(0);
+		ent->Update(0);
 		ent->SetAlive(false);
 	}
+
+	renderManager->closeApp();
+
 	delete ent;
 	return 0;
 }

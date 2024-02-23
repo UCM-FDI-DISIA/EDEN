@@ -21,8 +21,12 @@ namespace eden
 
 		~Master() override;
 	private:
-		float _deltaTime = 0.f;
-		Ogre::Root* _root = nullptr;
+		/// @brief El tiempo entre frames 
+		double _deltaTime = 0;
+		/// @brief El intervalo de tiempo (en segundos) que pasa entre dos actualizaciones físicas
+		const double _physicsUpdateTimeInterval = 1;
+		/// @brief El tiempo transcurrido desde el inicio del bucle en milisegundos
+		double _elapsedTime = 0;
 
 		Master();
 	};

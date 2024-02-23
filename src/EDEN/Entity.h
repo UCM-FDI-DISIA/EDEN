@@ -22,6 +22,8 @@ namespace eden_ec {
         /// @brief Mapa desordenado que contiene un componente según la ID del componente
         std::unordered_map<std::string, Component*> _components;
 
+        /// @brief Variable que identifica a la entidad por nombre 
+        std::string _ID;
 	public:
 		/// @brief Construye una entidad genérica
 		Entity() = default;
@@ -34,6 +36,9 @@ namespace eden_ec {
             }
         }
 
+        /// @brief Devuelve el nombre identificativo de la entidad
+        inline std::string GetEntityID() { return _ID;}
+
 		/// @brief Dice si la entidad está o no viva
 		/// @return True = Viva | False = Muerta
 		inline bool IsAlive() { return _alive; }
@@ -44,15 +49,15 @@ namespace eden_ec {
 
 		/// @brief Método que dice si la entidad está activa o no. 
 		/// @return True = Activa | False = Inactiva
-		inline bool isActive() { return _active; }
+		inline bool IsActive() { return _active; }
 
 		/// @brief Permite cambiar el estado de una entidad entre activa e inactiva
 		/// @param active True = Activa la entidad | False = Desactiva la entidad
-		inline void setActive(bool active) { _active = active; }
+		inline void SetActive(bool active) { _active = active; }
 
         /// @brief Quita un componente de la entidad dada su id
         /// @param id El ID del componente a quitar
-        inline void removeComponent(std::string id);
+        inline void RemoveComponent(std::string id);
 
         /// @brief Añade un componente a la entidad dado su tipo y los argumentos que requiera el
         /// componente dado
@@ -61,7 +66,7 @@ namespace eden_ec {
         /// @param ...args Argumentos para el componente
         /// @return Componente creado
         template <typename T, typename... Ts>
-        inline Component* addComponent(Ts&&... args) {
+        inline Component* AddComponent(Ts&&... args) {
 
             Component* c = ComponentFactory::Instance()->CreateComponent<T>(args...);
             _components.emplace(T::GetID(), c);
@@ -77,38 +82,38 @@ namespace eden_ec {
         /// inicializar un componente con sus correspondientes argumentos de construcción.
         /// @param id Id del componente
         /// @return Componente creado
-        Component* addComponentByName(std::string id/*, Struct_Info info*/);
+        Component* AddComponentByName(std::string id/*, Struct_Info info*/);
 
         /// @brief Nos devuelve un componente asociado a una entidad dada su ID
         /// \tparam T Tipo del componente
         /// \return Puntero a la instancia del componente asociada a la entidad
-        Component* getComponent(std::string id);
+        Component* GetComponent(std::string id);
 
         /// @brief Nos devuelve un componente asociado a una entidad dado su tipo
         /// @tparam T Tipo del componente
         /// @return Puntero a la instancia del componente asociada a la entidad
         template<typename T>
-        Component* getComponent() {
+        Component* GetComponent() {
             return getComponent(T::GetID());
         };
 
         /// @brief Comprueba si una entidad tiene cierto componente dada su ID
         /// @return Un booleano indicando si la entidad tiene o no el componente pedido
-        bool hasComponent(std::string id);
+        bool HasComponent(std::string id);
 
         /// @brief Comprueba si una entidad tiene cierto componente dado su tipo
         /// @param T Tipo del componente
         /// @return Un booleano indicando si la entidad tiene o no el componente pedido
         template<typename T>
-        Component* hasComponent() {
+        Component* HasComponent() {
             return hasComponent(T::GetID());
         };
 
         /// @brief Llama al update de todos los componentes de una entidad
-        void update(float t);
+        void Update(float t);
 
         /// @brief Llama al handleInput de todos los componentes de una entidad
-        void handleInput();
+        void HandleInput();
 	};
 }
 

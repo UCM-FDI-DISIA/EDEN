@@ -43,6 +43,9 @@
 # Archivos de Mac
 **/.DS_Store
 
+# Archivos de la compilacion de las librerias de EDEN
+*.EDENBUILD
+
 # Folders
 
 [Bb]in/*

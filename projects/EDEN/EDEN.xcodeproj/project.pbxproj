@@ -7,12 +7,36 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D73F5FC22B863C8500E7188C /* EdenMaster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D71C753B2B8585DC00F406CC /* EdenMaster.cpp */; };
-		D73F5FC32B863C8500E7188C /* EdenMaster.h in Sources */ = {isa = PBXBuildFile; fileRef = D71C75372B8585DC00F406CC /* EdenMaster.h */; };
-		D73F5FC42B863C8500E7188C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D71C753A2B8585DC00F406CC /* main.cpp */; };
-		D73F5FC52B863C8500E7188C /* Singleton.h in Sources */ = {isa = PBXBuildFile; fileRef = D71C75392B8585DC00F406CC /* Singleton.h */; };
-		D73F5FC62B863C8500E7188C /* Vector3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D71C75382B8585DC00F406CC /* Vector3.cpp */; };
-		D73F5FC72B863C8500E7188C /* Vector3.h in Sources */ = {isa = PBXBuildFile; fileRef = D71C753C2B8585DC00F406CC /* Vector3.h */; };
+		D72618D52B874C9000DCD1A3 /* Component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D72618D32B874C8700DCD1A3 /* Component.cpp */; };
+		D72618D62B874C9000DCD1A3 /* Component.h in Sources */ = {isa = PBXBuildFile; fileRef = D72618D42B874C8700DCD1A3 /* Component.h */; };
+		D72618D72B874C9000DCD1A3 /* ComponentFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D72618CD2B874C8600DCD1A3 /* ComponentFactory.cpp */; };
+		D72618D82B874C9000DCD1A3 /* ComponentFactory.h in Sources */ = {isa = PBXBuildFile; fileRef = D72618CA2B874C8600DCD1A3 /* ComponentFactory.h */; };
+		D72618D92B874C9000DCD1A3 /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D72618D22B874C8700DCD1A3 /* Entity.cpp */; };
+		D72618DA2B874C9000DCD1A3 /* Entity.h in Sources */ = {isa = PBXBuildFile; fileRef = D72618C92B874C8600DCD1A3 /* Entity.h */; };
+		D72618DB2B874C9000DCD1A3 /* Quaternion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D72618CE2B874C8600DCD1A3 /* Quaternion.cpp */; };
+		D72618DC2B874C9000DCD1A3 /* Quaternion.h in Sources */ = {isa = PBXBuildFile; fileRef = D72618CB2B874C8600DCD1A3 /* Quaternion.h */; };
+		D72618DD2B874C9000DCD1A3 /* TestComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D72618D12B874C8700DCD1A3 /* TestComponent.cpp */; };
+		D72618DE2B874C9000DCD1A3 /* TestComponent.h in Sources */ = {isa = PBXBuildFile; fileRef = D72618CF2B874C8700DCD1A3 /* TestComponent.h */; };
+		D72618DF2B874C9000DCD1A3 /* Transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D72618CC2B874C8600DCD1A3 /* Transform.cpp */; };
+		D72618E02B874C9000DCD1A3 /* Transform.h in Sources */ = {isa = PBXBuildFile; fileRef = D72618D02B874C8700DCD1A3 /* Transform.h */; };
+		D72618E12B874C9000DCD1A3 /* EdenMaster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D71C753B2B8585DC00F406CC /* EdenMaster.cpp */; };
+		D72618E22B874C9000DCD1A3 /* EdenMaster.h in Sources */ = {isa = PBXBuildFile; fileRef = D71C75372B8585DC00F406CC /* EdenMaster.h */; };
+		D72618E32B874C9000DCD1A3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D71C753A2B8585DC00F406CC /* main.cpp */; };
+		D72618E42B874C9000DCD1A3 /* Singleton.h in Sources */ = {isa = PBXBuildFile; fileRef = D71C75392B8585DC00F406CC /* Singleton.h */; };
+		D72618E52B874C9000DCD1A3 /* Vector3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D71C75382B8585DC00F406CC /* Vector3.cpp */; };
+		D72618E62B874C9000DCD1A3 /* Vector3.h in Sources */ = {isa = PBXBuildFile; fileRef = D71C753C2B8585DC00F406CC /* Vector3.h */; };
+		D72618E72B874C9700DCD1A3 /* Component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D72618D32B874C8700DCD1A3 /* Component.cpp */; };
+		D72618E82B874C9700DCD1A3 /* Component.h in Sources */ = {isa = PBXBuildFile; fileRef = D72618D42B874C8700DCD1A3 /* Component.h */; };
+		D72618E92B874C9700DCD1A3 /* ComponentFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D72618CD2B874C8600DCD1A3 /* ComponentFactory.cpp */; };
+		D72618EA2B874C9700DCD1A3 /* ComponentFactory.h in Sources */ = {isa = PBXBuildFile; fileRef = D72618CA2B874C8600DCD1A3 /* ComponentFactory.h */; };
+		D72618EB2B874C9700DCD1A3 /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D72618D22B874C8700DCD1A3 /* Entity.cpp */; };
+		D72618EC2B874C9700DCD1A3 /* Entity.h in Sources */ = {isa = PBXBuildFile; fileRef = D72618C92B874C8600DCD1A3 /* Entity.h */; };
+		D72618ED2B874C9700DCD1A3 /* Quaternion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D72618CE2B874C8600DCD1A3 /* Quaternion.cpp */; };
+		D72618EE2B874C9700DCD1A3 /* Quaternion.h in Sources */ = {isa = PBXBuildFile; fileRef = D72618CB2B874C8600DCD1A3 /* Quaternion.h */; };
+		D72618EF2B874C9700DCD1A3 /* TestComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D72618D12B874C8700DCD1A3 /* TestComponent.cpp */; };
+		D72618F02B874C9700DCD1A3 /* TestComponent.h in Sources */ = {isa = PBXBuildFile; fileRef = D72618CF2B874C8700DCD1A3 /* TestComponent.h */; };
+		D72618F12B874C9700DCD1A3 /* Transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D72618CC2B874C8600DCD1A3 /* Transform.cpp */; };
+		D72618F22B874C9700DCD1A3 /* Transform.h in Sources */ = {isa = PBXBuildFile; fileRef = D72618D02B874C8700DCD1A3 /* Transform.h */; };
 		D73F5FD92B863D2700E7188C /* Codec_STBI.14.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D73F5EB52B862FBB00E7188C /* Codec_STBI.14.1.dylib */; };
 		D73F5FDA2B863D2700E7188C /* Codec_STBI.14.1.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = D73F5EB52B862FBB00E7188C /* Codec_STBI.14.1.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		D73F5FDB2B863D2700E7188C /* libOgreMain.14.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D73F5EB92B862FBB00E7188C /* libOgreMain.14.1.dylib */; };
@@ -171,6 +195,18 @@
 		D71C753A2B8585DC00F406CC /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../../src/EDEN/main.cpp; sourceTree = "<group>"; };
 		D71C753B2B8585DC00F406CC /* EdenMaster.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EdenMaster.cpp; path = ../../src/EDEN/EdenMaster.cpp; sourceTree = "<group>"; };
 		D71C753C2B8585DC00F406CC /* Vector3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vector3.h; path = ../../src/EDEN/Vector3.h; sourceTree = "<group>"; };
+		D72618C92B874C8600DCD1A3 /* Entity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Entity.h; path = ../../src/EDEN/Entity.h; sourceTree = "<group>"; };
+		D72618CA2B874C8600DCD1A3 /* ComponentFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ComponentFactory.h; path = ../../src/EDEN/ComponentFactory.h; sourceTree = "<group>"; };
+		D72618CB2B874C8600DCD1A3 /* Quaternion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Quaternion.h; path = ../../src/EDEN/Quaternion.h; sourceTree = "<group>"; };
+		D72618CC2B874C8600DCD1A3 /* Transform.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Transform.cpp; path = ../../src/EDEN/Transform.cpp; sourceTree = "<group>"; };
+		D72618CD2B874C8600DCD1A3 /* ComponentFactory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ComponentFactory.cpp; path = ../../src/EDEN/ComponentFactory.cpp; sourceTree = "<group>"; };
+		D72618CE2B874C8600DCD1A3 /* Quaternion.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Quaternion.cpp; path = ../../src/EDEN/Quaternion.cpp; sourceTree = "<group>"; };
+		D72618CF2B874C8700DCD1A3 /* TestComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TestComponent.h; path = ../../src/EDEN/TestComponent.h; sourceTree = "<group>"; };
+		D72618D02B874C8700DCD1A3 /* Transform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Transform.h; path = ../../src/EDEN/Transform.h; sourceTree = "<group>"; };
+		D72618D12B874C8700DCD1A3 /* TestComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = TestComponent.cpp; path = ../../src/EDEN/TestComponent.cpp; sourceTree = "<group>"; };
+		D72618D22B874C8700DCD1A3 /* Entity.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Entity.cpp; path = ../../src/EDEN/Entity.cpp; sourceTree = "<group>"; };
+		D72618D32B874C8700DCD1A3 /* Component.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Component.cpp; path = ../../src/EDEN/Component.cpp; sourceTree = "<group>"; };
+		D72618D42B874C8700DCD1A3 /* Component.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Component.h; path = ../../src/EDEN/Component.h; sourceTree = "<group>"; };
 		D73F5EAC2B862FBB00E7188C /* Plugin_BSPSceneManager.14.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = Plugin_BSPSceneManager.14.1.dylib; path = ../../dependencies/Ogre/build/lib/macosx/Debug/Plugin_BSPSceneManager.14.1.dylib; sourceTree = "<group>"; };
 		D73F5EAD2B862FBB00E7188C /* Plugin_PCZSceneManager.14.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = Plugin_PCZSceneManager.14.1.dylib; path = ../../dependencies/Ogre/build/lib/macosx/Debug/Plugin_PCZSceneManager.14.1.dylib; sourceTree = "<group>"; };
 		D73F5EAE2B862FBB00E7188C /* Plugin_ParticleFX.14.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = Plugin_ParticleFX.14.1.dylib; path = ../../dependencies/Ogre/build/lib/macosx/Debug/Plugin_ParticleFX.14.1.dylib; sourceTree = "<group>"; };
@@ -205,8 +241,8 @@
 		D73F5F492B8638F400E7188C /* libOgrePaging.14.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libOgrePaging.14.1.dylib; path = ../../dependencies/Ogre/build/lib/macosx/Release/libOgrePaging.14.1.dylib; sourceTree = "<group>"; };
 		D73F5F4A2B8638F400E7188C /* Plugin_PCZSceneManager.14.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = Plugin_PCZSceneManager.14.1.dylib; path = ../../dependencies/Ogre/build/lib/macosx/Release/Plugin_PCZSceneManager.14.1.dylib; sourceTree = "<group>"; };
 		D73F5F4B2B8638F400E7188C /* Plugin_OctreeSceneManager.14.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = Plugin_OctreeSceneManager.14.1.dylib; path = ../../dependencies/Ogre/build/lib/macosx/Release/Plugin_OctreeSceneManager.14.1.dylib; sourceTree = "<group>"; };
-		D73F5FBB2B863C6F00E7188C /* EDEN_Debug */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EDEN_Debug; sourceTree = BUILT_PRODUCTS_DIR; };
-		D73F60002B863D5A00E7188C /* EDEN_Release */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EDEN_Release; sourceTree = BUILT_PRODUCTS_DIR; };
+		D73F5FBB2B863C6F00E7188C /* EDENd */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EDENd; sourceTree = BUILT_PRODUCTS_DIR; };
+		D73F60002B863D5A00E7188C /* EDEN */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EDEN; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -305,6 +341,18 @@
 		D7CD18ED2B8415D50019DD49 = {
 			isa = PBXGroup;
 			children = (
+				D72618D32B874C8700DCD1A3 /* Component.cpp */,
+				D72618D42B874C8700DCD1A3 /* Component.h */,
+				D72618CD2B874C8600DCD1A3 /* ComponentFactory.cpp */,
+				D72618CA2B874C8600DCD1A3 /* ComponentFactory.h */,
+				D72618D22B874C8700DCD1A3 /* Entity.cpp */,
+				D72618C92B874C8600DCD1A3 /* Entity.h */,
+				D72618CE2B874C8600DCD1A3 /* Quaternion.cpp */,
+				D72618CB2B874C8600DCD1A3 /* Quaternion.h */,
+				D72618D12B874C8700DCD1A3 /* TestComponent.cpp */,
+				D72618CF2B874C8700DCD1A3 /* TestComponent.h */,
+				D72618CC2B874C8600DCD1A3 /* Transform.cpp */,
+				D72618D02B874C8700DCD1A3 /* Transform.h */,
 				D71C753B2B8585DC00F406CC /* EdenMaster.cpp */,
 				D71C75372B8585DC00F406CC /* EdenMaster.h */,
 				D71C753A2B8585DC00F406CC /* main.cpp */,
@@ -312,8 +360,8 @@
 				D71C75382B8585DC00F406CC /* Vector3.cpp */,
 				D71C753C2B8585DC00F406CC /* Vector3.h */,
 				D71C75402B85864600F406CC /* Frameworks */,
-				D73F5FBB2B863C6F00E7188C /* EDEN_Debug */,
-				D73F60002B863D5A00E7188C /* EDEN_Release */,
+				D73F5FBB2B863C6F00E7188C /* EDENd */,
+				D73F60002B863D5A00E7188C /* EDEN */,
 			);
 			sourceTree = "<group>";
 			usesTabs = 0;
@@ -336,7 +384,7 @@
 			);
 			name = EDEN_Debug;
 			productName = EDEN_Debug;
-			productReference = D73F5FBB2B863C6F00E7188C /* EDEN_Debug */;
+			productReference = D73F5FBB2B863C6F00E7188C /* EDENd */;
 			productType = "com.apple.product-type.tool";
 		};
 		D73F5FFF2B863D5A00E7188C /* EDEN_Release */ = {
@@ -354,7 +402,7 @@
 			);
 			name = EDEN_Release;
 			productName = EDEN_Release;
-			productReference = D73F60002B863D5A00E7188C /* EDEN_Release */;
+			productReference = D73F60002B863D5A00E7188C /* EDEN */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -398,12 +446,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D73F5FC22B863C8500E7188C /* EdenMaster.cpp in Sources */,
-				D73F5FC32B863C8500E7188C /* EdenMaster.h in Sources */,
-				D73F5FC42B863C8500E7188C /* main.cpp in Sources */,
-				D73F5FC52B863C8500E7188C /* Singleton.h in Sources */,
-				D73F5FC62B863C8500E7188C /* Vector3.cpp in Sources */,
-				D73F5FC72B863C8500E7188C /* Vector3.h in Sources */,
+				D72618D52B874C9000DCD1A3 /* Component.cpp in Sources */,
+				D72618D62B874C9000DCD1A3 /* Component.h in Sources */,
+				D72618D72B874C9000DCD1A3 /* ComponentFactory.cpp in Sources */,
+				D72618D82B874C9000DCD1A3 /* ComponentFactory.h in Sources */,
+				D72618D92B874C9000DCD1A3 /* Entity.cpp in Sources */,
+				D72618DA2B874C9000DCD1A3 /* Entity.h in Sources */,
+				D72618DB2B874C9000DCD1A3 /* Quaternion.cpp in Sources */,
+				D72618DC2B874C9000DCD1A3 /* Quaternion.h in Sources */,
+				D72618DD2B874C9000DCD1A3 /* TestComponent.cpp in Sources */,
+				D72618DE2B874C9000DCD1A3 /* TestComponent.h in Sources */,
+				D72618DF2B874C9000DCD1A3 /* Transform.cpp in Sources */,
+				D72618E02B874C9000DCD1A3 /* Transform.h in Sources */,
+				D72618E12B874C9000DCD1A3 /* EdenMaster.cpp in Sources */,
+				D72618E22B874C9000DCD1A3 /* EdenMaster.h in Sources */,
+				D72618E32B874C9000DCD1A3 /* main.cpp in Sources */,
+				D72618E42B874C9000DCD1A3 /* Singleton.h in Sources */,
+				D72618E52B874C9000DCD1A3 /* Vector3.cpp in Sources */,
+				D72618E62B874C9000DCD1A3 /* Vector3.h in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +471,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D72618E72B874C9700DCD1A3 /* Component.cpp in Sources */,
+				D72618E82B874C9700DCD1A3 /* Component.h in Sources */,
+				D72618E92B874C9700DCD1A3 /* ComponentFactory.cpp in Sources */,
+				D72618EA2B874C9700DCD1A3 /* ComponentFactory.h in Sources */,
+				D72618EB2B874C9700DCD1A3 /* Entity.cpp in Sources */,
+				D72618EC2B874C9700DCD1A3 /* Entity.h in Sources */,
+				D72618ED2B874C9700DCD1A3 /* Quaternion.cpp in Sources */,
+				D72618EE2B874C9700DCD1A3 /* Quaternion.h in Sources */,
+				D72618EF2B874C9700DCD1A3 /* TestComponent.cpp in Sources */,
+				D72618F02B874C9700DCD1A3 /* TestComponent.h in Sources */,
+				D72618F12B874C9700DCD1A3 /* Transform.cpp in Sources */,
+				D72618F22B874C9700DCD1A3 /* Transform.h in Sources */,
 				D73F602A2B863DBA00E7188C /* EdenMaster.cpp in Sources */,
 				D73F602B2B863DBA00E7188C /* EdenMaster.h in Sources */,
 				D73F602C2B863DBA00E7188C /* main.cpp in Sources */,
@@ -427,7 +499,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = EDENd;
 			};
 			name = Debug;
 		};
@@ -435,7 +508,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = EDENd;
 			};
 			name = Release;
 		};
@@ -443,7 +517,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = EDEN;
 			};
 			name = Debug;
 		};
@@ -451,7 +526,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = EDEN;
 			};
 			name = Release;
 		};
@@ -595,7 +671,7 @@
 				D73F5FC12B863C6F00E7188C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 		D73F60042B863D5A00E7188C /* Build configuration list for PBXNativeTarget "EDEN_Release" */ = {
 			isa = XCConfigurationList;
@@ -604,7 +680,7 @@
 				D73F60062B863D5A00E7188C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 		D7CD18F12B8415D50019DD49 /* Build configuration list for PBXProject "EDEN" */ = {
 			isa = XCConfigurationList;
@@ -613,7 +689,7 @@
 				D7CD18FC2B8415D50019DD49 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

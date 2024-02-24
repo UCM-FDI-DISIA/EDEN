@@ -16,6 +16,8 @@ then
     if [[ $OGREBUILDVER == $CHKBUILDVER ]]
     then
         COMPILE=0
+    else
+        echo $OGREBUILDVER >$FILE
     fi
 else
     echo $OGREBUILDVER >$FILE

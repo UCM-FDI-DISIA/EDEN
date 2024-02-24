@@ -16,6 +16,8 @@ then
     if [[ $BULLETBUILDVER == $CHKBUILDVER ]]
     then
         COMPILE=0
+    else
+        echo $BULLETBUILDVER >$FILE
     fi
 else
     echo $BULLETBUILDVER >$FILE

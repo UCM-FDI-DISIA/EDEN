@@ -16,6 +16,8 @@ then
     if [[ $SDLBUILDVER == $CHKBUILDVER ]]
     then
         COMPILE=0
+    else
+        echo $SDLBUILDVER >$FILE
     fi
 else
     echo $SDLBUILDVER >$FILE

@@ -15,14 +15,8 @@ namespace eden_ec {
         /// @brief Cada entidad solo puede tener 1 componente de cada tipo. Ese 'tipo'
         /// es definido por esta variable _id, que tiene que ser cambiada por cada nuevo componente creado.
         /// Se le da valor en el .cpp
+        /// @warning ESTO DEBE SER REDEFINIDO EN CADA COMPONENTE!!!!!!!!
         const static std::string _id;
-
-        /// ¡¡¡AVISO!!!
-        /// TODOS LOS COMPONENTES CREADOS DEBEN TENER UN MÉTODO ESTÁTICO QUE HAGA LO SIGUIENTE:
-
-        /// static std::string GetID() { return _id; };
-
-        /// PARA PODER CREARSE DESDE LA FACTORÍA. 
 
         /// @brief WIP: Este método servirá para inicializar los componentes que han sido creados por
         /// su ID, en lugar de por su tipo (ver ComponentFactory.h para más información). Por el momento
@@ -30,7 +24,7 @@ namespace eden_ec {
         /// que comencemos el desarrollo de los juegos; pero la idea sería que este método reciba
         /// un struct genérico con información leída desde un archivo '.lua' que podremos usar
         /// para inicializar los componentes con sus argumentos de constructora.
-        virtual void init(Entity* e/*, Struct_Info info*/) {};
+        virtual void init(/*Struct_Info info*/) {};
     public:
         /// @brief Constructora por defecto
         Component() = default;

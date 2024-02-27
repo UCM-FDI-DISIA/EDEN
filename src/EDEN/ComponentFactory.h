@@ -44,6 +44,7 @@ namespace eden_ec {
 			return new T();
 		}
 	public:
+
 		/// @brief Registra un componente dado según su ID y le asocia una función
 		/// para poder crearlos.
 		/// @tparam T Componente a registrar

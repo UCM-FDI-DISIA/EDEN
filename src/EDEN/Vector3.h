@@ -16,9 +16,9 @@ namespace eden_utils {
 
 		~Vector3() = default;
 
-		inline float getX() const { return _x; }
-		inline float getY() const { return _y; }
-		inline float getZ() const { return _z; }
+		inline float GetX() const { return _x; }
+		inline float GetY() const { return _y; }
+		inline float GetZ() const { return _z; }
 
 		/// @brief Iguala un vector a otro
 		/// @param other Vector al que iguala
@@ -67,24 +67,24 @@ namespace eden_utils {
 
 		/// @brief Devuelve la longitud del vector
 		/// @return 
-		float magnitude();
+		float Magnitude();
 
 		/// @brief Normaliza el vector
-		void normalize();
+		void Normalize();
 
 		/// @brief Devuelve el vector normalizado, pero no lo cambia
 		/// @return Vector normalizado
-		Vector3 normalized();
+		Vector3 Normalized();
 
 		/// @brief Producto escalar de dos vectores
 		/// @param other Vector con el que se hace el producto escalar
 		/// @return Devuelve el producto escalar
-		float dot(Vector3 other);
+		float Dot(Vector3 other);
 
 		/// @brief Producto vectorial de dos vectores
 		/// @param other Vector con el que se hace el producto vectorial
 		/// @return Devuelve el producto vectorial
-		Vector3 cross(Vector3 other);
+		Vector3 Cross(Vector3 other);
 	private:
 		float _x;
 		float _y;

@@ -16,6 +16,7 @@ namespace eden_ec {
 	protected:
 		const static std::string _id;
 	public:
+		enum AXIS_REFERENCE {AXIS_WORLD, AXIS_LOCAL};
 		/// @brief Constructora por defecto del Transform
 		Transform() = default;
 
@@ -29,11 +30,11 @@ namespace eden_ec {
 
 		/// @brief Getter de la posición
 		/// @return Devuelve el vector de posición
-		inline eden_utils::Vector3 getPosition() const { return _position; }
+		inline eden_utils::Vector3 GetPosition() const { return _position; }
 
 		/// @brief Getter de la rotación
 		/// @return Devuelve el cuaternión de la rotación
-		inline eden_utils::Quaternion getRotation() const { return _rotation; }
+		inline eden_utils::Quaternion GetRotation() const { return _rotation; }
 
 		/// @brief Getter de la escala
 		/// @return Devuelve el vector de la escala
@@ -41,40 +42,55 @@ namespace eden_ec {
 
 		/// @brief Setter de la posición
 		/// @param position Nueva posición del transform
-		inline void setPosition(eden_utils::Vector3 position) { _position = position; }
+		inline void SetPosition(eden_utils::Vector3 position) { _position = position; }
 
 		/// @brief Setter de la rotación
 		/// @param rotation Nueva rotación del transform
-		inline void setRotation(eden_utils::Quaternion rotation) { _rotation = rotation; }
+		inline void SetRotation(eden_utils::Quaternion rotation) { _rotation = rotation; }
 
 		/// @brief Setter de la escala
 		/// @param scale Nueva escala del transform
-		inline void setScale(eden_utils::Vector3 scale) { _scale = scale; }
+		inline void SetScale(eden_utils::Vector3 scale) { _scale = scale; }
 
 		/// @brief Suma la posición
 		/// @param position Vector que se va a sumar
-		void translate(eden_utils::Vector3 position);
+		void Translate(eden_utils::Vector3 position);
 
 		/// @brief Rota el transform 
 		/// @param angle Ángulo en grados 
 		/// @param axis Eje sobre el que va a rotar
-		void rotate(float angle, eden_utils::Vector3 axis);
+		void Rotate(float angle, eden_utils::Vector3 axis);
 
 		/// @brief Rota el transform en el eje X
 		/// @param angle Ángulo en grados
-		void pitch(float angle);
+		/// @param axis_system Sistema de referencia en el que va a rotar
+		void Pitch(float angle, AXIS_REFERENCE axis_system = AXIS_LOCAL);
 
 		/// @brief Rota el transform en el eje Y
 		/// @param angle Ángulo en grados
-		void yaw(float angle);
+		/// @param axis_system Sistema de referencia en el que va a rotar
+		void Yaw(float angle, AXIS_REFERENCE axis_system = AXIS_LOCAL);
 
 		/// @brief Rota el transform en el eje Z
 		/// @param angle Ángulo en grados
-		void roll(float angle);
+		/// @param axis_system Sistema de referencia en el que va a rotar
+		void Roll(float angle, AXIS_REFERENCE axis_system = AXIS_LOCAL);
 
 		/// @brief Suma la escala del transform
 		/// @param scale Vector que suma a la escala
-		void escalate(eden_utils::Vector3 scale);
+		void Escalate(eden_utils::Vector3 scale);
+
+		/// @brief Calcula el eje z positivo local
+		/// @return Devuelve el vector forward
+		eden_utils::Vector3 GetForward();
+
+		/// @brief Calcula el eje y positivo local
+		/// @return Devuelve el vector up
+		eden_utils::Vector3 GetUp();
+
+		/// @brief Calcula el eje x positivo local
+		/// @return Devuelve el vector right
+		eden_utils::Vector3 GetRight();
 	private:
 		eden_utils::Vector3 _position;
 		eden_utils::Quaternion _rotation;

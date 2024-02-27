@@ -82,31 +82,31 @@ eden_utils::Vector3 eden_utils::Vector3::operator/=(float scalar)
 	return *this;
 }
 
-float eden_utils::Vector3::magnitude()
+float eden_utils::Vector3::Magnitude()
 {
 	return sqrt((_x * _x) + (_y * _y) + (_z * _z));
 }
 
-void eden_utils::Vector3::normalize()
+void eden_utils::Vector3::Normalize()
 {
-	float m = magnitude();
+	float m = Magnitude();
 
 	_x /= m;
 	_y /= m;
 	_z /= m;
 }
 
-eden_utils::Vector3 eden_utils::Vector3::normalized()
+eden_utils::Vector3 eden_utils::Vector3::Normalized()
 {
-	return *this / magnitude();
+	return *this / Magnitude();
 }
 
-float eden_utils::Vector3::dot(Vector3 other)
+float eden_utils::Vector3::Dot(Vector3 other)
 {
 	return _x * other._x + _y * other._y + _z * other._z;
 }
 
-eden_utils::Vector3 eden_utils::Vector3::cross(Vector3 other)
+eden_utils::Vector3 eden_utils::Vector3::Cross(Vector3 other)
 {
 	return Vector3(_y * other._z - _z * other._y, _z * other._x - _x * other._z, _x * other._y - _y * other._x);
 }

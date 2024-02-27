@@ -20,14 +20,14 @@ eden_utils::Quaternion::Quaternion(float angle, Vector3 axis)
 {
 	angle = (angle * 2 * PI) / 180;
 	_w = cos(angle / 2);
-	_x = axis.getX() * sin(angle / 2);
-	_y = axis.getY() * sin(angle / 2);
-	_z = axis.getZ() * sin(angle / 2);
+	_x = axis.GetX() * sin(angle / 2);
+	_y = axis.GetY() * sin(angle / 2);
+	_z = axis.GetZ() * sin(angle / 2);
 }
 
 eden_utils::Quaternion eden_utils::Quaternion::UnitQuaternion(Vector3 axis, float angle)
 {
-	return Quaternion(angle, axis).normalized();
+	return Quaternion(angle, axis).Normalized();
 }
 
 eden_utils::Quaternion eden_utils::Quaternion::operator=(Quaternion other)
@@ -122,20 +122,20 @@ eden_utils::Quaternion eden_utils::Quaternion::operator/=(float scalar)
 	return *this;
 }
 
-eden_utils::Quaternion eden_utils::Quaternion::conjugate()
+eden_utils::Quaternion eden_utils::Quaternion::Conjugate()
 {
 	return Quaternion(_w, -_x, -_y, -_z);
 }
 
-float eden_utils::Quaternion::normal()
+float eden_utils::Quaternion::Normal()
 {
 	return (_w * _w) + (_x * _x) + (_y * _y) + (_z * _z);
 }
 
-eden_utils::Quaternion eden_utils::Quaternion::normalized()
+eden_utils::Quaternion eden_utils::Quaternion::Normalized()
 {
 	Quaternion q = *this;
-	float length = sqrt(normal());
+	float length = sqrt(Normal());
 	q._w /= length;
 	q._x /= length;
 	q._y /= length;
@@ -143,27 +143,49 @@ eden_utils::Quaternion eden_utils::Quaternion::normalized()
 	return q;
 }
 
-eden_utils::Quaternion eden_utils::Quaternion::inverse()
+eden_utils::Quaternion eden_utils::Quaternion::Inverse()
 {
-	return conjugate() / normal();
+	return Conjugate() / Normal();
 }
 
-eden_utils::Vector3 eden_utils::Quaternion::complex() const
+eden_utils::Vector3 eden_utils::Quaternion::Complex() const
 {
 	return Vector3(_x, _y, _z);
 }
 
-void eden_utils::Quaternion::rotateArroundPoint(Vector3 position, float angle)
+void eden_utils::Quaternion::RotateArroundPoint(Vector3 position, float angle)
 {
 	angle = (angle * 2 * PI) / 180;
 
 	*this = UnitQuaternion(position, angle) * 
-		(*this - Quaternion(0, position.getX(), position.getY(), position.getZ())) * 
-		UnitQuaternion(position, angle).conjugate()
-		+ Quaternion(0, position.getX(), position.getY(), position.getZ());
+		(*this - Quaternion(0, position.GetX(), position.GetY(), position.GetZ())) * 
+		UnitQuaternion(position, angle).Conjugate()
+		+ Quaternion(0, position.GetX(), position.GetY(), position.GetZ());
 }
 
-eden_utils::Quaternion eden_utils::Quaternion::identity()
+eden_utils::Quaternion eden_utils::Quaternion::Identity()
 {
 	return Quaternion(1, eden_utils::Vector3(0, 0, 0));
+}
+
+std::array<std::array<int, 3>, 3> eden_utils::Quaternion::GetRotationMatrix()
+{
+	std::array<std::array<int, 3>, 3> rotMat;
+
+	float fTx = 2 * _x, fTy = 2 * _y, fTz = 2 * _z,
+		fTxw = fTx * _w, fTyw = fTy * _y, fTzw = fTz * _w,
+		fTxx = fTx * _x, fTyx = fTy * _x, fTzx = fTz * _x,
+		fTyy = fTy * _y, fTzy = fTz * _y, fTzz = fTz * _z;
+
+	rotMat[0][0] = 1.0f - (fTyy + fTzz);
+	rotMat[0][1] = fTyx - fTzw;
+	rotMat[0][2] = fTzx + fTyw;
+	rotMat[1][0] = fTyx + fTzw;
+	rotMat[1][1] = 1.0f - (fTxx + fTzz);
+	rotMat[1][2] = fTzy - fTxw;
+	rotMat[2][0] = fTzx - fTyw;
+	rotMat[2][1] = fTzy + fTxw;
+	rotMat[2][2] = 1.0f - (fTxx + fTyy);
+
+	return rotMat;
 }

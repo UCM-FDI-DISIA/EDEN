@@ -1,6 +1,8 @@
 #ifndef QUATERNION_H
 #define QUATERNION_H
 
+#include <array>
+
 #define PI 3.1415926
 
 namespace eden_utils {
@@ -87,34 +89,40 @@ namespace eden_utils {
 
 		/// @brief Conjugado del cuaternión
 		/// @return Devuelve el conjugado de un cuaternión
-		Quaternion conjugate();
+		Quaternion Conjugate();
 
 		/// @brief Normal de un cuaternión
 		/// @return Devuelve la normal de un cuaternión
-		float normal();
+		float Normal();
 
 		/// @brief Normaliza un cuaternión
 		/// @return Devuelve el cuaternión normalizdo
-		Quaternion normalized();
+		Quaternion Normalized();
 
 		/// @brief Inverso de un cuaternión
 		/// @return Devuelve el inverso de un cuaternión
-		Quaternion inverse();
+		Quaternion Inverse();
 
 		/// @brief Componente real de un cuaternión
 		/// @return Devuelve la parte real de un cuaternión
-		float real() const { return _w; };
+		float Real() const { return _w; };
 
 		/// @brief Componentes i, j y k del cuaternión
 		/// @return Devuelve las componentes complejas a modo de vector
-		Vector3 complex() const;
+		Vector3 Complex() const;
 
 		/// @brief Rota el cuaternión alrededor de un punto
 		/// @param position Punto alrededor del que rota
 		/// @param angle Ángulo que rota en grados
-		void rotateArroundPoint(Vector3 position, float angle);
+		void RotateArroundPoint(Vector3 position, float angle);
 
-		static Quaternion identity();
+		/// @brief Cuaternión sin rotación
+		/// @return Devuelve el cuaternión identidad
+		static Quaternion Identity();
+
+		/// @brief Calcula la matriz de rotación de un cuaternión
+		/// @return Devuelve la matriz de rotación
+		std::array<std::array<int, 3>, 3> GetRotationMatrix();
 	private:
 		/// @brief Componente real del cuaternión
 		float _w;

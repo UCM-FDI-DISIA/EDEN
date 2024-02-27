@@ -13,8 +13,6 @@ namespace eden_ec {
 	/// @brief Componente que tiene toda entidad que gestiona su posición, rotación y escala
 	class Transform : public Component
 	{
-	protected:
-		const static std::string _id;
 	public:
 		enum AXIS_REFERENCE {AXIS_WORLD, AXIS_LOCAL};
 		/// @brief Constructora por defecto del Transform
@@ -91,6 +89,8 @@ namespace eden_ec {
 		/// @brief Calcula el eje x positivo local
 		/// @return Devuelve el vector right
 		eden_utils::Vector3 GetRight();
+	protected:
+		const static std::string _id;
 	private:
 		eden_utils::Vector3 _position;
 		eden_utils::Quaternion _rotation;

@@ -1,4 +1,4 @@
-/// Engine Loop
+/// Engine Loop3
 #include "EdenMaster.h"
 
 /// Entity-Component
@@ -11,11 +11,16 @@
 // Engine Render
 #include <RenderManager.h>
 
+//Engine Input
+#include <InputManager.h>
+#include <iostream> 
+
 int main() {
 	eden_render::RenderManager* renderManager = eden_render::RenderManager::Instance();
 
 	renderManager->InitManager();
 	renderManager->StartRendering();
+	//eden_input::InputManager* inputManager = eden_input::InputManager::Instance();
 
 
 	eden::Master* master = eden::Master::Instance();
@@ -36,8 +41,16 @@ int main() {
 		ent->SetAlive(false);
 	}
 
+	/*while (!inputManager->isKeyDown(inputManager->SPACE))
+	{
+		inputManager->update();
+		std::cout << "he";
+	}*/
+	
 	renderManager->CloseManager();
-
+	//inputManager->clean();
+	//delete inputManager;
+	
 	delete ent;
 	return 0;
 }

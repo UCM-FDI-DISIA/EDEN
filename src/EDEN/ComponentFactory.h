@@ -61,7 +61,7 @@ namespace eden_ec {
 
 		/// @brief Constructor por defecto
 		ComponentFactory() = default;
-		
+
 		/// @brief Comprueba si un componente existe en la factor�a
 		/// @param id ID del componente a comprobar
 		/// @return True = Existe | False = No existe
@@ -75,7 +75,7 @@ namespace eden_ec {
 		static Component* CreateComponentNoArgs() {
 			return new T();
 		}
-	}
+	};
 }
 
 #endif // !COMPONENT_FACTORY_H

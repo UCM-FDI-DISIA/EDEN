@@ -11,37 +11,18 @@ namespace eden_ec {
     /// Se encarga de gestionar sus componentes, haciendo las llamdas pertinentes a los mismo
 	class Entity
 	{
-	private:
-		/// @brief Variable que indica si una entidad está viva o no. En caso de no estarlo, deberá
-        /// ser borrada en el siguiente update
-		bool _alive = true;
-		/// @brief Variable que indica si una entidad está activa o no. En caso de no estarlo,
-        /// no llamará a los métodos de sus componentes
-		bool _active = true;
-        
-        /// @brief Mapa desordenado que contiene un componente según la ID del componente
-        std::unordered_map<std::string, Component*> _components;
-
-        /// @brief Variable que identifica a la entidad por nombre 
-        std::string _ID;
 	public:
 		/// @brief Construye una entidad genérica
 		Entity() = default;
 
-        ~Entity() {
-            for (auto it = _components.begin(); it != _components.end(); ) {
-                delete (it)->second;
-                (it)->second = nullptr;
-                it = _components.erase(it);
-            }
-        }
+        ~Entity();
 
         /// @brief Devuelve el nombre identificativo de la entidad
-        inline std::string GetEntityID() { return _ID;}
+        inline std::string GetEntityID() const { return _ID;}
 
 		/// @brief Dice si la entidad está o no viva
 		/// @return True = Viva | False = Muerta
-		inline bool IsAlive() { return _alive; }
+		inline bool IsAlive() const { return _alive; }
 
 		/// @brief Permite cambiar el estado de vida de una entidad.
 		/// @param alive Si se pasa 'true' la entidad estará viva. Si se pasa 'false', la entidad morirá y el siguiente frame no existirá
@@ -49,7 +30,7 @@ namespace eden_ec {
 
 		/// @brief Método que dice si la entidad está activa o no. 
 		/// @return True = Activa | False = Inactiva
-		inline bool IsActive() { return _active; }
+		inline bool IsActive() const { return _active; }
 
 		/// @brief Permite cambiar el estado de una entidad entre activa e inactiva
 		/// @param active True = Activa la entidad | False = Desactiva la entidad
@@ -71,7 +52,7 @@ namespace eden_ec {
             Component* c = ComponentFactory::Instance()->CreateComponent<T>(args...);
             _components.emplace(T::GetID(), c);
             c->SetContext(this);
-            c->initComponent();
+            c->InitComponent();
 
             return c;
         }
@@ -114,6 +95,20 @@ namespace eden_ec {
 
         /// @brief Llama al handleInput de todos los componentes de una entidad
         void HandleInput();
+
+    private:
+        /// @brief Variable que indica si una entidad está viva o no. En caso de no estarlo, deberá
+        /// ser borrada en el siguiente update
+        bool _alive = true;
+        /// @brief Variable que indica si una entidad está activa o no. En caso de no estarlo,
+        /// no llamará a los métodos de sus componentes
+        bool _active = true;
+
+        /// @brief Mapa desordenado que contiene un componente según la ID del componente
+        std::unordered_map<std::string, Component*> _components;
+
+        /// @brief Variable que identifica a la entidad por nombre 
+        std::string _ID;
 	};
 }
 

@@ -26,10 +26,10 @@ int main() {
 	eden_ec::Entity* ent = new eden_ec::Entity();
 
 	factory->RegisterComponent<eden_ec::cTestComponent>();
-	factory->RegisterComponent<eden_ec::Transform>();
+	factory->RegisterComponent<eden_ec::CTransform>();
 
 	ent->AddComponent<eden_ec::cTestComponent>();
-	ent->AddComponent<eden_ec::Transform>();
+	ent->AddComponent<eden_ec::CTransform>();
 
 	while (ent->IsAlive()) {
 		ent->Update(0);

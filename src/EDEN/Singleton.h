@@ -6,12 +6,9 @@
 #include <memory>
 #include <cassert>
 
+/// @brief Una clase que herede de esta clase tiene que implementar un constructor sin argumentos. 
+/// @brief Los argumentos necesarios para construir una clase se pasarán en el método Init() de la clase, que se ejecuta cuando se llama el método Instance() por primera vez.
 /*
- * The class that inherits this class must implement a constructor
- * with no arguments, this is because of the call 'Init()' in method
- * 'instance()'. In the case that defining such a constructor is against
- * your design, just define one that throws and exception.
- *
  * >>> Usage:
  *
  * class A : public Singleton<A> {
@@ -31,21 +28,19 @@
 
 template<typename T>
 class Singleton {
-protected:
-	Singleton() {
-	}
 
 public:
-
 	/// @brief No se pueden copiar objetos de este tipo
 	Singleton<T>& operator=(const Singleton<T>& o) = delete;
 	Singleton(const Singleton<T>& o) = delete;
 
+	/// @brief La destructora libera el puntero único
 	virtual ~Singleton() {
 		_instance.release();
 	}
 
 	/// @brief Algunos singletons necesitan inicializarse con parametros. Se llama a este metodo al principio del programa
+	/// @param args Son los parámetros que se usan para construir a la clase
 	template<typename ...Targs>
 	inline static T* Init(Targs &&...args) {
 		assert(_instance.get() == nullptr);
@@ -54,6 +49,7 @@ public:
 	}
 
 	/// @brief A veces los singletons dependen entre ellos y han de cerrarse en un orden especifico por lo que tenemos este metodo
+	/// @brief Si se quiere borrar una instancia de singleton sin importar el orden, mejor usar la destructora
 	inline static void Close() {
 		_instance.reset();
 	}
@@ -66,11 +62,15 @@ public:
 		}
 		return _instance.get();
 	}
+protected:
+	Singleton() {
+	}
 
 private:
 	static std::unique_ptr<T> _instance;
 };
 
+/// @brief Instancia globalmente accesible del singleton
 template<typename T>
 std::unique_ptr<T> Singleton<T>::_instance = nullptr;
 

@@ -1,78 +1,75 @@
 #ifndef TRANSFORM_H
 #define TRANSFORM_H
 
-class Component {};
-
 #include <string>
 
+#include "Component.h"
 #include "Vector3.h"
 #include "Quaternion.h"
 
 
 namespace eden_ec {
-	/// @brief Componente que tiene toda entidad que gestiona su posición, rotación y escala
-	class Transform : public Component
+
+	/// @brief Componente que tiene toda entidad que gestiona su posiciï¿½n, rotaciï¿½n y escala
+	class CTransform : public Component
 	{
 	public:
 		enum AXIS_REFERENCE {AXIS_WORLD, AXIS_LOCAL};
 		/// @brief Constructora por defecto del Transform
-		Transform() = default;
+		CTransform() = default;
 
-		/// @brief Constructora con parámetros
-		/// @param position Posición de la entidad en la que se va a generar
-		/// @param rotation Rotación de la entidad con la que se va a generar
+		/// @brief Constructora con parï¿½metros
+		/// @param position Posiciï¿½n de la entidad en la que se va a generar
+		/// @param rotation Rotaciï¿½n de la entidad con la que se va a generar
 		/// @param scale Escala de la entidad con la que se va a generar
-		Transform(eden_utils::Vector3 position, eden_utils::Quaternion rotation, eden_utils::Vector3 scale);
+		CTransform(eden_utils::Vector3 position, eden_utils::Quaternion rotation, eden_utils::Vector3 scale);
 
-		~Transform() = default;
+		~CTransform() = default;
 
-		/// @brief Getter de la posición
-		/// @return Devuelve el vector de posición
+		/// @brief Getter de la posiciï¿½n
+		/// @return Devuelve el vector de posiciï¿½n
 		inline eden_utils::Vector3 GetPosition() const { return _position; }
 
-		/// @brief Getter de la rotación
-		/// @return Devuelve el cuaternión de la rotación
+		/// @brief Getter de la rotaciï¿½n
+		/// @return Devuelve el cuaterniï¿½n de la rotaciï¿½n
 		inline eden_utils::Quaternion GetRotation() const { return _rotation; }
 
 		/// @brief Getter de la escala
 		/// @return Devuelve el vector de la escala
-		inline eden_utils::Vector3 getScale() const { return _scale; }
+		inline eden_utils::Vector3 GetScale() const { return _scale; }
 
-		/// @brief Setter de la posición
-		/// @param position Nueva posición del transform
+		/// @brief Setter de la posiciï¿½n
+		/// @param position Nueva posiciï¿½n del transform
 		inline void SetPosition(eden_utils::Vector3 position) { _position = position; }
 
-		/// @brief Setter de la rotación
-		/// @param rotation Nueva rotación del transform
+		/// @brief Setter de la rotaciï¿½n
+		/// @param rotation Nueva rotaciï¿½n del transform
 		inline void SetRotation(eden_utils::Quaternion rotation) { _rotation = rotation; }
 
 		/// @brief Setter de la escala
 		/// @param scale Nueva escala del transform
 		inline void SetScale(eden_utils::Vector3 scale) { _scale = scale; }
 
-		/// @brief Suma la posición
+		/// @brief Suma la posiciï¿½n
 		/// @param position Vector que se va a sumar
 		void Translate(eden_utils::Vector3 position);
 
 		/// @brief Rota el transform 
-		/// @param angle Ángulo en grados 
+		/// @param angle ï¿½ngulo en grados 
 		/// @param axis Eje sobre el que va a rotar
 		void Rotate(float angle, eden_utils::Vector3 axis);
 
 		/// @brief Rota el transform en el eje X
-		/// @param angle Ángulo en grados
-		/// @param axis_system Sistema de referencia en el que va a rotar
-		void Pitch(float angle, AXIS_REFERENCE axis_system = AXIS_LOCAL);
+		/// @param angle ï¿½ngulo en grados
+		void Pitch(float angle);
 
 		/// @brief Rota el transform en el eje Y
-		/// @param angle Ángulo en grados
-		/// @param axis_system Sistema de referencia en el que va a rotar
-		void Yaw(float angle, AXIS_REFERENCE axis_system = AXIS_LOCAL);
+		/// @param angle ï¿½ngulo en grados
+		void Yaw(float angle);
 
 		/// @brief Rota el transform en el eje Z
-		/// @param angle Ángulo en grados
-		/// @param axis_system Sistema de referencia en el que va a rotar
-		void Roll(float angle, AXIS_REFERENCE axis_system = AXIS_LOCAL);
+		/// @param angle ï¿½ngulo en grados
+		void Roll(float angle);
 
 		/// @brief Suma la escala del transform
 		/// @param scale Vector que suma a la escala
@@ -92,8 +89,11 @@ namespace eden_ec {
 	protected:
 		const static std::string _id;
 	private:
+		/// @brief Variable de posiciï¿½n
 		eden_utils::Vector3 _position;
+		/// @brief Variable de rotaciï¿½n
 		eden_utils::Quaternion _rotation;
+		/// @brief Variable de escala
 		eden_utils::Vector3 _scale;
 	};
 }

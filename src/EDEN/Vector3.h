@@ -8,7 +8,7 @@ namespace eden_utils {
 		/// @brief Constructora por defecto de Vector3
 		Vector3();
 
-		/// @brief Constructora con parámetros de Vector3
+		/// @brief Constructora con parï¿½metros de Vector3
 		/// @param x Coordenada en x
 		/// @param y Coordenada en y
 		/// @param z Coordenada en z
@@ -16,8 +16,11 @@ namespace eden_utils {
 
 		~Vector3() = default;
 
+		/// @return El valor x del vector
 		inline float GetX() const { return _x; }
+		/// @return El valor y del vector
 		inline float GetY() const { return _y; }
+		/// @return El valor z del vector
 		inline float GetZ() const { return _z; }
 
 		/// @brief Iguala un vector a otro
@@ -35,12 +38,12 @@ namespace eden_utils {
 		/// @return Vector resultante
 		Vector3 operator-(Vector3 other);
 
-		/// @brief Multiplicación de vector con escalar
+		/// @brief Multiplicaciï¿½n de vector con escalar
 		/// @param scalar Escalar que multiplica
 		/// @return Vector resultante
 		Vector3 operator*(float scalar);
 
-		/// @brief División de un vector entre un escalar
+		/// @brief Divisiï¿½n de un vector entre un escalar
 		/// @param scalar Escalar que divide
 		/// @return Vector resultante
 		Vector3 operator/(float scalar);

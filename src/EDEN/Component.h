@@ -5,9 +5,35 @@
 
 namespace eden_ec {
     class Entity;
-	/// @brief Clase genérica de component usada para la implementación de los comportamientos de las entidades
+	/// @brief Clase genï¿½rica de component usada para la implementaciï¿½n de los comportamientos de las entidades
 	class Component
 	{
+    public:
+        /// @brief Constructora por defecto
+        Component() = default;
+
+        /// @brief Constructora por defecto. No hace nada especial
+        virtual ~Component() = default;
+
+        /// @brief Getter de la ID. Usado para creaciï¿½n de los componentes (ver ComponentFactory.h y Entity.h)
+        /// @return ID del componente
+        static const std::string GetID();
+
+        /// @brief Da contexto al componente, asginï¿½ndole cuï¿½l es su entidad
+        /// @param ent Es la entidad a la que pertenece el componente
+        void SetContext(Entity* ent);
+
+        /// @brief Inicializa el componente para coger referencias a otros componentes de su entidad
+        virtual void InitComponent() {};
+
+        /// @brief Mï¿½todo ejecutado cada frame
+        /// @param t Tiempo transcurrido desde el ï¿½ltimo frame
+        virtual void Update(float t) {}
+
+        /// @brief Maneja la entrada del usuario
+        virtual void HandleInput() {}
+
+
     protected:
 
         /// @brief Referencia a la entidad que contiene este componente
@@ -18,37 +44,13 @@ namespace eden_ec {
         /// @warning ESTO DEBE SER REDEFINIDO EN CADA COMPONENTE!!!!!!!!
         const static std::string _id;
 
-        /// @brief WIP: Este método servirá para inicializar los componentes que han sido creados por
-        /// su ID, en lugar de por su tipo (ver ComponentFactory.h para más información). Por el momento
+        /// @brief WIP: Este mï¿½todo servirï¿½ para inicializar los componentes que han sido creados por
+        /// su ID, en lugar de por su tipo (ver ComponentFactory.h para mï¿½s informaciï¿½n). Por el momento
         /// no hace nada, pues no tendremos el caso de crear componentes desde fuera del motor hasta
-        /// que comencemos el desarrollo de los juegos; pero la idea sería que este método reciba
-        /// un struct genérico con información leída desde un archivo '.lua' que podremos usar
+        /// que comencemos el desarrollo de los juegos; pero la idea serï¿½a que este mï¿½todo reciba
+        /// un struct genï¿½rico con informaciï¿½n leï¿½da desde un archivo '.lua' que podremos usar
         /// para inicializar los componentes con sus argumentos de constructora.
-        virtual void init(/*Struct_Info info*/) {};
-    public:
-        /// @brief Constructora por defecto
-        Component() = default;
-
-        /// @brief Constructora por defecto. No hace nada especial
-        virtual ~Component() = default;
-
-        /// @brief Getter de la ID. Usado para creación de los componentes (ver ComponentFactory.h y Entity.h)
-        /// @return ID del componente
-        static std::string GetID();
-
-        /// @brief Da contexto al componente, asginándole cuál es su entidad
-        /// @param ent Es la entidad a la que pertenece el componente
-        void SetContext(Entity* ent);
-
-        /// @brief Inicializa el componente para coger referencias a otros componentes de su entidad
-        virtual void initComponent() {};
-
-        /// @brief Método ejecutado cada frame
-        /// @param t Tiempo transcurrido desde el último frame
-        virtual void update(float t) {}
-
-        /// @brief Maneja la entrada del usuario
-        virtual void handleInput() {}
+        virtual void Init(/*Struct_Info info*/) {};
 	};
 }
 #endif // COMPONENT_H

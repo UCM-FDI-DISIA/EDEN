@@ -16,7 +16,7 @@ eden_ec::Component* eden_ec::Entity::AddComponentByName(std::string id/*, Struct
     Component* c = ComponentFactory::Instance()->CreateComponentByName(id);
     _components.emplace(id, c);
     c->SetContext(this);
-    c->initComponent();
+    c->InitComponent();
 
     return c;
 }
@@ -29,7 +29,7 @@ bool eden_ec::Entity::HasComponent(std::string id) {
 void eden_ec::Entity::Update(float t) {
     if (_active) {
         for (auto it = _components.begin(); it != _components.end(); ++it) {
-            it->second->update(t);
+            it->second->Update(t);
         }
     }
 }
@@ -38,8 +38,17 @@ void eden_ec::Entity::HandleInput() {
     if (_active) {
         auto n = _components.size();
         for (auto it = _components.begin(); it != _components.end(); ++it) {
-            it->second->handleInput();
+            it->second->HandleInput();
         }
+    }
+}
+
+eden_ec::Entity::~Entity()
+{
+    for (auto it = _components.begin(); it != _components.end(); ) {
+        delete (it)->second;
+        (it)->second = nullptr;
+        it = _components.erase(it);
     }
 }
 

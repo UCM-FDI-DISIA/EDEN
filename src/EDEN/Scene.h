@@ -8,7 +8,7 @@
 class Scene
 {
 public:
-	Scene(std::string id);
+	Scene(const std::string& ID);
 	~Scene();
 
 	/// @brief Método que devuelve el nombre identificativo de la escena
@@ -22,7 +22,7 @@ public:
 
 	/// @brief Durante la ejecución del juego, añade una entidad nueva al mapa de entidades 
 	/// @param id id Nombre de la entidad que se va a crear nueva
-	void AddGameObject(std::string id);
+	void AddGameObject(const std::string& ID);
 
 	/// @brief Devuleve una referencia a la cámara actual 
 	inline eden_ec::Entity* GetCurrentCamara() { return _currentCamera; }
@@ -34,7 +34,7 @@ public:
 	/// @brief Añade un componente a la entidad dado su tipo y los argumentos que requiera el
 	/// @tparam id Nombre de la entidad a la que queremos acceder
 	/// @return Componente cread
-	eden_ec::Entity* GetEntityByID(std::string id);
+	eden_ec::Entity* GetEntityByID(const std::string& ID);
 
 	/// @brief Inidica si la escena quiere renderizar sus elementos
 	inline void SetToRender(bool render) { _isRendering = render; }

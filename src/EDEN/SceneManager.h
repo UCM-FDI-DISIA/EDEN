@@ -45,7 +45,10 @@ public:
 	inline Scene* GetCurrentScene() { return _activeScene; }
 
 private:
+	/// @brief Puntero a la primera escena de la lista, a la cual se llama a su Update
 	Scene* _activeScene = nullptr;
+
+	/// @brief Lista doblemente enlazada de punteros a escenas
 	std::deque<Scene*> _scenes;
 };
 

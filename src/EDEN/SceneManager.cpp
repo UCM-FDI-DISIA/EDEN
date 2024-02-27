@@ -1,5 +1,5 @@
 #include "SceneManager.h"
-#include <iostream>W
+#include <iostream>
 #include "Scene.h";
 
 SceneManager::~SceneManager() {
@@ -19,7 +19,7 @@ Scene* SceneManager::PushScene(const std::string& ID) {
 
 Scene* SceneManager::ChangeScene(const std::string& ID) {
 	EmptyStack();
-	PushScene(ID);
+	return PushScene(ID);
 }
 
 void SceneManager::PopScene() {

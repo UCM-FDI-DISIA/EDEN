@@ -1,6 +1,6 @@
 #include "Scene.h"
-Scene::Scene(std::string id) {
-	_ID = id;
+Scene::Scene(const std::string& ID) {
+	_ID = ID;
 	//_renderScene = OgreWrapper::CreateScene(id)
 }
 
@@ -24,14 +24,14 @@ void Scene::Render() {
 	//_renderScene->Render();
 }
 
-eden_ec::Entity* Scene::GetEntityByID(std::string id) {
-	if (_gameEntitiesList.count(id) == 0)
+eden_ec::Entity* Scene::GetEntityByID(const std::string& ID) {
+	if (_gameEntitiesList.count(ID) == 0)
 		return nullptr;
-	return _gameEntitiesList[id];
+	return _gameEntitiesList[ID];
 }
 
-void Scene::AddGameObject(std::string id) {
+void Scene::AddGameObject(const std::string& ID) {
 	eden_ec::Entity* newEntity = new eden_ec::Entity();
 	//crear la entidad de por si, Lua
-	_gameEntitiesList.insert({ id,newEntity });
+	_gameEntitiesList.insert({ ID,newEntity });
 }

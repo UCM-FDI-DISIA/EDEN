@@ -15,6 +15,7 @@ int main() {
 	eden_render::RenderManager* renderManager = eden_render::RenderManager::Instance();
 
 	renderManager->InitManager();
+	renderManager->StartRendering();
 
 
 	eden::Master* master = eden::Master::Instance();

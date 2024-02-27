@@ -1,6 +1,8 @@
 #include "RenderManager.h"
 
 #include <OgreRoot.h>
+#include <OgreSceneNode.h>
+#include <OgreEntity.h>
 #include <OgreGpuProgramManager.h>
 #include <OgreConfigFile.h>
 #include <OgreRenderWindow.h>
@@ -10,6 +12,68 @@
 #include <SDL.h>
 #include <SDL_video.h>
 #include <SDL_syswm.h>
+#include <OgreTechnique.h>
+#include <OgreShaderGenerator.h>
+#include <OgreMaterialManager.h>
+#pragma warning( disable : 4996 )
+
+class ShaderGeneratorTechniqueResolverListener : public Ogre::MaterialManager::Listener
+{
+public:
+
+	ShaderGeneratorTechniqueResolverListener(Ogre::RTShader::ShaderGenerator* pShaderGenerator)
+	{
+		mShaderGenerator = pShaderGenerator;
+	}
+
+	/** This is the hook point where shader based technique will be created.
+	It will be called whenever the material manager won't find appropriate technique
+	that satisfy the target scheme name. If the scheme name is out target RT Shader System
+	scheme name we will try to create shader generated technique for it.
+	*/
+	virtual Ogre::Technique* handleSchemeNotFound(unsigned short schemeIndex,
+		const Ogre::String& schemeName, Ogre::Material* originalMaterial, unsigned short lodIndex,
+		const Ogre::Renderable* rend)
+	{
+		Ogre::Technique* generatedTech = NULL;
+
+		// Case this is the default shader generator scheme.
+		if (schemeName == Ogre::RTShader::ShaderGenerator::DEFAULT_SCHEME_NAME)
+		{
+			bool techniqueCreated;
+
+			// Create shader generated technique for this material.
+			techniqueCreated = mShaderGenerator->createShaderBasedTechnique(*originalMaterial, schemeName, schemeName);
+
+			// Case technique registration succeeded.
+			if (techniqueCreated)
+			{
+				// Force creating the shaders for the generated technique.
+				mShaderGenerator->validateMaterial(schemeName, originalMaterial->getName());
+
+				Ogre::Material::TechniqueIterator itTech = originalMaterial->getTechniqueIterator();
+
+				while (itTech.hasMoreElements())
+				{
+					Ogre::Technique* curTech = itTech.getNext();
+
+					if (curTech->getSchemeName() == schemeName)
+					{
+						generatedTech = curTech;
+						break;
+					}
+				}
+			}
+		}
+
+		return generatedTech;
+	}
+
+protected:
+	Ogre::RTShader::ShaderGenerator* mShaderGenerator;			// The shader generator instance.		
+};
+
+
 
 eden_render::RenderManager::RenderManager(const std::string& appName)
 {
@@ -34,6 +98,34 @@ void eden_render::RenderManager::InitManager()
 	if (OneTimeConfig()) {
 		Setup();
 	}
+
+	_sceneMngr = _root->createSceneManager();
+	_sceneMngr->setShadowTechnique(Ogre::SHADOWTYPE_NONE);
+
+	// create the camera
+	Ogre::Camera* cam = _sceneMngr->createCamera("Cam");
+	cam->setNearClipDistance(1);
+	cam->setFarClipDistance(10000);
+	cam->setAutoAspectRatio(true);
+	_sceneMngr->getRootSceneNode()->createChildSceneNode("nCam")->attachObject(cam);
+	Ogre::Viewport* vp = _window.render->addViewport(cam);
+	vp->setBackgroundColour(Ogre::ColourValue(1, 0, 0));
+
+	Ogre::Light* luz = _sceneMngr->createLight("Luz");
+	luz->setType(Ogre::Light::LT_DIRECTIONAL);
+	luz->setDiffuseColour(1, 1, 1);
+	Ogre::SceneNode* mLightNode = _sceneMngr->getRootSceneNode()->createChildSceneNode("nLuz");
+	mLightNode->attachObject(luz);
+
+	mLightNode->setDirection(Ogre::Vector3(0, -1, -1));
+
+	Ogre::SceneNode* cuerpoNode = _sceneMngr->getRootSceneNode()->createChildSceneNode();
+	Ogre::Vector3 cuerpoScale = { 100, 100, 100 };
+	Ogre::Entity* ent;
+	/*ent = _sceneMngr->createEntity("cube.mesh");
+	cuerpoNode->attachObject(ent);
+	cuerpoNode->setScale(cuerpoScale);*/
+
 }
 
 void eden_render::RenderManager::StartRendering()
@@ -54,13 +146,14 @@ void eden_render::RenderManager::CloseManager()
 void eden_render::RenderManager::CreateRoot()
 {
 	std::string pluginsPath;
-	pluginsPath = _fsLayer->getConfigFilePath("plugins.cfg");
+	std::string nameFile = "plugins.cfg";
+	pluginsPath = _fsLayer->getConfigFilePath(nameFile);
 
 	if (!Ogre::FileSystemLayer::fileExists(pluginsPath)) {
 		OGRE_EXCEPT(Ogre::Exception::ERR_FILE_NOT_FOUND, "plugins.cfg", "RenderManager::createRoot");
 	}
 	_solutionPath = pluginsPath;
-	
+	_solutionPath.resize(_solutionPath.size() - nameFile.size());
 
 	_root = new Ogre::Root(pluginsPath, _fsLayer->getWritablePath("ogre.cfg"), _fsLayer->getWritablePath("ogre.log"));
 
@@ -111,36 +204,38 @@ bool eden_render::RenderManager::OneTimeConfig()
 	return true;
 }
 
+
+
 bool eden_render::RenderManager::InitialiseRTShaderSystem()
 {
-	//if (Ogre::RTShader::ShaderGenerator::initialize()) {
-	//	mShaderGenerator = Ogre::RTShader::ShaderGenerator::getSingletonPtr();
+	if (Ogre::RTShader::ShaderGenerator::initialize()) {
+		Ogre::RTShader::ShaderGenerator* shaderGenerator = Ogre::RTShader::ShaderGenerator::getSingletonPtr();
 
-	//	if (mRTShaderLibPath.empty()) return false;
+		if (_rtShaderLibPath.empty()) return false;
 
-	//	if (!mMaterialMgrListener) {
-	//		mMaterialMgrListener = new SGTechniqueResolverListener(mShaderGenerator);
-	//		Ogre::MaterialManager::getSingleton().addListener(mMaterialMgrListener);
-	//	}
-	//}
+		if (!_materialMgrListener) {
+			_materialMgrListener = new ShaderGeneratorTechniqueResolverListener(_shaderGenerator);
+			Ogre::MaterialManager::getSingleton().addListener((Ogre::MaterialManager::Listener*)_materialMgrListener);
+		}
+	}
 
 	return true;
 }
 
 void eden_render::RenderManager::DestroyRTShaderSystem()
 {
-	//Ogre::MaterialManager::getSingleton().setActiveScheme(Ogre::MaterialManager::DEFAULT_SCHEME_NAME);
+	Ogre::MaterialManager::getSingleton().setActiveScheme(Ogre::MaterialManager::DEFAULT_SCHEME_NAME);
 
-	//if (mMaterialMgrListener != nullptr) {
-	//	Ogre::MaterialManager::getSingleton().removeListener(mMaterialMgrListener);
-	//	delete mMaterialMgrListener;
-	//	mMaterialMgrListener = nullptr;
-	//}
+	if (_materialMgrListener != nullptr) {
+		Ogre::MaterialManager::getSingleton().removeListener((Ogre::MaterialManager::Listener*)_materialMgrListener);
+		delete _materialMgrListener;
+		_materialMgrListener = nullptr;
+	}
 
-	//if (mShaderGenerator != nullptr) {
-	//	Ogre::RTShader::ShaderGenerator::destroy();
-	//	mShaderGenerator = nullptr;
-	//}
+	if (_shaderGenerator != nullptr) {
+		Ogre::RTShader::ShaderGenerator::destroy();
+		_shaderGenerator = nullptr;
+	}
 }
 
 NativeWindowPair eden_render::RenderManager::CreateNewWindow(const std::string& name)
@@ -200,8 +295,10 @@ void eden_render::RenderManager::LocateResources()
 		cf.load(resourcesPath);
 	}
 	else {
+		std::string path = _solutionPath;
+		path.append(_resourcesPath);
 		Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
-			Ogre::FileSystemLayer::resolveBundlePath(_solutionPath + "\\media"),
+			Ogre::FileSystemLayer::resolveBundlePath(path),
 			"FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 	}
 

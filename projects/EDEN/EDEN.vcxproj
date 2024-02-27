@@ -15,6 +15,7 @@
     <ClCompile Include="..\..\src\EDEN\main.cpp" />
     <ClCompile Include="..\..\src\EDEN\Quaternion.cpp" />
     <ClCompile Include="..\..\src\EDEN\SceneManager.cpp" />
+    <ClCompile Include="..\..\src\EDEN\Scene.cpp" />
     <ClCompile Include="..\..\src\EDEN\Transform.cpp" />
     <ClCompile Include="..\..\src\EDEN\Vector3.cpp" />
     <ClCompile Include="..\..\src\EDEN\Component.cpp" />
@@ -25,6 +26,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\src\EDEN\Quaternion.h" />
     <ClInclude Include="..\..\src\EDEN\SceneManager.h" />
+    <ClInclude Include="..\..\src\EDEN\Scene.h" />
     <ClInclude Include="..\..\src\EDEN\Singleton.h" />
     <ClInclude Include="..\..\src\EDEN\EdenMaster.h" />
     <ClInclude Include="..\..\src\EDEN\Transform.h" />

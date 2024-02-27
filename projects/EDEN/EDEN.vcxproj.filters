@@ -11,6 +11,7 @@
     <ClCompile Include="..\..\src\EDEN\Entity.cpp" />
     <ClCompile Include="..\..\src\EDEN\TestComponent.cpp" />
     <ClCompile Include="..\..\src\EDEN\SceneManager.cpp" />
+    <ClCompile Include="..\..\src\EDEN\Scene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\EDEN\Quaternion.h" />
@@ -23,5 +24,6 @@
     <ClInclude Include="..\..\src\EDEN\Entity.h" />
     <ClInclude Include="..\..\src\EDEN\TestComponent.h" />
     <ClInclude Include="..\..\src\EDEN\SceneManager.h" />
+    <ClInclude Include="..\..\src\EDEN\Scene.h" />
   </ItemGroup>
 </Project>

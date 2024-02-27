@@ -16,3 +16,6 @@ cd ../SDL/
 
 cd ../Bullet/
 ./$SH
+
+cd ../Lua/
+./$SH

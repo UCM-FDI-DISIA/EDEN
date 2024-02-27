@@ -7,7 +7,7 @@
 COMPILEDIR=../../src
 BUILDDIR=./build
 FILE=chkbuild.EDENBUILD
-BULLETBUILDVER=1.0
+BULLETBUILDVER=1.1
 COMPILE=1
 
 if test -f "$FILE"
@@ -17,9 +17,11 @@ then
     then
         COMPILE=0
     else
+        rm -rf $BUILDDIR
         echo $BULLETBUILDVER >$FILE
     fi
 else
+    rm -rf $BUILDDIR
     echo $BULLETBUILDVER >$FILE
 fi
 
@@ -40,7 +42,7 @@ then
     xcodebuild -project BULLET_PHYSICS.xcodeproj -configuration Debug
     xcodebuild -project BULLET_PHYSICS.xcodeproj -configuration Release
 
-    cd ..
+    cd ../..
 
     echo BULLET compilado
 else

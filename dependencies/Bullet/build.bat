@@ -5,7 +5,7 @@
 SETLOCAL ENABLEDELAYEDEXPANSION
 set COMPILEDIR=..\..\src
 set BUILDDIR=.\build
-set BULLETBUILDVER=1.0
+set BULLETBUILDVER=1.1
 set COMPILE=1
 set PLATFORM=x64
 
@@ -14,9 +14,11 @@ if exist chkbuild.EDENBUILD (
     if "!CHKBUILDVER!"=="%BULLETBUILDVER%" (
         set COMPILE=0
     ) else (
+        del /q %BUILDDIR%
         echo %BULLETBUILDVER%>chkbuild.EDENBUILD
     )
 ) else (
+    del /q %BUILDDIR%
     echo %BULLETBUILDVER%>chkbuild.EDENBUILD
 )
 

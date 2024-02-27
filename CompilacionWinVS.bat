@@ -17,5 +17,8 @@ call %BAT%
 cd ..\Bullet\
 call %BAT%
 
+cd ..\Lua\
+call %BAT%
+
 :: Para evitar que la ventana se cierre por si tenemos algún error, ponemos en pausa al final de la compilación
 pause

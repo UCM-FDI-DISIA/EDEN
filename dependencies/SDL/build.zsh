@@ -7,7 +7,7 @@
 COMPILEDIR=../../src
 BUILDDIR=./build
 FILE=chkbuild.EDENBUILD
-SDLBUILDVER=1.0
+SDLBUILDVER=1.1
 COMPILE=1
 
 if test -f "$FILE"
@@ -17,9 +17,11 @@ then
     then
         COMPILE=0
     else
+        rm -rf $BUILDDIR
         echo $SDLBUILDVER >$FILE
     fi
 else
+    rm -rf $BUILDDIR
     echo $SDLBUILDVER >$FILE
 fi
 

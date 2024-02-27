@@ -126,26 +126,7 @@ if(OGRE_BUILD_DEPENDENCIES AND NOT EXISTS ${OGREDEPS_PATH})
           WORKING_DIRECTORY ${PROJECT_BINARY_DIR}/zlib-1.3)
       execute_process(COMMAND ${CMAKE_COMMAND}
           --build ${PROJECT_BINARY_DIR}/zlib-1.3 ${BUILD_COMMAND_OPTS})
-
-      message(STATUS "Building Assimp")
-      file(DOWNLOAD
-              https://github.com/assimp/assimp/archive/refs/tags/v5.2.5.zip
-          ${PROJECT_BINARY_DIR}/v5.2.5.tar.gz)
-      execute_process(COMMAND ${CMAKE_COMMAND}
-          -E tar xf v5.2.5.tar.gz WORKING_DIRECTORY ${PROJECT_BINARY_DIR})
-      execute_process(COMMAND ${BUILD_COMMAND_COMMON}
-          -DZLIB_ROOT=${OGREDEPS_PATH}
-          -DBUILD_SHARED_LIBS=OFF
-          -DASSIMP_BUILD_TESTS=OFF
-          -DASSIMP_NO_EXPORT=TRUE
-          -DASSIMP_BUILD_OGRE_IMPORTER=OFF
-          -DASSIMP_BUILD_ASSIMP_TOOLS=OFF
-          ${PROJECT_BINARY_DIR}/assimp-5.2.5
-          WORKING_DIRECTORY ${PROJECT_BINARY_DIR}/assimp-5.2.5)
-      execute_process(COMMAND ${CMAKE_COMMAND}
-        --build ${PROJECT_BINARY_DIR}/assimp-5.2.5 ${BUILD_COMMAND_OPTS})
-    endif()
-
+	endif()
 endif()
 
 #######################################################################
@@ -229,22 +210,6 @@ macro_log_feature(SWIG_FOUND "SWIG" "Language bindings (Python, Java, C#) for OG
 # Find zlib
 find_package(ZLIB)
 macro_log_feature(ZLIB_FOUND "zlib" "Simple data compression library" "http://www.zlib.net")
-
-# Assimp
-find_package(assimp QUIET)
-macro_log_feature(assimp_FOUND "Assimp" "Needed for the AssimpLoader Plugin" "https://www.assimp.org/")
-
-if(assimp_FOUND)
-  # workaround horribly broken assimp cmake, fixed with assimp 5.1
-  add_library(fix::assimp INTERFACE IMPORTED)
-  set_target_properties(fix::assimp PROPERTIES
-      INTERFACE_LINK_LIBRARIES "${ASSIMP_LIBRARIES};pugixml"
-      INTERFACE_LINK_DIRECTORIES "${ASSIMP_LIBRARY_DIRS}"
-  )
-  if(EXISTS "${ASSIMP_INCLUDE_DIRS}")
-    set_target_properties(fix::assimp PROPERTIES INTERFACE_INCLUDE_DIRECTORIES "${ASSIMP_INCLUDE_DIRS}")
-  endif()
-endif()
 
 #######################################################################
 # Tools

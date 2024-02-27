@@ -7,7 +7,7 @@ SETLOCAL ENABLEDELAYEDEXPANSION
 set COMPILEDIR=..\..\src
 set BUILDDIR=.\build
 set DLLFOLDERS=.\..\..\..\..\bin
-set SDLBUILDVER=1.0
+set SDLBUILDVER=1.1
 set COMPILE=1
 set PLATFORM=x64
 
@@ -16,9 +16,11 @@ if exist chkbuild.EDENBUILD (
     if "!CHKBUILDVER!"=="%SDLBUILDVER%" (
         set COMPILE=0
     ) else (
+        del /q %BUILDDIR%
         echo %SDLBUILDVER%>chkbuild.EDENBUILD
     )
 ) else (
+    del /q %BUILDDIR%
     echo %SDLBUILDVER%>chkbuild.EDENBUILD
 )
 
@@ -40,8 +42,8 @@ if !COMPILE! equ 1 (
     :: Generamos con CMake a partir de la carpeta con el Src de SDL la solución de VSC++ con las tags correspondientes
     cmake -A %PLATFORM% %COMPILEDIR%
     :: Compilamos SDL tanto en Debug como en Release (solo hemos creado para x64, no tenemos que preocuparnos por Win32)
-    msbuild "SDL2.sln" /p:configuration=Debug /maxcpucount
-    msbuild "SDL2.sln" /p:configuration=Release /maxcpucount
+    msbuild "SDL2.sln" /p:configuration=Debug
+    msbuild "SDL2.sln" /p:configuration=Release
     :: Movemos las DLLs de SDL generadas a la carpeta con ruta DLLFOLDERS
     :: /y suprime la solicitud para confirmar que desea sobrescribir un archivo de destino existente.
     :: /s copia directorios y subdirectorios, a menos que estén vacíos.

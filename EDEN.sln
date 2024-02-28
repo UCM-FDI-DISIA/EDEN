@@ -16,6 +16,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EDEN_Input", "projects\EDEN
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EDEN_Script", "projects\EDEN_Script\EDEN_Script\EDEN_Script.vcxproj", "{E0DED4FB-14BA-40E6-95BB-21AE65321226}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EDEN_Audio", "projects\EDEN_Audio\EDEN_Audio.vcxproj", "{65D12563-7857-4FEB-A473-02CF29ECA253}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -42,6 +44,10 @@ Global
 		{E0DED4FB-14BA-40E6-95BB-21AE65321226}.Debug|x64.Build.0 = Debug|x64
 		{E0DED4FB-14BA-40E6-95BB-21AE65321226}.Release|x64.ActiveCfg = Release|x64
 		{E0DED4FB-14BA-40E6-95BB-21AE65321226}.Release|x64.Build.0 = Release|x64
+		{65D12563-7857-4FEB-A473-02CF29ECA253}.Debug|x64.ActiveCfg = Debug|x64
+		{65D12563-7857-4FEB-A473-02CF29ECA253}.Debug|x64.Build.0 = Debug|x64
+		{65D12563-7857-4FEB-A473-02CF29ECA253}.Release|x64.ActiveCfg = Release|x64
+		{65D12563-7857-4FEB-A473-02CF29ECA253}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

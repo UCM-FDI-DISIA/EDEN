@@ -9,12 +9,14 @@
 #include <OgreViewport.h>
 #include <OgreDataStream.h>
 #include <OgreFileSystemLayer.h>
+
 #include <SDL.h>
 #include <SDL_video.h>
 #include <SDL_syswm.h>
 #include <OgreTechnique.h>
 #include <OgreShaderGenerator.h>
 #include <OgreMaterialManager.h>
+
 #pragma warning( disable : 4996 )
 
 class ShaderGeneratorTechniqueResolverListener : public Ogre::MaterialManager::Listener
@@ -91,8 +93,10 @@ eden_render::RenderManager::~RenderManager()
 	delete _fsLayer;
 }
 
-void eden_render::RenderManager::InitManager()
+void eden_render::RenderManager::InitManager(const std::string& appName)
 {
+	_appName = appName;
+
 	CreateRoot();
 
 	if (OneTimeConfig()) {
@@ -122,15 +126,20 @@ void eden_render::RenderManager::InitManager()
 	Ogre::SceneNode* cuerpoNode = _sceneMngr->getRootSceneNode()->createChildSceneNode();
 	Ogre::Vector3 cuerpoScale = { 100, 100, 100 };
 	Ogre::Entity* ent;
-	/*ent = _sceneMngr->createEntity("cube.mesh");
-	cuerpoNode->attachObject(ent);
-	cuerpoNode->setScale(cuerpoScale);*/
+	//ent = _sceneMngr->createEntity("cube.mesh");
+	//cuerpoNode->attachObject(ent);
+	//cuerpoNode->setScale(cuerpoScale);
 
 }
 
-void eden_render::RenderManager::StartRendering()
+void eden_render::RenderManager::Update()
 {
-	_root->startRendering();
+	//for (...) {
+	//	// renderizado de 
+	//}
+
+	_root->renderOneFrame();
+	_window.render->update();
 }
 
 void eden_render::RenderManager::CloseManager()
@@ -185,13 +194,13 @@ void eden_render::RenderManager::Setup()
 	CreateNewWindow(_appName);
 	SetWindowGrab(false);
 
-	// mRoot->showConfigDialog(OgreBites::getNativeConfigDialog());
+	// _root->showConfigDialog(OgreBites::getNativeConfigDialog());
 
 	LocateResources();
 	InitialiseRTShaderSystem();
 	LoadResources();
 
-	// mRoot->addFrameListener(this);
+	_root->addFrameListener(this);
 }
 
 bool eden_render::RenderManager::OneTimeConfig()

@@ -8,23 +8,26 @@
 #include "TestComponent.h"
 #include "Transform.h"
 
-// Engine Render
+/// Engine Render
 #include <RenderManager.h>
 
-//Engine Input
+/// Engine Input
 #include <InputManager.h>
-#include <iostream> 
+#include <iostream>
 
 int main() {
 	eden_render::RenderManager* renderManager = eden_render::RenderManager::Instance();
 
-	renderManager->InitManager();
-	renderManager->StartRendering();
-	//eden_input::InputManager* inputManager = eden_input::InputManager::Instance();
+	renderManager->InitManager("EDEN Engine"); // sustituir por nombre del juego a arrancar
+	while (true) {
+		renderManager->Update();
+	}
+	
+	// eden_input::InputManager* inputManager = eden_input::InputManager::Instance();
 
 
 	eden::Master* master = eden::Master::Instance();
-	master->Loop();
+	// master->Loop();
 	delete master;
 	auto factory = eden_ec::ComponentFactory::Instance();
 
@@ -48,8 +51,8 @@ int main() {
 	}*/
 	
 	renderManager->CloseManager();
-	//inputManager->clean();
-	//delete inputManager;
+	// inputManager->Clean();
+	// delete inputManager;
 	
 	delete ent;
 	return 0;

@@ -134,12 +134,24 @@ void eden_render::RenderManager::InitManager(const std::string& appName)
 
 void eden_render::RenderManager::Update()
 {
-	//for (...) {
-	//	// renderizado de 
-	//}
 
-	_root->renderOneFrame();
-	_window.render->update();
+	SDL_Event event;
+	bool quit = false;
+	
+	while (!quit) {
+		while (SDL_PollEvent(&event)) {
+			switch (event.type) {
+			case SDL_QUIT:
+				quit = true;
+				break;
+			}
+		}
+		_root->renderOneFrame();
+		_window.render->update();
+	}
+
+	SDL_DestroyWindow(_window.native);
+	SDL_Quit();
 }
 
 void eden_render::RenderManager::CloseManager()

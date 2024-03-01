@@ -37,6 +37,7 @@ namespace eden_render
 		void InitManager(const std::string& appName = OGRE_VERSION_NAME);
 		void CloseManager();
 		void Update();
+		void CloseWindow();
 
 	protected:
 		bool InitialiseRTShaderSystem();

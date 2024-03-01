@@ -18,14 +18,8 @@
     <ClCompile Include="..\..\src\EDEN_Input\InputManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\EDEN_Input\InputWrapper.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\EDEN_Input\InputWrapper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\EDEN_Input\InputManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>

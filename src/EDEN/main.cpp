@@ -19,12 +19,13 @@ int main() {
 	eden_render::RenderManager* renderManager = eden_render::RenderManager::Instance();
 
 	renderManager->InitManager("EDEN Engine"); // sustituir por nombre del juego a arrancar
-	while (true) {
-		renderManager->Update();
-	}
-	
-	// eden_input::InputManager* inputManager = eden_input::InputManager::Instance();
+	eden_input::InputManager* inputManager = eden_input::InputManager::Instance();
 
+	while (!inputManager->IsKeyDown(inputManager->SPACE)) {
+		renderManager->Update();
+		inputManager->Update();
+	}
+	renderManager->CloseWindow();
 
 	eden::Master* master = eden::Master::Instance();
 	// master->Loop();
@@ -43,16 +44,9 @@ int main() {
 		ent->Update(0);
 		ent->SetAlive(false);
 	}
-
-	/*while (!inputManager->isKeyDown(inputManager->SPACE))
-	{
-		inputManager->update();
-		std::cout << "he";
-	}*/
 	
 	renderManager->CloseManager();
-	// inputManager->Clean();
-	// delete inputManager;
+	inputManager->~InputManager();
 	
 	delete ent;
 	return 0;

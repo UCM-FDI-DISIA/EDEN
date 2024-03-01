@@ -1,62 +1,178 @@
 #include "InputManager.h"
-#include "InputWrapper.h"
 
-void eden_input::InputManager::Start() {
-	//Manager::start();
+eden_input::InputManager::InputManager() {
+	//Inicialiación de SDL
+	SDL_Init(SDL_INIT_EVERYTHING);
+	_event = new SDL_Event();
+	_kbState = std::unordered_map<uint8_t, uint8_t>();
+	ClearState();
 
-	/*lua_State* L = LuaManager::getInstance()->getLuaState();
-	luabridge::getGlobalNamespace(L)
-		.beginClass<InputManager>("InputManager")
-		.addFunction("setCloseWindow", &InputManager::setCloseWindow)
-		.endClass();
-
-	luabridge::setGlobal(L, this, "InputManager");*/
-}
-
-void eden_input::InputManager::Clean() {
-	//Separity::Manager::clean();
-	_inputWrapper->CleanWrapper();
+	//Creación de ventana temporal para testing
+	//_window = SDL_CreateWindow("WIN", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 680, 480, 0);
 }
 
 eden_input::InputManager::~InputManager() {
-	delete _inputWrapper;
+	SDL_Quit();
+	delete _event;
+	_window = nullptr;
 }
 
-eden_input::InputManager::InputManager() {
-	_inputWrapper = new InputWrapper();
-
-	//getInstance()->addManager(_INPUT, this);
-	//mustStart_ = true;
+void eden_input::InputManager::Clean() {
+	_kbState = std::unordered_map<uint8_t, uint8_t>();
 }
 
-void eden_input::InputManager::Update() { _inputWrapper->UpdateWrapper();}
+void eden_input::InputManager::Update() {
+	ClearState();
+	while (SDL_PollEvent(_event))
+	{
+		switch (_event->type)
+		{
+		case 4352:
+			if (true);
+			break;
+		case SDL_KEYDOWN:
+			OnKeyDown();
+			break;
+		case SDL_KEYUP:
+			OnKeyUp();
+			break;
+		case SDL_MOUSEMOTION:
+			OnMouseMotion();
+			break;
+		case SDL_MOUSEBUTTONDOWN:
+			OnMouseButtonChange(DOWN);
+			break;
+		case SDL_MOUSEBUTTONUP:
+			OnMouseButtonChange(UP);
+			break;
+		case SDL_WINDOWEVENT:
+			HandleWindowEvent();
+			break;
+		default:
+			break;
+		}
+	}
+}
 
-bool eden_input::InputManager::KeyDownEvent() { return _inputWrapper->KeyDownEventWrapper(); }
+bool eden_input::InputManager::KeyDownEvent() { return _isKeyDownEvent; }
 
-bool eden_input::InputManager::KeyUpEvent() { return _inputWrapper->KeyUpEventWrapper(); }
+bool eden_input::InputManager::KeyUpEvent() { return _isKeyUpEvent; }
 
-bool eden_input::InputManager::IsKeyDown(char key) { return _inputWrapper->IsKeyDownWrapper(key);}
+bool eden_input::InputManager::IsKeyDown(char key) {
+	return _kbState[SDL_GetScancodeFromKey(key)] == DOWN;
+}
 
-bool eden_input::InputManager::IsKeyHeld(char key) { return _inputWrapper->IsKeyHeldWrapper(key);}
+bool eden_input::InputManager::IsKeyHeld(char key) {
+	return _kbState[SDL_GetScancodeFromKey(key)] == DOWN ||
+		_kbState[SDL_GetScancodeFromKey(key)] == HELD;
+}
 
-bool eden_input::InputManager::IsKeyUp(char key) { return _inputWrapper->IsKeyHeldWrapper(key);}
+bool eden_input::InputManager::IsKeyUp(char key) {
+	return _kbState[SDL_GetScancodeFromKey(key)] == UP;
+}
 
-bool eden_input::InputManager::IsKeyDown(SPECIALKEY key) { return _inputWrapper->IsKeyDownWrapper(key);}
+bool eden_input::InputManager::IsKeyDown(SPECIALKEY key) {
+	return _kbState[(SDL_Scancode)key] == DOWN;
+}
 
-bool eden_input::InputManager::IsKeyHeld(SPECIALKEY key) { return _inputWrapper->IsKeyHeldWrapper(key);}
+bool eden_input::InputManager::IsKeyHeld(SPECIALKEY key) {
+	return _kbState[(SDL_Scancode)key] == DOWN ||
+		_kbState[(SDL_Scancode)key] == HELD;
+}
 
-bool eden_input::InputManager::IsKeyUp(SPECIALKEY key) { return _inputWrapper->IsKeyUpWrapper(key);}
+bool eden_input::InputManager::IsKeyUp(SPECIALKEY key) {
+	return _kbState[(SDL_Scancode)key] == UP;
+}
 
-bool eden_input::InputManager::MouseMotionEvent() { return _inputWrapper->MouseMotionEventWrapper(); }
+bool eden_input::InputManager::MouseMotionEvent() { return _isMouseMotionEvent; }
 
-bool eden_input::InputManager::MouseButtonEvent() { return _inputWrapper->MouseButtonEventWrapper(); }
+bool eden_input::InputManager::MouseButtonEvent() { return _isMouseButtonEvent; }
 
-bool eden_input::InputManager::IsMouseButtonDown(MOUSEBUTTON b) { return _inputWrapper->IsMouseButtonDownWrapper(b); }
+bool eden_input::InputManager::IsMouseButtonDown(int b) {
+	return _mbState[b] == DOWN;
+}
 
-bool eden_input::InputManager::IsMouseButtonHeld(MOUSEBUTTON b) { return _inputWrapper->IsMouseButtonHeldWrapper(b);}
+bool eden_input::InputManager::IsMouseButtonHeld(int b) {
+	return _mbState[b] == DOWN || _mbState[b] == HELD;
+}
 
-bool eden_input::InputManager::IsMouseButtonUp(MOUSEBUTTON b) {	return _inputWrapper->IsMouseButtonUpWrapper(b);}
+bool eden_input::InputManager::IsMouseButtonUp(int b) {
+	return _mbState[b] == UP;
+}
 
-const std::pair<int, int>& eden_input::InputManager::GetMousePos() { return _inputWrapper->GetMousePosWrapper();}
+const std::pair<int, int>& eden_input::InputManager::GetMousePos() {
+	return _mousePos;
+}
 
-bool eden_input::InputManager::CloseWindowEvent() { return _inputWrapper->CloseWindowEventWrapper(); }
+void eden_input::InputManager::ClearState() {
+	_isKeyDownEvent = false;
+	_isKeyUpEvent = false;
+	_isMouseButtonEvent = false;
+	_isMouseMotionEvent = false;
+	_isCloseWindowEvent = false;
+
+	for (auto i = 0u; i < 3; i++) {
+		if (_mbState[i] == DOWN)
+			_mbState[i] = HELD;
+		else if (_mbState[i] == UP)
+			_mbState[i] = RELEASED;
+	}
+
+	for (auto i = 0u; i < _kbState.size(); i++) {
+		if (_kbState[i] == DOWN)
+			_kbState[i] = HELD;
+		else if (_kbState[i] == UP)
+			_kbState[i] = RELEASED;
+	}
+}
+
+void eden_input::InputManager::OnKeyDown() {
+	SDL_Scancode key = _event->key.keysym.scancode;
+	if (!_kbState.count(key) || _kbState[key] != HELD)
+		_kbState[key] = DOWN;
+
+	_isKeyDownEvent = true;
+}
+
+void eden_input::InputManager::OnKeyUp() {
+	_kbState[_event->key.keysym.scancode] = UP;
+
+	_isKeyUpEvent = true;
+}
+
+void eden_input::InputManager::OnMouseMotion() {
+	_isMouseMotionEvent = true;
+	_mousePos.first = _event->motion.x;
+	_mousePos.second = _event->motion.y;
+}
+
+void eden_input::InputManager::OnMouseButtonChange(STATE state) {
+	_isMouseButtonEvent = true;
+	switch (_event->button.button) {
+	case SDL_BUTTON_LEFT:
+		_mbState[LEFT] = state;
+		break;
+	case SDL_BUTTON_MIDDLE:
+		_mbState[MIDDLE] = state;
+		break;
+	case SDL_BUTTON_RIGHT:
+		_mbState[RIGHT] = state;
+		break;
+	default:
+		break;
+	}
+}
+
+void eden_input::InputManager::HandleWindowEvent() {
+	switch (_event->window.event) {
+	case SDL_WINDOWEVENT_CLOSE:
+		_isCloseWindowEvent = true;
+		break;
+	default:
+		break;
+	}
+}
+
+bool eden_input::InputManager::CloseWindowEvent() { return _isCloseWindowEvent; }
+
+void eden_input::InputManager::SetCloseWindow() { _isCloseWindowEvent = true; }

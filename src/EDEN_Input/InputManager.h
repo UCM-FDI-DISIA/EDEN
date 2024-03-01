@@ -2,9 +2,11 @@
 #ifndef __INPUT_MANAGER_H__
 #define __INPUT_MANAGER_H__
 #include "Singleton.h"
+#include <SDL.h>
+#include <array>
+#include <unordered_map>
 
-class InputWrapper;
-
+#undef main
 namespace eden_input 
 {
 	/// <summary>
@@ -13,6 +15,8 @@ namespace eden_input
 	class InputManager : public Singleton<InputManager>
 	{
 	public:
+
+		friend Singleton<InputManager>;
 
 		enum MOUSEBUTTON : uint8_t { LEFT = 0, MIDDLE = 1, RIGHT = 2 };
 		enum SPECIALKEY : uint8_t {
@@ -72,8 +76,19 @@ namespace eden_input
 			RSHIFT = 229,
 			RALT = 230
 		};
+		/// <summary>
+		/// Constructora de la clase
+		/// </summary>
+		InputManager();
 
-		friend Singleton<InputManager>;
+		/// <summary>
+		/// Destructora de la clase
+		///	</summary>
+		~InputManager();
+
+
+		void Clean();
+
 		// keyboard
 
 		/// <returns>
@@ -149,21 +164,21 @@ namespace eden_input
 		/// en el que el botón del ratón es pulsado
 		/// </returns>
 		/// <param name="b">: Botón del ratón (macros MOUSEBUTTON)</param>
-		bool IsMouseButtonDown(MOUSEBUTTON b);
+		bool IsMouseButtonDown(int b);
 
 		/// <returns>
 		/// True mientras
 		/// el botón del ratón esté pulsado
 		/// </returns>
 		/// <param name="b">: Botón del ratón (macros MOUSEBUTTON)</param>
-		bool IsMouseButtonHeld(MOUSEBUTTON b);
+		bool IsMouseButtonHeld(int b);
 
 		/// <returns>
 		/// True en el primer frame
 		/// en el que el botón del ratón es liberado
 		/// </returns>
 		/// <param name="b">: Botón del ratón (macros MOUSEBUTTON)</param>
-		bool IsMouseButtonUp(MOUSEBUTTON b);
+		bool IsMouseButtonUp(int b);
 
 		/// <returns>
 		/// Par (X, Y) de
@@ -181,38 +196,80 @@ namespace eden_input
 		/// Devuelve true cuando el usuario ha pulsado la X de la ventana
 		/// </summary>
 		bool CloseWindowEvent();
+		/// <summary>
+		/// Se llama para cerrar la ventana de sdl (en el boto de quit del menu
+		/// por ejemplo)
+		/// </summary>
+		void SetCloseWindow();
 
 		// singleton/manager functions
 
 		/// <summary>
-		/// Actualiza el manager
+		/// 
 		/// </summary>
 		virtual void Update();
 
-		/// <summary>
-		/// Inicializa el manager
-		/// </summary>
-		void Start();
-
-		/// <summary>
-		/// Limpia el manager
-		/// </summary>
-		void Clean();
-
-		///<summary>
-		/// Destructora de la clase
-		/// </summary>
-		~InputManager();
-
-	protected:
-		/// <summary>
-		/// Constructora de la clase
-		/// </summary>
-		InputManager();
 
 	private:
 
-		InputWrapper* _inputWrapper;
+		SDL_Event* _event;
+
+		// keyboard
+		bool _isKeyUpEvent;
+		bool _isKeyDownEvent;
+		std::unordered_map<uint8_t, uint8_t> _kbState;
+
+		// mouse
+		bool _isMouseMotionEvent;
+		bool _isMouseButtonEvent;
+		std::pair<int, int> _mousePos;
+		std::array<uint8_t, 3> _mbState;
+
+		// window
+		bool _isCloseWindowEvent;
+
+		SDL_Window* _window;
+
+		enum STATE : uint8_t {
+			RELEASED = 0,
+			DOWN = 1,
+			HELD = 2,
+			UP = 3,
+		};
+
+		/// <summary>
+		/// Gestiona el cambio de estados de los botones de teclado, mando y
+		/// ratón (DOWN -> HELD y UP -> RELEASE). Resetea las flags de los
+		/// eventos
+		/// </summary>
+		void ClearState();
+
+		/// <summary>
+		/// Actualiza el estado de las teclas del teclado
+		/// </summary>
+		void OnKeyDown();
+
+		/// <summary>
+		/// Actualiza el estado de las teclas del teclado
+		/// </summary>
+		void OnKeyUp();
+
+		/// <summary>
+		/// Actualiza la posición del ratón
+		/// </summary>
+		void OnMouseMotion();
+
+		/// <summary>
+		/// Actualiza el estado de los botones del ratón
+		/// </summary>
+		void OnMouseButtonChange(STATE state);
+
+
+		/// <summary>
+		/// Gestiona los eventos de ventana
+		/// </summary>
+		void HandleWindowEvent();
+
 	};
 }
 

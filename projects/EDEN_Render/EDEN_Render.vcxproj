@@ -13,18 +13,23 @@
   <ItemGroup>
     <ClInclude Include="..\..\src\EDEN_Render\RenderManager.h" />
     <ClInclude Include="..\..\src\EDEN_Render\UI\Image.h" />
+    <ClInclude Include="..\..\src\EDEN_Render\UI\Resources\checkML.h" />
     <ClInclude Include="..\..\src\EDEN_Render\UI\Resources\Font.h" />
     <ClInclude Include="..\..\src\EDEN_Render\UI\Resources\macros.h" />
     <ClInclude Include="..\..\src\EDEN_Render\UI\Resources\SDL_image.h" />
     <ClInclude Include="..\..\src\EDEN_Render\UI\Resources\SDL_ttf.h" />
+    <ClInclude Include="..\..\src\EDEN_Render\UI\Resources\SDLUtils.h" />
     <ClInclude Include="..\..\src\EDEN_Render\UI\Resources\Texture.h" />
     <ClInclude Include="..\..\src\EDEN_Render\UI\Resources\Vector2D.h" />
+    <ClInclude Include="..\..\src\EDEN_Render\UI\Text.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\EDEN_Render\RenderManager.cpp" />
     <ClCompile Include="..\..\src\EDEN_Render\UI\Image.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Render\UI\Resources\SDLUtils.cpp" />
     <ClCompile Include="..\..\src\EDEN_Render\UI\Resources\Texture.cpp" />
     <ClCompile Include="..\..\src\EDEN_Render\UI\Resources\Vector2D.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Render\UI\Text.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

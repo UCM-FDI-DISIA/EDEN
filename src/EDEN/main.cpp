@@ -10,6 +10,9 @@
 
 /// Engine Render
 #include <RenderManager.h>
+///
+//#include <UI/Image.h>
+//#include <UI/Texture.h>
 
 /// Engine Input
 #include <InputManager.h>
@@ -36,9 +39,13 @@ int main() {
 
 	factory->RegisterComponent<eden_ec::cTestComponent>();
 	factory->RegisterComponent<eden_ec::CTransform>();
+	///
+	//factory->RegisterComponent<eden_ec::Image>();
 
 	ent->AddComponent<eden_ec::cTestComponent>();
 	ent->AddComponent<eden_ec::CTransform>();
+	////
+	//ent->AddComponent<eden_ec::Image>();
 
 	while (ent->IsAlive()) {
 		ent->Update(0);

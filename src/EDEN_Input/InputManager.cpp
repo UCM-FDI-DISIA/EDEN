@@ -1,20 +1,15 @@
 #include "InputManager.h"
 
 eden_input::InputManager::InputManager() {
-	//Inicialiación de SDL
-	SDL_Init(SDL_INIT_EVERYTHING);
+
 	_event = new SDL_Event();
 	_kbState = std::unordered_map<uint8_t, uint8_t>();
 	ClearState();
 
-	//Creación de ventana temporal para testing
-	//_window = SDL_CreateWindow("WIN", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 680, 480, 0);
 }
 
 eden_input::InputManager::~InputManager() {
-	SDL_Quit();
 	delete _event;
-	_window = nullptr;
 }
 
 void eden_input::InputManager::Clean() {

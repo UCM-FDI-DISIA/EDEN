@@ -39,7 +39,8 @@ public:
 		_instance.release();
 	}
 
-	/// @brief Algunos singletons necesitan inicializarse con parametros. Se llama a este metodo al principio del programa
+	/// @brief Este método se puede usar para llamar a la constructora de una clase heredera de Singleton con parámetros. 
+	/// @brief Evitar llamar a este método directamente, es preferible llamar al método "Instance".
 	/// @param args Son los parámetros que se usan para construir a la clase
 	template<typename ...Targs>
 	inline static T* Init(Targs &&...args) {
@@ -54,11 +55,16 @@ public:
 		_instance.reset();
 	}
 
+	/// @brief El método instance devuelve la instancia única de la clase que herede de Singleton.
+	/// @brief La primera vez que se llama a este método, se construye la instancia de la clase y se guarda en un puntero estático.
+	/// @brief Las próximas llamadas al método devuelven este puntero. Si se quiere construir una nueva instancia de la clase se puede hacer con el método Init.
+	/// @param args Son los parámetros que se usan para construir a la clase
 	/// @return El puntero a la instancia del singleton
-	static T* Instance() {
+	template<typename ...Targs>
+	inline static T* Instance(Targs &&...args) {
 		/// @brief puedes sustituir el "if" por assert(_instance.get() != nullptr) para forzar la incializacion al principio
 		if (_instance.get() == nullptr) {
-			Init();
+			Init(std::forward<Targs>(args)...);
 		}
 		return _instance.get();
 	}

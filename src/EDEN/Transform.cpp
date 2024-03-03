@@ -1,9 +1,18 @@
 #include "Transform.h"
 
+#include "ScriptManager.h"
+#include "ComponentArguments.h"
+
 const std::string eden_ec::CTransform::_id = "TRASNFORM";
 
 eden_ec::CTransform::CTransform(eden_utils::Vector3 position, eden_utils::Quaternion rotation, eden_utils::Vector3 scale) : Component(),
 	_position(position), _rotation(rotation), _scale(scale) {};
+
+void eden_ec::CTransform::Init(eden_script::ComponentArguments* args) {
+	_position = args->GetValueToVector3("Position");
+	_rotation = args->GetValueToQuaternion("Rotation");
+	_scale = args->GetValueToVector3("Scale");
+}
 
 void eden_ec::CTransform::Translate(eden_utils::Vector3 position)
 {

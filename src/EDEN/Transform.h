@@ -25,6 +25,10 @@ namespace eden_ec {
 		/// @param scale Escala de la entidad con la que se va a generar
 		CTransform(eden_utils::Vector3 position, eden_utils::Quaternion rotation, eden_utils::Vector3 scale);
 
+		/// @brief Construye el componente dado unos argumentos. Se obtendrán de una lectura de un .lua
+		/// @param args Argumentos leídos de .lua
+		virtual void Init(eden_script::ComponentArguments* args);
+
 		~CTransform() = default;
 
 		/// @brief Getter de la posici�n
@@ -87,6 +91,9 @@ namespace eden_ec {
 		/// @brief Calcula el eje x positivo local
 		/// @return Devuelve el vector right
 		eden_utils::Vector3 GetRight();
+
+		/// @brief Definición de método estático GetID necesario para construcción de componentes
+		static std::string GetID() { return _id; }
 	protected:
 		const static std::string _id;
 	private:

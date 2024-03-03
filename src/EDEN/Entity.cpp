@@ -1,5 +1,14 @@
+#include "ScriptManager.h"
+#include "ComponentArguments.h"
+
 #include "Entity.h"
 #include "Component.h"
+
+void eden_ec::Entity::AddComponents(eden_script::EntityInfo* entityInfo) {
+    for (auto it : entityInfo->components) {
+        AddComponentByRead(&it);
+    }
+}
 
 eden_ec::Component* eden_ec::Entity::GetComponent(std::string id) {
     auto it = _components.find(id);
@@ -11,11 +20,12 @@ eden_ec::Component* eden_ec::Entity::GetComponent(std::string id) {
     }
 }
 
-/// WIP
-eden_ec::Component* eden_ec::Entity::AddComponentByName(std::string id/*, Struct_Info info*/) {
+eden_ec::Component* eden_ec::Entity::AddComponentByRead(eden_script::ComponentArguments* info) {
+    std::string id = info->GetID();
     Component* c = ComponentFactory::Instance()->CreateComponentByName(id);
     _components.emplace(id, c);
     c->SetContext(this);
+    c->Init(info);
     c->InitComponent();
 
     return c;

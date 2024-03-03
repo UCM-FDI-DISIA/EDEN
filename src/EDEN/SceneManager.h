@@ -11,7 +11,7 @@ class SceneManager : public Singleton<SceneManager> {
 	friend Singleton<SceneManager>;
 
 public:
-	SceneManager(){};
+	SceneManager() = default;
 	virtual ~SceneManager();
 
 	/// @brief Metodo encargado de crear una nueva escena y añadirla a la lista doblemente enlazada
@@ -40,7 +40,7 @@ public:
 	/// @param dt El DeltaTime
 	void Update(float dt);
 
-	/// @brief Metodo que devuelve la escena la primera escena de la lista
+	/// @brief Metodo que devuelve la primera escena de la lista
 	/// @return La escena activa
 	inline Scene* GetCurrentScene() { return _activeScene; }
 

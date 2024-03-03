@@ -2,8 +2,15 @@
 #define ENTITY_H
 
 #include <unordered_map>
+
 #include "Component.h"
 #include "ComponentFactory.h"
+
+namespace eden_script {
+    struct EntityInfo;
+    struct ComponentInfo;
+    class ComponentArguments;
+}
 
 namespace eden_ec {
 	/// @brief Clase que define las Entidades de nuestro juego como contenedores de Componentes,
@@ -15,6 +22,11 @@ namespace eden_ec {
 		/// @brief Construye una entidad genérica
 		Entity() = default;
 
+        /// @brief Construye una entidad genérica y le da nombre
+        /// @param id El nombre que queremos darle a la entidad
+        inline Entity(std::string id) { _ID = id; }
+
+        /// @brief Destruye la entidad y sus componentes asociados
         ~Entity();
 
         /// @brief Devuelve el nombre identificativo de la entidad
@@ -57,25 +69,26 @@ namespace eden_ec {
             return c;
         }
 
-        /// @brief Añade un nuevo componente a la entidad según su ID.
-        /// Cabe destacar que este apartado está en WIP (ver más información en Component.h
-        /// y ComponentFactory.h), ya que no tenemos el struct de información definido para poder
-        /// inicializar un componente con sus correspondientes argumentos de construcción.
-        /// @param id Id del componente
-        /// @return Componente creado
-        Component* AddComponentByName(std::string id/*, Struct_Info info*/);
+        /// @brief Añade un componente según la información leída en un mapa. 
+        /// @param info Información leída desde un mapa .lua.
+        Component* AddComponentByRead(eden_script::ComponentArguments* info);
+
+        /// @brief Crea todos los componentes de la entidad
+        /// @param info Struct que da valor al nombre y a los componentes de una entidad. Se construye a través
+        /// de la lectura de archivos .lua. Ver el proyecto de EDEN_Script para más información (ScriptManager.h)
+        void AddComponents(eden_script::EntityInfo* info);
 
         /// @brief Nos devuelve un componente asociado a una entidad dada su ID
-        /// \tparam T Tipo del componente
-        /// \return Puntero a la instancia del componente asociada a la entidad
+        /// @param T Tipo del componente
+        /// @return Puntero a la instancia del componente asociada a la entidad
         Component* GetComponent(std::string id);
 
         /// @brief Nos devuelve un componente asociado a una entidad dado su tipo
-        /// @tparam T Tipo del componente
+        /// @param T Tipo del componente
         /// @return Puntero a la instancia del componente asociada a la entidad
         template<typename T>
-        Component* GetComponent() {
-            return getComponent(T::GetID());
+        T* GetComponent() {
+            return static_cast<T*>(GetComponent(T::GetID()));
         };
 
         /// @brief Comprueba si una entidad tiene cierto componente dada su ID
@@ -108,7 +121,7 @@ namespace eden_ec {
         std::unordered_map<std::string, Component*> _components;
 
         /// @brief Variable que identifica a la entidad por nombre 
-        std::string _ID;
+        std::string _ID = "ENTITY_NEEDS_NEW_NAME";
 	};
 }
 

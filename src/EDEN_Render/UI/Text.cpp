@@ -4,16 +4,16 @@
 #include "Entity.h"
 #include "Resources\Font.h"
 
-eden_ec::TextComponent::TextComponent(std::string text, Font& f, Uint8 fr = 255, Uint8 fg = 255, Uint8 fb = 255,
-    Uint8 br = 255, Uint8 bg = 255, Uint8 bb = 255) : _text(text), _f(f){
+eden_ec::TextComponent::TextComponent(std::string text, Font& f, int fr, int fg, int fb,
+    int br, int bg, int bb) : _text(text), _f(f){
     _x = 0;
     _y = 0;
-    _fontColor.r = fr;
-    _fontColor.g = fg;
-    _fontColor.b = fb;
-    _bgColor.r = br;
-    _bgColor.g = bg;
-    _bgColor.b = bb;
+    _fontColor.r = abs(fr % 255);
+    _fontColor.g = abs(fg % 255);
+    _fontColor.b = abs(fb % 255);
+    _bgColor.r = abs(br % 255);
+    _bgColor.g = abs(bg % 255);
+    _bgColor.b = abs(bb % 255);
     _textTexture = CreateTexture(this->_text, this->_f, this->_fontColor, this->_bgColor);
 }
 
@@ -43,10 +43,10 @@ void eden_ec::TextComponent::ChangeText(std::string text) {
     _textTexture = CreateTexture(this->_text, this->_f, this->_fontColor, this->_bgColor);
 }
 
-void eden_ec::TextComponent::ChangeColor(Uint8 fr = 255, Uint8 fg = 255, Uint8 fb = 255) {
+void eden_ec::TextComponent::ChangeColor(int fr, int fg, int fb) {
     delete _textTexture;
-    _fontColor.r = fr;
-    _fontColor.g = fg;
-    _fontColor.b = fb;
+    _fontColor.r = abs(fr % 255);
+    _fontColor.g = abs(fg % 255);
+    _fontColor.b = abs(fb % 255);
     _textTexture = CreateTexture(this->_text, this->_f, this->_fontColor, this->_bgColor);
 }

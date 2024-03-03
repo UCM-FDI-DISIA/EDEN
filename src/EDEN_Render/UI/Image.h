@@ -12,6 +12,8 @@ namespace eden_ec {
 	class Image : public eden_ec::Component
 	{
 	public:
+
+		Image()=default;
 		/// @brief Constructora
 		/// @param tx Textura
 		Image(Texture* tx);

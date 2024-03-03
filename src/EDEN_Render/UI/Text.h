@@ -18,8 +18,8 @@ namespace eden_ec {
         /// @param f Font
         /// @param fontColor SDL_Color
         /// @param bgColor SDL_Color
-        TextComponent(std::string text, Font& f, Uint8 fr=255 ,Uint8 fg = 255 , Uint8 fb = 255 ,
-            Uint8 br = 255, Uint8 bg = 255, Uint8 bb = 255);
+        TextComponent(std::string text, Font& f, int fr=255 , int fg = 255 , int fb = 255 ,
+            int br = 255, int bg = 255, int bb = 255);
 
         /// @brief Destructora
         virtual ~TextComponent() { delete _textTexture; }
@@ -49,7 +49,7 @@ namespace eden_ec {
 
         /// @brief Cambiar color
         /// @param fontColor Nuevo color
-        void ChangeColor(Uint8 fr = 255, Uint8 fg = 255, Uint8 fb = 255);
+        void ChangeColor(int fr = 255, int fg = 255, int fb = 255);
     private:
         Texture* _textTexture;
         int _x;

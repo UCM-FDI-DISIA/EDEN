@@ -54,7 +54,6 @@ int main() {
 	
 	renderManager->CloseManager();
 	inputManager->~InputManager();
-	
 	delete ent;
 	return 0;
 }

@@ -5,7 +5,6 @@
 #include <OgreFrameListener.h>
 #include "Singleton.h"
 
-
 namespace Ogre {
 	class FileSystemLayer;
 	class RenderWindow;
@@ -24,14 +23,16 @@ struct NativeWindowPair
 	Ogre::RenderWindow* render = nullptr;
 	NativeWindowType* native = nullptr;
 };
-
+namespace render_wrapper {
+	class Node;
+}
 namespace eden_render
 {
 	class RenderManager : public Ogre::FrameListener, public Singleton<RenderManager>
 	{
 	public:
 		friend Singleton<RenderManager>;
-
+		friend render_wrapper::Node;
 		~RenderManager() override;
 
 		void InitManager(const std::string& appName = OGRE_VERSION_NAME);

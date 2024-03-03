@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\EDEN_Render\Node.h" />
     <ClInclude Include="..\..\src\EDEN_Render\RenderManager.h" />
     <ClInclude Include="..\..\src\EDEN_Render\UI\Image.h" />
     <ClInclude Include="..\..\src\EDEN_Render\UI\Resources\checkML.h" />
@@ -22,8 +23,10 @@
     <ClInclude Include="..\..\src\EDEN_Render\UI\Resources\Texture.h" />
     <ClInclude Include="..\..\src\EDEN_Render\UI\Resources\Vector2D.h" />
     <ClInclude Include="..\..\src\EDEN_Render\UI\Text.h" />
+    <ClInclude Include="..\..\src\EDEN_Render\RenderObject.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\EDEN_Render\Node.cpp" />
     <ClCompile Include="..\..\src\EDEN_Render\RenderManager.cpp" />
     <ClCompile Include="..\..\src\EDEN_Render\UI\Image.cpp" />
     <ClCompile Include="..\..\src\EDEN_Render\UI\Resources\SDLUtils.cpp" />

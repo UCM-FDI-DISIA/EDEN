@@ -53,6 +53,11 @@
     </ClInclude>
     <ClInclude Include="..\..\src\EDEN_Render\UI\Resources\checkML.h">
       <Filter>Resources</Filter>
+    <ClInclude Include="..\..\src\EDEN_Render\Node.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\EDEN_Render\RenderObject.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -73,6 +78,8 @@
     </ClCompile>
     <ClCompile Include="..\..\src\EDEN_Render\UI\Resources\SDLUtils.cpp">
       <Filter>Resources</Filter>
+    <ClCompile Include="..\..\src\EDEN_Render\Node.cpp">
+      <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

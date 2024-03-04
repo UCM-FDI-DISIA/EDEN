@@ -2,7 +2,6 @@
 #define RENDER_MANAGER_H_
 
 #include <string>
-#include <OgreFrameListener.h>
 #include "Singleton.h"
 
 namespace Ogre {
@@ -28,14 +27,20 @@ namespace render_wrapper {
 }
 namespace eden_render
 {
-	class RenderManager : public Ogre::FrameListener, public Singleton<RenderManager>
+	class RenderManager : public Singleton<RenderManager>
 	{
 	public:
 		friend Singleton<RenderManager>;
 		friend render_wrapper::Node;
+		
+		/// @brief Destructora
 		~RenderManager() override;
 
-		void InitManager(const std::string& appName = OGRE_VERSION_NAME);
+		/// @brief Inicializa la librería de renderizado,
+		/// crea la ventana de renderizado, localiza y carga los recursos (.mesh, .material, etc)
+		/// y inicializa los shaders
+		/// @param appName Nombre de la ventana
+		void InitManager(const std::string& appName);
 		void CloseManager();
 		void Update();
 		void CloseWindow();
@@ -45,13 +50,12 @@ namespace eden_render
 		void DestroyRTShaderSystem();
 		virtual void Setup();
 		virtual void CreateRoot();
-		virtual bool OneTimeConfig();
 		void SetWindowGrab(bool grab);
 		virtual void LocateResources();
 		virtual void LoadResources();
 		virtual void Shutdown();
 		virtual NativeWindowPair CreateNewWindow(const std::string& name);
-		explicit RenderManager(const std::string& appName = OGRE_VERSION_NAME);
+		explicit RenderManager(const std::string& appName = "TEST_APP");
 
 		Ogre::Root* _root;        // raíz de OGRE
 		Ogre::SceneManager* _sceneMngr;        // escena OGRE
@@ -65,7 +69,6 @@ namespace eden_render
 
 		std::string _rtShaderLibPath;
 		Ogre::RTShader::ShaderGenerator* _shaderGenerator; // The Shader generator instance.
-		void* _materialMgrListener; // Shader generator material manager listener.
 	};
 }
 

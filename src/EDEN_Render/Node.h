@@ -12,9 +12,7 @@ namespace eden_utils {
 }
 
 namespace Ogre {
-	class Quaternion;
 	class SceneNode;
-	class Vector3;
 	class Root;
 }
 namespace eden_render {

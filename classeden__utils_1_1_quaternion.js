@@ -1,0 +1,26 @@
+var classeden__utils_1_1_quaternion =
+[
+    [ "Quaternion", "classeden__utils_1_1_quaternion.html#ae278edbf4c8d1c554d89b51b44850468", null ],
+    [ "Quaternion", "classeden__utils_1_1_quaternion.html#a091db5a01a2dd133fc79944986b49fe7", null ],
+    [ "Quaternion", "classeden__utils_1_1_quaternion.html#a8572b5b0fe124f6344eac89aa36aedbd", null ],
+    [ "~Quaternion", "classeden__utils_1_1_quaternion.html#acbada31935ca84afccab2cf62bc45f6d", null ],
+    [ "Complex", "classeden__utils_1_1_quaternion.html#ad44101419ed36bcdac5777cca7788933", null ],
+    [ "Conjugate", "classeden__utils_1_1_quaternion.html#aace0907f5e747b6fd74156c120982a54", null ],
+    [ "GetRotationMatrix", "classeden__utils_1_1_quaternion.html#a8151bd181d70b57564588948621ef8e7", null ],
+    [ "Inverse", "classeden__utils_1_1_quaternion.html#a361aa04343a42d19c0bfaa7dbb7228ac", null ],
+    [ "Normal", "classeden__utils_1_1_quaternion.html#a9c6b6bfa01f29cc256b9ac2d7acf6a9b", null ],
+    [ "Normalized", "classeden__utils_1_1_quaternion.html#a01228b41b9f6ae4923bd121fbbf39df5", null ],
+    [ "operator*", "classeden__utils_1_1_quaternion.html#a93ddfde8129fe060fa29e93dd93d2e9c", null ],
+    [ "operator*", "classeden__utils_1_1_quaternion.html#a1277b0a6b4b256a3d637d9b6031b5879", null ],
+    [ "operator*=", "classeden__utils_1_1_quaternion.html#a6a5221324036d992d928492959ef1325", null ],
+    [ "operator*=", "classeden__utils_1_1_quaternion.html#a720ef2adac3cc2bc304e18ee831d14c3", null ],
+    [ "operator+", "classeden__utils_1_1_quaternion.html#a1aed337333986ea21ab7d03b400b560f", null ],
+    [ "operator+=", "classeden__utils_1_1_quaternion.html#a15a5320b724ca2de045f61384e4c8574", null ],
+    [ "operator-", "classeden__utils_1_1_quaternion.html#a72f759467e906e4640234aaa09bb3d7b", null ],
+    [ "operator-=", "classeden__utils_1_1_quaternion.html#afbd39310d4ca952e7414e61654a4cd89", null ],
+    [ "operator/", "classeden__utils_1_1_quaternion.html#a842ed13d1322f284caf77ad04a61e827", null ],
+    [ "operator/=", "classeden__utils_1_1_quaternion.html#a1f7a82de3703bdc1ae60f9a551c4a31b", null ],
+    [ "operator=", "classeden__utils_1_1_quaternion.html#a87397b9e4ee3b546142063e8ff20e9b3", null ],
+    [ "Real", "classeden__utils_1_1_quaternion.html#a0ac58e1d0726a67b8eb800a0558e84bc", null ],
+    [ "RotateArroundPoint", "classeden__utils_1_1_quaternion.html#a6cd1fe765749740ccef16dd4e1923684", null ]
+];

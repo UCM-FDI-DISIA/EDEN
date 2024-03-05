@@ -1,4 +1,4 @@
-#ifndef RENDER_MANAGER_H_
+ #ifndef RENDER_MANAGER_H_
 #define RENDER_MANAGER_H_
 
 #include <string>
@@ -24,6 +24,7 @@ struct NativeWindowPair
 };
 namespace render_wrapper {
 	class Node;
+	class CameraWrapper;
 }
 namespace eden_render
 {
@@ -32,6 +33,7 @@ namespace eden_render
 	public:
 		friend Singleton<RenderManager>;
 		friend render_wrapper::Node;
+		friend render_wrapper::CameraWrapper;
 		
 		/// @brief Destructora
 		~RenderManager() override;

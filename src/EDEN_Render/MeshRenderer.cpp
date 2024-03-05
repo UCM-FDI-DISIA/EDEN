@@ -1,11 +1,27 @@
 #include "MeshRenderer.h"
-#include "Vector3.h"
-#include "Quaternion.h"
+#include "RenderManager.h"
+#include "Node.h"
+#include <OgreSceneManager.h>
+#include <OgreEntity.h>
 
 render_wrapper::MeshRenderer::MeshRenderer(const std::string entityID, const std::string meshName)
 {
+	Ogre::SceneManager* mSM = eden_render::RenderManager::Instance()->_sceneMngr;
+	_ent = mSM->createEntity(meshName);
+	render_wrapper::Node::Instance()->Attach(GetRenderObject(), entityID);
 }
 
-render_wrapper::MeshRenderer::~MeshRenderer()
+void render_wrapper::MeshRenderer::SetMaterial(const std::string material)
 {
+	_ent->setMaterialName(material);
+}
+
+void render_wrapper::MeshRenderer::SetInvisible(bool visibility)
+{
+	_ent->setVisible(visibility);
+}
+
+Ogre::MovableObject* render_wrapper::MeshRenderer::GetRenderObject()
+{
+	return _ent;
 }

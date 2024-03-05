@@ -80,8 +80,8 @@ void render_wrapper::Node::RemoveSceneObject(const std::string id) {
 	}
 }
 
-void render_wrapper::Node::Attach(render_wrapper::RenderObject* obj, const std::string id) {
-	FindNode(id)->attachObject(obj->GetRenderObject());
+void render_wrapper::Node::Attach(Ogre::MovableObject* obj, const std::string id) {
+	FindNode(id)->attachObject(obj);
 }
 
 void render_wrapper::Node::SetPosition(const eden_utils::Vector3 pos, const std::string id) {

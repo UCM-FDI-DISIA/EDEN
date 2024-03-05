@@ -10,6 +10,7 @@
     <ClCompile Include="..\..\src\EDEN_Render\UI\Text.cpp" />
     <ClCompile Include="..\..\src\EDEN_Render\CameraWrapper.cpp" />
     <ClCompile Include="..\..\src\EDEN_Render\MeshRenderer.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Render\Light.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\EDEN_Render\Node.h" />
@@ -25,5 +26,6 @@
     <ClInclude Include="..\..\src\EDEN_Render\RenderObject.h" />
     <ClInclude Include="..\..\src\EDEN_Render\CameraWrapper.h" />
     <ClInclude Include="..\..\src\EDEN_Render\MeshRenderer.h" />
+    <ClInclude Include="..\..\src\EDEN_Render\Light.h" />
   </ItemGroup>
 </Project>

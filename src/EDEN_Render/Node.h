@@ -57,7 +57,7 @@ namespace render_wrapper {
 		
 		void Translate(const eden_utils::Vector3 pos, const std::string id);
 
-		void Attach(render_wrapper::RenderObject* obj, const std::string id);
+		void Attach(Ogre::MovableObject* obj, const std::string id);
 
 	private:
 

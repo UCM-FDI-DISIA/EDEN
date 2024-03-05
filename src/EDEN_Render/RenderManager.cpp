@@ -13,29 +13,30 @@
 #include <SDL.h>
 #include <SDL_video.h>
 #include <SDL_syswm.h>
+
 #include <OgreShaderGenerator.h>
 #include <OgreMaterialManager.h>
 
 eden_render::RenderManager::RenderManager(const std::string& appName)
 {
-	_appName = appName;
-	_root = nullptr;
-	_firstRun = true;
-	_shaderGenerator = nullptr;
+	_appName = appName; // asigna el nombre de la ventana
+	_root = nullptr; // pone la raíz a nulo
+	_firstRun = true; // activa la primer inicialización
+	_shaderGenerator = nullptr; // y mantiene el generador de sombreado a nulo
 }
 
 eden_render::RenderManager::~RenderManager()
 {
-	delete _fsLayer;
+	delete _fsLayer; // borra el sistema de archivos
 }
 
 void eden_render::RenderManager::InitManager(const std::string& appName)
 {
-	_appName = appName;
-	_fsLayer = new Ogre::FileSystemLayer(_appName);
+	_appName = appName; // renombra el nombre de aplicación
+	_fsLayer = new Ogre::FileSystemLayer(_appName); // crea un nuevo sistema de archivos
 
-	CreateRoot();
-	Setup();
+	CreateRoot(); // crea la raíz
+	Setup(); // y arranca la inicialización base
 
 	_sceneMngr = _root->createSceneManager();
 	_sceneMngr->setAmbientLight(Ogre::ColourValue(0.2, 0.2, 0.2));
@@ -79,37 +80,38 @@ void eden_render::RenderManager::InitManager(const std::string& appName)
 
 void eden_render::RenderManager::Update()
 {	
-	_root->renderOneFrame();
-	_window.render->update();
+	_root->renderOneFrame(); // renderiza la raíz de Ogre
+	_window.render->update(); // renderiza la ventana de SDL
 }
 
 void eden_render::RenderManager::CloseWindow() {
-	SDL_DestroyWindow(_window.native);
-	SDL_Quit();
+	SDL_DestroyWindow(_window.native); // destruye la ventana de SDL
+	SDL_Quit(); // y cierra la instancia de SDL
 }
 
 void eden_render::RenderManager::CloseManager()
 {
-	if (_root != nullptr) {
-		_root->saveConfig();
+	if (_root != nullptr) { // si ya no hay raíz
+		_root->saveConfig(); // guarda su configuración
 	}
-	Shutdown();
-	delete _root;
-	_root = nullptr;
+	Shutdown(); // llama al cierre de la ventana
+	delete _root; // borra la raíz
+	_root = nullptr; // y la pone a nulo
 }
 
 void eden_render::RenderManager::CreateRoot()
 {
-	std::string pluginsPath;
+	std::string pluginsPath; // localización base de los plugins
 	std::string nameFile = "plugins.cfg";
-	pluginsPath = _fsLayer->getConfigFilePath(nameFile);
+	pluginsPath = _fsLayer->getConfigFilePath(nameFile); // consigue la dirección gracias al sistema de archivos
 
-	if (!Ogre::FileSystemLayer::fileExists(pluginsPath)) {
+	if (!Ogre::FileSystemLayer::fileExists(pluginsPath)) { // si no existe el plugin -> excepción de Ogre
 		OGRE_EXCEPT(Ogre::Exception::ERR_FILE_NOT_FOUND, "plugins.cfg", "RenderManager::createRoot");
 	}
-	_solutionPath = pluginsPath;
-	_solutionPath.resize(_solutionPath.size() - nameFile.size());
+	_solutionPath = pluginsPath; // copia la dirección de los plugins
+	_solutionPath.resize(_solutionPath.size() - nameFile.size()); // y la reajusta
 
+	// crea una nueva raíz en base a los plugins y la configuración base de Ogre
 	_root = new Ogre::Root(pluginsPath, _fsLayer->getWritablePath("ogre.cfg"), _fsLayer->getWritablePath("ogre.log"));
 
 	// mOverlaySystem = new Ogre::OverlaySystem;
@@ -117,33 +119,33 @@ void eden_render::RenderManager::CreateRoot()
 
 void eden_render::RenderManager::Shutdown()
 {
-	DestroyRTShaderSystem();
+	DestroyRTShaderSystem(); // destruye el sistema de sombreado
 
-	if (_window.render != nullptr) {
-		_root->destroyRenderTarget(_window.render);
-		_window.render = nullptr;
+	if (_window.render != nullptr) { // si sigue habiendo ventana de Ogre
+		_root->destroyRenderTarget(_window.render); // la destruye
+		_window.render = nullptr; // y la apunta a nulo
 	}
 
 	// delete mOverlaySystem;
 	// mOverlaySystem = nullptr;
 
-	if (_window.native != nullptr) {
-		SDL_DestroyWindow(_window.native);
+	if (_window.native != nullptr) { // si sigue habiendo ventana de SDL
+		SDL_DestroyWindow(_window.native); // la destruye
 		SDL_QuitSubSystem(SDL_INIT_VIDEO);
-		_window.native = nullptr;
+		_window.native = nullptr; // y la apunta a nulo
 	}
 }
 
 void eden_render::RenderManager::Setup()
 {
-	_root->showConfigDialog(nullptr);
-	_root->initialise(false);
-	CreateNewWindow(_appName);
-	SetWindowGrab(false);
+	_root->showConfigDialog(nullptr); // desactiva el diálogo de configuración de Ogre
+	_root->initialise(false); // desactiva la inicialización de la raíz de Ogre
+	CreateNewWindow(_appName); // crea la ventana
+	SetWindowGrab(false); // desactiva la posibilidad de mover la ventana
 
-	LocateResources();
-	InitialiseRTShaderSystem();
-	LoadResources();
+	LocateResources(); // localiza los recursos
+	InitialiseRTShaderSystem(); // arranca el sistema de sombreado
+	LoadResources(); // y carga los recursos
 }
 
 bool eden_render::RenderManager::InitialiseRTShaderSystem()

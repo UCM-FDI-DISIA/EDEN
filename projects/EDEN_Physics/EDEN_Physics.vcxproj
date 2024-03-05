@@ -21,6 +21,9 @@
     <ClInclude Include="..\..\src\EDEN_Physics\RayCast.h" />
     <ClInclude Include="..\..\src\EDEN_Physics\ShapeCreator.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\EDEN_Physics\RigidBody.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>

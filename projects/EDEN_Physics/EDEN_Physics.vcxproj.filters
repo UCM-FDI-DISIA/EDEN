@@ -36,6 +36,12 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\EDEN_Physics\ShapeCreator.h">
+    <ClCompile Include="..\..\src\EDEN_Physics\RigidBody.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\EDEN_Physics\RigidBody.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

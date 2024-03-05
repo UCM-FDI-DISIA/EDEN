@@ -9,6 +9,7 @@
     <ClCompile Include="..\..\src\EDEN_Render\UI\Resources\Vector2D.cpp" />
     <ClCompile Include="..\..\src\EDEN_Render\UI\Text.cpp" />
     <ClCompile Include="..\..\src\EDEN_Render\CameraWrapper.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Render\MeshRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\EDEN_Render\Node.h" />
@@ -23,5 +24,6 @@
     <ClInclude Include="..\..\src\EDEN_Render\UI\Text.h" />
     <ClInclude Include="..\..\src\EDEN_Render\RenderObject.h" />
     <ClInclude Include="..\..\src\EDEN_Render\CameraWrapper.h" />
+    <ClInclude Include="..\..\src\EDEN_Render\MeshRenderer.h" />
   </ItemGroup>
 </Project>

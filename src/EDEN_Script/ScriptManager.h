@@ -82,7 +82,7 @@ namespace eden_script {
 		std::unordered_map<std::string, std::vector<std::string>> ParseTableToStringMap(int tableIndex);
 
 		/// @brief Busca en la tabla situada en 'currentTableIndex' en el Stack de Lua (esta tabla será una entidad) una key 'Components',
-		/// cuyo valor es una tabla indexada por números, NO por keys. Se lee esta tabla y se rellena un vector<ComponenArguments>,
+		/// cuyo valor es una tabla indexada por números, NO por keys. Se lee esta tabla y se rellena un vector<ComponentArguments>,
 		/// que representa los componentes que tiene la entidad que se estaba leyendo
 		/// @param currentTableIndex Índice de la tabla de la entidad que se está leyendo en el Stack de Lua
 		/// @return Los componentes de la entidad leídos parseados a un vector de ComponentArguments

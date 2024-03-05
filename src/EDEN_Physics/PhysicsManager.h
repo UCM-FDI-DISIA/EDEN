@@ -29,6 +29,10 @@ namespace physics_manager {
 		/// @param deltaTime Tiempo entre simulaciones físicas, como la simulación se llama con el FixedUdpate, este tiempo es fijo y constante
 		void updateSimulation(float deltaTime);
 
+		/// @brief Devuelve la gravedad del mundo
+		/// @return Devuelve el valor de la gravedad mundial
+		inline btVector3 GetGravity() { return _dynamicWorldRef->getGravity(); }
+
 		~PhysicsManager() override;
 	protected:
 		/// @brief La constructora se encarga de crear el mundo de la simulación física y el objeto encargado de dibujar 

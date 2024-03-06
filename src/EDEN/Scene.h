@@ -4,7 +4,9 @@
 #include<string>
 #include<unordered_map>
 
-#include "Entity.h"
+namespace eden_ec {
+	class Entity;
+}
 class Scene
 {
 public:

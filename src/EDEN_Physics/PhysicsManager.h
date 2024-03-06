@@ -31,7 +31,7 @@ namespace physics_manager {
 
 		/// @brief Devuelve la gravedad del mundo
 		/// @return Devuelve el valor de la gravedad mundial
-		inline btVector3 GetGravity() { return _dynamicWorldRef->getGravity(); }
+		//inline btVector3 GetGravity() { return _dynamicWorldRef->getGravity(); }
 
 		~PhysicsManager() override;
 	protected:

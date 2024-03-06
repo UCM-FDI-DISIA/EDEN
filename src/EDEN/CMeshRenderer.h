@@ -29,6 +29,9 @@ namespace eden_ec {
 		void SetMaterial(const std::string material);
 
 		void SetInvisible(bool visibility);
+		static std::string GetID() { return _id; }
+	protected:
+		const static std::string _id;
 	private:
 		render_wrapper::MeshRenderer* _renderWrapper = nullptr;
 

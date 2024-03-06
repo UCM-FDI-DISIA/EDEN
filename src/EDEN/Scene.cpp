@@ -1,4 +1,5 @@
 #include "Scene.h"
+#include "Entity.h"
 Scene::Scene(const std::string& ID) {
 	_ID = ID;
 	//_renderScene = OgreWrapper::CreateScene(id)

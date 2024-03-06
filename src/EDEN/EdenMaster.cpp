@@ -1,21 +1,19 @@
 //Borrar, solo por motivos de test
 #include <iostream>
 #include<windows.h>  
-//
 
 #include <ctime>
 #include <chrono>
 #include "EdenMaster.h"
 
 #include "RenderManager.h"
-#include "InputManager.h"
 #include "SceneManager.h"
 
 
 eden::Master::Master()
 {
 	renderManager = eden_render::RenderManager::Instance();
-	inputManager = eden_input::InputManager::Instance();
+	//inputManager = eden_input::InputManager::Instance();
 	scnManager = SceneManager::Instance();
 }
 
@@ -42,7 +40,8 @@ void eden::Master::Loop()
 		frameStartTime = std::chrono::high_resolution_clock::now();
 
 		renderManager->Update();
-		scnManager->Update(_deltaTime);
+
+		//scnManager->Update(_deltaTime);
 
 		frameEndTime = std::chrono::high_resolution_clock::now();
 		_deltaTime = std::chrono::duration<double, std::milli>(frameEndTime - frameStartTime).count();

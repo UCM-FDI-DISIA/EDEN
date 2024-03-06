@@ -1,3 +1,4 @@
+#pragma once
 /// Engine Loop3
 #include "EdenMaster.h"
 

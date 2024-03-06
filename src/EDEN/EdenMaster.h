@@ -1,7 +1,7 @@
 #ifndef EDENMASTER_h
 #define EDENMASTER_h
 
-#include "Singleton.h"
+#include "InputManager.h"
 
 namespace Ogre {
 	class Root;
@@ -12,9 +12,7 @@ namespace eden_render {
 
 class SceneManager;
 
-namespace eden_input {
-	class InputManager;
-}
+
 
 namespace eden 
 {
@@ -39,7 +37,7 @@ namespace eden
 
 
 		/// @brief Referencia a al InputManager
-		eden_input::InputManager* inputManager;
+		//eden_input::InputManager* inputManager;
 
 		/// @brief Referencia a al SceneManager
 		SceneManager* scnManager;

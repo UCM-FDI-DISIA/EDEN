@@ -18,11 +18,13 @@ namespace render_wrapper {
 
 		void SetMaterial(const std::string material);
 		void SetInvisible(bool visibility);
+		void ActivateAnim(float dt);
 
 	private:
 		virtual Ogre::MovableObject* GetRenderObject();
 
 		Ogre::Entity* _ent = nullptr;
+		Ogre::AnimationState* _anim;
 	};
 }
 #endif // MESH_RENDERER_H

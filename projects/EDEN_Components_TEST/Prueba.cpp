@@ -2,6 +2,7 @@
 #include "InputManager.h"
 #include "Entity.h"
 #include "Transform.h"
+#include "RenderManager.h"
 
 const std::string eden_ec::CPrueba::_id = "PRUEBA";
 

@@ -59,9 +59,12 @@ namespace render_wrapper {
 
 		void Attach(Ogre::MovableObject* obj, const std::string id);
 
+		inline bool HasNode(const std::string id){
+			return FindNode(id) != nullptr;
+		}
 	private:
-
 		Ogre::SceneNode* FindNode(const std::string id);
+
 
 		eden_utils::Vector3 convertToEdenVector(const Ogre::Vector3 ogreVector);
 		eden_utils::Quaternion convertToEdenQuaternion(const Ogre::Quaternion ogreQuaternion);

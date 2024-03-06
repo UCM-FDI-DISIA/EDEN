@@ -8,12 +8,14 @@
 
 #include "Component.h"
 
+
 namespace render_wrapper
 {
 	class MeshRenderer;
 }
 
 namespace eden_ec {
+	class CTransform;
 	class CMeshRenderer : public Component
 	{
 	public:
@@ -30,12 +32,16 @@ namespace eden_ec {
 
 		void SetInvisible(bool visibility);
 		static std::string GetID() { return _id; }
+
+		void Update(float dt);
 	protected:
 		const static std::string _id;
 	private:
 		render_wrapper::MeshRenderer* _renderWrapper = nullptr;
 
 		std::string _mesh; 
+
+		CTransform* _transform;
 	};
 }
 #endif // C_MESH_RENDERER_H

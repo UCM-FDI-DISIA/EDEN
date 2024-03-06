@@ -2,23 +2,17 @@ Entity1 = {
     Name = "Player", 
     Components = {
         {
-            Name = "TRASNFORM", 
+            Name = "TRANSFORM", 
             Arguments = {
-                Position = "3.45|120.01238907923084901231209|2",
-                Rotation = "0|0|0|0",
-                Scale = "1|1|1"
-            }
-        },
-        {
-            Name = "PRUEBA",
-            Arguments = {
-            
+                Position = "70|-10|0",
+                Rotation = "-45|0|1|0",
+                Scale = "10|10|10"
             }
         },
         {
             Name = "MESH_RENDERER",
             Arguments = {
-                Mesh = "Cube.057.mesh",
+                Mesh = "Cube.057"
             }
         }
     }

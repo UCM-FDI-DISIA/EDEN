@@ -12,7 +12,7 @@
 
 eden::Master::Master()
 {
-	renderManager = eden_render::RenderManager::Instance();
+	renderManager = eden_render::RenderManager::Instance("EDEN Engine");
 	//inputManager = eden_input::InputManager::Instance();
 	scnManager = SceneManager::Instance();
 }
@@ -33,19 +33,21 @@ void eden::Master::Loop()
 	while (true) {
 		int numPU = (_elapsedTime - lastPhysicsUpdateTime) / (_physicsUpdateTimeInterval * 1000);
 		for (int i = 0; i < numPU; ++i) {
-			std::cout << "Fixed update " << lastPhysicsUpdateTime + (i * _physicsUpdateTimeInterval * 1000) << '\n';
+			//std::cout << "Fixed update " << lastPhysicsUpdateTime + (i * _physicsUpdateTimeInterval * 1000) << '\n';
 		}
 		lastPhysicsUpdateTime = lastPhysicsUpdateTime + (numPU * _physicsUpdateTimeInterval*1000);
 
 		frameStartTime = std::chrono::high_resolution_clock::now();
 
 		renderManager->Update();
-
-		//scnManager->Update(_deltaTime);
+		scnManager->Update(_deltaTime);
 
 		frameEndTime = std::chrono::high_resolution_clock::now();
 		_deltaTime = std::chrono::duration<double, std::milli>(frameEndTime - frameStartTime).count();
 		_elapsedTime = std::chrono::duration<double, std::milli>(frameEndTime - loopStartTime).count();
 
 	}
+
+	renderManager->CloseManager();
+	//inputManager->~InputManager();
 }

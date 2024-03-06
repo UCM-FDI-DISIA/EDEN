@@ -23,6 +23,8 @@ eden_render::RenderManager::RenderManager(const std::string& appName)
 	_root = nullptr; // pone la raíz a nulo
 	_firstRun = true; // activa la primer inicialización
 	_shaderGenerator = nullptr; // y mantiene el generador de sombreado a nulo
+
+	InitManager(appName);
 }
 
 eden_render::RenderManager::~RenderManager()
@@ -55,14 +57,14 @@ void eden_render::RenderManager::InitManager(const std::string& appName)
 	vp->setBackgroundColour(Ogre::ColourValue(0.9, 0.7, 0.7));
 
 	Ogre::Light* luz = _sceneMngr->createLight("Luz");
-	luz->setType(Ogre::Light::LT_DIRECTIONAL);
-	luz->setDiffuseColour(1, 1, 1);
+	luz->setType(Ogre::Light::LT_POINT);
+	luz->setDiffuseColour(10, 10, 10);
 	Ogre::SceneNode* mLightNode = _sceneMngr->getRootSceneNode()->createChildSceneNode("nLuz");
 	mLightNode->attachObject(luz);
 
 	mLightNode->setDirection(Ogre::Vector3(1, -1, 0));
 
-	Ogre::SceneNode* cuerpoNode = _sceneMngr->getRootSceneNode()->createChildSceneNode();
+	/*Ogre::SceneNode* cuerpoNode = _sceneMngr->getRootSceneNode()->createChildSceneNode();
 	Ogre::Vector3 cuerpoScale = { 0.2, 0.2, 0.2 };
 	Ogre::Entity* ent;
 
@@ -73,8 +75,8 @@ void eden_render::RenderManager::InitManager(const std::string& appName)
 	cuerpoNode->setPosition({ 70,-10,-10 });
 	cuerpoNode->yaw(Ogre::Degree(45));
 	cuerpoNode->pitch(Ogre::Degree(45));
+	cuerpoNode = _sceneMngr->getRootSceneNode()->createChildSceneNode();*/
 	camNode->setDirection({ 1,0,0 });
-	cuerpoNode = _sceneMngr->getRootSceneNode()->createChildSceneNode();
 
 }
 

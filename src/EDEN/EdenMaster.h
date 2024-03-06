@@ -1,7 +1,9 @@
 #ifndef EDENMASTER_h
 #define EDENMASTER_h
 
-#include "InputManager.h"
+#include "Singleton.h"
+
+//#include "InputManager.h"
 
 namespace Ogre {
 	class Root;
@@ -10,12 +12,9 @@ namespace eden_render {
 	class RenderManager;
 }
 
-class SceneManager;
-
-
-
 namespace eden 
 {
+class SceneManager;
 	/// @brief El master es la clase singleton encargada de llevar el bucle principal de juego
 	/// @brief Es esta clase que gestiona el tiempo del juego
 	class Master : public Singleton<Master>

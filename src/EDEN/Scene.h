@@ -22,7 +22,7 @@ public:
 
 	/// @brief Durante la ejecución del juego, añade una entidad nueva al mapa de entidades 
 	/// @param id id Nombre de la entidad que se va a crear nueva
-	void AddGameObject(const std::string& ID);
+	void AddGameObject(const std::string& ID, eden_ec::Entity* _ent);
 
 	/// @brief Devuleve una referencia a la cámara actual 
 	inline eden_ec::Entity* GetCurrentCamara() { return _currentCamera; }

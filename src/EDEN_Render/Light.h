@@ -2,6 +2,8 @@
 #define LIGHT_H
 
 #include "RenderObject.h"
+#include "OgreLight.h"
+
 
 enum LightType { LT_POINT, LT_DIRECTIONAL, LT_SPOTLIGHT};
 

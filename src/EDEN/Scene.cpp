@@ -30,8 +30,6 @@ eden_ec::Entity* Scene::GetEntityByID(const std::string& ID) {
 	return _gameEntitiesList[ID];
 }
 
-void Scene::AddGameObject(const std::string& ID) {
-	eden_ec::Entity* newEntity = new eden_ec::Entity();
-	//crear la entidad de por si, Lua
-	_gameEntitiesList.insert({ ID,newEntity });
+void Scene::AddGameObject(const std::string& ID, eden_ec::Entity* _ent) {
+	_gameEntitiesList.insert({ ID, _ent});
 }

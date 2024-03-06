@@ -14,7 +14,7 @@ namespace eden_script {
 	// Esta Macro se usa para ver la información que se está leyendo del mapa por salida estándar
 #define _DEBUGGING_SCENE_READING
 
-#define ASSETS_ROUTE "assets\\scenes\\"
+#define SCENE_ROUTE "assets\\scenes\\"
 #define SCENE_EXTENSION ".lua"
 #define ERROR_DEFINITION "Lua error in line "+ std::to_string(__LINE__)
 #define __FILENAME__ (strrchr(__FILE__, '\\') ? strrchr(__FILE__, '\\') + 1 : __FILE__)

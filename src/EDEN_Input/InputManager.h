@@ -1,4 +1,3 @@
-#pragma once
 #ifndef __INPUT_MANAGER_H__
 #define __INPUT_MANAGER_H__
 #include "Singleton.h"

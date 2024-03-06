@@ -190,7 +190,7 @@ bool eden_script::ScriptManager::EntityTableToData(std::vector<eden_script::Enti
 bool eden_script::ScriptManager::ReadScene(std::string sceneName, std::vector<eden_script::EntityInfo*>& info) {
 	assert(L);
 
-	std::string fileName = ASSETS_ROUTE + sceneName + SCENE_EXTENSION;
+	std::string fileName = SCENE_ROUTE + sceneName + SCENE_EXTENSION;
 
 	if (CheckLua(luaL_dofile(L, fileName.c_str()))) {
 		bool readingSuccesful = EntityTableToData(info);

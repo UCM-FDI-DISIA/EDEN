@@ -1,6 +1,6 @@
 // This file is part of the course TPV2@UCM - Samir Genaim
-
-#pragma once
+#ifndef VECTOR2D_H
+#define VECTOR2D_H
 
 #include <cmath>
 #include <ostream>
@@ -150,3 +150,5 @@ private:
 // needed for printing a value of tyep Vector2D with std::cout.
 // The definition is in .cpp
 std::ostream& operator<<(std::ostream& os, const Vector2D& v);
+
+#endif //VECTOR2D_H

@@ -1,4 +1,3 @@
-#pragma once
 #ifndef _RENDER_OBJECT_H_
 #define _RENDER_OBJECT_H_
 

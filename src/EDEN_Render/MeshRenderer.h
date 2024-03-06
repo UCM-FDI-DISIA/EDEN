@@ -3,7 +3,7 @@
 
 #include <string>
 #include "RenderObject.h"
-
+#include "OgreEntity.h"
 namespace render_wrapper {
 
 	class Animator;

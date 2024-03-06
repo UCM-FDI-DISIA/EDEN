@@ -1,6 +1,6 @@
 // This file is part of the course TPV2@UCM - Samir Genaim
-
-#pragma once
+#ifndef SDLUtils_H
+#define SDLUtils_H
 
 #include <SDL.h>
 #include <string>
@@ -208,3 +208,5 @@ private:
 inline SDLUtils& sdlutils() {
 	return *SDLUtils::Instance();
 }
+
+#endif //SDLUtils_H

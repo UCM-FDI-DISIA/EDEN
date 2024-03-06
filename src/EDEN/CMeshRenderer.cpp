@@ -10,6 +10,7 @@ _mesh(mesh) {};
 
 void eden_ec::CMeshRenderer::Init(eden_script::ComponentArguments* args)
 {
+	//GESTION DE ERRORES
 	_mesh = args->GetValueToString("Mesh");
 	
 	_renderWrapper = new render_wrapper::MeshRenderer(_ent->GetEntityID(), _mesh);

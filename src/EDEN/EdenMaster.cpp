@@ -7,10 +7,16 @@
 #include <chrono>
 #include "EdenMaster.h"
 
+#include "RenderManager.h"
+#include "InputManager.h"
+#include "SceneManager.h"
 
 
 eden::Master::Master()
 {
+	renderManager = eden_render::RenderManager::Instance();
+	inputManager = eden_input::InputManager::Instance();
+	scnManager = SceneManager::Instance();
 }
 
 eden::Master::~Master()
@@ -34,9 +40,13 @@ void eden::Master::Loop()
 		lastPhysicsUpdateTime = lastPhysicsUpdateTime + (numPU * _physicsUpdateTimeInterval*1000);
 
 		frameStartTime = std::chrono::high_resolution_clock::now();
-		//Aquí van los métdos de update/render de la escena
+
+		renderManager->Update();
+		scnManager->Update(_deltaTime);
+
 		frameEndTime = std::chrono::high_resolution_clock::now();
 		_deltaTime = std::chrono::duration<double, std::milli>(frameEndTime - frameStartTime).count();
 		_elapsedTime = std::chrono::duration<double, std::milli>(frameEndTime - loopStartTime).count();
+
 	}
 }

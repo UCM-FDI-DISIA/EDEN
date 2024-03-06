@@ -8,50 +8,21 @@ Entity1 = {
                 Rotation = "0|0|0|0",
                 Scale = "1|1|1"
             }
-        }
-    }
-}
-
-Entity2 = {
-    Name = "PedroPablo",
-    Components = {
+        },
         {
-            Name = "Transform", 
+            Name = "PRUEBA",
             Arguments = {
-                Position = "15|2|140",
-                Rotation = "0|45|0",
-                Scale = "1|2|3"
+            
             }
         },
         {
-            Name = "RigidBody",
+            Name = "MESH_RENDERER",
             Arguments = {
-                BlaBla = "true",
-                NoSe = "Mensaje Aleatorio 1|Mensaje Aleatorio 2|Mensaje Aleatorio 3"
+                Mesh = "Cube.057.mesh",
             }
         }
     }
 }
 
-Entity3 = {
-    Name = "MarcoAntonio",
-    Components = {
-        {
-            Name = "Transform", 
-            Arguments = {
-                Position = "15|2|140",
-                Rotation = "0|45|0",
-                Scale = "1|2|3"
-            }
-        },
-        {
-            Name = "RigidBody",
-            Arguments = {
-                BlaBla = "true",
-                NoSe = "Mensaje Aleatorio 1|Mensaje Aleatorio 2|Mensaje Aleatorio 3"
-            }
-        }
-    }
-}
 
 Entities = { Entity1 }

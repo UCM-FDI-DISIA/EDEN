@@ -6,6 +6,15 @@
 namespace Ogre {
 	class Root;
 }
+namespace eden_render {
+	class RenderManager;
+}
+
+class SceneManager;
+
+namespace eden_input {
+	class InputManager;
+}
 
 namespace eden 
 {
@@ -27,6 +36,16 @@ namespace eden
 		const double _physicsUpdateTimeInterval = 1;
 		/// @brief El tiempo transcurrido desde el inicio del bucle en milisegundos
 		double _elapsedTime = 0;
+
+
+		/// @brief Referencia a al InputManager
+		eden_input::InputManager* inputManager;
+
+		/// @brief Referencia a al SceneManager
+		SceneManager* scnManager;
+
+		/// @brief Referencia a al RenderManager
+		eden_render::RenderManager* renderManager;
 
 		Master();
 	};

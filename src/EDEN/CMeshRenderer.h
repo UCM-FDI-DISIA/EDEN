@@ -1,6 +1,9 @@
 #ifndef C_MESH_RENDERER_H
 #define C_MESH_RENDERER_H
 
+#define MESH_ROUTE "assets\\mesh\\"
+#define MATERIAL_ROUTE "assets\\material\\"
+
 #include <string>
 
 #include "Component.h"

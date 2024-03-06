@@ -14,6 +14,10 @@ namespace eden_ec {
 	class Entity;
 }
 
+namespace eden_utils {
+	class Vector3;
+}
+
 namespace physics_manager {
 	class PhysicsManager : public Singleton<PhysicsManager>
 	{
@@ -31,7 +35,7 @@ namespace physics_manager {
 
 		/// @brief Devuelve la gravedad del mundo
 		/// @return Devuelve el valor de la gravedad mundial
-		//inline btVector3 GetGravity() { return _dynamicWorldRef->getGravity(); }
+		eden_utils::Vector3 GetGravity();
 
 		~PhysicsManager() override;
 	protected:

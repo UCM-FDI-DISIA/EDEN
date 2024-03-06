@@ -4,8 +4,15 @@
 
 physics_wrapper::RigidBody::RigidBody(const RigidBodyConstruction& rb) {
 	_physicsManagerInstance = physics_manager::PhysicsManager::Instance();
-	btVector3 grav(_physicsManagerInstance->GetGravity());
-	//_gravity(grav.x, grav.y, grav.x);
+	_gravity = (_physicsManagerInstance->GetGravity());
+}
+
+void physics_wrapper::RigidBody::applyForce(eden_utils::Vector3 force)
+{
+}
+
+void physics_wrapper::RigidBody::ClearForces()
+{
 }
 
 physics_wrapper::RigidBody::~RigidBody() {

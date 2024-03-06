@@ -31,6 +31,13 @@ physics_manager::PhysicsManager::PhysicsManager()
 	physics_wrapper::RayCast::Instance(_dynamicWorldRef, _physicsDebugDrawer);
 }
 
+inline eden_utils::Vector3 physics_manager::PhysicsManager::GetGravity()
+{
+
+	return eden_utils::Vector3(_dynamicWorldRef->getGravity().x(), _dynamicWorldRef->getGravity().y(),
+		_dynamicWorldRef->getGravity().z());
+}
+
 physics_manager::PhysicsManager::~PhysicsManager()
 {
 	delete _worldDispatcher;

@@ -16,14 +16,16 @@ namespace physics_manager {
 namespace physics_wrapper {
 
 
-	class RigidBody : public Singleton<RigidBody>
+	class RigidBody
 	{
-		friend Singleton<RigidBody>;
-
 	public:
 		enum ShapeType{BOX, PLANE, CAPSULE, CONE, CYLINDER, SPHERE, TRIANGLE };
 
 		struct RigidBodyConstruction {
+			btVector3 position;
+			// rotation;
+			// linearVel;
+			// angularVel;
 			float mass;
 			ShapeType shape;
 			float linearDamping;
@@ -32,7 +34,7 @@ namespace physics_wrapper {
 
 
 		/// @brief Destructora
-		~RigidBody() override;
+		~RigidBody();
 
 		/// @brief Se encarga de dar un valor propio a la gravedad
 		/// @param g Nuevo valor de la gravedad
@@ -41,9 +43,60 @@ namespace physics_wrapper {
 		/// @brief Devuelve el valor actual de la gravedad de la instancia del rigidbody, no del mundo
 		inline eden_utils::Vector3 GetGravity() { return _gravity; }
 
-	protected:
-
+		/// @brief
+		/// @param rb
 		RigidBody(const RigidBodyConstruction& rb);
+
+		/// @brief Aplica las fuerzas recibidas al rigidbody
+		/// @param force Variable de fuerza a añadir al vector de fuerzas actuales actuando sobre el rigidbody
+		void applyForce(eden_utils::Vector3 force);
+
+		/// @brief Borra todas las fuerzas que estén actuando sobre el rigidbody
+		void ClearForces();
+
+
+		///METODOS DE CONFIGURACION DE VARIABLES
+
+		/// @brief Devuelve la posicion del rigidbody
+		eden_utils::Vector3 GetPosition();
+
+		/// @brief Devuelve la rotacion del rigidbody
+		eden_utils::Quaternion GetRotation();
+
+		/// @brief Devuelve la velocidad lineal del rigidbody
+		eden_utils::Vector3 GetLinearVel();
+
+		/// @brief Devuelve la velocidad angular del rigidbody
+		eden_utils::Vector3 GetAngularVel();
+
+		/// @brief Devuelve la masa del rigidbody
+		float GetMass();
+
+		/// @brief Devuelve el damping del rigidbody
+		float GetDamping();
+
+
+		///MÉTODOS DE DEVOLUCIÓN DE VARIABLES
+		
+		/// @brief Se encarga de dar un valor a la posicion
+		void SetPosition(eden_utils::Vector3 pos);
+
+		/// @brief Se encarga de dar un valor a la rotacion
+		void SetRotation(eden_utils::Quaternion rot);
+
+		/// @brief Se encarga de dar un valor a la velocidad lineal
+		void SetLnearVel(eden_utils::Vector3 lVel);
+
+		/// @brief Se encarga de dar un valor a la velocidad angular
+		void SetAngularVel(eden_utils::Vector3 aVel);
+
+		/// @brief Se encarga de dar un valor a la masa
+		void SetMass(float m);
+
+		/// @brief Se encarga de dar un valor al damping
+		void SetDumping(float d);
+
+	protected:
 
 		/// @brief Constructora por defecto. No usar.
 		RigidBody() = default;
@@ -57,6 +110,14 @@ namespace physics_wrapper {
 		/// @brief Variable de gravedad
 		eden_utils::Vector3 _gravity;
 
+		/// @brief Referencia al transform de Bullet
+		btTransform* _transform = nullptr;
+
+		/// @brief Referencia al rigid body de Bullet
+		btRigidBody* _rb = nullptr;
+
+		/// @brief Variable de vector resultante de fuerzas
+		btVector3 _force;
 	};
 
 }

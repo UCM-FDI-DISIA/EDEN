@@ -9,6 +9,7 @@
 #include <OgreViewport.h>
 #include <OgreDataStream.h>
 #include <OgreFileSystemLayer.h>
+#include <OgreOverlaySystem.h>
 
 #include <SDL.h>
 #include <SDL_video.h>
@@ -23,6 +24,7 @@ eden_render::RenderManager::RenderManager(const std::string& appName)
 	_root = nullptr; // pone la raíz a nulo
 	_firstRun = true; // activa la primer inicialización
 	_shaderGenerator = nullptr; // y mantiene el generador de sombreado a nulo
+
 }
 
 eden_render::RenderManager::~RenderManager()
@@ -76,6 +78,8 @@ void eden_render::RenderManager::InitManager(const std::string& appName)
 	camNode->setDirection({ 1,0,0 });
 	cuerpoNode = _sceneMngr->getRootSceneNode()->createChildSceneNode();
 
+
+	_overlaySys = new Ogre::OverlaySystem();
 }
 
 void eden_render::RenderManager::Update()
@@ -97,6 +101,7 @@ void eden_render::RenderManager::CloseManager()
 	Shutdown(); // llama al cierre de la ventana
 	delete _root; // borra la raíz
 	_root = nullptr; // y la pone a nulo
+	_overlaySys = nullptr;
 }
 
 void eden_render::RenderManager::CreateRoot()
@@ -263,4 +268,11 @@ void eden_render::RenderManager::LocateResources()
 	Ogre::ResourceGroupManager::getSingleton().addResourceLocation(_solutionPath + "materials", type, sec);
 
 	Ogre::MaterialManager::getSingleton().setActiveScheme(Ogre::MaterialManager::DEFAULT_SCHEME_NAME);
+}
+
+int eden_render::RenderManager::GetWindowWidth() {
+	return _window.render->getWidth();
+}
+int eden_render::RenderManager::GetWindowHeight() {
+	return _window.render->getHeight();
 }

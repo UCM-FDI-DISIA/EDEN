@@ -10,9 +10,7 @@
 
 /// Engine Render
 #include <RenderManager.h>
-///
-//#include <UI/Image.h>
-//#include <UI/Texture.h>
+#include <CImage.h>
 
 /// Engine Input
 #include <InputManager.h>
@@ -24,12 +22,6 @@ int main() {
 	renderManager->InitManager("EDEN Engine"); // sustituir por nombre del juego a arrancar
 	eden_input::InputManager* inputManager = eden_input::InputManager::Instance();
 
-	while (!inputManager->IsKeyDown(inputManager->SPACE)) {
-		renderManager->Update();
-		inputManager->Update();
-	}
-	renderManager->CloseWindow();
-
 	eden::Master* master = eden::Master::Instance();
 	// master->Loop();
 	delete master;
@@ -39,19 +31,22 @@ int main() {
 
 	factory->RegisterComponent<eden_ec::cTestComponent>();
 	factory->RegisterComponent<eden_ec::CTransform>();
-	///
-	//factory->RegisterComponent<eden_ec::Image>();
+	factory->RegisterComponent<eden_ec::CImage>();
 
 	ent->AddComponent<eden_ec::cTestComponent>();
 	ent->AddComponent<eden_ec::CTransform>();
-	////
-	//ent->AddComponent<eden_ec::Image>();
+	std::string aux = "C:/Users/juanf/Desktop/Proyectos3/EDEN/bin/assets/imagen.png";
+	//ent->AddComponent<eden_ec::CImage>("image",0,0,50,50,aux,0);
 
-	while (ent->IsAlive()) {
+	while (ent->IsAlive() && !inputManager->IsKeyDown(inputManager->SPACE) && !inputManager->CloseWindowEvent()) {
 		ent->Update(0);
-		ent->SetAlive(false);
+		renderManager->Update();
+		inputManager->Update();
 	}
-	
+	renderManager->CloseWindow();
+	ent->SetAlive(false);
+
+
 	renderManager->CloseManager();
 	inputManager->~InputManager();
 	delete ent;

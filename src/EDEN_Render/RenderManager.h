@@ -9,6 +9,7 @@ namespace Ogre {
 	class RenderWindow;
 	class Root;
 	class SceneManager;
+	class OverlaySystem;
 	namespace RTShader {
 		class ShaderGenerator;
 	}
@@ -43,6 +44,8 @@ namespace eden_render
 		friend render_wrapper::RenderObject;
 		friend render_wrapper::CameraWrapper;
 		
+
+		Ogre::OverlaySystem* _overlaySys;
 		/// @brief Destructora
 		~RenderManager() override;
 
@@ -61,6 +64,9 @@ namespace eden_render
 
 		/// @brief Destructora de la ventana de SDL
 		void CloseWindow();
+
+		int GetWindowWidth();
+		int GetWindowHeight();
 
 	protected:
 		/// @brief Inicializa el sistema de sombreado de trazado de rayos

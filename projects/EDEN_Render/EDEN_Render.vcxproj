@@ -17,15 +17,9 @@
     <ClInclude Include="..\..\src\EDEN_Render\MeshRenderer.h" />
     <ClInclude Include="..\..\src\EDEN_Render\Node.h" />
     <ClInclude Include="..\..\src\EDEN_Render\RenderManager.h" />
-    <ClInclude Include="..\..\src\EDEN_Render\UI\Image.h" />
-    <ClInclude Include="..\..\src\EDEN_Render\UI\Resources\checkML.h" />
-    <ClInclude Include="..\..\src\EDEN_Render\UI\Resources\Font.h" />
-    <ClInclude Include="..\..\src\EDEN_Render\UI\Resources\macros.h" />
-    <ClInclude Include="..\..\src\EDEN_Render\UI\Resources\SDLUtils.h" />
-    <ClInclude Include="..\..\src\EDEN_Render\UI\Resources\Texture.h" />
-    <ClInclude Include="..\..\src\EDEN_Render\UI\Resources\Vector2D.h" />
-    <ClInclude Include="..\..\src\EDEN_Render\UI\Text.h" />
     <ClInclude Include="..\..\src\EDEN_Render\RenderObject.h" />
+    <ClInclude Include="..\..\src\EDEN_Render\UI-Ogre\CIMage.h" />
+    <ClInclude Include="..\..\src\EDEN_Render\UI-Ogre\UIComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\EDEN_Render\Animator.cpp" />
@@ -35,11 +29,8 @@
     <ClCompile Include="..\..\src\EDEN_Render\Node.cpp" />
     <ClCompile Include="..\..\src\EDEN_Render\RenderManager.cpp" />
     <ClCompile Include="..\..\src\EDEN_Render\RenderObject.cpp" />
-    <ClCompile Include="..\..\src\EDEN_Render\UI\Image.cpp" />
-    <ClCompile Include="..\..\src\EDEN_Render\UI\Resources\SDLUtils.cpp" />
-    <ClCompile Include="..\..\src\EDEN_Render\UI\Resources\Texture.cpp" />
-    <ClCompile Include="..\..\src\EDEN_Render\UI\Resources\Vector2D.cpp" />
-    <ClCompile Include="..\..\src\EDEN_Render\UI\Text.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Render\UI-Ogre\CIMage.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Render\UI-Ogre\UIComponent.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -126,7 +117,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)dependencies\SDL\src\include\;$(SolutionDir)dependencies\SDL\build\$(Platform)\include\;%(AdditionalIncludeDirectories);$(SolutionDir)src\EDEN\;$(SolutionDir)dependencies\Ogre\src\Components\RTShaderSystem\include\;$(SolutionDir)dependencies\SDL_ttf\src\;$(SolutionDir)dependencies\SDL_image\src\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)dependencies\SDL\src\include\;$(SolutionDir)dependencies\SDL\build\$(Platform)\include\;%(AdditionalIncludeDirectories);$(SolutionDir)src\EDEN\;$(SolutionDir)dependencies\Ogre\src\Components\RTShaderSystem\include\;$(SolutionDir)dependencies\SDL_ttf\src\;$(SolutionDir)dependencies\SDL_image\src\;$(SolutionDir)dependencies\Ogre\src\Components\Overlay\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -144,7 +135,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)dependencies\SDL\src\include\;$(SolutionDir)dependencies\SDL\build\$(Platform)\include\;%(AdditionalIncludeDirectories);$(SolutionDir)src\EDEN\;$(SolutionDir)dependencies\Ogre\src\Components\RTShaderSystem\include\;$(SolutionDir)dependencies\SDL_ttf\src\;$(SolutionDir)dependencies\SDL_image\src\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)dependencies\SDL\src\include\;$(SolutionDir)dependencies\SDL\build\$(Platform)\include\;%(AdditionalIncludeDirectories);$(SolutionDir)src\EDEN\;$(SolutionDir)dependencies\Ogre\src\Components\RTShaderSystem\include\;$(SolutionDir)dependencies\SDL_ttf\src\;$(SolutionDir)dependencies\SDL_image\src\;$(SolutionDir)dependencies\Ogre\src\Components\Overlay\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

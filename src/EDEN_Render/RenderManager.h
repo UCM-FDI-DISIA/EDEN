@@ -44,17 +44,17 @@ namespace eden_render
 		/// @brief Destructora
 		~RenderManager() override;
 
-		/// @brief Inicializa la librería de renderizado,
+		/// @brief Inicializa la librerï¿½a de renderizado,
 		/// crea la ventana de renderizado, localiza y carga los recursos (.mesh, .material, etc)
 		/// e inicializa los shaders
 		/// @param appName Nombre de la ventana
 		void InitManager(const std::string& appName);
 
-		/// @brief Destruye la raíz y guarda su configuración final en caso de haber sido destruída
-		/// previamente y llama posteriormente al método Shutdown
+		/// @brief Destruye la raï¿½z y guarda su configuraciï¿½n final en caso de haber sido destruï¿½da
+		/// previamente y llama posteriormente al mï¿½todo Shutdown
 		void CloseManager();
 
-		/// @brief Ejecuta un ciclo de renderizado (ventana y raíz)
+		/// @brief Ejecuta un ciclo de renderizado (ventana y raï¿½z)
 		void Update();
 
 		/// @brief Destructora de la ventana de SDL
@@ -67,27 +67,27 @@ namespace eden_render
 		/// @brief Destruye el sistema de sombreado de trazado de rayos
 		void DestroyRTShaderSystem();
 
-		/// @brief Inicialización de Ogre a través de su raíz, ventana, RTShaderSystem
+		/// @brief Inicializaciï¿½n de Ogre a travï¿½s de su raï¿½z, ventana, RTShaderSystem
 		virtual void Setup();
 
-		/// @brief Creación de la raíz de Ogre de la escena
+		/// @brief Creaciï¿½n de la raï¿½z de Ogre de la escena
 		virtual void CreateRoot();
 
-		/// @brief Activación / desactivación de la posibilidad de modificar la
-		/// posición de la ventana
+		/// @brief Activaciï¿½n / desactivaciï¿½n de la posibilidad de modificar la
+		/// posiciï¿½n de la ventana
 		/// @param grab Estado de movilidad de la ventana
 		void SetWindowGrab(bool grab);
 
-		/// @brief Localización de archivos para Ogre
+		/// @brief Localizaciï¿½n de archivos para Ogre
 		virtual void LocateResources();
 
 		/// @brief Carga de archivos para Ogre
 		virtual void LoadResources();
 
-		/// @brief Cierre de ventana de SDL, así como el RTShaderSystem
+		/// @brief Cierre de ventana de SDL, asï¿½ como el RTShaderSystem
 		virtual void Shutdown();
 
-		/// @brief Creación de la ventana de Ogre y SDL
+		/// @brief Creaciï¿½n de la ventana de Ogre y SDL
 		/// @param name Nombre de la ventana
 		virtual NativeWindowPair CreateNewWindow(const std::string& name);
 
@@ -96,7 +96,7 @@ namespace eden_render
 		explicit RenderManager(const std::string& appName = "TEST_APP");
 
 
-		/// @brief Raíz de Ogre
+		/// @brief Raï¿½z de Ogre
 		Ogre::Root* _root;
 
 		/// @brief Gestor de escenas
@@ -105,20 +105,20 @@ namespace eden_render
 		/// @brief Ventana principal
 		NativeWindowPair _window;
 
-		/// @brief Capa de abstracción del sistema de archivos
+		/// @brief Capa de abstracciï¿½n del sistema de archivos
 		Ogre::FileSystemLayer* _fsLayer;
 		bool _firstRun;
 
 		/// @brief Nombre de la ventana
 		std::string _appName;
 
-		/// @brief Localización de recursos de Ogre
+		/// @brief Localizaciï¿½n de recursos de Ogre
 		std::string _solutionPath;
 
-		/// @brief Localización de recursos de la aplicación
+		/// @brief Localizaciï¿½n de recursos de la aplicaciï¿½n
 		const std::string _resourcesPath = "assets\\";
 
-		/// @brief Localización de librería del RTShader
+		/// @brief Localizaciï¿½n de librerï¿½a del RTShader
 		std::string _rtShaderLibPath;
 
 		/// @brief Instancia de generador de sombreado

@@ -3,7 +3,7 @@
 #include "ScriptManager.h"
 #include "ComponentArguments.h"
 
-const std::string eden_ec::CTransform::_id = "TRASNFORM";
+const std::string eden_ec::CTransform::_id = "TRANsFORM";
 
 eden_ec::CTransform::CTransform(eden_utils::Vector3 position, eden_utils::Quaternion rotation, eden_utils::Vector3 scale) : Component(),
 	_position(position), _rotation(rotation), _scale(scale) {};

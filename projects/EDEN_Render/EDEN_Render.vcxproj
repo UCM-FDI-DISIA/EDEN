@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\src\EDEN_Render\Animator.h" />
     <ClInclude Include="..\..\src\EDEN_Render\CameraWrapper.h" />
+    <ClInclude Include="..\..\src\EDEN_Render\Light.h" />
     <ClInclude Include="..\..\src\EDEN_Render\MeshRenderer.h" />
     <ClInclude Include="..\..\src\EDEN_Render\Node.h" />
     <ClInclude Include="..\..\src\EDEN_Render\RenderManager.h" />
@@ -29,6 +30,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\EDEN_Render\Animator.cpp" />
     <ClCompile Include="..\..\src\EDEN_Render\CameraWrapper.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Render\Light.cpp" />
     <ClCompile Include="..\..\src\EDEN_Render\MeshRenderer.cpp" />
     <ClCompile Include="..\..\src\EDEN_Render\Node.cpp" />
     <ClCompile Include="..\..\src\EDEN_Render\RenderManager.cpp" />

@@ -21,10 +21,11 @@
 eden_render::RenderManager::RenderManager(const std::string& appName)
 {
 	_appName = appName; // asigna el nombre de la ventana
-	_root = nullptr; // pone la raíz a nulo
-	_firstRun = true; // activa la primer inicialización
+	_root = nullptr; // pone la raï¿½z a nulo
+	_firstRun = true; // activa la primer inicializaciï¿½n
 	_shaderGenerator = nullptr; // y mantiene el generador de sombreado a nulo
 
+	InitManager(appName);
 }
 
 eden_render::RenderManager::~RenderManager()
@@ -34,11 +35,11 @@ eden_render::RenderManager::~RenderManager()
 
 void eden_render::RenderManager::InitManager(const std::string& appName)
 {
-	_appName = appName; // renombra el nombre de aplicación
+	_appName = appName; // renombra el nombre de aplicaciï¿½n
 	_fsLayer = new Ogre::FileSystemLayer(_appName); // crea un nuevo sistema de archivos
 
-	CreateRoot(); // crea la raíz
-	Setup(); // y arranca la inicialización base
+	CreateRoot(); // crea la raï¿½z
+	Setup(); // y arranca la inicializaciï¿½n base
 
 	_sceneMngr = _root->createSceneManager();
 	_sceneMngr->setAmbientLight(Ogre::ColourValue(0.2, 0.2, 0.2));
@@ -57,14 +58,14 @@ void eden_render::RenderManager::InitManager(const std::string& appName)
 	vp->setBackgroundColour(Ogre::ColourValue(0.9, 0.7, 0.7));
 
 	Ogre::Light* luz = _sceneMngr->createLight("Luz");
-	luz->setType(Ogre::Light::LT_DIRECTIONAL);
-	luz->setDiffuseColour(1, 1, 1);
+	luz->setType(Ogre::Light::LT_POINT);
+	luz->setDiffuseColour(10, 10, 10);
 	Ogre::SceneNode* mLightNode = _sceneMngr->getRootSceneNode()->createChildSceneNode("nLuz");
 	mLightNode->attachObject(luz);
 
 	mLightNode->setDirection(Ogre::Vector3(1, -1, 0));
 
-	Ogre::SceneNode* cuerpoNode = _sceneMngr->getRootSceneNode()->createChildSceneNode();
+	/*Ogre::SceneNode* cuerpoNode = _sceneMngr->getRootSceneNode()->createChildSceneNode();
 	Ogre::Vector3 cuerpoScale = { 0.2, 0.2, 0.2 };
 	Ogre::Entity* ent;
 
@@ -75,8 +76,8 @@ void eden_render::RenderManager::InitManager(const std::string& appName)
 	cuerpoNode->setPosition({ 70,-10,-10 });
 	cuerpoNode->yaw(Ogre::Degree(45));
 	cuerpoNode->pitch(Ogre::Degree(45));
+	cuerpoNode = _sceneMngr->getRootSceneNode()->createChildSceneNode();*/
 	camNode->setDirection({ 1,0,0 });
-	cuerpoNode = _sceneMngr->getRootSceneNode()->createChildSceneNode();
 
 
 	_overlaySys = new Ogre::OverlaySystem();
@@ -84,7 +85,7 @@ void eden_render::RenderManager::InitManager(const std::string& appName)
 
 void eden_render::RenderManager::Update()
 {	
-	_root->renderOneFrame(); // renderiza la raíz de Ogre
+	_root->renderOneFrame(); // renderiza la raï¿½z de Ogre
 	_window.render->update(); // renderiza la ventana de SDL
 }
 
@@ -95,28 +96,28 @@ void eden_render::RenderManager::CloseWindow() {
 
 void eden_render::RenderManager::CloseManager()
 {
-	if (_root != nullptr) { // si ya no hay raíz
-		_root->saveConfig(); // guarda su configuración
+	if (_root != nullptr) { // si ya no hay raï¿½z
+		_root->saveConfig(); // guarda su configuraciï¿½n
 	}
 	Shutdown(); // llama al cierre de la ventana
-	delete _root; // borra la raíz
+	delete _root; // borra la raï¿½z
 	_root = nullptr; // y la pone a nulo
 	_overlaySys = nullptr;
 }
 
 void eden_render::RenderManager::CreateRoot()
 {
-	std::string pluginsPath; // localización base de los plugins
+	std::string pluginsPath; // localizaciï¿½n base de los plugins
 	std::string nameFile = "plugins.cfg";
-	pluginsPath = _fsLayer->getConfigFilePath(nameFile); // consigue la dirección gracias al sistema de archivos
+	pluginsPath = _fsLayer->getConfigFilePath(nameFile); // consigue la direcciï¿½n gracias al sistema de archivos
 
-	if (!Ogre::FileSystemLayer::fileExists(pluginsPath)) { // si no existe el plugin -> excepción de Ogre
+	if (!Ogre::FileSystemLayer::fileExists(pluginsPath)) { // si no existe el plugin -> excepciï¿½n de Ogre
 		OGRE_EXCEPT(Ogre::Exception::ERR_FILE_NOT_FOUND, "plugins.cfg", "RenderManager::createRoot");
 	}
-	_solutionPath = pluginsPath; // copia la dirección de los plugins
+	_solutionPath = pluginsPath; // copia la direcciï¿½n de los plugins
 	_solutionPath.resize(_solutionPath.size() - nameFile.size()); // y la reajusta
 
-	// crea una nueva raíz en base a los plugins y la configuración base de Ogre
+	// crea una nueva raï¿½z en base a los plugins y la configuraciï¿½n base de Ogre
 	_root = new Ogre::Root(pluginsPath, _fsLayer->getWritablePath("ogre.cfg"), _fsLayer->getWritablePath("ogre.log"));
 
 	// mOverlaySystem = new Ogre::OverlaySystem;
@@ -143,8 +144,8 @@ void eden_render::RenderManager::Shutdown()
 
 void eden_render::RenderManager::Setup()
 {
-	_root->showConfigDialog(nullptr); // desactiva el diálogo de configuración de Ogre
-	_root->initialise(false); // desactiva la inicialización de la raíz de Ogre
+	_root->showConfigDialog(nullptr); // desactiva el diï¿½logo de configuraciï¿½n de Ogre
+	_root->initialise(false); // desactiva la inicializaciï¿½n de la raï¿½z de Ogre
 	CreateNewWindow(_appName); // crea la ventana
 	SetWindowGrab(false); // desactiva la posibilidad de mover la ventana
 

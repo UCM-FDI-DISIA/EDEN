@@ -6,6 +6,8 @@
 
 #include "Singleton.h"
 
+
+namespace eden {
 class Scene;
 class SceneManager : public Singleton<SceneManager> {
 	friend Singleton<SceneManager>;
@@ -51,5 +53,6 @@ private:
 	/// @brief Lista doblemente enlazada de punteros a escenas
 	std::deque<Scene*> _scenes;
 };
+}
 
 #endif // SCENE_MANAGER_H

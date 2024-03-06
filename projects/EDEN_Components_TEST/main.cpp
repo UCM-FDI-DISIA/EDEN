@@ -2,9 +2,6 @@
 
 #include <iostream>
 
-#include <lua.hpp>
-
-#include "Component.cpp"
 #include "ComponentFactory.cpp"
 #include "Entity.cpp"
 #include "TestComponent.h"
@@ -16,9 +13,9 @@
 #include "ComponentArguments.h"
 #include "RenderManager.h"
 #include "InputManager.h"
-#include "EdenMaster.h"
-#include "SceneManager.h"
-#include "Scene.h"
+#include "EdenMaster.cpp"
+#include "SceneManager.cpp"
+#include "Scene.cpp"
 
 int main() {
 

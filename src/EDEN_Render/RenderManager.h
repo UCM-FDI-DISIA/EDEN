@@ -49,12 +49,6 @@ namespace eden_render
 		/// @brief Destructora
 		~RenderManager() override;
 
-		/// @brief Inicializa la librer�a de renderizado,
-		/// crea la ventana de renderizado, localiza y carga los recursos (.mesh, .material, etc)
-		/// e inicializa los shaders
-		/// @param appName Nombre de la ventana
-		void InitManager(const std::string& appName);
-
 		/// @brief Destruye la ra�z y guarda su configuraci�n final en caso de haber sido destru�da
 		/// previamente y llama posteriormente al m�todo Shutdown
 		void CloseManager();
@@ -131,6 +125,14 @@ namespace eden_render
 
 		/// @brief Instancia de generador de sombreado
 		Ogre::RTShader::ShaderGenerator* _shaderGenerator;
+
+	private:
+
+		/// @brief Inicializa la librer�a de renderizado,
+		/// crea la ventana de renderizado, localiza y carga los recursos (.mesh, .material, etc)
+		/// e inicializa los shaders
+		/// @param appName Nombre de la ventana
+		void InitManager(const std::string& appName);
 	};
 }
 

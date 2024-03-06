@@ -43,10 +43,9 @@ Ogre::SceneNode* render_wrapper::Node::FindNode(const std::string id) {
 		std::cerr << "RenderWrapper::Node ERROR in line 25: scene node with id: " + id + " not found in _sceneObjectsMap" << std::endl;
 		return nullptr;
 	}
-	else {
-		return aux->second;
-	}
+	return aux->second;
 }
+
 void render_wrapper::Node::CreateSceneObject(const std::string id) {
 	Ogre::SceneNode* auxNode = _rootNode->createChildSceneNode(id);
 	_sceneObjectsMap.insert({ id, auxNode });
@@ -112,7 +111,7 @@ void render_wrapper::Node::RotateLocal(const eden_utils::Vector3 rotation, const
 }
 
 void render_wrapper::Node::Scale(const eden_utils::Vector3 scale, const std::string id) {
-	FindNode(id)->scale(convertToOgreVector(scale));
+	FindNode(id)->setScale(convertToOgreVector(scale));
 }
 
 void render_wrapper::Node::Translate(const eden_utils::Vector3 pos, const std::string id) {

@@ -4,69 +4,82 @@
 #include<string>
 #include<unordered_map>
 
-#include "Entity.h"
-class Scene
-{
-public:
-	Scene(const std::string& ID);
-	~Scene();
+namespace eden_script {
+	struct EntityInfo;
+}
+namespace eden_render {
+	class RenderManager;
+}
+namespace eden_ec {
+	class Entity;
+}
 
-	/// @brief Método que devuelve el nombre identificativo de la escena
-	inline std::string GetSceneID() { return _ID; }
+namespace eden {
+	class Scene
+	{
+	public:
+		Scene(const std::string& ID, std::vector<eden_script::EntityInfo*> info);
+		~Scene();
 
-	/// @brief Llama al render de todas las entidades de la escena
-	void Render();
+		/// @brief Método que devuelve el nombre identificativo de la escena
+		inline std::string GetSceneID() { return _ID; }
 
-	/// @brief Llama al update de todas las entidades de la escena
-	void Update(float dt);
+		/// @brief Llama al render de todas las entidades de la escena
+		void Render();
 
-	/// @brief Durante la ejecución del juego, añade una entidad nueva al mapa de entidades 
-	/// @param id id Nombre de la entidad que se va a crear nueva
-	void AddGameObject(const std::string& ID, eden_ec::Entity* _ent);
+		/// @brief Llama al update de todas las entidades de la escena
+		void Update(float dt);
 
-	/// @brief Devuleve una referencia a la cámara actual 
-	inline eden_ec::Entity* GetCurrentCamara() { return _currentCamera; }
+		/// @brief Durante la ejecución del juego, añade una entidad nueva al mapa de entidades 
+		/// @param id id Nombre de la entidad que se va a crear nueva
+		void AddGameObject(const std::string& ID, eden_ec::Entity* _ent);
 
-	/// @brief Cambia la referencia de la variable que indica cuál es la cámara actual  
-	/// @param cam Referencia a la nueva cámara actual
-	inline void SetCurrentCamara(eden_ec::Entity* cam) { _currentCamera = cam; }
+		/// @brief Devuleve una referencia a la cámara actual 
+		inline eden_ec::Entity* GetCurrentCamara() { return _currentCamera; }
 
-	/// @brief Añade un componente a la entidad dado su tipo y los argumentos que requiera el
-	/// @tparam id Nombre de la entidad a la que queremos acceder
-	/// @return Componente cread
-	eden_ec::Entity* GetEntityByID(const std::string& ID);
+		/// @brief Cambia la referencia de la variable que indica cuál es la cámara actual  
+		/// @param cam Referencia a la nueva cámara actual
+		inline void SetCurrentCamara(eden_ec::Entity* cam) { _currentCamera = cam; }
 
-	/// @brief Inidica si la escena quiere renderizar sus elementos
-	inline void SetToRender(bool render) { _isRendering = render; }
+		/// @brief Añade un componente a la entidad dado su tipo y los argumentos que requiera el
+		/// @tparam id Nombre de la entidad a la que queremos acceder
+		/// @return Componente cread
+		eden_ec::Entity* GetEntityByID(const std::string& ID);
 
-	/// @brief Devuelve la variable que indica si la escena se va a renderizar
-	/// @return _isRendering True = se renderiza | _isRendering = no se renderiza
-	inline bool GetToRender() { return _isRendering; }
+		/// @brief Inidica si la escena quiere renderizar sus elementos
+		inline void SetToRender(bool render) { _isRendering = render; }
 
-	/// @brief Pone a true el booleano correpondiente para indicar que va a ser destruida
-	inline void SetToDestroy() { _toDestroy = true; }
+		/// @brief Devuelve la variable que indica si la escena se va a renderizar
+		/// @return _isRendering True = se renderiza | _isRendering = no se renderiza
+		inline bool GetToRender() { return _isRendering; }
 
-	/// @brief Devuelve la variable que indica si la escena se va a eliminar
-	/// @return _toDestroy True = no se quiere destruir | _toDestroy = se va a destruir
-	inline bool GetToDestroy() { return _toDestroy; }
+		/// @brief Pone a true el booleano correpondiente para indicar que va a ser destruida
+		inline void SetToDestroy() { _toDestroy = true; }
 
-private:
-	///@brief identificador de escena
-	std::string _ID;
+		/// @brief Devuelve la variable que indica si la escena se va a eliminar
+		/// @return _toDestroy True = no se quiere destruir | _toDestroy = se va a destruir
+		inline bool GetToDestroy() { return _toDestroy; }
 
-	//OgreWrapper _renderScene;
+	private:
+		///@brief identificador de escena
+		std::string _ID;
 
-	///@brief booleano que indica si la escena esta activa. Si una escena no esta activa no se ejecutará el 
-	/// update pero si se seguirán renderizando sus entidades
-	bool _isRendering = true;
+		//OgreWrapper _renderScene;
 
-	///@brief booleano que se activa cuando se quiere destruir una escena
-	bool _toDestroy = false;
+		///@brief booleano que indica si la escena esta activa. Si una escena no esta activa no se ejecutará el 
+		/// update pero si se seguirán renderizando sus entidades
+		bool _isRendering = true;
 
-	/// @brief referencia a la cámara actual
-	eden_ec::Entity* _currentCamera = nullptr;
+		///@brief booleano que se activa cuando se quiere destruir una escena
+		bool _toDestroy = false;
 
-	/// @brief mapa que contiene las referencias a todas las entidades de la escena
-	std::unordered_map<std::string, eden_ec::Entity*> _gameEntitiesList;
-};
+		/// @brief referencia a la cámara actual
+		eden_ec::Entity* _currentCamera = nullptr;
+
+		/// @brief mapa que contiene las referencias a todas las entidades de la escena
+		std::unordered_map<std::string, eden_ec::Entity*> _gameEntitiesList;
+
+
+	};
+}
 #endif // SCENE_H

@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\EDEN_Render\Animator.h" />
     <ClInclude Include="..\..\src\EDEN_Render\CameraWrapper.h" />
     <ClInclude Include="..\..\src\EDEN_Render\MeshRenderer.h" />
     <ClInclude Include="..\..\src\EDEN_Render\Node.h" />
@@ -26,10 +27,12 @@
     <ClInclude Include="..\..\src\EDEN_Render\RenderObject.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\EDEN_Render\Animator.cpp" />
     <ClCompile Include="..\..\src\EDEN_Render\CameraWrapper.cpp" />
     <ClCompile Include="..\..\src\EDEN_Render\MeshRenderer.cpp" />
     <ClCompile Include="..\..\src\EDEN_Render\Node.cpp" />
     <ClCompile Include="..\..\src\EDEN_Render\RenderManager.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Render\RenderObject.cpp" />
     <ClCompile Include="..\..\src\EDEN_Render\UI\Image.cpp" />
     <ClCompile Include="..\..\src\EDEN_Render\UI\Resources\SDLUtils.cpp" />
     <ClCompile Include="..\..\src\EDEN_Render\UI\Resources\Texture.cpp" />

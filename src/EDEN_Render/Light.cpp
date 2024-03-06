@@ -6,8 +6,7 @@
 
 render_wrapper::Light::Light(const std::string entityID, LightType type) : _entityID(entityID)
 {
-	Ogre::SceneManager* mSM = eden_render::RenderManager::Instance()->_sceneMngr;
-	_light = mSM->createLight();
+	_light = getSceneManager()->createLight();
 
 	Ogre::Light::LightTypes OgreLightType;
 

@@ -6,8 +6,7 @@
 
 render_wrapper::MeshRenderer::MeshRenderer(const std::string entityID, const std::string meshName)
 {
-	Ogre::SceneManager* mSM = eden_render::RenderManager::Instance()->_sceneMngr;
-	_ent = mSM->createEntity(meshName);
+	_ent = getSceneManager()->createEntity(meshName);
 	render_wrapper::Node::Instance()->Attach(GetRenderObject(), entityID);
 }
 

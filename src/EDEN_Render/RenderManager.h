@@ -28,6 +28,7 @@ struct NativeWindowPair
 namespace render_wrapper {
 	class Node;
 	class RenderObject;
+	class CameraWrapper;
 }
 namespace eden_render
 {
@@ -40,6 +41,7 @@ namespace eden_render
 		/// @brief Nodo del RenderWrapper
 		friend render_wrapper::Node;
 		friend render_wrapper::RenderObject;
+		friend render_wrapper::CameraWrapper;
 		
 		/// @brief Destructora
 		~RenderManager() override;

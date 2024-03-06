@@ -10,7 +10,7 @@
 #include "Quaternion.h"
 
 render_wrapper::CameraWrapper::CameraWrapper(std::string entityID) : _entityID(entityID) {
-	_camera = eden_render::RenderManager::Instance()->_sceneMngr->createCamera(entityID + "_camera");
+	_camera = getSceneManager()->createCamera(entityID + "_camera");
 	SetNearClipDistance(1.0f);
 	SetFarClipDistance(10000.0f);
 	SetAutoAspectRatio(true);

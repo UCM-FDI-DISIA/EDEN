@@ -1,6 +1,10 @@
 #include "Light.h"
-#include "RenderManager.h"
+
+// Librerias adicionales
 #include <OgreSceneManager.h>
+
+// Archivos del proyecto
+#include "RenderManager.h"
 #include "Node.h"
 #include "Vector3.h"
 

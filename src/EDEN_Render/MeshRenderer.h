@@ -1,9 +1,15 @@
 #ifndef MESH_RENDERER_H
 #define MESH_RENDERER_H
 
+// Libreria de C++
 #include <string>
-#include "RenderObject.h"
+
+// Librerias adicionales
 #include "OgreEntity.h"
+
+// Archivos del proyecto
+#include "RenderObject.h"
+
 namespace render_wrapper {
 
 	class Animator;
@@ -13,18 +19,34 @@ namespace render_wrapper {
 		friend render_wrapper::Animator;
 
 	public:
-		MeshRenderer(const std::string entityID, const std::string meshName); // _ent = new(), NodeManager():Instance->attach(_ent, id)
+		/// @brief Constructora del Wrapper de libreria de renderizado de mallas
+		/// @param enetityID Nombre de la entidad asociada al componente MeshRenderer
+		/// @param meshName Nombre del archivo de la malla
+		MeshRenderer(const std::string entityID, const std::string meshName);
+
 		~MeshRenderer() {};
 
-		void SetMaterial(const std::string material);
-		void SetInvisible(bool visibility);
-		void ActivateAnim(float dt);
+		/// @brief Setea el material a la malla 
+		/// @param material Nombre del archivo del material 
+		inline void SetMaterial(const std::string material);
+
+		/// @brief Setea la la visibilidad de la malla
+		/// @param visibility True -> Visible, False -> No visible
+		inline void SetInvisible(bool visibility);
+
+		/// @brief 
+		/// @param dt Variable delta time
+		inline void ActivateAnim(float dt);
 
 	private:
-		virtual Ogre::MovableObject* GetRenderObject();
-
+		/// @brief Puntero a la entidad asociada al componente
 		Ogre::Entity* _ent = nullptr;
+		/// @brief Puntero a AnimationState
 		Ogre::AnimationState* _anim;
+		
+		/// @brief Devuelve la entidad asociada a la malla
+		Ogre::MovableObject* GetRenderObject() override;
+
 	};
 }
 #endif // MESH_RENDERER_H

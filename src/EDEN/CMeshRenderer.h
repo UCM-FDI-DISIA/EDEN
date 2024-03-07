@@ -4,10 +4,11 @@
 #define MESH_ROUTE "assets\\mesh\\"
 #define MATERIAL_ROUTE "assets\\material\\"
 
+// Librerias de C++
 #include <string>
 
+// Archivos del proyecto
 #include "Component.h"
-
 
 namespace render_wrapper
 {
@@ -24,25 +25,40 @@ namespace eden_ec {
 		/// @brief Constructora por defecto del CMeshRenderer
 		CMeshRenderer() = default;
 
+		/// @brief Constructora con parametros
+		/// @param mesh Nombre del archivo de la malla .mesh
 		CMeshRenderer(std::string mesh);
 
+		/// @brief Construye el componente dado unos argumentos. Se obtendrán de una lectura de un .lua
+		/// @param args Argumentos leídos de .lua
 		virtual void Init(eden_script::ComponentArguments* args);
 
 		~CMeshRenderer();
 
-		void SetMaterial(const std::string material);
+		/// @brief Pone un material a la malla
+		/// @param material Nombre del archivo del material
+		inline void SetMaterial(const std::string material);
 
-		void SetInvisible(bool visibility);
+		/// @brief Setea la la visibilidad de la malla
+		/// @param visibility True -> Visible, False -> No visible
+		inline void SetInvisible(bool visibility);
+
+		/// @brief Devuelve el identificador del componente
 		static std::string GetID() { return _id; }
 
+		/// @brief 
+		/// @param dt Variable delta time
 		void Update(float dt);
+
 	protected:
 		const static std::string _id;
+
 	private:
+		/// @brief Puntero al wrapper del mesh renderer de la libreria
 		render_wrapper::MeshRenderer* _renderWrapper = nullptr;
-
+		/// @brief Variable del archivo de la malla
 		std::string _mesh; 
-
+		/// @brief Puntero al transform de la entidad
 		CTransform* _transform;
 	};
 }

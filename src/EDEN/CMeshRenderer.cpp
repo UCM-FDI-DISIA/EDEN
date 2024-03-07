@@ -1,4 +1,6 @@
 #include "CMeshRenderer.h"
+
+// Archivos del proyecto
 #include "RenderManager.h"
 #include "ComponentArguments.h"
 #include "MeshRenderer.h"
@@ -6,6 +8,7 @@
 #include "Node.h"
 #include "Vector3.h"
 #include "Transform.h"
+
 const std::string eden_ec::CMeshRenderer::_id = "MESH_RENDERER";
 
 eden_ec::CMeshRenderer::CMeshRenderer(std::string mesh) : Component(),

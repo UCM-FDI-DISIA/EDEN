@@ -1,10 +1,15 @@
 #include "MeshRenderer.h"
-#include "RenderManager.h"
-#include "Node.h"
+
+// Librerias adicionales
 #include <OgreSceneManager.h>
 #include <OgreEntity.h>
-#include "Vector3.h"
 #include "OgreAnimationState.h";
+
+// Archivos del proyecto
+#include "RenderManager.h"
+#include "Node.h"
+#include "Vector3.h"
+
 render_wrapper::MeshRenderer::MeshRenderer(const std::string entityID, const std::string meshName)
 {
 	_ent = getSceneManager()->createEntity(meshName);

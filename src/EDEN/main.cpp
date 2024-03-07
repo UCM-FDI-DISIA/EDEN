@@ -16,6 +16,9 @@
 #include <CCursor.h>
 #include <CCamera.h>
 
+/// Engine Physics
+#include "CRigidBody.h"
+
 
 #include <iostream>
 
@@ -26,8 +29,10 @@
 #include "Hito1Prueba.h"
 #include "CAnimator.h"
 
+
 int main() {
-	// Registramos el componente Transform, que es el �nico que usaremos de momento
+	
+	// Registramos el componente Transform, que es el unico que usaremos de momento
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CTransform>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CMeshRenderer>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_render::CCamera>();
@@ -36,7 +41,9 @@ int main() {
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CAnimator>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CButton>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CCursor>();
+	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CRigidBody>();
 	
+
 	try
 	{
 		eden::Master* master = eden::Master::Instance();

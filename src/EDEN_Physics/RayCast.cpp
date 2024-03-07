@@ -24,7 +24,7 @@ const physics_wrapper::RayCastHitResult& physics_wrapper::RayCast::singleHitRayC
 	_dynamicWorldRef->rayTest(origin, destiny, result);
 	eden_utils::Vector3 rHitPoint(result.m_hitPointWorld.getX(), result.m_hitPointWorld.getY(), result.m_hitPointWorld.getZ());
 	eden_utils::Vector3 rHitNormal(result.m_hitNormalWorld.getX(), result.m_hitNormalWorld.getY(), result.m_hitNormalWorld.getZ());
-	const eden_ec::Entity* hitEntity = _physicsManagerInstance->getEntity(btRigidBody::upcast(result.m_collisionObject));
+	const eden_ec::Entity* hitEntity = (eden_ec::Entity*)(btRigidBody::upcast(result.m_collisionObject))->getUserPointer();
 	RayCastHitResult hitResult{ result.hasHit(), rHitPoint, rHitNormal, hitEntity };
 	return hitResult;
 }
@@ -47,7 +47,7 @@ const std::vector<physics_wrapper::RayCastHitResult> physics_wrapper::RayCast::m
 	for (int i = 0; i < numCollisions; ++i) {
 		rHitPoint = { result.m_hitPointWorld[i].getX(), result.m_hitPointWorld[i].getY(), result.m_hitPointWorld[i].getZ()};
 		rHitNormal = { result.m_hitNormalWorld[i].getX(), result.m_hitNormalWorld[i].getY(), result.m_hitNormalWorld[i].getZ() };
-		hitEntity = _physicsManagerInstance->getEntity(btRigidBody::upcast(result.m_collisionObjects[i]));
+		hitEntity = (eden_ec::Entity*)(btRigidBody::upcast(result.m_collisionObjects[i]))->getUserPointer();
 		multipleHitResult[i] = { result.hasHit(), rHitPoint, rHitNormal, hitEntity };
 	}
 	return multipleHitResult;

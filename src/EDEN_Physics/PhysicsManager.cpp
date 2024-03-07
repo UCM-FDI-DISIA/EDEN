@@ -1,16 +1,16 @@
 #include "PhysicsManager.h"
 #include "../../dependencies/Bullet/src/src/btBulletDynamicsCommon.h"
-#include "../EDEN/Entity.h"
+#include "Entity.h"
 #include "RayCast.h"
 
 
-const eden_ec::Entity* physics_manager::PhysicsManager::getEntity(const btRigidBody* RBRef) const
-{
-	if (_entitiesMap.find(RBRef) != _entitiesMap.end()) {
-		return _entitiesMap.at(RBRef);
-	}
-	return nullptr;
-}
+//const eden_ec::Entity* physics_manager::PhysicsManager::getEntity(const btRigidBody* RBRef) const
+//{
+//	if (_entitiesMap.find(RBRef) != _entitiesMap.end()) {
+//		return _entitiesMap.at(RBRef);
+//	}
+//	return nullptr;
+//}
 
 void physics_manager::PhysicsManager::updateSimulation(float deltaTime)
 {

@@ -28,6 +28,16 @@ Entity1 = {
             Name = "PRUEBA",
             Arguments = {
 			}
+        },
+        {
+            Name = "RIGIDBODY", 
+            Arguments = {
+                Mass = "1",
+                AABB = "5|5|5",
+                PosOffset = "0|0|0"
+                Radius = "0"
+                Shape = "BOX"
+            }
         }
         
     }

@@ -1,6 +1,8 @@
 #ifndef RIGIDBODYWRAPPER_H
 #define RIGIDBODYWRAPPER_H
 
+#include "Vector3.h"
+
 class btRigidBody;
 class btTransform;
 class btVector3;
@@ -8,12 +10,12 @@ class btQuaternion;
 class btCompoundShape;
 
 namespace eden_utils {
-	class Vector3;
 	class Quaternion;
 }
 
 namespace eden_ec {
 	class CTransform;
+	class Entity;
 }
 
 namespace physics_wrapper {
@@ -41,7 +43,7 @@ namespace physics_wrapper {
 		/// @param transform Transform de la entidad
 		/// @param mass Masa del RigidBody
 		/// @param params Parametros de la forma gemoetrica inicial
-		RigidBody(eden_ec::CTransform transform, float mass, shapeParameters params);
+		RigidBody(eden_ec::Entity* ent, float mass, const shapeParameters& params);
 
 		/// @brief Destructora del RigidbodyWrapper
 		~RigidBody();
@@ -110,6 +112,10 @@ namespace physics_wrapper {
 		/// @param damping Valor de damping que quieres establecer
 		void SetDamping(float damping);
 
+		/// @brief Establece la escala de la forma de colision
+		/// @param scale Valor de la escala nueva que se quiere dar
+		void SetScale(eden_utils::Vector3 scale);
+
 		/// @brief Añade una fuerza al RigidBody
 		/// @param force Vector de fuerza que quieres aplicar
 		void ApplyForce(eden_utils::Vector3 force);
@@ -123,7 +129,7 @@ namespace physics_wrapper {
 
 		/// @brief Añade una forma al RigidBody
 		/// @param params Parametros de la forma que se vaya a añadir
-		void AddShape(shapeParameters params);
+		void AddShape(const shapeParameters& params);
 	private:
 		btRigidBody* _rigidBody;
 		btTransform* _transform;

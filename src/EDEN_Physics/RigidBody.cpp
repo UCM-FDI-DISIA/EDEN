@@ -3,21 +3,28 @@
 #include <LinearMath/btDefaultMotionState.h>
 #include <BulletCollision/CollisionShapes/btCompoundShape.h>ç
 #include <BulletDynamics/Dynamics/btDiscreteDynamicsWorld.h>
+#include <BulletCollision/CollisionShapes/btBoxShape.h>
+#include <BulletCollision/CollisionShapes/btCapsuleShape.h>
+#include <BulletCollision/CollisionShapes/btCylinderShape.h>
+#include <BulletCollision/CollisionShapes/btSphereShape.h>
 
-#include<EDEN/Transform.h>
-#include<EDEN/Vector3.h>
-#include<EDEN/Quaternion.h>
+#include <Transform.h>
+#include <Quaternion.h>
 
 #include "PhysicsManager.h"
 #include "ShapeCreator.h"
+#include "Entity.h"
 
-physics_wrapper::RigidBody::RigidBody(eden_ec::CTransform transform, float mass, shapeParameters params)
+physics_wrapper::RigidBody::RigidBody(eden_ec::Entity* ent, float mass, const shapeParameters& params)
 {
-	_transform = new btTransform(EDENToBulletQuaternion(transform.GetRotation()), EDENToBulletVector(transform.GetPosition()));
+	eden_ec::CTransform* entTransform = ent->GetComponent<eden_ec::CTransform>();
+
+	_transform = new btTransform(EDENToBulletQuaternion(entTransform->GetRotation()), 
+		EDENToBulletVector(entTransform->GetPosition()));
 
 	_collisionShape = new btCompoundShape();
 	AddShape(params);
-
+	
 	btDefaultMotionState* motionState = new btDefaultMotionState(*_transform);
 	btVector3 localInertia = btVector3();
 	_collisionShape->calculateLocalInertia(mass, localInertia);
@@ -28,6 +35,9 @@ physics_wrapper::RigidBody::RigidBody(eden_ec::CTransform transform, float mass,
 		localInertia));
 
 	physics_manager::PhysicsManager::Instance()->GetWorld()->addRigidBody(_rigidBody);
+
+	// Todos los rigidbodies tienen ahora un puntero a la entidad que los contiene
+	_rigidBody->setUserPointer(ent);
 }
 
 physics_wrapper::RigidBody::~RigidBody()
@@ -132,6 +142,11 @@ void physics_wrapper::RigidBody::ApplyForce(eden_utils::Vector3 force)
 	_rigidBody->applyCentralForce(EDENToBulletVector(force));
 }
 
+void physics_wrapper::RigidBody::SetScale(eden_utils::Vector3 scale)
+{
+	_collisionShape->setLocalScaling(EDENToBulletVector(scale));
+}
+
 void physics_wrapper::RigidBody::ApplyTorque(eden_utils::Vector3 torque)
 {
 	_rigidBody->applyTorque(EDENToBulletVector(torque));
@@ -142,7 +157,7 @@ void physics_wrapper::RigidBody::ClearForce()
 	_rigidBody->clearForces();
 }
 
-void physics_wrapper::RigidBody::AddShape(shapeParameters params)
+void physics_wrapper::RigidBody::AddShape(const shapeParameters& params)
 {
 	btCollisionShape* shape;
 	switch (params.type) {
@@ -162,6 +177,7 @@ void physics_wrapper::RigidBody::AddShape(shapeParameters params)
 		shape = ShapeCreator::CreateBox(1, 1, 1);
 	}
 
+	//¿¿Esto deja leaks de memoria?? -> Mirar
 	_collisionShape->addChildShape(btTransform(EDENToBulletQuaternion(eden_utils::Quaternion::Identity()), EDENToBulletVector(params.positionOffset)),
 		shape);
 }

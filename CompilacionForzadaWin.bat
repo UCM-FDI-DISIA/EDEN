@@ -30,7 +30,6 @@ rd /s /q .\build\
 
 cd ..\FMOD\
 del %CHKBUILD%
-rd /s /q .\build\
 
 cd ..\SDL_ttf\
 del %CHKBUILD%
@@ -40,4 +39,8 @@ cd ..\SDL_image\
 del %CHKBUILD%
 rd /s /q .\build\
 
+cd ..\..
+
 call CompilacionWinVS.bat
+
+pause

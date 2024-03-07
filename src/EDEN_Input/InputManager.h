@@ -1,11 +1,11 @@
 #ifndef __INPUT_MANAGER_H__
 #define __INPUT_MANAGER_H__
 #include "Singleton.h"
-#include <SDL.h>
+
 #include <array>
 #include <unordered_map>
 
-#undef main
+class InputWrapper;
 namespace eden_input 
 {
 	/// @brief Clase que gestiona la entrada de datos del usuario.
@@ -171,7 +171,7 @@ namespace eden_input
 
 	private:
 
-		SDL_Event* _event;
+		InputWrapper* _wrapper;
 
 		/// @brief keyboard
 		bool _isKeyUpEvent;

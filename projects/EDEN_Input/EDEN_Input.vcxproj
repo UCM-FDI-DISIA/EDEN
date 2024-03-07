@@ -12,9 +12,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\EDEN_Input\InputManager.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Input\InputWrapper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\EDEN_Input\InputManager.h" />
+    <ClInclude Include="..\..\src\EDEN_Input\InputWrapper.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

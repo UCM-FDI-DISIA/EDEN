@@ -16,7 +16,7 @@ namespace eden_ec {
 	class  CImage : public eden_ec::UIComponent {
 	public:
 
-		CImage() {};
+		CImage()= default;
 		/// <summary>
 		/// Constructora de la clase Image
 		/// </summary>

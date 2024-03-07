@@ -3,13 +3,14 @@
 
 #include "Singleton.h"
 
-//#include "InputManager.h"
-
 namespace Ogre {
 	class Root;
 }
 namespace eden_render {
 	class RenderManager;
+}
+namespace eden_input {
+	class InputManager;
 }
 
 namespace eden 
@@ -22,6 +23,8 @@ class SceneManager;
 		friend Singleton<Master>;
 
 	public:
+		bool exit = false;
+
 		/// @brief Bucle principal de juego
 		void Loop();
 
@@ -36,13 +39,13 @@ class SceneManager;
 
 
 		/// @brief Referencia a al InputManager
-		//eden_input::InputManager* inputManager;
+		eden_input::InputManager* _inputManager;
 
 		/// @brief Referencia a al SceneManager
-		SceneManager* scnManager;
+		SceneManager* _scnManager;
 
 		/// @brief Referencia a al RenderManager
-		eden_render::RenderManager* renderManager;
+		eden_render::RenderManager* _renderManager;
 
 		Master();
 	};

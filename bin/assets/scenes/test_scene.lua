@@ -37,5 +37,23 @@ Entity2 = {
 	}	
 }
 
+Entity3 = {
+	Name = "UI",
+	Components = {
+		{
+			Name = "IMAGE",
+			Arguments = {
+                OverlayName= "image",
+				XPos = "50",
+                YPos = "50",
+                Width = "200",
+                Height = "150",
+                Texture = "final",
+                Depth = "1"
+			}
+		}
+	}	
+}
 
-Entities = { Entity1, Entity2 }
+
+Entities = { Entity1, Entity2, Entity3 }

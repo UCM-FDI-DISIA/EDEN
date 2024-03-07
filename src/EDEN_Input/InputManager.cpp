@@ -1,15 +1,16 @@
 #include "InputManager.h"
+#include "InputWrapper.h"
 
 eden_input::InputManager::InputManager() {
 
-	_event = new SDL_Event();
+	_wrapper = new InputWrapper();
 	_kbState = std::unordered_map<uint8_t, uint8_t>();
 	ClearState();
 
 }
 
 eden_input::InputManager::~InputManager() {
-	delete _event;
+	delete _wrapper;
 }
 
 void eden_input::InputManager::Clean() {
@@ -18,13 +19,10 @@ void eden_input::InputManager::Clean() {
 
 void eden_input::InputManager::Update() {
 	ClearState();
-	while (SDL_PollEvent(_event))
+	while (SDL_PollEvent(_wrapper->getEvent()))
 	{
-		switch (_event->type)
+		switch (_wrapper->getEvent()->type)
 		{
-		case 4352:
-			if (true);
-			break;
 		case SDL_KEYDOWN:
 			OnKeyDown();
 			break;
@@ -122,7 +120,7 @@ void eden_input::InputManager::ClearState() {
 }
 
 void eden_input::InputManager::OnKeyDown() {
-	SDL_Scancode key = _event->key.keysym.scancode;
+	SDL_Scancode key = _wrapper->getEvent()->key.keysym.scancode;
 	if (!_kbState.count(key) || _kbState[key] != HELD)
 		_kbState[key] = DOWN;
 
@@ -130,20 +128,20 @@ void eden_input::InputManager::OnKeyDown() {
 }
 
 void eden_input::InputManager::OnKeyUp() {
-	_kbState[_event->key.keysym.scancode] = UP;
+	_kbState[_wrapper->getEvent()->key.keysym.scancode] = UP;
 
 	_isKeyUpEvent = true;
 }
 
 void eden_input::InputManager::OnMouseMotion() {
 	_isMouseMotionEvent = true;
-	_mousePos.first = _event->motion.x;
-	_mousePos.second = _event->motion.y;
+	_mousePos.first = _wrapper->getEvent()->motion.x;
+	_mousePos.second = _wrapper->getEvent()->motion.y;
 }
 
 void eden_input::InputManager::OnMouseButtonChange(STATE state) {
 	_isMouseButtonEvent = true;
-	switch (_event->button.button) {
+	switch (_wrapper->getEvent()->button.button) {
 	case SDL_BUTTON_LEFT:
 		_mbState[LEFT] = state;
 		break;
@@ -159,7 +157,7 @@ void eden_input::InputManager::OnMouseButtonChange(STATE state) {
 }
 
 void eden_input::InputManager::HandleWindowEvent() {
-	switch (_event->window.event) {
+	switch (_wrapper->getEvent()->window.event) {
 	case SDL_WINDOWEVENT_CLOSE:
 		_isCloseWindowEvent = true;
 		break;

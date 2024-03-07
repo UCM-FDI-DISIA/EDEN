@@ -1,4 +1,4 @@
-#pragma once
+
 #ifndef __IMAGE_H__
 #define __IMAGE_H__
 
@@ -10,29 +10,22 @@ namespace Ogre {
 }
 
 namespace eden_ec {
-	/// <summary>
-	/// Clase que representa una imágen en la UI
-	/// </summary>
+	/// @brief Clase que representa una imágen en la UI
 	class  CImage : public eden_ec::UIComponent {
 	public:
-
+		/// @brief Constructora de la clase Image
 		CImage()= default;
-		/// <summary>
-		/// Constructora de la clase Image
-		/// </summary>
+
+		/// @brief Constructora de la clase Image
 		CImage(std::string overlayName, float xPos, float yPos, float width,
 			float height, std::string texture, int depth = 0);
 
-		/// <summary>
-		/// Inicializa el componente
-		/// </summary>
-		void InitComponent() override;
 
-		///<summary>
-		/// Destructora de la clase Image
-		/// </summary>
+		/// @brief Destructora de la clase Image
 		~CImage();
 
+		/// @brief Inicializa el componente
+		void InitComponent() override;
 
 		/// @brief Construye el componente dado unos argumentos. Se obtendrán de una lectura de un .lua
 		/// @param args Argumentos leídos de .lua
@@ -44,6 +37,7 @@ namespace eden_ec {
 		const static std::string _id;
 
 	private:
+		/// @brief Textura de la imagen 
 		std::string _texture;
 	};
 } 

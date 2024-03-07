@@ -196,7 +196,6 @@ NativeWindowPair eden_render::RenderManager::CreateNewWindow(const std::string& 
 	miscParams["gamma"] = ropts["sRGB Gamma Conversion"].currentValue;
 
 	if (!SDL_WasInit(SDL_INIT_EVERYTHING)) SDL_InitSubSystem(SDL_INIT_EVERYTHING);
-
 	Uint32 flags = SDL_WINDOW_RESIZABLE;
 
 	if (ropts["Full Screen"].currentValue == "Yes") flags = SDL_WINDOW_FULLSCREEN;

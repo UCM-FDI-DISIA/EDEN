@@ -1,5 +1,5 @@
-#ifndef RAYCASTWRAPPER_h
-#define RAYCASTWRAPPER_h
+#ifndef RAYCASTWRAPPER_H
+#define RAYCASTWRAPPER_H
 
 #include <vector>
 #include "../EDEN/Singleton.h"

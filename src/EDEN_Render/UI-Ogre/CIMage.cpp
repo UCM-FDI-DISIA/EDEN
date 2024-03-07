@@ -1,7 +1,5 @@
 #include "CImage.h"
 
-#include "Entity.h"
-#include "..\EDEN_Input\InputManager.h"
 #include "..\RenderManager.h"
 #include "..\EDEN_Script\ScriptManager.h"
 #include "..\EDEN_Script\ComponentArguments.h"

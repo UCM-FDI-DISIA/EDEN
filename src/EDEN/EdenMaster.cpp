@@ -36,7 +36,7 @@ void eden::Master::Loop()
 
 	std::chrono::steady_clock::time_point frameStartTime, frameEndTime;
 
-	double lastPhysicsUpdateTime = 0;
+	float lastPhysicsUpdateTime = 0;
 	
 	while (!exit) {
 		int numPU = (_elapsedTime - lastPhysicsUpdateTime) / (_physicsUpdateTimeInterval * 1000);
@@ -54,8 +54,7 @@ void eden::Master::Loop()
 		exit = _inputManager->CloseWindowEvent();
 
 		frameEndTime = std::chrono::high_resolution_clock::now();
-		_deltaTime = std::chrono::duration<double, std::milli>(frameEndTime - frameStartTime).count();
-		_elapsedTime = std::chrono::duration<double, std::milli>(frameEndTime - loopStartTime).count();
-
+		_deltaTime = std::chrono::duration<float, std::milli>(frameEndTime - frameStartTime).count() / 1000;
+		_elapsedTime = std::chrono::duration<float, std::milli>(frameEndTime - loopStartTime).count() / 1000;
 	}
 }

@@ -11,11 +11,11 @@ namespace eden_utils {
 }
 
 namespace physics_wrapper {
-	class RigidBodyWrapper;
+	class RigidBody;
 	/// @brief Clase para construir formas para el RigidBody
 	class ShapeCreator
 	{
-		friend physics_wrapper::RigidBodyWrapper;
+		friend physics_wrapper::RigidBody;
 	private:
 		/// @brief Crea la clase btBoxShape
 		/// @param x Longitud en el eje x

@@ -19,14 +19,14 @@ namespace eden_utils {
 }
 
 namespace physics_wrapper {
-	class RigidBodyWrapper;
+	class RigidBody;
 }
 
 namespace physics_manager {
 	class PhysicsManager : public Singleton<PhysicsManager>
 	{
 		friend Singleton<PhysicsManager>;
-		friend physics_wrapper::RigidBodyWrapper;
+		friend physics_wrapper::RigidBody;
 	public:
 		/// @brief Devuelve la entidad asociada a un sólido rígido
 		/// @param RBRef Referencia del rigidbody que queremos buscar

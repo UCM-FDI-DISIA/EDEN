@@ -58,18 +58,6 @@ void eden_render::RenderManager::InitManager(const std::string& appName)
 	_sceneMngr->setAmbientLight(Ogre::ColourValue(0.2, 0.2, 0.2));
 	_shaderGenerator->addSceneManager(_sceneMngr);
 
-	// create the camera
-	Ogre::Camera* cam = _sceneMngr->createCamera("Cam");
-	cam->setNearClipDistance(1);
-	cam->setFarClipDistance(10000);
-	cam->setAutoAspectRatio(true);
-	Ogre::SceneNode* camNode = _sceneMngr->getRootSceneNode()->createChildSceneNode("nCam");
-	camNode->attachObject(cam);
-	camNode->setPosition({ 0,0,0 });
-	cam->getRealDirection();
-	Ogre::Viewport* vp = _window.render->addViewport(cam);
-	vp->setBackgroundColour(Ogre::ColourValue(0.9, 0.7, 0.7));
-
 	Ogre::Light* luz = _sceneMngr->createLight("Luz");
 	luz->setType(Ogre::Light::LT_POINT);
 	luz->setDiffuseColour(10, 10, 10);
@@ -90,8 +78,6 @@ void eden_render::RenderManager::InitManager(const std::string& appName)
 	cuerpoNode->yaw(Ogre::Degree(45));
 	cuerpoNode->pitch(Ogre::Degree(45));
 	cuerpoNode = _sceneMngr->getRootSceneNode()->createChildSceneNode();*/
-	camNode->setDirection({ 1,0,0 });
-
 
 	_overlaySys = new Ogre::OverlaySystem();
 }

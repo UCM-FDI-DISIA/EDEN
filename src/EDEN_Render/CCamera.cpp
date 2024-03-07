@@ -3,11 +3,13 @@
 #include "Entity.h"
 #include "Transform.h"
 #include "Vector3.h"
+#include "RenderManager.h"
 
 const std::string eden_render::CCamera::_id = "CAMERA";
 
 
 eden_render::CCamera::~CCamera() {
+	RenderManager::Instance()->removeRenderEntity(_ent);
 	delete _cameraWrapper;
 	_cameraWrapper = nullptr;
 	_transform = nullptr;
@@ -16,6 +18,7 @@ eden_render::CCamera::~CCamera() {
 void eden_render::CCamera::Init(eden_script::ComponentArguments* args) {
 	_cameraWrapper = new render_wrapper::CameraWrapper(_ent->GetEntityID());
 	_transform = _ent->GetComponent<eden_ec::CTransform>();
+	eden_render::RenderManager::Instance()->addRenderEntity(_ent);
 }
 
 void eden_render::CCamera::Update(float dt) {

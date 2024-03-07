@@ -18,5 +18,24 @@ Entity1 = {
     }
 }
 
+Entity2 = {
+	Name = "CameraEntity",
+	Components = {
+		{
+			Name = "TRANSFORM",
+			Arguments = {
+				Position = "-700|-10|250",
+                Rotation = "-45|0|1|0",
+                Scale = "0.2|0.2|0.2"
+			}
+		},
+		{
+			Name = "CAMERA",
+			Arguments = {
+			}
+		}
+	}	
+}
 
-Entities = { Entity1 }
+
+Entities = { Entity1, Entity2 }

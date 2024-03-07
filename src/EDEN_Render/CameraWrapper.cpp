@@ -14,9 +14,13 @@ render_wrapper::CameraWrapper::CameraWrapper(std::string entityID) : _entityID(e
 	SetNearClipDistance(1.0f);
 	SetFarClipDistance(10000.0f);
 	SetAutoAspectRatio(true);
-	render_wrapper::Node::Instance()->Attach(GetRenderObject(), entityID);
+
+	if (!render_wrapper::Node::Instance()->HasNode(entityID))
+		render_wrapper::Node::Instance()->CreateSceneObject(entityID);
+
 	_viewport = eden_render::RenderManager::Instance()->_window.render->addViewport(_camera);
 	SetBackgroundColor(0.9f, 0.7f, 0.7f, 1.0f);
+	render_wrapper::Node::Instance()->Attach(GetRenderObject(), entityID);
 }
 
 void render_wrapper::CameraWrapper::SetFarClipDistance(float distance) {

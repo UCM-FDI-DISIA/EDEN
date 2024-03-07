@@ -13,6 +13,7 @@
 /// Engine Render
 #include <RenderManager.h>
 #include <CImage.h>
+#include <CCamera.h>
 
 /// Engine Input
 #include <iostream>
@@ -25,6 +26,7 @@ int main() {
 	// Registramos el componente Transform, que es el �nico que usaremos de momento
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CTransform>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CMeshRenderer>();
+	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_render::CCamera>();
 	
 	try
 	{

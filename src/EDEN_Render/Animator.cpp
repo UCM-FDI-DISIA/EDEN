@@ -40,7 +40,7 @@ void render_wrapper::Animator::SetOnAnimEnd(std::string animID, std::string endA
 }
 
 void render_wrapper::Animator::UpdateAnim(float t) {
-	_currentAnim->addTime(t/1000);
+	_currentAnim->addTime(t);
 	if (_currentAnim->hasEnded() && _currentAnim) OnAnimEnd();
 }
 

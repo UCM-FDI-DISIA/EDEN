@@ -21,14 +21,17 @@
 #include "SceneManager.h"
 #include "Scene.h"
 
-int main() {
+#include "Hito1Prueba.h"
+#include "CAnimator.h"
 
-	
+int main() {
 	// Registramos el componente Transform, que es el �nico que usaremos de momento
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CTransform>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CMeshRenderer>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_render::CCamera>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CImage>();
+	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::Hito1Prueba>();
+	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CAnimator>();
 	
 	try
 	{

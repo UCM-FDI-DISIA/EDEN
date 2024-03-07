@@ -41,8 +41,6 @@ namespace render_wrapper {
 	private:
 		/// @brief Puntero a la entidad asociada al componente
 		Ogre::Entity* _ent = nullptr;
-		/// @brief Puntero a AnimationState
-		Ogre::AnimationState* _anim;
 		
 		/// @brief Devuelve la entidad asociada a la malla
 		Ogre::MovableObject* GetRenderObject() override;

@@ -42,6 +42,7 @@ namespace eden_ec {
 		std::vector<std::string> _animNames;
 		std::vector<std::string> _animMeshNames;
 		std::vector<std::string> _nextAnim;
+		std::vector<bool> _loopAnims;
 	};
 }
 

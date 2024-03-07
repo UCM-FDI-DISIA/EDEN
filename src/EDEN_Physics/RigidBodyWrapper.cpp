@@ -142,7 +142,7 @@ void physics_wrapper::RigidBodyWrapper::ClearForce()
 }
 
 void physics_wrapper::RigidBodyWrapper::AddShape(shapeParameters params)
-{
+{/*
 	btCollisionShape* shape;
 	switch (params.type) {
 	case ShapeType::BOX:
@@ -162,7 +162,7 @@ void physics_wrapper::RigidBodyWrapper::AddShape(shapeParameters params)
 	}
 	
 	_collisionShape->addChildShape(btTransform(EDENToBulletQuaternion(eden_utils::Quaternion::Identity()), EDENToBulletVector(params.positionOffset)),
-		shape);
+		shape);*/
 }
 
 btVector3 physics_wrapper::RigidBodyWrapper::EDENToBulletVector(eden_utils::Vector3 vector)

@@ -21,13 +21,13 @@ namespace physics_wrapper {
 	{
 	public:
 		/// @brief Tipo de forma que se puede crear
-		static enum ShapeType { BOX, SPHERE, CAPSULE, CYLINDER };
+		//static enum ShapeType { BOX, SPHERE, CAPSULE, CYLINDER };
 
 		/// @brief Parametros de la forma que se vaya a crear
 		static struct shapeParameters {
 		public:
 			/// @brief Tipo de forma
-			ShapeType type;
+			//ShapeType type;
 			/// @brief Radio (en caso de esfera y capsula)
 			float radius;
 			/// @brief Longitudes de anchura, altura y profundidad (caso caja, altura en cápsula y cilindro)

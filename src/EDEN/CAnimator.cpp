@@ -11,6 +11,8 @@ void eden_ec::CAnimator::Init(eden_script::ComponentArguments* args) {
 	_animNames = args->GetValueToStringVector("AnimNames");
 	_animMeshNames = args->GetValueToStringVector("AnimMeshNames");
 	_nextAnim = args->GetValueToStringVector("NextAnim");
+	_loopAnims = args->GetValueToBoolVector("LoopAnims");
+
 }
 
 void eden_ec::CAnimator::InitComponent() {
@@ -18,7 +20,7 @@ void eden_ec::CAnimator::InitComponent() {
 	_animatorWrapper = new render_wrapper::Animator(_meshRend->_renderWrapper);
 
 	for (int i = 0; i < _animNames.size(); ++i) {
-		_animatorWrapper->RegisterAnim(_animNames[i], _animMeshNames[i], _nextAnim[i]);
+		_animatorWrapper->RegisterAnim(_animNames[i], _animMeshNames[i], _nextAnim[i], _loopAnims[i]);
 	}
 }
 

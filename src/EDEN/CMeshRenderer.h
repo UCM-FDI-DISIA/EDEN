@@ -16,7 +16,6 @@ namespace render_wrapper
 }
 
 namespace eden_ec {
-	class CTransform;
 	class CAnimator;
 	class CMeshRenderer : public Component
 	{
@@ -29,8 +28,8 @@ namespace eden_ec {
 		/// @param mesh Nombre del archivo de la malla .mesh
 		CMeshRenderer(std::string mesh);
 
-		/// @brief Construye el componente dado unos argumentos. Se obtendrán de una lectura de un .lua
-		/// @param args Argumentos leídos de .lua
+		/// @brief Construye el componente dado unos argumentos. Se obtendrï¿½n de una lectura de un .lua
+		/// @param args Argumentos leï¿½dos de .lua
 		virtual void Init(eden_script::ComponentArguments* args);
 
 		~CMeshRenderer();
@@ -58,8 +57,6 @@ namespace eden_ec {
 		render_wrapper::MeshRenderer* _renderWrapper = nullptr;
 		/// @brief Variable del archivo de la malla
 		std::string _mesh; 
-		/// @brief Puntero al transform de la entidad
-		CTransform* _transform;
 	};
 }
 #endif // C_MESH_RENDERER_H

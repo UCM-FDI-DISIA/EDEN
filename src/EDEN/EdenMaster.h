@@ -30,12 +30,12 @@ class SceneManager;
 
 		~Master() override;
 	private:
-		/// @brief El tiempo entre frames 
-		double _deltaTime = 0;
+		/// @brief El tiempo entre frames en segundos
+		float _deltaTime = 0;
 		/// @brief El intervalo de tiempo (en segundos) que pasa entre dos actualizaciones físicas
 		const double _physicsUpdateTimeInterval = 1;
-		/// @brief El tiempo transcurrido desde el inicio del bucle en milisegundos
-		double _elapsedTime = 0;
+		/// @brief El tiempo transcurrido desde el inicio del bucle en segundos
+		float _elapsedTime = 0;
 
 
 		/// @brief Referencia a al InputManager

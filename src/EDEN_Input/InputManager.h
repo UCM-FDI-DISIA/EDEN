@@ -15,7 +15,7 @@ namespace eden_input
 
 		friend Singleton<InputManager>;
 
-		enum MOUSEBUTTON : uint8_t { LEFT = 0, MIDDLE = 1, RIGHT = 2 };
+		enum MOUSEBUTTON : uint8_t { LEFT, MIDDLE, RIGHT };
 		enum SPECIALKEY : uint8_t {
 			RETURN = 40,
 			ESCAPE,
@@ -47,19 +47,24 @@ namespace eden_input
 			F10,
 			F11,
 			F12,
+			
 			PRINTSCREEN,
 			SCROLLLOCK,
+			
 			PAUSE,
 			INSERT,
 			HOME,
+			
 			PAGEUP,
-			DELETE,
+			SUPR,
 			END,
 			PAGEDOWN,
+			
 			ARROW_RIGHT,
 			ARROW_LEFT,
 			ARROW_DOWN,
 			ARROW_UP,
+
 			NUMLOCKCLEAR,
 			KP_DIVIDE,
 			KP_MULTIPLY,
@@ -73,14 +78,7 @@ namespace eden_input
 			RSHIFT = 229,
 			RALT = 230
 		};
-
-		/// @brief Constructora de la clase
-		InputManager();
-
-		/// @brief Destructora de la clase
-		~InputManager();
-
-
+		
 		void Clean();
 
 		/// @brief keyboard
@@ -124,7 +122,6 @@ namespace eden_input
 		bool IsKeyUp(SPECIALKEY key);
 
 		/// @brief mouse
-
 		/// @brief True si el ratón
 		/// ha cambiado de posición
 		bool MouseMotionEvent();
@@ -166,8 +163,10 @@ namespace eden_input
 		void SetCloseWindow();
 
 		/// @brief Update
-		virtual void Update();
+		void Update();
 
+		/// @brief Destructora de la clase
+		~InputManager() override;
 
 	private:
 
@@ -213,7 +212,10 @@ namespace eden_input
 
 		/// @brief Gestiona los eventos de ventana
 		void HandleWindowEvent();
+		
 
+		/// @brief Constructora de la clase
+		InputManager();
 	};
 }
 

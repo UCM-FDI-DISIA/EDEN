@@ -14,8 +14,7 @@
 #include <CImage.h>
 #include <CCamera.h>
 
-/// Engine Input
-#include <InputManager.h>
+
 #include <iostream>
 
 #include "ScriptManager.h"
@@ -24,7 +23,7 @@
 
 int main() {
 
-	bool aux= eden_input::InputManager().Instance()->CloseWindowEvent();
+	
 	// Registramos el componente Transform, que es el �nico que usaremos de momento
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CTransform>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CMeshRenderer>();
@@ -34,13 +33,13 @@ int main() {
 	try
 	{
 		eden::Master* master = eden::Master::Instance();
-
 		//Creamos una escena inicial de pueba 
 		eden::SceneManager* scnManager = eden::SceneManager::Instance();
 		scnManager->PushScene("test_scene");
 		master->Loop();
+		delete scnManager;
 		delete master;
-
+		
 	}
 	catch (std::exception e){}
 	

@@ -28,15 +28,15 @@ namespace render_wrapper {
 
 		/// @brief Setea el material a la malla 
 		/// @param material Nombre del archivo del material 
-		inline void SetMaterial(const std::string material);
+		void SetMaterial(const std::string material);
 
 		/// @brief Setea la la visibilidad de la malla
 		/// @param visibility True -> Visible, False -> No visible
-		inline void SetInvisible(bool visibility);
+		void SetInvisible(bool visibility);
 
 		/// @brief 
 		/// @param dt Variable delta time
-		inline void ActivateAnim(float dt);
+		void ActivateAnim(float dt);
 
 	private:
 		/// @brief Puntero a la entidad asociada al componente

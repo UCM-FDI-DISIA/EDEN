@@ -6,6 +6,8 @@
 #include <chrono>
 #include "EdenMaster.h"
 #include "RenderManager.h"
+
+#include <InputManager.h>
 #include "SceneManager.h"
 
 
@@ -17,12 +19,14 @@ eden::Master::Master()
 		std::string error = "EdenMaster ERROR in line 16: RenderManager could not initialize\n";
 		throw std::exception(error.c_str());
 	}
-	//_inputManager = eden_input::InputManager::Instance();
+	_inputManager = eden_input::InputManager::Instance();
 	_scnManager = SceneManager::Instance();
 }
 
 eden::Master::~Master()
 {
+	delete _inputManager;
+	delete _renderManager;
 	Singleton::~Singleton();
 }
 
@@ -34,7 +38,7 @@ void eden::Master::Loop()
 
 	double lastPhysicsUpdateTime = 0;
 	
-	while (!exit /*&& !_inputManager->CloseWindowEvent()*/) {
+	while (!exit) {
 		int numPU = (_elapsedTime - lastPhysicsUpdateTime) / (_physicsUpdateTimeInterval * 1000);
 		for (int i = 0; i < numPU; ++i) {
 			//std::cout << "Fixed update " << lastPhysicsUpdateTime + (i * _physicsUpdateTimeInterval * 1000) << '\n';
@@ -46,13 +50,12 @@ void eden::Master::Loop()
 		_renderManager->Update();
 		_scnManager->Update(_deltaTime);
 		_renderManager->UpdatePositions();
+		_inputManager->Update();
+		exit = _inputManager->CloseWindowEvent();
 
 		frameEndTime = std::chrono::high_resolution_clock::now();
 		_deltaTime = std::chrono::duration<double, std::milli>(frameEndTime - frameStartTime).count();
 		_elapsedTime = std::chrono::duration<double, std::milli>(frameEndTime - loopStartTime).count();
 
 	}
-
-	delete _renderManager;
-	//delete _inputManager;
 }

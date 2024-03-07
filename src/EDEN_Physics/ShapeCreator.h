@@ -10,11 +10,13 @@ namespace eden_utils {
 	class Vector3;
 }
 
-namespace physics_manager {
+namespace physics_wrapper {
+	class RigidBodyWrapper;
 	/// @brief Clase para construir formas para el RigidBody
 	class ShapeCreator
 	{
-	public:
+		friend physics_wrapper::RigidBodyWrapper;
+	private:
 		/// @brief Crea la clase btBoxShape
 		/// @param x Longitud en el eje x
 		/// @param y Longitud en el eje y

@@ -31,6 +31,11 @@ physics_manager::PhysicsManager::PhysicsManager()
 	physics_wrapper::RayCast::Instance(_dynamicWorldRef, _physicsDebugDrawer);
 }
 
+btDynamicsWorld* physics_manager::PhysicsManager::GetWorld()
+{
+	return _dynamicWorldRef;
+}
+
 inline eden_utils::Vector3 physics_manager::PhysicsManager::GetGravity()
 {
 

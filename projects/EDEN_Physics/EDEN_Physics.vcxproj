@@ -14,12 +14,14 @@
     <ClCompile Include="..\..\src\EDEN_Physics\PhysicsManager.cpp" />
     <ClCompile Include="..\..\src\EDEN_Physics\RayCast.cpp" />
     <ClCompile Include="..\..\src\EDEN_Physics\RigidBody.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Physics\RigidBodyWrapper.cpp" />
     <ClCompile Include="..\..\src\EDEN_Physics\ShapeCreator.cpp" />
     <ClCompile Include="..\..\src\EDEN_Physics\test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\EDEN_Physics\PhysicsManager.h" />
     <ClInclude Include="..\..\src\EDEN_Physics\RayCast.h" />
+    <ClInclude Include="..\..\src\EDEN_Physics\RigidBodyWrapper.h" />
     <ClInclude Include="..\..\src\EDEN_Physics\ShapeCreator.h" />
   </ItemGroup>
   <ItemGroup>
@@ -76,7 +78,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\Bullet\src\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\Bullet\src\src;$(SolutionDir)src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -94,7 +96,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\Bullet\src\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\Bullet\src\src;$(SolutionDir)src\;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

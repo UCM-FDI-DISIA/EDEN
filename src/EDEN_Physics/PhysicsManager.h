@@ -18,11 +18,15 @@ namespace eden_utils {
 	class Vector3;
 }
 
+namespace physics_wrapper {
+	class RigidBodyWrapper;
+}
+
 namespace physics_manager {
 	class PhysicsManager : public Singleton<PhysicsManager>
 	{
 		friend Singleton<PhysicsManager>;
-
+		friend physics_wrapper::RigidBodyWrapper;
 	public:
 		/// @brief Devuelve la entidad asociada a un sólido rígido
 		/// @param RBRef Referencia del rigidbody que queremos buscar
@@ -62,6 +66,10 @@ namespace physics_manager {
 
 		/// @brief Clase de bullet encargada de la configuración de las colisiones.
 		btCollisionConfiguration* _worldCollisionConfiguration;
+
+		/// @brief Devuelve el mundo
+		/// @return Mundo de Bullet
+		btDynamicsWorld* GetWorld();
 	};
 }
 #endif // !PHYSICS_MANAGER_h

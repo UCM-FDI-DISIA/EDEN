@@ -11,6 +11,8 @@
     <ClCompile Include="..\..\src\EDEN_Render\UI-Ogre\CIMage.cpp" />
     <ClCompile Include="..\..\src\EDEN_Render\UI-Ogre\UIComponent.cpp" />
     <ClCompile Include="..\..\src\EDEN_Render\CCamera.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Render\UI-Ogre\CButton.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Render\UI-Ogre\CCursor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\EDEN_Render\Node.h" />
@@ -23,5 +25,7 @@
     <ClInclude Include="..\..\src\EDEN_Render\UI-Ogre\CIMage.h" />
     <ClInclude Include="..\..\src\EDEN_Render\UI-Ogre\UIComponent.h" />
     <ClInclude Include="..\..\src\EDEN_Render\CCamera.h" />
+    <ClInclude Include="..\..\src\EDEN_Render\UI-Ogre\CButton.h" />
+    <ClInclude Include="..\..\src\EDEN_Render\UI-Ogre\CCursor.h" />
   </ItemGroup>
 </Project>

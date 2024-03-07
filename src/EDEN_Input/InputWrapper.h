@@ -4,7 +4,7 @@
 #include <SDL.h>
 #undef main
 
-	/// @brief Clase que gestiona la entrada de datos del usuario.
+	/// @brief Clase que gestiona los eventos de SDL
 	class InputWrapper 
 	{
 	public:

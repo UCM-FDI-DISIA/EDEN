@@ -49,8 +49,6 @@ namespace eden_render
 		friend render_wrapper::RenderObject;
 		friend render_wrapper::CameraWrapper;
 		
-
-		Ogre::OverlaySystem* _overlaySys;
 		/// @brief Destructora
 		~RenderManager() override;
 
@@ -128,6 +126,9 @@ namespace eden_render
 
 		/// @brief Gestor de escenas
 		Ogre::SceneManager* _sceneMngr;
+
+		/// @brief Sistema de Overlay
+		Ogre::OverlaySystem* _overlaySys;
 
 		/// @brief Ventana principal
 		NativeWindowPair _window;

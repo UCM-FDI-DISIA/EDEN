@@ -12,6 +12,8 @@
 
 /// Engine Render
 #include <CImage.h>
+#include <CButton.h>
+#include <CCursor.h>
 #include <CCamera.h>
 
 
@@ -29,6 +31,8 @@ int main() {
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CMeshRenderer>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_render::CCamera>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CImage>();
+	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CButton>();
+	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CCursor>();
 	
 	try
 	{

@@ -1,0 +1,7 @@
+font fontTest
+{
+	type 		truetype
+	source 		OpenSans.ttf
+	size 		20
+	resolution  250
+}

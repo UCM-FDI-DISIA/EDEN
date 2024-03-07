@@ -38,22 +38,56 @@ Entity2 = {
 }
 
 Entity3 = {
-	Name = "UI",
+	Name = "UI_Image",
 	Components = {
 		{
 			Name = "IMAGE",
 			Arguments = {
                 OverlayName= "image",
 				XPos = "50",
-                YPos = "50",
-                Width = "200",
+                YPos = "70",
+                Width = "250",
                 Height = "150",
-                Texture = "final",
+                Texture = "meme",
+                Depth = "0"
+			}
+		}
+	}	
+}
+
+Entity4 = {
+	Name = "UI_Button",
+	Components = {
+		{
+			Name = "BUTTON",
+			Arguments = {
+                OverlayName= "button",
+				XPos = "50",
+                YPos = "25",
+                Width = "150",
+                Height = "50",
+                Texture1 = "iniMat",
+                Texture2 = "hoverMat",
+                Texture3 = "clickedMat",
                 Depth = "1"
 			}
 		}
 	}	
 }
 
+Entity5 = {
+	Name = "UI_Cursor",
+	Components = {
+		{
+			Name = "CURSOR",
+			Arguments = {
+                Width = "20",
+                Height = "20",
+                Texture = "cursor",
+                Depth = "10"
+			}
+		}
+	}	
+}
 
-Entities = { Entity1, Entity2, Entity3 }
+Entities = { Entity1, Entity2, Entity3, Entity4, Entity5 }

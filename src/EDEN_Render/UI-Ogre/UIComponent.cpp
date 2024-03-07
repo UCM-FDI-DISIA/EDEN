@@ -78,8 +78,8 @@ void eden_ec::UIComponent::SetMetrics(Ogre::GuiMetricsMode const& mode) {
 	_overlayContainer->setMetricsMode(mode);
 }
 
-void eden_ec::UIComponent::SetVisible() {
-	_overlayElement->setVisible(false);
+void eden_ec::UIComponent::SetOverlayVisible(bool vis) {
+	_overlayElement->setVisible(vis);
 }
 
 bool eden_ec::UIComponent::IsVisible() { return _overlayElement->isVisible(); }

@@ -46,6 +46,7 @@ void eden::Master::Loop()
 
 		renderManager->Update();
 		scnManager->Update(_deltaTime);
+		renderManager->UpdatePositions();
 
 		frameEndTime = std::chrono::high_resolution_clock::now();
 		_deltaTime = std::chrono::duration<double, std::milli>(frameEndTime - frameStartTime).count();

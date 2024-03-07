@@ -6,32 +6,60 @@
 	objectVersion = 56;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		D72618B52B8744C700DCD1A3 /* libBullet3Common.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D72618B42B8744C700DCD1A3 /* libBullet3Common.a */; };
+		D72618BA2B87453400DCD1A3 /* libBullet3Common.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D72618B92B87453400DCD1A3 /* libBullet3Common.a */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
-		D7EA5FB82B84994300C175AD /* libEDEN_Physics.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEDEN_Physics.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D72618A72B8741A900DCD1A3 /* libEDEN_Physics_Debug.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEDEN_Physics_Debug.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D72618AF2B8741C400DCD1A3 /* libEDEN_Physics_Release.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEDEN_Physics_Release.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D72618B42B8744C700DCD1A3 /* libBullet3Common.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBullet3Common.a; path = ../../dependencies/Bullet/build/src/Bullet3Common/Debug/libBullet3Common.a; sourceTree = "<group>"; };
+		D72618B92B87453400DCD1A3 /* libBullet3Common.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBullet3Common.a; path = ../../dependencies/Bullet/build/src/Bullet3Common/Release/libBullet3Common.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		D7EA5FB62B84994300C175AD /* Frameworks */ = {
+		D72618A52B8741A900DCD1A3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D72618B52B8744C700DCD1A3 /* libBullet3Common.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D72618AD2B8741C400DCD1A3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D72618BA2B87453400DCD1A3 /* libBullet3Common.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D72618B32B8744C700DCD1A3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D72618B92B87453400DCD1A3 /* libBullet3Common.a */,
+				D72618B42B8744C700DCD1A3 /* libBullet3Common.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D7EA5FAF2B84994300C175AD = {
 			isa = PBXGroup;
 			children = (
 				D7EA5FB92B84994300C175AD /* Products */,
+				D72618B32B8744C700DCD1A3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		D7EA5FB92B84994300C175AD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D7EA5FB82B84994300C175AD /* libEDEN_Physics.a */,
+				D72618A72B8741A900DCD1A3 /* libEDEN_Physics_Debug.a */,
+				D72618AF2B8741C400DCD1A3 /* libEDEN_Physics_Release.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -39,7 +67,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		D7EA5FB42B84994300C175AD /* Headers */ = {
+		D72618A32B8741A900DCD1A3 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D72618AB2B8741C400DCD1A3 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -49,21 +84,38 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		D7EA5FB72B84994300C175AD /* EDEN_Physics */ = {
+		D72618A62B8741A900DCD1A3 /* EDEN_Physics_Debug */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D7EA5FBC2B84994300C175AD /* Build configuration list for PBXNativeTarget "EDEN_Physics" */;
+			buildConfigurationList = D72618A82B8741A900DCD1A3 /* Build configuration list for PBXNativeTarget "EDEN_Physics_Debug" */;
 			buildPhases = (
-				D7EA5FB42B84994300C175AD /* Headers */,
-				D7EA5FB52B84994300C175AD /* Sources */,
-				D7EA5FB62B84994300C175AD /* Frameworks */,
+				D72618A32B8741A900DCD1A3 /* Headers */,
+				D72618A42B8741A900DCD1A3 /* Sources */,
+				D72618A52B8741A900DCD1A3 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = EDEN_Physics;
-			productName = EDEN_Physics;
-			productReference = D7EA5FB82B84994300C175AD /* libEDEN_Physics.a */;
+			name = EDEN_Physics_Debug;
+			productName = EDEN_Physics_Debug;
+			productReference = D72618A72B8741A900DCD1A3 /* libEDEN_Physics_Debug.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		D72618AE2B8741C400DCD1A3 /* EDEN_Physics_Release */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D72618B02B8741C400DCD1A3 /* Build configuration list for PBXNativeTarget "EDEN_Physics_Release" */;
+			buildPhases = (
+				D72618AB2B8741C400DCD1A3 /* Headers */,
+				D72618AC2B8741C400DCD1A3 /* Sources */,
+				D72618AD2B8741C400DCD1A3 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EDEN_Physics_Release;
+			productName = EDEN_Physics_Release;
+			productReference = D72618AF2B8741C400DCD1A3 /* libEDEN_Physics_Release.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -75,7 +127,10 @@
 				BuildIndependentTargetsInParallel = 1;
 				LastUpgradeCheck = 1520;
 				TargetAttributes = {
-					D7EA5FB72B84994300C175AD = {
+					D72618A62B8741A900DCD1A3 = {
+						CreatedOnToolsVersion = 15.2;
+					};
+					D72618AE2B8741C400DCD1A3 = {
 						CreatedOnToolsVersion = 15.2;
 					};
 				};
@@ -93,13 +148,21 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D7EA5FB72B84994300C175AD /* EDEN_Physics */,
+				D72618A62B8741A900DCD1A3 /* EDEN_Physics_Debug */,
+				D72618AE2B8741C400DCD1A3 /* EDEN_Physics_Release */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		D7EA5FB52B84994300C175AD /* Sources */ = {
+		D72618A42B8741A900DCD1A3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D72618AC2B8741C400DCD1A3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -109,6 +172,46 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		D72618A92B8741A900DCD1A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		D72618AA2B8741A900DCD1A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		D72618B12B8741C400DCD1A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		D72618B22B8741C400DCD1A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		D7EA5FBA2B84994300C175AD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -161,6 +264,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../dependencies/Bullet/src/src;
+				LIBRARY_SEARCH_PATHS = ../../dependencies/Bullet/build/src/Bullet3Common/Debug;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -216,6 +321,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../dependencies/Bullet/src/src;
+				LIBRARY_SEARCH_PATHS = ../../dependencies/Bullet/build/src/Bullet3Common/Release;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -224,43 +331,32 @@
 			};
 			name = Release;
 		};
-		D7EA5FBD2B84994300C175AD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				EXECUTABLE_PREFIX = lib;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		D7EA5FBE2B84994300C175AD /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				EXECUTABLE_PREFIX = lib;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D72618A82B8741A900DCD1A3 /* Build configuration list for PBXNativeTarget "EDEN_Physics_Debug" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D72618A92B8741A900DCD1A3 /* Debug */,
+				D72618AA2B8741A900DCD1A3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D72618B02B8741C400DCD1A3 /* Build configuration list for PBXNativeTarget "EDEN_Physics_Release" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D72618B12B8741C400DCD1A3 /* Debug */,
+				D72618B22B8741C400DCD1A3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D7EA5FB32B84994300C175AD /* Build configuration list for PBXProject "EDEN_Physics" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D7EA5FBA2B84994300C175AD /* Debug */,
 				D7EA5FBB2B84994300C175AD /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D7EA5FBC2B84994300C175AD /* Build configuration list for PBXNativeTarget "EDEN_Physics" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D7EA5FBD2B84994300C175AD /* Debug */,
-				D7EA5FBE2B84994300C175AD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

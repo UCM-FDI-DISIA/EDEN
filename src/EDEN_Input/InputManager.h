@@ -1,9 +1,10 @@
 #ifndef __INPUT_MANAGER_H__
 #define __INPUT_MANAGER_H__
-#include "Singleton.h"
 
 #include <array>
 #include <unordered_map>
+
+#include "Singleton.h"
 
 class InputWrapper;
 namespace eden_input 
@@ -80,8 +81,6 @@ namespace eden_input
 		};
 		
 		void Clean();
-
-		/// @brief keyboard
 
 		/// @brief True si se está pulsando
 		/// al menos una tecla del teclado

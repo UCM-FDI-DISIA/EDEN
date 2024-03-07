@@ -1,5 +1,6 @@
-#include "SceneManager.h"
 #include <iostream>
+
+#include "SceneManager.h"
 #include "Scene.h";
 #include "ScriptManager.h"
 

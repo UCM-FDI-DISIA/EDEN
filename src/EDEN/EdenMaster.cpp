@@ -1,12 +1,11 @@
 //Borrar, solo por motivos de test
 #include <iostream>
-#include<windows.h>  
-
+#include <windows.h>  
 #include <ctime>
 #include <chrono>
+
 #include "EdenMaster.h"
 #include "RenderManager.h"
-
 #include <InputManager.h>
 #include "SceneManager.h"
 

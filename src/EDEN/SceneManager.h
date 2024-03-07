@@ -9,21 +9,22 @@
 
 namespace eden {
 class Scene;
+/// @brief Clase que se encarga de gestionar las escenas, es decir, cargarlas y descargarlas, hacer su update, etc...
 class SceneManager : public Singleton<SceneManager> {
 	friend Singleton<SceneManager>;
 
 public:
-	SceneManager() = default;
-	virtual ~SceneManager();
+	/// @brief Destructora por defecto de la clase SceneManager
+	~SceneManager() override;
 
 	/// @brief Metodo encargado de crear una nueva escena y añadirla a la lista doblemente enlazada
 	/// @param ID El nombre que identifica a la escena
-	/// @return El puntero a la escena recién creada
+	/// @return El puntero a la escena recien creada
 	Scene* PushScene(const std::string& ID);
 
 	/// @brief Metodo encargado de vaciar la lista de escenas y añadir una nueva
 	/// @param ID El nombre que identifica a la escena
-	/// @return El puntero a la escena recién creada
+	/// @return El puntero a la escena recien creada
 	Scene* ChangeScene(const std::string& ID);
 
 	/// @brief Metodo encargado de eliminar la primera escena de la lista
@@ -52,6 +53,9 @@ private:
 
 	/// @brief Lista doblemente enlazada de punteros a escenas
 	std::deque<Scene*> _scenes;
+
+	/// @brief Constructora por defecto de la clase SceneManager
+	SceneManager() = default;
 };
 }
 

@@ -49,56 +49,62 @@ namespace eden_render
 		/// @brief Destructora
 		~RenderManager() override;
 
-		/// @brief Destruye la ra�z y guarda su configuraci�n final en caso de haber sido destru�da
-		/// previamente y llama posteriormente al m�todo Shutdown
-		void CloseManager();
-
-		/// @brief Ejecuta un ciclo de renderizado (ventana y ra�z)
+		/// @brief Ejecuta un ciclo de renderizado (ventana y raï¿½z)
 		void Update();
 
-		/// @brief Destructora de la ventana de SDL
-		void CloseWindow();
+		inline bool couldInitialize() { return _initialized; }
 
 		int GetWindowWidth();
 		int GetWindowHeight();
 
-	protected:
+	private:
+		/// @brief Inicializa la librer�a de renderizado,
+		/// crea la ventana de renderizado, localiza y carga los recursos (.mesh, .material, etc)
+		/// e inicializa los shaders
+		/// @param appName Nombre de la ventana
+		void InitManager(const std::string& appName);
+
 		/// @brief Inicializa el sistema de sombreado de trazado de rayos
-		bool InitialiseRTShaderSystem();
+		void InitialiseRTShaderSystem();
 
 		/// @brief Destruye el sistema de sombreado de trazado de rayos
 		void DestroyRTShaderSystem();
 
-		/// @brief Inicializaci�n de Ogre a trav�s de su ra�z, ventana, RTShaderSystem
-		virtual void Setup();
+		/// @brief Inicialización de ventana, RTShaderSystem y recursos
+		void Setup();
 
-		/// @brief Creaci�n de la ra�z de Ogre de la escena
-		virtual void CreateRoot();
+		/// @brief Creación de la raíz de Ogre de la escena
+		void InitializeLib();
 
-		/// @brief Activaci�n / desactivaci�n de la posibilidad de modificar la
-		/// posici�n de la ventana
-		/// @param grab Estado de movilidad de la ventana
+		/// @brief Atrapa el ratón en la ventana
+		/// @param grab Activa o desactiva la funcionalidad del método
 		void SetWindowGrab(bool grab);
 
-		/// @brief Localizaci�n de archivos para Ogre
-		virtual void LocateResources();
+		/// @brief Localización de archivos para Ogre
+		void LocateResources();
 
 		/// @brief Carga de archivos para Ogre
-		virtual void LoadResources();
+		void LoadResources();
 
-		/// @brief Cierre de ventana de SDL, as� como el RTShaderSystem
-		virtual void Shutdown();
+		/// @brief Cierre de ventana de SDL, así como el RTShaderSystem
+		void Shutdown();
 
-		/// @brief Creaci�n de la ventana de Ogre y SDL
+		/// @brief Destructora de la ventana de SDL
+		void CloseWindow();
+
+		/// @brief Destruye la ra�z y llama posteriormente al m�todo Shutdown
+		void CloseManager();
+
+		/// @brief Creaciï¿½n de la ventana de Ogre y SDL
 		/// @param name Nombre de la ventana
-		virtual NativeWindowPair CreateNewWindow(const std::string& name);
+		NativeWindowPair CreateNewWindow(const std::string& name);
 
 		/// @brief Constructora
 		/// @param appName Nombre de la ventana
 		explicit RenderManager(const std::string& appName = "TEST_APP");
 
 
-		/// @brief Ra�z de Ogre
+		/// @brief Raï¿½z de Ogre
 		Ogre::Root* _root;
 
 		/// @brief Gestor de escenas
@@ -107,32 +113,27 @@ namespace eden_render
 		/// @brief Ventana principal
 		NativeWindowPair _window;
 
-		/// @brief Capa de abstracci�n del sistema de archivos
+		/// @brief Capa de abstracciï¿½n del sistema de archivos
 		Ogre::FileSystemLayer* _fsLayer;
 		bool _firstRun;
 
 		/// @brief Nombre de la ventana
 		std::string _appName;
 
-		/// @brief Localizaci�n de recursos de Ogre
+		/// @brief Localizaciï¿½n de recursos de Ogre
 		std::string _solutionPath;
 
-		/// @brief Localizaci�n de recursos de la aplicaci�n
+		/// @brief Localizaciï¿½n de recursos de la aplicaciï¿½n
 		const std::string _resourcesPath = "assets\\";
 
-		/// @brief Localizaci�n de librer�a del RTShader
+		/// @brief Localizaciï¿½n de librerï¿½a del RTShader
 		std::string _rtShaderLibPath;
 
 		/// @brief Instancia de generador de sombreado
 		Ogre::RTShader::ShaderGenerator* _shaderGenerator;
 
-	private:
-
-		/// @brief Inicializa la librer�a de renderizado,
-		/// crea la ventana de renderizado, localiza y carga los recursos (.mesh, .material, etc)
-		/// e inicializa los shaders
-		/// @param appName Nombre de la ventana
-		void InitManager(const std::string& appName);
+		/// @brief Flag para saber si se ha podido inicializar el manager
+		bool _initialized = true;
 	};
 }
 

@@ -13,7 +13,6 @@
     <ClCompile Include="..\..\src\EDEN\SceneManager.cpp" />
     <ClCompile Include="..\..\src\EDEN\Scene.cpp" />
     <ClCompile Include="..\..\src\EDEN\CMeshRenderer.cpp" />
-    <ClCompile Include="..\..\src\EDEN\CRigidBody.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\EDEN\Quaternion.h" />
@@ -28,6 +27,5 @@
     <ClInclude Include="..\..\src\EDEN\SceneManager.h" />
     <ClInclude Include="..\..\src\EDEN\Scene.h" />
     <ClInclude Include="..\..\src\EDEN\CMeshRenderer.h" />
-    <ClInclude Include="..\..\src\EDEN\CRigidBody.h" />
   </ItemGroup>
 </Project>

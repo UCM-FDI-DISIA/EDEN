@@ -13,6 +13,11 @@
 eden::Master::Master()
 {
 	renderManager = eden_render::RenderManager::Instance("EDEN Engine");
+	if (!renderManager->couldInitialize()) {
+		delete renderManager;
+		std::string error = "EdenMaster ERROR in line 16: RenderManager could not initialize\n";
+		throw std::exception(error.c_str());
+	}
 	//inputManager = eden_input::InputManager::Instance();
 	scnManager = SceneManager::Instance();
 }
@@ -48,6 +53,6 @@ void eden::Master::Loop()
 
 	}
 
-	renderManager->CloseManager();
+	delete renderManager;
 	//inputManager->~InputManager();
 }

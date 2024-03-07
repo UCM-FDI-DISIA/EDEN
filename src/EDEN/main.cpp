@@ -25,14 +25,19 @@ int main() {
 	// Registramos el componente Transform, que es el �nico que usaremos de momento
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CTransform>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CMeshRenderer>();
-
-	//Creamos una escena inicial de pueba 
-	eden::SceneManager* scnManager = eden::SceneManager::Instance();
-	scnManager->PushScene("test_scene");
 	
-	eden::Master* master = eden::Master::Instance();
-	master->Loop();
-	delete master;
+	try
+	{
+		eden::Master* master = eden::Master::Instance();
+
+		//Creamos una escena inicial de pueba 
+		eden::SceneManager* scnManager = eden::SceneManager::Instance();
+		scnManager->PushScene("test_scene");
+		master->Loop();
+		delete master;
+
+	}
+	catch (std::exception e){}
 	
 	return 0;
 }

@@ -22,7 +22,7 @@ namespace physics_wrapper {
 		enum ShapeType{BOX, PLANE, CAPSULE, CONE, CYLINDER, SPHERE, TRIANGLE };
 
 		struct RigidBodyConstruction {
-			btVector3 position;
+			eden_utils::Vector3 position;
 			// rotation;
 			// linearVel;
 			// angularVel;
@@ -115,9 +115,6 @@ namespace physics_wrapper {
 
 		/// @brief Referencia al rigid body de Bullet
 		btRigidBody* _rb = nullptr;
-
-		/// @brief Variable de vector resultante de fuerzas
-		btVector3 _force;
 	};
 
 }

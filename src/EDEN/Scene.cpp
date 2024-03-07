@@ -1,6 +1,7 @@
+#include <iostream>
+
 #include "Scene.h"
 #include "Entity.h"
-#include <iostream>
 #include "ComponentArguments.h"
 #include "ScriptManager.h"
 

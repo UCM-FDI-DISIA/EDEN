@@ -16,8 +16,10 @@ namespace render_wrapper
 
 namespace eden_ec {
 	class CTransform;
+	class CAnimator;
 	class CMeshRenderer : public Component
 	{
+		friend eden_ec::CAnimator;
 	public:
 		/// @brief Constructora por defecto del CMeshRenderer
 		CMeshRenderer() = default;

@@ -25,10 +25,10 @@ namespace render_wrapper {
 		void SetOnAnimEnd(std::string animID, std::string endAnimID);
 		void UpdateAnim(float t);
 		std::string GetCurrentAnim();
+		void RegisterAnim(std::string ID, std::string oldAnimName, std::string endID);
 
 
 	private:
-		void RegisterAnim(std::string ID, std::string oldAnimName, std::string endID);
 		void LoopAnim(std::string ID);
 		Ogre::AnimationState* FindAnim(std::string ID);
 

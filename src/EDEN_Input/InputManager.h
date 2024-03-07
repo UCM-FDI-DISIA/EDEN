@@ -15,7 +15,10 @@ namespace eden_input
 
 		friend Singleton<InputManager>;
 
+		/// @brief enumerado de los botones del raton
 		enum MOUSEBUTTON : uint8_t { LEFT, MIDDLE, RIGHT };
+
+		/// @brief enumerado de las teclas especiales
 		enum SPECIALKEY : uint8_t {
 			RETURN = 40,
 			ESCAPE,
@@ -79,9 +82,10 @@ namespace eden_input
 			RALT = 230
 		};
 		
+		/// @brief Limpieza del mapa de teclas
 		void Clean();
 
-		/// @brief keyboard
+		//keyboard
 
 		/// @brief True si se está pulsando
 		/// al menos una tecla del teclado
@@ -147,13 +151,9 @@ namespace eden_input
 
 		/// @brief Par (X, Y) de
 		/// la posición del ratón en la pantalla.
-
-		/// @brief (0, 0) está en la esquina superior izquierda.
-		/// X es positivo hacia abajo e Y, hacia la derecha
-
 		const std::pair<int, int>& GetMousePos();
 
-		/// @brief window events
+		//window events
 
 		/// @brief Devuelve true cuando el usuario ha pulsado la X de la ventana
 		bool CloseWindowEvent();
@@ -170,22 +170,34 @@ namespace eden_input
 
 	private:
 
+		/// @brief Puntero del wrapper (SDL)
 		InputWrapper* _wrapper;
 
-		/// @brief keyboard
+		/// @brief Booleano de si se ha dejado de pulsar una tecla
 		bool _isKeyUpEvent;
+
+		/// @brief Booleano de si se ha pulsado una tecla
 		bool _isKeyDownEvent;
+
+		/// @brief Mapa de teclas y su estado
 		std::unordered_map<uint8_t, uint8_t> _kbState;
 
-		/// @brief mouse
+		/// @brief Booleano de si se ha movido el raton
 		bool _isMouseMotionEvent;
+		
+		/// @brief Booleano de si se ha pulsado algún botón del raton
 		bool _isMouseButtonEvent;
+
+		/// @brief Posicion del raton
 		std::pair<int, int> _mousePos;
+
+		/// @brief Estado del raton
 		std::array<uint8_t, 3> _mbState;
 
-		/// @brief window
+		/// @brief Booleano de si se cierra la ventana
 		bool _isCloseWindowEvent;
 
+		/// @brief Estados de botones
 		enum STATE : uint8_t {
 			RELEASED = 0,
 			DOWN = 1,

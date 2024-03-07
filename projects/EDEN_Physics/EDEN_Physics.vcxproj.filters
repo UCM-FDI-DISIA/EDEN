@@ -6,13 +6,11 @@
     <ClCompile Include="..\..\src\EDEN_Physics\ShapeCreator.cpp" />
     <ClCompile Include="..\..\src\EDEN_Physics\test.cpp" />
     <ClCompile Include="..\..\src\EDEN_Physics\RigidBody.cpp" />
-    <ClCompile Include="..\..\src\EDEN_Physics\RigidBodyWrapper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\EDEN_Physics\PhysicsManager.h" />
     <ClInclude Include="..\..\src\EDEN_Physics\RayCast.h" />
     <ClInclude Include="..\..\src\EDEN_Physics\ShapeCreator.h" />
     <ClInclude Include="..\..\src\EDEN_Physics\RigidBody.h" />
-    <ClInclude Include="..\..\src\EDEN_Physics\RigidBodyWrapper.h" />
   </ItemGroup>
 </Project>

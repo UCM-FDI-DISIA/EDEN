@@ -21,9 +21,6 @@ render_wrapper::MeshRenderer::MeshRenderer(const std::string entityID, const std
 		render_wrapper::Node::Instance()->CreateSceneObject(entityID);
 
 	render_wrapper::Node::Instance()->Attach(GetRenderObject(), entityID);
-
-
-
 }
 
 void render_wrapper::MeshRenderer::ActivateAnim(float dt) {

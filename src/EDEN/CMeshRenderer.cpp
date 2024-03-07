@@ -1,4 +1,5 @@
 #include "CMeshRenderer.h"
+#include "RenderManager.h"
 #include "ComponentArguments.h"
 #include "MeshRenderer.h"
 #include "Entity.h"
@@ -12,6 +13,10 @@ _mesh(mesh) {
 
 };
 
+eden_ec::CMeshRenderer::~CMeshRenderer() {
+	eden_render::RenderManager::Instance()->removeRenderEntity(_ent);
+};
+
 void eden_ec::CMeshRenderer::Init(eden_script::ComponentArguments* args)
 {
 	//GESTION DE ERRORES
@@ -19,7 +24,7 @@ void eden_ec::CMeshRenderer::Init(eden_script::ComponentArguments* args)
 	
 	_renderWrapper = new render_wrapper::MeshRenderer(_ent->GetEntityID(), _mesh);
 	_transform = _ent->GetComponent<CTransform>();
-
+	eden_render::RenderManager::Instance()->addRenderEntity(_ent);
 }
 
 void eden_ec::CMeshRenderer::SetMaterial(const std::string material)
@@ -33,9 +38,7 @@ void eden_ec::CMeshRenderer::SetInvisible(bool visibility)
 }
 
 void eden_ec::CMeshRenderer::Update(float dt) {
-	render_wrapper::Node::Instance()->SetPosition(_transform->GetPosition(), _ent->GetEntityID());
-	render_wrapper::Node::Instance()->Scale(_transform->GetScale(), _ent->GetEntityID());
-	render_wrapper::Node::Instance()->SetOrientation(_transform->GetRotation(), _ent->GetEntityID());
+	_transform->SetPosition(_transform->GetPosition() + eden_utils::Vector3(0, 0, 0.01 * dt));
 
 	_renderWrapper->ActivateAnim(dt);
 }

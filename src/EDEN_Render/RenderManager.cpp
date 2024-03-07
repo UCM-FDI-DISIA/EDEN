@@ -18,6 +18,9 @@
 #include <OgreShaderGenerator.h>
 #include <OgreMaterialManager.h>
 #include <iostream>
+#include "Node.h"
+#include "Transform.h"
+#include "Entity.h"
 
 eden_render::RenderManager::RenderManager(const std::string& appName)
 {
@@ -281,6 +284,28 @@ void eden_render::RenderManager::LocateResources()
 int eden_render::RenderManager::GetWindowWidth() {
 	return _window.render->getWidth();
 }
+
 int eden_render::RenderManager::GetWindowHeight() {
 	return _window.render->getHeight();
+}
+
+void eden_render::RenderManager::UpdatePositions() {
+	render_wrapper::Node* nodeMngr = render_wrapper::Node::Instance();
+	eden_ec::CTransform* transform;
+	for (auto ent : _entities) {
+		transform = ent->GetComponent<eden_ec::CTransform>();
+		if (transform != nullptr) {
+			nodeMngr->SetPosition(transform->GetPosition(), ent->GetEntityID());
+			nodeMngr->SetOrientation(transform->GetRotation(), ent->GetEntityID());
+			nodeMngr->Scale(transform->GetScale(), ent->GetEntityID());
+		}
+	}
+}
+
+void eden_render::RenderManager::addRenderEntity(eden_ec::Entity* ent) {
+	_entities.insert(ent);
+}
+
+void eden_render::RenderManager::removeRenderEntity(eden_ec::Entity* ent) {
+	_entities.erase(ent);
 }

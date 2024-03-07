@@ -26,7 +26,7 @@ namespace eden_ec {
 
 		virtual void Init(eden_script::ComponentArguments* args);
 
-		~CMeshRenderer() = default;
+		~CMeshRenderer();
 
 		void SetMaterial(const std::string material);
 

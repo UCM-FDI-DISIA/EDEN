@@ -2,6 +2,7 @@
 #define RENDER_MANAGER_H_
 
 #include <string>
+#include <unordered_set>
 #include "Singleton.h"
 
 namespace Ogre {
@@ -13,6 +14,10 @@ namespace Ogre {
 	namespace RTShader {
 		class ShaderGenerator;
 	}
+}
+
+namespace eden_ec {
+	class Entity;
 }
 
 class SDL_Window;
@@ -52,10 +57,24 @@ namespace eden_render
 		/// @brief Ejecuta un ciclo de renderizado (ventana y raÃ¯Â¿Â½z)
 		void Update();
 
+		/// @brief Comprueba si ha habido errores en la inicialización
+		/// @return True si se ha inicializado bien, False en caso contrario
 		inline bool couldInitialize() { return _initialized; }
 
 		int GetWindowWidth();
 		int GetWindowHeight();
+		
+		/// @brief Actualiza todas las posiciones con su componente Transform
+		void UpdatePositions();
+
+		/// @brief Añade una entidad que tenga componentes de renderizado (CMeshRenderer, CCamera, ...)
+		/// para actualizar su posición
+		/// @param ent Entidad cuya posición va a actualizarse
+		void addRenderEntity(eden_ec::Entity* ent);
+
+		/// @brief Quita una entidad para dejar de actualizar su posición
+		/// @param ent Entidad que se va a quitar
+		void removeRenderEntity(eden_ec::Entity* ent);
 
 	private:
 		/// @brief Inicializa la librerï¿½a de renderizado,
@@ -134,6 +153,9 @@ namespace eden_render
 
 		/// @brief Flag para saber si se ha podido inicializar el manager
 		bool _initialized = true;
+
+		/// @brief Conjunto de entidades para actualizar su posición
+		std::unordered_set<eden_ec::Entity*> _entities;
 	};
 }
 

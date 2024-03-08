@@ -4,9 +4,9 @@ Entity1 = {
         {
             Name = "TRANSFORM", 
             Arguments = {
-                Position = "70|-10|0",
+                Position = "10|-5|0",
                 Rotation = "-45|0|1|0",
-                Scale = "50|50|50"
+                Scale = "30|30|30"
             }
         },
         {
@@ -34,8 +34,8 @@ Entity1 = {
             Arguments = {
                 Mass = "1",
                 AABB = "5|5|5",
-                PosOffset = "0|0|0"
-                Radius = "0"
+                PosOffset = "0|0|0",
+                Radius = "0",
                 Shape = "BOX"
             }
         }

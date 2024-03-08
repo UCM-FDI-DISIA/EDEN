@@ -9,7 +9,6 @@ physics_wrapper::RayCast::RayCast(btDynamicsWorld* worldRef, btIDebugDraw* drawe
 {
 	_dynamicWorldRef = worldRef;
 	_debugDrawer = drawerRef;
-	_physicsManagerInstance = physics_manager::PhysicsManager::Instance();
 }
 
 const physics_wrapper::RayCastHitResult& physics_wrapper::RayCast::singleHitRayCast(const eden_utils::Vector3 rayOrigin, const eden_utils::Vector3 rayDestiny, const bool drawDebugLine, const eden_utils::Vector3 debugLineColor) const

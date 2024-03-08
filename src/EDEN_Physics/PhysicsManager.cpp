@@ -31,6 +31,7 @@ physics_manager::PhysicsManager::PhysicsManager()
 	//_physicsDebugDrawer = new btIDebugDraw() 
 	//_dynamicWorldRef->setDebugDrawer(_physicsDebugDrawer);
 	physics_wrapper::RayCast::Instance(_dynamicWorldRef, _physicsDebugDrawer);
+	_dynamicWorldRef->setGravity({ 0,-50,0 });
 }
 
 btDynamicsWorld* physics_manager::PhysicsManager::GetWorld()
@@ -47,10 +48,6 @@ inline eden_utils::Vector3 physics_manager::PhysicsManager::GetGravity()
 
 physics_manager::PhysicsManager::~PhysicsManager()
 {
-	delete _worldDispatcher;
-	delete _worldCollisionConfiguration;
-	delete _worldConstraintSolver;
-	delete _worldBroadPhaseInterface;
 	delete _dynamicWorldRef;
 	if (_physicsDebugDrawer) delete _physicsDebugDrawer;
 

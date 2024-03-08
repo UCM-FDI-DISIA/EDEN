@@ -61,9 +61,6 @@ namespace physics_wrapper {
 
 		/// @brief Encargado de hacer dibujos con caracter de debug
 		btIDebugDraw* _debugDrawer = nullptr;
-
-		/// @brief Referencia al manager de físicas
-		physics_manager::PhysicsManager* _physicsManagerInstance = nullptr;
 	};
 }
 #endif // !RAYCASTWRAPPER_h

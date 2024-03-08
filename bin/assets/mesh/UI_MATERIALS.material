@@ -1,0 +1,80 @@
+material cursor {
+    receive_shadows on
+    technique {
+        pass {
+                lighting off
+                scene_blend alpha_blend
+                depth_write off
+                diffuse vertexcolour
+            	texture_unit {
+                texture Cursor.png
+                tex_address_mode clamp
+                
+            }
+        }
+    }
+}
+material meme {
+    receive_shadows on
+    technique {
+        pass {
+                lighting off
+                scene_blend alpha_blend
+                depth_write off
+                diffuse vertexcolour
+            	texture_unit {
+                texture meme.png
+                tex_address_mode clamp
+                
+            }
+        }
+    }
+}
+material iniMat {
+     receive_shadows on
+    technique {
+        pass {
+                lighting off
+                scene_blend alpha_blend
+                depth_write off
+                diffuse vertexcolour
+                texture_unit {
+                texture PlayButton_Ini.png
+                tex_address_mode clamp
+                
+            }
+        }
+    }
+}
+material hoverMat {
+   receive_shadows on
+    technique {
+        pass {
+                lighting off
+                scene_blend alpha_blend
+                depth_write off
+                diffuse vertexcolour
+                texture_unit {
+                texture PlayButton_Hover.png
+                tex_address_mode clamp
+                
+            }
+        }
+    }
+}
+material clickedMat {
+    receive_shadows on
+    technique {
+        pass {
+                lighting off
+                scene_blend alpha_blend
+                depth_write off
+                diffuse vertexcolour
+                texture_unit {
+                texture PlayButton_Clicked.png
+                tex_address_mode clamp
+                
+            }
+        }
+    }
+}

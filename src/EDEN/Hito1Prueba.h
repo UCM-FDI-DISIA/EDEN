@@ -1,8 +1,7 @@
-#ifndef PRUEBA_H
-#define PRUEBA_H
+#ifndef HITO1_PRUEBA_H
+#define HITO1_PRUEBA_H
 
 #include "Component.h"
-
 
 namespace eden_input {
 	class InputManager;
@@ -10,10 +9,11 @@ namespace eden_input {
 
 namespace eden_ec {
 	class CTransform;
-	class CPrueba : public Component {
+	class CAnimator;
+	class Hito1Prueba : public Component {
 	public:
-		CPrueba() = default;
-		~CPrueba() = default;
+		Hito1Prueba() = default;
+		~Hito1Prueba() = default;
 
 		void InitComponent() override;
 
@@ -27,9 +27,14 @@ namespace eden_ec {
 
 	protected:
 		const static std::string _id;
+	private:
+
 		eden_input::InputManager* inputManager;
 		eden_ec::CTransform* transform;
+		eden_ec::CAnimator* animator;
 		bool keyPressed = false;
+		bool jump = false;
+		bool idle = true;
 	};
 }
-#endif //PRUEBA_H
+#endif //HITO1_PRUEBA_H

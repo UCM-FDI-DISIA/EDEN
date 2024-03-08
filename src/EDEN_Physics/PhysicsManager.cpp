@@ -1,16 +1,18 @@
 #include "PhysicsManager.h"
 #include "../../dependencies/Bullet/src/src/btBulletDynamicsCommon.h"
-#include "../EDEN/Entity.h"
+#include "Entity.h"
+#include "CRigidBody.h"
+#include "Transform.h"
 #include "RayCast.h"
 
 
-const eden_ec::Entity* physics_manager::PhysicsManager::getEntity(const btRigidBody* RBRef) const
-{
-	if (_entitiesMap.find(RBRef) != _entitiesMap.end()) {
-		return _entitiesMap.at(RBRef);
-	}
-	return nullptr;
-}
+//const eden_ec::Entity* physics_manager::PhysicsManager::getEntity(const btRigidBody* RBRef) const
+//{
+//	if (_entitiesMap.find(RBRef) != _entitiesMap.end()) {
+//		return _entitiesMap.at(RBRef);
+//	}
+//	return nullptr;
+//}
 
 void physics_manager::PhysicsManager::updateSimulation(float deltaTime)
 {
@@ -29,6 +31,12 @@ physics_manager::PhysicsManager::PhysicsManager()
 	//_physicsDebugDrawer = new btIDebugDraw() 
 	//_dynamicWorldRef->setDebugDrawer(_physicsDebugDrawer);
 	physics_wrapper::RayCast::Instance(_dynamicWorldRef, _physicsDebugDrawer);
+	_dynamicWorldRef->setGravity({ 0,-50,0 });
+}
+
+btDynamicsWorld* physics_manager::PhysicsManager::GetWorld()
+{
+	return _dynamicWorldRef;
 }
 
 inline eden_utils::Vector3 physics_manager::PhysicsManager::GetGravity()
@@ -40,11 +48,31 @@ inline eden_utils::Vector3 physics_manager::PhysicsManager::GetGravity()
 
 physics_manager::PhysicsManager::~PhysicsManager()
 {
-	delete _worldDispatcher;
-	delete _worldCollisionConfiguration;
-	delete _worldConstraintSolver;
-	delete _worldBroadPhaseInterface;
 	delete _dynamicWorldRef;
 	if (_physicsDebugDrawer) delete _physicsDebugDrawer;
 
+}
+
+void physics_manager::PhysicsManager::AddPhysicsEntity(eden_ec::Entity* e) {
+	_entitiesSet.insert(e);
+}
+
+void physics_manager::PhysicsManager::RemovePhysicsEntity(eden_ec::Entity* e) {
+	_entitiesSet.erase(e);
+}
+
+void physics_manager::PhysicsManager::UpdatePositions() {
+	eden_ec::CRigidBody* _rb;
+	for (auto ent : _entitiesSet) {
+		_rb = ent->GetComponent<eden_ec::CRigidBody>();
+		_rb->EdenTransformToPhysicsTransform();
+	}
+}
+
+void physics_manager::PhysicsManager::ResolvePositions() {
+	eden_ec::CRigidBody* _rb;
+	for (auto ent : _entitiesSet) {
+		_rb = ent->GetComponent<eden_ec::CRigidBody>();
+		_rb->PhysicsTransformToEdenTransform();
+	}
 }

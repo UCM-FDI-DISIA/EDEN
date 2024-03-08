@@ -54,7 +54,10 @@ void eden_render::RenderManager::InitManager(const std::string& appName)
 	InitializeLib(); // crea la raíz
 	Setup(); // y arranca la inicialización base
 
+	_overlaySys = new Ogre::OverlaySystem();
+
 	_sceneMngr = _root->createSceneManager();
+	_sceneMngr->addRenderQueueListener(_overlaySys);
 	_sceneMngr->setAmbientLight(Ogre::ColourValue(0.2, 0.2, 0.2));
 	_shaderGenerator->addSceneManager(_sceneMngr);
 
@@ -78,14 +81,12 @@ void eden_render::RenderManager::InitManager(const std::string& appName)
 	cuerpoNode->yaw(Ogre::Degree(45));
 	cuerpoNode->pitch(Ogre::Degree(45));
 	cuerpoNode = _sceneMngr->getRootSceneNode()->createChildSceneNode();*/
-
-	_overlaySys = new Ogre::OverlaySystem();
 }
 
 void eden_render::RenderManager::Update()
 {	
 	_root->renderOneFrame(); // renderiza la ra�z de Ogre
-	_window.render->update(); // renderiza la ventana de SDL
+	//_window.render->update(); // renderiza la ventana de SDL
 }
 
 void eden_render::RenderManager::CloseWindow() {
@@ -96,9 +97,12 @@ void eden_render::RenderManager::CloseWindow() {
 void eden_render::RenderManager::CloseManager()
 {
 	Shutdown(); // llama al cierre de la ventana
+	_sceneMngr->removeRenderQueueListener(_overlaySys);
+	_sceneMngr = nullptr;
+	delete _overlaySys;
+	_overlaySys = nullptr;
 	delete _root; // borra la ra�z
 	_root = nullptr; // y la pone a nulo
-	_overlaySys = nullptr;
 }
 
 void eden_render::RenderManager::InitializeLib()
@@ -191,8 +195,7 @@ NativeWindowPair eden_render::RenderManager::CreateNewWindow(const std::string& 
 	miscParams["vsync"] = ropts["VSync"].currentValue;
 	miscParams["gamma"] = ropts["sRGB Gamma Conversion"].currentValue;
 
-	if (!SDL_WasInit(SDL_INIT_VIDEO)) SDL_InitSubSystem(SDL_INIT_VIDEO);
-
+	if (!SDL_WasInit(SDL_INIT_EVERYTHING)) SDL_InitSubSystem(SDL_INIT_EVERYTHING);
 	Uint32 flags = SDL_WINDOW_RESIZABLE;
 
 	if (ropts["Full Screen"].currentValue == "Yes") flags = SDL_WINDOW_FULLSCREEN;

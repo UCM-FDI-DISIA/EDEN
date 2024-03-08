@@ -1,10 +1,10 @@
-#ifndef RAYCASTWRAPPER_h
-#define RAYCASTWRAPPER_h
+#ifndef RAYCASTWRAPPER_H
+#define RAYCASTWRAPPER_H
 
 #include <vector>
-#include "../EDEN/Singleton.h"
-#include "../EDEN/Vector3.h"
-#include "../EDEN/Entity.h"
+#include "Singleton.h"
+#include "Vector3.h"
+#include "Entity.h"
 
 class btDynamicsWorld;
 class btIDebugDraw;
@@ -61,9 +61,6 @@ namespace physics_wrapper {
 
 		/// @brief Encargado de hacer dibujos con caracter de debug
 		btIDebugDraw* _debugDrawer = nullptr;
-
-		/// @brief Referencia al manager de físicas
-		physics_manager::PhysicsManager* _physicsManagerInstance = nullptr;
 	};
 }
 #endif // !RAYCASTWRAPPER_h

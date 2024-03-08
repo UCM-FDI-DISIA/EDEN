@@ -1,5 +1,6 @@
-#include "SceneManager.h"
 #include <iostream>
+
+#include "SceneManager.h"
 #include "Scene.h";
 #include "ScriptManager.h"
 
@@ -10,7 +11,8 @@ namespace eden {
 			delete (*it);
 			it = _scenes.erase(it);
 		}
-		if (_activeScene != nullptr) delete _activeScene;
+		//Está borrando una escena que YA se ha borrado
+		//if (_activeScene != nullptr) delete _activeScene;
 	}
 
 	Scene* SceneManager::PushScene(const std::string& ID) {

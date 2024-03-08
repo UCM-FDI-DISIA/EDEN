@@ -1,11 +1,12 @@
 #ifndef __INPUT_MANAGER_H__
 #define __INPUT_MANAGER_H__
-#include "Singleton.h"
-#include <SDL.h>
+
 #include <array>
 #include <unordered_map>
 
-#undef main
+#include "Singleton.h"
+
+class InputWrapper;
 namespace eden_input 
 {
 	/// @brief Clase que gestiona la entrada de datos del usuario.
@@ -15,7 +16,10 @@ namespace eden_input
 
 		friend Singleton<InputManager>;
 
-		enum MOUSEBUTTON : uint8_t { LEFT = 0, MIDDLE = 1, RIGHT = 2 };
+		/// @brief enumerado de los botones del raton
+		enum MOUSEBUTTON : uint8_t { LEFT, MIDDLE, RIGHT };
+
+		/// @brief enumerado de las teclas especiales
 		enum SPECIALKEY : uint8_t {
 			RETURN = 40,
 			ESCAPE,
@@ -47,19 +51,24 @@ namespace eden_input
 			F10,
 			F11,
 			F12,
+			
 			PRINTSCREEN,
 			SCROLLLOCK,
+			
 			PAUSE,
 			INSERT,
 			HOME,
+			
 			PAGEUP,
-			DELETE,
+			SUPR,
 			END,
 			PAGEDOWN,
+			
 			ARROW_RIGHT,
 			ARROW_LEFT,
 			ARROW_DOWN,
 			ARROW_UP,
+
 			NUMLOCKCLEAR,
 			KP_DIVIDE,
 			KP_MULTIPLY,
@@ -73,19 +82,11 @@ namespace eden_input
 			RSHIFT = 229,
 			RALT = 230
 		};
-
-		/// @brief Constructora de la clase
-		InputManager();
-
-		/// @brief Destructora de la clase
-		~InputManager();
-
-
+		
+		/// @brief Limpieza del mapa de teclas
 		void Clean();
 
-		/// @brief keyboard
-
-		/// @brief True si se está pulsando
+		/// @brief True si se estï¿½ pulsando
 		/// al menos una tecla del teclado
 		bool KeyDownEvent();
 
@@ -99,7 +100,7 @@ namespace eden_input
 		bool IsKeyDown(char key);
 
 		/// @brief True mientras
-		/// la tecla esté pulsada
+		/// la tecla estï¿½ pulsada
 		/// @param key Tecla Normal (0-9 y a-z)
 		bool IsKeyHeld(char key);
 
@@ -114,7 +115,7 @@ namespace eden_input
 		bool IsKeyDown(SPECIALKEY key);
 
 		/// @brief True mientras
-		/// la tecla esté pulsada
+		/// la tecla estï¿½ pulsada
 		/// @param key Tecla Normal (macros SPECIALKEY)
 		bool IsKeyHeld(SPECIALKEY key);
 
@@ -124,39 +125,34 @@ namespace eden_input
 		bool IsKeyUp(SPECIALKEY key);
 
 		/// @brief mouse
-
-		/// @brief True si el ratón
-		/// ha cambiado de posición
+		/// @brief True si el ratï¿½n
+		/// ha cambiado de posiciï¿½n
 		bool MouseMotionEvent();
 
-		/// @brief True si al menos un botón
-		/// del ratón ha cambiado de estado
+		/// @brief True si al menos un botï¿½n
+		/// del ratï¿½n ha cambiado de estado
 		bool MouseButtonEvent();
 
 		/// @brief True en el primer frame
-		/// en el que el botón del ratón es pulsado
-		/// @param b Botón del ratón (macros MOUSEBUTTON)
+		/// en el que el botï¿½n del ratï¿½n es pulsado
+		/// @param b Botï¿½n del ratï¿½n (macros MOUSEBUTTON)
 		bool IsMouseButtonDown(int b);
 
 		/// @brief True mientras
-		/// el botón del ratón esté pulsado
-		/// @param b Botón del ratón (macros MOUSEBUTTON)
+		/// el botï¿½n del ratï¿½n estï¿½ pulsado
+		/// @param b Botï¿½n del ratï¿½n (macros MOUSEBUTTON)
 		bool IsMouseButtonHeld(int b);
 
 		/// @brief True en el primer frame
-		/// en el que el botón del ratón es liberado
-		/// @param b Botón del ratón (macros MOUSEBUTTON)
+		/// en el que el botï¿½n del ratï¿½n es liberado
+		/// @param b Botï¿½n del ratï¿½n (macros MOUSEBUTTON)
 		bool IsMouseButtonUp(int b);
 
 		/// @brief Par (X, Y) de
-		/// la posición del ratón en la pantalla.
-
-		/// @brief (0, 0) está en la esquina superior izquierda.
-		/// X es positivo hacia abajo e Y, hacia la derecha
-
+		/// la posiciï¿½n del ratï¿½n en la pantalla.
 		const std::pair<int, int>& GetMousePos();
 
-		/// @brief window events
+		//window events
 
 		/// @brief Devuelve true cuando el usuario ha pulsado la X de la ventana
 		bool CloseWindowEvent();
@@ -166,27 +162,41 @@ namespace eden_input
 		void SetCloseWindow();
 
 		/// @brief Update
-		virtual void Update();
+		void Update();
 
+		/// @brief Destructora de la clase
+		~InputManager() override;
 
 	private:
 
-		SDL_Event* _event;
+		/// @brief Puntero del wrapper (SDL)
+		InputWrapper* _wrapper;
 
-		/// @brief keyboard
+		/// @brief Booleano de si se ha dejado de pulsar una tecla
 		bool _isKeyUpEvent;
+
+		/// @brief Booleano de si se ha pulsado una tecla
 		bool _isKeyDownEvent;
+
+		/// @brief Mapa de teclas y su estado
 		std::unordered_map<uint8_t, uint8_t> _kbState;
 
-		/// @brief mouse
+		/// @brief Booleano de si se ha movido el raton
 		bool _isMouseMotionEvent;
+		
+		/// @brief Booleano de si se ha pulsado algï¿½n botï¿½n del raton
 		bool _isMouseButtonEvent;
+
+		/// @brief Posicion del raton
 		std::pair<int, int> _mousePos;
+
+		/// @brief Estado del raton
 		std::array<uint8_t, 3> _mbState;
 
-		/// @brief window
+		/// @brief Booleano de si se cierra la ventana
 		bool _isCloseWindowEvent;
 
+		/// @brief Estados de botones
 		enum STATE : uint8_t {
 			RELEASED = 0,
 			DOWN = 1,
@@ -195,7 +205,7 @@ namespace eden_input
 		};
 
 		/// @brief Gestiona el cambio de estados de los botones de teclado, mando y
-		/// ratón (DOWN -> HELD y UP -> RELEASE). Resetea las flags de los
+		/// ratï¿½n (DOWN -> HELD y UP -> RELEASE). Resetea las flags de los
 		/// eventos
 		void ClearState();
 
@@ -205,15 +215,18 @@ namespace eden_input
 		/// @brief Actualiza el estado de las teclas del teclado
 		void OnKeyUp();
 
-		/// @brief Actualiza la posición del ratón
+		/// @brief Actualiza la posiciï¿½n del ratï¿½n
 		void OnMouseMotion();
 
-		/// @brief Actualiza el estado de los botones del ratón
+		/// @brief Actualiza el estado de los botones del ratï¿½n
 		void OnMouseButtonChange(STATE state);
 
 		/// @brief Gestiona los eventos de ventana
 		void HandleWindowEvent();
+		
 
+		/// @brief Constructora de la clase
+		InputManager();
 	};
 }
 

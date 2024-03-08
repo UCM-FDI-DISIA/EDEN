@@ -21,78 +21,60 @@ namespace eden_input {
 	class  InputManager;
 }
 namespace eden_ec {
-	/// <summary>
-	/// Clase base de la que heredan todos los elementos de la UI
-	/// </summary>
+	/// @brief Clase base de la que heredan todos los elementos de la UI
 	class UIComponent : public Component 
 	{
 	public:
-		/// <summary>
-		/// Constructora de la clase
-		/// </summary>
+		/// @brief Constructora de la clase
 		UIComponent();
 
-		/// <summary>
-		/// Destructora de la clase
-		/// </summary>
+		/// @brief Destructora de la clase
 		virtual ~UIComponent();
 
 		/// @brief Construye el componente dado unos argumentos. Se obtendrán de una lectura de un .lua
 		/// @param args Argumentos leídos de .lua
 		virtual void Init(eden_script::ComponentArguments* args);
 
-		/// <summary>
-		/// Mostrar el elemento de la ui
-		/// </summary>
+		/// @brief Mostrar el elemento de la ui
 		void Show();
 
-		/// <summary>
-		/// Ocultar el elemento de la ui
-		/// </summary>
+		/// @brief Ocultar el elemento de la ui
 		void Hide();
 
-		/// <summary>
-		/// determina que elementos estan por encima de otros
-		/// (valores desde -32 hasta 32)
-		/// </summary>
+		/// @brief Determina que elementos estan por encima de otros
+		/// @param pos Valores desde -32 hasta 32
 		void SetDepth(float pos);
 
-		/// <summary>
-		/// Cambia el caption del componente
-		/// </summary>
+		/// @brief Cambia el caption del componente
 		void SetCaption(std::string const& caption);
-		/// <summary>
-		/// Cambia el color del componente
-		/// </summary>
+
+		/// @brief Cambia el color del componente
 		void SetColor(eden_utils::Vector3 const& color);
-		/// <summary>
-		/// Cambia el tamaño del componente
-		/// </summary>
+
+		/// @brief Cambia el tamaño del componente
+		/// @param width Anchura del componente
+		/// @param height Altura del componente
 		void SetDimensions(float width, float height);
-		/// <summary>
-		/// Cambia el ancho del componente
-		/// </summary>
+
+		/// @brief Cambia el ancho del componente
+		/// @param width Anchura del componente
 		void SetWidth(float width);
-		/// <summary>
-		/// Cambia la altura del componente
-		/// </summary>
+
+		/// @brief Cambia la altura del componente
+		/// @param height Altura del componente
 		void SetHeigth(float heigth);
 
-		/// <summary>
-		/// Alineamiento horizontal del componente, puede ser
-		/// GHA_LEFT, GHA_CENTER, GHA_RIGHT
-		/// </summary>
-		void
-			SetHorizontalAligment(Ogre::GuiHorizontalAlignment const& hAligment);
-		/// <summary>
-		/// Alineamiento vertical del componente, puede ser
-		/// GVA_TOP, GVA_CENTER, GVA_BOTTOM
-		/// </summary>
+		/// @brief Alineamiento horizontal del componente
+		/// @param hAligment Puede ser GHA_LEFT, GHA_CENTER, GHA_RIGHT
+		void SetHorizontalAligment(Ogre::GuiHorizontalAlignment const& hAligment);
+
+		/// @brief Alineamiento vertical del componente
+		/// @param vAligment Puede ser GVA_TOP, GVA_CENTER, GVA_BOTTOM
 		void SetVerticalAligment(Ogre::GuiVerticalAlignment const& vAligment);
 
-		/// <summary>
-		/// Cambia la posición del componente
-		/// </summary>
+		/// @brief Cambia la posición del componente
+		/// @param xPos Posición del eje x
+		/// @param yPos Posición del eje y
 		void SetPosition(float xPos, float yPos);
 
 		/// <summary>
@@ -100,72 +82,63 @@ namespace eden_ec {
 		/// </summary>
 		void SetMaterial(std::string const& matName);
 
-		/// <summary>
-		/// Cambiar el tipo de métricas, puede ser
-		/// GMM_PIXELS(posiciones absolutas)
-		/// GMM_RELATIVE,(posiciones de 0.0 a 1.0)
-		/// </summary>
+		/// @brief Cambiar el tipo de métricas
+		/// @param mode Puede ser GMM_PIXELS(posiciones absolutas) o GMM_RELATIVE (posiciones de 0.0 a 1.0)
 		void SetMetrics(Ogre::GuiMetricsMode const& mode);
 
-		/// <summary>
-		/// Poner visible el overlay
-		/// </summary>
-		/// <param name="visible">booleano para ponerlo visible</param>
-		void SetVisible();
+		/// @brief Poner visible el overlay
+		/// @param visible Booleano para ponerlo visible
+		void SetOverlayVisible(bool visible);
 
-		/// <summary>
-		/// Cambia la visibilidad del componente
-		/// </summary>
+		/// @brief Devuelve la visibilidad del componente
 		bool IsVisible();
 
-		/// <returns>zorder del componente</returns>
+		/// @brief Devuelve la profundidad del componente
 		float GetDepth();
 
-		/// <returns>caption del componente</returns>
+		/// @brief Devuelve el caption del componente
 		std::string const& GetCaption();
 
-		/// <returns>color del componente</returns>
+		/// @brief Decuelve color del componente
 		eden_utils::Vector3 const& GetColor();
 
-		/// <returns>dimensiones del componente</returns>
+		/// @brief Devuelve las dimensiones del componente
 		std::pair<float, float> const& GetDimensions();
 
-		/// <returns>ancho del componente</returns>
+		/// @brief Devuelve el ancho del componente
 		float GetWidth();
 
-		/// <returns>altura del componente</returns>
+		/// @brief Devuelve la altura del componente
 		float GetHeight();
 
-		/// <returns>alineación horizontal del componente</returns>
+		/// @brief Devuelve la alineación horizontal del componente
 		Ogre::GuiHorizontalAlignment const& GetHorizontalAligment();
 
-		/// <returns>alineación vertical del componente</returns>
+		/// @brief Devuelve la alineación vertical del componente
 		Ogre::GuiVerticalAlignment const& GetVerticalAligment();
 
-		/// <returns>posición del componente</returns>
+		/// @brief Devuelve la posición del componente
 		std::pair <float, float> const& GetPosition();
 
-		/// <returns>material del componente</returns>
+		/// @brief Devuelve el material del componente
 		std::string const& GetMaterialName();
 
-		/// <returns>tipo de métricas del componente</returns>
+		/// @brief Devuelve el tipo de métricas del componente
 		Ogre::GuiMetricsMode const& GetMetrics();
 
 		/// @brief Definición de método estático GetID necesario para construcción de componentes
 		static std::string GetID() { return _id; }
 	protected:
 		const static std::string _id;
-		// Managers y elementos de Ogre necesarios para el control y uso de la
-		// UI
+		/// @brief Managers y elementos de Ogre necesarios para el control y uso de la UI
 		Ogre::OverlayManager* _overlayManager;
 		Ogre::Overlay* _overlayElement;
 		Ogre::OverlayContainer* _overlayContainer;
 
-		// Control de los elementos de la UI
-		
+		/// @brief Control de los elementos de la UI		
 		static int _numUIElements;
 
-		//Input para los eventos de los botones
+		/// @brief Input para los eventos de los botones
 		eden_input::InputManager* _inputManager;
 	};
 }  

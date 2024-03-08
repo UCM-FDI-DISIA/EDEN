@@ -11,8 +11,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\EDEN\CAnimator.cpp" />
     <ClCompile Include="..\..\src\EDEN\CMeshRenderer.cpp" />
+    <ClCompile Include="..\..\src\EDEN\CRigidBody.cpp" />
     <ClCompile Include="..\..\src\EDEN\EdenMaster.cpp" />
+    <ClCompile Include="..\..\src\EDEN\Hito1Prueba.cpp" />
     <ClCompile Include="..\..\src\EDEN\main.cpp" />
     <ClCompile Include="..\..\src\EDEN\Quaternion.cpp" />
     <ClCompile Include="..\..\src\EDEN\SceneManager.cpp" />
@@ -25,7 +28,10 @@
     <ClCompile Include="..\..\src\EDEN\TestComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\EDEN\CAnimator.h" />
     <ClInclude Include="..\..\src\EDEN\CMeshRenderer.h" />
+    <ClInclude Include="..\..\src\EDEN\Hito1Prueba.h" />
+    <ClInclude Include="..\..\src\EDEN\CRigidBody.h" />
     <ClInclude Include="..\..\src\EDEN\Quaternion.h" />
     <ClInclude Include="..\..\src\EDEN\SceneManager.h" />
     <ClInclude Include="..\..\src\EDEN\Scene.h" />
@@ -106,7 +112,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\Bullet\src\src;$(SolutionDir)dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)dependencies\SDL\src\include\;$(SolutionDir)dependencies\SDL\build\$(Platform)\include\;$(SolutionDir)src\EDEN_Render\;$(SolutionDir)src\EDEN_Input\;$(SolutionDir)dependencies\Lua\src\src\;$(SolutionDir)dependencies\LuaBridge\Source\;$(SolutionDir)dependencies\FMOD\src\;$(SolutionDir)src\EDEN_Audio\;$(SolutionDir)src\EDEN_Script\;$(SolutionDir)dependencies\Ogre\src\Components\Overlay\include;$(SolutionDir)src\EDEN_Render\UI-Ogre</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)dependencies\Bullet\src\src;$(SolutionDir)dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)dependencies\SDL\src\include\;$(SolutionDir)dependencies\SDL\build\$(Platform)\include\;$(SolutionDir)src\EDEN_Render\;$(SolutionDir)src\EDEN_Input\;$(SolutionDir)dependencies\Lua\src\src\;$(SolutionDir)dependencies\LuaBridge\Source\;$(SolutionDir)dependencies\FMOD\src\;$(SolutionDir)src\EDEN_Audio\;$(SolutionDir)src\EDEN_Script\;$(SolutionDir)dependencies\Ogre\src\Components\Overlay\include;$(SolutionDir)src\EDEN_Render\UI-Ogre;$(SolutionDir)src\EDEN_Physics\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>

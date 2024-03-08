@@ -45,17 +45,17 @@ namespace physics_manager {
 
 		/// @brief 
 		/// @param e 
-		void AddPhysicsEntity(eden_ec::Entity* e){}
+		void AddPhysicsEntity(eden_ec::Entity* e);
 
 		/// @brief 
 		/// @param e 
-		void RemovePhysicsEntity(eden_ec::Entity* e){}
+		void RemovePhysicsEntity(eden_ec::Entity* e);
 
 		/// @brief Setear a cada rigidbody el transform de cada entidad
-		void UpdatePositions(){}
+		void UpdatePositions();
 
 		/// @brief Setear a cada transform de cada entidad el transform del rigidbody
-		void ResolvePositions(){}
+		void ResolvePositions();
 
 		~PhysicsManager() override;
 	protected:

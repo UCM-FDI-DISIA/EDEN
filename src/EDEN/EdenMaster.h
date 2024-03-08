@@ -13,6 +13,10 @@ namespace eden_input {
 	class InputManager;
 }
 
+namespace physics_manager{
+	class PhysicsManager;
+}
+
 namespace eden 
 {
 class SceneManager;
@@ -49,6 +53,9 @@ class SceneManager;
 
 		/// @brief Referencia a al RenderManager
 		eden_render::RenderManager* _renderManager;
+
+		/// @brief Referencia al PhysicsManager
+		physics_manager::PhysicsManager* _physicsManager;
 
 		/// @brief Constructora por defecto de EdenMaster
 		Master();

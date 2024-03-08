@@ -8,6 +8,10 @@
 //Debe incluirse en el .h para que no se generen errores de tipo del struct shapeParameters
 #include "RigidBody.h"
 
+namespace physics_manager {
+	class PhysicsManager;
+}
+
 namespace physics_wrapper {
 	class RigidBody;
 }
@@ -15,6 +19,7 @@ namespace physics_wrapper {
 namespace eden_ec {
 	class CRigidBody : public Component
 	{
+		friend physics_manager::PhysicsManager;
 	public:
 		/// @brief Constructora por defecto. No usar
 		CRigidBody() = default;

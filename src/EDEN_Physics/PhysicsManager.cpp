@@ -1,6 +1,8 @@
 #include "PhysicsManager.h"
 #include "../../dependencies/Bullet/src/src/btBulletDynamicsCommon.h"
 #include "Entity.h"
+#include "CRigidBody.h"
+#include "Transform.h"
 #include "RayCast.h"
 
 
@@ -52,4 +54,28 @@ physics_manager::PhysicsManager::~PhysicsManager()
 	delete _dynamicWorldRef;
 	if (_physicsDebugDrawer) delete _physicsDebugDrawer;
 
+}
+
+void physics_manager::PhysicsManager::AddPhysicsEntity(eden_ec::Entity* e) {
+	_entitiesSet.insert(e);
+}
+
+void physics_manager::PhysicsManager::RemovePhysicsEntity(eden_ec::Entity* e) {
+	_entitiesSet.erase(e);
+}
+
+void physics_manager::PhysicsManager::UpdatePositions() {
+	eden_ec::CRigidBody* _rb;
+	for (auto ent : _entitiesSet) {
+		_rb = ent->GetComponent<eden_ec::CRigidBody>();
+		_rb->EdenTransformToPhysicsTransform();
+	}
+}
+
+void physics_manager::PhysicsManager::ResolvePositions() {
+	eden_ec::CRigidBody* _rb;
+	for (auto ent : _entitiesSet) {
+		_rb = ent->GetComponent<eden_ec::CRigidBody>();
+		_rb->PhysicsTransformToEdenTransform();
+	}
 }

@@ -6,6 +6,7 @@
 
 #include "EdenMaster.h"
 #include "RenderManager.h"
+#include "PhysicsManager.h"
 #include <InputManager.h>
 #include "SceneManager.h"
 
@@ -20,12 +21,14 @@ eden::Master::Master()
 	}
 	_inputManager = eden_input::InputManager::Instance();
 	_scnManager = SceneManager::Instance();
+	_physicsManager = physics_manager::PhysicsManager::Instance();
 }
 
 eden::Master::~Master()
 {
 	delete _inputManager;
 	delete _renderManager;
+	delete _physicsManager;
 	Singleton::~Singleton();
 }
 
@@ -46,10 +49,13 @@ void eden::Master::Loop()
 
 		frameStartTime = std::chrono::high_resolution_clock::now();
 
-		_renderManager->Update();
-		_scnManager->Update(_deltaTime);
-		_renderManager->UpdatePositions();
 		_inputManager->Update();
+		_scnManager->Update(_deltaTime);
+		_physicsManager->UpdatePositions();
+		_physicsManager->updateSimulation(_deltaTime);
+		_physicsManager->ResolvePositions();
+		_renderManager->UpdatePositions();
+		_renderManager->Update();
 		exit = _inputManager->CloseWindowEvent();
 
 		frameEndTime = std::chrono::high_resolution_clock::now();

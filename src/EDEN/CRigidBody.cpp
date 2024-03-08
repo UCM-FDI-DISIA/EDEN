@@ -2,6 +2,7 @@
 #include "RigidBody.h"
 #include "ComponentArguments.h"
 #include "Entity.h"
+#include "PhysicsManager.h"
 
 const std::string eden_ec::CRigidBody::_id = "RIGIDBODY";
 
@@ -11,6 +12,7 @@ void eden_ec::CRigidBody::InitComponent()
 	if (_ent->GetComponent<CTransform>() != nullptr) {
 		_transform = _ent->GetComponent<CTransform>();
 		_rb = new physics_wrapper::RigidBody(_ent, _mass, _params);
+		physics_manager::PhysicsManager::Instance()->AddPhysicsEntity(_ent);
 	}
 
 }
@@ -43,6 +45,7 @@ void eden_ec::CRigidBody::Init(eden_script::ComponentArguments* args) {
 
 eden_ec::CRigidBody::~CRigidBody()
 {
+	physics_manager::PhysicsManager::Instance()->RemovePhysicsEntity(_ent);
 	delete _rb;
 }
 

@@ -1,6 +1,6 @@
+#ifndef CURSOR_H
+#define CURSOR_H
 
-#ifndef __CURSOR_H__
-#define __CURSOR_H__
 #include "Component.h"
 
 namespace Ogre {
@@ -13,6 +13,7 @@ namespace eden_input {
 
 namespace eden_ec {
 	class CImage;
+
 	/// @brief Clase que representa el cursor
 	class  CCursor: public Component {
 	public:
@@ -21,7 +22,6 @@ namespace eden_ec {
 
 		/// @brief Constructora de la clase Cursor
 		CCursor(float width,float height, std::string texture, int depth = 0);
-
 
 		/// @brief Destructora de la clase Cursor
 		~CCursor();
@@ -39,6 +39,7 @@ namespace eden_ec {
 		/// @brief Definición de método estático GetID necesario para construcción de componentes
 		static std::string GetID() { return _id; }
 	protected:
+		/// @brief Identificador del cursor
 		const static std::string _id;
 
 	private:
@@ -50,4 +51,4 @@ namespace eden_ec {
 	};
 }
 
-#endif 
+#endif /*CURSOR_H*/

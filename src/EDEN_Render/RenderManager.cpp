@@ -18,7 +18,7 @@
 #include <OgreShaderGenerator.h>
 #include <OgreMaterialManager.h>
 #include <iostream>
-#include "Node.h"
+#include "NodeManager.h"
 #include "Transform.h"
 #include "Entity.h"
 
@@ -58,7 +58,7 @@ void eden_render::RenderManager::InitManager(const std::string& appName)
 
 	_sceneMngr = _root->createSceneManager();
 	_sceneMngr->addRenderQueueListener(_overlaySys);
-	_sceneMngr->setAmbientLight(Ogre::ColourValue(0.2, 0.2, 0.2));
+	_sceneMngr->setAmbientLight(Ogre::ColourValue(0.2f, 0.2f, 0.2f));
 	_shaderGenerator->addSceneManager(_sceneMngr);
 
 	Ogre::Light* luz = _sceneMngr->createLight("Luz");
@@ -68,19 +68,6 @@ void eden_render::RenderManager::InitManager(const std::string& appName)
 	mLightNode->attachObject(luz);
 
 	mLightNode->setDirection(Ogre::Vector3(1, -1, 0));
-
-	/*Ogre::SceneNode* cuerpoNode = _sceneMngr->getRootSceneNode()->createChildSceneNode();
-	Ogre::Vector3 cuerpoScale = { 0.2, 0.2, 0.2 };
-	Ogre::Entity* ent;
-
-	ent = _sceneMngr->createEntity("cube.mesh");
-	ent->setMaterialName("Practica1/rojo"); 
-	cuerpoNode->attachObject(ent);
-	cuerpoNode->setScale(cuerpoScale);
-	cuerpoNode->setPosition({ 70,-10,-10 });
-	cuerpoNode->yaw(Ogre::Degree(45));
-	cuerpoNode->pitch(Ogre::Degree(45));
-	cuerpoNode = _sceneMngr->getRootSceneNode()->createChildSceneNode();*/
 }
 
 void eden_render::RenderManager::Update()
@@ -279,7 +266,7 @@ int eden_render::RenderManager::GetWindowHeight() {
 }
 
 void eden_render::RenderManager::UpdatePositions() {
-	render_wrapper::Node* nodeMngr = render_wrapper::Node::Instance();
+	render_wrapper::NodeManager* nodeMngr = render_wrapper::NodeManager::Instance();
 	eden_ec::CTransform* transform;
 	for (auto ent : _entities) {
 		transform = ent->GetComponent<eden_ec::CTransform>();

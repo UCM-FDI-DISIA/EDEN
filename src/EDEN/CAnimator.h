@@ -23,7 +23,6 @@ namespace eden_ec {
 		CAnimator() = default;
 
 		virtual void Init(eden_script::ComponentArguments* args);
-		virtual void InitComponent();
 		virtual void Update(float t);
 		static std::string GetID() { return _id; }
 

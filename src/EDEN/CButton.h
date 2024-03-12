@@ -33,9 +33,6 @@ namespace eden_ec {
 		/// @brief Constructora de la case 
 		CButton(ButtonParams& params);
 
-		/// @brief Inicializa el componente
-		void InitComponent() override;
-
 		/// @brief Método update heredado de component
 		void Update(float deltaTime) override;
 

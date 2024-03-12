@@ -12,7 +12,7 @@ namespace eden_utils {
 namespace eden_script {
 	class ScriptManager;
 
-	/// @brief Da forma y es capaz de parsear los componentes leídos desde los mapas .lua generados por un usuario.
+	/// @brief Da forma y es capaz de parsear los componentes leidos desde los mapas .lua generados por un usuario.
 	class ComponentArguments
 	{
 		friend ScriptManager;
@@ -20,7 +20,7 @@ namespace eden_script {
 		/// @brief Constructora por defecto
 		ComponentArguments() = default;
 
-		/// @brief Da valor a la ID del componente que queremos representar. Crea un mapa vacío de argumentos
+		/// @brief Da valor a la ID del componente que queremos representar. Crea un mapa vacio de argumentos
 		/// @param id ID del componente
 		inline ComponentArguments(std::string id) : _args() { _id = id; }
 
@@ -101,45 +101,45 @@ namespace eden_script {
 		inline std::unordered_map<std::string, std::vector<std::string>> GetArgs() { return _args; }
 	private:
 
-		/// @brief Se ocupa de los errores cuando el valor leído de un mapa no tiene exactamente 'numArgs' argumentos
+		/// @brief Se ocupa de los errores cuando el valor leido de un mapa no tiene exactamente 'numArgs' argumentos
 		/// @param id Valor que da error
 		/// @param type Tipo del valor que da error
-		/// @param numArgs Número de argumentos exactos que debería tener el tipo 'type' para poder ser parseado
+		/// @param numArgs Numero de argumentos exactos que deberia tener el tipo 'type' para poder ser parseado
 		void HandleArgumentError(std::string id, std::string type, int numArgs);
 
-		/// @brief Conversión de string a bool
+		/// @brief Conversion de string a bool
 		bool ToBool(std::string value);
 
-		/// @brief Conversión de string a int
+		/// @brief Conversion de string a int
 		int ToInt(std::string value);
 
-		/// @brief Conversión de string a float
+		/// @brief Conversion de string a float
 		float ToFloat(std::string value);
 
-		/// @brief Conversión de string a double
+		/// @brief Conversion de string a double
 		double ToDouble(std::string value);
 
-		/// @brief Conversión de string a Vector3
+		/// @brief Conversion de string a Vector3
 		eden_utils::Vector3 ToVector3(std::string xValue, std::string yValue, std::string zValue);
 
-		/// @brief Conversión de string a Quaternion
+		/// @brief Conversion de string a Quaternion
 		eden_utils::Quaternion ToQuaternion(std::string angleValue, std::string xValue, std::string yValue, std::string zValue);
 
-		/// @brief Devuelve el vector de strings asociado a una id en el mapa _args y comprueba que sea de tamaño 'numArgs'. 
+		/// @brief Devuelve el vector de strings asociado a una id en el mapa _args y comprueba que sea de tamanno 'numArgs'. 
 		/// En caso negativo, se llama a HandleArgumentError()
 		/// @param id Valor en el mapa a conseguir
 		/// @param type Tipo del valor a conseguir
-		/// @param numArgs Número de argumentos que debe tener para ser parseado
+		/// @param numArgs Numero de argumentos que debe tener para ser parseado
 		std::vector<std::string> GetKey(std::string id, std::string type, int numArgs);
 
-		/// @brief Igual que GetKey(string, string, int), pero no comprueba tamaño ni lanza error
+		/// @brief Igual que GetKey(string, string, int), pero no comprueba tamanno ni lanza error
 		std::vector<std::string> GetKey(std::string id, std::string type);
 
 		/// @brief _id Debe definirse en la constructora
 		std::string _id = "DEFAULT_ID_CHANGE_THIS";
 
-		/// @brief Mapa que guarda los argumentos y los asocia a un vector de strings que es parseado según necesite el usuario con 
-		/// las funciones públicas de la clase
+		/// @brief Mapa que guarda los argumentos y los asocia a un vector de strings que es parseado segun necesite el usuario con 
+		/// las funciones publicas de la clase
 		std::unordered_map<std::string, std::vector<std::string>> _args;
 	};
 }

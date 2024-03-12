@@ -26,9 +26,6 @@ namespace eden_ec {
 		/// @brief Destructora de la clase Cursor
 		~CCursor();
 
-		/// @brief Inicializa el componente
-		void InitComponent() override;
-
 		/// @brief Construye el componente dado unos argumentos. Se obtendrán de una lectura de un .lua
 		/// @param args Argumentos leídos de .lua
 		virtual void Init(eden_script::ComponentArguments* args);

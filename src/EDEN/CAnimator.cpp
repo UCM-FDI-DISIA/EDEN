@@ -13,15 +13,13 @@ void eden_ec::CAnimator::Init(eden_script::ComponentArguments* args) {
 	_nextAnim = args->GetValueToStringVector("NextAnim");
 	_loopAnims = args->GetValueToBoolVector("LoopAnims");
 
-}
-
-void eden_ec::CAnimator::InitComponent() {
 	_meshRend = _ent->GetComponent<CMeshRenderer>();
 	_animatorWrapper = new render_wrapper::Animator(_meshRend->_renderWrapper);
 
 	for (int i = 0; i < _animNames.size(); ++i) {
 		_animatorWrapper->RegisterAnim(_animNames[i], _animMeshNames[i], _nextAnim[i], _loopAnims[i]);
 	}
+
 }
 
 void eden_ec::CAnimator::Update(float t) {

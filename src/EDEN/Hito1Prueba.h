@@ -15,11 +15,9 @@ namespace eden_ec {
 		Hito1Prueba() = default;
 		~Hito1Prueba() = default;
 
-		void InitComponent() override;
-
 		static std::string GetID() { return _id; }
 
-		void Init(eden_script::ComponentArguments* args) override {};
+		void Init(eden_script::ComponentArguments* args) override;
 
 		void Update(float t) override;
 

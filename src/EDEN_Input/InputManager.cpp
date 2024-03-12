@@ -103,6 +103,7 @@ void eden_input::InputManager::ClearState() {
 	_isMouseButtonEvent = false;
 	_isMouseMotionEvent = false;
 	_isCloseWindowEvent = false;
+	_isResizedWindowEvent = false;
 
 	for (auto i = 0u; i < 3; i++) {
 		if (_mbState[i] == DOWN)
@@ -161,6 +162,9 @@ void eden_input::InputManager::HandleWindowEvent() {
 	case SDL_WINDOWEVENT_CLOSE:
 		_isCloseWindowEvent = true;
 		break;
+	case SDL_WINDOWEVENT_RESIZED:
+		_isResizedWindowEvent = true;
+		break;
 	default:
 		break;
 	}
@@ -169,3 +173,5 @@ void eden_input::InputManager::HandleWindowEvent() {
 bool eden_input::InputManager::CloseWindowEvent() { return _isCloseWindowEvent; }
 
 void eden_input::InputManager::SetCloseWindow() { _isCloseWindowEvent = true; }
+
+bool eden_input::InputManager::ResizedWindowEvent() { return _isResizedWindowEvent; }

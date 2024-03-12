@@ -8,6 +8,7 @@
     <ClCompile Include="..\..\src\EDEN_Render\Animator.cpp" />
     <ClCompile Include="..\..\src\EDEN_Render\RenderObject.cpp" />
     <ClCompile Include="..\..\src\EDEN_Render\Light.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Render\Canvas.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\EDEN_Render\NodeManager.h" />
@@ -17,5 +18,6 @@
     <ClInclude Include="..\..\src\EDEN_Render\MeshRenderer.h" />
     <ClInclude Include="..\..\src\EDEN_Render\Animator.h" />
     <ClInclude Include="..\..\src\EDEN_Render\Light.h" />
+    <ClInclude Include="..\..\src\EDEN_Render\Canvas.h" />
   </ItemGroup>
 </Project>

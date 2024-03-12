@@ -56,13 +56,10 @@ namespace eden_ec {
 		/// @param height Altura del componente
 		void SetDimensions(float width, float height);
 
-		/// @brief Cambia el ancho del componente
+		/// @brief Cambia el tamanno del componente
 		/// @param width Anchura del componente
-		void SetWidth(float width);
-
-		/// @brief Cambia la altura del componente
 		/// @param height Altura del componente
-		void SetHeigth(float heigth);
+		void SetRelativeDimensions(float width, float height);
 
 		/// @brief Alineamiento horizontal del componente
 		/// @param hAligment Puede ser GHA_LEFT, GHA_CENTER, GHA_RIGHT
@@ -76,6 +73,11 @@ namespace eden_ec {
 		/// @param xPos Posicion del eje x
 		/// @param yPos Posicion del eje y
 		void SetPosition(float xPos, float yPos);
+
+		// @brief Cambia la posicion del componente
+		/// @param xPos Posicion del eje x
+		/// @param yPos Posicion del eje y
+		void SetRelativePosition(float xPos, float yPos);
 
 		/// <summary>
 		/// Cambia el material del componente
@@ -105,11 +107,8 @@ namespace eden_ec {
 		/// @brief Devuelve las dimensiones del componente
 		std::pair<float, float> const& GetDimensions();
 
-		/// @brief Devuelve el ancho del componente
-		float GetWidth();
-
-		/// @brief Devuelve la altura del componente
-		float GetHeight();
+		/// @brief Devuelve las dimensiones del componente
+		std::pair<float, float> const& GetRelativeDimensions();
 
 		/// @brief Devuelve la alineacion horizontal del componente
 		Ogre::GuiHorizontalAlignment const& GetHorizontalAligment();
@@ -120,11 +119,20 @@ namespace eden_ec {
 		/// @brief Devuelve la posicion del componente
 		std::pair <float, float> const& GetPosition();
 
+		/// @brief Devuelve la posicion del componente
+		std::pair <float, float> const& GetRelativePosition();
+
 		/// @brief Devuelve el material del componente
 		std::string const& GetMaterialName();
 
 		/// @brief Devuelve el tipo de metricas del componente
 		Ogre::GuiMetricsMode const& GetMetrics();
+
+		/// @brief Escala el tamaño y posicion 
+		void Resize();
+
+		/// @brief Establece los valores base
+		void SetParameters();
 
 		/// @brief Definicion de metodo estatico GetID necesario para construccion de componentes
 		static std::string GetID() { return _id; }
@@ -140,6 +148,32 @@ namespace eden_ec {
 
 		/// @brief Input para los eventos de los botones
 		eden_input::InputManager* _inputManager = nullptr;
+
+		/// @brief ancho relativo
+		float _rWidth;
+
+		/// @brief ancho objeto
+		float _oWidth;
+
+		/// @brief alto relativo
+		float _rHeight;
+
+		/// @brief alto objeto
+		float _oHeight;
+
+		/// @brief pos relativa
+		std::pair <float, float>_rPos;
+
+		/// @brief pos objeto
+		std::pair <float, float>_oPos;
+
+		/// @brief Textura de la imagen 
+		std::string _texture;
+
+
+		void CreateImage(std::string overlayName, float xPos, float yPos,
+			float width, float height, std::string texture,
+			int depth);
 	};
 }  
 #endif  

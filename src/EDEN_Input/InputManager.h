@@ -161,6 +161,9 @@ namespace eden_input
 		/// por ejemplo)
 		void SetCloseWindow();
 
+		/// @brief Devuelve true cuando el usuario ha cambiado el tamaño de la ventana
+		bool ResizedWindowEvent();
+
 		/// @brief Update
 		void Update();
 
@@ -195,6 +198,9 @@ namespace eden_input
 
 		/// @brief Booleano de si se cierra la ventana
 		bool _isCloseWindowEvent;
+
+		/// @brief Booleano de si se cambia el tamaño la ventana
+		bool _isResizedWindowEvent;
 
 		/// @brief Estados de botones
 		enum STATE : uint8_t {

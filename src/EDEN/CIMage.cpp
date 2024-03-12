@@ -1,8 +1,3 @@
-#include <OgreOverlay.h>
-#include <OgreOverlayContainer.h>
-#include <OgreOverlayElement.h>
-#include <OgreOverlayManager.h>
-#include <iostream>
 
 #include "CImage.h"
 #include "RenderManager.h"
@@ -23,28 +18,14 @@ eden_ec::CImage::CImage(std::string overlayName, float xPos, float yPos,
 	xPos = xx - (width / 2);
 	yPos = yy - (height / 2);
 
-
-	_texture = texture;
-	_overlayContainer = static_cast<Ogre::OverlayContainer*>(
-		_overlayManager->createOverlayElement(
-			"Panel", overlayName + std::to_string(_numUIElements)));
-	_overlayContainer->setMetricsMode(Ogre::GMM_PIXELS);
-	_overlayContainer->setPosition(xPos, yPos);
-	_overlayContainer->setDimensions(width, height);
-	_overlayContainer->setMaterialName(_texture);
-
-	// Creo un elemento overlay para añadirle el panel
-	_overlayElement =
-		_overlayManager->create("over" + std::to_string(_numUIElements));
-	_overlayElement->add2D(_overlayContainer);
-	_overlayElement->show();
-	SetDepth(depth);
+	CreateImage(overlayName, xPos, yPos, width, height, texture, depth);
 
 }
 
 eden_ec::CImage::~CImage() {}
 
 void eden_ec::CImage::Init(eden_script::ComponentArguments* args) {
+
 	auto render = eden_render::RenderManager::Instance();
 	int xPos = args->GetValueToInt("XPos");
 	int yPos = args->GetValueToInt("YPos");
@@ -58,21 +39,7 @@ void eden_ec::CImage::Init(eden_script::ComponentArguments* args) {
 	xPos = xx - (width / 2);
 	yPos = yy - (height / 2);
 
-
-	_texture = args->GetValueToString("Texture");
-	_overlayContainer = static_cast<Ogre::OverlayContainer*>(
-		_overlayManager->createOverlayElement(
-			"Panel", args->GetValueToString("OverlayName") + std::to_string(_numUIElements)));
-	_overlayContainer->setMetricsMode(Ogre::GMM_PIXELS);
-	_overlayContainer->setPosition(xPos, yPos);
-	_overlayContainer->setDimensions(width, height);
-	_overlayContainer->setMaterialName(_texture);
-
-	// Creo un elemento overlay para añadirle el panel
-	_overlayElement =
-		_overlayManager->create("over" + std::to_string(_numUIElements));
-	_overlayElement->add2D(_overlayContainer);
-	_overlayElement->show();
-	SetDepth(args->GetValueToInt("Depth"));
+	CreateImage(args->GetValueToString("OverlayName"), xPos, yPos, width, height,
+		args->GetValueToString("Texture"), args->GetValueToInt("Depth"));
 	
 }

@@ -5,11 +5,6 @@
 #include"..\RenderManager.h"
 #include "..\EDEN_Script\ScriptManager.h"
 #include "..\EDEN_Script\ComponentArguments.h"
-
-#include <OgreOverlay.h>
-#include <OgreOverlayContainer.h>
-#include <OgreOverlayElement.h>
-#include <OgreOverlayManager.h>
 #include <iostream>
 
 const std::string eden_ec::CButton::_id = "BUTTON";
@@ -30,20 +25,8 @@ eden_ec::CButton::CButton(ButtonParams& params) : UIComponent() {
 	_hoverTex = params.hoverTex;
 	_clickedTex = params.clickedTex;
 
-	_overlayContainer = static_cast<Ogre::OverlayContainer*>(
-		_overlayManager->createOverlayElement(
-			"Panel", params.overlayName + std::to_string(_numUIElements)));
-
-	_overlayContainer->setMetricsMode(Ogre::GMM_PIXELS);
-	_overlayContainer->setPosition(params.xPos, params.yPos);
-	_overlayContainer->setDimensions(params.width, params.height);
-	_overlayContainer->setMaterialName(_iniTex);
-	_overlayElement = _overlayManager->create("over" + std::to_string(_numUIElements));
-	_overlayElement->add2D(_overlayContainer);
-	_overlayElement->show();
-
-	SetDepth(params.depth);
-
+	CreateImage(params.overlayName, params.xPos, params.yPos,
+		params.width, params.height, params.iniTex, params.depth);
 	// Posiciones necesarias para el input de ratón
 	// top + height
 	_topPosition = params.yPos;
@@ -51,6 +34,9 @@ eden_ec::CButton::CButton(ButtonParams& params) : UIComponent() {
 	// left + width
 	_leftPosition = params.xPos;
 	_rightPosition = _leftPosition + params.width;
+
+	_oldScale.first = params.width;
+	_oldScale.second = params.height;
 }
 
 eden_ec::CButton::~CButton() {
@@ -75,19 +61,8 @@ void eden_ec::CButton::Init(eden_script::ComponentArguments* args) {
 	_hoverTex = args->GetValueToString("Texture2");
 	_clickedTex = args->GetValueToString("Texture3");
 
-	_overlayContainer = static_cast<Ogre::OverlayContainer*>(
-		_overlayManager->createOverlayElement(
-			"Panel", args->GetValueToString("OverlayName") + std::to_string(_numUIElements)));
-
-	_overlayContainer->setMetricsMode(Ogre::GMM_PIXELS);
-	_overlayContainer->setPosition(xPos,yPos);
-	_overlayContainer->setDimensions(width,height);
-	_overlayContainer->setMaterialName(_iniTex);
-	_overlayElement = _overlayManager->create("over" + std::to_string(_numUIElements));
-	_overlayElement->add2D(_overlayContainer);
-	_overlayElement->show();
-
-	SetDepth(args->GetValueToInt("Depth"));
+	CreateImage(args->GetValueToString("OverlayName"),xPos, yPos,
+		width, height, _iniTex, args->GetValueToInt("Depth"));
 
 	// Posiciones necesarias para el input de ratón
 	// top + height
@@ -97,10 +72,24 @@ void eden_ec::CButton::Init(eden_script::ComponentArguments* args) {
 	_leftPosition = xPos;
 	_rightPosition = _leftPosition + width;
 
+	_oldScale.first = width;
+	_oldScale.second = height;
+
 }
 
 void eden_ec::CButton::Update(float deltaTime) {
+	if (_oPos.second!=0 && (_oldScale.first != _oWidth || _oldScale.second != _oHeight))ButtonRectUpdate();
 	CheckMousePos();
+}
+
+void eden_ec::CButton::ButtonRectUpdate() {
+	// Posiciones necesarias para el input de ratón
+   // top + height
+	_topPosition = _oPos.second;
+	_bottomPosition = _topPosition + _oHeight;
+	// left + width
+	_leftPosition = _oPos.first;
+	_rightPosition = _leftPosition + _oWidth;
 }
 
 void eden_ec::CButton::OnButtonClick() {
@@ -176,7 +165,7 @@ void eden_ec::CButton::ChangeButtonTexture(const std::string& textureName) {
 		newTex = _clickedTex;
 	}
 
-	_overlayContainer->setMaterialName(newTex);
+	SetMaterial(newTex);
 }
 
 void eden_ec::CButton::ChangeTextures(const std::string& iniTex,

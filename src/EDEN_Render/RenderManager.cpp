@@ -10,6 +10,9 @@
 #include <OgreDataStream.h>
 #include <OgreFileSystemLayer.h>
 #include <OgreOverlaySystem.h>
+#include <OgreOverlay.h>
+#include <OgreOverlayContainer.h>
+#include <OgreOverlayManager.h> 
 
 #include <SDL.h>
 #include <SDL_video.h>
@@ -21,6 +24,7 @@
 #include "NodeManager.h"
 #include "Transform.h"
 #include "Entity.h"
+#include "Canvas.h"
 
 eden_render::RenderManager::RenderManager(const std::string& appName)
 {
@@ -71,9 +75,16 @@ void eden_render::RenderManager::InitManager(const std::string& appName)
 }
 
 void eden_render::RenderManager::Update()
-{	
+{
 	_root->renderOneFrame(); // renderiza la ra�z de Ogre
-	//_window.render->update(); // renderiza la ventana de SDL
+	if (resized) {
+		resized = false;
+		eden_canvas::Canvas::Instance()->Resize();
+	}
+	if (!canvasInit) {
+		eden_canvas::Canvas::Instance()->InitCanvas();
+		canvasInit = true;
+	}
 }
 
 void eden_render::RenderManager::CloseWindow() {
@@ -284,4 +295,10 @@ void eden_render::RenderManager::addRenderEntity(eden_ec::Entity* ent) {
 
 void eden_render::RenderManager::removeRenderEntity(eden_ec::Entity* ent) {
 	_entities.erase(ent);
+}
+
+void eden_render::RenderManager::ResizedWindow() {
+
+	_window.render->windowMovedOrResized();
+	resized = true;
 }

@@ -36,10 +36,6 @@ namespace eden_ec {
 		static std::string GetID() { return _id; }
 	protected:
 		const static std::string _id;
-
-	private:
-		/// @brief Textura de la imagen 
-		std::string _texture;
 	};
 } 
 

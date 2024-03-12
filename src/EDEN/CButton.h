@@ -77,17 +77,37 @@ namespace eden_ec {
 		/// @brief Metodo que se llama cuando el raton sale del botón
 		void OnButtonUnhover();
 
+		void ButtonRectUpdate();
+
+		/// @brief textura base
 		std::string _iniTex;
+
+		/// @brief textura cuando el cursor está encima
 		std::string _hoverTex;
+
+		/// @brief textura cuando pulsamos el boton
 		std::string _clickedTex;
 
+		/// @brief limite superior del boton
 		int _topPosition;
+
+		/// @brief limite inferior del boton
 		int _bottomPosition;
+
+		/// @brief limite izquierdo del boton
 		int _leftPosition;
+
+		/// @brief limite derecho del boton
 		int _rightPosition;
+
+		/// @brief Flag de si estamos encima del boton
 		bool _hovering;
+
+		/// @brief Flag de si hemos pulsado
 		bool _clicked;
-		int _depth;
+
+		/// @brief Tamaño anterior
+		std::pair<float, float>_oldScale;
 	};
 }
 

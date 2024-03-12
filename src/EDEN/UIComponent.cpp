@@ -2,22 +2,25 @@
 #include <OgreOverlayContainer.h>
 #include <OgreOverlayManager.h> 
 #include <OgreTextAreaOverlayElement.h>
+#include <OgreOverlayElement.h>
+#include <iostream>
 
 #include "UIComponent.h"
-//#include "UIManager.h"
+#include "Canvas.h"
 #include "InputManager.h"
-//#include "SeparityUtils\checkML.h"
 
 const std::string eden_ec::UIComponent::_id = "UICOMPONENT";
 int eden_ec::UIComponent::_numUIElements = 0;
 eden_ec::UIComponent::UIComponent() {
-
+	
+	eden_canvas::Canvas::Instance()->addRenderEntity(this);
 	_overlayManager = Ogre::OverlayManager::getSingletonPtr();
 	_inputManager = eden_input::InputManager::Instance();
 	_numUIElements++;
 }
 
 eden_ec::UIComponent::~UIComponent() {
+	eden_canvas::Canvas::Instance()->removeRenderEntity(this);
 	_overlayManager->destroyOverlayElement(_overlayContainer);
 	_overlayManager->destroy(_overlayElement);
 	_overlayContainer = nullptr;
@@ -46,12 +49,8 @@ void eden_ec::UIComponent::SetDimensions(float width, float height) {
 	_overlayContainer->setDimensions(width, height);
 }
 
-void eden_ec::UIComponent::SetWidth(float width) {
-	_overlayContainer->setWidth(width);
-}
-
-void eden_ec::UIComponent::SetHeigth(float heigth) {
-	_overlayContainer->setHeight(heigth);
+void eden_ec::UIComponent::SetRelativeDimensions(float width, float height) {
+	_overlayContainer->_setDimensions(width, height);
 }
 
 void eden_ec::UIComponent::SetHorizontalAligment(
@@ -66,6 +65,10 @@ void eden_ec::UIComponent::SetVerticalAligment(
 
 void eden_ec::UIComponent::SetPosition(float xPos, float yPos) {
 	_overlayContainer->setPosition(xPos, yPos);
+}
+
+void eden_ec::UIComponent::SetRelativePosition(float xPos, float yPos) {
+	_overlayContainer->_setPosition(xPos, yPos);
 }
 
 void eden_ec::UIComponent::SetMaterial(std::string const& matName) {
@@ -94,13 +97,11 @@ eden_utils::Vector3 const& eden_ec::UIComponent::GetColor() {
 }
 
 std::pair<float, float> const& eden_ec::UIComponent::GetDimensions() {
-	return std::pair<float, float>(GetWidth(), GetHeight());
+	return std::pair<float, float>(_overlayContainer->getWidth(), _overlayContainer->getHeight());
 }
 
-float eden_ec::UIComponent::GetWidth() { return _overlayContainer->getWidth(); }
-
-float eden_ec::UIComponent::GetHeight() {
-	return _overlayContainer->getHeight();
+std::pair<float, float> const& eden_ec::UIComponent::GetRelativeDimensions() {
+	return std::pair<float, float>(_overlayContainer->_getWidth(), _overlayContainer->_getHeight());
 }
 
 Ogre::GuiHorizontalAlignment const&
@@ -113,7 +114,11 @@ Ogre::GuiVerticalAlignment const& eden_ec::UIComponent::GetVerticalAligment() {
 }
 
 std::pair<float, float> const& eden_ec::UIComponent::GetPosition() {
-	return std::pair<float, float>(_overlayContainer->getTop(), _overlayContainer->getLeft());
+	return std::pair<float, float>(_overlayContainer->getLeft(), _overlayContainer->getTop());
+}
+
+std::pair<float, float> const& eden_ec::UIComponent::GetRelativePosition() {
+	return std::pair<float, float>(_overlayContainer->_getLeft(), _overlayContainer->_getTop());
 }
 
 std::string const& eden_ec::UIComponent::GetMaterialName() {
@@ -126,4 +131,47 @@ Ogre::GuiMetricsMode const& eden_ec::UIComponent::GetMetrics() {
 
 void eden_ec::UIComponent::Init(eden_script::ComponentArguments* args) {
 	
+}
+
+
+void eden_ec::UIComponent::CreateImage(std::string overlayName, float xPos, float yPos,
+	float width, float height, std::string texture,
+	int depth) {
+
+	_texture = texture;
+	_overlayContainer = static_cast<Ogre::OverlayContainer*>(
+		_overlayManager->createOverlayElement(
+			"Panel", overlayName+ std::to_string(_numUIElements)));
+	_overlayContainer->setMetricsMode(Ogre::GMM_PIXELS);
+	_overlayContainer->setPosition(xPos, yPos);
+	_overlayContainer->setDimensions(width, height);
+	_overlayContainer->setMaterialName(_texture);
+
+	// Creo un elemento overlay para añadirle el panel
+	_overlayElement =
+		_overlayManager->create("over"+ std::to_string(_numUIElements));
+	_overlayElement->add2D(_overlayContainer);
+	_overlayElement->show();
+	SetDepth(depth);
+
+}
+
+void eden_ec::UIComponent::Resize() {
+
+	SetRelativeDimensions(_rWidth, _rHeight);
+	SetRelativePosition(_rPos.first, _rPos.second);
+
+	_oWidth = GetDimensions().first;
+	_oHeight = GetDimensions().second;
+	_oPos = GetPosition();
+}
+
+void eden_ec::UIComponent::SetParameters() {
+	_rWidth = GetRelativeDimensions().first;
+	_rHeight = GetRelativeDimensions().second;
+	_rPos = GetRelativePosition();
+
+	_oWidth = GetDimensions().first;
+	_oHeight = GetDimensions().second;
+	_oPos = GetPosition();
 }

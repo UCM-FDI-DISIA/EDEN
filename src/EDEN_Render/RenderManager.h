@@ -11,6 +11,7 @@ namespace Ogre {
 	class Root;
 	class SceneManager;
 	class OverlaySystem;
+	class OverlayManager;
 	namespace RTShader {
 		class ShaderGenerator;
 	}
@@ -73,6 +74,8 @@ namespace eden_render
 		/// @brief Quita una entidad para dejar de actualizar su posición
 		/// @param ent Entidad que se va a quitar
 		void removeRenderEntity(eden_ec::Entity* ent);
+
+		void ResizedWindow();
 
 	private:
 		/// @brief Inicializa la librerï¿½a de renderizado,
@@ -157,6 +160,12 @@ namespace eden_render
 
 		/// @brief Conjunto de entidades para actualizar su posición
 		std::unordered_set<eden_ec::Entity*> _entities;
+
+		/// @brief Flag para saber si el canvas se ha inicializado
+		bool canvasInit = false;
+
+		/// @brief Flag para saber si la ventana ha sido escalada
+		bool resized = false;
 	};
 }
 

@@ -7,18 +7,15 @@ namespace render_wrapper {
 	class CameraWrapper;
 }
 
-namespace eden_ec {
-	class CTransform;
-}
-
 namespace eden_utils {
 	class Vector3;
 	class Quaternion;
 }
 
-namespace eden_render {
+namespace eden_ec {
 	/// @brief Componente de camara.
-	class CCamera : public eden_ec::Component {
+	class CTransform;
+	class CCamera : public Component {
 	public:
 		/// @brief Constructora por defecto de la camara
 		CCamera() = default;

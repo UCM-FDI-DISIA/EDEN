@@ -35,7 +35,7 @@ int main() {
 	// Registramos el componente Transform, que es el unico que usaremos de momento
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CTransform>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CMeshRenderer>();
-	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_render::CCamera>();
+	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CCamera>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CImage>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::Hito1Prueba>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CAnimator>();

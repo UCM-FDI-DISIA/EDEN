@@ -5,7 +5,7 @@
 
 // Archivos del proyecto
 #include "RenderManager.h"
-#include "Node.h"
+#include "NodeManager.h"
 #include "Vector3.h"
 
 render_wrapper::Light::Light(const std::string entityID, LightType type) : _entityID(entityID)
@@ -29,7 +29,7 @@ render_wrapper::Light::Light(const std::string entityID, LightType type) : _enti
 		break;
 	}
 	_light->setType(OgreLightType);
-	render_wrapper::Node::Instance()->Attach(GetRenderObject(), entityID);
+	render_wrapper::NodeManager::Instance()->Attach(GetRenderObject(), entityID);
 
 }
 void render_wrapper::Light::SetVisible(bool visibility)
@@ -51,7 +51,7 @@ void render_wrapper::Light::SetSpecular(eden_utils::Vector3 color)
 }
 void render_wrapper::Light::SetDirection(eden_utils::Vector3 dir)
 {
-	render_wrapper::Node::Instance()->LookAt(dir, _entityID);
+	render_wrapper::NodeManager::Instance()->LookAt(dir, _entityID);
 }
 Ogre::MovableObject* render_wrapper::Light::GetRenderObject()
 {

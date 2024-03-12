@@ -31,7 +31,7 @@ physics_manager::PhysicsManager::PhysicsManager()
 	//_physicsDebugDrawer = new btIDebugDraw() 
 	//_dynamicWorldRef->setDebugDrawer(_physicsDebugDrawer);
 	physics_wrapper::RayCast::Instance(_dynamicWorldRef, _physicsDebugDrawer);
-	_dynamicWorldRef->setGravity({ 0,-50,0 });
+	_dynamicWorldRef->setGravity({ 0,-10,0 });
 }
 
 btDynamicsWorld* physics_manager::PhysicsManager::GetWorld()

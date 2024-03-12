@@ -11,7 +11,7 @@ void eden_ec::CRigidBody::InitComponent()
 	//Se comprueba si la entidad tiene o no un transform, en cuyo caso lo crea y lo añade
 	if (_ent->GetComponent<CTransform>() != nullptr) {
 		_transform = _ent->GetComponent<CTransform>();
-		_rb = new physics_wrapper::RigidBody(_ent, _mass, _params);
+		_rb = new physics_wrapper::RigidBody(_ent, _mass, _params, _type);
 		physics_manager::PhysicsManager::Instance()->AddPhysicsEntity(_ent);
 	}
 
@@ -40,6 +40,11 @@ void eden_ec::CRigidBody::Init(eden_script::ComponentArguments* args) {
 	else if(shape == "CYLINDER") _params.type = physics_wrapper::RigidBody::CYLINDER;
 	else if(shape == "SPHERE") _params.type = physics_wrapper::RigidBody::SPHERE;
 	else if(shape == "CAPSULE") _params.type = physics_wrapper::RigidBody::CAPSULE;
+
+	std::string flag = args->GetValueToString("CollisionFlag");
+	if (flag == "DYNAMIC") _type = physics_wrapper::RigidBody::DYNAMIC;
+	else if (flag == "STATIC") _type = physics_wrapper::RigidBody::STATIC;
+	else if (flag == "KINEMATIC") _type = physics_wrapper::RigidBody::KINEMATIC;
 
 }
 

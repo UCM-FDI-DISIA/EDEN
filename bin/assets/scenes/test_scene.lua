@@ -33,10 +33,11 @@ Entity1 = {
             Name = "RIGIDBODY", 
             Arguments = {
                 Mass = "1",
-                AABB = "5|5|5",
+                AABB = "1|10|1",
                 PosOffset = "0|0|0",
                 Radius = "0",
-                Shape = "BOX"
+                Shape = "BOX",
+                CollisionFlag = "DYNAMIC"
             }
         }
         
@@ -115,4 +116,37 @@ Entity5 = {
 	}	
 }
 
-Entities = { Entity1, Entity2, Entity3, Entity4, Entity5 }
+Entity6 = {
+    Name = "Ground", 
+    Components = {
+        {
+            Name = "TRANSFORM", 
+            Arguments = {
+                Position = "10|-200|0",
+                Rotation = "0|0|0|0",
+                Scale = "0.2|0.05|0.2"
+            }
+        },
+        {
+            Name = "MESH_RENDERER",
+            Arguments = {
+                Mesh = "cube"
+            }
+        },
+        {
+            Name = "RIGIDBODY", 
+            Arguments = {
+                Mass = "1",
+                AABB = "100|10|100",
+                PosOffset = "0|0|0",
+                Radius = "0",
+                Shape = "BOX",
+                CollisionFlag = "STATIC"
+            }
+        }
+        
+    }
+}
+
+
+Entities = { Entity1, Entity2, Entity3, Entity4, Entity5, Entity6 }

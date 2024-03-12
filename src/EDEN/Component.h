@@ -25,9 +25,6 @@ namespace eden_ec {
         /// @param ent Es la entidad a la que pertenece el componente
         void SetContext(Entity* ent);
 
-        /// @brief Inicializa el componente para coger referencias a otros componentes de su entidad
-        virtual void InitComponent() {};
-
         /// @brief M�todo ejecutado cada frame
         /// @param t Tiempo transcurrido desde el �ltimo frame
         virtual void Update(float t) {}
@@ -50,6 +47,9 @@ namespace eden_ec {
         /// Cada componente debe redefinirlo para poder aceptar argumentos leídos desde un fichero .lua
         /// @param args Argumentos leídos desde un fichero .lua
         virtual void Init(eden_script::ComponentArguments* args) = 0;
+        
+        /// @brief Usaremos este método para añadir referencias de otros componentes
+        virtual void Start() = 0;
 	};
 }
 #endif // COMPONENT_H

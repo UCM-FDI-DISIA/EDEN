@@ -23,6 +23,8 @@ namespace physics_wrapper {
 	{
 
 	public:
+		static enum RigidBodyType { DYNAMIC, KINEMATIC, STATIC };
+
 		/// @brief Tipo de forma que se puede crear
 		static enum ShapeType { BOX, SPHERE, CAPSULE, CYLINDER };
 
@@ -43,7 +45,8 @@ namespace physics_wrapper {
 		/// @param transform Transform de la entidad
 		/// @param mass Masa del RigidBody
 		/// @param params Parametros de la forma gemoetrica inicial
-		RigidBody(eden_ec::Entity* ent, float mass, const shapeParameters& params);
+		/// @param flag Tipo de RigidBody
+		RigidBody(eden_ec::Entity* ent, float mass, const shapeParameters& params, const RigidBodyType& flag = DYNAMIC);
 
 		/// @brief Destructora del RigidbodyWrapper
 		~RigidBody();
@@ -132,7 +135,6 @@ namespace physics_wrapper {
 		void AddShape(const shapeParameters& params);
 	private:
 		btRigidBody* _rigidBody;
-		btTransform* _transform;
 		btCompoundShape* _collisionShape;
 
 		/// @brief Traduce un vector del motor a vector de Bullet

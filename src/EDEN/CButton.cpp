@@ -56,9 +56,6 @@ eden_ec::CButton::CButton(ButtonParams& params) : UIComponent() {
 eden_ec::CButton::~CButton() {
 }
 
-void eden_ec::CButton::InitComponent() {
-}
-
 void eden_ec::CButton::Init(eden_script::ComponentArguments* args) {
 	auto renderManager = eden_render::RenderManager::Instance();
 	int xPos = args->GetValueToInt("XPos");

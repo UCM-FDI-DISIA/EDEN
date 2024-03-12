@@ -41,19 +41,21 @@ void eden::Master::Loop()
 	float lastPhysicsUpdateTime = 0;
 	
 	while (!exit) {
-		int numPU = (_elapsedTime - lastPhysicsUpdateTime) / (_physicsUpdateTimeInterval * 1000);
-		for (int i = 0; i < numPU; ++i) {
-			//std::cout << "Fixed update " << lastPhysicsUpdateTime + (i * _physicsUpdateTimeInterval * 1000) << '\n';
+		int numPU = (_elapsedTime - lastPhysicsUpdateTime) / (_physicsUpdateTimeInterval);
+		if (numPU > 0) {
+			_physicsManager->UpdatePositions();
+			for (int i = 0; i < numPU; ++i) {
+				_physicsManager->updateSimulation(_physicsUpdateTimeInterval);
+				//std::cout << "Fixed update " << lastPhysicsUpdateTime + (i * _physicsUpdateTimeInterval * 1000) << '\n';
+			}
+			_physicsManager->ResolvePositions();
 		}
-		lastPhysicsUpdateTime = lastPhysicsUpdateTime + (numPU * _physicsUpdateTimeInterval*1000);
+		lastPhysicsUpdateTime = lastPhysicsUpdateTime + (numPU * _physicsUpdateTimeInterval);
 
 		frameStartTime = std::chrono::high_resolution_clock::now();
 
 		_inputManager->Update();
 		_scnManager->Update(_deltaTime);
-		_physicsManager->UpdatePositions();
-		_physicsManager->updateSimulation(_deltaTime);
-		_physicsManager->ResolvePositions();
 		_renderManager->UpdatePositions();
 		_renderManager->Update();
 		exit = _inputManager->CloseWindowEvent();

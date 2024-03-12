@@ -5,7 +5,7 @@
 #include "ComponentArguments.h"
 #include "MeshRenderer.h"
 #include "Entity.h"
-#include "Node.h"
+#include "NodeManager.h"
 #include "Vector3.h"
 
 const std::string eden_ec::CMeshRenderer::_id = "MESH_RENDERER";

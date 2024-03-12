@@ -78,6 +78,10 @@ namespace eden_ec {
         /// de la lectura de archivos .lua. Ver el proyecto de EDEN_Script para más información (ScriptManager.h)
         void AddComponents(eden_script::EntityInfo* info);
 
+        /// @brief Llama al método Start de todos los componentes
+        /// Se llama cuando todos los componentes estén creados
+        void StartComponents();
+
         /// @brief Nos devuelve un componente asociado a una entidad dada su ID
         /// @param T Tipo del componente
         /// @return Puntero a la instancia del componente asociada a la entidad

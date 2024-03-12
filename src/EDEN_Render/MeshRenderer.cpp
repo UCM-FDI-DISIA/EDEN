@@ -7,17 +7,17 @@
 
 // Archivos del proyecto
 #include "RenderManager.h"
-#include "Node.h"
+#include "NodeManager.h"
 #include "Vector3.h"
 
 render_wrapper::MeshRenderer::MeshRenderer(const std::string entityID, const std::string meshName)
 {
 	_ent = getSceneManager()->createEntity(meshName);
 
-	if (!render_wrapper::Node::Instance()->HasNode(entityID))
-		render_wrapper::Node::Instance()->CreateSceneObject(entityID);
+	if (!render_wrapper::NodeManager::Instance()->HasNode(entityID))
+		render_wrapper::NodeManager::Instance()->CreateSceneObject(entityID);
 
-	render_wrapper::Node::Instance()->Attach(GetRenderObject(), entityID);
+	render_wrapper::NodeManager::Instance()->Attach(GetRenderObject(), entityID);
 }
 
 void render_wrapper::MeshRenderer::ActivateAnim(float dt) {

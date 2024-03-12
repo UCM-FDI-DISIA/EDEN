@@ -28,6 +28,10 @@ namespace eden_ec {
 		/// @param args Argumentos leídos de .lua
 		virtual void Init(eden_script::ComponentArguments* args);
 
+		/// @brief Se usa para coger referencias a otros componentes
+		/// En este caso no se necesita
+		void Start() override{};
+
 		~CTransform() = default;
 
 		/// @brief Getter de la posici�n

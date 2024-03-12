@@ -12,10 +12,9 @@ void eden_ec::CAnimator::Init(eden_script::ComponentArguments* args) {
 	_animMeshNames = args->GetValueToStringVector("AnimMeshNames");
 	_nextAnim = args->GetValueToStringVector("NextAnim");
 	_loopAnims = args->GetValueToBoolVector("LoopAnims");
-
 }
 
-void eden_ec::CAnimator::InitComponent() {
+void eden_ec::CAnimator::Start() {
 	_meshRend = _ent->GetComponent<CMeshRenderer>();
 	_animatorWrapper = new render_wrapper::Animator(_meshRend->_renderWrapper);
 

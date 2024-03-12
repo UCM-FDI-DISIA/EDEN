@@ -29,7 +29,7 @@ namespace eden_ec {
 		virtual void Init(eden_script::ComponentArguments* args);
 
 		/// @brief Inicializa el componente para coger referencias a otros componentes de su entidad
-		virtual void InitComponent();
+		void Start() override;
 
 		/// @brief Metodo ejecutado cada frame
 		/// @param t Tiempo transcurrido desde el ultimo frame
@@ -112,6 +112,8 @@ namespace eden_ec {
 
 		/// @brief Variable que se encarga de contener los parámetros de la figura asociada al rigidBody
 		physics_wrapper::RigidBody::shapeParameters _params;
+
+		physics_wrapper::RigidBody::RigidBodyType _type;
 
 		/// @brief Referencia al wrapper de rigid body del módulo de físicas
 		physics_wrapper::RigidBody* _rb = nullptr;

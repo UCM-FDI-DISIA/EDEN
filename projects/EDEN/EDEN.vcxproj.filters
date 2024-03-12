@@ -16,6 +16,11 @@
     <ClCompile Include="..\..\src\EDEN\CAnimator.cpp" />
     <ClCompile Include="..\..\src\EDEN\Hito1Prueba.cpp" />
     <ClCompile Include="..\..\src\EDEN\CRigidBody.cpp" />
+    <ClCompile Include="..\..\src\EDEN\CButton.cpp" />
+    <ClCompile Include="..\..\src\EDEN\CCamera.cpp" />
+    <ClCompile Include="..\..\src\EDEN\CCursor.cpp" />
+    <ClCompile Include="..\..\src\EDEN\CIMage.cpp" />
+    <ClCompile Include="..\..\src\EDEN\UIComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\EDEN\Quaternion.h" />
@@ -34,5 +39,10 @@
     <ClInclude Include="..\..\src\EDEN\Hito1Prueba.h" />
     <ClInclude Include="..\..\src\EDEN\CRigidBody.h" />
     <ClInclude Include="..\..\src\EDEN\ErrorHandler.h" />
+    <ClInclude Include="..\..\src\EDEN\CButton.h" />
+    <ClInclude Include="..\..\src\EDEN\CCamera.h" />
+    <ClInclude Include="..\..\src\EDEN\CCursor.h" />
+    <ClInclude Include="..\..\src\EDEN\CIMage.h" />
+    <ClInclude Include="..\..\src\EDEN\UIComponent.h" />
   </ItemGroup>
 </Project>

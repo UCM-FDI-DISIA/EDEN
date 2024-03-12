@@ -32,6 +32,10 @@ namespace eden_ec {
 		/// @param args Argumentos le�dos de .lua
 		virtual void Init(eden_script::ComponentArguments* args);
 
+		/// @brief Se usa para coger referencias a otros componentes
+		/// En este caso no se necesita
+		void Start() override {}
+
 		~CMeshRenderer();
 
 		/// @brief Pone un material a la malla

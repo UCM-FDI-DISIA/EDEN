@@ -15,17 +15,17 @@
 #include "ShapeCreator.h"
 #include "Entity.h"
 
-physics_wrapper::RigidBody::RigidBody(eden_ec::Entity* ent, float mass, const shapeParameters& params)
+physics_wrapper::RigidBody::RigidBody(eden_ec::Entity* ent, float mass, const shapeParameters& params, const RigidBodyType& flag)
 {
 	eden_ec::CTransform* entTransform = ent->GetComponent<eden_ec::CTransform>();
 
-	_transform = new btTransform(EDENToBulletQuaternion(entTransform->GetRotation()), 
+	btTransform transform = btTransform(EDENToBulletQuaternion(entTransform->GetRotation()), 
 		EDENToBulletVector(entTransform->GetPosition()));
 
 	_collisionShape = new btCompoundShape();
 	AddShape(params);
 	
-	btDefaultMotionState* motionState = new btDefaultMotionState(*_transform);
+	btDefaultMotionState* motionState = new btDefaultMotionState(transform);
 	btVector3 localInertia = btVector3();
 	_collisionShape->calculateLocalInertia(mass, localInertia);
 
@@ -33,6 +33,18 @@ physics_wrapper::RigidBody::RigidBody(eden_ec::Entity* ent, float mass, const sh
 		motionState,
 		_collisionShape,
 		localInertia));
+
+	switch (flag) {
+		case KINEMATIC:
+			_rigidBody->setCollisionFlags(btCollisionObject::CF_KINEMATIC_OBJECT);
+			break;
+		case STATIC:
+			_rigidBody->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT);
+			break;
+		case DYNAMIC:
+			_rigidBody->setCollisionFlags(btCollisionObject::CF_DYNAMIC_OBJECT);
+			break;
+	}
 
 	physics_manager::PhysicsManager::Instance()->GetWorld()->addRigidBody(_rigidBody);
 
@@ -42,9 +54,6 @@ physics_wrapper::RigidBody::RigidBody(eden_ec::Entity* ent, float mass, const sh
 
 physics_wrapper::RigidBody::~RigidBody()
 {
-	delete _transform;
-
-
 	for (int i = 0; i < _collisionShape->getNumChildShapes(); ++i) {
 		btCollisionShape* shape = _collisionShape->getChildShape(i);
 		_collisionShape->removeChildShape(shape);
@@ -53,26 +62,27 @@ physics_wrapper::RigidBody::~RigidBody()
 	delete _collisionShape;
 }
 
+
 eden_utils::Vector3 physics_wrapper::RigidBody::GetPosition()
 {
-	return eden_utils::Vector3(BulletToEDENVector(_transform->getOrigin()));
+	btTransform transform = _rigidBody->getWorldTransform();
+	return eden_utils::Vector3(BulletToEDENVector(transform.getOrigin()));
 }
 
 void physics_wrapper::RigidBody::SetPosition(eden_utils::Vector3 position)
 {
-	_transform->setOrigin(EDENToBulletVector(position));
-	_rigidBody->getMotionState()->setWorldTransform(*_transform);
+	_rigidBody->getWorldTransform().setOrigin(EDENToBulletVector(position));
 }
 
 eden_utils::Quaternion physics_wrapper::RigidBody::GetRotation()
 {
-	return eden_utils::Quaternion(BulletToEDENQuaternion(_transform->getRotation()));
+	btTransform transform = _rigidBody->getWorldTransform();
+	return eden_utils::Quaternion(BulletToEDENQuaternion(transform.getRotation()));
 }
 
 void physics_wrapper::RigidBody::SetRotation(eden_utils::Quaternion rotation)
 {
-	_transform->setRotation(EDENToBulletQuaternion(rotation));
-	_rigidBody->getMotionState()->setWorldTransform(*_transform);
+	_rigidBody->getWorldTransform().setRotation(EDENToBulletQuaternion(rotation));
 }
 
 eden_utils::Vector3 physics_wrapper::RigidBody::GetLinearVelocity()
@@ -177,7 +187,6 @@ void physics_wrapper::RigidBody::AddShape(const shapeParameters& params)
 		shape = ShapeCreator::CreateBox(1, 1, 1);
 	}
 
-	//¿¿Esto deja leaks de memoria?? -> Mirar
 	_collisionShape->addChildShape(btTransform(EDENToBulletQuaternion(eden_utils::Quaternion::Identity()), EDENToBulletVector(params.positionOffset)),
 		shape);
 }

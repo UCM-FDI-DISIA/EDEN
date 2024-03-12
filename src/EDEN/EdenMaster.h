@@ -40,7 +40,7 @@ class SceneManager;
 		float _deltaTime = 0;
 
 		/// @brief El intervalo de tiempo (en segundos) que pasa entre dos actualizaciones físicas
-		const double _physicsUpdateTimeInterval = 1;
+		const float _physicsUpdateTimeInterval = 1.0f / 60.0f;
 		
 		/// @brief El tiempo transcurrido desde el inicio del bucle en segundos
 		float _elapsedTime = 0;

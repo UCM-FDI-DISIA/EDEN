@@ -61,6 +61,7 @@ namespace eden {
 	}
 
 	void Scene::AddGameObject(const std::string& ID, eden_ec::Entity* _ent) {
+		_ent->StartComponents();
 		_gameEntitiesList.insert({ ID, _ent });
 	}
 }

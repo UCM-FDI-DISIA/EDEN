@@ -26,9 +26,13 @@ eden_ec::Component* eden_ec::Entity::AddComponentByRead(eden_script::ComponentAr
     _components.emplace(id, c);
     c->SetContext(this);
     c->Init(info);
-    c->InitComponent();
-
     return c;
+}
+
+void eden_ec::Entity::StartComponents() {
+    for (auto cmp : _components) {
+        cmp.second->Start();
+    }
 }
 
 

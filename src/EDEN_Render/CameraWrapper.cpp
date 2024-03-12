@@ -5,7 +5,7 @@
 
 #include "CameraWrapper.h"
 #include "RenderManager.h"
-#include "Node.h"
+#include "NodeManager.h"
 #include "Vector3.h"
 #include "Quaternion.h"
 
@@ -15,12 +15,12 @@ render_wrapper::CameraWrapper::CameraWrapper(std::string entityID) : _entityID(e
 	SetFarClipDistance(10000.0f);
 	SetAutoAspectRatio(true);
 
-	if (!render_wrapper::Node::Instance()->HasNode(entityID))
-		render_wrapper::Node::Instance()->CreateSceneObject(entityID);
+	if (!render_wrapper::NodeManager::Instance()->HasNode(entityID))
+		render_wrapper::NodeManager::Instance()->CreateSceneObject(entityID);
 
 	_viewport = eden_render::RenderManager::Instance()->_window.render->addViewport(_camera);
 	SetBackgroundColor(0.9f, 0.7f, 0.7f, 1.0f);
-	render_wrapper::Node::Instance()->Attach(GetRenderObject(), entityID);
+	render_wrapper::NodeManager::Instance()->Attach(GetRenderObject(), entityID);
 }
 
 void render_wrapper::CameraWrapper::SetFarClipDistance(float distance) {
@@ -40,19 +40,19 @@ void render_wrapper::CameraWrapper::SetAutoAspectRatio(bool set) {
 }
 
 void render_wrapper::CameraWrapper::SetCameraPosition(eden_utils::Vector3 pos) {
-	render_wrapper::Node::Instance()->SetPosition(pos, _entityID);
+	render_wrapper::NodeManager::Instance()->SetPosition(pos, _entityID);
 }
 
 void render_wrapper::CameraWrapper::SetCameraRotation(eden_utils::Quaternion rot) {
-	render_wrapper::Node::Instance()->SetOrientation(rot, _entityID);
+	render_wrapper::NodeManager::Instance()->SetOrientation(rot, _entityID);
 }
 
 void render_wrapper::CameraWrapper::LookAt(eden_utils::Vector3 lookat) {
-	render_wrapper::Node::Instance()->LookAt(lookat, _entityID);
+	render_wrapper::NodeManager::Instance()->LookAt(lookat, _entityID);
 }
 
 eden_utils::Vector3 render_wrapper::CameraWrapper::GetCameraPosition() const {
-	return render_wrapper::Node::Instance()->GetPosition(_entityID);
+	return render_wrapper::NodeManager::Instance()->GetPosition(_entityID);
 }
 
 Ogre::MovableObject* render_wrapper::CameraWrapper::GetRenderObject() {

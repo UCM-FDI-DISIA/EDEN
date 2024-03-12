@@ -32,7 +32,7 @@ struct NativeWindowPair
 	NativeWindowType* native = nullptr;
 };
 namespace render_wrapper {
-	class Node;
+	class NodeManager;
 	class RenderObject;
 	class CameraWrapper;
 }
@@ -45,7 +45,7 @@ namespace eden_render
 		friend Singleton<RenderManager>;
 
 		/// @brief Nodo del RenderWrapper
-		friend render_wrapper::Node;
+		friend render_wrapper::NodeManager;
 		friend render_wrapper::RenderObject;
 		friend render_wrapper::CameraWrapper;
 		

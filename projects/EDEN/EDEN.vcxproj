@@ -30,6 +30,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\src\EDEN\CAnimator.h" />
     <ClInclude Include="..\..\src\EDEN\CMeshRenderer.h" />
+    <ClInclude Include="..\..\src\EDEN\ErrorHandler.h" />
     <ClInclude Include="..\..\src\EDEN\Hito1Prueba.h" />
     <ClInclude Include="..\..\src\EDEN\CRigidBody.h" />
     <ClInclude Include="..\..\src\EDEN\Quaternion.h" />

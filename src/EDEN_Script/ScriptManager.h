@@ -5,6 +5,8 @@
 #include <vector>
 #include <unordered_map>
 
+#include <exception>
+
 #include "Singleton.h"
 
 struct lua_State;
@@ -16,8 +18,12 @@ namespace eden_script {
 
 #define SCENE_ROUTE "assets\\scenes\\"
 #define SCENE_EXTENSION ".lua"
-#define ERROR_DEFINITION "Lua error in line "+ std::to_string(__LINE__)
-#define __FILENAME__ (strrchr(__FILE__, '\\') ? strrchr(__FILE__, '\\') + 1 : __FILE__)
+//
+//#define ERROR_DEFINITION "Lua error in line "+ std::to_string(__LINE__)
+//#define __FILENAME__ (strrchr(__FILE__, '\\') ? strrchr(__FILE__, '\\') + 1 : __FILE__)
+
+// #define ASSERT_EDEN(a, b) assert((void)b, a)
+// #define _MACRO_AA(b) std::cerr << #b << "\n\n\n\n\n\n\n"
 
 #define ENTITY_TABLE_NAME "Entities"
 #define NUM_ENTITIES "numEntities"

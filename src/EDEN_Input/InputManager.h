@@ -230,4 +230,4 @@ namespace eden_input
 	};
 }
 
-#endif __INPUT_MANAGER_H__
+#endif // __INPUT_MANAGER_H__

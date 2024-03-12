@@ -4,6 +4,8 @@
 
 #include <lua.hpp>
 
+#include "ErrorHandler.h"
+
 #include "ScriptManager.h"
 #include "ComponentArguments.h"
 
@@ -24,6 +26,7 @@ bool eden_script::ScriptManager::CheckLua(int err) {
 		// Cogemos el mensaje de error que se ha generado en el Stack de Lua y lo lanzamos en Debug.
 		std::string errorMsg = lua_tostring(L, -1);
 		std::cerr << "Lua ERROR: " << errorMsg << '\n';
+		EDEN_WARNING(errorMsg.c_str());
 	}
 #endif
 	

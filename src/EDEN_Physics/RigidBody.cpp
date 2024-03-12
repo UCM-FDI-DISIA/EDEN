@@ -65,8 +65,7 @@ physics_wrapper::RigidBody::~RigidBody()
 
 eden_utils::Vector3 physics_wrapper::RigidBody::GetPosition()
 {
-	btTransform transform;
-	_rigidBody->getMotionState()->getWorldTransform(transform);
+	btTransform transform = _rigidBody->getWorldTransform();
 	return eden_utils::Vector3(BulletToEDENVector(transform.getOrigin()));
 }
 

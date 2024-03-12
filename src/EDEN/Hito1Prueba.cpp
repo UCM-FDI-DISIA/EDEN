@@ -9,6 +9,9 @@ const std::string eden_ec::Hito1Prueba::_id = "PRUEBA";
 
 void eden_ec::Hito1Prueba::Init(eden_script::ComponentArguments* args) {
 	inputManager = eden_input::InputManager::Instance();
+}
+
+void eden_ec::Hito1Prueba::Start() {
 	transform = _ent->GetComponent<CTransform>();
 	animator = _ent->GetComponent<CAnimator>();
 	animator->PlayAnim("Idle");

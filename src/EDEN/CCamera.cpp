@@ -17,8 +17,11 @@ eden_ec::CCamera::~CCamera() {
 
 void eden_ec::CCamera::Init(eden_script::ComponentArguments* args) {
 	_cameraWrapper = new render_wrapper::CameraWrapper(_ent->GetEntityID());
-	_transform = _ent->GetComponent<eden_ec::CTransform>();
 	eden_render::RenderManager::Instance()->addRenderEntity(_ent);
+}
+
+void eden_ec::CCamera::Start() {
+	_transform = _ent->GetComponent<eden_ec::CTransform>();
 }
 
 void eden_ec::CCamera::Update(float dt) {

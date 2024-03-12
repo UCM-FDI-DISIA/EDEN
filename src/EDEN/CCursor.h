@@ -22,13 +22,16 @@ namespace eden_ec {
 		/// @brief Constructora de la clase Cursor
 		CCursor(float width,float height, std::string texture, int depth = 0);
 
-
 		/// @brief Destructora de la clase Cursor
 		~CCursor();
 
 		/// @brief Construye el componente dado unos argumentos. Se obtendrán de una lectura de un .lua
 		/// @param args Argumentos leídos de .lua
 		virtual void Init(eden_script::ComponentArguments* args);
+
+		/// @brief Se usa para coger referencias a otros componentes
+		/// En este caso no se necesita
+		void Start() override {}
 
 		/// @brief Método update heredado de component 
 		void Update(float deltaTime) override;

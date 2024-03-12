@@ -30,11 +30,15 @@ namespace eden_ec {
 		/// @brief Constructora vacia
 		CButton() = default;
 
-		/// @brief Constructora de la case 
+		/// @brief Constructora de la clase 
 		CButton(ButtonParams& params);
 
 		/// @brief Método update heredado de component
 		void Update(float deltaTime) override;
+
+		/// @brief Se usa para coger referencias a otros componentes
+		/// En este caso no se necesita
+		void Start() override{}
 
 		/// @brief Destructora
 		~CButton();

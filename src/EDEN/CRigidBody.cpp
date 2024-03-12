@@ -6,7 +6,7 @@
 
 const std::string eden_ec::CRigidBody::_id = "RIGIDBODY";
 
-void eden_ec::CRigidBody::InitComponent()
+void eden_ec::CRigidBody::Start()
 {
 	//Se comprueba si la entidad tiene o no un transform, en cuyo caso lo crea y lo añade
 	if (_ent->GetComponent<CTransform>() != nullptr) {

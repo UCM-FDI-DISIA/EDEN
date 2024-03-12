@@ -19,6 +19,8 @@ namespace eden_ec {
 
 		void Init(eden_script::ComponentArguments* args) override;
 
+		void Start() override;
+
 		void Update(float t) override;
 
 		void HandleInput() override;

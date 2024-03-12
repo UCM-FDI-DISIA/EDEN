@@ -24,6 +24,7 @@ namespace eden_ec {
 
 		virtual void Init(eden_script::ComponentArguments* args);
 		virtual void Update(float t);
+		void Start() override;
 		static std::string GetID() { return _id; }
 
 		void PlayAnim(std::string ID);

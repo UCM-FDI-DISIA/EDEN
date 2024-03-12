@@ -27,6 +27,9 @@ namespace eden_ec {
 		/// @param args Argumentos leidos de un .lua
 		void Init(eden_script::ComponentArguments* args) override;
 
+		/// @brief Guarda la referencia al transform
+		void Start() override;
+
 		/// @brief Metodo que se ejecutara cada frame y actualizara constantemente la posicion de la camara en caso de que la entidad
 		/// a la que este enganchada se mueva
 		/// @param dt Tiempo transcurrido desde el ultimo frame

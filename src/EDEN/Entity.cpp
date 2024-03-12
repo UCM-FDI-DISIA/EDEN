@@ -29,6 +29,12 @@ eden_ec::Component* eden_ec::Entity::AddComponentByRead(eden_script::ComponentAr
     return c;
 }
 
+void eden_ec::Entity::StartComponents() {
+    for (auto cmp : _components) {
+        cmp.second->Start();
+    }
+}
+
 
 bool eden_ec::Entity::HasComponent(std::string id) {
     return _components.count(id);

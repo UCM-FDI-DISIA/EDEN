@@ -28,6 +28,10 @@ namespace eden_ec {
 		/// @param args Argumentos leídos de .lua
 		void Init(eden_script::ComponentArguments* args) override;
 
+		/// @brief Se usa para coger referencias a otros componentes
+		/// En este caso no se necesita
+		void Start() override {}
+
 		/// @brief Definición de método estático GetID necesario para construcción de componentes
 		static std::string GetID() { return _id; }
 	protected:

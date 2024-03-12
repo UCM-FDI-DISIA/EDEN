@@ -47,6 +47,9 @@ namespace eden_ec {
         /// Cada componente debe redefinirlo para poder aceptar argumentos leídos desde un fichero .lua
         /// @param args Argumentos leídos desde un fichero .lua
         virtual void Init(eden_script::ComponentArguments* args) = 0;
+        
+        /// @brief Usaremos este método para añadir referencias de otros componentes
+        virtual void Start() = 0;
 	};
 }
 #endif // COMPONENT_H

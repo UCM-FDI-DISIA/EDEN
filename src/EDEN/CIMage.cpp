@@ -1,14 +1,14 @@
-#include "CImage.h"
-
-#include "..\RenderManager.h"
-#include "..\EDEN_Script\ScriptManager.h"
-#include "..\EDEN_Script\ComponentArguments.h"
-
 #include <OgreOverlay.h>
 #include <OgreOverlayContainer.h>
 #include <OgreOverlayElement.h>
 #include <OgreOverlayManager.h>
 #include <iostream>
+
+#include "CImage.h"
+#include "RenderManager.h"
+#include "ScriptManager.h"
+#include "ComponentArguments.h"
+
 
 const std::string eden_ec::CImage::_id = "IMAGE";
 
@@ -41,8 +41,6 @@ eden_ec::CImage::CImage(std::string overlayName, float xPos, float yPos,
 	SetDepth(depth);
 
 }
-
-void eden_ec::CImage::InitComponent() {}
 
 eden_ec::CImage::~CImage() {}
 

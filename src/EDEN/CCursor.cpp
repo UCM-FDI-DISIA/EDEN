@@ -15,8 +15,6 @@ eden_ec::CCursor::CCursor(float width, float height, std::string texture,int dep
 
 }
 
-void eden_ec::CCursor::InitComponent() {}
-
 eden_ec::CCursor::~CCursor() {
 	delete _image;
 }

@@ -25,9 +25,6 @@ namespace eden_ec {
         /// @param ent Es la entidad a la que pertenece el componente
         void SetContext(Entity* ent);
 
-        /// @brief Inicializa el componente para coger referencias a otros componentes de su entidad
-        virtual void InitComponent() {};
-
         /// @brief M�todo ejecutado cada frame
         /// @param t Tiempo transcurrido desde el �ltimo frame
         virtual void Update(float t) {}

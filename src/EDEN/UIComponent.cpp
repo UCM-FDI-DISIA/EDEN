@@ -1,14 +1,12 @@
-#include "UIComponent.h"
-
-//#include "UIManager.h"
-#include "../EDEN_Input/InputManager.h"
-//#include "SeparityUtils\checkML.h"
-
-
 #include <OgreOverlay.h>
 #include <OgreOverlayContainer.h>
 #include <OgreOverlayManager.h> 
 #include <OgreTextAreaOverlayElement.h>
+
+#include "UIComponent.h"
+//#include "UIManager.h"
+#include "InputManager.h"
+//#include "SeparityUtils\checkML.h"
 
 const std::string eden_ec::UIComponent::_id = "UICOMPONENT";
 int eden_ec::UIComponent::_numUIElements = 0;

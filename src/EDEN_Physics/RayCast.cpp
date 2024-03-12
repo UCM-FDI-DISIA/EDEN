@@ -1,8 +1,10 @@
+#include <BulletDynamics/Dynamics/btDynamicsWorld.h>
+#include <BulletDynamics/Dynamics/btRigidBody.h>
+#include <LinearMath/btIDebugDraw.h>
+
 #include "RayCast.h"
+#include "Entity.h"
 #include "PhysicsManager.h"
-#include "BulletDynamics/Dynamics/btDynamicsWorld.h"
-#include "BulletDynamics/Dynamics/btRigidBody.h"
-#include "../../dependencies/Bullet/src/src/LinearMath/btIDebugDraw.h"
 
 
 physics_wrapper::RayCast::RayCast(btDynamicsWorld* worldRef, btIDebugDraw* drawerRef)
@@ -11,7 +13,7 @@ physics_wrapper::RayCast::RayCast(btDynamicsWorld* worldRef, btIDebugDraw* drawe
 	_debugDrawer = drawerRef;
 }
 
-const physics_wrapper::RayCastHitResult& physics_wrapper::RayCast::singleHitRayCast(const eden_utils::Vector3 rayOrigin, const eden_utils::Vector3 rayDestiny, const bool drawDebugLine, const eden_utils::Vector3 debugLineColor) const
+const physics_wrapper::RayCastHitResult& physics_wrapper::RayCast::SingleHitRayCast(const eden_utils::Vector3 rayOrigin, const eden_utils::Vector3 rayDestiny, const bool drawDebugLine, const eden_utils::Vector3 debugLineColor) const
 {
 	btVector3 origin(rayOrigin.GetX(), rayOrigin.GetY(), rayOrigin.GetZ());
 	btVector3 destiny(rayDestiny.GetX(), rayDestiny.GetY(), rayDestiny.GetZ());
@@ -28,7 +30,7 @@ const physics_wrapper::RayCastHitResult& physics_wrapper::RayCast::singleHitRayC
 	return hitResult;
 }
 
-const std::vector<physics_wrapper::RayCastHitResult> physics_wrapper::RayCast::multipleHitRayCast(const eden_utils::Vector3 rayOrigin, const eden_utils::Vector3 rayDestiny, const bool drawDebugLine, const eden_utils::Vector3 debugLineColor) const
+const std::vector<physics_wrapper::RayCastHitResult> physics_wrapper::RayCast::MultipleHitRayCast(const eden_utils::Vector3 rayOrigin, const eden_utils::Vector3 rayDestiny, const bool drawDebugLine, const eden_utils::Vector3 debugLineColor) const
 {
 	btVector3 origin(rayOrigin.GetX(), rayOrigin.GetY(), rayOrigin.GetZ());
 	btVector3 destiny(rayDestiny.GetX(), rayDestiny.GetY(), rayDestiny.GetZ());
@@ -50,9 +52,4 @@ const std::vector<physics_wrapper::RayCastHitResult> physics_wrapper::RayCast::m
 		multipleHitResult[i] = { result.hasHit(), rHitPoint, rHitNormal, hitEntity };
 	}
 	return multipleHitResult;
-}
-
-physics_wrapper::RayCast::~RayCast()
-{
-	
 }

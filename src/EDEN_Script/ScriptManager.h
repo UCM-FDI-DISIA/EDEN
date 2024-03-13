@@ -16,7 +16,7 @@ namespace eden_script {
 	// Esta Macro se usa para ver la informacion que se esta leyendo del mapa por salida estandar
 #define _DEBUGGING_SCENE_READING
 
-#ifdef __WINDOWS__
+#ifdef _MSC_VER
 #define SCENE_ROUTE "assets\\scenes\\"
 #endif
 #ifdef __APPLE__

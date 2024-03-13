@@ -1,7 +1,7 @@
 #ifndef C_MESH_RENDERER_H
 #define C_MESH_RENDERER_H
 
-#ifdef __WINDOWS__
+#ifdef _MSC_VER
 #define MESH_ROUTE "assets\\mesh\\"
 #define MATERIAL_ROUTE "assets\\material\\"
 #endif

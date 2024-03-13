@@ -6,7 +6,7 @@
 #include <string>
 
 //Debe incluirse en el .h para que no se generen errores de tipo del struct shapeParameters
-#ifdef _MSV_VER
+#ifdef _MSC_VER
 #include "RigidBody.h"
 #endif
 #ifdef __clang__

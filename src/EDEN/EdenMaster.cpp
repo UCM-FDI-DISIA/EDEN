@@ -1,6 +1,6 @@
 //Borrar, solo por motivos de test
 #include <iostream>
-#ifdef __WINDOWS__
+#ifdef _MSC_VER
 #include <windows.h>
 #endif
 #include <ctime>

@@ -1,6 +1,8 @@
 //Borrar, solo por motivos de test
 #include <iostream>
-#include <windows.h>  
+#ifdef __WINDOWS__
+#include <windows.h>
+#endif
 #include <ctime>
 #include <chrono>
 
@@ -17,7 +19,12 @@ eden::Master::Master()
 	if (!_renderManager->couldInitialize()) {
 		delete _renderManager;
 		std::string error = "EdenMaster ERROR in line 16: RenderManager could not initialize\n";
+#ifdef _MSC_VER
 		throw std::exception(error.c_str());
+#endif
+#ifdef __clang__
+		throw std::exception();
+#endif
 	}
 	_inputManager = eden_input::InputManager::Instance();
 	_scnManager = SceneManager::Instance();

@@ -35,7 +35,7 @@ namespace physics_wrapper {
 			ShapeType type;
 			/// @brief Radio (en caso de esfera y capsula)
 			float radius;
-			/// @brief Longitudes de anchura, altura y profundidad (caso caja, altura en cápsula y cilindro)
+			/// @brief Longitudes de anchura, altura y profundidad (caso caja, altura en capsula y cilindro)
 			eden_utils::Vector3 length;
 			/// @brief Offset de posicion con respecto al centro del RigidBody
 			eden_utils::Vector3 positionOffset;
@@ -75,7 +75,7 @@ namespace physics_wrapper {
 		/// @param velocity Vector de velocidad a la que quieres establecer
 		void SetLinealVelocity(eden_utils::Vector3 velocity);
 
-		/// @brief Añade velocidad lineal al RigidBody
+		/// @brief Aï¿½ade velocidad lineal al RigidBody
 		/// @param velocity Vector de velocidad que quieres sumar
 		void AddLinearVelocity(eden_utils::Vector3 velocity);
 
@@ -87,7 +87,7 @@ namespace physics_wrapper {
 		/// @param velocity Vector de angular a la que quieres establecer
 		void SetAngularVelocity(eden_utils::Vector3 velocity);
 
-		/// @brief Añade velocidad angular al RigidBody
+		/// @brief Annade velocidad angular al RigidBody
 		/// @param velocity Vector de velocidad que quieres sumar
 		void AddAngularVelocity(eden_utils::Vector3 velocity);
 
@@ -119,19 +119,19 @@ namespace physics_wrapper {
 		/// @param scale Valor de la escala nueva que se quiere dar
 		void SetScale(eden_utils::Vector3 scale);
 
-		/// @brief Añade una fuerza al RigidBody
+		/// @brief Annade una fuerza al RigidBody
 		/// @param force Vector de fuerza que quieres aplicar
 		void ApplyForce(eden_utils::Vector3 force);
 
-		/// @brief Añade torquue al RigidBody
+		/// @brief Annade torquue al RigidBody
 		/// @param torque Vector de torque que quieres aplicar
 		void ApplyTorque(eden_utils::Vector3 torque);
 
 		/// @brief Quita las fuerzas que se aplican sobre el RigidBody
 		void ClearForce();
 
-		/// @brief Añade una forma al RigidBody
-		/// @param params Parametros de la forma que se vaya a añadir
+		/// @brief Annade una forma al RigidBody
+		/// @param params Parametros de la forma que se vaya a aï¿½adir
 		void AddShape(const shapeParameters& params);
 	private:
 		btRigidBody* _rigidBody;

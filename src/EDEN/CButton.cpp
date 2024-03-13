@@ -1,10 +1,10 @@
 #include "CButton.h"
 
 #include "Entity.h"
-#include "..\EDEN_Input\InputManager.h"
-#include"..\RenderManager.h"
-#include "..\EDEN_Script\ScriptManager.h"
-#include "..\EDEN_Script\ComponentArguments.h"
+#include "InputManager.h"
+#include "RenderManager.h"
+#include "ScriptManager.h"
+#include "ComponentArguments.h"
 #include <iostream>
 
 const std::string eden_ec::CButton::_id = "BUTTON";
@@ -27,7 +27,7 @@ eden_ec::CButton::CButton(ButtonParams& params) : UIComponent() {
 
 	CreateImage(params.overlayName, params.xPos, params.yPos,
 		params.width, params.height, params.iniTex, params.depth);
-	// Posiciones necesarias para el input de ratón
+	// Posiciones necesarias para el input de ratï¿½n
 	// top + height
 	_topPosition = params.yPos;
 	_bottomPosition = _topPosition + params.height;
@@ -64,7 +64,7 @@ void eden_ec::CButton::Init(eden_script::ComponentArguments* args) {
 	CreateImage(args->GetValueToString("OverlayName"),xPos, yPos,
 		width, height, _iniTex, args->GetValueToInt("Depth"));
 
-	// Posiciones necesarias para el input de ratón
+	// Posiciones necesarias para el input de ratï¿½n
 	// top + height
 	_topPosition = yPos;
 	_bottomPosition = _topPosition + height;
@@ -83,7 +83,7 @@ void eden_ec::CButton::Update(float deltaTime) {
 }
 
 void eden_ec::CButton::ButtonRectUpdate() {
-	// Posiciones necesarias para el input de ratón
+	// Posiciones necesarias para el input de ratï¿½n
    // top + height
 	_topPosition = _oPos.second;
 	_bottomPosition = _topPosition + _oHeight;

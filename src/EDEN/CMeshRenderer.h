@@ -1,8 +1,14 @@
 #ifndef C_MESH_RENDERER_H
 #define C_MESH_RENDERER_H
 
+#ifdef __WINDOWS__
 #define MESH_ROUTE "assets\\mesh\\"
 #define MATERIAL_ROUTE "assets\\material\\"
+#endif
+#ifdef __APPLE__
+#define MESH_ROUTE "assets/mesh/"
+#define MATERIAL_ROUTE "assets/material/"
+#endif
 
 // Librerias de C++
 #include <string>

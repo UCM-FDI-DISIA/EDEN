@@ -111,7 +111,12 @@ void eden_render::RenderManager::InitializeLib()
 
 	if (!Ogre::FileSystemLayer::fileExists(pluginsPath)) { // si no existe el plugin -> excepción de Ogre
 		std::string error = "RenderManager ERROR in line 121: failed finding file plugins.cfg. Searched on dir: " + pluginsPath + "\n";
+#ifdef _MSC_VER
 		throw std::exception(error.c_str());
+#endif
+#ifdef __clang__
+		throw std::exception();
+#endif
 	}
 	_solutionPath = pluginsPath; // copia la direcci�n de los plugins
 	_solutionPath.resize(_solutionPath.size() - nameFile.size()); // y la reajusta
@@ -127,7 +132,12 @@ void eden_render::RenderManager::InitializeLib()
 	else
 	{
 		std::string error = "RenderManager ERROR in line 134: failed creating Ogre::Root\n";
+#ifdef _MSC_VER
 		throw std::exception(error.c_str());
+#endif
+#ifdef __clang__
+		throw std::exception();
+#endif
 	}
 }
 
@@ -164,7 +174,12 @@ void eden_render::RenderManager::InitialiseRTShaderSystem()
 	}
 	else {
 		std::string error = "RenderManager ERROR in line 171: failed initializing\n";
+#ifdef _MSC_VER
 		throw std::exception(error.c_str());
+#endif
+#ifdef __clang__
+		throw std::exception();
+#endif
 	}
 }
 
@@ -204,7 +219,12 @@ NativeWindowPair eden_render::RenderManager::CreateNewWindow(const std::string& 
 	SDL_VERSION(&wmInfo.version);
 	SDL_GetWindowWMInfo(_window.native, &wmInfo);
 
+#ifdef SDL_VIDEO_DRIVER_WINDOWS
 	miscParams["externalWindowHandle"] = Ogre::StringConverter::toString(size_t(wmInfo.info.win.window));
+#endif
+#ifdef SDL_VIDEO_DRIVER_COCOA
+	miscParams["externalWindowHandle"] = Ogre::StringConverter::toString(size_t(wmInfo.info.cocoa.window));
+#endif
 
 	_window.render = _root->createRenderWindow(name, w, h, false, &miscParams);
 	return _window;
@@ -264,7 +284,12 @@ void eden_render::RenderManager::LocateResources()
 	else
 	{
 		std::string error = "RenderManager ERROR in line 241: file resources.cfg not found in path " + resourcesPath +"\n";
+#ifdef _MSC_VER
 		throw std::exception(error.c_str());
+#endif
+#ifdef __clang__
+		throw std::exception();
+#endif
 	}
 }
 

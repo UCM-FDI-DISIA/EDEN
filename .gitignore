@@ -52,6 +52,9 @@
 [Tt]emp/
 [Ll]ib/
 .vs/
+.idea/
+cmake-build-debug/
+cmake-build-release/
 
 [Dd]ependencies/[Oo]gre/[Bb]uild/
 [Dd]ependencies/[Bb]ullet/[Bb]uild/

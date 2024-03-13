@@ -1,4 +1,6 @@
 #include <iostream>
+#include <vector>
+#include <exception>
 
 #include "ComponentArguments.h"
 #include "Vector3.h"
@@ -9,7 +11,12 @@ namespace eden_script {
 	void ComponentArguments::HandleArgumentError(std::string id, std::string type, int numArgs) {
 		std::string errorMsg = "Error while constructing '" + _id + "' component. Argument '" + id + "' has more or less than " + std::to_string(numArgs) + " value(s), so it can't be converted to " + type;
 		std::cerr << errorMsg;
+#ifdef _MSC_VER
 		throw(std::exception(errorMsg.c_str()));
+#endif
+#ifdef __clang__
+		throw std::exception();
+#endif
 	};
 
 	std::vector<std::string> ComponentArguments::GetKey(std::string id, std::string type, int numArgs) {
@@ -25,8 +32,13 @@ namespace eden_script {
 		else {
 			// error
 			std::cerr << '\'' << id << "' was not found while constructing '" << _id <<'\'' << '\n';
-			// deberíamos tirar excepción aquí o algo?
+			// deberï¿½amos tirar excepciï¿½n aquï¿½ o algo?
+#ifdef _MSC_VER
 			throw(std::exception("\n\n"));
+#endif
+#ifdef __clang__
+			throw std::exception();
+#endif
 			return std::vector<std::string>();
 		}
 	}
@@ -39,8 +51,13 @@ namespace eden_script {
 		else {
 			// error
 			std::cerr << '\'' << id << "' was not found while constructing '" << _id << '\'' << '\n';
-			// deberíamos tirar excepción aquí o algo?
+			// deberï¿½amos tirar excepciï¿½n aquï¿½ o algo?
+#ifdef _MSC_VER
 			throw(std::exception("\n\n"));
+#endif
+#ifdef __clang__
+			throw std::exception();
+#endif
 			return std::vector<std::string>();
 		}
 	}

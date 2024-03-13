@@ -6,14 +6,15 @@
 #include <string>
 
 //Debe incluirse en el .h para que no se generen errores de tipo del struct shapeParameters
+#ifdef _MSV_VER
 #include "RigidBody.h"
+#endif
+#ifdef __clang__
+#include "./../EDEN_Physics/RigidBody.h"
+#endif
 
 namespace physics_manager {
 	class PhysicsManager;
-}
-
-namespace physics_wrapper {
-	class RigidBody;
 }
 
 namespace eden_ec {
@@ -49,7 +50,7 @@ namespace eden_ec {
 		/// @param velocity Vector de velocidad a la que quieres establecer
 		void SetLinealVelocity(eden_utils::Vector3 velocity);
 
-		/// @brief Añade velocidad lineal al RigidBody
+		/// @brief Annade velocidad lineal al RigidBody
 		/// @param velocity Vector de velocidad que quieres sumar
 		void AddLinearVelocity(eden_utils::Vector3 velocity);
 
@@ -61,7 +62,7 @@ namespace eden_ec {
 		/// @param velocity Vector de angular a la que quieres establecer
 		void SetAngularVelocity(eden_utils::Vector3 velocity);
 
-		/// @brief Añade velocidad angular al RigidBody
+		/// @brief Annade velocidad angular al RigidBody
 		/// @param velocity Vector de velocidad que quieres sumar
 		void AddAngularVelocity(eden_utils::Vector3 velocity);
 
@@ -89,18 +90,18 @@ namespace eden_ec {
 		/// @param damping Valor de damping que quieres establecer
 		void SetDamping(float damping);
 
-		/// @brief Añade una fuerza al RigidBody
+		/// @brief Annade una fuerza al RigidBody
 		/// @param force Vector de fuerza que quieres aplicar
 		void ApplyForce(eden_utils::Vector3 force);
 
-		/// @brief Añade torquue al RigidBody
+		/// @brief Annade torquue al RigidBody
 		/// @param torque Vector de torque que quieres aplicar
 		void ApplyTorque(eden_utils::Vector3 torque);
 
 		/// @brief Quita las fuerzas que se aplican sobre el RigidBody
 		void ClearForce();
 
-		/// @brief Definición de método estático GetID necesario para construcción de componentes
+		/// @brief Definicion de metodo estatico GetID necesario para construccion de componentes
 		static std::string GetID() { return _id; }
 
 	protected:
@@ -110,21 +111,21 @@ namespace eden_ec {
 		/// @brief Masa asociada al rigidBody
 		float _mass;
 
-		/// @brief Variable que se encarga de contener los parámetros de la figura asociada al rigidBody
+		/// @brief Variable que se encarga de contener los parametros de la figura asociada al rigidBody
 		physics_wrapper::RigidBody::shapeParameters _params;
 
 		physics_wrapper::RigidBody::RigidBodyType _type;
 
-		/// @brief Referencia al wrapper de rigid body del módulo de físicas
+		/// @brief Referencia al wrapper de rigid body del modulo de fisicas
 		physics_wrapper::RigidBody* _rb = nullptr;
 
 		/// @brief Referencia al componente transform
 		eden_ec::CTransform* _transform = nullptr;
 
-		/// @brief Convierte el componente transform propio al transform del motor de físicas
+		/// @brief Convierte el componente transform propio al transform del motor de fisicas
 		void EdenTransformToPhysicsTransform();
 
-		/// @brief Convierte el transform del motor de físicas al componente transform propio
+		/// @brief Convierte el transform del motor de fisicas al componente transform propio
 		void PhysicsTransformToEdenTransform();
 	};
 

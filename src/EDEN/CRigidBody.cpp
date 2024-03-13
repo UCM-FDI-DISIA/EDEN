@@ -1,5 +1,4 @@
 #include "CRigidBody.h"
-#include "RigidBody.h"
 #include "ComponentArguments.h"
 #include "Entity.h"
 #include "PhysicsManager.h"
@@ -8,7 +7,7 @@ const std::string eden_ec::CRigidBody::_id = "RIGIDBODY";
 
 void eden_ec::CRigidBody::Start()
 {
-	//Se comprueba si la entidad tiene o no un transform, en cuyo caso lo crea y lo añade
+	//Se comprueba si la entidad tiene o no un transform, en cuyo caso lo crea y lo aï¿½ade
 	if (_ent->GetComponent<CTransform>() != nullptr) {
 		_transform = _ent->GetComponent<CTransform>();
 		_rb = new physics_wrapper::RigidBody(_ent, _mass, _params, _type);

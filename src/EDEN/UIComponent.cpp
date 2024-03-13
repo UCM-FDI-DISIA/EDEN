@@ -147,7 +147,7 @@ void eden_ec::UIComponent::CreateImage(std::string overlayName, float xPos, floa
 	_overlayContainer->setDimensions(width, height);
 	_overlayContainer->setMaterialName(_texture);
 
-	// Creo un elemento overlay para añadirle el panel
+	// Creo un elemento overlay para aï¿½adirle el panel
 	_overlayElement =
 		_overlayManager->create("over"+ std::to_string(_numUIElements));
 	_overlayElement->add2D(_overlayContainer);

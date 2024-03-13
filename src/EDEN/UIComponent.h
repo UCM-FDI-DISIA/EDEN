@@ -1,4 +1,3 @@
-#pragma once
 #ifndef __UI_COMPONENT_H__
 #define __UI_COMPONENT_H__
 
@@ -12,9 +11,9 @@ namespace Ogre {
 	class OverlayManager;
 	class Overlay;
 	class OverlayContainer;
-	enum GuiMetricsMode;
-	enum GuiHorizontalAlignment;
-	enum GuiVerticalAlignment;
+	enum GuiMetricsMode : unsigned int;
+	enum GuiHorizontalAlignment : unsigned int;
+	enum GuiVerticalAlignment : unsigned int;
 }  // namespace Ogre
 
 namespace eden_input {
@@ -128,7 +127,7 @@ namespace eden_ec {
 		/// @brief Devuelve el tipo de metricas del componente
 		Ogre::GuiMetricsMode const& GetMetrics();
 
-		/// @brief Escala el tamaño y posicion 
+		/// @brief Escala el tamaï¿½o y posicion 
 		void Resize();
 
 		/// @brief Establece los valores base

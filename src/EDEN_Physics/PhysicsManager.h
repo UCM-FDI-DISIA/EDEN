@@ -29,13 +29,13 @@ namespace physics_manager {
 		friend Singleton<PhysicsManager>;
 		friend physics_wrapper::RigidBody;
 	public:
-		/// @brief Devuelve la entidad asociada a un sólido rígido
+		/// @brief Devuelve la entidad asociada a un sï¿½lido rï¿½gido
 		/// @param RBRef Referencia del rigidbody que queremos buscar
-		/// @return Devuelve la referencia a la entidad asociada al rigid body pasado como parámetro, o nullptr si no existe
+		/// @return Devuelve la referencia a la entidad asociada al rigid body pasado como parï¿½metro, o nullptr si no existe
 		//const eden_ec::Entity* getEntity(const class btRigidBody* RBRef) const;
 
-		/// @brief Realiza una actualización de la simulación física
-		/// @param deltaTime Tiempo entre simulaciones físicas, como la simulación se llama con el FixedUdpate, este tiempo es fijo y constante
+		/// @brief Realiza una actualizaciï¿½n de la simulaciï¿½n fï¿½sica
+		/// @param deltaTime Tiempo entre simulaciones fï¿½sicas, como la simulaciï¿½n se llama con el FixedUdpate, este tiempo es fijo y constante
 		void updateSimulation(float deltaTime);
 
 		/// @brief Devuelve la gravedad del mundo
@@ -58,29 +58,29 @@ namespace physics_manager {
 
 		~PhysicsManager() override;
 	protected:
-		/// @brief La constructora se encarga de crear el mundo de la simulación física y el objeto encargado de dibujar 
+		/// @brief La constructora se encarga de crear el mundo de la simulaciï¿½n fï¿½sica y el objeto encargado de dibujar 
 		PhysicsManager();
 	private:
-		/// @brief Mapa desordenado que asigna a cada Entidad su rigidbody correspondiente en la simulación física
+		/// @brief Mapa desordenado que asigna a cada Entidad su rigidbody correspondiente en la simulaciï¿½n fï¿½sica
 		//std::unordered_map<const class btRigidBody*, eden_ec::Entity*> _entitiesMap;
 		std::unordered_set<eden_ec::Entity*> _entitiesSet;
 
-		/// @brief Referencia al mundo de la simulación física
+		/// @brief Referencia al mundo de la simulaciï¿½n fï¿½sica
 		btDynamicsWorld* _dynamicWorldRef;
 
 		/// @brief Encargado de hacer dibujos con caracter de debug
 		btIDebugDraw* _physicsDebugDrawer;
 
-		/// @brief Clase de bullet encargada de determinar el algortimo de cálculo de colisiones entre objetos según su forma
+		/// @brief Clase de bullet encargada de determinar el algortimo de cï¿½lculo de colisiones entre objetos segï¿½n su forma
 		btDispatcher* _worldDispatcher;
 
-		/// @brief Clase de bullet encargada de subdividir el mundo en sectores para facilitar los cálculos de colisión
+		/// @brief Clase de bullet encargada de subdividir el mundo en sectores para facilitar los cï¿½lculos de colisiï¿½n
 		btBroadphaseInterface* _worldBroadPhaseInterface;
 
 		/// @brief Clase de bullet encargada de gestionar las colisiones entre objetos
 		btConstraintSolver* _worldConstraintSolver;
 
-		/// @brief Clase de bullet encargada de la configuración de las colisiones.
+		/// @brief Clase de bullet encargada de la configuraciï¿½n de las colisiones.
 		btCollisionConfiguration* _worldCollisionConfiguration;
 
 		/// @brief Devuelve el mundo

@@ -263,9 +263,14 @@ void eden_render::RenderManager::LocateResources()
 			{
 				type = i->first;
 				arch = Ogre::FileSystemLayer::resolveBundlePath(i->second);
+#ifdef _MSC_VER
 				std::string path = _solutionPath;
 				path.append(arch);
 				Ogre::ResourceGroupManager::getSingleton().addResourceLocation(path, type, sec);
+#endif
+#ifdef __APPLE__
+				Ogre::ResourceGroupManager::getSingleton().addResourceLocation(arch, type, sec);
+#endif
 			}
 		}
 

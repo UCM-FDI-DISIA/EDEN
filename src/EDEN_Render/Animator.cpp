@@ -2,6 +2,7 @@
 #include "MeshRenderer.h"
 #include "OgreAnimationState.h"
 #include "OgreEntity.h"
+#include "ErrorHandler.h"
 #include <iostream>
 
 render_wrapper::Animator::Animator(render_wrapper::MeshRenderer* meshRend) {
@@ -11,7 +12,9 @@ render_wrapper::Animator::Animator(render_wrapper::MeshRenderer* meshRend) {
 }
 
 render_wrapper::Animator::~Animator() {
-
+	for (auto it = _anims.begin(); it != _anims.end(); ++it) {
+		delete (*it).second.first;
+	}
 }
 
 void render_wrapper::Animator::StopAnim() {
@@ -39,8 +42,8 @@ void render_wrapper::Animator::SetOnAnimEnd(std::string animID, std::string endA
 	_anims.at(animID).second = endAnimID;
 }
 
-void render_wrapper::Animator::UpdateAnim(float t) {
-	_currentAnim->addTime(t);
+void render_wrapper::Animator::UpdateAnim(float dt) {
+	_currentAnim->addTime(dt);
 	if (_currentAnim->hasEnded() && _currentAnim) OnAnimEnd();
 }
 
@@ -51,7 +54,8 @@ std::string render_wrapper::Animator::GetCurrentAnim() {
 Ogre::AnimationState* render_wrapper::Animator::FindAnim(std::string ID) {
 	std::unordered_map<std::string, std::pair<Ogre::AnimationState*, std::string>>::iterator anim = _anims.find(ID);
 	if (anim == _anims.end()) { 
-		std::cerr << "render_wrapper::Animator ERROR in line 44: animation with ID " + ID + " not found in _anims map";
+		std::string exceptionMsg = "render_wrapper::Animator ERROR in line 44: animation with ID " + ID + " not found in _anims map";
+		EDEN_EXCEPTION(exceptionMsg.c_str());
 		return nullptr; 
 	}
 	else return anim->second.first;

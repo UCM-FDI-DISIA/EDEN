@@ -23,8 +23,8 @@ void eden_ec::CAnimator::Start() {
 	}
 }
 
-void eden_ec::CAnimator::Update(float t) {
-	_animatorWrapper->UpdateAnim(t);
+void eden_ec::CAnimator::Update(float dt) {
+	_animatorWrapper->UpdateAnim(dt);
 }
 
 void eden_ec::CAnimator::PlayAnim(std::string ID) {

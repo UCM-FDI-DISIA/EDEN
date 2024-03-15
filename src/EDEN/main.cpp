@@ -29,8 +29,10 @@
 #include "Hito1Prueba.h"
 #include "CAnimator.h"
 
+#include <filesystem>
 
-int main() {
+
+int main(int argc, char* argv[]) {
 	
 	// Registramos el componente Transform, que es el unico que usaremos de momento
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CTransform>();
@@ -46,6 +48,9 @@ int main() {
 
 	try
 	{
+#ifdef __APPLE__
+		std::filesystem::current_path(std::filesystem::canonical(std::string(argv[0]) + "/.."));
+#endif
 		eden::Master* master = eden::Master::Instance();
 		//Creamos una escena inicial de pueba 
 		eden::SceneManager* scnManager = eden::SceneManager::Instance();

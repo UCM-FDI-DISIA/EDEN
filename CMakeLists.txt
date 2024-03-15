@@ -42,8 +42,9 @@ target_include_directories(EDEN PUBLIC "${ROOT_DIR}/src/EDEN_Input/")
 target_include_directories(EDEN PUBLIC "${ROOT_DIR}/src/EDEN_Physics/")
 target_include_directories(EDEN PUBLIC "${ROOT_DIR}/src/EDEN_Render/")
 target_include_directories(EDEN PUBLIC "${ROOT_DIR}/src/EDEN_Script/")
+target_include_directories(EDEN PUBLIC "${ROOT_DIR}/src/EDEN_Audio/")
 
-target_link_libraries(EDEN PRIVATE EDEN_Render EDEN_Input EDEN_Physics EDEN_Script)
+target_link_libraries(EDEN PRIVATE EDEN_Render EDEN_Audio EDEN_Input EDEN_Physics EDEN_Script)
 
 if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Debug CACHE STRING "Choose the type of build (Debug or Release)" FORCE)

@@ -69,3 +69,5 @@ cmake-build-release/
 
 ![Bb]in/[Aa]ssets/
 ![Dd]ependencies/[Ff][Mm][Oo][Dd]/[Bb]uild/x64/*
+![Dd]ependencies/[Ii]rr[Kk]lang/[Bb]uild/x64/*
+![Dd]ependencies/[Ii]rr[Kk]lang/[Bb]uild/arm64/*

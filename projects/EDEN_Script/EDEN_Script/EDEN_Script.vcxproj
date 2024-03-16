@@ -12,10 +12,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\EDEN_Script\ComponentArguments.cpp" />
+    <ClCompile Include="..\..\..\src\EDEN_Script\LuaManager.cpp" />
     <ClCompile Include="..\..\..\src\EDEN_Script\ScriptManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\EDEN_Script\ComponentArguments.h" />
+    <ClInclude Include="..\..\..\src\EDEN_Script\LuaManager.h" />
     <ClInclude Include="..\..\..\src\EDEN_Script\ScriptManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

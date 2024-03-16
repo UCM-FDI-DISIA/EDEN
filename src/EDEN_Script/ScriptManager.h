@@ -11,6 +11,7 @@
 
 struct lua_State;
 
+class LuaManager;
 namespace eden_script {
 
 	// Esta Macro se usa para ver la informacion que se esta leyendo del mapa por salida estandar
@@ -53,7 +54,12 @@ namespace eden_script {
 		/// @return True = No error | False = Error
 		bool ReadScene(std::string sceneName, std::vector<eden_script::EntityInfo*>& info);
 
+		LuaManager* GetLuaManager();
+
 	private:
+
+		LuaManager* _luaManager;
+
 		/// @brief Constructora que inicializa Lua
 		ScriptManager();
 		lua_State* _l;

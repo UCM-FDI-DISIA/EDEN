@@ -19,6 +19,7 @@
 /// Engine Physics
 #include "CRigidBody.h"
 
+#include "CButtonBehaviour.h"
 
 #include <iostream>
 
@@ -42,8 +43,10 @@ int main(int argc, char* argv[]) {
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::Hito1Prueba>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CAnimator>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CButton>();
+	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CButtonBehaviour>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CCursor>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CRigidBody>();
+	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CMeshRenderer>();
 	
 
 	try

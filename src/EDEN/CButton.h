@@ -3,7 +3,6 @@
 #define __BUTTON_H__
 
 #include "UIComponent.h"
-
 #include <string>
 
 namespace Ogre {
@@ -11,6 +10,8 @@ namespace Ogre {
 }
 
 namespace eden_ec {
+	
+	class CButtonBehaviour;
 
 	/// @brief Parámetros del botón
 	struct ButtonParams {
@@ -108,6 +109,9 @@ namespace eden_ec {
 
 		/// @brief Tamaño anterior
 		std::pair<float, float>_oldScale;
+
+		CButtonBehaviour* _callback;
+
 	};
 }
 

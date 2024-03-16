@@ -21,6 +21,7 @@
     <ClCompile Include="..\..\src\EDEN\CCursor.cpp" />
     <ClCompile Include="..\..\src\EDEN\CIMage.cpp" />
     <ClCompile Include="..\..\src\EDEN\UIComponent.cpp" />
+    <ClCompile Include="..\..\src\EDEN\CButtonBehaviour.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\EDEN\Quaternion.h" />
@@ -44,5 +45,6 @@
     <ClInclude Include="..\..\src\EDEN\CCursor.h" />
     <ClInclude Include="..\..\src\EDEN\CIMage.h" />
     <ClInclude Include="..\..\src\EDEN\UIComponent.h" />
+    <ClInclude Include="..\..\src\EDEN\CButtonBehaviour.h" />
   </ItemGroup>
 </Project>

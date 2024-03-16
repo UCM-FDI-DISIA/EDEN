@@ -8,8 +8,10 @@
 
 #include "ScriptManager.h"
 #include "ComponentArguments.h"
+#include "LuaManager.h"
 
 eden_script::ScriptManager::ScriptManager() {
+	_luaManager = new LuaManager();
 	// Inicializamos la máquina virtual para correr Lua
 	_l = luaL_newstate();
 	// Abrimos las librerías básicas de Lua
@@ -17,6 +19,12 @@ eden_script::ScriptManager::ScriptManager() {
 
 	// Comprobamos que Lua esté bien abierto
 	assert(_l);
+
+	_luaManager->InitLua(_l);
+}
+
+LuaManager* eden_script::ScriptManager::GetLuaManager() {
+	return _luaManager;
 }
 
 bool eden_script::ScriptManager::CheckLua(int err) {

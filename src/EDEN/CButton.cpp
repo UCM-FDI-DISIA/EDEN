@@ -5,6 +5,7 @@
 #include "RenderManager.h"
 #include "ScriptManager.h"
 #include "ComponentArguments.h"
+#include "CButtonBehaviour.h"
 #include <iostream>
 
 const std::string eden_ec::CButton::_id = "BUTTON";

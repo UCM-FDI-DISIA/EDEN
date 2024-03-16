@@ -60,14 +60,6 @@ namespace eden_ec {
 		/// @param height Altura del componente
 		void SetRelativeDimensions(float width, float height);
 
-		/// @brief Alineamiento horizontal del componente
-		/// @param hAligment Puede ser GHA_LEFT, GHA_CENTER, GHA_RIGHT
-		void SetHorizontalAligment(Ogre::GuiHorizontalAlignment const& hAligment);
-
-		/// @brief Alineamiento vertical del componente
-		/// @param vAligment Puede ser GVA_TOP, GVA_CENTER, GVA_BOTTOM
-		void SetVerticalAligment(Ogre::GuiVerticalAlignment const& vAligment);
-
 		/// @brief Cambia la posicion del componente
 		/// @param xPos Posicion del eje x
 		/// @param yPos Posicion del eje y
@@ -82,10 +74,6 @@ namespace eden_ec {
 		/// Cambia el material del componente
 		/// </summary>
 		void SetMaterial(std::string const& matName);
-
-		/// @brief Cambiar el tipo de metricas
-		/// @param mode Puede ser GMM_PIXELS(posiciones absolutas) o GMM_RELATIVE (posiciones de 0.0 a 1.0)
-		void SetMetrics(Ogre::GuiMetricsMode const& mode);
 
 		/// @brief Poner visible el overlay
 		/// @param visible Booleano para ponerlo visible
@@ -109,12 +97,6 @@ namespace eden_ec {
 		/// @brief Devuelve las dimensiones del componente
 		std::pair<float, float> const& GetRelativeDimensions();
 
-		/// @brief Devuelve la alineacion horizontal del componente
-		Ogre::GuiHorizontalAlignment const& GetHorizontalAligment();
-
-		/// @brief Devuelve la alineacion vertical del componente
-		Ogre::GuiVerticalAlignment const& GetVerticalAligment();
-
 		/// @brief Devuelve la posicion del componente
 		std::pair <float, float> const& GetPosition();
 
@@ -123,9 +105,6 @@ namespace eden_ec {
 
 		/// @brief Devuelve el material del componente
 		std::string const& GetMaterialName();
-
-		/// @brief Devuelve el tipo de metricas del componente
-		Ogre::GuiMetricsMode const& GetMetrics();
 
 		/// @brief Escala el tama�o y posicion 
 		void Resize();
@@ -136,12 +115,8 @@ namespace eden_ec {
 		/// @brief Definicion de metodo estatico GetID necesario para construccion de componentes
 		static std::string GetID() { return _id; }
 	protected:
-		const static std::string _id;
-		/// @brief Managers y elementos de Ogre necesarios para el control y uso de la UI
-		Ogre::OverlayManager* _overlayManager = nullptr;
-		Ogre::Overlay* _overlayElement = nullptr;
-		Ogre::OverlayContainer* _overlayContainer = nullptr;
 
+		const static std::string _id;
 		/// @brief Control de los elementos de la UI		
 		static int _numUIElements;
 
@@ -173,6 +148,12 @@ namespace eden_ec {
 		void CreateImage(std::string overlayName, float xPos, float yPos,
 			float width, float height, std::string texture,
 			int depth);
+	private:
+		/// @brief Managers y elementos de Ogre necesarios para el control y uso de la UI
+		Ogre::OverlayManager* _overlayManager = nullptr;
+		Ogre::Overlay* _overlayElement = nullptr;
+		Ogre::OverlayContainer* _overlayContainer = nullptr;
+
 	};
 }  
 #endif  

@@ -53,16 +53,6 @@ void eden_ec::UIComponent::SetRelativeDimensions(float width, float height) {
 	_overlayContainer->_setDimensions(width, height);
 }
 
-void eden_ec::UIComponent::SetHorizontalAligment(
-	Ogre::GuiHorizontalAlignment const& hAligment) {
-	_overlayContainer->setHorizontalAlignment(hAligment);
-}
-
-void eden_ec::UIComponent::SetVerticalAligment(
-	Ogre::GuiVerticalAlignment const& vAligment) {
-	_overlayContainer->setVerticalAlignment(vAligment);
-}
-
 void eden_ec::UIComponent::SetPosition(float xPos, float yPos) {
 	_overlayContainer->setPosition(xPos, yPos);
 }
@@ -73,10 +63,6 @@ void eden_ec::UIComponent::SetRelativePosition(float xPos, float yPos) {
 
 void eden_ec::UIComponent::SetMaterial(std::string const& matName) {
 	_overlayContainer->setMaterialName(matName);
-}
-
-void eden_ec::UIComponent::SetMetrics(Ogre::GuiMetricsMode const& mode) {
-	_overlayContainer->setMetricsMode(mode);
 }
 
 void eden_ec::UIComponent::SetOverlayVisible(bool vis) {
@@ -104,15 +90,6 @@ std::pair<float, float> const& eden_ec::UIComponent::GetRelativeDimensions() {
 	return std::pair<float, float>(_overlayContainer->_getWidth(), _overlayContainer->_getHeight());
 }
 
-Ogre::GuiHorizontalAlignment const&
-eden_ec::UIComponent::GetHorizontalAligment() {
-	return _overlayContainer->getHorizontalAlignment();
-}
-
-Ogre::GuiVerticalAlignment const& eden_ec::UIComponent::GetVerticalAligment() {
-	return _overlayContainer->getVerticalAlignment();
-}
-
 std::pair<float, float> const& eden_ec::UIComponent::GetPosition() {
 	return std::pair<float, float>(_overlayContainer->getLeft(), _overlayContainer->getTop());
 }
@@ -123,10 +100,6 @@ std::pair<float, float> const& eden_ec::UIComponent::GetRelativePosition() {
 
 std::string const& eden_ec::UIComponent::GetMaterialName() {
 	return _overlayContainer->getMaterialName();
-}
-
-Ogre::GuiMetricsMode const& eden_ec::UIComponent::GetMetrics() {
-	return _overlayContainer->getMetricsMode();
 }
 
 void eden_ec::UIComponent::Init(eden_script::ComponentArguments* args) {

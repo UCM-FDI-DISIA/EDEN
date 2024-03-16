@@ -9,7 +9,11 @@ namespace luabridge {
 	class LuaRef;
 }
 
-class lua_State;
+namespace eden_script {
+	class LuaManager;
+}
+
+struct lua_State;
 
 namespace eden_ec {
 
@@ -19,7 +23,7 @@ namespace eden_ec {
 	/// llamada a metodos en C++.
 	/// </summary>
 	class  CButtonBehaviour : public Component {
-		friend class LuaManager;
+		friend class eden_script::LuaManager;
 
 	public:
 

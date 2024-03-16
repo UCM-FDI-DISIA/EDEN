@@ -1,30 +1,30 @@
 #include "LuaManager.h"
-#include "../EDEN/CButtonBehaviour.h"
-#include "../EDEN/Transform.h"
-#include "../EDEN/Entity.h"
+#include "CButtonBehaviour.h"
+#include "Transform.h"
+#include "Entity.h"
 #include "ComponentFactory.h"
 
 #include <lua.hpp>
-#include "LuaBridge/LuaBridge.h"
+#include <LuaBridge.h>
 #include <iostream>
 
 
-LuaManager::LuaManager() 
+eden_script::LuaManager::LuaManager()
 {
 	L_ = nullptr;
 }
 
-LuaManager::~LuaManager()
+eden_script::LuaManager::~LuaManager()
 {
 	L_ = nullptr;
 }
 
-void  LuaManager::InitLua(lua_State* l) {
+void eden_script::LuaManager::InitLua(lua_State* l) {
 	L_=l;
 	RegisterClasses();
 }
 
-void  LuaManager::RegisterClasses() {
+void eden_script::LuaManager::RegisterClasses() {
 	// Registramos la clase base y sus funciones miembro
 	luabridge::getGlobalNamespace(L_)
 		.beginClass<eden_ec::CButtonBehaviour>("BEHAVIOUR")
@@ -35,7 +35,7 @@ void  LuaManager::RegisterClasses() {
 		.endClass();
 }
 
-bool  LuaManager::LoadScript(std::string name, eden_ec::Entity* ent) {
+bool eden_script::LuaManager::LoadScript(std::string name, eden_ec::Entity* ent) {
 	// Cargamos el script de Lua desde un archivo
 	std::string path = "assets/mesh/" + name + ".lua";
 	if (luaL_dofile(L_, path.c_str())) {
@@ -57,4 +57,4 @@ bool  LuaManager::LoadScript(std::string name, eden_ec::Entity* ent) {
 	return true;
 }
 
-lua_State*  LuaManager::GetLuaState() { return L_; }
+lua_State* eden_script::LuaManager::GetLuaState() { return L_; }

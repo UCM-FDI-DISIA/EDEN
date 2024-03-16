@@ -4,14 +4,18 @@
 
 #include <string>
 
-	class lua_State;
-	namespace eden_ec {
-		class Entity;
-	}
+struct lua_State;
+
+namespace eden_ec {
+	class Entity;
+}
+
+namespace eden_script {
 	/// <summary>
 	/// Clase encargada de gestionar la maquina virtual de Lua y los scripts de comportamiento
 	/// </summary>
-	class  LuaManager
+	///
+	class LuaManager
 	{
 	public:
 		/// <summary>
@@ -52,5 +56,6 @@
 		lua_State* L_;
 		// Behaviour* behaviourTemplate_;
 	};
+}
 
 #endif __LUA_MANAGER_H__

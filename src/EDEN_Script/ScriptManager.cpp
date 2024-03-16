@@ -23,7 +23,7 @@ eden_script::ScriptManager::ScriptManager() {
 	_luaManager->InitLua(_l);
 }
 
-LuaManager* eden_script::ScriptManager::GetLuaManager() {
+eden_script::LuaManager* eden_script::ScriptManager::GetLuaManager() {
 	return _luaManager;
 }
 

@@ -27,17 +27,18 @@ void eden_script::LuaManager::InitLua(lua_State* l) {
 void eden_script::LuaManager::RegisterClasses() {
 	// Registramos la clase base y sus funciones miembro
 	luabridge::getGlobalNamespace(L_)
-		.beginClass<eden_ec::CButtonBehaviour>("BEHAVIOUR")
-		.addFunction("onButtonClick", &eden_ec::CButtonBehaviour::OnButtonClick)
-		.addFunction("onButtonReleased", &eden_ec::CButtonBehaviour::OnButtonReleased)
+		.beginClass<eden_ec::CButtonBehaviour>("CButtonBehaviour")
+		.addFunction("OnButtonClick", &eden_ec::CButtonBehaviour::OnButtonClick)
+		.addFunction("OnButtonReleased", &eden_ec::CButtonBehaviour::OnButtonReleased)
 		.addProperty("entity", &eden_ec::CButtonBehaviour::_ent)
 		.addProperty("name", &eden_ec::CButtonBehaviour::_name)
 		.endClass();
+
 }
 
 bool eden_script::LuaManager::LoadScript(std::string name, eden_ec::Entity* ent) {
 	// Cargamos el script de Lua desde un archivo
-	std::string path = "assets/mesh/" + name + ".lua";
+	std::string path = "assets/scripts/" + name + ".lua";
 	if (luaL_dofile(L_, path.c_str())) {
 		std::cerr << "[SPY ERROR]: Failed to load script: " << lua_tostring(L_, -1) << "\n";
 		return false;

@@ -1,11 +1,24 @@
 #include "InputManager.h"
 #include "InputWrapper.h"
 
+#include "../EDEN_Script/ScriptManager.h"
+#include "../EDEN_Script/LuaManager.h"
+#include <lua.hpp>
+#include "LuaBridge/LuaBridge.h"
+
+
 eden_input::InputManager::InputManager() {
 
 	_wrapper = new InputWrapper();
 	_kbState = std::unordered_map<uint8_t, uint8_t>();
 	ClearState();
+	lua_State* L = eden_script::ScriptManager::Instance()->GetLuaManager()->GetLuaState();
+	
+	luabridge::getGlobalNamespace(L)
+		.beginClass<eden_input::InputManager>("InputManager")
+		.addFunction("SetCloseWindow", &eden_input::InputManager::SetCloseWindow)
+		.endClass();
+	luabridge::setGlobal(L, this, "InputManager");
 
 }
 

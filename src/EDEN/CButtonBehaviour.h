@@ -17,53 +17,39 @@ struct lua_State;
 
 namespace eden_ec {
 
-	/// <summary>
-	/// Clase que representa un script de comportamiento. El script se definira
+	/// @brief Clase que representa un script de comportamiento. El script se definira
 	/// en Lua y se utilizara esta clase para poder gestionar su ciclo de vida y
 	/// llamada a metodos en C++.
-	/// </summary>
 	class  CButtonBehaviour : public Component {
 		friend class eden_script::LuaManager;
 
 	public:
 
+		/// @brief Constructora base
 		CButtonBehaviour() = default;
-		/// <summary>
-		/// Constructor vacio, asigna nullptr a la LuaRef, sera necesario
-		/// asignarla posteriormente con setLuaScript()
-		/// </summary>
+
+		/// @brief Constructora
+		/// @param name Nombre del script
 		CButtonBehaviour(std::string name);
-		/// <summary>
-		/// Construye un Behaviour con la LuaRef se le pase
-		/// </summary>
-		/// <param name="behaviourLua">LuaRef del script .lua que se desea
-		/// vincular a esta clase</param>
+	
+		/// @brief Constructora que inicializa un Behaviour con la LuaRef se le pase
+		/// @param behaviourLua LuaRef del script .lua que se desea
 		CButtonBehaviour(std::string name, luabridge::LuaRef* behaviourLua);
-		/// <summary>
-		/// El destructor se encarga de borrar el puntero de LuaRef
-		/// </summary>
+		
+		/// @brief El destructor se encarga de borrar el puntero de LuaRef
 		virtual ~CButtonBehaviour();
 
-		/// <summary>
-		/// Asigna valor a la LuaRef que se corresponde al script .lua
-		/// </summary>
-		/// <param name="behaviourLua">La LuaRef obtenida al hacer un
-		/// luabridge::getGlobal con el script .lua</param>
+		/// @brief Asigna valor a la LuaRef que se corresponde al script .lua
+		/// @param behaviourLua LuaRef 
 		void SetLuaScript(luabridge::LuaRef* behaviourLua);
 		
-		/// <summary>
-		/// Metodo que se llama cuando se hace click en el boton
-		/// </summary>
+		/// @brief Metodo que se llama cuando se hace click en el boton
 		virtual void OnButtonClick();
-		/// <summary>
+
 		/// Metodo que se llama cuando ya no se hace click en el boton
-		/// </summary>
 		virtual void OnButtonReleased();
 
-		/// <summary>
-		/// Devuelve la LuaRef al behaviour en Lua, requiere Luabridge, usar bajo responsabilidad
-		/// </summary>
-		/// <returns>Una LuaRef al script en Lua</returns>
+		/// Devuelve la LuaRef al behaviour en Lua
 		luabridge::LuaRef* GetBehaviourLua();
 
 		/// @brief Construye el componente dado unos argumentos. Se obtendrán de una lectura de un .lua
@@ -83,15 +69,13 @@ namespace eden_ec {
 	protected:
 		const static std::string _id;
 
-		/// <summary>
-		/// LuaRef del script. Esta clase representa el script .lua en C++,
-		/// pudiendo usarlo para llamar a todos sus metodos en esta clase
-		/// </summary>
+		/// @brief LuaRef del script. Esta clase representa el script .lua en C++
 		luabridge::LuaRef* _behaviourLua;
+
+		/// @brief Puntero de LuaState
 		lua_State* L_;
-		/// <summary>
-		/// Nombre del script
-		/// </summary>
+	
+		/// @brief Nombre del script
 		std::string _name;
 	};
 }

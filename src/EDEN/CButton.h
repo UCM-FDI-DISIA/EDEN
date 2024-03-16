@@ -39,7 +39,7 @@ namespace eden_ec {
 
 		/// @brief Se usa para coger referencias a otros componentes
 		/// En este caso no se necesita
-		void Start() override{}
+		void Start() override;
 
 		/// @brief Destructora
 		~CButton();
@@ -110,6 +110,8 @@ namespace eden_ec {
 		/// @brief Tamaño anterior
 		std::pair<float, float>_oldScale;
 
+
+		/// @brief Puntero al script de lua
 		CButtonBehaviour* _callback;
 
 	};

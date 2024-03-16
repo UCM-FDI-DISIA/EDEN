@@ -43,6 +43,10 @@ eden_ec::CButton::CButton(ButtonParams& params) : UIComponent() {
 eden_ec::CButton::~CButton() {
 }
 
+void eden_ec::CButton::Start() {
+	_callback = static_cast<CButtonBehaviour*>(_ent->GetComponent("BEHAVIOUR"));
+}
+
 void eden_ec::CButton::Init(eden_script::ComponentArguments* args) {
 	auto renderManager = eden_render::RenderManager::Instance();
 	int xPos = args->GetValueToInt("XPos");
@@ -100,6 +104,7 @@ void eden_ec::CButton::OnButtonClick() {
 	if (!_clicked && _inputManager->IsMouseButtonDown(eden_input::InputManager::LEFT)) {
 		_clicked = true;
 		ChangeButtonTexture(_clickedTex);
+		if (_callback != nullptr) _callback->OnButtonClick();
 	}
 }
 
@@ -111,6 +116,7 @@ void eden_ec::CButton::OnButtonReleased() {
 		if (_inputManager->IsMouseButtonUp(eden_input::InputManager::LEFT)) {
 			_clicked = false;
 			ChangeButtonTexture(_iniTex);
+			if (_callback != nullptr) _callback->OnButtonReleased();
 		}
 	}
 }

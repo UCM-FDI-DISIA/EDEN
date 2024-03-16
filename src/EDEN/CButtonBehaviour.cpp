@@ -27,11 +27,11 @@ void eden_ec::CButtonBehaviour::SetLuaScript(luabridge::LuaRef* behaviourLua) {
 }
 
 void eden_ec::CButtonBehaviour::OnButtonClick() {
-	luabridge::LuaRef onButtonClickLua = (*_behaviourLua)["onButtonClick"];
-	if (onButtonClickLua.isFunction()) {
+	luabridge::LuaRef OnButtonClickLua = (*_behaviourLua)["OnButtonClick"];
+	if (OnButtonClickLua.isFunction()) {
 		luabridge::setGlobal(L_, this, "this");
 		try {
-			onButtonClickLua();
+			OnButtonClickLua();
 		}
 		catch (luabridge::LuaException e) {
 			std::cout << e.what() << "\n";
@@ -42,7 +42,7 @@ void eden_ec::CButtonBehaviour::OnButtonClick() {
 
 void eden_ec::CButtonBehaviour::OnButtonReleased() {
 	luabridge::LuaRef onButtonReleasedLua =
-		(*_behaviourLua)["onButtonReleased"];
+		(*_behaviourLua)["OnButtonReleased"];
 	if (onButtonReleasedLua.isFunction()) {
 		luabridge::setGlobal(L_, this, "this");
 		try {

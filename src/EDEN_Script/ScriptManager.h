@@ -54,10 +54,12 @@ class LuaManager;
 		/// @return True = No error | False = Error
 		bool ReadScene(std::string sceneName, std::vector<eden_script::EntityInfo*>& info);
 
+		/// @brief Devuelve puntero a LuaManager
 		eden_script::LuaManager* GetLuaManager();
 
 	private:
 
+		/// @brief Puntero al LuaManager
 		LuaManager* _luaManager;
 
 		/// @brief Constructora que inicializa Lua

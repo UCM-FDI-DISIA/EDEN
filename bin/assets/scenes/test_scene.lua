@@ -97,7 +97,13 @@ Entity4 = {
                 Texture3 = "clickedMat",
                 Depth = "1"
 			}
-		}
+		},
+        {
+            Name = "BEHAVIOUR",
+			Arguments = {
+                Script= "buttonTest",
+			}
+        }
 	}	
 }
 

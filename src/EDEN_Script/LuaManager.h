@@ -11,50 +11,39 @@ namespace eden_ec {
 }
 
 namespace eden_script {
-	/// <summary>
-	/// Clase encargada de gestionar la maquina virtual de Lua y los scripts de comportamiento
-	/// </summary>
-	///
+
+	/// @brief Clase encargada de gestionar la maquina virtual de Lua y los scripts de comportamiento
 	class LuaManager
 	{
 	public:
-		/// <summary>
-		/// Registra las clases básicas en Lua, principalmente Behaviour
-		/// </summary>
+	
+		/// @brief Constructora de la clase
+		LuaManager();
+
+		/// @brief Destructora de la clase
+		~LuaManager();
+		
+		/// @brief Registra las clases básicas en Lua (Ahora mismo ButtonBehaviour)
 		void RegisterClasses();
 
-		/// <summary>
-		/// Carga el script y crea un Behaviour al que asociarlo, tambien se
-		/// encarga de añadirlo a este manager y a su entidad
-		/// </summary>
-		/// <param name="name">Nombre del script, sin extension</param>
-		/// <param name="ent">Entidad a la que añadir el Behaviour</param>
-		/// <returns>El Behaviour creado</returns>
+		/// @brief Carga el script y crea lo asocia a un Behaviour concreto
+		/// @param name Nombre del script, sin extension
+		/// @param ent Entidad a la que añadir el script
 		bool LoadScript(std::string name, eden_ec::Entity* ent);
 
-		/// <summary>
-		/// Metodo que devuelve el lua_State de este manager. Encargado de
+		/// @brief Metodo que devuelve el lua_State de este manager. Encargado de
 		/// gestionar todos los scripts de comportamiento del motor
-		/// </summary>
-		/// <returns>El lua_State que representa la maquina virtual de
-		/// Lua</returns>
 		lua_State* GetLuaState();
 
-		~LuaManager();
-
-
-		/// <summary>
-		/// Se encarga de crear el LuaState e incializar todo lo necesario para
+		/// @brief Se encarga de crear el LuaState e incializar todo lo necesario para
 		/// el scripting
-		/// </summary>
 		void InitLua(lua_State* l);
 
-		LuaManager();
 	private:
 
-
+		/// @brief Puntero al LuaState
 		lua_State* L_;
-		// Behaviour* behaviourTemplate_;
+		
 	};
 }
 

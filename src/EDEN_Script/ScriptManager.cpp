@@ -11,6 +11,8 @@
 #include "LuaManager.h"
 
 eden_script::ScriptManager::ScriptManager() {
+
+	//Creamos el luaManager
 	_luaManager = new LuaManager();
 	// Inicializamos la máquina virtual para correr Lua
 	_l = luaL_newstate();
@@ -20,6 +22,7 @@ eden_script::ScriptManager::ScriptManager() {
 	// Comprobamos que Lua esté bien abierto
 	assert(_l);
 
+	//Inicializamos el luaManager
 	_luaManager->InitLua(_l);
 }
 

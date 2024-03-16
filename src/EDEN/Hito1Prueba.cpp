@@ -5,8 +5,24 @@
 #include "RenderManager.h"
 #include "CAnimator.h"
 
+#include "../EDEN_Script/ScriptManager.h"
+#include "../EDEN_Script/LuaManager.h"
+#include <lua.hpp>
+#include "LuaBridge/LuaBridge.h"
+
 const std::string eden_ec::Hito1Prueba::_id = "PRUEBA";
 
+eden_ec::Hito1Prueba::Hito1Prueba() {
+
+	////PRUEBA BOTON
+	lua_State* L = eden_script::ScriptManager::Instance()->GetLuaManager()->GetLuaState();
+
+	luabridge::getGlobalNamespace(L)
+		.beginClass<eden_ec::Hito1Prueba>("Hito1Prueba")
+		.addFunction("SetJump", &eden_ec::Hito1Prueba::Jump)
+		.endClass();
+	luabridge::setGlobal(L, this, "Hito1Prueba");
+}
 void eden_ec::Hito1Prueba::Init(eden_script::ComponentArguments* args) {
 	inputManager = eden_input::InputManager::Instance();
 }
@@ -68,13 +84,7 @@ void eden_ec::Hito1Prueba::Update(float dt) {
 
 	}
 	else if (inputManager->IsKeyDown(inputManager->SPACE)) {
-		transform->Translate(eden_utils::Vector3(0, 20, 0));
-
-		if (!jump) {
-			animator->PlayAnim("JumpStart");
-			jump = true;
-			idle = false;
-		}
+		Jump();
 	}
 	else {
 		if (!idle && !jump) {
@@ -89,4 +99,14 @@ void eden_ec::Hito1Prueba::Update(float dt) {
 		keyPressed = false;
 	}
 
+}
+
+void eden_ec::Hito1Prueba::Jump() {
+	transform->Translate(eden_utils::Vector3(0, 20, 0));
+
+	if (!jump) {
+		animator->PlayAnim("JumpStart");
+		jump = true;
+		idle = false;
+	}
 }

@@ -12,7 +12,7 @@ namespace eden_ec {
 	class CAnimator;
 	class Hito1Prueba : public Component {
 	public:
-		Hito1Prueba() = default;
+		Hito1Prueba();
 		~Hito1Prueba() = default;
 
 		static std::string GetID() { return _id; }
@@ -24,6 +24,8 @@ namespace eden_ec {
 		void Update(float t) override;
 
 		void HandleInput() override;
+
+		void Jump();
 
 	protected:
 		const static std::string _id;

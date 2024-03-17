@@ -1,5 +1,5 @@
-#ifndef TRANSFORM_H
-#define TRANSFORM_H
+#ifndef EDEN_TRANSFORM_H
+#define EDEN_TRANSFORM_H
 
 #include <string>
 

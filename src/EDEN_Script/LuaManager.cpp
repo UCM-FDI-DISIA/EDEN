@@ -1,13 +1,13 @@
-#include "LuaManager.h"
-#include "CButtonBehaviour.h"
-#include "Transform.h"
-#include "Entity.h"
-#include "ComponentFactory.h"
+#include <iostream>
 
 #include <lua.hpp>
 #include <LuaBridge.h>
-#include <iostream>
 
+#include "LuaManager.h"
+#include <CButtonBehaviour.h>
+#include <Transform.h>
+#include <Entity.h>
+#include <ComponentFactory.h>
 
 eden_script::LuaManager::LuaManager()
 {

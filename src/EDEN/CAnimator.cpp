@@ -1,8 +1,8 @@
 #include "CAnimator.h"
+#include <ScriptManager.h>
+#include <ComponentArguments.h>
+#include <Animator.h>
 #include "CMeshRenderer.h"
-#include "ScriptManager.h"
-#include "ComponentArguments.h"
-#include "Animator.h"
 #include "Entity.h"
 
 const std::string eden_ec::CAnimator::_id = "ANIMATOR";

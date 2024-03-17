@@ -1,9 +1,10 @@
-#ifndef C_ANIMATOR_H
-#define C_ANIMATOR_H
+#ifndef EDEN_C_ANIMATOR_H
+#define EDEN_C_ANIMATOR_H
 
-#include "Component.h"
 #include <string>
 #include <vector>
+
+#include "Component.h"
 
 namespace eden_script {
 	class ComponentArguments;

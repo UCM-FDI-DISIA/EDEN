@@ -1,5 +1,5 @@
-#ifndef EDENMASTER_h
-#define EDENMASTER_h
+#ifndef EDEN_EDENMASTER_H
+#define EDEN_EDENMASTER_H
 
 #include "Singleton.h"
 

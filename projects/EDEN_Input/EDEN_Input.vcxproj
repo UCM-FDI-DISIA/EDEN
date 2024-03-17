@@ -68,7 +68,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\SDL\build\$(Platform)\include\;$(SolutionDir)dependencies\SDL\src\include\;$(SolutionDir)src\EDEN;%(AdditionalIncludeDirectories);$(SolutionDir)dependencies\Lua\src\src\;$(SolutionDir)dependencies\LuaBridge\Source\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\SDL\build\$(Platform)\include\;$(SolutionDir)dependencies\SDL\src\include\;$(SolutionDir)src\EDEN\;$(SolutionDir)src\EDEN_Script\;$(SolutionDir)dependencies\Lua\src\src\;$(SolutionDir)dependencies\LuaBridge\Source\LuaBridge\;$(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -86,7 +86,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\SDL\build\$(Platform)\include\;$(SolutionDir)src\EDEN;$(SolutionDir)dependencies\SDL\src\include\;%(AdditionalIncludeDirectories);$(SolutionDir)dependencies\Lua\src\src\;$(SolutionDir)dependencies\LuaBridge\Source\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\SDL\build\$(Platform)\include\;$(SolutionDir)dependencies\SDL\src\include\;$(SolutionDir)src\EDEN\;$(SolutionDir)src\EDEN_Script\;$(SolutionDir)dependencies\Lua\src\src\;$(SolutionDir)dependencies\LuaBridge\Source\LuaBridge\;$(AdditionalIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

@@ -1,5 +1,5 @@
-#ifndef ANIMATOR_H
-#define ANIMATOR_H
+#ifndef EDEN_ANIMATOR_H
+#define EDEN_ANIMATOR_H
 
 #include <unordered_map>
 #include <string>

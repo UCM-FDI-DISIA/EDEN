@@ -1,5 +1,5 @@
-#ifndef COMPONENT_FACTORY_H
-#define COMPONENT_FACTORY_H
+#ifndef EDEN_COMPONENT_FACTORY_H
+#define EDEN_COMPONENT_FACTORY_H
 
 #include <unordered_map>
 #include <string>

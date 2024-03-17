@@ -1,8 +1,9 @@
-#ifndef RENDER_MANAGER_H_
-#define RENDER_MANAGER_H_
+#ifndef EDEN_RENDER_MANAGER_H
+#define EDEN_RENDER_MANAGER_H
 
 #include <string>
 #include <unordered_set>
+
 #include "Singleton.h"
 
 namespace Ogre {

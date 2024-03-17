@@ -1,5 +1,5 @@
-#ifndef SCENE_H
-#define SCENE_H
+#ifndef EDEN_SCENE_H
+#define EDEN_SCENE_H
 
 #include <string>
 #include <unordered_map>

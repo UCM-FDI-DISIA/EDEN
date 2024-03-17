@@ -1,5 +1,5 @@
-#ifndef CAMERA_WRAPPER_H
-#define CAMERA_WRAPPER_H
+#ifndef EDEN_CAMERA_WRAPPER_H
+#define EDEN_CAMERA_WRAPPER_H
 
 #include "RenderObject.h"
 

@@ -1,5 +1,5 @@
-#ifndef _ERROR_HANDLER_H
-#define _ERROR_HANDLER_H
+#ifndef EDEN_ERROR_HANDLER_H
+#define EDEN_ERROR_HANDLER_H
 
 #include <exception>
 #include <iostream>

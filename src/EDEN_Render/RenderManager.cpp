@@ -1,4 +1,4 @@
-#include "RenderManager.h"
+#include <iostream>
 
 #include <OgreRoot.h>
 #include <OgreSceneNode.h>
@@ -13,17 +13,16 @@
 #include <OgreOverlay.h>
 #include <OgreOverlayContainer.h>
 #include <OgreOverlayManager.h> 
-
+#include <OgreShaderGenerator.h>
+#include <OgreMaterialManager.h>
 #include <SDL.h>
 #include <SDL_video.h>
 #include <SDL_syswm.h>
 
-#include <OgreShaderGenerator.h>
-#include <OgreMaterialManager.h>
-#include <iostream>
+#include "RenderManager.h"
+#include <Transform.h>
+#include <Entity.h>
 #include "NodeManager.h"
-#include "Transform.h"
-#include "Entity.h"
 #include "Canvas.h"
 
 eden_render::RenderManager::RenderManager(const std::string& appName)

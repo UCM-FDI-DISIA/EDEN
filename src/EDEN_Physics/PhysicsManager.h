@@ -1,7 +1,9 @@
-#ifndef PHYSICS_MANAGER_H
-#define PHYSICS_MANAGER_H
-#include "Singleton.h"
+#ifndef EDEN_PHYSICS_MANAGER_H
+#define EDEN_PHYSICS_MANAGER_H
+
 #include <unordered_set>
+
+#include "Singleton.h"
 
 class btDynamicsWorld;
 class btIDebugDraw;

@@ -1,5 +1,5 @@
-#ifndef SCRIPT_MANAGER_H
-#define SCRIPT_MANAGER_H
+#ifndef EDEN_SCRIPT_MANAGER_H
+#define EDEN_SCRIPT_MANAGER_H
 
 #include <string>
 #include <vector>

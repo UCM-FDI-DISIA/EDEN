@@ -65,7 +65,7 @@
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\FMOD\src;$(SolutionDir)src\EDEN</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\EDEN;$(SolutionDir)dependencies\irrKlang\src\include\;$(SolutionDir)dependencies\irrKlang\src\plugins\ikpMP3\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -85,7 +85,7 @@
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\FMOD\src;$(SolutionDir)src\EDEN</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\EDEN;$(SolutionDir)dependencies\irrKlang\src\include\;$(SolutionDir)dependencies\irrKlang\src\plugins\ikpMP3\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>

@@ -1,12 +1,12 @@
-#include "CButton.h"
-
-#include "Entity.h"
-#include "InputManager.h"
-#include "RenderManager.h"
-#include "ScriptManager.h"
-#include "ComponentArguments.h"
-#include "CButtonBehaviour.h"
 #include <iostream>
+
+#include "CButton.h"
+#include <InputManager.h>
+#include <RenderManager.h>
+#include <ScriptManager.h>
+#include <ComponentArguments.h>
+#include "Entity.h"
+#include "CButtonBehaviour.h"
 
 const std::string eden_ec::CButton::_id = "BUTTON";
 

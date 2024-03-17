@@ -1,9 +1,11 @@
 #include <iostream>
 #include <OgreSceneNode.h>
 #include <OgreRoot.h>
+#include <OgreVector3.h>
+
 #include "NodeManager.h"
 #include "Vector3.h"
-#include "Quaternion.h"
+#include <Quaternion.h>
 #include "RenderManager.h"
 #include "RenderObject.h"
 

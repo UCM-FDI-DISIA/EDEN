@@ -1,5 +1,5 @@
-#ifndef VECTOR3_H
-#define VECTOR3_H
+#ifndef EDEN_VECTOR3_H
+#define EDEN_VECTOR3_H
 
 namespace eden_utils {
 	class Vector3

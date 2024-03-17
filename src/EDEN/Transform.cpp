@@ -1,7 +1,6 @@
 #include "Transform.h"
-
-#include "ScriptManager.h"
-#include "ComponentArguments.h"
+#include <ScriptManager.h>
+#include <ComponentArguments.h>
 
 const std::string eden_ec::CTransform::_id = "TRANSFORM";
 

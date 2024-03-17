@@ -1,9 +1,9 @@
 #include "CCamera.h"
-#include "CameraWrapper.h"
+#include <CameraWrapper.h>
+#include <RenderManager.h>
 #include "Entity.h"
 #include "Transform.h"
 #include "Vector3.h"
-#include "RenderManager.h"
 
 const std::string eden_ec::CCamera::_id = "CAMERA";
 

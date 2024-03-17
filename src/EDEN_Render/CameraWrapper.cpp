@@ -4,10 +4,10 @@
 #include <OgreViewport.h>
 
 #include "CameraWrapper.h"
+#include "Vector3.h"
+#include <Quaternion.h>
 #include "RenderManager.h"
 #include "NodeManager.h"
-#include "Vector3.h"
-#include "Quaternion.h"
 
 render_wrapper::CameraWrapper::CameraWrapper(std::string entityID) : _entityID(entityID) {
 	_camera = getSceneManager()->createCamera(entityID + "_camera");

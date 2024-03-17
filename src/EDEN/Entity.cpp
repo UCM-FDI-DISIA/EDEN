@@ -1,7 +1,7 @@
-#include "ScriptManager.h"
-#include "ComponentArguments.h"
 
 #include "Entity.h"
+#include <ScriptManager.h>
+#include <ComponentArguments.h>
 #include "Component.h"
 
 void eden_ec::Entity::AddComponents(eden_script::EntityInfo* entityInfo) {

@@ -1,11 +1,11 @@
-#include "../../dependencies/Bullet/src/src/BulletCollision/CollisionShapes/btBoxShape.h"
-#include "../../dependencies/Bullet/src/src/BulletCollision/CollisionShapes/btSphereShape.h"
-#include "../../dependencies/Bullet/src/src/BulletCollision/CollisionShapes/btCapsuleShape.h"
-#include "../../dependencies/Bullet/src/src/BulletCollision/CollisionShapes/btCylinderShape.h"
-#include "../../dependencies/Bullet/src/src/BulletCollision/CollisionShapes/btBvhTriangleMeshShape.h"
+#include <BulletCollision/CollisionShapes/btBoxShape.h>
+#include <BulletCollision/CollisionShapes/btSphereShape.h>
+#include <BulletCollision/CollisionShapes/btCapsuleShape.h>
+#include <BulletCollision/CollisionShapes/btCylinderShape.h>
+#include <BulletCollision/CollisionShapes/btBvhTriangleMeshShape.h>
 
-#include "Vector3.h"
 #include "ShapeCreator.h"
+#include "Vector3.h"
 
 
 btBoxShape* physics_wrapper::ShapeCreator::CreateBox(float x, float y, float z)

@@ -1,5 +1,5 @@
-#ifndef COMPONENT_H
-#define COMPONENT_H
+#ifndef EDEN_COMPONENT_H
+#define EDEN_COMPONENT_H
 
 #include <string>
 #include <unordered_map>

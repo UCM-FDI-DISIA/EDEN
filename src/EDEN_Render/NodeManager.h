@@ -1,20 +1,24 @@
-#ifndef NODE_H
-#define NODE_H
+#ifndef EDEN_NODE_MANAGER_H
+#define EDEN_NODE_MANAGER_H
 
 #include <unordered_map> 
 #include <string>
 
 #include "Singleton.h"
 
+namespace Ogre {
+	typedef float Real;
+	template <int dims, typename T> class Vector;
+	typedef Vector<3, Real> Vector3;
+	class Quaternion;
+	class SceneNode;
+	class Root;
+}
 namespace eden_utils {
 	class Vector3;
 	class Quaternion;
 }
 
-namespace Ogre {
-	class SceneNode;
-	class Root;
-}
 namespace eden_render {
 	class RenderManager;
 }

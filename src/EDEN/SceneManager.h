@@ -1,5 +1,5 @@
-#ifndef SCENE_MANAGER_H
-#define SCENE_MANAGER_H
+#ifndef EDEN_SCENE_MANAGER_H
+#define EDEN_SCENE_MANAGER_H
 
 #include <deque>
 #include <string>

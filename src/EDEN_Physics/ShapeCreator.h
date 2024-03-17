@@ -1,5 +1,5 @@
-#ifndef SHAPE_CREATOR_H
-#define SHAPE_CREATOR_H
+#ifndef EDEN_SHAPE_CREATOR_H
+#define EDEN_SHAPE_CREATOR_H
 
 class btBoxShape;
 class btSphereShape;

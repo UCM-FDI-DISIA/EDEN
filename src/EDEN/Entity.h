@@ -1,5 +1,5 @@
-#ifndef ENTITY_H
-#define ENTITY_H
+#ifndef EDEN_ENTITY_H
+#define EDEN_ENTITY_H
 
 #include <unordered_map>
 

@@ -1,5 +1,5 @@
 #include "Canvas.h"
-#include "Entity.h"
+#include <Entity.h>
 #include "UIComponent.h"
 
 

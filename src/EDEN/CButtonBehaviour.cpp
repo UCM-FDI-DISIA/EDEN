@@ -1,14 +1,14 @@
-#include "CButtonBehaviour.h"
-#include "Entity.h"
-#include "ScriptManager.h"
-#include "LuaManager.h"
+#include <iostream>
 
 #include <lua.hpp>
-#include "LuaBridge/LuaBridge.h"
+#include <LuaBridge.h>
 
-#include "ScriptManager.h"
-#include "ComponentArguments.h"
-#include <iostream>
+#include "CButtonBehaviour.h"
+#include <ScriptManager.h>
+#include <LuaManager.h>
+#include <ScriptManager.h>
+#include <ComponentArguments.h>
+#include "Entity.h"
 
 const std::string eden_ec::CButtonBehaviour::_id = "BEHAVIOUR";
 

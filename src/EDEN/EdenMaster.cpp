@@ -7,8 +7,8 @@
 #include <chrono>
 
 #include "EdenMaster.h"
-#include "RenderManager.h"
-#include "PhysicsManager.h"
+#include <RenderManager.h>
+#include <PhysicsManager.h>
 #include <InputManager.h>
 #include "SceneManager.h"
 

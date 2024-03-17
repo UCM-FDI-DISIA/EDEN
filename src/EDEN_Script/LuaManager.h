@@ -1,6 +1,5 @@
-#ifndef __LUA_MANAGER_H__
-#define __LUA_MANAGER_H__
-
+#ifndef EDEN_LUA_MANAGER_H
+#define EDEN_LUA_MANAGER_H
 
 #include <string>
 

@@ -1,5 +1,5 @@
-#ifndef __UI_COMPONENT_H__
-#define __UI_COMPONENT_H__
+#ifndef EDEN_UI_COMPONENT_H
+#define EDEN_UI_COMPONENT_H
 
 #include <utility>
 #include <string>

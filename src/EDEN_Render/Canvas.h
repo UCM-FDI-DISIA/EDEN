@@ -1,8 +1,9 @@
-#ifndef __CANVAS_H__
-#define __CANVAS_H__
+#ifndef EDEN_CANVAS_H
+#define EDEN_CANVAS_H
+
+#include <unordered_set>
 
 #include "Singleton.h"
-#include <unordered_set>
 
 namespace eden_ec {
 	class UIComponent;

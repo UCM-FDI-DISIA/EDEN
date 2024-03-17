@@ -1,14 +1,14 @@
+#include <lua.hpp>
+#include <LuaBridge.h>
+
 #include "Hito1Prueba.h"
-#include "InputManager.h"
+#include <InputManager.h>
+#include <ScriptManager.h>
+#include <LuaManager.h>
+#include <RenderManager.h>
 #include "Entity.h"
 #include "Transform.h"
-#include "RenderManager.h"
 #include "CAnimator.h"
-
-#include "../EDEN_Script/ScriptManager.h"
-#include "../EDEN_Script/LuaManager.h"
-#include <lua.hpp>
-#include "LuaBridge/LuaBridge.h"
 
 const std::string eden_ec::Hito1Prueba::_id = "PRUEBA";
 

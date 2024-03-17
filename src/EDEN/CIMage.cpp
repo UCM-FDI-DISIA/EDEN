@@ -1,8 +1,7 @@
-
 #include "CImage.h"
-#include "RenderManager.h"
-#include "ScriptManager.h"
-#include "ComponentArguments.h"
+#include <RenderManager.h>
+#include <ScriptManager.h>
+#include <ComponentArguments.h>
 
 
 const std::string eden_ec::CImage::_id = "IMAGE";

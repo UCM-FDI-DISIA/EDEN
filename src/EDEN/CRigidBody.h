@@ -1,9 +1,10 @@
-#ifndef C_RIGIDBODY_H
-#define C_RIGIDBODY_H
+#ifndef EDEN_C_RIGIDBODY_H
+#define EDEN_C_RIGIDBODY_H
+
+#include <string>
 
 #include "Component.h"
 #include "Transform.h"
-#include <string>
 
 //Debe incluirse en el .h para que no se generen errores de tipo del struct shapeParameters
 #ifdef _MSC_VER

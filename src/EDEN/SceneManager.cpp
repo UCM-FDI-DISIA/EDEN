@@ -1,8 +1,8 @@
 #include <iostream>
 
 #include "SceneManager.h"
+#include <ScriptManager.h>
 #include "Scene.h";
-#include "ScriptManager.h"
 
 namespace eden {
 

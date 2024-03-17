@@ -1,5 +1,5 @@
-#ifndef CCAMERA_H
-#define CCAMERA_H
+#ifndef EDEN_C_CAMERA_H
+#define EDEN_C_CAMERA_H
 
 #include "Component.h"
 

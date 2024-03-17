@@ -1,5 +1,5 @@
-#ifndef __INPUT_MANAGER_H__
-#define __INPUT_MANAGER_H__
+#ifndef EDEN_INPUT_MANAGER_H
+#define EDEN_INPUT_MANAGER_H
 
 #include <array>
 #include <unordered_map>

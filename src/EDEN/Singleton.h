@@ -1,7 +1,7 @@
 // This file is part of the course TPV2@UCM - Samir Genaim
 
-#ifndef SINGLETON_H
-#define SINGLETON_H
+#ifndef EDEN_SINGLETON_H
+#define EDEN_SINGLETON_H
 
 #include <memory>
 #include <cassert>

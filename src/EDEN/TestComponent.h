@@ -1,5 +1,5 @@
-#ifndef TEST_COMPONENT_H
-#define TEST_COMPONENT_H
+#ifndef EDEN_TEST_COMPONENT_H
+#define EDEN_TEST_COMPONENT_H
 
 #include "Component.h"
 

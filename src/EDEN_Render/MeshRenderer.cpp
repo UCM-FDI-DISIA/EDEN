@@ -1,14 +1,11 @@
-#include "MeshRenderer.h"
-
-// Librerias adicionales
 #include <OgreSceneManager.h>
 #include <OgreEntity.h>
-#include "OgreAnimationState.h";
+#include <OgreAnimationState.h>
 
-// Archivos del proyecto
+#include "MeshRenderer.h"
+#include "Vector3.h"
 #include "RenderManager.h"
 #include "NodeManager.h"
-#include "Vector3.h"
 
 render_wrapper::MeshRenderer::MeshRenderer(const std::string entityID, const std::string meshName)
 {

@@ -1,5 +1,5 @@
-#ifndef RIGIDBODYWRAPPER_H
-#define RIGIDBODYWRAPPER_H
+#ifndef EDEN_RIGIDBODYWRAPPER_H
+#define EDEN_RIGIDBODYWRAPPER_H
 
 #include "Vector3.h"
 

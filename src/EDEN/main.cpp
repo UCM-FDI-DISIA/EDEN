@@ -1,4 +1,9 @@
-#pragma once
+#ifndef EDEN_MAIN_CPP
+#define EDEN_MAIN_CPP
+
+#include <iostream>
+#include <filesystem>
+
 /// Engine Loop3
 #include "EdenMaster.h"
 
@@ -18,20 +23,14 @@
 
 /// Engine Physics
 #include "CRigidBody.h"
-
 #include "CButtonBehaviour.h"
 
-#include <iostream>
-
-#include "ScriptManager.h"
+#include <ScriptManager.h>
 #include "SceneManager.h"
 #include "Scene.h"
 
 #include "Hito1Prueba.h"
 #include "CAnimator.h"
-
-#include <filesystem>
-
 
 int main(int argc, char* argv[]) {
 	
@@ -67,3 +66,5 @@ int main(int argc, char* argv[]) {
 	
 	return 0;
 }
+
+#endif

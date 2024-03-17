@@ -1,5 +1,5 @@
-#ifndef __BUTTON__BEHAVIOUR_H
-#define __BUTTON__BEHAVIOUR_H
+#ifndef EDEN_C_BUTTON_BEHAVIOUR_H
+#define EDEN_C_BUTTON_BEHAVIOUR_H
 
 #include "Component.h"
 

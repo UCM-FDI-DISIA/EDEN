@@ -1,5 +1,5 @@
-#ifndef C_MESH_RENDERER_H
-#define C_MESH_RENDERER_H
+#ifndef EDEN_C_MESH_RENDERER_H
+#define EDEN_C_MESH_RENDERER_H
 
 #ifdef _MSC_VER
 #define MESH_ROUTE "assets\\mesh\\"

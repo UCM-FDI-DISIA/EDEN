@@ -1,8 +1,9 @@
+#include <btBulletDynamicsCommon.h>
+
 #include "PhysicsManager.h"
-#include "../../dependencies/Bullet/src/src/btBulletDynamicsCommon.h"
-#include "Entity.h"
-#include "CRigidBody.h"
-#include "Transform.h"
+#include <Entity.h>
+#include <CRigidBody.h>
+#include <Transform.h>
 #include "RayCast.h"
 
 

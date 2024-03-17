@@ -1,10 +1,9 @@
 #include "InputManager.h"
-#include "InputWrapper.h"
-
-#include "../EDEN_Script/ScriptManager.h"
-#include "../EDEN_Script/LuaManager.h"
+#include <ScriptManager.h>
+#include <LuaManager.h>
 #include <lua.hpp>
-#include "LuaBridge/LuaBridge.h"
+#include <LuaBridge.h>
+#include "InputWrapper.h"
 
 
 eden_input::InputManager::InputManager() {

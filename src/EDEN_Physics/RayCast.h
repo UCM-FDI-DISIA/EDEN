@@ -1,5 +1,5 @@
-#ifndef RAYCASTWRAPPER_H
-#define RAYCASTWRAPPER_H
+#ifndef EDEN_RAYCASTWRAPPER_H
+#define EDEN_RAYCASTWRAPPER_H
 
 #include <vector>
 

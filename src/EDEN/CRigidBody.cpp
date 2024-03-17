@@ -1,7 +1,7 @@
 #include "CRigidBody.h"
-#include "ComponentArguments.h"
+#include <ComponentArguments.h>
+#include <PhysicsManager.h>
 #include "Entity.h"
-#include "PhysicsManager.h"
 
 const std::string eden_ec::CRigidBody::_id = "RIGIDBODY";
 

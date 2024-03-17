@@ -1,9 +1,11 @@
-#include "Animator.h"
-#include "MeshRenderer.h"
-#include "OgreAnimationState.h"
-#include "OgreEntity.h"
-#include "ErrorHandler.h"
 #include <iostream>
+
+#include <OgreAnimationState.h>
+#include <OgreEntity.h>
+
+#include "Animator.h"
+#include <ErrorHandler.h>
+#include "MeshRenderer.h"
 
 render_wrapper::Animator::Animator(render_wrapper::MeshRenderer* meshRend) {
 	_meshRend = meshRend;

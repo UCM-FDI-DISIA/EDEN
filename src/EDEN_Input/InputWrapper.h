@@ -1,7 +1,8 @@
-#ifndef __INPUT_WRAPPER_H__
-#define __INPUT_WRAPPER_H__
+#ifndef EDEN_INPUT_WRAPPER_H
+#define EDEN_INPUT_WRAPPER_H
 
 #include <SDL.h>
+
 #undef main
 
 	/// @brief Clase que gestiona los eventos de SDL
@@ -22,4 +23,4 @@
 		SDL_Event* _event;
 	};
 
-#endif __INPUT_WRAPPER_H__
+#endif //EDEN_INPUT_WRAPPER_H

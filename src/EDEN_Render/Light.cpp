@@ -1,12 +1,10 @@
-#include "Light.h"
-
-// Librerias adicionales
 #include <OgreSceneManager.h>
+#include <OgreLight.h>
 
-// Archivos del proyecto
+#include "Light.h"
+#include "Vector3.h"
 #include "RenderManager.h"
 #include "NodeManager.h"
-#include "Vector3.h"
 
 render_wrapper::Light::Light(const std::string entityID, LightType type) : _entityID(entityID)
 {

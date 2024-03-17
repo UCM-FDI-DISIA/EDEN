@@ -1,16 +1,16 @@
-#ifndef LIGHT_H
-#define LIGHT_H
+#ifndef EDEN_LIGHT_H
+#define EDEN_LIGHT_H
 
-// Librerias adicionales
-#include "OgreLight.h"
-
-// Archivos del proyecto
 #include "RenderObject.h"
 
 enum LightType { LT_POINT, LT_DIRECTIONAL, LT_SPOTLIGHT};
 
 namespace eden_utils {
 	class Vector3;
+}
+
+namespace Ogre {
+	class Light;
 }
 
 namespace render_wrapper

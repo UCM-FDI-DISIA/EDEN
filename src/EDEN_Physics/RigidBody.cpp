@@ -1,4 +1,3 @@
-#include "RigidBody.h"
 #include <BulletDynamics/Dynamics/btRigidBody.h>
 #include <LinearMath/btDefaultMotionState.h>
 #include <BulletCollision/CollisionShapes/btCompoundShape.h>ç
@@ -8,12 +7,12 @@
 #include <BulletCollision/CollisionShapes/btCylinderShape.h>
 #include <BulletCollision/CollisionShapes/btSphereShape.h>
 
+#include "RigidBody.h"
 #include <Transform.h>
 #include <Quaternion.h>
-
+#include <Entity.h>
 #include "PhysicsManager.h"
 #include "ShapeCreator.h"
-#include "Entity.h"
 
 physics_wrapper::RigidBody::RigidBody(eden_ec::Entity* ent, float mass, const shapeParameters& params, const RigidBodyType& flag)
 {

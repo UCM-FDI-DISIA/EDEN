@@ -1,5 +1,5 @@
-#ifndef _RENDER_OBJECT_H_
-#define _RENDER_OBJECT_H_
+#ifndef EDEN_RENDER_OBJECT_H
+#define EDEN_RENDER_OBJECT_H
 
 namespace Ogre {
 	class SceneManager;

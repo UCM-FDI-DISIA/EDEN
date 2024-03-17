@@ -1,9 +1,9 @@
 #include <iostream>
 
 #include "Scene.h"
+#include <ComponentArguments.h>
+#include <ScriptManager.h>
 #include "Entity.h"
-#include "ComponentArguments.h"
-#include "ScriptManager.h"
 
 namespace eden {
 	Scene::Scene(const std::string& ID, std::vector<eden_script::EntityInfo*> info) {

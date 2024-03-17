@@ -1,5 +1,5 @@
-#ifndef QUATERNION_H
-#define QUATERNION_H
+#ifndef EDEN_QUATERNION_H
+#define EDEN_QUATERNION_H
 
 #include <array>
 

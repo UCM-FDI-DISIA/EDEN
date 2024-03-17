@@ -4,9 +4,8 @@
 
 #include <lua.hpp>
 
-#include "ErrorHandler.h"
-
 #include "ScriptManager.h"
+#include <ErrorHandler.h>
 #include "ComponentArguments.h"
 #include "LuaManager.h"
 

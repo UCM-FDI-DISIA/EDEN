@@ -1,9 +1,9 @@
+#ifndef EDEN_C_BUTTON_H
+#define EDEN_C_BUTTON_H
 
-#ifndef __BUTTON_H__
-#define __BUTTON_H__
-
-#include "UIComponent.h"
 #include <string>
+
+#include <UIComponent.h>
 
 namespace Ogre {
 	class Overlay;

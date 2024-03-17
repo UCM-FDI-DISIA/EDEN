@@ -1,10 +1,9 @@
-
-#ifndef __IMAGE_H__
-#define __IMAGE_H__
+#ifndef EDEN_C_IMAGE_H
+#define EDEN_C_IMAGE_H
 
 #include <string>
 
-#include "UIComponent.h"
+#include <UIComponent.h>
 
 namespace Ogre {
 	class Overlay;

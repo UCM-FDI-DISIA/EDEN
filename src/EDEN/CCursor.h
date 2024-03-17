@@ -1,6 +1,6 @@
+#ifndef EDEN_C_CURSOR_H
+#define EDEN_C_CURSOR_H
 
-#ifndef __CURSOR_H__
-#define __CURSOR_H__
 #include "Component.h"
 
 namespace Ogre {

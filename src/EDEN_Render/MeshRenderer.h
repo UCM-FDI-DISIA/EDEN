@@ -1,14 +1,16 @@
-#ifndef MESH_RENDERER_H
-#define MESH_RENDERER_H
+#ifndef EDEN_MESH_RENDERER_H
+#define EDEN_MESH_RENDERER_H
 
 // Libreria de C++
 #include <string>
 
-// Librerias adicionales
-#include "OgreEntity.h"
-
 // Archivos del proyecto
 #include "RenderObject.h"
+
+namespace Ogre {
+	class Entity;
+	class MovableObject;
+}
 
 namespace render_wrapper {
 

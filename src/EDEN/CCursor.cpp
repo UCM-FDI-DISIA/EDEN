@@ -1,9 +1,8 @@
 #include "CCursor.h"
+#include <InputManager.h>
+#include <ScriptManager.h>
+#include <ComponentArguments.h>
 #include "CImage.h"
-
-#include "InputManager.h"
-#include "ScriptManager.h"
-#include "ComponentArguments.h"
 
 const std::string eden_ec::CCursor::_id = "CURSOR";
 

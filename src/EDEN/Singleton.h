@@ -33,7 +33,6 @@ public:
 	/// @brief No se pueden copiar objetos de este tipo
 	Singleton<T>& operator=(const Singleton<T>& o) = delete;
 	Singleton(const Singleton<T>& o) = delete;
-
 	/// @brief La destructora libera el puntero único
 	virtual ~Singleton() {
 		_instance.release();

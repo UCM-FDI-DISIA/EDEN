@@ -42,11 +42,13 @@ namespace eden_script {
 		/// el scripting
 		void InitLua(lua_State* l);
 
-		template <class T>
-		void Regist(T a) {
+		template <class T, class Fun, class W>
+		void Regist(T a, const char *name, Fun _f, const char* nameFunc,W _this) {
 			luabridge::getGlobalNamespace(L_)
-				.beginClass<T>("Hito1Prueba")
+				.beginClass<T>(name)
+				.addFunction(nameFunc, _f)
 				.endClass();
+			luabridge::setGlobal(L_, _this, name);
 		}
 
 	private:

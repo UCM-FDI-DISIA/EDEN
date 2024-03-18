@@ -82,7 +82,7 @@ namespace eden_input
 			RSHIFT = 229,
 			RALT = 230
 		};
-		
+
 		/// @brief Limpieza del mapa de teclas
 		void Clean();
 
@@ -230,9 +230,10 @@ namespace eden_input
 		/// @brief Gestiona los eventos de ventana
 		void HandleWindowEvent();
 		
-
 		/// @brief Constructora de la clase
 		InputManager();
+
+		
 	};
 }
 

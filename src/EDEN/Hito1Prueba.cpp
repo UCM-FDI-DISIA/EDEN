@@ -1,5 +1,3 @@
-#include <lua.hpp>
-#include <LuaBridge.h>
 
 #include "Hito1Prueba.h"
 #include <InputManager.h>
@@ -15,7 +13,8 @@ const std::string eden_ec::Hito1Prueba::_id = "PRUEBA";
 eden_ec::Hito1Prueba::Hito1Prueba() {
 
 	////PRUEBA BOTON
-	eden_script::ScriptManager::Instance()->GetLuaManager()->Regist(*this);
+	 eden_script::ScriptManager::Instance()->GetLuaManager()->
+		Regist(*this, "Hito1Prueba", &eden_ec::Hito1Prueba::Jump,"SetJump",this);
 }
 void eden_ec::Hito1Prueba::Init(eden_script::ComponentArguments* args) {
 	inputManager = eden_input::InputManager::Instance();

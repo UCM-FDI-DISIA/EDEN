@@ -1,10 +1,7 @@
 #include "InputManager.h"
 #include <ScriptManager.h>
 #include <LuaManager.h>
-#include <lua.hpp>
-#include <LuaBridge.h>
 #include "InputWrapper.h"
-
 
 eden_input::InputManager::InputManager() {
 
@@ -13,11 +10,9 @@ eden_input::InputManager::InputManager() {
 	ClearState();
 	lua_State* L = eden_script::ScriptManager::Instance()->GetLuaManager()->GetLuaState();
 	
-	luabridge::getGlobalNamespace(L)
-		.beginClass<eden_input::InputManager>("InputManager")
-		.addFunction("SetCloseWindow", &eden_input::InputManager::SetCloseWindow)
-		.endClass();
-	luabridge::setGlobal(L, this, "InputManager");
+	////PRUEBA BOTON
+	/*eden_script::ScriptManager::Instance()->GetLuaManager()->
+		Regist(*this, "InputManager", &eden_input::InputManager::SetCloseWindow, "SetCloseWindow", this);*/
 
 }
 

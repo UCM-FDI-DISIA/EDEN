@@ -44,9 +44,8 @@ namespace eden_script {
 
 		template <class T>
 		void Regist(T a) {
-
 			luabridge::getGlobalNamespace(L_)
-				.beginClass<a>("Hito1Prueba")
+				.beginClass<T>("Hito1Prueba")
 				.endClass();
 		}
 

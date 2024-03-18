@@ -15,13 +15,7 @@ const std::string eden_ec::Hito1Prueba::_id = "PRUEBA";
 eden_ec::Hito1Prueba::Hito1Prueba() {
 
 	////PRUEBA BOTON
-	lua_State* L = eden_script::ScriptManager::Instance()->GetLuaManager()->GetLuaState();
-
-	luabridge::getGlobalNamespace(L)
-		.beginClass<eden_ec::Hito1Prueba>("Hito1Prueba")
-		.addFunction("SetJump", &eden_ec::Hito1Prueba::Jump)
-		.endClass();
-	luabridge::setGlobal(L, this, "Hito1Prueba");
+	eden_script::ScriptManager::Instance()->GetLuaManager()->Regist(*this);
 }
 void eden_ec::Hito1Prueba::Init(eden_script::ComponentArguments* args) {
 	inputManager = eden_input::InputManager::Instance();

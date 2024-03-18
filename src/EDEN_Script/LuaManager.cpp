@@ -1,10 +1,11 @@
 #include <iostream>
 
-#include <lua.hpp>
-#include <LuaBridge.h>
+//#include <lua.hpp>
+//#include <LuaBridge.h>
 
 #include "LuaManager.h"
 #include <CButtonBehaviour.h>
+#include <Hito1Prueba.h>
 #include <Transform.h>
 #include <Entity.h>
 #include <ComponentFactory.h>
@@ -33,7 +34,6 @@ void eden_script::LuaManager::RegisterClasses() {
 		.addProperty("entity", &eden_ec::CButtonBehaviour::_ent)
 		.addProperty("name", &eden_ec::CButtonBehaviour::_name)
 		.endClass();
-
 }
 
 bool eden_script::LuaManager::LoadScript(std::string name, eden_ec::Entity* ent) {

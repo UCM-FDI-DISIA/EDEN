@@ -2,11 +2,15 @@
 #define EDEN_LUA_MANAGER_H
 
 #include <string>
+#include <functional>
+#include <lua.hpp>
+#include <LuaBridge.h>
 
 struct lua_State;
 
 namespace eden_ec {
 	class Entity;
+	class Hito1Prueba;
 }
 
 namespace eden_script {
@@ -37,6 +41,14 @@ namespace eden_script {
 		/// @brief Se encarga de crear el LuaState e incializar todo lo necesario para
 		/// el scripting
 		void InitLua(lua_State* l);
+
+		template <class T>
+		void Regist(T a) {
+
+			luabridge::getGlobalNamespace(L_)
+				.beginClass<a>("Hito1Prueba")
+				.endClass();
+		}
 
 	private:
 

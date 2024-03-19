@@ -5,7 +5,7 @@
 #include <CRigidBody.h>
 #include <Transform.h>
 #include "RayCast.h"
-
+#include "DebugDrawer.h"
 
 //const eden_ec::Entity* physics_manager::PhysicsManager::getEntity(const btRigidBody* RBRef) const
 //{
@@ -28,10 +28,10 @@ physics_manager::PhysicsManager::PhysicsManager()
 	_worldBroadPhaseInterface = new btDbvtBroadphase();
 	_worldConstraintSolver = new btSequentialImpulseConstraintSolver();
 	_dynamicWorldRef = new btDiscreteDynamicsWorld(_worldDispatcher, _worldBroadPhaseInterface, _worldConstraintSolver, _worldCollisionConfiguration);
-	//Falta mirar como crear un objeto de debug
-	//_physicsDebugDrawer = new btIDebugDraw() 
-	//_dynamicWorldRef->setDebugDrawer(_physicsDebugDrawer);
-	physics_wrapper::RayCast::Instance(_dynamicWorldRef, _physicsDebugDrawer);
+	//Inicializacion de debug drawer
+	_debugDrawer = new eden_physics::DebugDrawer();
+	_dynamicWorldRef->setDebugDrawer(_debugDrawer);
+	physics_wrapper::RayCast::Instance(_dynamicWorldRef, _debugDrawer);
 	_dynamicWorldRef->setGravity({ 0,-10,0 });
 }
 
@@ -50,7 +50,7 @@ inline eden_utils::Vector3 physics_manager::PhysicsManager::GetGravity()
 physics_manager::PhysicsManager::~PhysicsManager()
 {
 	delete _dynamicWorldRef;
-	if (_physicsDebugDrawer) delete _physicsDebugDrawer;
+	if (_debugDrawer) delete _debugDrawer;
 
 }
 

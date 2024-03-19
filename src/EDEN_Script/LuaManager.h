@@ -2,9 +2,9 @@
 #define EDEN_LUA_MANAGER_H
 
 #include <string>
-#include <functional>
 #include <lua.hpp>
 #include <LuaBridge.h>
+#include <set>
 
 struct lua_State;
 
@@ -52,10 +52,14 @@ namespace eden_script {
 		/// @param nameFunc Nombre con el que se guarda la función deseada en la clase registrada
 		template <class T, class Funct, class W>
 		void Regist(T a, const char *name, Funct _f, const char* nameFunc,W _this) {
-			luabridge::getGlobalNamespace(L_)
-				.beginClass<T>(name)
-				.addFunction(nameFunc, _f)
-				.endClass();
+			if (!_classes.contains({ name,false })) {
+				if(!_classes.contains({ name,true })) _classes.insert({ name,true });
+
+				luabridge::getGlobalNamespace(L_)
+					.beginClass<T>(name)
+					.addFunction(nameFunc, _f)
+					.endClass();
+			}
 		}
 		/// @brief Método que setea de forma gloabal una clase que hemos creado para poder acceder a ella
 		/// (*Llamar despues de haber registrado la clase*)
@@ -63,13 +67,20 @@ namespace eden_script {
 		/// @param name Nombre con el que se guarda la clase registrada en luabridge
 		template <class W>
 		void SetGlobal(W _this, const char* name) {
-			luabridge::setGlobal(L_, _this, name);
+			if (_classes.contains({ name,true })) {
+				luabridge::setGlobal(L_, _this, name);
+				_classes.erase({ name,true});
+				_classes.insert({ name,false});
+			}
 		}
 
 	private:
 
 		/// @brief Puntero al LuaState
-		lua_State* L_;		
+		lua_State* L_;
+
+		/// @brief registro de las clases que han sido añadidas y flag de si han sido seteadas ya como global o no
+		std::set<std::pair<std::string,bool>>_classes;
 	};
 }
 

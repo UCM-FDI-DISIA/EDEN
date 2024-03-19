@@ -1,6 +1,4 @@
 #include "InputManager.h"
-#include <ScriptManager.h>
-#include <LuaManager.h>
 #include "InputWrapper.h"
 
 eden_input::InputManager::InputManager() {
@@ -8,12 +6,6 @@ eden_input::InputManager::InputManager() {
 	_wrapper = new InputWrapper();
 	_kbState = std::unordered_map<uint8_t, uint8_t>();
 	ClearState();
-	lua_State* L = eden_script::ScriptManager::Instance()->GetLuaManager()->GetLuaState();
-	
-	////PRUEBA BOTON
-	/*eden_script::ScriptManager::Instance()->GetLuaManager()->
-		Regist(*this, "InputManager", &eden_input::InputManager::SetCloseWindow, "SetCloseWindow", this);*/
-
 }
 
 eden_input::InputManager::~InputManager() {

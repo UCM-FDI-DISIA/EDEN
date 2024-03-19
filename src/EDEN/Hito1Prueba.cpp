@@ -13,8 +13,11 @@ const std::string eden_ec::Hito1Prueba::_id = "PRUEBA";
 eden_ec::Hito1Prueba::Hito1Prueba() {
 
 	////PRUEBA BOTON
-	 eden_script::ScriptManager::Instance()->GetLuaManager()->
-		Regist(*this, "Hito1Prueba", &eden_ec::Hito1Prueba::Jump,"SetJump",this);
+	eden_script::LuaManager* scriptM = eden_script::ScriptManager::Instance()->GetLuaManager();
+	scriptM->Regist(*this, "Hito1Prueba", &eden_ec::Hito1Prueba::Jump,"SetJump",this);
+	scriptM->Regist(*this, "Hito1Prueba", &eden_ec::Hito1Prueba::Jump, "SetJump2", this);
+	scriptM->SetGlobal(this, "Hito1Prueba");
+	scriptM = nullptr;
 }
 void eden_ec::Hito1Prueba::Init(eden_script::ComponentArguments* args) {
 	inputManager = eden_input::InputManager::Instance();

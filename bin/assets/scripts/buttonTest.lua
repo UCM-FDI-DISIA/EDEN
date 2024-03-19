@@ -18,7 +18,7 @@ function buttonTest:OnButtonClick()
 end
 function buttonTest:OnButtonReleased()
 	print("Has dejado de pulsar para ir al menú\n");
-	
+	Hito1Prueba:SetJump2();
 end
 --Variable global de la clase (para Luabridge)
 buttonTestLua = buttonTest:new()

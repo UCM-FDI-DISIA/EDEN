@@ -44,7 +44,7 @@ physics_wrapper::RigidBody::RigidBody(eden_ec::Entity* ent, float mass, const sh
 			_rigidBody->setCollisionFlags(btCollisionObject::CF_DYNAMIC_OBJECT);
 			break;
 	}
-
+	
 	physics_manager::PhysicsManager::Instance()->GetWorld()->addRigidBody(_rigidBody);
 
 	// Todos los rigidbodies tienen ahora un puntero a la entidad que los contiene
@@ -121,6 +121,9 @@ float physics_wrapper::RigidBody::GetMass()
 
 void physics_wrapper::RigidBody::SetMass(float mass)
 {
+	// Si se trata de un objeto estatico no se puede cambiar su masa ya que esta debe ser siempre 0 para que se mantenga
+	// estatico
+	if (_rigidBody->getCollisionFlags() == btCollisionObject::CF_STATIC_OBJECT) return;
 	btVector3 localInertia;
 	_collisionShape->calculateLocalInertia(mass, localInertia);
 	_rigidBody->setCollisionShape(_collisionShape);

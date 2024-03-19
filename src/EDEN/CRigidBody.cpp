@@ -7,7 +7,7 @@ const std::string eden_ec::CRigidBody::_id = "RIGIDBODY";
 
 void eden_ec::CRigidBody::Start()
 {
-	//Se comprueba si la entidad tiene o no un transform, en cuyo caso lo crea y lo a�ade
+	//Se comprueba si la entidad tiene o no un transform, en cuyo caso lo crea y lo aniade
 	if (_ent->GetComponent<CTransform>() != nullptr) {
 		_transform = _ent->GetComponent<CTransform>();
 		_rb = new physics_wrapper::RigidBody(_ent, _mass, _params, _type);
@@ -42,7 +42,7 @@ void eden_ec::CRigidBody::Init(eden_script::ComponentArguments* args) {
 
 	std::string flag = args->GetValueToString("CollisionFlag");
 	if (flag == "DYNAMIC") _type = physics_wrapper::RigidBody::DYNAMIC;
-	else if (flag == "STATIC") _type = physics_wrapper::RigidBody::STATIC;
+	else if (flag == "STATIC") { _type = physics_wrapper::RigidBody::STATIC; _mass = 0; }
 	else if (flag == "KINEMATIC") _type = physics_wrapper::RigidBody::KINEMATIC;
 
 }

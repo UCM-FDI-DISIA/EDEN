@@ -46,7 +46,7 @@ namespace physics_wrapper {
 		/// @param mass Masa del RigidBody
 		/// @param params Parametros de la forma gemoetrica inicial
 		/// @param flag Tipo de RigidBody
-		RigidBody(eden_ec::Entity* ent, float mass, const shapeParameters& params, const RigidBodyType& flag = DYNAMIC);
+		RigidBody(eden_ec::Entity* ent, float mass, const shapeParameters& params, const RigidBodyType& flag = STATIC);
 
 		/// @brief Destructora del RigidbodyWrapper
 		~RigidBody();

@@ -93,12 +93,15 @@ void eden_render::RenderManager::CloseWindow() {
 void eden_render::RenderManager::CloseManager()
 {
 	Shutdown(); // llama al cierre de la ventana
-	_sceneMngr->removeRenderQueueListener(_overlaySys);
-	_sceneMngr = nullptr;
-	delete _overlaySys;
-	_overlaySys = nullptr;
-	delete _root; // borra la ra�z
-	_root = nullptr; // y la pone a nulo
+	if (couldInitialize()) {
+		_sceneMngr->removeRenderQueueListener(_overlaySys);
+		_sceneMngr = nullptr;
+		delete _overlaySys;
+		_overlaySys = nullptr;
+		delete _root; // borra la ra�z
+		_root = nullptr; // y la pone a nulo
+
+	}
 }
 
 void eden_render::RenderManager::InitializeLib()

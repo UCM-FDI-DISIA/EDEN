@@ -1,5 +1,7 @@
 #include <btBulletDynamicsCommon.h>
 
+#include <ErrorHandler.h>
+
 #include "PhysicsManager.h"
 #include <Entity.h>
 #include <CRigidBody.h>
@@ -78,7 +80,6 @@ btDynamicsWorld* physics_manager::PhysicsManager::GetWorld()
 
 inline eden_utils::Vector3 physics_manager::PhysicsManager::GetGravity()
 {
-
 	return eden_utils::Vector3(_dynamicWorldRef->getGravity().x(), _dynamicWorldRef->getGravity().y(),
 		_dynamicWorldRef->getGravity().z());
 }
@@ -89,6 +90,9 @@ physics_manager::PhysicsManager::~PhysicsManager()
 	{
 		delete it.second;
 	}
+	// Toda la memoria dinámica que hemos generado en la constructora, al intentar llamar a su delete aquí,  hace que el programa explote. 
+	// Hay que revisarlo
+
 	delete _dynamicWorldRef;
 	if (_debugDrawer) delete _debugDrawer;
 
@@ -99,7 +103,9 @@ void physics_manager::PhysicsManager::AddPhysicsEntity(eden_ec::Entity* e) {
 }
 
 void physics_manager::PhysicsManager::RemovePhysicsEntity(eden_ec::Entity* e) {
-	_entitiesSet.erase(e);
+	if (!_entitiesSet.erase(e)) {
+		eden_error::ErrorHandler::Instance()->Warning("Entity that you were trying to erase from Physics World was not in Physics World at first\n");
+	}
 }
 
 void physics_manager::PhysicsManager::UpdatePositions() {

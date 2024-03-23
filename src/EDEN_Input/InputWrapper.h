@@ -1,9 +1,9 @@
 #ifndef EDEN_INPUT_WRAPPER_H
 #define EDEN_INPUT_WRAPPER_H
 
-#include <SDL.h>
+#define SDL_MAIN_HANDLED
 
-#undef main
+#include <SDL.h>
 
 	/// @brief Clase que gestiona los eventos de SDL
 	class InputWrapper 

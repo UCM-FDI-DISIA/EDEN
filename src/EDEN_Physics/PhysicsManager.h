@@ -55,12 +55,12 @@ namespace physics_manager {
 		/// @return Devuelve el valor de la gravedad mundial
 		eden_utils::Vector3 GetGravity();
 
-		/// @brief 
-		/// @param e 
+		/// @brief Añade una entidad al mundo físico
+		/// @param e Entidad a añadir
 		void AddPhysicsEntity(eden_ec::Entity* e);
 
-		/// @brief 
-		/// @param e 
+		/// @brief QUita una entidad del mundo físico
+		/// @param e Entidad a quitar
 		void RemovePhysicsEntity(eden_ec::Entity* e);
 
 		/// @brief Setear a cada rigidbody el transform de cada entidad

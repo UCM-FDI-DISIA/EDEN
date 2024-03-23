@@ -19,7 +19,7 @@ namespace physics_manager{
 
 namespace eden 
 {
-class SceneManager;
+	class SceneManager;
 	/// @brief El master es la clase singleton encargada de llevar el bucle principal de juego
 	/// @brief Es esta clase que gestiona el tiempo del juego
 	class Master : public Singleton<Master>
@@ -27,6 +27,8 @@ class SceneManager;
 		friend Singleton<Master>;
 
 	public:
+		static bool isInitialized() { return _initialized; }
+
 		/// @brief Booleano de salida del bucle principal
 		bool exit = false;
 
@@ -38,6 +40,8 @@ class SceneManager;
 		/// @brief Destructora por defecto de EdenMaster
 		~Master() override;
 	private:
+
+		static bool _initialized;
 		/// @brief El tiempo entre frames en segundos
 		float _deltaTime = 0;
 

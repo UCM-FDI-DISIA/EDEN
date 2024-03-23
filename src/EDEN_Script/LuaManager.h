@@ -55,7 +55,7 @@ namespace eden_script {
 			if (!_classes.contains({ name,false })) {
 				if(!_classes.contains({ name,true })) _classes.insert({ name,true });
 
-				luabridge::getGlobalNamespace(L_)
+				luabridge::getGlobalNamespace(_L)
 					.beginClass<T>(name)
 					.addFunction(nameFunc, _f)
 					.endClass();
@@ -68,7 +68,7 @@ namespace eden_script {
 		template <class W>
 		void SetGlobal(W _this, const char* name) {
 			if (_classes.contains({ name,true })) {
-				luabridge::setGlobal(L_, _this, name);
+				luabridge::setGlobal(_L, _this, name);
 				_classes.erase({ name,true});
 				_classes.insert({ name,false});
 			}
@@ -77,7 +77,7 @@ namespace eden_script {
 	private:
 
 		/// @brief Puntero al LuaState
-		lua_State* L_;
+		lua_State* _L;
 
 		/// @brief registro de las clases que han sido añadidas y flag de si han sido seteadas ya como global o no
 		std::set<std::pair<std::string,bool>>_classes;

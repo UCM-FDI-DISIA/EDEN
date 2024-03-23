@@ -40,24 +40,23 @@ eden_ec::CButton::CButton(ButtonParams& params) : UIComponent() {
 	_oldScale.second = params.height;
 }
 
-eden_ec::CButton::~CButton() {
-}
-
 void eden_ec::CButton::Start() {
 	_callback = static_cast<CButtonBehaviour*>(_ent->GetComponent("BEHAVIOUR"));
 }
 
 void eden_ec::CButton::Init(eden_script::ComponentArguments* args) {
 	auto renderManager = eden_render::RenderManager::Instance();
+
 	int xPos = args->GetValueToInt("XPos");
 	int yPos = args->GetValueToInt("YPos");
-	int width = args->GetValueToInt("Width");
-	int height = args->GetValueToInt("Height");
 
 	int w = renderManager->GetWindowWidth();
 	int h = renderManager->GetWindowHeight();
 	int xx = w * xPos / 100;
 	int yy = h * yPos / 100;
+
+	int width = args->GetValueToInt("Width");
+	int height = args->GetValueToInt("Height");
 
 	xPos = xx - (width / 2);
 	yPos = yy - (height / 2);

@@ -9,8 +9,11 @@
 
 namespace eden_error {
 	void ErrorHandler::CloseApplication() {
-		eden::Master::Instance()->Close();
-		delete eden::Master::Instance();
+		if (eden::Master::isInitialized())
+		{
+			eden::Master::Instance()->Close();
+			delete eden::Master::Instance();
+		}
 	}
 
 	void ErrorHandler::HandleException(std::exception e) {

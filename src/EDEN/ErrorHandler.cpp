@@ -79,9 +79,9 @@ namespace eden_error {
 
 		// choosing opening mode
 		int mode = std::ios_base::app;
-		if (generateLog) {
+		if (_generateLog) {
 			mode = std::ios_base::trunc;
-			generateLog = false;
+			_generateLog = false;
 		}
 
 		errorLog.open(LOG_NAME, mode);

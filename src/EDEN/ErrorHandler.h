@@ -13,10 +13,15 @@ namespace eden_error {
 		/// @brief Constructora por defecto
 		ErrorHandler() = default;
 
-		bool generateLog = true;
+		/// @brief Muestra un mensaje por consola (en Debug) y añade a un log dentro de la carpeta bin
+		/// de nombre LOG_NAME el warning/error/excepción generada
+		/// @param messageToLog Mensaje a añadir
+		void AddToLog(std::string messageToLog);
+
+		bool _generateLog = true;
 	public:
 		/// @brief Caracter que separa en una excepción el título de su descripción
-		const static char TITLE_ERROR_SEPARATOR = '|';
+		#define TITLE_ERROR_SEPARATOR '|'
 
 		/// @brief Destructora por defecto
 		~ErrorHandler() = default;
@@ -41,11 +46,6 @@ namespace eden_error {
 
 		/// @brief Borra EdenMaster, y por lo tanto, todo lo generado por el juego
 		void CloseApplication();
-
-		/// @brief Muestra un mensaje por consola (en Debug) y añade a un log dentro de la carpeta bin
-		/// de nombre LOG_NAME el warning/error/excepción generada
-		/// @param messageToLog Mensaje a añadir
-		void AddToLog(std::string messageToLog);
 
 	};
 

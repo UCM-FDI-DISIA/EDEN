@@ -29,7 +29,7 @@ namespace physics_wrapper {
 		static enum ShapeType { BOX, SPHERE, CAPSULE, CYLINDER };
 
 		/// @brief Parametros de la forma que se vaya a crear
-		static struct shapeParameters {
+		static struct ShapeParamaters {
 		public:
 			/// @brief Tipo de forma
 			ShapeType type;
@@ -46,7 +46,7 @@ namespace physics_wrapper {
 		/// @param mass Masa del RigidBody
 		/// @param params Parametros de la forma gemoetrica inicial
 		/// @param flag Tipo de RigidBody
-		RigidBody(eden_ec::Entity* ent, float mass, const shapeParameters& params, const RigidBodyType& flag = STATIC);
+		RigidBody(eden_ec::Entity* ent, float mass, const ShapeParamaters& params, const RigidBodyType& flag = STATIC);
 
 		/// @brief Destructora del RigidbodyWrapper
 		~RigidBody();
@@ -132,7 +132,7 @@ namespace physics_wrapper {
 
 		/// @brief Annade una forma al RigidBody
 		/// @param params Parametros de la forma que se vaya a a�adir
-		void AddShape(const shapeParameters& params);
+		void AddShape(const ShapeParamaters& params);
 	private:
 		btRigidBody* _rigidBody;
 		btCompoundShape* _collisionShape;

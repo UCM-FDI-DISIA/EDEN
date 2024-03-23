@@ -22,12 +22,11 @@ namespace eden_ec {
 
 		/// @brief Destructora de la camara
 		~CCamera();
+		
+		/// @brief Necesario para evitar que sea una clase abstracta. No usado
+		void Init(eden_script::ComponentArguments* args) override {};
 
-		/// @brief Construye el componente dados unos argumentos, que se obtendran de la lectura de un archivo .lua
-		/// @param args Argumentos leidos de un .lua
-		void Init(eden_script::ComponentArguments* args) override;
-
-		/// @brief Guarda la referencia al transform
+		/// @brief Guarda la referencia al transform, crea el CameraWrapper y añade la entidad al RenderManager
 		void Start() override;
 
 		/// @brief Metodo que se ejecutara cada frame y actualizara constantemente la posicion de la camara en caso de que la entidad

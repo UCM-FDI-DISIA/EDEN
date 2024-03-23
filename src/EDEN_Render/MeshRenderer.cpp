@@ -2,6 +2,8 @@
 #include <OgreEntity.h>
 #include <OgreAnimationState.h>
 
+#include "ErrorHandler.h"
+
 #include "MeshRenderer.h"
 #include "Vector3.h"
 #include "RenderManager.h"

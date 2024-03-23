@@ -1,10 +1,14 @@
-//Borrar, solo por motivos de test
+#ifdef _DEBUG
 #include <iostream>
+#endif
+
 #ifdef _MSC_VER
 #include <windows.h>
 #endif
 #include <ctime>
 #include <chrono>
+
+#include "ErrorHandler.h"
 
 #include "EdenMaster.h"
 #include <RenderManager.h>
@@ -12,22 +16,20 @@
 #include <InputManager.h>
 #include "SceneManager.h"
 
+bool eden::Master::_initialized = false;
+
 eden::Master::Master()
 {
+	// la comprobación de que se haya podido inicializar el RenderManager ahora se hace dentro del propio RenderManager.
 	_renderManager = eden_render::RenderManager::Instance("EDEN Engine");
-	if (!_renderManager->couldInitialize()) {
-		delete _renderManager;
-		std::string error = "EdenMaster ERROR in line 16: RenderManager could not initialize\n";
-#ifdef _MSC_VER
-		throw std::exception(error.c_str());
-#endif
-#ifdef __clang__
-		throw std::exception();
-#endif
-	}
+
+	if (!_renderManager->couldInitialize()) delete _renderManager;
+
 	_inputManager = eden_input::InputManager::Instance();
 	_scnManager = SceneManager::Instance();
 	_physicsManager = physics_manager::PhysicsManager::Instance();
+
+	_initialized = true;
 }
 
 void eden::Master::CloseApplication() {
@@ -38,7 +40,9 @@ eden::Master::~Master()
 {
 	delete _scnManager;
 	delete _inputManager;
-	delete _renderManager;
+	if(_renderManager != nullptr && _renderManager->couldInitialize()) 
+		delete _renderManager;
+
 	delete _physicsManager;
 	Singleton::~Singleton();
 }
@@ -50,7 +54,6 @@ void eden::Master::Loop()
 	std::chrono::steady_clock::time_point frameStartTime, frameEndTime;
 
 	float lastPhysicsUpdateTime = 0;
-
 	
 	while (!exit) {
 		int numPU = (_elapsedTime - lastPhysicsUpdateTime) / (_physicsUpdateTimeInterval);
@@ -58,7 +61,6 @@ void eden::Master::Loop()
 			_physicsManager->UpdatePositions();
 			for (int i = 0; i < numPU; ++i) {
 				_physicsManager->updateSimulation(_physicsUpdateTimeInterval);
-				//std::cout << "Fixed update " << lastPhysicsUpdateTime + (i * _physicsUpdateTimeInterval * 1000) << '\n';
 			}
 			_physicsManager->ResolvePositions();
 		}

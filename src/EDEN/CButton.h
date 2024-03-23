@@ -42,7 +42,7 @@ namespace eden_ec {
 		void Start() override;
 
 		/// @brief Destructora
-		~CButton();
+		~CButton() = default;
 
 		/// @brief Cambia la textura principal del botón
 		void ChangeButtonTexture(const std::string& textureName);

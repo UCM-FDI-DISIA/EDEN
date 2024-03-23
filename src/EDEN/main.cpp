@@ -68,7 +68,6 @@ int main(int argc, char* argv[]) {
 		eden::SceneManager* scnManager = eden::SceneManager::Instance();
 		scnManager->PushScene("test_scene");
 		master->Loop();
-		delete scnManager;
 		delete master;
 	}
 	catch (std::exception e){

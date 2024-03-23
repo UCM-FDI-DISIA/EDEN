@@ -56,12 +56,8 @@ namespace eden_ec {
 		/// @param args Argumentos leídos de .lua
 		virtual void Init(eden_script::ComponentArguments* args);
 
-		/// @brief Método update heredado de component
-		void Update(float deltaTime) override {}
-
-		/// @brief Se usa para coger referencias a otros componentes
-		/// En este caso no se necesita
-		void Start() override {}
+		/// @brief Override necesario. No se usa
+		void Start() override {};
 
 		/// @brief Definición de método estático GetID necesario para construcción de componentes
 		static std::string GetID() { return _id; }
@@ -73,7 +69,7 @@ namespace eden_ec {
 		luabridge::LuaRef* _behaviourLua;
 
 		/// @brief Puntero de LuaState
-		lua_State* L_;
+		lua_State* _L = nullptr;
 	
 		/// @brief Nombre del script
 		std::string _name;

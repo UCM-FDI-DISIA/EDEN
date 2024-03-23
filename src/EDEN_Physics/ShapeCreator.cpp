@@ -15,7 +15,7 @@ btBoxShape* physics_wrapper::ShapeCreator::CreateBox(float x, float y, float z)
 
 btBoxShape* physics_wrapper::ShapeCreator::CreateBox(eden_utils::Vector3 lengths)
 {
-    return new btBoxShape(btVector3(lengths.GetX() / 2, lengths.GetY() / 2, lengths.GetZ() / 2));
+    return CreateBox(lengths.GetX(), lengths.GetY(), lengths.GetZ());
 }
 
 btSphereShape* physics_wrapper::ShapeCreator::CreateSphere(float r)

@@ -12,9 +12,8 @@ namespace eden_input
 	/// @brief Clase que gestiona la entrada de datos del usuario.
 	class InputManager : public Singleton<InputManager>
 	{
-	public:
-
 		friend Singleton<InputManager>;
+	public:
 
 		/// @brief enumerado de los botones del raton
 		enum MOUSEBUTTON : uint8_t { LEFT, MIDDLE, RIGHT };
@@ -232,8 +231,6 @@ namespace eden_input
 		
 		/// @brief Constructora de la clase
 		InputManager();
-
-		
 	};
 }
 

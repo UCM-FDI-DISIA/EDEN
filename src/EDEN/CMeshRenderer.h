@@ -10,6 +10,8 @@
 #define MATERIAL_ROUTE "assets/material/"
 #endif
 
+#define MESH_EXTENSION ".mesh"
+
 // Librerias de C++
 #include <string>
 
@@ -54,10 +56,6 @@ namespace eden_ec {
 
 		/// @brief Devuelve el identificador del componente
 		static std::string GetID() { return _id; }
-
-		/// @brief 
-		/// @param dt Variable delta time
-		void Update(float dt);
 
 	protected:
 		const static std::string _id;

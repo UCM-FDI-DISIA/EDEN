@@ -15,13 +15,10 @@ eden_ec::CCamera::~CCamera() {
 	_transform = nullptr;
 }
 
-void eden_ec::CCamera::Init(eden_script::ComponentArguments* args) {
-	_cameraWrapper = new render_wrapper::CameraWrapper(_ent->GetEntityID());
-	eden_render::RenderManager::Instance()->addRenderEntity(_ent);
-}
-
 void eden_ec::CCamera::Start() {
 	_transform = _ent->GetComponent<eden_ec::CTransform>();
+	_cameraWrapper = new render_wrapper::CameraWrapper(_ent->GetEntityID());
+	eden_render::RenderManager::Instance()->addRenderEntity(_ent);
 }
 
 void eden_ec::CCamera::Update(float dt) {

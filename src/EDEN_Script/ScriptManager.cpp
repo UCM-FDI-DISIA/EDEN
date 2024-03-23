@@ -205,7 +205,6 @@ bool eden_script::ScriptManager::ReadScene(std::string sceneName, std::vector<ed
 	assert(_l);
 
 	std::string fileName = SCENE_ROUTE + sceneName + SCENE_EXTENSION;
-	fileName += "holaestoesunerror";
 	if (CheckLua(luaL_dofile(_l, fileName.c_str()), "Reading " + fileName)) {
 		bool readingSuccesful = EntityTableToData(info);
 		return true;

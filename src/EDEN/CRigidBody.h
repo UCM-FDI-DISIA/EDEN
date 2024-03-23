@@ -117,6 +117,8 @@ namespace eden_ec {
 
 		physics_wrapper::RigidBody::RigidBodyType _type;
 
+		std::string _layer = "DEFAULT";
+
 		/// @brief Referencia al wrapper de rigid body del modulo de fisicas
 		physics_wrapper::RigidBody* _rb = nullptr;
 

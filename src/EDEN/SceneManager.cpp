@@ -3,6 +3,7 @@
 #include "SceneManager.h"
 #include <ScriptManager.h>
 #include "Scene.h";
+#include <unordered_map>
 
 namespace eden {
 
@@ -18,9 +19,10 @@ namespace eden {
 	Scene* SceneManager::PushScene(const std::string& ID) {
 
 		eden_script::ScriptManager* scriptManager = eden_script::ScriptManager::Instance();
+		std::unordered_map<std::string, std::vector<std::string>> collisionInfo;
 		std::vector<eden_script::EntityInfo*> info;
-		scriptManager->ReadScene(ID, info);
-		Scene* newSc = new Scene(ID, info);
+		scriptManager->ReadScene(ID, info, collisionInfo);
+		Scene* newSc = new Scene(ID, info, collisionInfo);
 		_scenes.push_front(newSc);
 		_activeScene = newSc;
 		return newSc;

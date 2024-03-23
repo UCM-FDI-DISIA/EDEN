@@ -2,6 +2,7 @@
 #define EDEN_PHYSICS_MANAGER_H
 
 #include <unordered_set>
+#include <unordered_map>
 
 #include "Singleton.h"
 
@@ -17,12 +18,17 @@ namespace eden_ec {
 	class Entity;
 }
 
+namespace eden {
+	class Scene;
+}
+
 namespace eden_utils {
 	class Vector3;
 }
 
 namespace physics_wrapper {
 	class RigidBody;
+	class CollisionLayer;
 }
 
 namespace eden_physics {
@@ -34,6 +40,7 @@ namespace physics_manager {
 	{
 		friend Singleton<PhysicsManager>;
 		friend physics_wrapper::RigidBody;
+		friend eden::Scene;
 	public:
 		/// @brief Devuelve la entidad asociada a un s�lido r�gido
 		/// @param RBRef Referencia del rigidbody que queremos buscar
@@ -63,6 +70,10 @@ namespace physics_manager {
 		void ResolvePositions();
 
 		~PhysicsManager() override;
+
+		void AddCollisionToLayer(std::string layerName, std::string collisionToAdd);
+
+		physics_wrapper::CollisionLayer* GetLayerByName(std::string name);
 	protected:
 		/// @brief La constructora se encarga de crear el mundo de la simulaci�n f�sica y el objeto encargado de dibujar 
 		PhysicsManager();
@@ -70,6 +81,8 @@ namespace physics_manager {
 		/// @brief Mapa desordenado que asigna a cada Entidad su rigidbody correspondiente en la simulaci�n f�sica
 		//std::unordered_map<const class btRigidBody*, eden_ec::Entity*> _entitiesMap;
 		std::unordered_set<eden_ec::Entity*> _entitiesSet;
+
+		std::unordered_map<std::string, physics_wrapper::CollisionLayer*> _layers;
 
 		/// @brief Referencia al mundo de la simulacion fisica
 		btDynamicsWorld* _dynamicWorldRef;
@@ -92,6 +105,9 @@ namespace physics_manager {
 		/// @brief Devuelve el mundo
 		/// @return Mundo de Bullet
 		btDynamicsWorld* GetWorld();
+
+
+		void CreateCollisionLayer(std::string name);
 	};
 }
 #endif // !PHYSICS_MANAGER_h

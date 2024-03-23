@@ -2,6 +2,7 @@
 #define EDEN_RIGIDBODYWRAPPER_H
 
 #include "Vector3.h"
+#include "string"
 
 class btRigidBody;
 class btTransform;
@@ -46,7 +47,7 @@ namespace physics_wrapper {
 		/// @param mass Masa del RigidBody
 		/// @param params Parametros de la forma gemoetrica inicial
 		/// @param flag Tipo de RigidBody
-		RigidBody(eden_ec::Entity* ent, float mass, const shapeParameters& params, const RigidBodyType& flag = STATIC);
+		RigidBody(eden_ec::Entity* ent, float mass, const shapeParameters& params, const RigidBodyType& flag = STATIC, std::string layerName = "DEFAULT");
 
 		/// @brief Destructora del RigidbodyWrapper
 		~RigidBody();

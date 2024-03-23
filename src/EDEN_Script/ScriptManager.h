@@ -32,6 +32,7 @@ class LuaManager;
 // #define _MACRO_AA(b) std::cerr << #b << "\n\n\n\n\n\n\n"
 
 #define ENTITY_TABLE_NAME "Entities"
+#define COLLISION_TABLE_NAME "CollisionLayers"
 #define NUM_ENTITIES "numEntities"
 
 	class ComponentArguments;
@@ -52,7 +53,7 @@ class LuaManager;
 		/// @param sceneName Escena a cargar desde la carpeta "bin/assets"
 		/// @param info Vector pasado por referencia donde se guardara toda la informacion de las entidades leidas de mapa
 		/// @return True = No error | False = Error
-		bool ReadScene(std::string sceneName, std::vector<eden_script::EntityInfo*>& info);
+		bool ReadScene(std::string sceneName, std::vector<eden_script::EntityInfo*>& info, std::unordered_map<std::string, std::vector<std::string>>& collisionInfo);
 
 		/// @brief Devuelve puntero a LuaManager
 		eden_script::LuaManager* GetLuaManager();
@@ -70,6 +71,8 @@ class LuaManager;
 		/// @param varType Tipo de la variable a ver (entero devuelto por las funciones de Lua)
 		/// @return True = Es nil | False = No es nil
 		inline bool IsNil(int varType) { return varType == 0; }
+
+		bool CollisionTableToData(std::unordered_map<std::string, std::vector<std::string>>& collisionInfo);
 
 		/// @brief Rellena el vector de entidades, suponiendo que ya hemos abierto antes una escena
 		/// @param info Informacion de entidades a rellenar

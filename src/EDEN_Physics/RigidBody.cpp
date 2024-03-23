@@ -12,9 +12,10 @@
 #include <Quaternion.h>
 #include <Entity.h>
 #include "PhysicsManager.h"
+#include "CollisionLayer.h"
 #include "ShapeCreator.h"
 
-physics_wrapper::RigidBody::RigidBody(eden_ec::Entity* ent, float mass, const shapeParameters& params, const RigidBodyType& flag)
+physics_wrapper::RigidBody::RigidBody(eden_ec::Entity* ent, float mass, const shapeParameters& params, const RigidBodyType& flag, std::string layerName)
 {
 	eden_ec::CTransform* entTransform = ent->GetComponent<eden_ec::CTransform>();
 
@@ -45,7 +46,16 @@ physics_wrapper::RigidBody::RigidBody(eden_ec::Entity* ent, float mass, const sh
 			break;
 	}
 	
-	physics_manager::PhysicsManager::Instance()->GetWorld()->addRigidBody(_rigidBody);
+	physics_manager::PhysicsManager* physicsManager = physics_manager::PhysicsManager::Instance();
+	physics_wrapper::CollisionLayer* layer = physicsManager->GetLayerByName(layerName);
+	if (layer != nullptr)
+	{
+		physicsManager->GetWorld()->addRigidBody(_rigidBody, layer->GetLayer(), layer->GetCollisionMask());
+	}
+	else
+	{
+		physicsManager->GetWorld()->addRigidBody(_rigidBody);
+	}
 
 	// Todos los rigidbodies tienen ahora un puntero a la entidad que los contiene
 	_rigidBody->setUserPointer(ent);

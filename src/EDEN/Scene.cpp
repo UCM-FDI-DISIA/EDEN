@@ -3,11 +3,24 @@
 #include "Scene.h"
 #include <ComponentArguments.h>
 #include <ScriptManager.h>
+#include <PhysicsManager.h>
 #include "Entity.h"
 
 namespace eden {
-	Scene::Scene(const std::string& ID, std::vector<eden_script::EntityInfo*> info) {
+	Scene::Scene(const std::string& ID, std::vector<eden_script::EntityInfo*>& info, std::unordered_map<std::string, std::vector<std::string>>& collisionInfo) {
 		_ID = ID;
+		physics_manager::PhysicsManager* physicsManager = physics_manager::PhysicsManager::Instance();
+		physicsManager->CreateCollisionLayer("DEFAULT");
+		for (auto it : collisionInfo)
+		{
+			physicsManager->CreateCollisionLayer(it.first);
+		}
+		for (auto it : collisionInfo)
+		{
+			for (auto collisionLayer : it.second) {
+				physicsManager->AddCollisionToLayer(it.first, collisionLayer);
+			}
+		}
 		for (auto it : info) {
 			// Decimos qué estamos leyendo por consola
 			std::cout << "\n\nEntity: " << it->name << '\n';

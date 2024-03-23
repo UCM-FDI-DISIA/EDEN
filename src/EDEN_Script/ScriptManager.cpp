@@ -4,6 +4,7 @@
 
 #include <lua.hpp>
 
+#include "PhysicsManager.h"
 #include "ScriptManager.h"
 #include <ErrorHandler.h>
 #include "ComponentArguments.h"
@@ -201,15 +202,47 @@ bool eden_script::ScriptManager::EntityTableToData(std::vector<eden_script::Enti
 	}
 }
 
-bool eden_script::ScriptManager::ReadScene(std::string sceneName, std::vector<eden_script::EntityInfo*>& info) {
+bool eden_script::ScriptManager::ReadScene(std::string sceneName, std::vector<eden_script::EntityInfo*>& info, std::unordered_map<std::string, std::vector<std::string>>& collisionInfo) {
 	assert(_l);
 
 	std::string fileName = SCENE_ROUTE + sceneName + SCENE_EXTENSION;
 	if (CheckLua(luaL_dofile(_l, fileName.c_str()), "Reading " + fileName)) {
-		bool readingSuccesful = EntityTableToData(info);
+
+		bool readingSuccesful = CollisionTableToData(collisionInfo);
+		readingSuccesful = EntityTableToData(info);
 		return true;
 	}
 	else {
 		return false;
 	}
+}
+
+bool eden_script::ScriptManager::CollisionTableToData(std::unordered_map<std::string, std::vector<std::string>>& collisionInfo) {
+	// Accedemos a la Table de Capas de colisiones del .lua de la escena
+	if (IsNil(lua_getglobal(_l, COLLISION_TABLE_NAME))) {
+		std::string sEntityTable = COLLISION_TABLE_NAME;
+		EDEN_EXCEPTION(sEntityTable.c_str());
+		// std::cerr << ERROR_DEFINITION << " " << __FILENAME__ << ": Entities Table was not found on the scene you're trying to read. It should be named: '" + sEntityTable + "'\n";
+		return false;
+	}
+
+	// Tenemos que saber si hemos encontrado la tabla. Hacemos un assert de la función CheckLua para ello
+	if (!lua_istable(_l, -1)) {
+		std::string sEntityTable = COLLISION_TABLE_NAME;
+		std::cerr << "The variable '" + sEntityTable + "' was not a Table as expected'\n'";
+		return false;
+	}
+
+	int tableIndexOnAccess = -2;
+
+	PushStringToTable("Layers", tableIndexOnAccess);
+
+	// Leemos la tabla de colisiones y la asignamos
+	collisionInfo = ParseTableToStringMap(tableIndexOnAccess + 1);
+
+	// Como ya no usaremos más el elemento que estamos leyendo actualmente de la tabla, debemos 
+	// quitarlo del top del Stack.
+	lua_pop(_l, 2);
+
+	return true;
 }

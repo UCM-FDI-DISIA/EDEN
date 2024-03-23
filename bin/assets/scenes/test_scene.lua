@@ -37,7 +37,8 @@ Entity1 = {
                 PosOffset = "0|0|0",
                 Radius = "0",
                 Shape = "BOX",
-                CollisionFlag = "DYNAMIC"
+                CollisionFlag = "DYNAMIC",
+                CollisionLayer = "PLAYER"
             }
         }
         
@@ -147,12 +148,20 @@ Entity6 = {
                 PosOffset = "0|0|0",
                 Radius = "0",
                 Shape = "BOX",
-                CollisionFlag = "STATIC"
+                CollisionFlag = "STATIC",
+                CollisionLayer = "GROUND"
             }
         }
         
     }
 }
 
-
 Entities = { Entity1, Entity2, Entity3, Entity4, Entity5, Entity6 }
+
+CollisionLayers = { 
+    Layers = {
+        DEFAULT = "DEFAULT|PLAYER|GROUND",
+        PLAYER = "GROUND",
+        GROUND = "PLAYER"
+    }
+}

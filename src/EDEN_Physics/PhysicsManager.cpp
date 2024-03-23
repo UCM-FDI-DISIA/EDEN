@@ -5,7 +5,10 @@
 #include <CRigidBody.h>
 #include <Transform.h>
 #include "RayCast.h"
+#include "CollisionLayer.h"
 #include "DebugDrawer.h"
+#include "ErrorHandler.h"
+#include <iostream>
 
 //const eden_ec::Entity* physics_manager::PhysicsManager::getEntity(const btRigidBody* RBRef) const
 //{
@@ -18,6 +21,39 @@
 void physics_manager::PhysicsManager::updateSimulation(float deltaTime)
 {
 	_dynamicWorldRef->stepSimulation(deltaTime);
+}
+
+void physics_manager::PhysicsManager::CreateCollisionLayer(std::string name)
+{
+	auto layerIt = _layers.find(name);
+	if (layerIt == _layers.end()) {
+		physics_wrapper::CollisionLayer* layer = new physics_wrapper::CollisionLayer(name);
+		_layers[name] = layer;
+	}
+}
+
+void physics_manager::PhysicsManager::AddCollisionToLayer(std::string layerName, std::string collisionToAdd)
+{
+	auto layer = _layers.find(layerName);
+	auto collisionLayer = _layers.find(collisionToAdd);
+	if (layer != _layers.end() && collisionLayer != _layers.end()) {
+		layer->second->AddCollisionToLayer(collisionLayer->second);
+	}
+	else
+	{
+		std::string message = " ";
+		if (layer != _layers.end())
+		{
+			message = "PhysicsManager ERROR in line 37, could not find collision layer: " + layerName + 
+				" trying to add collision with layer: " + collisionToAdd + "\n";
+		}
+		else
+		{
+			message = "PhysicsManager ERROR in line 37, could not find collision layer: " + collisionToAdd + 
+				" trying to add collision to layer: " + layerName+ "\n";
+		}
+		eden_error::ErrorHandler::Instance()->Warning(message.c_str());
+	}
 }
 
 
@@ -49,6 +85,10 @@ inline eden_utils::Vector3 physics_manager::PhysicsManager::GetGravity()
 
 physics_manager::PhysicsManager::~PhysicsManager()
 {
+	for(auto it : _layers)
+	{
+		delete it.second;
+	}
 	delete _dynamicWorldRef;
 	if (_debugDrawer) delete _debugDrawer;
 
@@ -76,4 +116,12 @@ void physics_manager::PhysicsManager::ResolvePositions() {
 		_rb = ent->GetComponent<eden_ec::CRigidBody>();
 		_rb->PhysicsTransformToEdenTransform();
 	}
+}
+
+physics_wrapper::CollisionLayer* physics_manager::PhysicsManager::GetLayerByName(std::string name) {
+	auto it = _layers.find(name);
+	if (it != _layers.end())
+		return it->second;
+	else 
+		return nullptr;
 }

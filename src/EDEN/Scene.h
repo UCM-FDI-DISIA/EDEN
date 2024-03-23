@@ -23,7 +23,7 @@ namespace eden {
 		/// @brief Constructora por defecto de la clase Scene
 		/// @param ID Identificador de la escena
 		/// @param info Informacion de las entidades que estan en la escena
-		Scene(const std::string& ID, std::vector<eden_script::EntityInfo*> info);
+		Scene(const std::string& ID, std::vector<eden_script::EntityInfo*>& info, std::unordered_map<std::string, std::vector<std::string>>& collisionInfo);
 		~Scene();
 
 		/// @brief Metodo que devuelve el nombre identificativo de la escena

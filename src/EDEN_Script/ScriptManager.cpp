@@ -29,14 +29,14 @@ eden_script::LuaManager* eden_script::ScriptManager::GetLuaManager() {
 	return _luaManager;
 }
 
-bool eden_script::ScriptManager::CheckLua(int err) {
+bool eden_script::ScriptManager::CheckLua(int err, std::string errorTitle) {
 	bool result = err == LUA_OK;
 #ifdef _DEBUG
 	if (!result) {
 		// Cogemos el mensaje de error que se ha generado en el Stack de Lua y lo lanzamos en Debug.
 		std::string errorMsg = lua_tostring(_l, -1);
-		std::cerr << "Lua ERROR: " << errorMsg << '\n';
-		EDEN_WARNING(errorMsg.c_str());
+		// std::cerr << "Lua ERROR: " << errorMsg << '\n';
+		eden_error::ErrorHandler::Instance()->Exception(errorTitle, errorMsg);
 	}
 #endif
 	
@@ -161,7 +161,8 @@ bool eden_script::ScriptManager::EntityTableToData(std::vector<eden_script::Enti
 	// Accedemos a la Table de Entidades del .lua de la escena
 	if (IsNil(lua_getglobal(_l, ENTITY_TABLE_NAME))) {
 		std::string sEntityTable = ENTITY_TABLE_NAME;
-		std::cerr << ERROR_DEFINITION << " " << __FILENAME__ << ": Entities Table was not found on the scene you're trying to read. It should be named: '" + sEntityTable + "'\n";
+		EDEN_EXCEPTION(sEntityTable.c_str());
+		// std::cerr << ERROR_DEFINITION << " " << __FILENAME__ << ": Entities Table was not found on the scene you're trying to read. It should be named: '" + sEntityTable + "'\n";
 		return false;
 	}
 
@@ -204,8 +205,8 @@ bool eden_script::ScriptManager::ReadScene(std::string sceneName, std::vector<ed
 	assert(_l);
 
 	std::string fileName = SCENE_ROUTE + sceneName + SCENE_EXTENSION;
-
-	if (CheckLua(luaL_dofile(_l, fileName.c_str()))) {
+	fileName += "holaestoesunerror";
+	if (CheckLua(luaL_dofile(_l, fileName.c_str()), "Reading " + fileName)) {
 		bool readingSuccesful = EntityTableToData(info);
 		return true;
 	}

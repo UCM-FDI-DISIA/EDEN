@@ -33,6 +33,8 @@ class SceneManager;
 		/// @brief Bucle principal de juego
 		void Loop();
 
+		void CloseApplication();
+
 		/// @brief Destructora por defecto de EdenMaster
 		~Master() override;
 	private:

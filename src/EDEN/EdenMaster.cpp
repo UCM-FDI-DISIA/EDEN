@@ -12,7 +12,6 @@
 #include <InputManager.h>
 #include "SceneManager.h"
 
-
 eden::Master::Master()
 {
 	_renderManager = eden_render::RenderManager::Instance("EDEN Engine");
@@ -31,8 +30,13 @@ eden::Master::Master()
 	_physicsManager = physics_manager::PhysicsManager::Instance();
 }
 
+void eden::Master::CloseApplication() {
+	std::cout << "---------------------\n\n\n\n\nCLOSING APPLITACION\n\n\n\n\n---------------------\n\n\n\n\n";
+}
+
 eden::Master::~Master()
 {
+	delete _scnManager;
 	delete _inputManager;
 	delete _renderManager;
 	delete _physicsManager;

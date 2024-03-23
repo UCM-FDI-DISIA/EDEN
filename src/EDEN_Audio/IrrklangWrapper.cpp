@@ -6,7 +6,7 @@
 
 audio_wrapper::IrrklangWrapper::IrrklangWrapper() {
 	_soundEngine = irrklang::createIrrKlangDevice();
-	if (!_soundEngine) EDEN_EXCEPTION("No se ha podido inicializar el sistema de sonido de IrrKlang.");
+	if (!_soundEngine) eden_error::ErrorHandler::Instance()->Exception("Sound Engine Failed", "No se ha podido inicializar el sistema de sonido de IrrKlang.");
 }
 
 audio_wrapper::IrrklangWrapper::~IrrklangWrapper() {
@@ -16,7 +16,7 @@ audio_wrapper::IrrklangWrapper::~IrrklangWrapper() {
 
 irrklang::ISoundSource* audio_wrapper::IrrklangWrapper::CreateSoundSource(std::string file) {
 	irrklang::ISoundSource* src = _soundEngine->addSoundSourceFromFile(file.c_str(), irrklang::ESM_AUTO_DETECT, true);
-	if (!src) EDEN_WARNING("No se ha podido crear la fuente de audio con nombre: " + file + ".");
+	if (!src) eden_error::ErrorHandler::Instance()->Warning("No se ha podido crear la fuente de audio con nombre: " + file + ".");
 	return src;
 }
 
@@ -25,7 +25,7 @@ irrklang::ISound* audio_wrapper::IrrklangWrapper::Play(irrklang::ISoundSource* s
 	if (!sound) {
 		std::string atmp = soundSource->getName();
 		std::string err = "No se ha podido reproducir el sonido con nombre: " + atmp + ".";
-		EDEN_WARNING(err.c_str());
+		eden_error::ErrorHandler::Instance()->Warning(err.c_str());
 	}
 	return sound;
 }
@@ -35,7 +35,7 @@ irrklang::ISound* audio_wrapper::IrrklangWrapper::Play(irrklang::ISoundSource* s
 	if (!sound) {
 		std::string atmp = soundSource->getName();
 		std::string err = "No se ha podido reproducir el sonido con nombre: " + atmp + ".";
-		EDEN_WARNING(err.c_str());
+		eden_error::ErrorHandler::Instance()->Warning(err.c_str());
 	}
 	return sound;
 }

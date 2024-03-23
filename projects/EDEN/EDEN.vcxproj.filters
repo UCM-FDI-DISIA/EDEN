@@ -19,8 +19,9 @@
     <ClCompile Include="..\..\src\EDEN\CButton.cpp" />
     <ClCompile Include="..\..\src\EDEN\CCamera.cpp" />
     <ClCompile Include="..\..\src\EDEN\CCursor.cpp" />
-    <ClCompile Include="..\..\src\EDEN\CImage.cpp" />
-    <ClCompile Include="..\..\src\EDEN\CButtonBehaviour.cpp" />
+    <ClCompile Include="..\..\src\EDEN\CIMage.cpp" />
+    <ClCompile Include="..\..\src\EDEN\UIComponent.cpp" />
+    <ClCompile Include="..\..\src\EDEN\ErrorHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\EDEN\Quaternion.h" />

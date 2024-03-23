@@ -4,6 +4,8 @@
 #include <iostream>
 #include <filesystem>
 
+#include "ErrorHandler.h"
+
 /// Engine Loop3
 #include "EdenMaster.h"
 
@@ -32,8 +34,7 @@
 #include "Hito1Prueba.h"
 #include "CAnimator.h"
 
-int main(int argc, char* argv[]) {
-	
+void RegisterComponents() {
 	// Registramos el componente Transform, que es el unico que usaremos de momento
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CTransform>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CMeshRenderer>();
@@ -46,8 +47,17 @@ int main(int argc, char* argv[]) {
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CCursor>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CRigidBody>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CMeshRenderer>();
-	
+}
 
+int main(int argc, char* argv[]) {
+	
+	// Registro de componentes
+	RegisterComponents();
+
+	// Cogemos una instancia del manejador de errores
+	eden_error::ErrorHandler* errorHandler = eden_error::ErrorHandler::Instance();
+
+	// Hacemos try-catch de las excepciones generadas.
 	try
 	{
 #ifdef __APPLE__
@@ -60,9 +70,11 @@ int main(int argc, char* argv[]) {
 		master->Loop();
 		delete scnManager;
 		delete master;
-		
 	}
-	catch (std::exception e){}
+	catch (std::exception e){
+		// en caso de generar una excepción no tratada, se llamará a este método, que genera (en windows) un pop-up informando del error
+		errorHandler->HandleException(e);
+	}
 	
 	return 0;
 }

@@ -120,8 +120,9 @@ class LuaManager;
 
 		/// @brief Comprobacion de errores de Lua. Lanza por consola el error recibido si se esta en modo Debug
 		/// @param err Resultado de una operacion de Lua
+		/// @param errorTitle Breve información acerca de dónde se produciría el error
 		/// @return True = No error | False = Error
-		bool CheckLua(int err);
+		bool CheckLua(int err, std::string errorTitle);
 	};
 }
 

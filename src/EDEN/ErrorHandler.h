@@ -1,17 +1,62 @@
 #ifndef EDEN_ERROR_HANDLER_H
 #define EDEN_ERROR_HANDLER_H
 
-#include <exception>
 #include <iostream>
+#include <exception>
+
+#include "Singleton.h"
 
 namespace eden_error {
-	#define ERROR_DEFINITION "ERROR in line "+ std::to_string(__LINE__) + ", in file: " + __FILENAME__
+	class ErrorHandler : public Singleton<ErrorHandler> {
+		friend class Singleton<ErrorHandler>;
+	private:
+		/// @brief Constructora por defecto
+		ErrorHandler() = default;
+
+		bool generateLog = true;
+	public:
+		/// @brief Caracter que separa en una excepción el título de su descripción
+		const static char TITLE_ERROR_SEPARATOR = '|';
+
+		/// @brief Destructora por defecto
+		~ErrorHandler() = default;
+		
+		/// @brief Lanza un warning a la salida estándar de errores (consola en Debug y nada en Release)
+		/// @param warningMsg El mensaje de warning a lanzar. En este método se dice en qué línea y en qué archivo
+		/// se ha generado el warning
+		void Warning(std::string warningMsg);
+		
+		/// @brief Comprueba una condición (Solo en Debug)
+		/// @param condition Condición a comprobar en el assert. Si falla, el programa cierra
+		void Assert(bool condition, std::string errorMessage);
+		
+		/// @brief Lanza un warning a la salida estándar de errores (consola en Debug y nada en Release)
+		void Exception(std::string title, std::string definition);
+
+		// @brief Se llama a Handle Exception cuando se lanza una excepción desde cualquier punto del código. Este método se encuentra envolviendo
+		// al main. Las excepciones, en nuestro caso, serán utilizadas para errores de usuario, por lo que este método lo que hace es vaciar toda la 
+		// memoria generada y (en windows) mostrar una ventana con el error que lancemos al usuario.
+		// @param e Excepción a manejar.
+		void HandleException(std::exception e);
+
+		/// @brief Borra EdenMaster, y por lo tanto, todo lo generado por el juego
+		void CloseApplication();
+
+		/// @brief Muestra un mensaje por consola (en Debug) y añade a un log dentro de la carpeta bin
+		/// de nombre LOG_NAME el warning/error/excepción generada
+		/// @param messageToLog Mensaje a añadir
+		void AddToLog(std::string messageToLog);
+
+	};
+
+	#define LOG_NAME "EDEN_ErrorLog.txt"
+	#define ERROR_SEPARETOR "--------------------\n"
+
 	#define __FILENAME__ (strrchr(__FILE__, '\\') ? strrchr(__FILE__, '\\') + 1 : __FILE__)
 
-	#define EDEN_WARNING(msg) std::cerr << ERROR_DEFINITION << ':' << ' ' << msg << '\n';
-	#define EDEN_ASSERT(message, condition) assert((message, condition))
-	#define EDEN_EXCEPTION(error_description) throw std::exception(error_description);
-}
+	#define EDEN_ASSERT_NO_CLEAN(message, condition) assert((message, condition))
+	#define EDEN_EXCEPTION(error_definition) throw std::exception(error_definition);
 
+}
 
 #endif // _ERROR_HANDLER_H

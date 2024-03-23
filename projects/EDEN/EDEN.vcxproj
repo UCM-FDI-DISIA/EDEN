@@ -20,6 +20,7 @@
     <ClCompile Include="..\..\src\EDEN\CMeshRenderer.cpp" />
     <ClCompile Include="..\..\src\EDEN\CRigidBody.cpp" />
     <ClCompile Include="..\..\src\EDEN\EdenMaster.cpp" />
+    <ClCompile Include="..\..\src\EDEN\ErrorHandler.cpp" />
     <ClCompile Include="..\..\src\EDEN\Hito1Prueba.cpp" />
     <ClCompile Include="..\..\src\EDEN\main.cpp" />
     <ClCompile Include="..\..\src\EDEN\Quaternion.cpp" />

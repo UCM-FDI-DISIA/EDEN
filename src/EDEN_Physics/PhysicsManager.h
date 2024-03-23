@@ -25,6 +25,10 @@ namespace physics_wrapper {
 	class RigidBody;
 }
 
+namespace eden_physics {
+	class DebugDrawer;
+}
+
 namespace physics_manager {
 	class PhysicsManager : public Singleton<PhysicsManager>
 	{
@@ -67,16 +71,16 @@ namespace physics_manager {
 		//std::unordered_map<const class btRigidBody*, eden_ec::Entity*> _entitiesMap;
 		std::unordered_set<eden_ec::Entity*> _entitiesSet;
 
-		/// @brief Referencia al mundo de la simulaci�n f�sica
+		/// @brief Referencia al mundo de la simulacion fisica
 		btDynamicsWorld* _dynamicWorldRef;
 
 		/// @brief Encargado de hacer dibujos con caracter de debug
-		btIDebugDraw* _physicsDebugDrawer;
+		eden_physics::DebugDrawer* _debugDrawer;
 
-		/// @brief Clase de bullet encargada de determinar el algortimo de c�lculo de colisiones entre objetos seg�n su forma
+		/// @brief Clase de bullet encargada de determinar el algortimo de c�lculo de colisiones entre objetos segun su forma
 		btDispatcher* _worldDispatcher;
 
-		/// @brief Clase de bullet encargada de subdividir el mundo en sectores para facilitar los c�lculos de colisi�n
+		/// @brief Clase de bullet encargada de subdividir el mundo en sectores para facilitar los c�lculos de colision
 		btBroadphaseInterface* _worldBroadPhaseInterface;
 
 		/// @brief Clase de bullet encargada de gestionar las colisiones entre objetos

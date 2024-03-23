@@ -2,9 +2,9 @@
 #define EDEN_LUA_MANAGER_H
 
 #include <string>
-#include <functional>
 #include <lua.hpp>
 #include <LuaBridge.h>
+#include <set>
 
 struct lua_State;
 
@@ -41,21 +41,46 @@ namespace eden_script {
 		/// @brief Se encarga de crear el LuaState e incializar todo lo necesario para
 		/// el scripting
 		void InitLua(lua_State* l);
+		
 
-		template <class T, class Fun, class W>
-		void Regist(T a, const char *name, Fun _f, const char* nameFunc,W _this) {
-			luabridge::getGlobalNamespace(L_)
-				.beginClass<T>(name)
-				.addFunction(nameFunc, _f)
-				.endClass();
-			luabridge::setGlobal(L_, _this, name);
+		/// @brief Método que se encarga de registrar clases con las funciones deseadas (de clases ya existentes) mediante luabridge.
+		/// Si la clase que se está intentando crear ya existe simplemente se le añadirán las funciones nuevas
+		/// @tparam T El tipo de clase que se va a registrar
+		/// @tparam Funct El tipo de las funciones que vamos a registrar
+		/// @tparam W Puntero al tipo de clase 
+		/// @param name Nombre con el que se guarda la clase registrada en luabridge
+		/// @param nameFunc Nombre con el que se guarda la función deseada en la clase registrada
+		template <class T, class Funct, class W>
+		void Regist(T a, const char *name, Funct _f, const char* nameFunc,W _this) {
+			if (!_classes.contains({ name,false })) {
+				if(!_classes.contains({ name,true })) _classes.insert({ name,true });
+
+				luabridge::getGlobalNamespace(L_)
+					.beginClass<T>(name)
+					.addFunction(nameFunc, _f)
+					.endClass();
+			}
+		}
+		/// @brief Método que setea de forma gloabal una clase que hemos creado para poder acceder a ella
+		/// (*Llamar despues de haber registrado la clase*)
+		/// @tparam W Puntero al tipo de clase 
+		/// @param name Nombre con el que se guarda la clase registrada en luabridge
+		template <class W>
+		void SetGlobal(W _this, const char* name) {
+			if (_classes.contains({ name,true })) {
+				luabridge::setGlobal(L_, _this, name);
+				_classes.erase({ name,true});
+				_classes.insert({ name,false});
+			}
 		}
 
 	private:
 
 		/// @brief Puntero al LuaState
 		lua_State* L_;
-		
+
+		/// @brief registro de las clases que han sido añadidas y flag de si han sido seteadas ya como global o no
+		std::set<std::pair<std::string,bool>>_classes;
 	};
 }
 

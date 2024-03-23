@@ -113,7 +113,7 @@ namespace eden_ec {
 		float _mass;
 
 		/// @brief Variable que se encarga de contener los parametros de la figura asociada al rigidBody
-		physics_wrapper::RigidBody::ShapeParamaters _params;
+		physics_wrapper::RigidBody::ShapeParameters _params;
 
 		physics_wrapper::RigidBody::RigidBodyType _type;
 

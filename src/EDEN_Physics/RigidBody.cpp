@@ -17,7 +17,7 @@
 #include "CollisionLayer.h"
 #include "ShapeCreator.h"
 
-physics_wrapper::RigidBody::RigidBody(eden_ec::Entity* ent, float mass, const shapeParameters& params, const RigidBodyType& flag, std::string layerName)
+physics_wrapper::RigidBody::RigidBody(eden_ec::Entity* ent, float mass, const ShapeParameters& params, const RigidBodyType& flag, std::string layerName)
 {
 	btVector3 localInertia = btVector3();
 
@@ -188,7 +188,7 @@ void physics_wrapper::RigidBody::ClearForce()
 	_rigidBody->clearForces();
 }
 
-void physics_wrapper::RigidBody::AddShape(const ShapeParamaters& params)
+void physics_wrapper::RigidBody::AddShape(const ShapeParameters& params)
 {
 	btCollisionShape* shape;
 	switch (params.type) {

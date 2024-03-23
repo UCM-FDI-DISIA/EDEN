@@ -20,7 +20,7 @@ namespace eden_error {
 
 		bool charFound = false;
 
-		for (int i = 0; i < what.size(); ++i) {
+		for (int i = 0; i < what.size(); ++i) {	
 			if (!charFound && what[i] == TITLE_ERROR_SEPARATOR) {
 				charFound = true;
 			}
@@ -32,7 +32,10 @@ namespace eden_error {
 					errorTitle.push_back(what[i]);
 				}
 			}
+		}
 
+		if (!charFound) {
+			errorDescription = errorTitle;
 		}
 
 #ifdef _WIN32

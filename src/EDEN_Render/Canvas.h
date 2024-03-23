@@ -20,11 +20,8 @@ namespace eden_canvas {
 		/// @brief Inicializa los valores base de los componentes
 		void InitCanvas();
 
-		/// @brief Constructora
-		Canvas() = default;
-
 		/// @brief Destructora
-		~Canvas();
+		~Canvas() = default;
 
 		/// @brief Añade un puntero a un componente de UI
 		/// para actualizar su posición y tamaño
@@ -35,6 +32,8 @@ namespace eden_canvas {
 		/// @param ent Entidad que se va a quitar
 		void removeRenderEntity(eden_ec::UIComponent* ent);
 	private:
+		/// @brief Constructora
+		Canvas() = default;
 		/// @brief Conjunto de componentes para actualizar su posición
 		std::unordered_set<eden_ec::UIComponent*> _entities;
 	};

@@ -17,9 +17,6 @@ render_wrapper::MeshRenderer::MeshRenderer(const std::string entityID, const std
 	render_wrapper::NodeManager::Instance()->Attach(GetRenderObject(), entityID);
 }
 
-void render_wrapper::MeshRenderer::ActivateAnim(float dt) {
-}
-
 void render_wrapper::MeshRenderer::SetMaterial(const std::string material)
 {
 	_ent->setMaterialName(material);

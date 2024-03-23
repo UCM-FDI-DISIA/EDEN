@@ -19,7 +19,7 @@ render_wrapper::CameraWrapper::CameraWrapper(std::string entityID) : _entityID(e
 		render_wrapper::NodeManager::Instance()->CreateSceneObject(entityID);
 
 	_viewport = eden_render::RenderManager::Instance()->_window.render->addViewport(_camera);
-	SetBackgroundColor(0.9f, 0.7f, 0.7f, 1.0f);
+	SetBackgroundColor(DEFAULT_BG_COLOR, 1.0f);
 	render_wrapper::NodeManager::Instance()->Attach(GetRenderObject(), entityID);
 }
 
@@ -33,6 +33,10 @@ void render_wrapper::CameraWrapper::SetNearClipDistance(float distance) {
 
 void render_wrapper::CameraWrapper::SetBackgroundColor(float r, float g, float b, float a) {
 	_viewport->setBackgroundColour(Ogre::ColourValue(r, g, b, a));
+}
+
+void render_wrapper::CameraWrapper::SetBackgroundColor(eden_utils::Vector3 rgb, float a) {
+	SetBackgroundColor(rgb.GetX(), rgb.GetY(), rgb.GetZ(), a);
 }
 
 void render_wrapper::CameraWrapper::SetAutoAspectRatio(bool set) {

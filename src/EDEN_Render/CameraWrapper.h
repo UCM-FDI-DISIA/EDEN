@@ -43,6 +43,7 @@ namespace render_wrapper {
 		/// @param b Porcentaje de azul en escala RGBA
 		/// @param a Porcentaje de transparencia (valor alfa) de la escala RGBA. Por defecto, establecido en 1.0f (opaco).
 		void SetBackgroundColor(float r, float g, float b, float a = 1.0f);
+		void SetBackgroundColor(eden_utils::Vector3 rgb, float a = 1.0f);
 
 		/// @brief Establece si el viewport que es dueno del frustrum de la camara puede recalcular la relacion de aspecto
 		/// si el frustrum cambia de tamano (esto es, se cambian las distancias de los planos cercano y lejano). Por defecto se usara
@@ -80,6 +81,8 @@ namespace render_wrapper {
 		/// @return Un movable object de OGRE, siendo en este caso, la camara
 		Ogre::MovableObject* GetRenderObject() override;
 	};
+
+#define DEFAULT_BG_COLOR eden_utils::Vector3(0.9f, 0.7f, 0.7f)
 }
 
 #endif //CAMERA_WRAPPER_H

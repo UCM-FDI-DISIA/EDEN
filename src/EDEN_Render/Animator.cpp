@@ -56,14 +56,13 @@ std::string render_wrapper::Animator::GetCurrentAnim() {
 Ogre::AnimationState* render_wrapper::Animator::FindAnim(std::string ID) {
 	std::unordered_map<std::string, std::pair<Ogre::AnimationState*, std::string>>::iterator anim = _anims.find(ID);
 	if (anim == _anims.end()) { 
-		std::string exceptionMsg = "render_wrapper::Animator ERROR in line 44: animation with ID " + ID + " not found in _anims map";
-		EDEN_EXCEPTION(exceptionMsg.c_str());
+		eden_error::ErrorHandler::Instance()->Exception("render_wrapper::Animator ERROR", "line 44: animation with ID " + ID + " not found in _anims map");
 		return nullptr; 
 	}
 	else return anim->second.first;
 }
 
-void  render_wrapper::Animator::RegisterAnim(std::string ID, std::string oldAnimID, std::string endID, bool isLooping) {
+void render_wrapper::Animator::RegisterAnim(std::string ID, std::string oldAnimID, std::string endID, bool isLooping) {
 	auto anim = _meshRend->_ent->getAnimationState(oldAnimID);
 	anim->setLoop(isLooping);
 	_anims.insert({ ID, {anim, endID} });

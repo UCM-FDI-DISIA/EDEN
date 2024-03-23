@@ -76,6 +76,7 @@ namespace eden_render
 		/// @param ent Entidad que se va a quitar
 		void removeRenderEntity(eden_ec::Entity* ent);
 
+		/// @brief Función que debería llamarse en el momento en el que la ventana cambia de tamaño
 		void ResizedWindow();
 
 	private:
@@ -163,10 +164,10 @@ namespace eden_render
 		std::unordered_set<eden_ec::Entity*> _entities;
 
 		/// @brief Flag para saber si el canvas se ha inicializado
-		bool canvasInit = false;
+		bool _canvasInit = false;
 
 		/// @brief Flag para saber si la ventana ha sido escalada
-		bool resized = false;
+		bool _resized = false;
 	};
 }
 

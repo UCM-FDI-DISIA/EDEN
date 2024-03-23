@@ -16,9 +16,9 @@ namespace render_wrapper {
 
 	class Animator;
 	class RenderObject;
-	class MeshRenderer : public render_wrapper::RenderObject
+	class MeshRenderer : public RenderObject
 	{
-		friend render_wrapper::Animator;
+		friend Animator;
 
 	public:
 		/// @brief Constructora del Wrapper de libreria de renderizado de mallas
@@ -26,7 +26,7 @@ namespace render_wrapper {
 		/// @param meshName Nombre del archivo de la malla
 		MeshRenderer(const std::string entityID, const std::string meshName);
 
-		~MeshRenderer() {};
+		~MeshRenderer() = default;
 
 		/// @brief Setea el material a la malla 
 		/// @param material Nombre del archivo del material 
@@ -35,10 +35,6 @@ namespace render_wrapper {
 		/// @brief Setea la la visibilidad de la malla
 		/// @param visibility True -> Visible, False -> No visible
 		void SetInvisible(bool visibility);
-
-		/// @brief 
-		/// @param dt Variable delta time
-		void ActivateAnim(float dt);
 
 	private:
 		/// @brief Puntero a la entidad asociada al componente

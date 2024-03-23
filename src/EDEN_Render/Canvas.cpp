@@ -2,19 +2,14 @@
 #include <Entity.h>
 #include "UIComponent.h"
 
-
-eden_canvas::Canvas::~Canvas() {
-
-}
-
 void eden_canvas::Canvas::Resize() {
-	for (auto ent : _entities) {
+	for (eden_ec::UIComponent* ent : _entities) {
 		ent->Resize();
 	}
 }
 
 void eden_canvas::Canvas::InitCanvas(){
-	for (auto ent : _entities) {
+	for (eden_ec::UIComponent* ent : _entities) {
 		ent->SetParameters();
 	}
 }

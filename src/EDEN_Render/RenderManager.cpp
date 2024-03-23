@@ -1,5 +1,6 @@
 #include <iostream>
 
+// Ogre
 #include <OgreRoot.h>
 #include <OgreSceneNode.h>
 #include <OgreEntity.h>
@@ -15,13 +16,19 @@
 #include <OgreOverlayManager.h> 
 #include <OgreShaderGenerator.h>
 #include <OgreMaterialManager.h>
+
+// SDL
 #include <SDL.h>
 #include <SDL_video.h>
 #include <SDL_syswm.h>
 
-#include "RenderManager.h"
+// EDEN
 #include <Transform.h>
 #include <Entity.h>
+#include <ErrorHandler.h>
+
+// EDEN_Render
+#include "RenderManager.h"
 #include "NodeManager.h"
 #include "Canvas.h"
 
@@ -38,8 +45,8 @@ eden_render::RenderManager::RenderManager(const std::string& appName)
 	}
 	catch (std::exception e)
 	{
-		std::cerr << e.what() << "\n";
 		_initialized = false;
+		eden_error::ErrorHandler::Instance()->HandleException(e);
 	}
 }
 
@@ -63,26 +70,18 @@ void eden_render::RenderManager::InitManager(const std::string& appName)
 	_sceneMngr->addRenderQueueListener(_overlaySys);
 	_sceneMngr->setAmbientLight(Ogre::ColourValue(0.2f, 0.2f, 0.2f));
 	_shaderGenerator->addSceneManager(_sceneMngr);
-
-	Ogre::Light* luz = _sceneMngr->createLight("Luz");
-	luz->setType(Ogre::Light::LT_POINT);
-	luz->setDiffuseColour(10, 10, 10);
-	Ogre::SceneNode* mLightNode = _sceneMngr->getRootSceneNode()->createChildSceneNode("nLuz");
-	mLightNode->attachObject(luz);
-
-	mLightNode->setDirection(Ogre::Vector3(1, -1, 0));
 }
 
 void eden_render::RenderManager::Update()
 {
 	_root->renderOneFrame(); // renderiza la ra�z de Ogre
-	if (resized) {
-		resized = false;
+	if (_resized) {
+		_resized = false;
 		eden_canvas::Canvas::Instance()->Resize();
 	}
-	if (!canvasInit) {
+	if (!_canvasInit) {
 		eden_canvas::Canvas::Instance()->InitCanvas();
-		canvasInit = true;
+		_canvasInit = true;
 	}
 }
 
@@ -109,13 +108,7 @@ void eden_render::RenderManager::InitializeLib()
 	pluginsPath = _fsLayer->getConfigFilePath(nameFile); // consigue la direcci�n gracias al sistema de archivos
 
 	if (!Ogre::FileSystemLayer::fileExists(pluginsPath)) { // si no existe el plugin -> excepción de Ogre
-		std::string error = "RenderManager ERROR in line 121: failed finding file plugins.cfg. Searched on dir: " + pluginsPath + "\n";
-#ifdef _MSC_VER
-		throw std::exception(error.c_str());
-#endif
-#ifdef __clang__
-		throw std::exception();
-#endif
+		eden_error::ErrorHandler::Instance()->Exception("RenderManager ERROR in line 121", "failed finding file plugins.cfg. Searched on dir: " + pluginsPath + "\n");
 	}
 	_solutionPath = pluginsPath; // copia la direcci�n de los plugins
 	_solutionPath.resize(_solutionPath.size() - nameFile.size()); // y la reajusta
@@ -130,13 +123,7 @@ void eden_render::RenderManager::InitializeLib()
 	}
 	else
 	{
-		std::string error = "RenderManager ERROR in line 134: failed creating Ogre::Root\n";
-#ifdef _MSC_VER
-		throw std::exception(error.c_str());
-#endif
-#ifdef __clang__
-		throw std::exception();
-#endif
+		eden_error::ErrorHandler::Instance()->Exception("RenderManager ERROR in line 134","Failed creating Ogre::Root\n");
 	}
 }
 
@@ -172,13 +159,7 @@ void eden_render::RenderManager::InitialiseRTShaderSystem()
 		_shaderGenerator = Ogre::RTShader::ShaderGenerator::getSingletonPtr();
 	}
 	else {
-		std::string error = "RenderManager ERROR in line 171: failed initializing\n";
-#ifdef _MSC_VER
-		throw std::exception(error.c_str());
-#endif
-#ifdef __clang__
-		throw std::exception();
-#endif
+		eden_error::ErrorHandler::Instance()->Exception("RenderManager ERROR in line 171", "Failed Initializing\n");
 	}
 }
 
@@ -287,13 +268,7 @@ void eden_render::RenderManager::LocateResources()
 	}
 	else
 	{
-		std::string error = "RenderManager ERROR in line 241: file resources.cfg not found in path " + resourcesPath +"\n";
-#ifdef _MSC_VER
-		throw std::exception(error.c_str());
-#endif
-#ifdef __clang__
-		throw std::exception();
-#endif
+		eden_error::ErrorHandler::Instance()->Exception("RenderManager ERROR in line 241", "File 'resources.cfg' not found in path " + resourcesPath + '\n');
 	}
 }
 
@@ -315,6 +290,9 @@ void eden_render::RenderManager::UpdatePositions() {
 			nodeMngr->SetOrientation(transform->GetRotation(), ent->GetEntityID());
 			nodeMngr->Scale(transform->GetScale(), ent->GetEntityID());
 		}
+		else {
+			eden_error::ErrorHandler::Instance()->Warning("Render Entity '" + ent->GetEntityID() + "' has no Transform");
+		}
 	}
 }
 
@@ -327,7 +305,6 @@ void eden_render::RenderManager::removeRenderEntity(eden_ec::Entity* ent) {
 }
 
 void eden_render::RenderManager::ResizedWindow() {
-
 	_window.render->windowMovedOrResized();
-	resized = true;
+	_resized = true;
 }

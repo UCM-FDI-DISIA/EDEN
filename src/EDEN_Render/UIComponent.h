@@ -30,10 +30,6 @@ namespace eden_ec {
 		/// @brief Destructora de la clase
 		virtual ~UIComponent();
 
-		/// @brief Construye el componente dado unos argumentos. Se obtendran de una lectura de un .lua
-		/// @param args Argumentos leidos de .lua
-		void Init(eden_script::ComponentArguments* args) override;
-
 		/// @brief Mostrar el elemento de la ui
 		void Show();
 
@@ -65,14 +61,13 @@ namespace eden_ec {
 		/// @param yPos Posicion del eje y
 		void SetPosition(float xPos, float yPos);
 
-		// @brief Cambia la posicion del componente
+		/// @brief Cambia la posicion del componente
 		/// @param xPos Posicion del eje x
 		/// @param yPos Posicion del eje y
 		void SetRelativePosition(float xPos, float yPos);
 
-		/// <summary>
-		/// Cambia el material del componente
-		/// </summary>
+		/// @brief Cambia el material del componente
+		/// @param matName Nombre del material
 		void SetMaterial(std::string const& matName);
 
 		/// @brief Poner visible el overlay
@@ -113,7 +108,7 @@ namespace eden_ec {
 		void SetParameters();
 
 		/// @brief Definicion de metodo estatico GetID necesario para construccion de componentes
-		static std::string GetID() { return _id; }
+		inline static std::string GetID() { return _id; }
 	protected:
 
 		const static std::string _id;
@@ -124,16 +119,16 @@ namespace eden_ec {
 		eden_input::InputManager* _inputManager = nullptr;
 
 		/// @brief ancho relativo
-		float _rWidth;
+		float _rWidth = 0;
 
 		/// @brief ancho objeto
-		float _oWidth;
+		float _oWidth = 0;
 
 		/// @brief alto relativo
-		float _rHeight;
+		float _rHeight = 0;
 
 		/// @brief alto objeto
-		float _oHeight;
+		float _oHeight = 0;
 
 		/// @brief pos relativa
 		std::pair <float, float>_rPos;

@@ -12,12 +12,18 @@
 
 const std::string eden_ec::UIComponent::_id = "UICOMPONENT";
 int eden_ec::UIComponent::_numUIElements = 0;
+
 eden_ec::UIComponent::UIComponent() {
 	
 	eden_canvas::Canvas::Instance()->addRenderEntity(this);
 	_overlayManager = Ogre::OverlayManager::getSingletonPtr();
 	_inputManager = eden_input::InputManager::Instance();
 	_numUIElements++;
+
+	_oHeight = 0;
+	_oWidth = 0;
+	_rHeight = 0;
+	_rWidth = 0;
 }
 
 eden_ec::UIComponent::~UIComponent() {
@@ -35,7 +41,7 @@ void eden_ec::UIComponent::Show() { _overlayElement->show(); }
 void eden_ec::UIComponent::Hide() { _overlayElement->hide(); }
 
 void eden_ec::UIComponent::SetDepth(float pos) {
-	_overlayElement->setZOrder(pos);
+	_overlayElement->setZOrder(Ogre::ushort(pos));
 }
 
 void eden_ec::UIComponent::SetCaption(std::string const& caption) {
@@ -103,11 +109,6 @@ std::string const& eden_ec::UIComponent::GetMaterialName() {
 	return _overlayContainer->getMaterialName();
 }
 
-void eden_ec::UIComponent::Init(eden_script::ComponentArguments* args) {
-	
-}
-
-
 void eden_ec::UIComponent::CreateImage(std::string overlayName, float xPos, float yPos,
 	float width, float height, std::string texture,
 	int depth) {
@@ -126,7 +127,7 @@ void eden_ec::UIComponent::CreateImage(std::string overlayName, float xPos, floa
 		_overlayManager->create("over"+ std::to_string(_numUIElements));
 	_overlayElement->add2D(_overlayContainer);
 	_overlayElement->show();
-	SetDepth(depth);
+	SetDepth((float)depth);
 
 }
 

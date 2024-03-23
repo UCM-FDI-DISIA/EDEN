@@ -25,8 +25,6 @@ namespace eden_render {
 
 namespace render_wrapper {
 
-#define ERROR_DEFINITION "NodeManager error in line "+ std::to_string(__LINE__)
-
 	class RenderObject;
 	/// @brief La clase NodeManager garantiza la abstraccion entre ogre y EDEN. Guarda todos los nodos de la escena actual, un nodo
 	/// por entidad creada. Cuando se quiera manejar una entidad (por ejemplo: moverla, girarla, trasladarla, etc...), los wrappers
@@ -118,9 +116,7 @@ namespace render_wrapper {
 		/// @brief Comprueba si una entidad tiene un nodo asociado buscandolo en el mapa
 		/// @param id Identificador de la Entidad asociada para buscar su nodo
 		/// @return Booleano que confirma si dicha entidad tiene un nodo creado o no
-		inline bool HasNode(const std::string id){
-			return FindNode(id) != nullptr;
-		}
+		bool HasNode(const std::string id);
 
 	private:
 
@@ -131,12 +127,12 @@ namespace render_wrapper {
 		Ogre::SceneNode* FindNode(const std::string id);
 
 		/// @brief Metodos para poder convertir los vectores y cuaterniones de Ogre en los nuestros propios de EDEN
-		eden_utils::Vector3 convertToEdenVector(const Ogre::Vector3 ogreVector);
-		eden_utils::Quaternion convertToEdenQuaternion(const Ogre::Quaternion ogreQuaternion);
+		eden_utils::Vector3 ConvertToEdenVector(const Ogre::Vector3 ogreVector);
+		eden_utils::Quaternion ConvertToEdenQuaternion(const Ogre::Quaternion ogreQuaternion);
 		
 		/// @brief Metodos para poder convertir nuestros vectores y cuaterniones de EDEN en los de Ogre
-		Ogre::Vector3 convertToOgreVector(const eden_utils::Vector3 edenVector);
-		Ogre::Quaternion convertToOgreQuaternion(const eden_utils::Quaternion edenQuaternion);
+		Ogre::Vector3 ConvertToOgreVector(const eden_utils::Vector3 edenVector);
+		Ogre::Quaternion ConvertToOgreQuaternion(const eden_utils::Quaternion edenQuaternion);
 		
 		/// @brief Mapa que contiene los nodos asociados a un identificador de la entidad
 		std::unordered_map<std::string, Ogre::SceneNode*> _sceneObjectsMap;

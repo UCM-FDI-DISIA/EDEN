@@ -2,10 +2,25 @@
 #define EDEN_SCENE_MANAGER_H
 
 #include <deque>
+#include <vector>
 #include <string>
+#include <unordered_map>
 
 #include "Singleton.h"
 
+namespace eden_script {
+	struct EntityInfo;
+	class ComponentArguments;
+}
+
+namespace eden_ec {
+	class Entity;
+}
+
+namespace eden_utils {
+	class Vector3;
+	class Quaternion;
+}
 
 namespace eden {
 class Scene;
@@ -47,15 +62,37 @@ public:
 	/// @return La escena activa
 	inline Scene* GetCurrentScene() { return _activeScene; }
 
+	/// @brief Crea una instancia de un blueprint en la escena. Puede cambiarse su posición y rotación
+	/// @param blueprintID el ID del blueprint a instanciar en la escena.
+	/// @param pos Nueva posición para entidad
+	/// @param rot Nueva orientación para entidad
+	/// @return Nueva entidad creada
+	/// @warning No se aplicarán cambios de posición ni rotación si la entidad NO tiene CTransform. NO se le pondrá uno automáticamente.
+	eden_ec::Entity* InstantiateBlueprint(std::string blueprintID, eden_utils::Vector3 pos, eden_utils::Quaternion rot);
+	eden_ec::Entity* InstantiateBlueprint(std::string blueprintID, eden_utils::Vector3 pos);
+	eden_ec::Entity* InstantiateBlueprint(std::string blueprintID, eden_utils::Quaternion rot);
+	eden_ec::Entity* InstantiateBlueprint(std::string blueprintID);
+
 private:
 	/// @brief Puntero a la primera escena de la lista, a la cual se llama a su Update
 	Scene* _activeScene = nullptr;
+
+	/// @brief Guarda información de un Blueprint. 
+	struct BlueprintInfo {
+		/// @brief Componentes que definen la entidad
+		std::vector<eden_script::ComponentArguments> components;
+		/// @brief Número de veces que se ha instanciado
+		int numInstances = 0;
+	};
+
+	/// @brief Guarda la información de los Blueprints leídos desde Lua
+	static std::unordered_map<std::string, BlueprintInfo> _Blueprints;
 
 	/// @brief Lista doblemente enlazada de punteros a escenas
 	std::deque<Scene*> _scenes;
 
 	/// @brief Constructora por defecto de la clase SceneManager
-	SceneManager() = default;
+	SceneManager();
 };
 }
 

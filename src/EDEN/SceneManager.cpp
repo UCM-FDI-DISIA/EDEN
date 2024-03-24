@@ -4,8 +4,32 @@
 #include <ScriptManager.h>
 #include "Scene.h";
 #include <unordered_map>
+#include "Quaternion.h"
+#include "Vector3.h"
+#include "Entity.h"
+#include "ErrorHandler.h"
+#include "Transform.h"
+#include "ComponentArguments.h"
 
 namespace eden {
+
+	std::unordered_map<std::string, SceneManager::BlueprintInfo> SceneManager::_Blueprints = std::unordered_map<std::string, SceneManager::BlueprintInfo>();
+
+
+	SceneManager::SceneManager() {
+		eden_script::ScriptManager* scriptManager = eden_script::ScriptManager::Instance();
+		std::vector<eden_script::EntityInfo*> blueprints;
+		scriptManager->ReadBlueprints(blueprints);
+
+		_Blueprints.clear();
+
+		for (auto it : blueprints) {
+			BlueprintInfo info;
+			info.numInstances = 0;
+			info.components = it->components;
+			_Blueprints[it->name] = info;
+		}
+	}
 
 	SceneManager::~SceneManager() {
 		for (auto it = _scenes.begin(); it != _scenes.end();) {
@@ -14,6 +38,64 @@ namespace eden {
 		}
 		//Está borrando una escena que YA se ha borrado
 		//if (_activeScene != nullptr) delete _activeScene;
+	}
+
+	eden_ec::Entity* SceneManager::InstantiateBlueprint(std::string blueprintID) {
+
+		auto it = _Blueprints.find(blueprintID);
+
+		eden_ec::Entity* ent = nullptr;
+
+		if (it != _Blueprints.end()) {
+			std::string name = it->first + "_(" + std::to_string(it->second.numInstances) +')';
+			it->second.numInstances++;
+			eden_script::EntityInfo* info = new eden_script::EntityInfo();
+			info->name = name;
+			info->components = it->second.components;
+			ent = _activeScene->Instantiate(info);
+		}
+		else {
+			eden_error::ErrorHandler::Instance()->Exception("Blueprint '" + blueprintID + "' Instance failed", "'" + blueprintID + "' was not found in the Blueprints file. Are you missing any definition?");
+		}
+
+		return ent;
+	}
+
+	eden_ec::Entity* SceneManager::InstantiateBlueprint(std::string blueprintID, eden_utils::Vector3 pos) {
+		eden_ec::Entity* ent = InstantiateBlueprint(blueprintID);
+		if (ent != nullptr) {
+			eden_ec::CTransform* tr = ent->GetComponent<eden_ec::CTransform>();
+			if (tr != nullptr) {
+				tr->SetPosition(pos);
+			}
+		}
+
+		return ent;
+	}
+
+	eden_ec::Entity* SceneManager::InstantiateBlueprint(std::string blueprintID, eden_utils::Quaternion rot) {
+		eden_ec::Entity* ent = InstantiateBlueprint(blueprintID);
+		if (ent != nullptr) {
+			eden_ec::CTransform* tr = ent->GetComponent<eden_ec::CTransform>();
+			if (tr != nullptr) {
+				tr->SetRotation(rot);
+			}
+		}
+
+		return ent;
+	}
+
+	eden_ec::Entity* SceneManager::InstantiateBlueprint(std::string blueprintID, eden_utils::Vector3 pos, eden_utils::Quaternion rot) {
+		eden_ec::Entity* ent = InstantiateBlueprint(blueprintID);
+		if (ent != nullptr) {
+			eden_ec::CTransform* tr = ent->GetComponent<eden_ec::CTransform>();
+			if (tr != nullptr) {
+				tr->SetPosition(pos);
+				tr->SetRotation(rot);
+			}
+		}
+
+		return ent;
 	}
 
 	Scene* SceneManager::PushScene(const std::string& ID) {

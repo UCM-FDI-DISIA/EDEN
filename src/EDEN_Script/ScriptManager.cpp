@@ -155,12 +155,12 @@ std::vector<eden_script::ComponentArguments> eden_script::ScriptManager::ReadCom
 	return components;
 }
 
-bool eden_script::ScriptManager::EntityTableToData(std::vector<eden_script::EntityInfo*>& info) {
+bool eden_script::ScriptManager::EntityTableToData(std::vector<eden_script::EntityInfo*>& info, std::string tableName) {
 	// L debería haber sido inicializado en la constructora. Esto NUNCA debería saltar, pero por si a caso
 	assert(_l);
 	
 	// Accedemos a la Table de Entidades del .lua de la escena
-	if (IsNil(lua_getglobal(_l, ENTITY_TABLE_NAME))) {
+	if (IsNil(lua_getglobal(_l, tableName.c_str()))) {
 		std::string sEntityTable = ENTITY_TABLE_NAME;
 		EDEN_EXCEPTION(sEntityTable.c_str());
 		// std::cerr << ERROR_DEFINITION << " " << __FILENAME__ << ": Entities Table was not found on the scene you're trying to read. It should be named: '" + sEntityTable + "'\n";
@@ -203,19 +203,37 @@ bool eden_script::ScriptManager::EntityTableToData(std::vector<eden_script::Enti
 }
 
 bool eden_script::ScriptManager::ReadScene(std::string sceneName, std::vector<eden_script::EntityInfo*>& info, std::unordered_map<std::string, std::vector<std::string>>& collisionInfo) {
-	assert(_l);
+	eden_error::ErrorHandler::Instance()->Assert(_l, "Lua Virtual machine was not initialized before reading the scene.");
 
 	std::string fileName = SCENE_ROUTE + sceneName + SCENE_EXTENSION;
 	if (CheckLua(luaL_dofile(_l, fileName.c_str()), "Reading " + fileName)) {
 
 		bool readingSuccesful = CollisionTableToData(collisionInfo);
-		readingSuccesful = EntityTableToData(info);
+		readingSuccesful = EntityTableToData(info, ENTITY_TABLE_NAME);
 		return true;
 	}
 	else {
 		return false;
 	}
 }
+
+bool eden_script::ScriptManager::ReadBlueprints(std::vector<eden_script::EntityInfo*>& info) {
+	eden_error::ErrorHandler::Instance()->Assert(_l, "Lua Virtual machine was not initialized before reading blueprints.");
+
+	std::string fileName = ASSETS_ROUTE;
+	fileName += BLUEPRINTS_FILE_NAME;
+	fileName += SCENE_EXTENSION;
+
+	if (CheckLua(luaL_dofile(_l, fileName.c_str()), "Reading " + fileName)) {
+
+		EntityTableToData(info, BLUEPRINTS_FILE_NAME);
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
 
 bool eden_script::ScriptManager::CollisionTableToData(std::unordered_map<std::string, std::vector<std::string>>& collisionInfo) {
 	// Accedemos a la Table de Capas de colisiones del .lua de la escena

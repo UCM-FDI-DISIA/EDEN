@@ -18,12 +18,15 @@ class LuaManager;
 #define _DEBUGGING_SCENE_READING
 
 #ifdef _MSC_VER
+#define ASSETS_ROUTE "assets\\"
 #define SCENE_ROUTE "assets\\scenes\\"
 #endif
 #ifdef __APPLE__
+#define ASSETS_ROUTE "assets/"
 #define SCENE_ROUTE "assets/scenes/"
 #endif
 #define SCENE_EXTENSION ".lua"
+#define BLUEPRINTS_FILE_NAME "Blueprints"
 //
 //#define ERROR_DEFINITION "Lua error in line "+ std::to_string(__LINE__)
 //#define __FILENAME__ (strrchr(__FILE__, '\\') ? strrchr(__FILE__, '\\') + 1 : __FILE__)
@@ -55,6 +58,11 @@ class LuaManager;
 		/// @return True = No error | False = Error
 		bool ReadScene(std::string sceneName, std::vector<eden_script::EntityInfo*>& info, std::unordered_map<std::string, std::vector<std::string>>& collisionInfo);
 
+		/// @brief Lee el archivo "bin/assets/Blueprints.lua" y rellena info con la información de los blueprints que existan.
+		/// @param info Información a rellenar
+		/// @return True = No error | False = Error
+		bool ReadBlueprints(std::vector<eden_script::EntityInfo*>& info);
+
 		/// @brief Devuelve puntero a LuaManager
 		eden_script::LuaManager* GetLuaManager();
 
@@ -77,7 +85,8 @@ class LuaManager;
 		/// @brief Rellena el vector de entidades, suponiendo que ya hemos abierto antes una escena
 		/// @param info Informacion de entidades a rellenar
 		/// @return True = No error | False = Error
-		bool EntityTableToData(std::vector<eden_script::EntityInfo*>& info);
+		bool EntityTableToData(std::vector<eden_script::EntityInfo*>& info, std::string tableName);
+
 
 		/// @brief Busca en la tabla de Lua que se encuentre en el indice 'tableIndex' 
 		/// una key 'stringToRead' y devuelve su valor, si lo encuentra.

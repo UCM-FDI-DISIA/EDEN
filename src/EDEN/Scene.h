@@ -35,6 +35,10 @@ namespace eden {
 		/// @brief Llama al update de todas las entidades de la escena
 		void Update(float dt);
 
+		/// @brief Instancia una serie de entidades en la escena
+		/// @param info Información de las entidades a instanciar
+		void Instantiate(std::vector<eden_script::EntityInfo*> info);
+
 		/// @brief Durante la ejecucion del juego, anade una entidad nueva al mapa de entidades 
 		/// @param id id Nombre de la entidad que se va a crear nueva
 		void AddGameObject(const std::string& ID, eden_ec::Entity* _ent);
@@ -65,7 +69,18 @@ namespace eden {
 		/// @return _toDestroy True = no se quiere destruir | _toDestroy = se va a destruir
 		inline bool GetToDestroy() { return _toDestroy; }
 
+		/// @brief Instancia una entidad en la escena. Puede cambiarse su posición y rotación
+		/// @param info Información de una entidad 
+		/// @param pos Nueva posición para entidad
+		/// @param rot Nueva orientación para entidad
+		/// @return Nueva entidad creada
+		/// @warning No se aplicarán cambios de posición ni rotación si la entidad NO tiene CTransform. NO se le pondrá uno automáticamente.
+		eden_ec::Entity* Instantiate(eden_script::EntityInfo* info, eden_utils::Vector3 pos, eden_utils::Quaternion rot);
+		eden_ec::Entity* Instantiate(eden_script::EntityInfo* info, eden_utils::Vector3 pos);
+		eden_ec::Entity* Instantiate(eden_script::EntityInfo* info, eden_utils::Quaternion rot);
+		eden_ec::Entity* Instantiate(eden_script::EntityInfo* info);
 	private:
+
 		///@brief identificador de escena
 		std::string _ID;
 

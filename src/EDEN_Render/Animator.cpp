@@ -9,7 +9,6 @@
 
 render_wrapper::Animator::Animator(render_wrapper::MeshRenderer* meshRend) {
 	_meshRend = meshRend;
-
 	_anims = std::unordered_map<std::string, std::pair<Ogre::AnimationState*, std::string>>();
 }
 

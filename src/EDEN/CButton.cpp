@@ -16,8 +16,8 @@ eden_ec::CButton::CButton(ButtonParams& params) : UIComponent() {
 	int w = renderManager->GetWindowWidth();
 	int h = renderManager->GetWindowHeight();
 
-	int xx = w * params.xPos / 100;
-	int yy = h * params.yPos / 100;
+	int xx = (int) (w * params.xPos / 100);
+	int yy = (int) (h * params.yPos / 100);
 
 	params.xPos = xx - (params.width / 2);
 	params.yPos = yy - (params.height / 2);
@@ -30,11 +30,11 @@ eden_ec::CButton::CButton(ButtonParams& params) : UIComponent() {
 		params.width, params.height, params.iniTex, params.depth);
 	// Posiciones necesarias para el input de rat�n
 	// top + height
-	_topPosition = params.yPos;
-	_bottomPosition = _topPosition + params.height;
+	_topPosition = (int)params.yPos;
+	_bottomPosition = _topPosition + (int)params.height;
 	// left + width
-	_leftPosition = params.xPos;
-	_rightPosition = _leftPosition + params.width;
+	_leftPosition = (int)params.xPos;
+	_rightPosition = _leftPosition + (int)params.width;
 
 	_oldScale.first = params.width;
 	_oldScale.second = params.height;
@@ -65,8 +65,8 @@ void eden_ec::CButton::Init(eden_script::ComponentArguments* args) {
 	_hoverTex = args->GetValueToString("Texture2");
 	_clickedTex = args->GetValueToString("Texture3");
 
-	CreateImage(args->GetValueToString("OverlayName"),xPos, yPos,
-		width, height, _iniTex, args->GetValueToInt("Depth"));
+	CreateImage(args->GetValueToString("OverlayName"),(float)xPos, (float)yPos,
+		(float)width, (float)height, _iniTex, args->GetValueToInt("Depth"));
 
 	// Posiciones necesarias para el input de rat�n
 	// top + height
@@ -76,8 +76,8 @@ void eden_ec::CButton::Init(eden_script::ComponentArguments* args) {
 	_leftPosition = xPos;
 	_rightPosition = _leftPosition + width;
 
-	_oldScale.first = width;
-	_oldScale.second = height;
+	_oldScale.first = (float)width;
+	_oldScale.second = (float)height;
 
 }
 
@@ -89,11 +89,11 @@ void eden_ec::CButton::Update(float deltaTime) {
 void eden_ec::CButton::ButtonRectUpdate() {
 	// Posiciones necesarias para el input de rat�n
    // top + height
-	_topPosition = _oPos.second;
-	_bottomPosition = _topPosition + _oHeight;
+	_topPosition = (int)_oPos.second;
+	_bottomPosition = _topPosition + (int)_oHeight;
 	// left + width
-	_leftPosition = _oPos.first;
-	_rightPosition = _leftPosition + _oWidth;
+	_leftPosition = (int)_oPos.first;
+	_rightPosition = _leftPosition + (int)_oWidth;
 }
 
 void eden_ec::CButton::OnButtonClick() {

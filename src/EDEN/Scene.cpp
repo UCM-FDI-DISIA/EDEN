@@ -1,11 +1,13 @@
 #include <iostream>
 
+#include "Vector3.h"
+#include "Quaternion.h"
 #include "Scene.h"
 #include <ComponentArguments.h>
 #include <ScriptManager.h>
 #include <PhysicsManager.h>
 #include "Entity.h"
-
+#include "Transform.h"
 namespace eden {
 	Scene::Scene(const std::string& ID, std::vector<eden_script::EntityInfo*>& info, std::unordered_map<std::string, std::vector<std::string>>& collisionInfo) {
 		_ID = ID;
@@ -21,32 +23,71 @@ namespace eden {
 				physicsManager->AddCollisionToLayer(it.first, collisionLayer);
 			}
 		}
-		for (auto it : info) {
-			// Decimos qué estamos leyendo por consola
-			std::cout << "\n\nEntity: " << it->name << '\n';
-			std::cout << "Components:\n--------\n";
+		Instantiate(info);
+	}
 
-			// Cremoas una nueva entidad según el nombre que hayamos recibido en 'info' al leer el .lua
-			auto ent = new eden_ec::Entity(it->name);
-			// Creamos sus componentes según la info leída
-			ent->AddComponents(it);
-			for (auto ot : it->components) {
+	eden_ec::Entity* Scene::Instantiate(eden_script::EntityInfo* info) {
+		// Decimos qué estamos leyendo por consola
+#ifdef _DEBUG
+		std::cout << "\n\nEntity: " << info->name << '\n';
+		std::cout << "Components:\n--------\n";
+#endif
+		// Cremoas una nueva entidad según el nombre que hayamos recibido en 'info' al leer el .lua
+		auto ent = new eden_ec::Entity(info->name);
+		// Creamos sus componentes según la info leída
+		ent->AddComponents(info);
+#ifdef _DEBUG
+		for (auto ot : info->components) {
 
-				// Esto es puro Debug, no tiene impacto en la lógica
-				std::cout << "\tid: " << ot.GetID() << '\n';
-				std::cout << "\tArguments: \n";
-				for (auto ut : ot.GetArgs()) {
-					std::cout << "\t\t" << ut.first << " ";
-					for (auto at : ut.second) {
-						std::cout << at << ' ';
-					}
-					std::cout << '\n';
+			// Esto es puro Debug, no tiene impacto en la lógica
+			std::cout << "\tid: " << ot.GetID() << '\n';
+			std::cout << "\tArguments: \n";
+			for (auto ut : ot.GetArgs()) {
+				std::cout << "\t\t" << ut.first << " ";
+				for (auto at : ut.second) {
+					std::cout << at << ' ';
 				}
-				std::cout << "--------\n";
+				std::cout << '\n';
 			}
-			AddGameObject(it->name, ent);
+			std::cout << "--------\n";
+		}
+#endif
+		AddGameObject(info->name, ent);
+		return ent;
+	}
+
+	eden_ec::Entity* Scene::Instantiate(eden_script::EntityInfo* info, eden_utils::Vector3 pos) {
+		eden_ec::Entity* ent = Instantiate(info);
+		eden_ec::CTransform* tr = ent->GetComponent<eden_ec::CTransform>();
+		if (tr != nullptr) tr->SetPosition(pos);
+		
+		return ent;
+	}
+
+	eden_ec::Entity* Scene::Instantiate(eden_script::EntityInfo* info, eden_utils::Quaternion rot) {
+		eden_ec::Entity* ent = Instantiate(info);
+		eden_ec::CTransform* tr = ent->GetComponent<eden_ec::CTransform>();
+		if (tr != nullptr) tr->SetRotation(rot);
+
+		return ent;
+	}
+
+	eden_ec::Entity* Scene::Instantiate(eden_script::EntityInfo* info, eden_utils::Vector3 pos, eden_utils::Quaternion rot) {
+		eden_ec::Entity* ent = Instantiate(info);
+		eden_ec::CTransform* tr = ent->GetComponent<eden_ec::CTransform>();
+		if (tr != nullptr) 
+		{
+			tr->SetPosition(pos);
+			tr->SetRotation(rot);
 		}
 
+		return ent;
+	}
+
+	void Scene::Instantiate(std::vector<eden_script::EntityInfo*> info) {
+		for (auto it : info) {
+			Instantiate(it);
+		}
 	}
 
 	Scene::~Scene() {

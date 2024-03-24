@@ -8,6 +8,8 @@
 #include "Transform.h"
 #include "CAnimator.h"
 
+#include "SceneManager.h"
+
 const std::string eden_ec::Hito1Prueba::_id = "PRUEBA";
 
 eden_ec::Hito1Prueba::Hito1Prueba() {
@@ -77,7 +79,6 @@ void eden_ec::Hito1Prueba::Update(float dt) {
 		idle = false;
 		jump = false;
 		keyPressed = true;
-
 	}
 	else if (inputManager->IsKeyDown(inputManager->SPACE)) {
 		Jump();

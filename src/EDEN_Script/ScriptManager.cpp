@@ -200,6 +200,7 @@ bool eden_script::ScriptManager::EntityTableToData(std::vector<eden_script::Enti
 		// Puhseamos la información nueva al vector de información de entidades
 		info.push_back(newInfo);
 	}
+	return true;
 }
 
 bool eden_script::ScriptManager::ReadScene(std::string sceneName, std::vector<eden_script::EntityInfo*>& info, std::unordered_map<std::string, std::vector<std::string>>& collisionInfo) {

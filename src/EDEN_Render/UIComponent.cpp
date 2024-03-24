@@ -85,8 +85,7 @@ std::string const& eden_ec::UIComponent::GetCaption() {
 }
 
 eden_utils::Vector3 const& eden_ec::UIComponent::GetColor() {
-	Ogre::ColourValue color = _overlayContainer->getColour();
-	return eden_utils::Vector3(color.r, color.g, color.a);
+	return eden_utils::Vector3(_overlayContainer->getColour().r, _overlayContainer->getColour().g, _overlayContainer->getColour().a);
 }
 
 std::pair<float, float> const& eden_ec::UIComponent::GetDimensions() {

@@ -24,6 +24,7 @@ namespace eden_ec {
 	public:
 
 		CAnimator() = default;
+		virtual ~CAnimator();
 
 		/// @brief Inicializa el componente, guardando los argumentos recibidos desde lua
 		/// @param args los argumentos que contienen informacion sobre las animaciones

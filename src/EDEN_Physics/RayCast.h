@@ -40,7 +40,7 @@ namespace physics_wrapper {
 		/// @param drawDebugLine Un booleano que determina si se tiene o no que dibujar el rayo (para uso de debug)
 		/// @param debugLineColor Vector con la informacion RGB del color del rayo a dibujar
 		/// @return Devuelve un struct de tipo "RayCastHitResult" con la informacion de colision del rayo con el primer objeto en su trayectoria
-		const RayCastHitResult& SingleHitRayCast(const eden_utils::Vector3 rayOrigin, const eden_utils::Vector3 rayDestiny, const bool drawDebugLine = false, const eden_utils::Vector3 debugLineColor = eden_utils::Vector3(1,0,0)) const;
+		const RayCastHitResult SingleHitRayCast(const eden_utils::Vector3 rayOrigin, const eden_utils::Vector3 rayDestiny, const bool drawDebugLine = false, const eden_utils::Vector3 debugLineColor = eden_utils::Vector3(1,0,0)) const;
 
 		/// @brief Metodo que genera un rayo que devuelve la informacion de todos los objetos con los que colisiona
 		/// @param rayOrigin Es el punto en el espacio desde donde sale el rayo

@@ -90,11 +90,16 @@ physics_manager::PhysicsManager::~PhysicsManager()
 	{
 		delete it.second;
 	}
-	// Toda la memoria dinámica que hemos generado en la constructora, al intentar llamar a su delete aquí,  hace que el programa explote. 
+	// Toda la memoria dinï¿½mica que hemos generado en la constructora, al intentar llamar a su delete aquï¿½,  hace que el programa explote. 
 	// Hay que revisarlo
 
-	delete _dynamicWorldRef;
 	if (_debugDrawer) delete _debugDrawer;
+	delete _dynamicWorldRef;
+	delete _worldConstraintSolver;
+	delete _worldBroadPhaseInterface;
+	delete _worldDispatcher;
+	delete _worldCollisionConfiguration;
+	//if (_physicsDebugDrawer) delete _physicsDebugDrawer;
 
 }
 

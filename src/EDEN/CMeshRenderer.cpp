@@ -12,6 +12,7 @@ eden_ec::CMeshRenderer::CMeshRenderer(std::string mesh) : Component(),
 _mesh(mesh) {};
 
 eden_ec::CMeshRenderer::~CMeshRenderer() {
+	delete _renderWrapper;
 	eden_render::RenderManager::Instance()->removeRenderEntity(_ent);
 };
 

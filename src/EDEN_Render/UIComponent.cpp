@@ -80,28 +80,28 @@ bool eden_ec::UIComponent::IsVisible() { return _overlayElement->isVisible(); }
 
 float eden_ec::UIComponent::GetDepth() { return _overlayElement->getZOrder(); }
 
-std::string const& eden_ec::UIComponent::GetCaption() {
+std::string const eden_ec::UIComponent::GetCaption() const {
 	return _overlayContainer->getCaption();
 }
 
-eden_utils::Vector3 const& eden_ec::UIComponent::GetColor() {
+eden_utils::Vector3 const eden_ec::UIComponent::GetColor() const {
 	Ogre::ColourValue color = _overlayContainer->getColour();
 	return eden_utils::Vector3(color.r, color.g, color.a);
 }
 
-std::pair<float, float> const& eden_ec::UIComponent::GetDimensions() {
+std::pair<float, float> const eden_ec::UIComponent::GetDimensions() const {
 	return std::pair<float, float>(_overlayContainer->getWidth(), _overlayContainer->getHeight());
 }
 
-std::pair<float, float> const& eden_ec::UIComponent::GetRelativeDimensions() {
+std::pair<float, float> const eden_ec::UIComponent::GetRelativeDimensions() const {
 	return std::pair<float, float>(_overlayContainer->_getWidth(), _overlayContainer->_getHeight());
 }
 
-std::pair<float, float> const& eden_ec::UIComponent::GetPosition() {
+std::pair<float, float> const eden_ec::UIComponent::GetPosition() const {
 	return std::pair<float, float>(_overlayContainer->getLeft(), _overlayContainer->getTop());
 }
 
-std::pair<float, float> const& eden_ec::UIComponent::GetRelativePosition() {
+std::pair<float, float> const eden_ec::UIComponent::GetRelativePosition() const {
 	return std::pair<float, float>(_overlayContainer->_getLeft(), _overlayContainer->_getTop());
 }
 

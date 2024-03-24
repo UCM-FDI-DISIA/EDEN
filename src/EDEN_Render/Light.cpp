@@ -9,8 +9,9 @@
 render_wrapper::Light::Light(const std::string entityID, LightType type) : _entityID(entityID)
 {
 	_light = getSceneManager()->createLight();
-
-	Ogre::Light::LightTypes OgreLightType;
+	
+	// inicialización genérica
+	Ogre::Light::LightTypes OgreLightType = Ogre::Light::LightTypes::LT_DIRECTIONAL;
 
 	switch (type)
 	{
@@ -24,6 +25,7 @@ render_wrapper::Light::Light(const std::string entityID, LightType type) : _enti
 		OgreLightType = Ogre::Light::LightTypes::LT_SPOTLIGHT;
 		break;
 	default:
+		OgreLightType = Ogre::Light::LightTypes::LT_DIRECTIONAL;
 		break;
 	}
 	_light->setType(OgreLightType);

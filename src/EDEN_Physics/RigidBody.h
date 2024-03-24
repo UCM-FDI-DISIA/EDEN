@@ -24,13 +24,13 @@ namespace physics_wrapper {
 	{
 
 	public:
-		static enum RigidBodyType { DYNAMIC, KINEMATIC, STATIC };
+		enum RigidBodyType { DYNAMIC, KINEMATIC, STATIC };
 
 		/// @brief Tipo de forma que se puede crear
-		static enum ShapeType { BOX, SPHERE, CAPSULE, CYLINDER };
+		enum ShapeType { BOX, SPHERE, CAPSULE, CYLINDER };
 
 		/// @brief Parametros de la forma que se vaya a crear
-		static struct ShapeParameters {
+		struct ShapeParameters {
 		public:
 			/// @brief Tipo de forma
 			ShapeType type;

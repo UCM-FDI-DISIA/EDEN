@@ -81,22 +81,22 @@ namespace eden_ec {
 		float GetDepth();
 
 		/// @brief Devuelve el caption del componente
-		std::string const& GetCaption();
+		std::string const GetCaption() const;
 
 		/// @brief Decuelve color del componente
-		eden_utils::Vector3 const& GetColor();
+		eden_utils::Vector3 const GetColor() const;
 
 		/// @brief Devuelve las dimensiones del componente
-		std::pair<float, float> const& GetDimensions();
+		std::pair<float, float> const GetDimensions() const;
 
 		/// @brief Devuelve las dimensiones del componente
-		std::pair<float, float> const& GetRelativeDimensions();
+		std::pair<float, float> const GetRelativeDimensions() const;
 
 		/// @brief Devuelve la posicion del componente
-		std::pair <float, float> const& GetPosition();
+		std::pair <float, float> const GetPosition() const;
 
 		/// @brief Devuelve la posicion del componente
-		std::pair <float, float> const& GetRelativePosition();
+		std::pair <float, float> const GetRelativePosition() const;
 
 		/// @brief Devuelve el material del componente
 		std::string const& GetMaterialName();

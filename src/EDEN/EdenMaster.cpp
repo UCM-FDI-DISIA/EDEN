@@ -56,7 +56,7 @@ void eden::Master::Loop()
 	float lastPhysicsUpdateTime = 0;
 	
 	while (!exit) {
-		int numPU = (_elapsedTime - lastPhysicsUpdateTime) / (_physicsUpdateTimeInterval);
+		int numPU = (int) ((_elapsedTime - lastPhysicsUpdateTime) / (_physicsUpdateTimeInterval));
 		if (numPU > 0) {
 			_physicsManager->UpdatePositions();
 			for (int i = 0; i < numPU; ++i) {

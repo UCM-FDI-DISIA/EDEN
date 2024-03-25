@@ -1,3 +1,4 @@
+#define _CRTDBG_MAP_ALLOC
 #include <BulletCollision/CollisionShapes/btBoxShape.h>
 #include <BulletCollision/CollisionShapes/btSphereShape.h>
 #include <BulletCollision/CollisionShapes/btCapsuleShape.h>

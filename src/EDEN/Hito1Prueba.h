@@ -1,3 +1,4 @@
+#define _CRTDBG_MAP_ALLOC
 #ifndef HITO1_PRUEBA_H
 #define HITO1_PRUEBA_H
 

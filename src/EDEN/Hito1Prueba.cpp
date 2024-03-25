@@ -1,4 +1,4 @@
-
+#define _CRTDBG_MAP_ALLOC
 #include "Hito1Prueba.h"
 #include <InputManager.h>
 #include <ScriptManager.h>

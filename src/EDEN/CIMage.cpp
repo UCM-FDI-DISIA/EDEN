@@ -1,3 +1,4 @@
+#define _CRTDBG_MAP_ALLOC
 #include "CImage.h"
 #include <RenderManager.h>
 #include <ScriptManager.h>
@@ -12,8 +13,8 @@ eden_ec::CImage::CImage(std::string overlayName, float xPos, float yPos,
 	auto render = eden_render::RenderManager::Instance();
 	int w = render->GetWindowWidth();
 	int h = render->GetWindowHeight();
-	int xx = w * xPos / 100;
-	int yy = h * yPos / 100;
+	float xx = w * xPos / 100;
+	float yy = h * yPos / 100;
 	xPos = xx - (width / 2);
 	yPos = yy - (height / 2);
 
@@ -38,7 +39,7 @@ void eden_ec::CImage::Init(eden_script::ComponentArguments* args) {
 	xPos = xx - (width / 2);
 	yPos = yy - (height / 2);
 
-	CreateImage(args->GetValueToString("OverlayName"), xPos, yPos, width, height,
+	CreateImage(args->GetValueToString("OverlayName"), float(xPos), float(yPos), float(width), float(height),
 		args->GetValueToString("Texture"), args->GetValueToInt("Depth"));
 	
 }

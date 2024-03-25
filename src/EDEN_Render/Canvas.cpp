@@ -1,3 +1,4 @@
+#define _CRTDBG_MAP_ALLOC
 #include "Canvas.h"
 #include <Entity.h>
 #include "UIComponent.h"

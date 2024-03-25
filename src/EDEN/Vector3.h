@@ -1,3 +1,4 @@
+#define _CRTDBG_MAP_ALLOC
 #ifndef EDEN_VECTOR3_H
 #define EDEN_VECTOR3_H
 

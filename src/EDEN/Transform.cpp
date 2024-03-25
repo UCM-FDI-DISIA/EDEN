@@ -1,3 +1,4 @@
+#define _CRTDBG_MAP_ALLOC
 #include "Transform.h"
 #include <ScriptManager.h>
 #include <ComponentArguments.h>
@@ -25,17 +26,17 @@ void eden_ec::CTransform::Rotate(float angle, eden_utils::Vector3 axis)
 
 void eden_ec::CTransform::Pitch(float angle)
 {
-	_rotation.RotateArroundPoint(eden_utils::Vector3(1, 0, 0), angle);
+	_rotation.RotateArroundPoint(eden_utils::Vector3(1.0f, 0.0f, 0.0f), angle);
 }
 
 void eden_ec::CTransform::Yaw(float angle)
 {
-	_rotation.RotateArroundPoint(eden_utils::Vector3(0, 1, 0), angle);
+	_rotation.RotateArroundPoint(eden_utils::Vector3(0.0f, 1.0f, 0.0f), angle);
 }
 
 void eden_ec::CTransform::Roll(float angle)
 {
-	_rotation.RotateArroundPoint(eden_utils::Vector3(0, 0, 1), angle);
+	_rotation.RotateArroundPoint(eden_utils::Vector3(0.0f, 0.0f, 1.0f), angle);
 }
 
 void eden_ec::CTransform::Escalate(eden_utils::Vector3 scale)
@@ -46,17 +47,17 @@ void eden_ec::CTransform::Escalate(eden_utils::Vector3 scale)
 eden_utils::Vector3 eden_ec::CTransform::GetForward()
 {
 	std::array<std::array<int, 3>, 3> rotMat = _rotation.GetRotationMatrix();
-	return eden_utils::Vector3(rotMat[0][2], rotMat[1][2], rotMat[2][2]);
+	return eden_utils::Vector3(float(rotMat[0][2]), float(rotMat[1][2]), float(rotMat[2][2]));
 }
 
 eden_utils::Vector3 eden_ec::CTransform::GetUp()
 {
 	std::array<std::array<int, 3>, 3> rotMat = _rotation.GetRotationMatrix();
-	return eden_utils::Vector3(rotMat[0][1], rotMat[1][1], rotMat[2][1]);
+	return eden_utils::Vector3(float(rotMat[0][1]), float(rotMat[1][1]), float(rotMat[2][1]));
 }
 
 eden_utils::Vector3 eden_ec::CTransform::GetRight()
 {
 	std::array<std::array<int, 3>, 3> rotMat = _rotation.GetRotationMatrix();
-	return eden_utils::Vector3(rotMat[0][0], rotMat[1][0], rotMat[2][0]);
+	return eden_utils::Vector3(float(rotMat[0][0]), float(rotMat[1][0]), float(rotMat[2][0]));
 }

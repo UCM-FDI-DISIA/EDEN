@@ -1,3 +1,4 @@
+#define _CRTDBG_MAP_ALLOC
 #ifndef EDEN_TRANSFORM_H
 #define EDEN_TRANSFORM_H
 

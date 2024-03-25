@@ -1,3 +1,4 @@
+#define _CRTDBG_MAP_ALLOC
 #ifndef EDEN_NODE_MANAGER_H
 #define EDEN_NODE_MANAGER_H
 

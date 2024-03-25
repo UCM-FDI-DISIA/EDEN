@@ -1,5 +1,20 @@
+// Memory Leaks Check
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+
+#ifdef _DEBUG
+#define DBG_NEW new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
+#define new new(_NORMAL_BLOCK,__FILE__,__LINE__)
+// Replace _NORMAL_BLOCK with _CLIENT_BLOCK if you want the
+// allocations to be of _CLIENT_BLOCK type
+#else
+#define DBG_NEW new
+#endif
+
 #ifndef EDEN_MAIN_CPP
 #define EDEN_MAIN_CPP
+
 
 #include <iostream>
 #include <filesystem>
@@ -50,6 +65,9 @@ void RegisterComponents() {
 }
 
 int main(int argc, char* argv[]) {
+
+	// Memory Leaks Check
+	//_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	
 	// Registro de componentes
 	RegisterComponents();
@@ -74,7 +92,8 @@ int main(int argc, char* argv[]) {
 		// en caso de generar una excepción no tratada, se llamará a este método, que genera (en windows) un pop-up informando del error
 		errorHandler->HandleException(e);
 	}
-	
+
+	_CrtDumpMemoryLeaks();
 	return 0;
 }
 

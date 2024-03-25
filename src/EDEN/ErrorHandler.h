@@ -1,3 +1,4 @@
+#define _CRTDBG_MAP_ALLOC
 #ifndef EDEN_ERROR_HANDLER_H
 #define EDEN_ERROR_HANDLER_H
 

@@ -1,3 +1,4 @@
+#define _CRTDBG_MAP_ALLOC
 #ifndef DEBUG_DRAWER_H
 #define DEBUG_DRAWER_H
 

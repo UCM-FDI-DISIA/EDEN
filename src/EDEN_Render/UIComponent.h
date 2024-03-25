@@ -1,3 +1,4 @@
+#define _CRTDBG_MAP_ALLOC
 #ifndef EDEN_UI_COMPONENT_H
 #define EDEN_UI_COMPONENT_H
 

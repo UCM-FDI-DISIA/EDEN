@@ -1,3 +1,4 @@
+#define _CRTDBG_MAP_ALLOC
 #include <OgreSceneManager.h>
 #include <OgreEntity.h>
 #include <OgreAnimationState.h>

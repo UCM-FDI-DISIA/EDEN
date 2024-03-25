@@ -1,3 +1,4 @@
+#define _CRTDBG_MAP_ALLOC
 #ifndef EDEN_INPUT_MANAGER_H
 #define EDEN_INPUT_MANAGER_H
 

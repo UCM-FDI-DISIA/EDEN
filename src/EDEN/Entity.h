@@ -1,3 +1,4 @@
+#define _CRTDBG_MAP_ALLOC
 #ifndef EDEN_ENTITY_H
 #define EDEN_ENTITY_H
 

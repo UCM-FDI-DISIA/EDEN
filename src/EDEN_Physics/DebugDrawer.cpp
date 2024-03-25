@@ -1,3 +1,4 @@
+#define _CRTDBG_MAP_ALLOC
 #include "DebugDrawer.h"
 #include <OgreSceneNode.h>
 

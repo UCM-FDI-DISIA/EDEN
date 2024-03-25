@@ -1,3 +1,4 @@
+#define _CRTDBG_MAP_ALLOC
 #include "CRigidBody.h"
 #include <ComponentArguments.h>
 #include <PhysicsManager.h>

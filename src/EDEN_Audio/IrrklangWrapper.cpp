@@ -1,3 +1,4 @@
+#define _CRTDBG_MAP_ALLOC
 #include <irrKlang.h>
 
 #include "IrrklangWrapper.h"

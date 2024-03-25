@@ -1,3 +1,4 @@
+#define _CRTDBG_MAP_ALLOC
 #include <assert.h>
 #include <math.h>
 
@@ -6,7 +7,7 @@
 
 eden_utils::Quaternion::Quaternion() {
 	_x = _y = _z = 0;
-	_w = 1;
+	_w = 1.0f;
 }
 
 eden_utils::Quaternion::Quaternion(float w, float x, float y, float z) {
@@ -18,11 +19,11 @@ eden_utils::Quaternion::Quaternion(float w, float x, float y, float z) {
 
 eden_utils::Quaternion::Quaternion(float angle, Vector3 axis)
 {
-	angle = (angle * 2 * PI) / 180;
-	_w = cos(angle / 2);
-	_x = axis.GetX() * sin(angle / 2);
-	_y = axis.GetY() * sin(angle / 2);
-	_z = axis.GetZ() * sin(angle / 2);
+	angle = (angle * 2.0f * float(PI)) / 180.0f;
+	_w = float(cos(angle / 2.0f));
+	_x = axis.GetX() * float(sin(angle / 2.0f));
+	_y = axis.GetY() * float(sin(angle / 2.0f));
+	_z = axis.GetZ() * float(sin(angle / 2.0f));
 }
 
 eden_utils::Quaternion eden_utils::Quaternion::UnitQuaternion(Vector3 axis, float angle)
@@ -135,7 +136,7 @@ float eden_utils::Quaternion::Normal()
 eden_utils::Quaternion eden_utils::Quaternion::Normalized()
 {
 	Quaternion q = *this;
-	float length = sqrt(Normal());
+	float length = float(sqrt(Normal()));
 	q._w /= length;
 	q._x /= length;
 	q._y /= length;
@@ -155,7 +156,7 @@ eden_utils::Vector3 eden_utils::Quaternion::Complex() const
 
 void eden_utils::Quaternion::RotateArroundPoint(Vector3 position, float angle)
 {
-	angle = (angle * 2 * PI) / 180;
+	angle = (angle * 2.0f * float(PI)) / 180.0f;
 
 	*this = UnitQuaternion(position, angle) * 
 		(*this - Quaternion(0, position.GetX(), position.GetY(), position.GetZ())) * 
@@ -172,20 +173,20 @@ std::array<std::array<int, 3>, 3> eden_utils::Quaternion::GetRotationMatrix()
 {
 	std::array<std::array<int, 3>, 3> rotMat;
 
-	float fTx = 2 * _x, fTy = 2 * _y, fTz = 2 * _z,
+	float fTx = 2.0f * _x, fTy = 2.0f * _y, fTz = 2.0f * _z,
 		fTxw = fTx * _w, fTyw = fTy * _y, fTzw = fTz * _w,
 		fTxx = fTx * _x, fTyx = fTy * _x, fTzx = fTz * _x,
 		fTyy = fTy * _y, fTzy = fTz * _y, fTzz = fTz * _z;
 
-	rotMat[0][0] = 1.0f - (fTyy + fTzz);
-	rotMat[0][1] = fTyx - fTzw;
-	rotMat[0][2] = fTzx + fTyw;
-	rotMat[1][0] = fTyx + fTzw;
-	rotMat[1][1] = 1.0f - (fTxx + fTzz);
-	rotMat[1][2] = fTzy - fTxw;
-	rotMat[2][0] = fTzx - fTyw;
-	rotMat[2][1] = fTzy + fTxw;
-	rotMat[2][2] = 1.0f - (fTxx + fTyy);
+	rotMat[0][0] = int(1.0f - (fTyy + fTzz));
+	rotMat[0][1] = int(fTyx - fTzw);
+	rotMat[0][2] = int(fTzx + fTyw);
+	rotMat[1][0] = int(fTyx + fTzw);
+	rotMat[1][1] = int(1.0f - (fTxx + fTzz));
+	rotMat[1][2] = int(fTzy - fTxw);
+	rotMat[2][0] = int(fTzx - fTyw);
+	rotMat[2][1] = int(fTzy + fTxw);
+	rotMat[2][2] = int(1.0f - (fTxx + fTyy));
 
 	return rotMat;
 }

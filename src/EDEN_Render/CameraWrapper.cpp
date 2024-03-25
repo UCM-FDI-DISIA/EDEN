@@ -1,3 +1,4 @@
+#define _CRTDBG_MAP_ALLOC
 #include <OgreCamera.h>
 #include <OgreSceneManager.h>
 #include <OgreRenderWindow.h>

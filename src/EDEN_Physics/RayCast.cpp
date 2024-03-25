@@ -1,3 +1,4 @@
+#define _CRTDBG_MAP_ALLOC
 #include <BulletDynamics/Dynamics/btDynamicsWorld.h>
 #include <BulletDynamics/Dynamics/btRigidBody.h>
 #include <LinearMath/btIDebugDraw.h>

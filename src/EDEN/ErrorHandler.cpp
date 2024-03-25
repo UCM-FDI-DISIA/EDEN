@@ -1,3 +1,4 @@
+#define _CRTDBG_MAP_ALLOC
 #include "ErrorHandler.h"
 #include "EdenMaster.h"
 

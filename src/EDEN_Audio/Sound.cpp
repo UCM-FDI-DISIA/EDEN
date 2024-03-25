@@ -1,3 +1,4 @@
+#define _CRTDBG_MAP_ALLOC
 #include "Sound.h"
 #include "SoundWrapper.h"
 #include "Vector3.h"

@@ -1,5 +1,5 @@
 // This file is part of the course TPV2@UCM - Samir Genaim
-
+#define _CRTDBG_MAP_ALLOC
 #ifndef EDEN_SINGLETON_H
 #define EDEN_SINGLETON_H
 

@@ -1,3 +1,4 @@
+#define _CRTDBG_MAP_ALLOC
 #ifndef EDEN_MESH_RENDERER_H
 #define EDEN_MESH_RENDERER_H
 

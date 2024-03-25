@@ -1,3 +1,4 @@
+#define _CRTDBG_MAP_ALLOC
 #include <BulletDynamics/Dynamics/btRigidBody.h>
 #include <LinearMath/btDefaultMotionState.h>
 #include <BulletCollision/CollisionShapes/btCompoundShape.h>

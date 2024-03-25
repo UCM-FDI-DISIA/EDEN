@@ -1,4 +1,4 @@
-
+#define _CRTDBG_MAP_ALLOC
 #include "Entity.h"
 #include <ScriptManager.h>
 #include <ComponentArguments.h>

@@ -1,3 +1,4 @@
+#define _CRTDBG_MAP_ALLOC
 #include "CollisionLayer.h"
 
 int physics_wrapper::CollisionLayer::_currentLayer = 0;

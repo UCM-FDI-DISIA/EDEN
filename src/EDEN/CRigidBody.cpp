@@ -3,6 +3,7 @@
 #include <ComponentArguments.h>
 #include <PhysicsManager.h>
 #include "Entity.h"
+#include "CLuaBehaviour.h"
 
 const std::string eden_ec::CRigidBody::_id = "RIGIDBODY";
 
@@ -14,7 +15,8 @@ void eden_ec::CRigidBody::Start()
 		_rb = new physics_wrapper::RigidBody(_ent, _mass, _params, _type, _layer);
 		physics_manager::PhysicsManager::Instance()->AddPhysicsEntity(_ent);
 	}
-
+	if(_ent->GetComponent<CLuaBehaviour>() != nullptr)
+		_behaviour = _ent->GetComponent<CLuaBehaviour>();
 }
 
 void eden_ec::CRigidBody::Update(float t)
@@ -143,4 +145,22 @@ void eden_ec::CRigidBody::ApplyTorque(eden_utils::Vector3 torque)
 void eden_ec::CRigidBody::ClearForce()
 {
 	_rb->ClearForce();
+}
+
+void eden_ec::CRigidBody::OnCollisionEnter(eden_ec::Entity* other)
+{
+	if (_behaviour != nullptr)
+		_behaviour->OnCollisionEnter(other);
+}
+
+void eden_ec::CRigidBody::OnCollisionStay(eden_ec::Entity* other)
+{
+	/*if (_behaviour != nullptr)
+		_behaviour->OnCollisionStay(other);*/
+}
+
+void eden_ec::CRigidBody::OnCollisionExit(eden_ec::Entity* other)
+{
+	if (_behaviour != nullptr)
+		_behaviour->OnCollisionExit(/*other*/);
 }

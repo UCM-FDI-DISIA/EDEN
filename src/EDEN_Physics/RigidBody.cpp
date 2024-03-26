@@ -17,6 +17,8 @@
 #include "PhysicsManager.h"
 #include "CollisionLayer.h"
 #include "ShapeCreator.h"
+#include "CollisionCallback.h"
+#include "PhysicsManager.h"
 
 physics_wrapper::RigidBody::RigidBody(eden_ec::Entity* ent, float mass, const ShapeParameters& params, const RigidBodyType& flag, std::string layerName)
 {
@@ -64,6 +66,8 @@ physics_wrapper::RigidBody::RigidBody(eden_ec::Entity* ent, float mass, const Sh
 
 	// Todos los rigidbodies tienen ahora un puntero a la entidad que los contiene
 	_rigidBody->setUserPointer(ent);
+
+	_collisionCallback = new CollisionCallback(this);
 }
 
 physics_wrapper::RigidBody::~RigidBody()
@@ -76,6 +80,7 @@ physics_wrapper::RigidBody::~RigidBody()
 		shape = nullptr;
 	}
 	delete _collisionShape;
+	delete _collisionCallback;
 }
 
 
@@ -231,4 +236,8 @@ btQuaternion physics_wrapper::RigidBody::EDENToBulletQuaternion(eden_utils::Quat
 eden_utils::Quaternion physics_wrapper::RigidBody::BulletToEDENQuaternion(btQuaternion quaternion)
 {
 	return eden_utils::Quaternion(quaternion.getW(), quaternion.getX(), quaternion.getY(), quaternion.getZ());
+}
+
+btRigidBody* physics_wrapper::RigidBody::getBulletRigidBody() {
+	return _rigidBody;
 }

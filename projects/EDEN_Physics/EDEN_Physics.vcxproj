@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\EDEN_Physics\CollisionCallback.cpp" />
     <ClCompile Include="..\..\src\EDEN_Physics\CollisionLayer.cpp" />
     <ClCompile Include="..\..\src\EDEN_Physics\DebugDrawer.cpp" />
     <ClCompile Include="..\..\src\EDEN_Physics\PhysicsManager.cpp" />
@@ -20,6 +21,7 @@
     <ClCompile Include="..\..\src\EDEN_Physics\test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\EDEN_Physics\CollisionCallback.h" />
     <ClInclude Include="..\..\src\EDEN_Physics\CollisionLayer.h" />
     <ClInclude Include="..\..\src\EDEN_Physics\DebugDrawer.h" />
     <ClInclude Include="..\..\src\EDEN_Physics\PhysicsManager.h" />

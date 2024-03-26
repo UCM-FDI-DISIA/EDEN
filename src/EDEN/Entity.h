@@ -11,6 +11,7 @@ namespace eden_script {
     struct EntityInfo;
     struct ComponentInfo;
     class ComponentArguments;
+    class LuaManager;
 }
 
 namespace eden_ec {
@@ -19,6 +20,7 @@ namespace eden_ec {
     /// Se encarga de gestionar sus componentes, haciendo las llamdas pertinentes a los mismo
 	class Entity
 	{
+        friend class eden_script::LuaManager;
 	public:
 		/// @brief Construye una entidad gen�rica
 		Entity() = default;

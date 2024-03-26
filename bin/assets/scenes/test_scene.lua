@@ -30,6 +30,12 @@ Entity1 = {
 			}
         },
         {
+            Name = "BEHAVIOUR",
+			Arguments = {
+                Script= "collisionTest",
+			}
+        },
+        {
             Name = "RIGIDBODY", 
             Arguments = {
                 Mass = "1",

@@ -8,6 +8,8 @@
 #include <CRigidBody.h>
 #include <Transform.h>
 #include "RayCast.h"
+#include "RigidBody.h"
+#include "CollisionCallback.h"
 #include "CollisionLayer.h"
 #include "DebugDrawer.h"
 #include "ErrorHandler.h"
@@ -24,6 +26,11 @@
 void physics_manager::PhysicsManager::updateSimulation(float deltaTime)
 {
 	_dynamicWorldRef->stepSimulation(deltaTime);
+	physics_wrapper::RigidBody* _rb;
+	for (auto ent : _entitiesSet) {
+		_rb = ent->GetComponent<eden_ec::CRigidBody>()->_rb;
+		_dynamicWorldRef->contactTest(_rb->getBulletRigidBody(), *_rb->_collisionCallback);
+	}
 }
 
 void physics_manager::PhysicsManager::CreateCollisionLayer(std::string name)

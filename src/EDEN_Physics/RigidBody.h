@@ -20,10 +20,18 @@ namespace eden_ec {
 	class Entity;
 }
 
+namespace physics_manager {
+	class PhysicsManager;
+}
+
+
 namespace physics_wrapper {
+	class CollisionCallback;
+
 	class RigidBody
 	{
-
+		friend CollisionCallback;
+		friend physics_manager::PhysicsManager;
 	public:
 		enum RigidBodyType { DYNAMIC, KINEMATIC, STATIC };
 
@@ -138,6 +146,7 @@ namespace physics_wrapper {
 	private:
 		btRigidBody* _rigidBody;
 		btCompoundShape* _collisionShape;
+		CollisionCallback* _collisionCallback;
 
 		/// @brief Traduce un vector del motor a vector de Bullet
 		/// @param vector Vector del motor que quieres traducir
@@ -158,6 +167,9 @@ namespace physics_wrapper {
 		/// @param quaternion Cuaternion de Bullet que quieres traducir
 		/// @return Cuaternion del motor traducido
 		eden_utils::Quaternion BulletToEDENQuaternion(btQuaternion quaternion);
+
+		/// @brief Devuelve el rigidBody de la libreria fisica asociado a este rigidBody
+		btRigidBody* getBulletRigidBody();
 	};
 }
 #endif

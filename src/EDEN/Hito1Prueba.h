@@ -28,6 +28,8 @@ namespace eden_ec {
 
 		void Jump();
 
+		void Collide(/*eden_ec::Entity* other*/);
+
 	protected:
 		const static std::string _id;
 	private:

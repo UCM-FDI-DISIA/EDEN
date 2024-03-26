@@ -21,24 +21,23 @@ namespace eden_ec {
 	/// @brief Clase que representa un script de comportamiento. El script se definira
 	/// en Lua y se utilizara esta clase para poder gestionar su ciclo de vida y
 	/// llamada a metodos en C++.
-	class  CButtonBehaviour : public Component {
+	class  CLuaBehaviour : public Component {
 		friend class eden_script::LuaManager;
-
 	public:
 
 		/// @brief Constructora base
-		CButtonBehaviour() = default;
+		CLuaBehaviour() = default;
 
 		/// @brief Constructora
 		/// @param name Nombre del script
-		CButtonBehaviour(std::string name);
+		CLuaBehaviour(std::string name);
 	
 		/// @brief Constructora que inicializa un Behaviour con la LuaRef se le pase
 		/// @param behaviourLua LuaRef del script .lua que se desea
-		CButtonBehaviour(std::string name, luabridge::LuaRef* behaviourLua);
+		CLuaBehaviour(std::string name, luabridge::LuaRef* behaviourLua);
 		
 		/// @brief El destructor se encarga de borrar el puntero de LuaRef
-		virtual ~CButtonBehaviour();
+		virtual ~CLuaBehaviour();
 
 		/// @brief Asigna valor a la LuaRef que se corresponde al script .lua
 		/// @param behaviourLua LuaRef 
@@ -47,11 +46,22 @@ namespace eden_ec {
 		/// @brief Metodo que se llama cuando se hace click en el boton
 		virtual void OnButtonClick();
 
-		/// Metodo que se llama cuando ya no se hace click en el boton
+		/// brief Metodo que se llama cuando ya no se hace click en el boton
 		virtual void OnButtonReleased();
+
+		/// @brief Metodo que se llama cuando entra una colision
+		virtual void OnCollisionEnter(eden_ec::Entity* other);
+
+		/// @brief Metodo que se llama cuando se mantiene una colision
+		virtual void OnCollisionStay(eden_ec::Entity* other);
+
+		/// @brief Metodo que se llama cuando termina una colision
+		virtual void OnCollisionExit(/*eden_ec::Entity* other*/);
 
 		/// Devuelve la LuaRef al behaviour en Lua
 		luabridge::LuaRef* GetBehaviourLua();
+
+		lua_State* getLuaState();
 
 		/// @brief Construye el componente dado unos argumentos. Se obtendrán de una lectura de un .lua
 		/// @param args Argumentos leídos de .lua

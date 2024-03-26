@@ -12,7 +12,7 @@ namespace Ogre {
 
 namespace eden_ec {
 	
-	class CButtonBehaviour;
+	class CLuaBehaviour;
 
 	/// @brief Parámetros del botón
 	struct ButtonParams {
@@ -113,7 +113,7 @@ namespace eden_ec {
 
 
 		/// @brief Puntero al script de lua
-		CButtonBehaviour* _callback;
+		CLuaBehaviour* _callback;
 
 	};
 }

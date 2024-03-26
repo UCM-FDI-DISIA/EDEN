@@ -7,7 +7,7 @@
 #include <ScriptManager.h>
 #include <ComponentArguments.h>
 #include "Entity.h"
-#include "CButtonBehaviour.h"
+#include "CLuaBehaviour.h"
 
 const std::string eden_ec::CButton::_id = "BUTTON";
 
@@ -42,7 +42,7 @@ eden_ec::CButton::CButton(ButtonParams& params) : UIComponent() {
 }
 
 void eden_ec::CButton::Start() {
-	_callback = static_cast<CButtonBehaviour*>(_ent->GetComponent("BEHAVIOUR"));
+	_callback = static_cast<CLuaBehaviour*>(_ent->GetComponent("BEHAVIOUR"));
 }
 
 void eden_ec::CButton::Init(eden_script::ComponentArguments* args) {

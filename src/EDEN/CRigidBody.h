@@ -20,8 +20,10 @@ namespace physics_manager {
 }
 
 namespace eden_ec {
+	class CLuaBehaviour;
 	class CRigidBody : public Component
 	{
+
 		friend physics_manager::PhysicsManager;
 	public:
 		/// @brief Constructora por defecto. No usar
@@ -103,6 +105,18 @@ namespace eden_ec {
 		/// @brief Quita las fuerzas que se aplican sobre el RigidBody
 		void ClearForce();
 
+		/// @brief Se llama cuando un rigidBody empieza a colisionar con el rigidBody
+		/// @param Entidad que colisiona
+		void OnCollisionEnter(eden_ec::Entity* other);
+
+		/// @brief Se llama cada vez que haya una colision después de que se haya llamado el OnCollisionEnter
+		/// @param Entidad que colisiona
+		void OnCollisionStay(eden_ec::Entity* other);
+		
+		/// @brief Se llama cuando un rogidBody acaba de terminar la colision con el RigidBody
+		/// @param Entidad que colisiona
+		void OnCollisionExit(eden_ec::Entity* other);
+
 		/// @brief Definicion de metodo estatico GetID necesario para construccion de componentes
 		static std::string GetID() { return _id; }
 
@@ -125,6 +139,8 @@ namespace eden_ec {
 
 		/// @brief Referencia al componente transform
 		eden_ec::CTransform* _transform = nullptr;
+
+		eden_ec::CLuaBehaviour* _behaviour = nullptr;
 
 		/// @brief Convierte el componente transform propio al transform del motor de fisicas
 		void EdenTransformToPhysicsTransform();

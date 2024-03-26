@@ -7,6 +7,7 @@
 #include "Entity.h"
 #include "Transform.h"
 #include "CAnimator.h"
+#include"CLuaBehaviour.h"
 
 #include "SceneManager.h"
 
@@ -18,6 +19,7 @@ eden_ec::Hito1Prueba::Hito1Prueba() {
 	eden_script::LuaManager* scriptM = eden_script::ScriptManager::Instance()->GetLuaManager();
 	scriptM->Regist(*this, "Hito1Prueba", &eden_ec::Hito1Prueba::Jump,"SetJump",this);
 	scriptM->Regist(*this, "Hito1Prueba", &eden_ec::Hito1Prueba::Jump, "SetJump2", this);
+	scriptM->Regist(*this, "Hito1Prueba", &eden_ec::Hito1Prueba::Collide, "Collide", this);
 	scriptM->SetGlobal(this, "Hito1Prueba");
 	scriptM = nullptr;
 }
@@ -106,4 +108,10 @@ void eden_ec::Hito1Prueba::Jump() {
 		jump = true;
 		idle = false;
 	}
+}
+
+void eden_ec::Hito1Prueba::Collide(/*eden_ec::Entity* other*/)
+{
+	Entity* other = luabridge::getGlobal(_ent->GetComponent<CLuaBehaviour>()->getLuaState(), "other");
+	std::cout << other->GetEntityID() << std::endl;
 }

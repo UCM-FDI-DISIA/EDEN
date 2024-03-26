@@ -4,7 +4,9 @@
 #include "ErrorHandler.h"
 
 #include "LuaManager.h"
-#include <CButtonBehaviour.h>
+#include <CLuaBehaviour.h>
+#include <Hito1Prueba.h>
+#include <Transform.h>
 #include <Entity.h>
 
 eden_script::LuaManager::LuaManager()
@@ -25,11 +27,14 @@ void eden_script::LuaManager::InitLua(lua_State* l) {
 void eden_script::LuaManager::RegisterClasses() {
 	// Registramos la clase base y sus funciones miembro
 	luabridge::getGlobalNamespace(_L)
-		.beginClass<eden_ec::CButtonBehaviour>("CButtonBehaviour")
-		.addFunction("OnButtonClick", &eden_ec::CButtonBehaviour::OnButtonClick)
-		.addFunction("OnButtonReleased", &eden_ec::CButtonBehaviour::OnButtonReleased)
-		.addProperty("entity", &eden_ec::CButtonBehaviour::_ent)
-		.addProperty("name", &eden_ec::CButtonBehaviour::_name)
+		.beginClass<eden_ec::CLuaBehaviour>("CLuaBehaviour")
+		.addFunction("OnButtonClick", &eden_ec::CLuaBehaviour::OnButtonClick)
+		.addFunction("OnButtonReleased", &eden_ec::CLuaBehaviour::OnButtonReleased)
+		.addFunction("OnCollisionEnter", &eden_ec::CLuaBehaviour::OnCollisionEnter)
+		.addFunction("OnCollisionStay", &eden_ec::CLuaBehaviour::OnCollisionStay)
+		.addFunction("OnCollisionExit", &eden_ec::CLuaBehaviour::OnCollisionExit)
+		.addProperty("entity", &eden_ec::CLuaBehaviour::_ent)
+		.addProperty("name", &eden_ec::CLuaBehaviour::_name)
 		.endClass();
 }
 
@@ -42,7 +47,7 @@ bool eden_script::LuaManager::LoadScript(std::string name, eden_ec::Entity* ent)
 	}
 
 	// Creamos una instancia de Behaviour y la pasamos al script
-	eden_ec::CButtonBehaviour* behaviourScript = static_cast<eden_ec::CButtonBehaviour*>(ent->GetComponent("BEHAVIOUR"));
+	eden_ec::CLuaBehaviour* behaviourScript = static_cast<eden_ec::CLuaBehaviour*>(ent->GetComponent("BEHAVIOUR"));
 
 	luabridge::setGlobal(_L, behaviourScript, name.c_str());
 

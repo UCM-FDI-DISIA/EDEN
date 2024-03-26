@@ -19,7 +19,8 @@
     <ClCompile Include="..\..\src\EDEN\CButton.cpp" />
     <ClCompile Include="..\..\src\EDEN\CCamera.cpp" />
     <ClCompile Include="..\..\src\EDEN\CCursor.cpp" />
-    <ClCompile Include="..\..\src\EDEN\CIMage.cpp" />
+    <ClCompile Include="..\..\src\EDEN\CImage.cpp" />
+    <ClCompile Include="..\..\src\EDEN\CLuaBehaviour.cpp" />
     <ClCompile Include="..\..\src\EDEN\UIComponent.cpp" />
     <ClCompile Include="..\..\src\EDEN\ErrorHandler.cpp" />
   </ItemGroup>
@@ -44,6 +45,6 @@
     <ClInclude Include="..\..\src\EDEN\CCamera.h" />
     <ClInclude Include="..\..\src\EDEN\CCursor.h" />
     <ClInclude Include="..\..\src\EDEN\CImage.h" />
-    <ClInclude Include="..\..\src\EDEN\CButtonBehaviour.h" />
+    <ClInclude Include="..\..\src\EDEN\CLuaBehaviour.h" />
   </ItemGroup>
 </Project>

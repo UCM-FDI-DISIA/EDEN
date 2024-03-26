@@ -3,6 +3,7 @@
 #include <ScriptManager.h>
 #include <ComponentArguments.h>
 #include "Component.h"
+#include <LuaManager.h>
 
 void eden_ec::Entity::AddComponents(eden_script::EntityInfo* entityInfo) {
     for (auto it : entityInfo->components) {

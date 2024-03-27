@@ -56,6 +56,7 @@ class LuaManager;
 		/// @brief Lee la escena "bin/assets/<sceneName>.lua" y rellena <info> con informacion del componente
 		/// @param sceneName Escena a cargar desde la carpeta "bin/assets"
 		/// @param info Vector pasado por referencia donde se guardara toda la informacion de las entidades leidas de mapa
+		/// @param collisionInfo Vector pasado por referencia donde se guardara toda la informacion de las capas de colision leidas de mapa
 		/// @return True = No error | False = Error
 		bool ReadScene(std::string sceneName, std::vector<eden_script::EntityInfo*>& info, std::unordered_map<std::string, std::vector<std::string>>& collisionInfo);
 

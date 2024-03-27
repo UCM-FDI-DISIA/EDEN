@@ -74,3 +74,7 @@ void eden_ec::Entity::RemoveComponent(std::string id) {
         _components.erase(iter);
     }
 }
+
+std::string eden_ec::Entity::GetSceneID() {
+    return _sceneID;
+}

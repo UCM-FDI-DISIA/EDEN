@@ -4,8 +4,10 @@
 
 #include <unordered_set>
 #include <unordered_map>
-
 #include "Singleton.h"
+
+#define DEFAULT_GROUP "DEFAULT"
+#define COLLISIONMASK_NULL ""
 
 class btDynamicsWorld;
 class btIDebugDraw;
@@ -72,9 +74,11 @@ namespace physics_manager {
 
 		~PhysicsManager() override;
 
-		void AddCollisionToLayer(std::string layerName, std::string collisionToAdd);
-
-		physics_wrapper::CollisionLayer* GetLayerByName(std::string name);
+		/// @brief Encuentra una capa dado un cierto nombre e ID de escena
+		/// @param name Nombre de la capa que se quiere buscar
+		/// @param sceneID ID de la escena en la que se encuentra la capa
+		/// @return Devuelve una capa dado un cierto nombre e ID de escena, o nullptr en caso de fallar
+		physics_wrapper::CollisionLayer* GetLayerByName(std::string name, std::string sceneID);
 	protected:
 		/// @brief La constructora se encarga de crear el mundo de la simulaci�n f�sica y el objeto encargado de dibujar 
 		PhysicsManager();
@@ -83,6 +87,7 @@ namespace physics_manager {
 		//std::unordered_map<const class btRigidBody*, eden_ec::Entity*> _entitiesMap;
 		std::unordered_set<eden_ec::Entity*> _entitiesSet;
 
+		/// @brief Mapa desordenado que guarda los nombres de las capas y su respectivo objeto CollisionLayer
 		std::unordered_map<std::string, physics_wrapper::CollisionLayer*> _layers;
 
 		/// @brief Referencia al mundo de la simulacion fisica
@@ -107,8 +112,16 @@ namespace physics_manager {
 		/// @return Mundo de Bullet
 		btDynamicsWorld* GetWorld();
 
+		/// @brief Añade colisión a una capa con otra capa
+		/// @param layerName Nombre de la capa a la que le se quiere añadir colisión
+		/// @param collisionToAdd Nombre de la capa con la que se quiere que colisione
+		/// @param sceneID ID de la escena asociada a ambas capas
+		void AddCollisionToLayer(std::string layerName, std::string collisionToAdd, std::string sceneID);
 
-		void CreateCollisionLayer(std::string name);
+		/// @brief Crea una capa de colisión
+		/// @param name Nombre de la capa que se quiere crear
+		/// @param sceneID ID de la escena asociada a la capa
+		void CreateCollisionLayer(std::string name, std::string sceneID);
 	};
 }
 #endif // !PHYSICS_MANAGER_h

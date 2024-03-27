@@ -27,7 +27,7 @@ namespace eden_ec {
 
         /// @brief Construye una entidad gen�rica y le da nombre
         /// @param id El nombre que queremos darle a la entidad
-        inline Entity(std::string id) { _ID = id; }
+        inline Entity(std::string id, std::string sceneID) { _ID = id; _sceneID = sceneID; }
 
         /// @brief Destruye la entidad y sus componentes asociados
         ~Entity();
@@ -89,6 +89,10 @@ namespace eden_ec {
         /// @param T Tipo del componente
         /// @return Puntero a la instancia del componente asociada a la entidad
         Component* GetComponent(std::string id);
+        
+        /// @brief Devuelve el ID de la escena a la que pertenece
+        /// @return Devuelve el ID de la escena a la que pertenece
+        std::string GetSceneID();
 
         /// @brief Nos devuelve un componente asociado a una entidad dado su tipo
         /// @param T Tipo del componente
@@ -129,6 +133,9 @@ namespace eden_ec {
 
         /// @brief Variable que identifica a la entidad por nombre 
         std::string _ID = "ENTITY_NEEDS_NEW_NAME";
+
+        /// @brief ID de la escena a la que pertenece
+        std::string _sceneID;
 	};
 }
 

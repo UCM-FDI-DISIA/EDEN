@@ -13,15 +13,15 @@ namespace eden {
 	Scene::Scene(const std::string& ID, std::vector<eden_script::EntityInfo*>& info, std::unordered_map<std::string, std::vector<std::string>>& collisionInfo) {
 		_ID = ID;
 		physics_manager::PhysicsManager* physicsManager = physics_manager::PhysicsManager::Instance();
-		physicsManager->CreateCollisionLayer("DEFAULT");
+		physicsManager->CreateCollisionLayer(DEFAULT_GROUP, ID);
 		for (auto it : collisionInfo)
 		{
-			physicsManager->CreateCollisionLayer(it.first);
+			physicsManager->CreateCollisionLayer(it.first, ID);
 		}
 		for (auto it : collisionInfo)
 		{
 			for (auto collisionLayer : it.second) {
-				physicsManager->AddCollisionToLayer(it.first, collisionLayer);
+				physicsManager->AddCollisionToLayer(it.first, collisionLayer, ID);
 			}
 		}
 		Instantiate(info);
@@ -34,7 +34,7 @@ namespace eden {
 		std::cout << "Components:\n--------\n";
 #endif
 		// Cremoas una nueva entidad según el nombre que hayamos recibido en 'info' al leer el .lua
-		auto ent = new eden_ec::Entity(info->name);
+		auto ent = new eden_ec::Entity(info->name, _ID);
 		// Creamos sus componentes según la info leída
 		ent->AddComponents(info);
 #ifdef _DEBUG

@@ -33,36 +33,42 @@ void physics_manager::PhysicsManager::updateSimulation(float deltaTime)
 	}
 }
 
-void physics_manager::PhysicsManager::CreateCollisionLayer(std::string name)
+void physics_manager::PhysicsManager::CreateCollisionLayer(std::string name, std::string sceneID)
 {
-	auto layerIt = _layers.find(name);
+	std::string layerSceneName = name + '_' + sceneID;
+	auto layerIt = _layers.find(layerSceneName);
 	if (layerIt == _layers.end()) {
-		physics_wrapper::CollisionLayer* layer = new physics_wrapper::CollisionLayer(name);
-		_layers[name] = layer;
+		physics_wrapper::CollisionLayer* layer = new physics_wrapper::CollisionLayer(layerSceneName, sceneID);
+		_layers[layerSceneName] = layer;
 	}
 }
 
-void physics_manager::PhysicsManager::AddCollisionToLayer(std::string layerName, std::string collisionToAdd)
+void physics_manager::PhysicsManager::AddCollisionToLayer(std::string layerName, std::string collisionToAdd, std::string sceneID)
 {
-	auto layer = _layers.find(layerName);
-	auto collisionLayer = _layers.find(collisionToAdd);
-	if (layer != _layers.end() && collisionLayer != _layers.end()) {
-		layer->second->AddCollisionToLayer(collisionLayer->second);
-	}
-	else
+	if(collisionToAdd != COLLISIONMASK_NULL)
 	{
-		std::string message = " ";
-		if (layer != _layers.end())
-		{
-			message = "PhysicsManager ERROR in line 37, could not find collision layer: " + layerName + 
-				" trying to add collision with layer: " + collisionToAdd + "\n";
+		std::string layerSceneName = layerName + '_' + sceneID;
+		std::string collisionToAddSceneName = collisionToAdd + '_' + sceneID;
+		auto layer = _layers.find(layerSceneName);
+		auto collisionLayer = _layers.find(collisionToAddSceneName);
+		if (layer != _layers.end() && collisionLayer != _layers.end()) {
+			layer->second->AddCollisionToLayer(collisionLayer->second);
 		}
 		else
 		{
-			message = "PhysicsManager ERROR in line 37, could not find collision layer: " + collisionToAdd + 
-				" trying to add collision to layer: " + layerName+ "\n";
+			std::string message = " ";
+			if (layer != _layers.end())
+			{
+				message = "PhysicsManager ERROR in line 37, could not find collision layer: " + layerName + 
+					" trying to add collision with layer: " + collisionToAdd + "\n";
+			}
+			else
+			{
+				message = "PhysicsManager ERROR in line 37, could not find collision layer: " + collisionToAdd + 
+					" trying to add collision to layer: " + layerName+ "\n";
+			}
+			eden_error::ErrorHandler::Instance()->Warning(message.c_str());
 		}
-		eden_error::ErrorHandler::Instance()->Warning(message.c_str());
 	}
 }
 
@@ -137,8 +143,9 @@ void physics_manager::PhysicsManager::ResolvePositions() {
 	}
 }
 
-physics_wrapper::CollisionLayer* physics_manager::PhysicsManager::GetLayerByName(std::string name) {
-	auto it = _layers.find(name);
+physics_wrapper::CollisionLayer* physics_manager::PhysicsManager::GetLayerByName(std::string name, std::string sceneID) {
+	std::string layerSceneName = name + '_' + sceneID;
+	auto it = _layers.find(layerSceneName);
 	if (it != _layers.end())
 		return it->second;
 	else 

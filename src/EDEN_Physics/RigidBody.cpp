@@ -19,6 +19,8 @@
 #include "ShapeCreator.h"
 #include "CollisionCallback.h"
 #include "PhysicsManager.h"
+#include "SceneManager.h"
+#include "Scene.h"
 
 physics_wrapper::RigidBody::RigidBody(eden_ec::Entity* ent, float mass, const ShapeParameters& params, const RigidBodyType& flag, std::string layerName)
 {
@@ -54,15 +56,13 @@ physics_wrapper::RigidBody::RigidBody(eden_ec::Entity* ent, float mass, const Sh
 	}
 	
 	physics_manager::PhysicsManager* physicsManager = physics_manager::PhysicsManager::Instance();
-	physics_wrapper::CollisionLayer* layer = physicsManager->GetLayerByName(layerName);
-	if (layer != nullptr)
+	physics_wrapper::CollisionLayer* layer = physicsManager->GetLayerByName(layerName, ent->GetSceneID());
+	if (layer == nullptr)
 	{
-		physicsManager->GetWorld()->addRigidBody(_rigidBody, layer->GetLayer(), layer->GetCollisionMask());
+		layer = physicsManager->GetLayerByName(DEFAULT_GROUP, ent->GetSceneID());
 	}
-	else
-	{
-		physicsManager->GetWorld()->addRigidBody(_rigidBody);
-	}
+
+	physicsManager->GetWorld()->addRigidBody(_rigidBody, layer->GetLayer(), layer->GetCollisionMask());
 
 	// Todos los rigidbodies tienen ahora un puntero a la entidad que los contiene
 	_rigidBody->setUserPointer(ent);

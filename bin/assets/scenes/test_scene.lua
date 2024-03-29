@@ -46,8 +46,16 @@ Entity1 = {
                 CollisionFlag = "DYNAMIC",
                 CollisionLayer = "DEFAULT"
             }
+        },
+        {
+            Name = "PARTICLE_EMITTER",
+            Arguments = {
+                Name = "Test",
+                Loop = "true",
+                Time = "1",
+                Started = "true"
+            }
         }
-        
     }
 }
 

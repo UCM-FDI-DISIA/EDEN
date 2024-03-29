@@ -110,8 +110,8 @@ void eden_ec::Hito1Prueba::Jump() {
 	}
 }
 
-void eden_ec::Hito1Prueba::Collide(/*eden_ec::Entity* other*/)
+void eden_ec::Hito1Prueba::Collide(eden_ec::Entity* other)
 {
-	Entity* other = luabridge::getGlobal(_ent->GetComponent<CLuaBehaviour>()->getLuaState(), "other");
-	std::cout << other->GetEntityID() << std::endl;
+	Entity* otro = luabridge::getGlobal(_ent->GetComponent<CLuaBehaviour>()->getLuaState(), "other");
+	std::cout << otro->GetEntityID() << std::endl;
 }

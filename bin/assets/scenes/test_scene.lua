@@ -44,7 +44,7 @@ Entity1 = {
                 Radius = "0",
                 Shape = "BOX",
                 CollisionFlag = "DYNAMIC",
-                CollisionLayer = "PLAYER"
+                CollisionLayer = "DEFAULT"
             }
         }
         
@@ -155,7 +155,7 @@ Entity6 = {
                 Radius = "0",
                 Shape = "BOX",
                 CollisionFlag = "STATIC",
-                CollisionLayer = "GROUND"
+                CollisionLayer = "DEFAULT"
             }
         }
         

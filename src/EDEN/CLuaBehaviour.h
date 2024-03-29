@@ -56,7 +56,7 @@ namespace eden_ec {
 		virtual void OnCollisionStay(eden_ec::Entity* other);
 
 		/// @brief Metodo que se llama cuando termina una colision
-		virtual void OnCollisionExit(/*eden_ec::Entity* other*/);
+		virtual void OnCollisionExit(eden_ec::Entity* other);
 
 		/// Devuelve la LuaRef al behaviour en Lua
 		luabridge::LuaRef* GetBehaviourLua();

@@ -36,6 +36,11 @@ void eden_script::LuaManager::RegisterClasses() {
 		.addProperty("entity", &eden_ec::CLuaBehaviour::_ent)
 		.addProperty("name", &eden_ec::CLuaBehaviour::_name)
 		.endClass();
+
+	luabridge::getGlobalNamespace(_L)
+		.beginClass<eden_ec::Entity>("Entity")
+		.addProperty("id", &eden_ec::Entity::GetEntityID)
+		.endClass();
 }
 
 bool eden_script::LuaManager::LoadScript(std::string name, eden_ec::Entity* ent) {

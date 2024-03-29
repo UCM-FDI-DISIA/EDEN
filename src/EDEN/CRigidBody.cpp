@@ -155,12 +155,12 @@ void eden_ec::CRigidBody::OnCollisionEnter(eden_ec::Entity* other)
 
 void eden_ec::CRigidBody::OnCollisionStay(eden_ec::Entity* other)
 {
-	/*if (_behaviour != nullptr)
-		_behaviour->OnCollisionStay(other);*/
+	if (_behaviour != nullptr)
+		_behaviour->OnCollisionStay(other);
 }
 
 void eden_ec::CRigidBody::OnCollisionExit(eden_ec::Entity* other)
 {
 	if (_behaviour != nullptr)
-		_behaviour->OnCollisionExit(/*other*/);
+		_behaviour->OnCollisionExit(other);
 }

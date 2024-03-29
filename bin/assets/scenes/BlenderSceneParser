@@ -1,0 +1,139 @@
+import bpy
+import mathutils
+import array
+import bmesh
+import math
+from bpy.props import (StringProperty)
+from bpy_extras.io_utils import (ExportHelper)
+
+def grados(radianes):
+    x= (180*radianes)/3.141516
+    return x
+
+full_filel = bpy.data.filepath.split("\\")
+contador = 1 
+path_file = full_filel[0]
+
+while contador != len(full_filel)-1:
+    path_file = str(path_file) + "\\" + str(full_filel[contador])
+    contador +=1
+    
+blenderName = bpy.path.basename(bpy.data.filepath).split(".")
+
+file_name = blenderName[0] + ".lua"
+
+#path blend file
+file1 = open((path_file + '\\' + file_name), 'w', encoding = "utf-8")
+
+objects = bpy.context.scene.objects
+
+dato = ""
+cont = 1
+for ob in objects:
+    #Si el objeto tiene padre, se salta, porque es un componente
+    if ob.parent: continue
+    #file1.write("Entity" + str(cont) + " = {" "\n") 
+    dato += "Entity" + str(cont) + " = {" "\n"
+    
+    dato += "\tName = " + "\""+ob.name+ "\"," + "\n" 
+    #file1.write(dato)
+    
+    dato += "\tComponents = {" + "\n" 
+    #file1.write(dato)
+    
+    #COMPONENTE MESHRENDERER
+    if ob.type =="MESH":
+        dato += "\t\t{" + "\n\t\t\tName = " + "\""+ "MESH_RENDERER" + "\"," + "\n" + "\t\t\tArguments = {"+ "\n"
+        #file1.write(dato)
+        
+        #ARGUMENTOS DEL COMPONENTE
+        dato += "\t\t\t\tMesh = "+ "\""+ ob.data.name + "\""
+        #file1.write(dato)
+        #file1.write("\n" + "\t\t\t}"+"\n" + "\t\t},"+"\n")
+        dato += "\n" + "\t\t\t}"+"\n" + "\t\t},"+"\n"
+        
+    #COMPONENTE TRANSFORM
+    dato += "\t\t{" + "\n\t\t\tName = " + "\""+ "TRANSFORM" + "\"," + "\n" + "\t\t\tArguments = {"+ "\n"
+    #file1.write(dato)
+    
+    #ARGUMENTOS DEL COMPONENTE
+    dato += "\t\t\t\tPosition = "+ "\""+ str(ob.location.x) + "|" + str(ob.location.y) + "|"+ str(ob.location.z) + "\","+ "\n"
+    #file1.write(dato)
+    dato += "\t\t\t\tRotation = "+ "\""+ str(grados(ob.rotation_euler[0])) + "|" + str(grados(ob.rotation_euler[1])) + "|" + str(grados(ob.rotation_euler[2])) + "\","+ "\n"
+    #file1.write(dato)
+    dato += "\t\t\t\tScale = "+ "\""+ str(ob.scale.x) + "|" + str(ob.scale.y) + "|" + str(ob.scale.z)+ "\""
+    #file1.write(dato)
+    
+    #FIN DE ARGUMENTOS
+    if len(ob.children) == 0:
+        dato += "\n" + "\t\t\t}"+"\n" + "\t\t}"
+        #file1.write("\n" + "\t\t\t}"+"\n" + "\t\t}")
+    else: 
+        dato += "\n" + "\t\t\t}"+"\n" + "\t\t},"+"\n"
+        #file1.write("\n" + "\t\t\t}"+"\n" + "\t\t},"+"\n")
+        last_component = ob.children[-1].name
+        
+        
+    #RESTO DE COMPONETES
+    for child in ob.children:
+        componentName = child.name.split(".")
+        dato += "\t\t{" + "\n" + "\t\t\tName = " + "\""+ componentName[0] + "\"," + "\n" + "\t\t\tArguments = {"+ "\n"
+        #file1.write(dato)
+        
+        #ARGUMENTOS DEL COMPONENTE
+        
+        for prop_name, prop_value in child.items():
+            #Solo se comprueban valores de tipo string
+            if isinstance(prop_value, str):
+                dato += "\t\t\t\t" + prop_name + " = \"" + prop_value + "\"" + "\n"
+                #file1.write(dato)
+        
+        #FIN DE ARGUMENTOS
+        if child.name == last_component:
+            dato +="\t\t\t}"+"\n" + "\t\t}"
+            #file1.write("\t\t\t}"+"\n" + "\t\t}")
+        else: 
+            dato +="\t\t\t}"+"\n" + "\t\t},"+"\n"
+            #file1.write("\t\t\t}"+"\n" + "\t\t},"+"\n")
+        
+    #FIN DE COMPONENTE
+    dato += "\n" + "\t}"+"\n"
+    #file1.write("\n" + "\t}"+"\n")
+    
+    #FIN DE ENTIDAD
+    dato +="}"+"\n"+"\n"
+    #file1.write("}"+"\n"+"\n")
+    cont += 1
+
+#LISTA DE ENTIDADES
+dato += "Entities = {"
+#file1.write(dato)
+
+for i in range(cont-1):
+    if i+1 != cont-1:
+        dato += " Entity" + str(i+1) + ","
+        #file1.write(" Entity" + str(i+1) + ",")
+    else: 
+        dato += " Entity" + str(i+1) +" }"
+        #file1.write(" Entity" + str(i+1) +" }")
+
+dato += "\n\nCollisionLayers = {\n\tLayers = {\n"
+#file1.write("\n\nCollisionLayers = {\n\tLayers = {\n")
+
+collections = bpy.data.collections
+last_collection = collections[-1].name
+for collection in collections:
+    dato += "\t\t" + collection.name + " = \"" + collection["colData"] + "\""
+    #file1.write("\t\t" + collection.name + " = \"" + collection["colData"] + "\"")
+    if collection.name == last_collection:
+        dato += "\n"
+        #file1.write("\n")
+    else: 
+        dato += ",\n"
+        #file1.write(",\n")
+dato += "\t}\n}"
+#file1.write("\t}\n}")
+
+file1.write(dato)
+#close the file
+file1.close()

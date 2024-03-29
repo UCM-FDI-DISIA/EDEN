@@ -7,6 +7,9 @@
 #ifdef _WIN32
 #include <windows.h>
 #endif
+#ifdef __APPLE__
+#include "MacOSMessageBoxHelper.h"
+#endif
 
 namespace eden_error {
 	void ErrorHandler::CloseApplication() {
@@ -17,9 +20,41 @@ namespace eden_error {
 		}
 	}
 
+	void ErrorHandler::HandleExceptionNWin(std::runtime_error e) {
+		std::string errorTitle, errorDescription;
+
+		std::string what = e.what();
+
+		bool charFound = false;
+
+		for (int i = 0; i < what.size(); ++i) {
+			if (!charFound && what[i] == TITLE_ERROR_SEPARATOR) {
+				charFound = true;
+			}
+			else {
+				if (charFound) {
+					errorDescription.push_back(what[i]);
+				}
+				else {
+					errorTitle.push_back(what[i]);
+				}
+			}
+		}
+
+		if (!charFound) {
+			errorDescription = errorTitle;
+		}
+
+#ifdef __APPLE__
+		ShowErrorMessageBox(errorTitle, errorDescription);
+#endif
+
+		CloseApplication();
+	}
+
 	void ErrorHandler::HandleException(std::exception e) {
 		std::string errorTitle, errorDescription;
-		
+
 		std::string what = e.what();
 
 		bool charFound = false;
@@ -44,10 +79,6 @@ namespace eden_error {
 
 #ifdef _WIN32
 		MessageBoxA(nullptr, (LPCSTR)errorDescription.c_str(), (LPCSTR)errorTitle.c_str(), MB_ICONERROR);
-#endif
-
-#ifdef __APPLE__
-		std::cerr << errorTitle << ": " << errorDescription << '\n';
 #endif
 
 		CloseApplication();

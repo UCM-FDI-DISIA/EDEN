@@ -16,7 +16,7 @@ namespace eden_script {
 		throw(std::exception(errorMsg.c_str()));
 #endif
 #ifdef __clang__
-		throw std::exception();
+		throw std::runtime_error(errorMsg);
 #endif
 	};
 
@@ -38,7 +38,7 @@ namespace eden_script {
 			throw(std::exception("\n\n"));
 #endif
 #ifdef __clang__
-			throw std::exception();
+			throw std::runtime_error("\n\n");
 #endif
 			return std::vector<std::string>();
 		}
@@ -57,7 +57,7 @@ namespace eden_script {
 			throw(std::exception("\n\n"));
 #endif
 #ifdef __clang__
-			throw std::exception();
+			throw std::runtime_error("\n\n");
 #endif
 			return std::vector<std::string>();
 		}

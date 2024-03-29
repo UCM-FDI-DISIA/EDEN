@@ -12,35 +12,46 @@
 #define ERROR_SEPARETOR "--------------------\n"
 #define __FILENAME__ (strrchr(__FILE__, '\\') ? strrchr(__FILE__, '\\') + 1 : __FILE__)
 #define EDEN_ASSERT_NO_CLEAN(message, condition) assert((message, condition))
-#define EDEN_EXCEPTION(error_definition) throw std::exception(error_definition);
+#ifdef _MSC_VER
+	#define EDEN_EXCEPTION(error_definition) throw std::exception(error_definition);
+#endif
+#ifdef __clang__
+	#define EDEN_EXCEPTION(error_definition) throw std::runtime_error(error_definition);
+#endif
 
 namespace eden_error {
 	class ErrorHandler : public Singleton<ErrorHandler> {
 		friend class Singleton<ErrorHandler>;
 	public:
-		/// @brief Caracter que separa en una excepción el título de su descripción
+		/// @brief Caracter que separa en una excepciï¿½n el tï¿½tulo de su descripciï¿½n
 #define TITLE_ERROR_SEPARATOR '|'
 
 		/// @brief Destructora por defecto
 		~ErrorHandler() = default;
 
-		/// @brief Lanza un warning a la salida estándar de errores (consola en Debug y nada en Release)
-		/// @param warningMsg El mensaje de warning a lanzar. En este método se dice en qué línea y en qué archivo
+		/// @brief Lanza un warning a la salida estï¿½ndar de errores (consola en Debug y nada en Release)
+		/// @param warningMsg El mensaje de warning a lanzar. En este mï¿½todo se dice en quï¿½ lï¿½nea y en quï¿½ archivo
 		/// se ha generado el warning
 		void Warning(std::string warningMsg);
 
-		/// @brief Comprueba una condición (Solo en Debug)
-		/// @param condition Condición a comprobar en el assert. Si falla, el programa cierra
+		/// @brief Comprueba una condiciï¿½n (Solo en Debug)
+		/// @param condition Condiciï¿½n a comprobar en el assert. Si falla, el programa cierra
 		void Assert(bool condition, std::string errorMessage);
 
-		/// @brief Lanza un warning a la salida estándar de errores (consola en Debug y nada en Release)
+		/// @brief Lanza un warning a la salida estï¿½ndar de errores (consola en Debug y nada en Release)
 		void Exception(std::string title, std::string definition);
 
-		// @brief Se llama a Handle Exception cuando se lanza una excepción desde cualquier punto del código. Este método se encuentra envolviendo
-		// al main. Las excepciones, en nuestro caso, serán utilizadas para errores de usuario, por lo que este método lo que hace es vaciar toda la 
+		// @brief Se llama a Handle Exception cuando se lanza una excepciï¿½n desde cualquier punto del cï¿½digo. Este mï¿½todo se encuentra envolviendo
+		// al main. Las excepciones, en nuestro caso, serï¿½n utilizadas para errores de usuario, por lo que este mï¿½todo lo que hace es vaciar toda la 
 		// memoria generada y (en windows) mostrar una ventana con el error que lancemos al usuario.
-		// @param e Excepción a manejar.
+		// @param e Excepciï¿½n a manejar.
 		void HandleException(std::exception e);
+
+		/// @brief Exactamente lo mismo que HandleException solo que para sistemas en los que
+		/// @brief std::exception no acepta como argumento en su constructora un string o una
+		/// @brief cadena de C
+		/// @param e Excepcion a manejar
+		void HandleExceptionNWin(std::runtime_error e);
 
 		/// @brief Borra EdenMaster, y por lo tanto, todo lo generado por el juego
 		void CloseApplication();
@@ -51,15 +62,11 @@ namespace eden_error {
 		/// @brief Constructora por defecto
 		ErrorHandler() = default;
 
-		/// @brief Muestra un mensaje por consola (en Debug) y añade a un log dentro de la carpeta bin
-		/// de nombre LOG_NAME el warning/error/excepción generada
-		/// @param messageToLog Mensaje a añadir
+		/// @brief Muestra un mensaje por consola (en Debug) y aï¿½ade a un log dentro de la carpeta bin
+		/// de nombre LOG_NAME el warning/error/excepciï¿½n generada
+		/// @param messageToLog Mensaje a aï¿½adir
 		void AddToLog(std::string messageToLog);
-
-		
 	};
 
-
 }
-
 #endif // _ERROR_HANDLER_H

@@ -1,7 +1,9 @@
 // Memory Leaks Check
 #define _CRTDBG_MAP_ALLOC
 #include <stdlib.h>
+#ifdef _MSC_VER
 #include <crtdbg.h>
+#endif
 
 #ifdef _DEBUG
 #define DBG_NEW new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
@@ -88,12 +90,21 @@ int main(int argc, char* argv[]) {
 		master->Loop();
 		delete master;
 	}
+#ifdef __clang__
+	catch (std::runtime_error e) {
+		errorHandler->HandleExceptionNWin(e);
+	}
+#endif
+#ifdef _MSC_VER
 	catch (std::exception e){
-		// en caso de generar una excepción no tratada, se llamará a este método, que genera (en windows) un pop-up informando del error
+		// en caso de generar una excepciï¿½n no tratada, se llamarï¿½ a este mï¿½todo, que genera (en windows) un pop-up informando del error
 		errorHandler->HandleException(e);
 	}
+#endif
 
+#ifdef _MSC_VER
 	_CrtDumpMemoryLeaks();
+#endif
 	return 0;
 }
 

@@ -17,6 +17,7 @@ find_library(SDL2_LIB SDL2 HINTS "${EXTERNAL_LIB_DIR}/SDL/build/arm64/${CMAKE_BU
 target_include_directories(EDEN_Input PUBLIC "${EXTERNAL_LIB_DIR}/SDL/src/include/")
 target_include_directories(EDEN_Input PUBLIC "${EXTERNAL_LIB_DIR}/SDL/build/arm64/include/")
 target_include_directories(EDEN_Input PUBLIC "${ROOT_DIR}/src/EDEN/")
+target_include_directories(EDEN_Input PUBLIC "${ROOT_DIR}/src/EDEN_Script/")
 
 target_link_libraries(EDEN_Input PUBLIC ${SDL2_LIB})
 

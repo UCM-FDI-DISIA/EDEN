@@ -13,7 +13,8 @@ add_library(EDEN_Render
         ../../src/EDEN_Render/Light.cpp
         ../../src/EDEN_Render/Canvas.cpp
         ../../src/EDEN_Render/CameraWrapper.cpp
-        ../../src/EDEN_Render/Animator.cpp)
+        ../../src/EDEN_Render/Animator.cpp
+        ../../src/EDEN_Render/UIComponent.cpp)
 set(EXTERNAL_LIB_DIR "${ROOT_DIR}/dependencies")
 set(CMAKE_CONFIGURATION_TYPES Debug Release)
 
@@ -29,6 +30,7 @@ target_include_directories(EDEN_Render PUBLIC "${EXTERNAL_LIB_DIR}/Ogre/build/ar
 target_include_directories(EDEN_Render PUBLIC "${EXTERNAL_LIB_DIR}/Ogre/src/Components/Overlay/include/")
 target_include_directories(EDEN_Render PUBLIC "${EXTERNAL_LIB_DIR}/Ogre/src/Components/RTShaderSystem/include/")
 target_include_directories(EDEN_Render PUBLIC "${ROOT_DIR}/src/EDEN/")
+target_include_directories(EDEN_Render PUBLIC "${ROOT_DIR}/src/EDEN_Input/")
 
 target_link_libraries(EDEN_Render PUBLIC ${SDL2_LIB} ${OGRE_LIB} ${OGRE_OVERLAY_LIB} ${OGRE_RTSH_LIB})
 

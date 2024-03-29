@@ -1,4 +1,3 @@
-#define _CRTDBG_MAP_ALLOC
 #ifndef EDEN_SCRIPT_MANAGER_H
 #define EDEN_SCRIPT_MANAGER_H
 
@@ -10,12 +9,9 @@
 
 #include "Singleton.h"
 
-struct lua_State;
+#define _CRTDBG_MAP_ALLOC
 
-namespace eden_script {
-class LuaManager;
-
-	// Esta Macro se usa para ver la informacion que se esta leyendo del mapa por salida estandar
+// Esta Macro se usa para ver la informacion que se esta leyendo del mapa por salida estandar
 #define _DEBUGGING_SCENE_READING
 
 #ifdef _MSC_VER
@@ -28,16 +24,16 @@ class LuaManager;
 #endif
 #define SCENE_EXTENSION ".lua"
 #define BLUEPRINTS_FILE_NAME "Blueprints"
-//
-//#define ERROR_DEFINITION "Lua error in line "+ std::to_string(__LINE__)
-//#define __FILENAME__ (strrchr(__FILE__, '\\') ? strrchr(__FILE__, '\\') + 1 : __FILE__)
-
-// #define ASSERT_EDEN(a, b) assert((void)b, a)
-// #define _MACRO_AA(b) std::cerr << #b << "\n\n\n\n\n\n\n"
 
 #define ENTITY_TABLE_NAME "Entities"
 #define COLLISION_TABLE_NAME "CollisionLayers"
 #define NUM_ENTITIES "numEntities"
+
+struct lua_State;
+
+namespace eden_script {
+
+	class LuaManager;
 
 	class ComponentArguments;
 
@@ -73,10 +69,11 @@ class LuaManager;
 		/// @brief Puntero al LuaManager
 		LuaManager* _luaManager;
 
-		/// @brief Constructora que inicializa Lua
-		ScriptManager();
 		lua_State* _l;
 
+		/// @brief Constructora que inicializa Lua
+		ScriptManager();
+		
 		/// @brief Dice si una variable es 'nil' en Lua
 		/// @param varType Tipo de la variable a ver (entero devuelto por las funciones de Lua)
 		/// @return True = Es nil | False = No es nil

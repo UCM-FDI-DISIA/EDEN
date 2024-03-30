@@ -56,7 +56,7 @@ namespace physics_wrapper {
 		/// @param mass Masa del RigidBody
 		/// @param params Parametros de la forma gemoetrica inicial
 		/// @param flag Tipo de RigidBody
-		RigidBody(eden_ec::Entity* ent, float mass, const ShapeParameters& params, const RigidBodyType& flag = STATIC, std::string layerName = "DEFAULT");
+		RigidBody(eden_ec::Entity* ent, const ShapeParameters& params, float mass = 1.0f, float friction = 1.0f, float bounciness = 1.0f, const RigidBodyType& flag = STATIC, std::string layerName = "DEFAULT");
 
 		/// @brief Destructora del RigidbodyWrapper
 		~RigidBody();
@@ -143,6 +143,22 @@ namespace physics_wrapper {
 		/// @brief Annade una forma al RigidBody
 		/// @param params Parametros de la forma que se vaya a a�adir
 		void AddShape(const ShapeParameters& params);
+
+		/// @brief Establece un valor de fricción al RigidBody
+		/// @param friction Valor nuevo de fricción para el RigidBody
+		void SetFriction(float friction);
+		
+		/// @brief Devuelve la propiedad de fricción
+		/// @return Devuelve la propiedad de fricción
+		float GetFriction();
+
+		/// @brief Establece un valor de rebote al RigidBody
+		/// @param friction Valor nuevo de rebote para el RigidBody
+		void SetBounciness(float bounciness);
+
+		/// @brief Devuelve la propiedad de rebote
+		/// @return Devuelve la propiedad de rebote 
+		float GetBounciness();
 	private:
 		btRigidBody* _rigidBody;
 		btCompoundShape* _collisionShape;

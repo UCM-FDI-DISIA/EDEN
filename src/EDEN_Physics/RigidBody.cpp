@@ -22,7 +22,7 @@
 #include "SceneManager.h"
 #include "Scene.h"
 
-physics_wrapper::RigidBody::RigidBody(eden_ec::Entity* ent, float mass, const ShapeParameters& params, const RigidBodyType& flag, std::string layerName)
+physics_wrapper::RigidBody::RigidBody(eden_ec::Entity* ent, const ShapeParameters& params, float mass, float friction, float bounciness, const RigidBodyType& flag, std::string layerName)
 {
 	btVector3 localInertia = btVector3();
 
@@ -66,6 +66,9 @@ physics_wrapper::RigidBody::RigidBody(eden_ec::Entity* ent, float mass, const Sh
 
 	// Todos los rigidbodies tienen ahora un puntero a la entidad que los contiene
 	_rigidBody->setUserPointer(ent);
+
+	SetFriction(friction);
+	SetBounciness(bounciness);
 
 	_collisionCallback = new CollisionCallback(this);
 }
@@ -192,6 +195,24 @@ void physics_wrapper::RigidBody::ApplyTorque(eden_utils::Vector3 torque)
 void physics_wrapper::RigidBody::ClearForce()
 {
 	_rigidBody->clearForces();
+}
+
+void physics_wrapper::RigidBody::SetFriction(float friction) {
+	_rigidBody->setFriction(friction);
+	_rigidBody->setRollingFriction(friction);
+	_rigidBody->setSpinningFriction(friction);
+}
+
+float physics_wrapper::RigidBody::GetFriction() {
+	return (float)(_rigidBody->getFriction());
+}
+
+void physics_wrapper::RigidBody::SetBounciness(float bounciness) {
+	_rigidBody->setRestitution(bounciness);
+}
+
+float physics_wrapper::RigidBody::GetBounciness() {
+	return (float)(_rigidBody->getRestitution());
 }
 
 void physics_wrapper::RigidBody::AddShape(const ShapeParameters& params)

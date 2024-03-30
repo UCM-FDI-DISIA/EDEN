@@ -12,7 +12,7 @@ void eden_ec::CRigidBody::Start()
 	//Se comprueba si la entidad tiene o no un transform, en cuyo caso lo crea y lo aniade
 	if (_ent->GetComponent<CTransform>() != nullptr) {
 		_transform = _ent->GetComponent<CTransform>();
-		_rb = new physics_wrapper::RigidBody(_ent, _mass, _params, _type, _layer);
+		_rb = new physics_wrapper::RigidBody(_ent, _params, _mass, _friction, _restitution, _type, _layer);
 		physics_manager::PhysicsManager::Instance()->AddPhysicsEntity(_ent);
 	}
 	if(_ent->GetComponent<CLuaBehaviour>() != nullptr)
@@ -32,6 +32,8 @@ void eden_ec::CRigidBody::HandleInput()
 void eden_ec::CRigidBody::Init(eden_script::ComponentArguments* args) {
 	
 	_mass = args->GetValueToFloat("Mass");
+	_restitution = args->GetValueToFloat("Bounciness");
+	_friction = args->GetValueToFloat("Friction");
 	_params.length = args->GetValueToVector3("AABB");
 	_params.positionOffset = args->GetValueToVector3("PosOffset");
 	_params.radius = args->GetValueToFloat("Radius");
@@ -55,6 +57,14 @@ eden_ec::CRigidBody::~CRigidBody()
 {
 	physics_manager::PhysicsManager::Instance()->RemovePhysicsEntity(_ent);
 	delete _rb;
+}
+
+float eden_ec::CRigidBody::GetBounciness() {
+	return _rb->GetBounciness();
+}
+
+float eden_ec::CRigidBody::GetFriction() {
+	return _rb->GetFriction();
 }
 
 void eden_ec::CRigidBody::EdenTransformToPhysicsTransform()

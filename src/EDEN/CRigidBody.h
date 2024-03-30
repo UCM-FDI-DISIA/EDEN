@@ -117,6 +117,14 @@ namespace eden_ec {
 		/// @param Entidad que colisiona
 		void OnCollisionExit(eden_ec::Entity* other);
 
+		/// @brief Devuelve la propiedad de rebote
+		/// @return Devuelve la propiedad de rebote 
+		float GetBounciness();
+
+		/// @brief Devuelve la propiedad de fricción
+		/// @return Devuelve la propiedad de fricción 
+		float GetFriction();
+
 		/// @brief Definicion de metodo estatico GetID necesario para construccion de componentes
 		static std::string GetID() { return _id; }
 
@@ -124,8 +132,14 @@ namespace eden_ec {
 		const static std::string _id;
 
 	private:
-		/// @brief Masa asociada al rigidBody
+		/// @brief Masa asociada al RigidBody
 		float _mass;
+
+		/// @brief Efecto de rebote, indica cuanta energía se mantiene después de la colisión
+		float _restitution;
+
+		/// @brief Fricción asociada al RigidBody
+		float _friction;
 
 		/// @brief Variable que se encarga de contener los parametros de la figura asociada al rigidBody
 		physics_wrapper::RigidBody::ShapeParameters _params;

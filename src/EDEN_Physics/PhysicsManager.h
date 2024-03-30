@@ -38,7 +38,49 @@ namespace eden_physics {
 	class DebugDrawer;
 }
 
+
 namespace physics_manager {
+	class LayerInfo {
+	private:
+		/// @brief Nombre de la capa
+		std::string _name;
+
+		/// @brief ID de la escena
+		std::string _sceneID;
+	public:
+		/// @brief Constructora por defecto
+		LayerInfo() = default;
+		
+		/// @brief Constructora 
+		/// @param name Nombre de la capa
+		/// @param sceneID ID de la escena
+		LayerInfo(std::string name, std::string sceneID);
+		
+		/// @brief Devuelve el nombre de la capa
+		/// @return Devuelve el nombre de la capa
+		const inline std::string GetName() const { return _name; }
+
+		/// @brief Devuelve el ID de la escena
+		/// @return Devuelve el ID de la escena
+		const inline std::string GetSceneID() const { return _sceneID; }
+
+		/// @brief Operador para comparar en el unordered_map del PhysicsManager
+		/// @param other La otra capa con la que se compara
+		/// @return True si la capa tiene el mismo nombre e ID de la escena, False en cualquier otro caso
+		bool operator==(const LayerInfo& other) const;
+	};
+
+	struct LayerHash
+	{
+		/// @brief Crea el código Hash necesario para el unordered_map
+		/// @param info El elemento que se va a usar en el mapa (Key)
+		/// @return Devuelve el código Hash creado con el nombre de la capa
+		std::size_t operator()(const physics_manager::LayerInfo& info) const
+		{
+			return std::hash<std::string>()(info.GetName());
+		}
+	};
+
 	class PhysicsManager : public Singleton<PhysicsManager>
 	{
 		friend Singleton<PhysicsManager>;
@@ -88,7 +130,7 @@ namespace physics_manager {
 		std::unordered_set<eden_ec::Entity*> _entitiesSet;
 
 		/// @brief Mapa desordenado que guarda los nombres de las capas y su respectivo objeto CollisionLayer
-		std::unordered_map<std::string, physics_wrapper::CollisionLayer*> _layers;
+		std::unordered_map <physics_manager::LayerInfo, physics_wrapper::CollisionLayer*, physics_manager::LayerHash> _layers;
 
 		/// @brief Referencia al mundo de la simulacion fisica
 		btDynamicsWorld* _dynamicWorldRef;
@@ -122,6 +164,10 @@ namespace physics_manager {
 		/// @param name Nombre de la capa que se quiere crear
 		/// @param sceneID ID de la escena asociada a la capa
 		void CreateCollisionLayer(std::string name, std::string sceneID);
+
+		/// @brief Borra todas las capas de una escena
+		/// @param sceneID ID de la escena
+		void RemoveAllSceneLayers(std::string sceneID);
 	};
 }
 #endif // !PHYSICS_MANAGER_h

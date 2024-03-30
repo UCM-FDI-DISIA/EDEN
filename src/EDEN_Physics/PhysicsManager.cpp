@@ -35,11 +35,11 @@ void physics_manager::PhysicsManager::updateSimulation(float deltaTime)
 
 void physics_manager::PhysicsManager::CreateCollisionLayer(std::string name, std::string sceneID)
 {
-	std::string layerSceneName = name + '_' + sceneID;
-	auto layerIt = _layers.find(layerSceneName);
+	LayerInfo layerPair(name, sceneID);
+	auto layerIt = _layers.find(layerPair);
 	if (layerIt == _layers.end()) {
-		physics_wrapper::CollisionLayer* layer = new physics_wrapper::CollisionLayer(layerSceneName, sceneID);
-		_layers[layerSceneName] = layer;
+		physics_wrapper::CollisionLayer* layer = new physics_wrapper::CollisionLayer(name, sceneID);
+		_layers[{name, sceneID}] = layer;
 	}
 }
 
@@ -47,10 +47,10 @@ void physics_manager::PhysicsManager::AddCollisionToLayer(std::string layerName,
 {
 	if(collisionToAdd != COLLISIONMASK_NULL)
 	{
-		std::string layerSceneName = layerName + '_' + sceneID;
-		std::string collisionToAddSceneName = collisionToAdd + '_' + sceneID;
-		auto layer = _layers.find(layerSceneName);
-		auto collisionLayer = _layers.find(collisionToAddSceneName);
+		LayerInfo layerPair(layerName, sceneID);
+		LayerInfo otherLayerPair(collisionToAdd, sceneID);
+		auto layer = _layers.find(layerPair);
+		auto collisionLayer = _layers.find(otherLayerPair);
 		if (layer != _layers.end() && collisionLayer != _layers.end()) {
 			layer->second->AddCollisionToLayer(collisionLayer->second);
 		}
@@ -144,10 +144,29 @@ void physics_manager::PhysicsManager::ResolvePositions() {
 }
 
 physics_wrapper::CollisionLayer* physics_manager::PhysicsManager::GetLayerByName(std::string name, std::string sceneID) {
-	std::string layerSceneName = name + '_' + sceneID;
-	auto it = _layers.find(layerSceneName);
+	LayerInfo layerPair(name, sceneID);
+	auto it = _layers.find(layerPair);
 	if (it != _layers.end())
 		return it->second;
 	else 
 		return nullptr;
+}
+
+void physics_manager::PhysicsManager::RemoveAllSceneLayers(std::string sceneID) {
+	for (auto it = _layers.begin(); it != _layers.end();) {
+		if (it->first.GetSceneID() == sceneID) {
+			auto eraseIt = it;
+			++it;
+			delete eraseIt->second;
+			_layers.erase(eraseIt);
+		}
+		else
+			++it;
+	}
+}
+
+physics_manager::LayerInfo::LayerInfo(std::string name, std::string sceneID) : _sceneID(sceneID), _name(name) {}
+
+bool physics_manager::LayerInfo::operator==(const LayerInfo& other) const {
+	return _sceneID == other._sceneID && _name == other._name;
 }

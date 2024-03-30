@@ -11,15 +11,19 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\EDEN_Audio\IrrklangWrapper.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Audio\AudioListener.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Audio\AudioManager.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Audio\AudioWrapper.cpp" />
     <ClCompile Include="..\..\src\EDEN_Audio\SoundWrapper.cpp" />
     <ClCompile Include="..\..\src\EDEN_Audio\Sound.cpp" />
     <ClCompile Include="..\..\src\EDEN_Audio\test.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\EDEN_Audio\IrrklangWrapper.h" />
-    <ClInclude Include="..\..\src\EDEN_Audio\SoundWrapper.h" />
+    <ClInclude Include="..\..\src\EDEN_Audio\AudioListener.h" />
+    <ClInclude Include="..\..\src\EDEN_Audio\AudioManager.h" />
+    <ClInclude Include="..\..\src\EDEN_Audio\AudioWrapper.h" />
     <ClInclude Include="..\..\src\EDEN_Audio\Sound.h" />
+    <ClInclude Include="..\..\src\EDEN_Audio\SoundWrapper.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

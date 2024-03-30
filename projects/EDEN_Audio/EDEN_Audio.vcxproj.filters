@@ -21,21 +21,33 @@
     <ClCompile Include="..\..\src\EDEN_Audio\SoundWrapper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\EDEN_Audio\IrrklangWrapper.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\EDEN_Audio\Sound.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\EDEN_Audio\AudioListener.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\EDEN_Audio\AudioManager.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\EDEN_Audio\AudioWrapper.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\EDEN_Audio\SoundWrapper.h">
+    <ClInclude Include="..\..\src\EDEN_Audio\AudioListener.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\EDEN_Audio\IrrklangWrapper.h">
+    <ClInclude Include="..\..\src\EDEN_Audio\AudioManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\EDEN_Audio\AudioWrapper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\EDEN_Audio\Sound.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\EDEN_Audio\SoundWrapper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

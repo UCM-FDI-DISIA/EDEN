@@ -26,5 +26,17 @@ irrklang::ISound* audio_wrapper::AudioWrapper::Play(irrklang::ISoundSource* soun
 }
 
 irrklang::ISound* audio_wrapper::AudioWrapper::Play(irrklang::ISoundSource* soundSource, eden_utils::Vector3 pos, bool loop) {
-	return _soundEngine->play3D(soundSource, irrklang::vec3df(pos.GetX(), pos.GetY(), pos.GetZ()), loop, false, true);
+	return _soundEngine->play3D(soundSource, EdenVecToIrrklangVec(pos), loop, false, true);
+}
+
+void audio_wrapper::AudioWrapper::SetListenerParameters(eden_utils::Vector3 position, eden_utils::Vector3 hearingDirection, eden_utils::Vector3 movingSpeed, eden_utils::Vector3 normal) {
+	_soundEngine->setListenerPosition(EdenVecToIrrklangVec(position), EdenVecToIrrklangVec(hearingDirection), EdenVecToIrrklangVec(movingSpeed), EdenVecToIrrklangVec(normal));
+}
+
+eden_utils::Vector3 audio_wrapper::AudioWrapper::IrrklangVecToEdenVec(irrklang::vec3df vector) {
+	return { vector.X, vector.Y, vector.Z };
+}
+
+irrklang::vec3df audio_wrapper::AudioWrapper::EdenVecToIrrklangVec(eden_utils::Vector3 vector) {
+	return { vector.GetX(), vector.GetY(), vector.GetZ() };
 }

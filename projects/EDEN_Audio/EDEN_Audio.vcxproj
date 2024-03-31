@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\EDEN_Audio\AudioEmitter.cpp" />
     <ClCompile Include="..\..\src\EDEN_Audio\AudioListener.cpp" />
     <ClCompile Include="..\..\src\EDEN_Audio\AudioManager.cpp" />
     <ClCompile Include="..\..\src\EDEN_Audio\AudioWrapper.cpp" />
@@ -19,6 +20,7 @@
     <ClCompile Include="..\..\src\EDEN_Audio\test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\EDEN_Audio\AudioEmitter.h" />
     <ClInclude Include="..\..\src\EDEN_Audio\AudioListener.h" />
     <ClInclude Include="..\..\src\EDEN_Audio\AudioManager.h" />
     <ClInclude Include="..\..\src\EDEN_Audio\AudioWrapper.h" />

@@ -5,15 +5,15 @@
 #include <string>
 
 #include "Singleton.h"
+#include "Vector3.h"
 
 namespace irrklang {
 	class ISoundEngine;
 	class ISoundSource;
 	class ISound;
-}
-
-namespace eden_utils {
-	class Vector3;
+	template <class T> class vec3d;
+	typedef float ik_f32;
+	typedef vec3d<ik_f32> vec3df;
 }
 
 namespace audio_wrapper {
@@ -46,6 +46,23 @@ namespace audio_wrapper {
 		/// @param loop Si el sonido se quiere reproducir en bucle se pondra en true, si no, en false (false por defecto)
 		/// @return Un puntero a un sonido de Irrklang, el cual sirve para poder trackearlo en caso de que se necesite
 		irrklang::ISound* Play(irrklang::ISoundSource* soundSource, eden_utils::Vector3 position, bool loop = false);
+
+		/// @brief Metodo para establecer la posicion, direccion, velocidad (si la hubiese (es para producir un efecto Doppler)) y la normal (para que Irrklang sepa cual es la izq. y la dcha.) del listener
+		/// @param position Vector con la posicion del listener
+		/// @param hearingDir Direccion desde la que el listener escuchara sonidos
+		/// @param movingSpeed Velocidad a la que se mueve el listener (solo para efecto Doppler), por defecto {0,0,0}
+		/// @param normal La normal del listener, por defecto {0,1,0}
+		void SetListenerParameters(eden_utils::Vector3 position, eden_utils::Vector3 hearingDir, eden_utils::Vector3 movingSpeed = { 0,0,0 }, eden_utils::Vector3 normal = { 0,1,0 });
+
+		/// @brief Transforma un vector propio de Irrklang a un vector de EDEN
+		/// @param vector Vector de Irrklang
+		/// @return Vector de EDEN
+		static eden_utils::Vector3 IrrklangVecToEdenVec(irrklang::vec3df vector);
+
+		/// @brief Transforma un vector propio de EDEN en uno de Irrklang
+		/// @param vector Vector de EDEN
+		/// @return Vector de Irrklang
+		static irrklang::vec3df EdenVecToIrrklangVec(eden_utils::Vector3 vector);
 	private:
 		/// Constructora por defecto de la clase AudioWrapper. Privada ya que es un singleton.
 		AudioWrapper();

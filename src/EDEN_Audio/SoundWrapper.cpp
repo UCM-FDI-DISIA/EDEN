@@ -25,6 +25,7 @@ void audio_wrapper::SoundWrapper::Play(bool loop) {
 
 void audio_wrapper::SoundWrapper::Play(eden_utils::Vector3 pos, bool loop) {
     eden_error::ErrorHandler::Instance()->Assert(_soundSource, "No se encuentra la fuente de sonido con nombre " + _fileName);
+    eden_error::ErrorHandler::Instance()->Assert(!_sound, "Ya hay un sonido reproduciendose derivado de la fuente de sonido con nombre " + _fileName);
     _threeDimensional = true;
     _sound = audio_wrapper::AudioWrapper::Instance()->Play(_soundSource, pos, loop);
 }
@@ -89,15 +90,15 @@ float audio_wrapper::SoundWrapper::GetPan() const {
 
 void audio_wrapper::SoundWrapper::SetPosition(eden_utils::Vector3 position) {
     eden_error::ErrorHandler::Instance()->Assert(_sound, "No se encuentra el sonido con nombre " + _fileName);
-    _sound->setPosition({position.GetX(), position.GetY(), position.GetZ()});
+    _sound->setPosition(audio_wrapper::AudioWrapper::EdenVecToIrrklangVec(position));
 }
 
 eden_utils::Vector3 audio_wrapper::SoundWrapper::GetPlayingPosition() const {
     eden_error::ErrorHandler::Instance()->Assert(_sound, "No se encuentra el sonido con nombre " + _fileName);
-    return {_sound->getPosition().X, _sound->getPosition().Y, _sound->getPosition().Z};
+    return audio_wrapper::AudioWrapper::IrrklangVecToEdenVec(_sound->getPosition());
 }
 
-void audio_wrapper::SoundWrapper::ChangeVolume(float volume) {
+void audio_wrapper::SoundWrapper::SetVolume(float volume) {
     eden_error::ErrorHandler::Instance()->Assert(_sound, "No se encuentra el sonido con nombre " + _fileName);
     if(volume > 1.0f) volume = 1.0f;
     if(volume < 0.0f) volume = 0.0f;
@@ -107,4 +108,15 @@ void audio_wrapper::SoundWrapper::ChangeVolume(float volume) {
 float audio_wrapper::SoundWrapper::GetVolume() const {
     eden_error::ErrorHandler::Instance()->Assert(_sound, "No se encuentra el sonido con nombre " + _fileName);
     return _sound->getVolume();
+}
+
+void audio_wrapper::SoundWrapper::SetPitch(float pitch) {
+    eden_error::ErrorHandler::Instance()->Assert(_sound, "No se encuentra el sonido con nombre " + _fileName);
+    if (pitch < 0.0f) pitch = 0.0f;
+    _sound->setPlaybackSpeed(pitch);
+}
+
+float audio_wrapper::SoundWrapper::GetPitch() const {
+    eden_error::ErrorHandler::Instance()->Assert(_sound, "No se encuentra el sonido con nombre " + _fileName);
+    return _sound->getPlaybackSpeed();
 }

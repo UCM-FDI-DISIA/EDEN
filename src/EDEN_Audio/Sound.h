@@ -80,11 +80,20 @@ namespace eden_audio {
 
         /// Cambia el volumen del sonido desde 0 (silencio) hasta 1 (volumen completo)
         /// @param volume Valor en punto flotante desde 0 hasta 1
-        void ChangeVolume(float volume);
+        void SetVolume(float volume);
 
         /// Devuelve el volumen del sonido
         /// @return Valor en punto flotante con el volumen actual del sonido
         float GetVolume() const;
+
+        /// @brief Cambia el valor de la velocidad de reproduccion del sonido (cambiando asi la frecuencia junto con el pitch (altura del sonido)). A mayor sea el valor, sonara el doble de rapido que sera
+        /// mas agudo. A menor el valor, mas lento y mas grave. Valores solo entre algo mas que 0 (0 nunca reproduciria el sonido) e infinito, 1 por defecto.
+        /// @param pitch Valor del pitch. 1 por defecto. 2 seria el doble de velocidad, mas agudo; 0.5 la mitad de velocidad, mas grave.
+        void SetPitch(float pitch);
+
+        /// @brief Devuelve el pitch del sonido
+        /// @return Valor en punto flotante del pitch del sonido
+        float GetPitch() const;
 	private:
 		/// Nombre del archivo del sonido (para manejo de errores)
 		std::string _filename;

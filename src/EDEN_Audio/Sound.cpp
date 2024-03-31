@@ -83,12 +83,22 @@ eden_utils::Vector3 eden_audio::Sound::GetPlayingPosition() const {
 	return _sound->GetPlayingPosition();
 }
 
-void eden_audio::Sound::ChangeVolume(float volume) {
+void eden_audio::Sound::SetVolume(float volume) {
 	eden_error::ErrorHandler::Instance()->Assert(_sound, "El sonido " + _filename + " no se ha creado correctamente.");
-	_sound->ChangeVolume(volume);
+	_sound->SetVolume(volume);
 }
 
 float eden_audio::Sound::GetVolume() const {
 	eden_error::ErrorHandler::Instance()->Assert(_sound, "El sonido " + _filename + " no se ha creado correctamente.");
 	return _sound->GetVolume();
+}
+
+void eden_audio::Sound::SetPitch(float pitch) {
+	eden_error::ErrorHandler::Instance()->Assert(_sound, "El sonido " + _filename + " no se ha creado correctamente.");
+	_sound->SetPitch(pitch);
+}
+
+float eden_audio::Sound::GetPitch() const {
+	eden_error::ErrorHandler::Instance()->Assert(_sound, "El sonido " + _filename + " no se ha creado correctamente.");
+	return _sound->GetPitch();
 }

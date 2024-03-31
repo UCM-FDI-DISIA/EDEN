@@ -1,4 +1,4 @@
-material cursor {
+material Cursor.png {
     receive_shadows on
     technique {
         pass {
@@ -14,7 +14,7 @@ material cursor {
         }
     }
 }
-material meme {
+material meme.png {
     receive_shadows on
     technique {
         pass {
@@ -30,7 +30,7 @@ material meme {
         }
     }
 }
-material iniMat {
+material PlayButton_Ini.png {
      receive_shadows on
     technique {
         pass {
@@ -46,7 +46,7 @@ material iniMat {
         }
     }
 }
-material hoverMat {
+material PlayButton_Hover.png {
    receive_shadows on
     technique {
         pass {
@@ -62,7 +62,7 @@ material hoverMat {
         }
     }
 }
-material clickedMat {
+material PlayButton_Clicked.png {
     receive_shadows on
     technique {
         pass {

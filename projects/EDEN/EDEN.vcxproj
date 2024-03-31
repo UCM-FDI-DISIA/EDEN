@@ -20,6 +20,7 @@
     <ClCompile Include="..\..\src\EDEN\CMeshRenderer.cpp" />
     <ClCompile Include="..\..\src\EDEN\CParticleEmitter.cpp" />
     <ClCompile Include="..\..\src\EDEN\CRigidBody.cpp" />
+    <ClCompile Include="..\..\src\EDEN\CText.cpp" />
     <ClCompile Include="..\..\src\EDEN\EdenMaster.cpp" />
     <ClCompile Include="..\..\src\EDEN\ErrorHandler.cpp" />
     <ClCompile Include="..\..\src\EDEN\Hito1Prueba.cpp" />
@@ -43,6 +44,7 @@
     <ClInclude Include="..\..\src\EDEN\CLuaBehaviour.h" />
     <ClInclude Include="..\..\src\EDEN\CMeshRenderer.h" />
     <ClInclude Include="..\..\src\EDEN\CParticleEmitter.h" />
+    <ClInclude Include="..\..\src\EDEN\CText.h" />
     <ClInclude Include="..\..\src\EDEN\ErrorHandler.h" />
     <ClInclude Include="..\..\src\EDEN\Hito1Prueba.h" />
     <ClInclude Include="..\..\src\EDEN\CRigidBody.h" />

@@ -23,6 +23,7 @@
     <ClCompile Include="..\..\src\EDEN\CLuaBehaviour.cpp" />
     <ClCompile Include="..\..\src\EDEN\ErrorHandler.cpp" />
     <ClCompile Include="..\..\src\EDEN\CParticleEmitter.cpp" />
+    <ClCompile Include="..\..\src\EDEN\CText.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\EDEN\Quaternion.h" />
@@ -47,5 +48,6 @@
     <ClInclude Include="..\..\src\EDEN\CImage.h" />
     <ClInclude Include="..\..\src\EDEN\CLuaBehaviour.h" />
     <ClInclude Include="..\..\src\EDEN\CParticleEmitter.h" />
+    <ClInclude Include="..\..\src\EDEN\CText.h" />
   </ItemGroup>
 </Project>

@@ -15,6 +15,8 @@ namespace Ogre {
 	enum GuiMetricsMode : unsigned int;
 	enum GuiHorizontalAlignment : unsigned int;
 	enum GuiVerticalAlignment : unsigned int;
+
+	class TextAreaOverlayElement;
 }  // namespace Ogre
 
 namespace eden_input {
@@ -140,16 +142,37 @@ namespace eden_ec {
 		/// @brief Textura de la imagen 
 		std::string _texture;
 
-
+		/// @brief Método encargado de crear una Imagen
 		void CreateImage(std::string overlayName, float xPos, float yPos,
 			float width, float height, std::string texture,
+			int depth);
+
+		/// @brief Método encargado de crear un Texto
+		void CreateText(std::string overlayName, float xPos, float yPos,
+			float tam, std::string text, std::string font, float rColor, float gColor, float bColor,
 			int depth);
 	private:
 		/// @brief Managers y elementos de Ogre necesarios para el control y uso de la UI
 		Ogre::OverlayManager* _overlayManager = nullptr;
 		Ogre::Overlay* _overlayElement = nullptr;
 		Ogre::OverlayContainer* _overlayContainer = nullptr;
+		Ogre::TextAreaOverlayElement* _text;
 
+		/// @brief Ruta de la carpeta de los materiales 
+		std::string _rute = "assets/mesh/";
+
+		/// @Método que comprueba si existe un archivo concreto
+		/// @param name Nombre del archivo (ruta)
+		bool FileExists(std::string const& name);
+
+		/// @brief Método encargado de crear el overlayContainer
+		void SetOverlayContainer(std::string overlayName, float xPos, float yPos,float width, float height);
+		
+		/// @brief Método encargado de crear el overlayElement
+		void SetOverlayElement(int depth);
+
+		/// @brief Método encargado de cargar la fuente
+		void LoadFont(std::string font);
 	};
 }  
 #endif  

@@ -61,6 +61,7 @@ namespace eden_script {
 					.addFunction(nameFunc, _f)
 					.endClass();
 			}
+			else HandleError(name);
 		}
 		/// @brief Método que setea de forma gloabal una clase que hemos creado para poder acceder a ella
 		/// (*Llamar despues de haber registrado la clase*)
@@ -70,9 +71,10 @@ namespace eden_script {
 		void SetGlobal(W _this, const char* name) {
 			if (_classes.contains({ name,true })) {
 				luabridge::setGlobal(_L, _this, name);
-				_classes.erase({ name,true});
-				_classes.insert({ name,false});
+				_classes.erase({ name,true });
+				_classes.insert({ name,false });
 			}
+			else HandleError(name);
 		}
 
 	private:
@@ -82,6 +84,9 @@ namespace eden_script {
 
 		/// @brief registro de las clases que han sido añadidas y flag de si han sido seteadas ya como global o no
 		std::set<std::pair<std::string,bool>>_classes;
+
+		/// @brief Método que maneja los errores al crear clases en luabridge
+		void HandleError(const char* name);
 	};
 }
 

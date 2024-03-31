@@ -81,18 +81,19 @@ Entity2 = {
 }
 
 Entity3 = {
-	Name = "UI_Image",
+	Name = "UI_Text",
 	Components = {
 		{
-			Name = "IMAGE",
+			Name = "TEXT",
 			Arguments = {
-                OverlayName= "image",
-				XPos = "50",
-                YPos = "70",
-                Width = "250",
-                Height = "150",
-                Texture = "meme",
-                Depth = "0"
+                OverlayName= "text",
+				XPos = "25",
+                YPos = "5",
+                Tam = "50",
+                Text = "TEXTO UI",
+                Font = "DejaVuSerifCondensed-Italic.ttf",
+                Color = "255|255|0",
+                Depth = "1"
 			}
 		}
 	}	
@@ -109,9 +110,9 @@ Entity4 = {
                 YPos = "25",
                 Width = "150",
                 Height = "50",
-                Texture1 = "iniMat",
-                Texture2 = "hoverMat",
-                Texture3 = "clickedMat",
+                Texture1 = "PlayButton_Ini.png",
+                Texture2 = "PlayButton_Hover.png",
+                Texture3 = "PlayButton_Clicked.png",
                 Depth = "1"
 			}
 		},
@@ -132,7 +133,7 @@ Entity5 = {
 			Arguments = {
                 Width = "20",
                 Height = "20",
-                Texture = "cursor",
+                Texture = "Cursor.png",
                 Depth = "10"
 			}
 		}
@@ -174,7 +175,25 @@ Entity6 = {
     }
 }
 
-Entities = { Entity1, Entity2, Entity3, Entity4, Entity5, Entity6 }
+Entity7 = {
+	Name = "UI_Image",
+	Components = {
+		{
+			Name = "IMAGE",
+			Arguments = {
+                OverlayName= "image",
+				XPos = "50",
+                YPos = "70",
+                Width = "300",
+                Height = "150",
+                Texture = "meme.png",
+                Depth = "1"
+			}
+		}
+	}	
+}
+
+Entities = { Entity1, Entity2, Entity3, Entity4, Entity5, Entity6, Entity7 }
 
 CollisionLayers = { 
     Layers = {

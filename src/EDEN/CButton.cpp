@@ -23,6 +23,7 @@ eden_ec::CButton::CButton(ButtonParams& params) : UIComponent() {
 	params.xPos = xx - (params.width / 2);
 	params.yPos = yy - (params.height / 2);
 
+
 	_iniTex = params.iniTex;
 	_hoverTex = params.hoverTex;
 	_clickedTex = params.clickedTex;

@@ -57,7 +57,20 @@ Entity1 = {
                 Time = "1",
                 Started = "true"
             }
-        }
+        },
+        {
+			Name = "TEXT",
+			Arguments = {
+                OverlayName= "textTest",
+				XPos = "75",
+                YPos = "5",
+                Tam = "50",
+                Text = "Clicks: ",
+                Font = "DejaVuSerifCondensed-Italic.ttf",
+                Color = "255|255|255",
+                Depth = "1"
+			}
+		}
     }
 }
 

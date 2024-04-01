@@ -51,10 +51,6 @@ void eden_ec::UIComponent::SetDepth(float pos) {
 	_overlayElement->setZOrder(Ogre::ushort(pos));
 }
 
-void eden_ec::UIComponent::SetCaption(std::string const& caption) {
-	_overlayContainer->setCaption(caption);
-}
-
 void eden_ec::UIComponent::SetColor(eden_utils::Vector3 const& color) {
 	_overlayContainer->setColour(Ogre::ColourValue(color.GetX(), color.GetY(), color.GetZ()));
 }
@@ -99,10 +95,6 @@ void eden_ec::UIComponent::SetOverlayVisible(bool vis) {
 bool eden_ec::UIComponent::IsVisible() { return _overlayElement->isVisible(); }
 
 float eden_ec::UIComponent::GetDepth() { return _overlayElement->getZOrder(); }
-
-std::string const eden_ec::UIComponent::GetCaption() const {
-	return _overlayContainer->getCaption();
-}
 
 eden_utils::Vector3 const eden_ec::UIComponent::GetColor() const {
 	Ogre::ColourValue color = _overlayContainer->getColour();
@@ -158,7 +150,9 @@ void eden_ec::UIComponent::LoadFont(std::string font) {
 void eden_ec::UIComponent::CreateText(std::string overlayName, float xPos, float yPos,
 	float tam, std::string text, std::string font, float rColor, float gColor, float bColor, int depth)
 {
-	LoadFont(font);
+	if (!Ogre::FontManager::getSingleton().resourceExists(font)) {
+		LoadFont(font);
+	}
 	
 	SetOverlayContainer(overlayName, xPos, yPos, tam *text.length(), tam);
 	SetOverlayElement(depth);
@@ -174,6 +168,20 @@ void eden_ec::UIComponent::CreateText(std::string overlayName, float xPos, float
 	_text->setAlignment(Ogre::TextAreaOverlayElement::Center);
 	_text->show();
 	_overlayContainer->addChild(_text);
+}
+
+std::string eden_ec::UIComponent::GetText() {
+	std::string text = "";
+	if (_text != nullptr)text = _text->getCaption();
+	return text;
+}
+
+void eden_ec::UIComponent::SetText(const std::string& text) {
+	if (_text != nullptr) {
+		_text->setCaption(text);
+		_overlayContainer->setDimensions(_text->getCharHeight() * text.length(), _text->getCharHeight());
+		Resize();
+	}
 }
 
 void eden_ec::UIComponent::SetOverlayContainer(std::string overlayName, float xPos, float yPos,

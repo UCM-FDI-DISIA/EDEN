@@ -8,7 +8,9 @@
 #include "Transform.h"
 #include "CAnimator.h"
 #include"CLuaBehaviour.h"
+#include"CText.h"
 
+#include <string>
 #include "SceneManager.h"
 #include "AudioManager.h"
 #include "Sound.h"
@@ -20,7 +22,7 @@ eden_ec::Hito1Prueba::Hito1Prueba() {
 	////PRUEBA BOTON
 	eden_script::LuaManager* scriptM = eden_script::ScriptManager::Instance()->GetLuaManager();
 	scriptM->Regist(*this, "Hito1Prueba", &eden_ec::Hito1Prueba::Jump,"SetJump",this);
-	scriptM->Regist(*this, "Hito1Prueba", &eden_ec::Hito1Prueba::Jump, "SetJump2", this);
+	scriptM->Regist(*this, "Hito1Prueba", &eden_ec::Hito1Prueba::ChangeText, "SetClick", this);
 	scriptM->Regist(*this, "Hito1Prueba", &eden_ec::Hito1Prueba::Collide, "Collide", this);
 	scriptM->SetGlobal(this, "Hito1Prueba");
 	scriptM = nullptr;
@@ -32,6 +34,7 @@ void eden_ec::Hito1Prueba::Init(eden_script::ComponentArguments* args) {
 void eden_ec::Hito1Prueba::Start() {
 	transform = _ent->GetComponent<CTransform>();
 	animator = _ent->GetComponent<CAnimator>();
+	_text = _ent->GetComponent<CText>();
 	animator->PlayAnim("Idle");
 	//eden_audio::AudioManager::Instance()->GetSound("bell.wav")->Play(true);
 }
@@ -111,6 +114,12 @@ void eden_ec::Hito1Prueba::Jump() {
 		jump = true;
 		idle = false;
 	}
+}
+
+void eden_ec::Hito1Prueba::ChangeText() {
+	_clicks++;
+	std::string aux = "Clicks: " + std::to_string(_clicks);
+	_text->SetNewText(aux);
 }
 
 void eden_ec::Hito1Prueba::Collide(eden_ec::Entity* other)

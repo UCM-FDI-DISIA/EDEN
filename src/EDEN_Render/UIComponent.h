@@ -4,7 +4,6 @@
 
 #include <utility>
 #include <string>
-
 #include "Component.h"
 #include "Vector3.h"
 
@@ -43,9 +42,6 @@ namespace eden_ec {
 		/// @param pos Valores desde -32 hasta 32
 		void SetDepth(float pos);
 
-		/// @brief Cambia el caption del componente
-		void SetCaption(std::string const& caption);
-
 		/// @brief Cambia el color del componente
 		void SetColor(eden_utils::Vector3 const& color);
 
@@ -82,9 +78,6 @@ namespace eden_ec {
 
 		/// @brief Devuelve la profundidad del componente
 		float GetDepth();
-
-		/// @brief Devuelve el caption del componente
-		std::string const GetCaption() const;
 
 		/// @brief Decuelve color del componente
 		eden_utils::Vector3 const GetColor() const;
@@ -151,6 +144,12 @@ namespace eden_ec {
 		void CreateText(std::string overlayName, float xPos, float yPos,
 			float tam, std::string text, std::string font, float rColor, float gColor, float bColor,
 			int depth);
+
+		/// @brief Devuelve el texto actual
+		std::string GetText();
+
+		/// @brief Cambia el texto actual
+		void SetText(const std::string& text);
 	private:
 		/// @brief Managers y elementos de Ogre necesarios para el control y uso de la UI
 		Ogre::OverlayManager* _overlayManager = nullptr;
@@ -173,6 +172,7 @@ namespace eden_ec {
 
 		/// @brief Método encargado de cargar la fuente
 		void LoadFont(std::string font);
+
 	};
 }  
 #endif  

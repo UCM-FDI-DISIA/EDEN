@@ -11,6 +11,7 @@ namespace eden_input {
 namespace eden_ec {
 	class CTransform;
 	class CAnimator;
+	class CText;
 	class Hito1Prueba : public Component {
 	public:
 		Hito1Prueba();
@@ -27,6 +28,7 @@ namespace eden_ec {
 		void HandleInput() override;
 
 		void Jump();
+		void ChangeText();
 
 		void Collide(eden_ec::Entity* other);
 
@@ -37,9 +39,12 @@ namespace eden_ec {
 		eden_input::InputManager* inputManager;
 		eden_ec::CTransform* transform;
 		eden_ec::CAnimator* animator;
+		eden_ec::CText* _text;
 		bool keyPressed = false;
 		bool jump = false;
 		bool idle = true;
+
+		int _clicks = 0;
 	};
 }
 #endif //HITO1_PRUEBA_H

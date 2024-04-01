@@ -32,6 +32,12 @@ namespace eden_ec {
 		/// En este caso no se necesita
 		void Start() override {}
 
+		/// @brief Devuelve el texto actual
+		std::string GetCurrentText();
+
+		/// @brief Cambia el texto actual
+		void SetNewText(const std::string& text);
+
 		/// @brief Definición de método estático GetID necesario para construcción de componentes
 		static std::string GetID() { return _id; }
 	protected:

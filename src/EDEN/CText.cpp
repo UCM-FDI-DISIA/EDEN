@@ -43,3 +43,11 @@ void eden_ec::CText::Init(eden_script::ComponentArguments* args) {
 		args->GetValueToVector3("Color").GetY(), args->GetValueToVector3("Color").GetZ(), args->GetValueToInt("Depth"));
 
 }
+
+void eden_ec::CText::SetNewText(const std::string& text) {
+	SetText(text);
+}
+
+std::string eden_ec::CText::GetCurrentText() {
+	return GetText();
+}

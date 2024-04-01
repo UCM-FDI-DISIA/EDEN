@@ -3,9 +3,12 @@
 #define DEBUG_DRAWER_H
 
 #include <btBulletDynamicsCommon.h>
+#include <vector>
 
 namespace Ogre {
-	class OgreSceneNode;
+	class SceneNode;
+	class MovableObject;
+	class SceneManager;
 }
 
 
@@ -14,6 +17,7 @@ namespace eden_physics {
 	class DebugDrawer : public btIDebugDraw
 	{
 	public:
+
 		DebugDrawer();
 		~DebugDrawer();
 
@@ -26,7 +30,7 @@ namespace eden_physics {
 		/// @param color Color que se le quiera dar
 		void drawLine(const btVector3& origin, const btVector3& end, const btVector3& color) override;
 
-		/// @brief 
+		/// @brief
 		/// @param PointOnB 
 		/// @param normalOnB 
 		/// @param distance 
@@ -36,7 +40,7 @@ namespace eden_physics {
 			const btVector3& color) override;
 
 		/// @brief 
-		/// @param warningString 
+		/// @param warningString Tipo de error recogido como cadena de caracteres
 		void reportErrorWarning(const char* warningString) override;
 
 		/// @brief Dibuja texto en 3d
@@ -53,8 +57,14 @@ namespace eden_physics {
 		int getDebugMode()const override;
 
 	private:
+		/// @brief Tipo enumerado con los tipos de debug que existen
 		DebugDrawModes _debugMode;
-		//Ogre::SceneNode* _node;
+
+		/// @brief Referencia a un nodo de ogre
+		Ogre::SceneNode* _node;
+
+		/// @brief Vector con todas las aristas que se vayan a dibujar
+		std::vector<Ogre::MovableObject*> _lines;
 	};
 
 }

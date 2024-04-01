@@ -5,7 +5,6 @@
 #include <string>
 
 namespace irrklang {
-    class ISoundSource;
     class ISound;
 }
 
@@ -14,13 +13,14 @@ namespace eden_utils {
 }
 
 namespace audio_wrapper {
+    class SoundClip;
     /// Clase que actuara de wrapper de los sonidos de Irrklang. Cada SoundWrapper representara
     /// un sonido distinto, que se generara en el AudioWrapper.
     class Sound {
     public:
         /// Constructora por defecto del SoundWrapper
         /// @param file Ruta del archivo con el sonido
-        Sound(std::string file);
+        Sound(SoundClip* clip);
 
         /// Destructora por defecto de la clase SoundWrapper
         ~Sound();
@@ -96,14 +96,14 @@ namespace audio_wrapper {
         /// @return Valor en punto flotante del pitch del sonido
         float GetPitch() const;
     private:
-        /// Ruta del archivo de sonido
-        std::string _fileName;
+        // Clip de sonido con la fuente
+        audio_wrapper::SoundClip* _clip = nullptr;
 
-        /// Fuente del sonido de Irrklang
-        irrklang::ISoundSource* _soundSource = nullptr;
-
-        /// Sonido de Irrklang para trackear datos sobre este
+        /// Instancia del sonido de Irrklang para trackear datos sobre este
         irrklang::ISound* _sound = nullptr;
+
+        /// Nombre del archivo asociado al sonido
+        std::string _filename;
 
         /// Booleano que indica si el sonido es o no es tridimensional
         bool _threeDimensional;

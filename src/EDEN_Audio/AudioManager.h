@@ -14,7 +14,7 @@
 #endif
 
 namespace audio_wrapper {
-    class Sound;
+    class SoundClip;
 }
 
 namespace eden_audio {
@@ -23,10 +23,10 @@ namespace eden_audio {
     public:
         AudioManager();
         ~AudioManager();
-        audio_wrapper::Sound* GetSound(std::string filename) const;
+        audio_wrapper::SoundClip* GetSoundClip(std::string filename) const;
     private:
         void LoadResources();
-        std::unordered_map<std::string, audio_wrapper::Sound*> _soundMap;
+        std::unordered_map<std::string, audio_wrapper::SoundClip*> _soundMap;
     };
 }
 

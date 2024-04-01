@@ -2,6 +2,7 @@
 #define EDEN_AUDIO_EMITTER
 
 #include <string>
+#include <vector>
 
 #include "Vector3.h"
 
@@ -19,6 +20,7 @@ namespace eden_audio {
 
 	private:
 		audio_wrapper::Sound* _soundClip;
+		std::vector<audio_wrapper::Sound*> _sounds;
 		bool _3D;
 		bool _loop;
 		eden_utils::Vector3 _position;

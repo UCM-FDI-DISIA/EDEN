@@ -2,7 +2,7 @@
 #include <filesystem>
 
 #include "AudioManager.h"
-#include "Sound.h"
+#include "SoundClip.h"
 #include "AudioEngine.h"
 #include "ErrorHandler.h"
 
@@ -19,11 +19,11 @@ eden_audio::AudioManager::~AudioManager() {
 
 void eden_audio::AudioManager::LoadResources() {
 	for (const auto& entry : std::filesystem::directory_iterator(AUDIO_ROUTE)) {
-		_soundMap[entry.path().filename().string()] = new audio_wrapper::Sound(entry.path().string());
+		_soundMap[entry.path().filename().string()] = new audio_wrapper::SoundClip(entry.path().string());
 	}
 }
 
-audio_wrapper::Sound* eden_audio::AudioManager::GetSound(std::string filename) const {
+audio_wrapper::SoundClip* eden_audio::AudioManager::GetSoundClip(std::string filename) const {
 	auto it = _soundMap.find(filename);
 	if (it == _soundMap.end()) eden_error::ErrorHandler::Instance()->Exception("Music file not found", "El archivo de sonido " + filename + " no ha sido encontrado.");
 	else return it->second;

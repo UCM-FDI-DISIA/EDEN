@@ -14,22 +14,19 @@
     <ClCompile Include="..\..\src\EDEN_Audio\test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\EDEN_Audio\SoundWrapper.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\EDEN_Audio\Sound.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\EDEN_Audio\AudioListener.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\EDEN_Audio\AudioManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\EDEN_Audio\AudioWrapper.cpp">
+    <ClCompile Include="..\..\src\EDEN_Audio\AudioEmitter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\EDEN_Audio\AudioEmitter.cpp">
+    <ClCompile Include="..\..\src\EDEN_Audio\AudioEngine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\EDEN_Audio\Sound.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -40,16 +37,13 @@
     <ClInclude Include="..\..\src\EDEN_Audio\AudioManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\EDEN_Audio\AudioWrapper.h">
+    <ClInclude Include="..\..\src\EDEN_Audio\AudioEmitter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\EDEN_Audio\AudioEngine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\EDEN_Audio\Sound.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\EDEN_Audio\SoundWrapper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\EDEN_Audio\AudioEmitter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

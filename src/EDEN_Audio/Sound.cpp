@@ -1,104 +1,122 @@
 #define _CRTDBG_MAP_ALLOC
+#include <irrKlang.h>
+
 #include "Sound.h"
-#include "SoundWrapper.h"
+#include <ErrorHandler.h>
+#include "AudioEngine.h"
 #include "Vector3.h"
-#include "ErrorHandler.h"
 
-eden_audio::Sound::Sound(std::string file) {
-	_sound = new audio_wrapper::SoundWrapper(file);
+audio_wrapper::Sound::Sound(std::string file): _fileName(file), _threeDimensional(false) {
+    _soundSource = audio_wrapper::AudioEngine::Instance()->CreateSoundSource(file);
 }
 
-eden_audio::Sound::~Sound() {
-	delete _sound;
-	_sound = nullptr;
+audio_wrapper::Sound::~Sound() {
+    _soundSource->drop();
+    _sound->drop();
+    _soundSource = nullptr;
+    _sound = nullptr;
 }
 
-void eden_audio::Sound::Play(bool loop) {
-	eden_error::ErrorHandler::Instance()->Assert(_sound, "El sonido " + _filename + " no se ha creado correctamente.");
-	_sound->Play(loop);
+void audio_wrapper::Sound::Play(bool loop) {
+    eden_error::ErrorHandler::Instance()->Assert(_soundSource, "No se encuentra la fuente de sonido con nombre " + _fileName);
+    eden_error::ErrorHandler::Instance()->Assert(!_sound, "Ya hay un sonido reproduciendose derivado de la fuente de sonido con nombre " + _fileName);
+    _sound = audio_wrapper::AudioEngine::Instance()->Play(_soundSource, loop);
 }
 
-void eden_audio::Sound::Play(eden_utils::Vector3 pos, bool loop) {
-	eden_error::ErrorHandler::Instance()->Assert(_sound, "El sonido " + _filename + " no se ha creado correctamente.");
-	_sound->Play(pos, loop);
+void audio_wrapper::Sound::Play(eden_utils::Vector3 pos, bool loop) {
+    eden_error::ErrorHandler::Instance()->Assert(_soundSource, "No se encuentra la fuente de sonido con nombre " + _fileName);
+    eden_error::ErrorHandler::Instance()->Assert(!_sound, "Ya hay un sonido reproduciendose derivado de la fuente de sonido con nombre " + _fileName);
+    _threeDimensional = true;
+    _sound = audio_wrapper::AudioEngine::Instance()->Play(_soundSource, pos, loop);
 }
 
-void eden_audio::Sound::Pause() {
-	eden_error::ErrorHandler::Instance()->Assert(_sound, "El sonido " + _filename + " no se ha creado correctamente.");
-	_sound->Pause();
+void audio_wrapper::Sound::Pause() {
+    eden_error::ErrorHandler::Instance()->Assert(_sound, "No se encuentra el sonido con nombre " + _fileName);
+    _sound->setIsPaused(true);
 }
 
-void eden_audio::Sound::Resume() {
-	eden_error::ErrorHandler::Instance()->Assert(_sound, "El sonido " + _filename + " no se ha creado correctamente.");
-	_sound->Resume();
+void audio_wrapper::Sound::Resume() {
+    eden_error::ErrorHandler::Instance()->Assert(_sound, "No se encuentra el sonido con nombre " + _fileName);
+    _sound->setIsPaused(false);
 }
 
-bool eden_audio::Sound::IsPaused() const {
-	eden_error::ErrorHandler::Instance()->Assert(_sound, "El sonido " + _filename + " no se ha creado correctamente.");
-	return _sound->IsPaused();
+bool audio_wrapper::Sound::IsPaused() const {
+    eden_error::ErrorHandler::Instance()->Assert(_sound, "No se encuentra el sonido con nombre " + _fileName);
+    return _sound->getIsPaused();
 }
 
-void eden_audio::Sound::Stop() {
-	eden_error::ErrorHandler::Instance()->Assert(_sound, "El sonido " + _filename + " no se ha creado correctamente.");
-	_sound->Stop();
+void audio_wrapper::Sound::Stop() {
+    eden_error::ErrorHandler::Instance()->Assert(_sound, "No se encuentra el sonido con nombre " + _fileName);
+    _sound->stop();
+    // Dropeamos el sonido puesto que ya no sera necesario y cuando volvamos a reproducirlo se generera
+    // otra instancia de un ISound de Irrklang
+    _sound->drop();
+    _sound = nullptr;
 }
 
-void eden_audio::Sound::Restart() {
-	eden_error::ErrorHandler::Instance()->Assert(_sound, "El sonido " + _filename + " no se ha creado correctamente.");
-	_sound->Restart();
+void audio_wrapper::Sound::Restart() {
+    bool loop = IsLooped();
+    eden_utils::Vector3 pos = GetPlayingPosition();
+    Stop();
+    _threeDimensional ? Play(pos, loop) : Play(loop);
 }
 
-bool eden_audio::Sound::HasEnded() const {
-	eden_error::ErrorHandler::Instance()->Assert(_sound, "El sonido " + _filename + " no se ha creado correctamente.");
-	return _sound->HasEnded();
+bool audio_wrapper::Sound::HasEnded() const {
+    eden_error::ErrorHandler::Instance()->Assert(_sound, "No se encuentra el sonido con nombre " + _fileName);
+    return _sound->isFinished();
 }
 
-void eden_audio::Sound::SetLoop(bool loop) {
-	eden_error::ErrorHandler::Instance()->Assert(_sound, "El sonido " + _filename + " no se ha creado correctamente.");
-	_sound->SetLoop(loop);
+void audio_wrapper::Sound::SetLoop(bool loop) {
+    eden_error::ErrorHandler::Instance()->Assert(_sound, "No se encuentra el sonido con nombre " + _fileName);
+    _sound->setIsLooped(loop);
 }
 
-bool eden_audio::Sound::IsLooped() const {
-	eden_error::ErrorHandler::Instance()->Assert(_sound, "El sonido " + _filename + " no se ha creado correctamente.");
-	return _sound->IsLooped();
+bool audio_wrapper::Sound::IsLooped() const {
+    eden_error::ErrorHandler::Instance()->Assert(_sound, "No se encuentra el sonido con nombre " + _fileName);
+    return _sound->isLooped();
 }
 
-void eden_audio::Sound::SetPan(float pan) {
-	eden_error::ErrorHandler::Instance()->Assert(_sound, "El sonido " + _filename + " no se ha creado correctamente.");
-	_sound->SetPan(pan);
+void audio_wrapper::Sound::SetPan(float pan) {
+    eden_error::ErrorHandler::Instance()->Assert(_sound, "No se encuentra el sonido con nombre " + _fileName);
+    if(pan > 1.0) pan = 1.0;
+    if(pan < -1.0) pan = -1.0;
+    _sound->setPan(pan);
 }
 
-float eden_audio::Sound::GetPan() const {
-	eden_error::ErrorHandler::Instance()->Assert(_sound, "El sonido " + _filename + " no se ha creado correctamente.");
-	return _sound->GetPan();
+float audio_wrapper::Sound::GetPan() const {
+    eden_error::ErrorHandler::Instance()->Assert(_sound, "No se encuentra el sonido con nombre " + _fileName);
+    return _sound->getPan();
 }
 
-void eden_audio::Sound::SetPosition(eden_utils::Vector3 position) {
-	eden_error::ErrorHandler::Instance()->Assert(_sound, "El sonido " + _filename + " no se ha creado correctamente.");
-	_sound->SetPosition(position);
+void audio_wrapper::Sound::SetPosition(eden_utils::Vector3 position) {
+    eden_error::ErrorHandler::Instance()->Assert(_sound, "No se encuentra el sonido con nombre " + _fileName);
+    _sound->setPosition(audio_wrapper::AudioEngine::EdenVecToIrrklangVec(position));
 }
 
-eden_utils::Vector3 eden_audio::Sound::GetPlayingPosition() const {
-	eden_error::ErrorHandler::Instance()->Assert(_sound, "El sonido " + _filename + " no se ha creado correctamente.");
-	return _sound->GetPlayingPosition();
+eden_utils::Vector3 audio_wrapper::Sound::GetPlayingPosition() const {
+    eden_error::ErrorHandler::Instance()->Assert(_sound, "No se encuentra el sonido con nombre " + _fileName);
+    return audio_wrapper::AudioEngine::IrrklangVecToEdenVec(_sound->getPosition());
 }
 
-void eden_audio::Sound::SetVolume(float volume) {
-	eden_error::ErrorHandler::Instance()->Assert(_sound, "El sonido " + _filename + " no se ha creado correctamente.");
-	_sound->SetVolume(volume);
+void audio_wrapper::Sound::SetVolume(float volume) {
+    eden_error::ErrorHandler::Instance()->Assert(_sound, "No se encuentra el sonido con nombre " + _fileName);
+    if(volume > 1.0f) volume = 1.0f;
+    if(volume < 0.0f) volume = 0.0f;
+    _sound->setVolume(volume);
 }
 
-float eden_audio::Sound::GetVolume() const {
-	eden_error::ErrorHandler::Instance()->Assert(_sound, "El sonido " + _filename + " no se ha creado correctamente.");
-	return _sound->GetVolume();
+float audio_wrapper::Sound::GetVolume() const {
+    eden_error::ErrorHandler::Instance()->Assert(_sound, "No se encuentra el sonido con nombre " + _fileName);
+    return _sound->getVolume();
 }
 
-void eden_audio::Sound::SetPitch(float pitch) {
-	eden_error::ErrorHandler::Instance()->Assert(_sound, "El sonido " + _filename + " no se ha creado correctamente.");
-	_sound->SetPitch(pitch);
+void audio_wrapper::Sound::SetPitch(float pitch) {
+    eden_error::ErrorHandler::Instance()->Assert(_sound, "No se encuentra el sonido con nombre " + _fileName);
+    if (pitch < 0.0f) pitch = 0.0f;
+    _sound->setPlaybackSpeed(pitch);
 }
 
-float eden_audio::Sound::GetPitch() const {
-	eden_error::ErrorHandler::Instance()->Assert(_sound, "El sonido " + _filename + " no se ha creado correctamente.");
-	return _sound->GetPitch();
+float audio_wrapper::Sound::GetPitch() const {
+    eden_error::ErrorHandler::Instance()->Assert(_sound, "No se encuentra el sonido con nombre " + _fileName);
+    return _sound->getPlaybackSpeed();
 }

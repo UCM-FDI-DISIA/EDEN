@@ -1,40 +1,41 @@
 #define _CRTDBG_MAP_ALLOC
-#ifndef EDEN_SOUND_H
-#define EDEN_SOUND_H
+#ifndef EDEN_SOUNDWRAPPER_H
+#define EDEN_SOUNDWRAPPER_H
 
 #include <string>
 
-namespace audio_wrapper {
-	class SoundWrapper;
+namespace irrklang {
+    class ISoundSource;
+    class ISound;
 }
 
 namespace eden_utils {
-	class Vector3;
+    class Vector3;
 }
 
-namespace eden_audio {
-	/// Clase que representa un sonido y permite controlar todo lo que tenga que ver con este (reproduccion,
-	/// pausa, consulta, etc...)
-	class Sound {
-	public:
-		/// Constructora por defecto de la clase sonido
-		/// @param file Ruta con el archivo del sonido
-		Sound(std::string file);
+namespace audio_wrapper {
+    /// Clase que actuara de wrapper de los sonidos de Irrklang. Cada SoundWrapper representara
+    /// un sonido distinto, que se generara en el AudioWrapper.
+    class Sound {
+    public:
+        /// Constructora por defecto del SoundWrapper
+        /// @param file Ruta del archivo con el sonido
+        Sound(std::string file);
 
-		/// Destructora por defecto de la clase sonido
-		~Sound();
+        /// Destructora por defecto de la clase SoundWrapper
+        ~Sound();
 
-		/// Reproduce un sonido en un espacio 2D, sin coordenadas, por toda la escena o el espacio.
-		/// @param loop Si el sonido se quiere reproducir en bucle se pondra en true, si no, en false (false por defecto)
-		void Play(bool loop);
+        /// Reproduce un sonido en un espacio 2D, sin coordenadas, por toda la escena o el espacio.
+        /// @param loop Si el sonido se quiere reproducir en bucle se pondra en true, si no, en false (false por defecto)
+        void Play(bool loop = false);
 
-		/// Reproduce un sonido en un espacio 3D, esto es, necesita unas coordenadas desde donde se quiera
-		/// reproducir, y necesitara de un listener en algun sitio para escucharlo
-		/// @param pos Posicion desde la que se reproducira el sonido
-		/// @param loop Si el sonido se quiere reproducir en bucle se pondra en true, si no, en false (false por defecto)
-		void Play(eden_utils::Vector3 pos, bool loop);
+        /// Reproduce un sonido en un espacio 3D, esto es, necesita unas coordenadas desde donde se quiera
+        /// reproducir, y necesitara de un listener en algun sitio para escucharlo
+        /// @param position Posicion desde la que se reproducira el sonido
+        /// @param loop Si el sonido se quiere reproducir en bucle se pondra en true, si no, en false (false por defecto)
+        void Play(eden_utils::Vector3 position, bool loop = false);
 
-		/// Pausa el sonido
+        /// Pausa el sonido
         void Pause();
 
         /// Reanuda el sonido
@@ -94,14 +95,19 @@ namespace eden_audio {
         /// @brief Devuelve el pitch del sonido
         /// @return Valor en punto flotante del pitch del sonido
         float GetPitch() const;
-	private:
-		/// Nombre del archivo del sonido (para manejo de errores)
-		std::string _filename;
+    private:
+        /// Ruta del archivo de sonido
+        std::string _fileName;
 
-		/// Puntero al wrapper de sonido que sera el que tenga la informacion del sonido con
-		/// una cierta libreria, en este caso, Irrklang
-		audio_wrapper::SoundWrapper* _sound = nullptr;
-	};
+        /// Fuente del sonido de Irrklang
+        irrklang::ISoundSource* _soundSource = nullptr;
+
+        /// Sonido de Irrklang para trackear datos sobre este
+        irrklang::ISound* _sound = nullptr;
+
+        /// Booleano que indica si el sonido es o no es tridimensional
+        bool _threeDimensional;
+    };
 }
-#endif
 
+#endif //EDEN_SOUNDWRAPPER_H

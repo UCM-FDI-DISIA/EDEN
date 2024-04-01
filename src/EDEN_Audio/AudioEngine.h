@@ -1,6 +1,6 @@
 #define _CRTDBG_MAP_ALLOC
-#ifndef EDEN_AUDIOWRAPPER_H
-#define EDEN_AUDIOWRAPPER_H
+#ifndef EDEN_AUDIOENGINE_H
+#define EDEN_AUDIOENGINE_H
 
 #include <string>
 
@@ -21,11 +21,11 @@ namespace audio_wrapper {
 	/// puesto que solo necesitamos un unico motor de sonido y no varios.
 	/// El motor de sonido gestiona la creacion y reproduccion de sonidos desde archivos,
 	/// tanto .wav, .ogg, .mp3 y varios mas.
-	class AudioWrapper : public Singleton<AudioWrapper> {
-		friend Singleton<AudioWrapper>;
+	class AudioEngine : public Singleton<AudioEngine> {
+		friend Singleton<AudioEngine>;
 	public:
 		/// Destructora por defecto del wrapper del motor de sonido
-		~AudioWrapper() override;
+		~AudioEngine() override;
 
 		/// Metodo para crear una fuente de sonido a partir de un archivo mp3, ogg o wav
 		/// @param file Ruta del archivo
@@ -65,7 +65,7 @@ namespace audio_wrapper {
 		static irrklang::vec3df EdenVecToIrrklangVec(eden_utils::Vector3 vector);
 	private:
 		/// Constructora por defecto de la clase AudioWrapper. Privada ya que es un singleton.
-		AudioWrapper();
+		AudioEngine();
 
 		/// Puntero al motor de sonido de Irrklang desde el que se crearan todos los sonidos
 		irrklang::ISoundEngine* _soundEngine = nullptr;

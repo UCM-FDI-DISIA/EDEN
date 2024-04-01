@@ -10,6 +10,8 @@
 #include"CLuaBehaviour.h"
 
 #include "SceneManager.h"
+#include "AudioManager.h"
+#include "Sound.h"
 
 const std::string eden_ec::Hito1Prueba::_id = "PRUEBA";
 
@@ -31,6 +33,7 @@ void eden_ec::Hito1Prueba::Start() {
 	transform = _ent->GetComponent<CTransform>();
 	animator = _ent->GetComponent<CAnimator>();
 	animator->PlayAnim("Idle");
+	//eden_audio::AudioManager::Instance()->GetSound("bell.wav")->Play(true);
 }
 
 void eden_ec::Hito1Prueba::HandleInput() {

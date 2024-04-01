@@ -5,16 +5,20 @@
 
 #include "Vector3.h"
 
-namespace eden_audio {
+namespace audio_wrapper {
 	class Sound;
+}
+
+namespace eden_audio {
 	class AudioEmitter {
 	public:
 		AudioEmitter(std::string name, bool is3D, eden_utils::Vector3 pos = { 0,0,0 }, eden_utils::Vector3 emittingDir = {0,0,0});
 		~AudioEmitter() = default;
 		void Play();
+		inline audio_wrapper::Sound* GetSound() const { return _soundClip; }
 
 	private:
-		Sound* _soundClip;
+		audio_wrapper::Sound* _soundClip;
 		bool _3D;
 		bool _loop;
 		eden_utils::Vector3 _position;

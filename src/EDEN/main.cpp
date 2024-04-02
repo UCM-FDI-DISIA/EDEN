@@ -29,8 +29,11 @@
 #include "Hito1Prueba.h"
 #include "CAnimator.h"
 
+#ifdef _WIN32
 #include <windows.h>
-
+#elif defined(__linux__) || defined(__APPLE__)
+#include <dlfcn.h>
+#endif
 
 int main() {
 
@@ -39,7 +42,7 @@ int main() {
 #else
 	HMODULE game = LoadLibraryA("game.dll");
 #endif
-	if (game == NULL) {
+	if (game == NULL) { // mejor con assert
 		std::cerr << "no se ha cargado la dll correctamente" << std::endl;
 	}
 
@@ -54,31 +57,6 @@ int main() {
 
 		else {
 			std::cout << saludo() << std::endl;
-
-			//// Registramos el componente Transform, que es el unico que usaremos de momento
-			//eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CTransform>();
-			//eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CMeshRenderer>();
-			//eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_render::CCamera>();
-			//eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CImage>();
-			//eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::Hito1Prueba>();
-			//eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CAnimator>();
-			//eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CButton>();
-			//eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CCursor>();
-			//eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CRigidBody>();
-
-			//try {
-			//	eden::Master* master = eden::Master::Instance();
-			//	//Creamos una escena inicial de pueba 
-			//	eden::SceneManager* scnManager = eden::SceneManager::Instance();
-			//	scnManager->PushScene("test_scene");
-			//	master->Loop();
-			//	delete scnManager;
-			//	delete master;
-			//}
-
-			//catch (std::exception e) {
-
-			//}
 		}
 
 		FreeLibrary(game);

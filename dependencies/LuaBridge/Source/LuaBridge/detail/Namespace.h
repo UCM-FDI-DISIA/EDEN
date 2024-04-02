@@ -54,7 +54,7 @@ protected:
 
     Registrar(const Registrar& rhs) = delete;
 
-    Registrar(Registrar&& rhs)
+    Registrar(Registrar&& rhs) noexcept
         : L(rhs.L)
         , m_stackSize(std::exchange(rhs.m_stackSize, 0))
         , m_skipStackPops(std::exchange(rhs.m_skipStackPops, 0))
@@ -63,7 +63,7 @@ protected:
 
     Registrar& operator=(const Registrar& rhs) = delete;
 
-    Registrar& operator=(Registrar&& rhs)
+    Registrar& operator=(Registrar&& rhs) noexcept
     {
         m_stackSize = std::exchange(rhs.m_stackSize, 0);
         m_skipStackPops = std::exchange(rhs.m_skipStackPops, 0);

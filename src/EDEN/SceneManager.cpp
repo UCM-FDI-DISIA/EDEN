@@ -3,7 +3,7 @@
 
 #include "SceneManager.h"
 #include <ScriptManager.h>
-#include "Scene.h";
+#include "Scene.h"
 #include <unordered_map>
 #include "Quaternion.h"
 #include "Vector3.h"

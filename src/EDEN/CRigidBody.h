@@ -133,18 +133,18 @@ namespace eden_ec {
 
 	private:
 		/// @brief Masa asociada al RigidBody
-		float _mass;
+		float _mass = 0;
 
 		/// @brief Efecto de rebote, indica cuanta energía se mantiene después de la colisión
-		float _restitution;
+		float _restitution = 0;
 
 		/// @brief Fricción asociada al RigidBody
-		float _friction;
+		float _friction = 0;
 
 		/// @brief Variable que se encarga de contener los parametros de la figura asociada al rigidBody
 		physics_wrapper::RigidBody::ShapeParameters _params;
 
-		physics_wrapper::RigidBody::RigidBodyType _type;
+		physics_wrapper::RigidBody::RigidBodyType _type = physics_wrapper::RigidBody::RigidBodyType::DYNAMIC;
 
 		std::string _layer = "DEFAULT";
 

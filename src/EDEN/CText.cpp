@@ -35,7 +35,7 @@ void eden_ec::CText::Init(eden_script::ComponentArguments* args) {
 	int h = render->GetWindowHeight();
 	int xx = w * xPos / 100;
 	int yy = h * yPos / 100;
-	xPos = xx - (tam* args->GetValueToString("Text").length() / 2);
+	xPos = (int)(xx - (tam* args->GetValueToString("Text").length() / 2));
 	yPos = yy - (tam / 2);
 
 	CreateText(args->GetValueToString("OverlayName"), float(xPos), float(yPos), float(tam),

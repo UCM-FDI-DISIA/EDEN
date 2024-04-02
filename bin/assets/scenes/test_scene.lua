@@ -210,8 +210,9 @@ Entities = { Entity1, Entity2, Entity3, Entity4, Entity5, Entity6, Entity7 }
 
 CollisionLayers = { 
     Layers = {
+        RAYCAST = "PLAYER|GROUND",
         DEFAULT = "DEFAULT|PLAYER|GROUND",
-        PLAYER = "GROUND",
-        GROUND = "PLAYER"
+        PLAYER = "RAYCAST|GROUND",
+        GROUND = "RAYCAST|PLAYER|DEFAULT"
     }
 }

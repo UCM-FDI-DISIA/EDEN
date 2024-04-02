@@ -22,7 +22,7 @@
 #include "SceneManager.h"
 #include "Scene.h"
 
-physics_wrapper::RigidBody::RigidBody(eden_ec::Entity* ent, const ShapeParameters& params, float mass, float friction, float bounciness, const RigidBodyType& flag, std::string layerName)
+physics_wrapper::RigidBody::RigidBody(eden_ec::Entity* ent, const ShapeParameters& params, float mass, float friction, float bounciness, const RigidBodyType& flag, std::string* layerName)
 {
 	btVector3 localInertia = btVector3();
 
@@ -56,10 +56,11 @@ physics_wrapper::RigidBody::RigidBody(eden_ec::Entity* ent, const ShapeParameter
 	}
 	
 	physics_manager::PhysicsManager* physicsManager = physics_manager::PhysicsManager::Instance();
-	physics_wrapper::CollisionLayer* layer = physicsManager->GetLayerByName(layerName, ent->GetSceneID());
+	physics_wrapper::CollisionLayer* layer = physicsManager->GetLayerByName(*layerName, ent->GetSceneID());
 	if (layer == nullptr)
 	{
 		layer = physicsManager->GetLayerByName(DEFAULT_GROUP, ent->GetSceneID());
+		*layerName = DEFAULT_GROUP;
 	}
 
 	physicsManager->GetWorld()->addRigidBody(_rigidBody, layer->GetLayer(), layer->GetCollisionMask());

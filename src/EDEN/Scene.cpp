@@ -13,6 +13,7 @@ namespace eden {
 	Scene::Scene(const std::string& ID, std::vector<eden_script::EntityInfo*>& info, std::unordered_map<std::string, std::vector<std::string>>& collisionInfo) {
 		_ID = ID;
 		physics_manager::PhysicsManager* physicsManager = physics_manager::PhysicsManager::Instance();
+		physicsManager->CreateCollisionLayer(RAYCAST_GROUP, ID);
 		physicsManager->CreateCollisionLayer(DEFAULT_GROUP, ID);
 		for (auto it : collisionInfo)
 		{

@@ -3,6 +3,7 @@
 #include <ComponentArguments.h>
 #include <PhysicsManager.h>
 #include "Entity.h"
+#include "RayCast.h"
 #include "CLuaBehaviour.h"
 
 const std::string eden_ec::CRigidBody::_id = "RIGIDBODY";
@@ -12,12 +13,22 @@ void eden_ec::CRigidBody::Start()
 	//Se comprueba si la entidad tiene o no un transform, en cuyo caso lo crea y lo aniade
 	if (_ent->GetComponent<CTransform>() != nullptr) {
 		_transform = _ent->GetComponent<CTransform>();
-		_rb = new physics_wrapper::RigidBody(_ent, _params, _mass, _friction, _restitution, _type, _layer);
+		_rb = new physics_wrapper::RigidBody(_ent, _params, _mass, _friction, _restitution, _type, &_layer);
 		physics_manager::PhysicsManager::Instance()->AddPhysicsEntity(_ent);
 	}
 	if(_ent->GetComponent<CLuaBehaviour>() != nullptr)
 		_behaviour = _ent->GetComponent<CLuaBehaviour>();
 }
+
+physics_wrapper::CollisionLayer* eden_ec::CRigidBody::GetCollisionLayer() {
+	return physics_manager::PhysicsManager::Instance()->GetLayerByName(_layer, _ent->GetSceneID());
+}
+
+std::string eden_ec::CRigidBody::GetCollisionLayerName() {
+	return _layer;
+}
+
+
 
 void eden_ec::CRigidBody::Update(float t)
 {

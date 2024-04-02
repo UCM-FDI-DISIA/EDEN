@@ -7,6 +7,7 @@
 #include "Singleton.h"
 
 #define DEFAULT_GROUP "DEFAULT"
+#define RAYCAST_GROUP "RAYCAST"
 #define COLLISIONMASK_NULL ""
 
 class btDynamicsWorld;

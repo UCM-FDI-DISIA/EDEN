@@ -19,6 +19,10 @@ namespace physics_manager {
 	class PhysicsManager;
 }
 
+namespace physics_wrapper{
+	class CollisionLayer;
+}
+
 namespace eden_ec {
 	class CLuaBehaviour;
 	class CRigidBody : public Component
@@ -128,6 +132,13 @@ namespace eden_ec {
 		/// @brief Definicion de metodo estatico GetID necesario para construccion de componentes
 		static std::string GetID() { return _id; }
 
+		/// @brief Devuelve la capa de colisión del objeto
+		/// @return Devuelve la capa de colisión del objeto 
+		physics_wrapper::CollisionLayer* GetCollisionLayer();
+
+		/// @brief Devuelve el nombre de la capa de colisión del objeto
+		/// @return Devuelve el nombre de la capa de colisión del objeto 
+		std::string GetCollisionLayerName();
 	protected:
 		const static std::string _id;
 

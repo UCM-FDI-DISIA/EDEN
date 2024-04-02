@@ -3,6 +3,7 @@
 #define EDEN_RAYCASTWRAPPER_H
 
 #include <vector>
+#include <string>
 
 #include "Singleton.h"
 #include "Vector3.h"
@@ -50,6 +51,10 @@ namespace physics_wrapper {
 		/// @param debugLineColor Vector con la informacion RGB del color del rayo a dibujar
 		/// @return Devuelve un vector de struct de tipo "RayCastHitResult" con la informacion de colision del rayo con todos los objetos en su trayectoria
 		const std::vector<RayCastHitResult> MultipleHitRayCast(const eden_utils::Vector3 rayOrigin, const eden_utils::Vector3 rayDestiny, const bool drawDebugLine = false, const eden_utils::Vector3 debugLineColor = eden_utils::Vector3(1, 0, 0)) const;
+
+		const std::vector<RayCastHitResult> MultipleHitRayCast(const eden_utils::Vector3 rayOrigin, const eden_utils::Vector3 rayDestiny, const char* layerName, const bool drawDebugLine = false, const eden_utils::Vector3 debugLineColor = eden_utils::Vector3(1, 0, 0)) const;
+
+		const std::vector<RayCastHitResult> MultipleHitRayCast(const eden_utils::Vector3 rayOrigin, const eden_utils::Vector3 rayDestiny, std::string layerName, const bool drawDebugLine = false, const eden_utils::Vector3 debugLineColor = eden_utils::Vector3(1, 0, 0)) const;
 
 		~RayCast() override = default;
 	protected:

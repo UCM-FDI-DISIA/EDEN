@@ -22,7 +22,7 @@ namespace eden {
 		for (auto it : collisionInfo)
 		{
 			for (auto collisionLayer : it.second) {
-				physicsManager->AddCollisionToLayer(it.first, collisionLayer, ID);
+				physicsManager->RemoveCollisionToLayer(it.first, collisionLayer, ID);
 			}
 		}
 		Instantiate(info);

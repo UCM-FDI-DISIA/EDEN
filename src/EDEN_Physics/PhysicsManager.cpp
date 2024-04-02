@@ -43,7 +43,7 @@ void physics_manager::PhysicsManager::CreateCollisionLayer(std::string name, std
 	}
 }
 
-void physics_manager::PhysicsManager::AddCollisionToLayer(std::string layerName, std::string collisionToAdd, std::string sceneID)
+void physics_manager::PhysicsManager::RemoveCollisionToLayer(std::string layerName, std::string collisionToAdd, std::string sceneID)
 {
 	if(collisionToAdd != COLLISIONMASK_NULL)
 	{
@@ -52,7 +52,8 @@ void physics_manager::PhysicsManager::AddCollisionToLayer(std::string layerName,
 		auto layer = _layers.find(layerPair);
 		auto collisionLayer = _layers.find(otherLayerPair);
 		if (layer != _layers.end() && collisionLayer != _layers.end()) {
-			layer->second->AddCollisionToLayer(collisionLayer->second);
+			layer->second->RemoveCollisionToLayer(collisionLayer->second);
+			collisionLayer->second->RemoveCollisionToLayer(layer->second);
 		}
 		else
 		{
@@ -60,12 +61,12 @@ void physics_manager::PhysicsManager::AddCollisionToLayer(std::string layerName,
 			if (layer != _layers.end())
 			{
 				message = "PhysicsManager ERROR in line 37, could not find collision layer: " + layerName + 
-					" trying to add collision with layer: " + collisionToAdd + "\n";
+					" trying to remove collision with layer: " + collisionToAdd + "\n";
 			}
 			else
 			{
 				message = "PhysicsManager ERROR in line 37, could not find collision layer: " + collisionToAdd + 
-					" trying to add collision to layer: " + layerName+ "\n";
+					" trying to remove collision to layer: " + layerName+ "\n";
 			}
 			eden_error::ErrorHandler::Instance()->Warning(message.c_str());
 		}

@@ -28,8 +28,8 @@ int physics_wrapper::CollisionLayer::GetLayer() {
 	return _layer;
 }
 
-void physics_wrapper::CollisionLayer::AddCollisionToLayer(physics_wrapper::CollisionLayer* layer) {
-	_collisionMask = _collisionMask | layer->_layer;
+void physics_wrapper::CollisionLayer::RemoveCollisionToLayer(physics_wrapper::CollisionLayer* layer) {
+	_collisionMask = _collisionMask & (~layer->_layer);
 }
 
 int physics_wrapper::CollisionLayer::GetCollisionMask() {

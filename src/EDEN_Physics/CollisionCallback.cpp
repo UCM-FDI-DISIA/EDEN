@@ -2,8 +2,9 @@
 
 #include "CollisionCallback.h"
 #include "RigidBody.h"
-#include<Entity.h>
-#include<CRigidBody.h>
+#include <Entity.h>
+#include <CRigidBody.h>
+#include "CollisionLayer.h"
 
 physics_wrapper::CollisionCallback::CollisionCallback(RigidBody* rigidBody)
 {
@@ -20,21 +21,25 @@ btScalar physics_wrapper::CollisionCallback::addSingleResult(btManifoldPoint& cp
 	else {
 		otherEntity = static_cast<eden_ec::Entity*>(colObj0Wrap->getCollisionObject()->getUserPointer());
 	}
+	eden_ec::CRigidBody* rb = static_cast<eden_ec::Entity*>(_myRigidBody->getBulletRigidBody()->getUserPointer())->GetComponent<eden_ec::CRigidBody>();
+	eden_ec::CRigidBody* otherRb = otherEntity->GetComponent<eden_ec::CRigidBody>();
 
-	if(cp.getDistance() < 0){
-		//Acaba de haber colisión
-		if (_otherEntities.find(otherEntity) == _otherEntities.end()) {
-			_otherEntities.insert(otherEntity);
-			static_cast<eden_ec::Entity*>(_myRigidBody->getBulletRigidBody()->getUserPointer())->GetComponent<eden_ec::CRigidBody>()->OnCollisionEnter(otherEntity);
+	if ((rb->GetCollisionLayer()->GetCollisionMask() & otherRb->GetCollisionLayer()->GetLayer()) != 0) {
+		if(cp.getDistance() < 0){
+			//Acaba de haber colisión
+			if (_otherEntities.find(otherEntity) == _otherEntities.end()) {
+				_otherEntities.insert(otherEntity);
+				rb->OnCollisionEnter(otherEntity);
+			}
+			else { //Ya había colisión y permanece en ella
+				rb->OnCollisionStay(otherEntity);
+			}
 		}
-		else { //Ya había colisión y permanece en ella
-			static_cast<eden_ec::Entity*>(_myRigidBody->getBulletRigidBody()->getUserPointer())->GetComponent<eden_ec::CRigidBody>()->OnCollisionStay(otherEntity);
+		else { //La distancia es mayor que 0 por lo que está saliendo de la colisión
+			if(_otherEntities.find(otherEntity) != _otherEntities.end())
+				_otherEntities.erase(otherEntity);
+			rb->OnCollisionExit(otherEntity);
 		}
-	}
-	else { //La distancia es mayor que 0 por lo que está saliendo de la colisión
-		if(_otherEntities.find(otherEntity) != _otherEntities.end())
-			_otherEntities.erase(otherEntity);
-		static_cast<eden_ec::Entity*>(_myRigidBody->getBulletRigidBody()->getUserPointer())->GetComponent<eden_ec::CRigidBody>()->OnCollisionExit(otherEntity);
 	}
 
 	return btScalar();

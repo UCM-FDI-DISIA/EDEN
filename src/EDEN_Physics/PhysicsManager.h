@@ -155,11 +155,11 @@ namespace physics_manager {
 		/// @return Mundo de Bullet
 		btDynamicsWorld* GetWorld();
 
-		/// @brief Añade colisión a una capa con otra capa
-		/// @param layerName Nombre de la capa a la que le se quiere añadir colisión
-		/// @param collisionToAdd Nombre de la capa con la que se quiere que colisione
+		/// @brief Quita colisión a una capa con otra capa (por defecto todas las capas colisionan con todas)
+		/// @param layerName Nombre de la capa a la que le se quiere quitar colisión
+		/// @param collisionToAdd Nombre de la capa con la que no se quiere que colisione
 		/// @param sceneID ID de la escena asociada a ambas capas
-		void AddCollisionToLayer(std::string layerName, std::string collisionToAdd, std::string sceneID);
+		void RemoveCollisionToLayer(std::string layerName, std::string collisionToAdd, std::string sceneID);
 
 		/// @brief Crea una capa de colisión
 		/// @param name Nombre de la capa que se quiere crear

@@ -44,7 +44,7 @@ Entity1 = {
                 Radius = "0",
                 Shape = "BOX",
                 CollisionFlag = "DYNAMIC",
-                CollisionLayer = "DEFAULT",
+                CollisionLayer = "PLAYER",
                 Bounciness = "1",
                 Friction = "0"
             }
@@ -179,7 +179,7 @@ Entity6 = {
                 Radius = "0",
                 Shape = "BOX",
                 CollisionFlag = "STATIC",
-                CollisionLayer = "DEFAULT",
+                CollisionLayer = "GROUND",
                 Bounciness = "1",
                 Friction = "0"
             }
@@ -210,9 +210,9 @@ Entities = { Entity1, Entity2, Entity3, Entity4, Entity5, Entity6, Entity7 }
 
 CollisionLayers = { 
     Layers = {
-        RAYCAST = "PLAYER|GROUND",
-        DEFAULT = "DEFAULT|PLAYER|GROUND",
-        PLAYER = "RAYCAST|GROUND",
-        GROUND = "RAYCAST|PLAYER|DEFAULT"
+        RAYCAST = "",
+        DEFAULT = "",
+        PLAYER = "",
+        GROUND = ""
     }
 }

@@ -21,9 +21,9 @@ namespace physics_wrapper {
 		/// @param sceneID ID de la escena a la que pertenece la capa
 		CollisionLayer(std::string layerName, std::string sceneID);
 
-		/// @brief Añade colisión entre esta capa y la capa dada
-		/// @param layer Capa con la que queremos que colisione 
-		void AddCollisionToLayer(physics_wrapper::CollisionLayer* layer);
+		/// @brief Quita colisión entre esta capa y la capa dada (por defecto todas las capas colisionan con todas)
+		/// @param layer Capa con la que queremos que no colisione 
+		void RemoveCollisionToLayer(physics_wrapper::CollisionLayer* layer);
 		
 		/// @brief Gestiona el número de capas que lleva cada escena
 		static std::unordered_map<std::string, int> _currentLayer;
@@ -35,7 +35,7 @@ namespace physics_wrapper {
 		int _layer;
 		
 		/// @brief Máscara de colisión (define con que objetos colisiona)
-		int _collisionMask = 0;
+		int _collisionMask = 0xffffff;
 	public:
 		/// @brief Devuelve el nombre de la capa
 		/// @return Devuelve el nombre de la capa

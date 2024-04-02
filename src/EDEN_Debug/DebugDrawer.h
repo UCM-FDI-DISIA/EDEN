@@ -4,6 +4,7 @@
 
 #include <btBulletDynamicsCommon.h>
 #include <vector>
+#include <string>
 
 namespace Ogre {
 	class SceneNode;
@@ -12,13 +13,13 @@ namespace Ogre {
 }
 
 
-namespace eden_physics {
+namespace eden_debug {
 	/// @brief Dibuja las bounding boxes de los objetos fisicos
 	class DebugDrawer : public btIDebugDraw
 	{
 	public:
 
-		DebugDrawer();
+		DebugDrawer(std::string id);
 		~DebugDrawer();
 
 		/// @brief Elimina todas las lineas dibujadas hasta el momento
@@ -65,6 +66,8 @@ namespace eden_physics {
 
 		/// @brief Vector con todas las aristas que se vayan a dibujar
 		std::vector<Ogre::MovableObject*> _lines;
+
+		std::string _id;
 	};
 
 }

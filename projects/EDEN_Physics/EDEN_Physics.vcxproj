@@ -13,7 +13,6 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\EDEN_Physics\CollisionCallback.cpp" />
     <ClCompile Include="..\..\src\EDEN_Physics\CollisionLayer.cpp" />
-    <ClCompile Include="..\..\src\EDEN_Physics\DebugDrawer.cpp" />
     <ClCompile Include="..\..\src\EDEN_Physics\PhysicsManager.cpp" />
     <ClCompile Include="..\..\src\EDEN_Physics\RayCast.cpp" />
     <ClCompile Include="..\..\src\EDEN_Physics\RigidBody.cpp" />
@@ -23,7 +22,6 @@
   <ItemGroup>
     <ClInclude Include="..\..\src\EDEN_Physics\CollisionCallback.h" />
     <ClInclude Include="..\..\src\EDEN_Physics\CollisionLayer.h" />
-    <ClInclude Include="..\..\src\EDEN_Physics\DebugDrawer.h" />
     <ClInclude Include="..\..\src\EDEN_Physics\PhysicsManager.h" />
     <ClInclude Include="..\..\src\EDEN_Physics\RayCast.h" />
     <ClInclude Include="..\..\src\EDEN_Physics\ShapeCreator.h" />
@@ -82,7 +80,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\;$(SolutionDir)dependencies\Bullet\src\src;$(SolutionDir)dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)src\EDEN\;$(SolutionDir)src\EDEN_Render\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\;$(SolutionDir)dependencies\Bullet\src\src;$(SolutionDir)src\EDEN\;$(SolutionDir)src\EDEN_Debug\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

@@ -34,7 +34,7 @@ namespace physics_wrapper {
 	class CollisionLayer;
 }
 
-namespace eden_physics {
+namespace eden_debug {
 	class DebugDrawer;
 }
 
@@ -136,7 +136,7 @@ namespace physics_manager {
 		btDynamicsWorld* _dynamicWorldRef;
 
 		/// @brief Encargado de hacer dibujos con caracter de debug
-		eden_physics::DebugDrawer* _debugDrawer;
+		eden_debug::DebugDrawer* _debugDrawer;
 
 		/// @brief Clase de bullet encargada de determinar el algortimo de c�lculo de colisiones entre objetos segun su forma
 		btDispatcher* _worldDispatcher;

@@ -7,7 +7,6 @@
     <ClCompile Include="..\..\src\EDEN_Physics\test.cpp" />
     <ClCompile Include="..\..\src\EDEN_Physics\RigidBody.cpp" />
     <ClCompile Include="..\..\src\EDEN_Physics\CollisionCallback.cpp" />
-    <ClCompile Include="..\..\src\EDEN_Physics\DebugDrawer.cpp" />
     <ClCompile Include="..\..\src\EDEN_Physics\CollisionLayer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -16,7 +15,6 @@
     <ClInclude Include="..\..\src\EDEN_Physics\ShapeCreator.h" />
     <ClInclude Include="..\..\src\EDEN_Physics\RigidBody.h" />
     <ClInclude Include="..\..\src\EDEN_Physics\CollisionCallback.h" />
-    <ClInclude Include="..\..\src\EDEN_Physics\DebugDrawer.h" />
     <ClInclude Include="..\..\src\EDEN_Physics\CollisionLayer.h" />
   </ItemGroup>
 </Project>

@@ -30,7 +30,7 @@ namespace eden_ec {
 		void Jump();
 		void ChangeText();
 
-		void Collide(eden_ec::Entity* other);
+		void Collide();
 
 	protected:
 		const static std::string _id;

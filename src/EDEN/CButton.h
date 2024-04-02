@@ -82,38 +82,38 @@ namespace eden_ec {
 		void ButtonRectUpdate();
 
 		/// @brief textura base
-		std::string _iniTex;
+		std::string _iniTex = " ";
 
 		/// @brief textura cuando el cursor está encima
-		std::string _hoverTex;
+		std::string _hoverTex = " ";
 
 		/// @brief textura cuando pulsamos el boton
-		std::string _clickedTex;
+		std::string _clickedTex = " ";
 
 		/// @brief limite superior del boton
-		int _topPosition;
+		int _topPosition = 0;
 
 		/// @brief limite inferior del boton
-		int _bottomPosition;
+		int _bottomPosition = 0;
 
 		/// @brief limite izquierdo del boton
-		int _leftPosition;
+		int _leftPosition = 0;
 
 		/// @brief limite derecho del boton
-		int _rightPosition;
+		int _rightPosition = 0;
 
 		/// @brief Flag de si estamos encima del boton
-		bool _hovering;
+		bool _hovering = 0;
 
 		/// @brief Flag de si hemos pulsado
-		bool _clicked;
+		bool _clicked = 0;
 
 		/// @brief Tamaño anterior
-		std::pair<float, float>_oldScale;
+		std::pair<float, float>_oldScale = std::make_pair(0.0f, 0.0f);
 
 
 		/// @brief Puntero al script de lua
-		CLuaBehaviour* _callback;
+		CLuaBehaviour* _callback = nullptr;
 
 	};
 }

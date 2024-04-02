@@ -44,10 +44,10 @@ namespace eden_ec {
 
 	private:
 		/// @brief Puntero a la imagen que representa el cursor
-		eden_ec::CImage* _image;
+		eden_ec::CImage* _image = nullptr;
 
 		/// @brief Puntero al InputManager
-		eden_input::InputManager* _input;
+		eden_input::InputManager* _input = nullptr;
 	};
 }
 

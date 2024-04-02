@@ -42,13 +42,13 @@ namespace physics_wrapper {
 		struct ShapeParameters {
 		public:
 			/// @brief Tipo de forma
-			ShapeType type;
+			ShapeType type = BOX;
 			/// @brief Radio (en caso de esfera y capsula)
-			float radius;
+			float radius = 0;
 			/// @brief Longitudes de anchura, altura y profundidad (caso caja, altura en capsula y cilindro)
-			eden_utils::Vector3 length;
+			eden_utils::Vector3 length = eden_utils::Vector3(0,0,0);
 			/// @brief Offset de posicion con respecto al centro del RigidBody
-			eden_utils::Vector3 positionOffset;
+			eden_utils::Vector3 positionOffset = eden_utils::Vector3(0, 0, 0);
 		};
 
 		/// @brief Constructora del RigidbodyWrapper
@@ -160,9 +160,9 @@ namespace physics_wrapper {
 		/// @return Devuelve la propiedad de rebote 
 		float GetBounciness();
 	private:
-		btRigidBody* _rigidBody;
-		btCompoundShape* _collisionShape;
-		CollisionCallback* _collisionCallback;
+		btRigidBody* _rigidBody = nullptr;
+		btCompoundShape* _collisionShape = nullptr;
+		CollisionCallback* _collisionCallback = nullptr;
 
 		/// @brief Traduce un vector del motor a vector de Bullet
 		/// @param vector Vector del motor que quieres traducir

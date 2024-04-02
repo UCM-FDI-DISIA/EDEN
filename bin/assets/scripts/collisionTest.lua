@@ -11,11 +11,10 @@ function collisionTest:new()
 end
 
 --Metodo OnCollisionEnter
-function collisionTest:OnCollisionEnter(Entity)
-	--print(num);
-	Hito1Prueba:Collide(Entity);
+function collisionTest:OnCollisionEnter()
+	Hito1Prueba:Collide();
 end
-function collisionTest:OnCollisionStay(Entity)
+function collisionTest:OnCollisionStay()
 	print("Se queda colision\n");
 end
 function collisionTest:OnCollisionExit()

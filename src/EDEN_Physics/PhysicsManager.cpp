@@ -81,8 +81,8 @@ physics_manager::PhysicsManager::PhysicsManager()
 	_worldConstraintSolver = new btSequentialImpulseConstraintSolver();
 	_dynamicWorldRef = new btDiscreteDynamicsWorld(_worldDispatcher, _worldBroadPhaseInterface, _worldConstraintSolver, _worldCollisionConfiguration);
 	//Inicializacion de debug drawer
-	_debugDrawer = new eden_physics::DebugDrawer();
-	_dynamicWorldRef->setDebugDrawer(_debugDrawer);
+	//_debugDrawer = new eden_debug::DebugDrawer("Debug1");
+	//_dynamicWorldRef->setDebugDrawer(_debugDrawer);
 	physics_wrapper::RayCast::Instance(_dynamicWorldRef, _debugDrawer);
 	_dynamicWorldRef->setGravity({ 0,-10,0 });
 }
@@ -113,6 +113,7 @@ physics_manager::PhysicsManager::~PhysicsManager()
 	delete _worldBroadPhaseInterface;
 	delete _worldDispatcher;
 	delete _worldCollisionConfiguration;
+	//delete _debugDrawer;
 	//if (_physicsDebugDrawer) delete _physicsDebugDrawer;
 
 }

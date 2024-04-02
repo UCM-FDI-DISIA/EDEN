@@ -77,13 +77,13 @@ namespace eden_ec {
 		const static std::string _id;
 
 		/// @brief LuaRef del script. Esta clase representa el script .lua en C++
-		luabridge::LuaRef* _behaviourLua;
+		luabridge::LuaRef* _behaviourLua = nullptr;
 
 		/// @brief Puntero de LuaState
 		lua_State* _L = nullptr;
 	
 		/// @brief Nombre del script
-		std::string _name;
+		std::string _name = " ";
 	};
 }
 

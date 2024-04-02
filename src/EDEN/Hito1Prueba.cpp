@@ -12,8 +12,6 @@
 
 #include <string>
 #include "SceneManager.h"
-#include "AudioManager.h"
-#include "Sound.h"
 
 const std::string eden_ec::Hito1Prueba::_id = "PRUEBA";
 
@@ -122,7 +120,7 @@ void eden_ec::Hito1Prueba::ChangeText() {
 	_text->SetNewText(aux);
 }
 
-void eden_ec::Hito1Prueba::Collide(eden_ec::Entity* other)
+void eden_ec::Hito1Prueba::Collide()
 {
 	Entity* otro = luabridge::getGlobal(_ent->GetComponent<CLuaBehaviour>()->getLuaState(), "other");
 	std::cout << otro->GetEntityID() << std::endl;

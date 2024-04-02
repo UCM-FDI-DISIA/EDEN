@@ -4,7 +4,7 @@
 #ifdef _MSC_VER
 #include <crtdbg.h>
 #endif
-
+/*
 #ifdef _DEBUG
 #define DBG_NEW new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
 #define new new(_NORMAL_BLOCK,__FILE__,__LINE__)
@@ -13,7 +13,7 @@
 #else
 #define DBG_NEW new
 #endif
-
+*/
 #ifndef EDEN_MAIN_CPP
 #define EDEN_MAIN_CPP
 
@@ -72,9 +72,14 @@ void RegisterComponents() {
 
 int main(int argc, char* argv[]) {
 
+	char *leak;
+	leak = new char[256];
+	strcpy_s(leak, 256, "LEAK CANARIO");
+
 	// Memory Leaks Check
-	//_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-	
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	_CrtSetBreakAlloc(1032);
+
 	// Registro de componentes
 	RegisterComponents();
 

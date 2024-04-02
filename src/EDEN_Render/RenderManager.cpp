@@ -73,6 +73,11 @@ void eden_render::RenderManager::InitManager(const std::string& appName)
 	_shaderGenerator->addSceneManager(_sceneMngr);
 }
 
+Ogre::SceneManager* eden_render::RenderManager::GetOgreSceneManager()
+{
+	return _sceneMngr;
+}
+
 void eden_render::RenderManager::Update()
 {
 	_root->renderOneFrame(); // renderiza la ra�z de Ogre

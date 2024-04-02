@@ -7,6 +7,10 @@
 
 #include "Singleton.h"
 
+namespace eden_debug {
+	class DebugDrawer;
+}
+
 namespace Ogre {
 	class FileSystemLayer;
 	class RenderWindow;
@@ -47,6 +51,9 @@ namespace eden_render
 		/// @brief Singleton del RenderManager
 		friend Singleton<RenderManager>;
 
+		/// @brief Clase de debug
+		friend eden_debug::DebugDrawer;
+
 		/// @brief Nodo del RenderWrapper
 		friend render_wrapper::NodeManager;
 		friend render_wrapper::RenderObject;
@@ -80,12 +87,16 @@ namespace eden_render
 		/// @brief Función que debería llamarse en el momento en el que la ventana cambia de tamaño
 		void ResizedWindow();
 
+	protected:
+		Ogre::SceneManager* GetOgreSceneManager();
+
 	private:
 		/// @brief Inicializa la librerï¿½a de renderizado,
 		/// crea la ventana de renderizado, localiza y carga los recursos (.mesh, .material, etc)
 		/// e inicializa los shaders
 		/// @param appName Nombre de la ventana
 		void InitManager(const std::string& appName);
+
 
 		/// @brief Inicializa el sistema de sombreado de trazado de rayos
 		void InitialiseRTShaderSystem();

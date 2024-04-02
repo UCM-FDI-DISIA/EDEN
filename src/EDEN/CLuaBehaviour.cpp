@@ -37,7 +37,7 @@ void eden_ec::CLuaBehaviour::OnButtonClick() {
 		catch (luabridge::LuaException e) {
 			std::cout << e.what() << "\n";
 		}
-		luabridge::getGlobal(_L, "this");
+		std::ignore = luabridge::getGlobal(_L, "this");
 	}
 }
 
@@ -45,14 +45,14 @@ void eden_ec::CLuaBehaviour::OnButtonReleased() {
 	luabridge::LuaRef onButtonReleasedLua =
 		(*_behaviourLua)["OnButtonReleased"];
 	if (onButtonReleasedLua.isFunction()) {
-		luabridge::setGlobal(_L, this, "this");
+		std::ignore = luabridge::setGlobal(_L, this, "this");
 		try {
 			onButtonReleasedLua();
 		}
 		catch (luabridge::LuaException e) {
 			std::cout << e.what() << "\n";
 		}
-		luabridge::getGlobal(_L, "this");
+		std::ignore = luabridge::getGlobal(_L, "this");
 	}
 }
 
@@ -60,16 +60,16 @@ void eden_ec::CLuaBehaviour::OnCollisionEnter(eden_ec::Entity* other)
 {
 	luabridge::LuaRef onCollisionEnterLua = (*_behaviourLua)["OnCollisionEnter"];
 	if (onCollisionEnterLua.isFunction()) {
-		luabridge::setGlobal(_L, this, "this");
-		luabridge::setGlobal(_L, other, "other");
+		std::ignore = luabridge::setGlobal(_L, this, "this");
+		std::ignore = luabridge::setGlobal(_L, other, "other");
 		try {
 			onCollisionEnterLua(other);
 		}
 		catch (luabridge::LuaException e) {
 			std::cout << e.what() << "\n";
 		}
-		luabridge::getGlobal(_L, "other");
-		luabridge::getGlobal(_L, "this");
+		std::ignore = luabridge::getGlobal(_L, "other");
+		std::ignore = luabridge::getGlobal(_L, "this");
 	}
 }
 
@@ -86,8 +86,8 @@ void eden_ec::CLuaBehaviour::OnCollisionStay(eden_ec::Entity* other)
 		catch (luabridge::LuaException e) {
 			std::cout << e.what() << "\n";
 		}
-		luabridge::getGlobal(_L, "other");
-		luabridge::getGlobal(_L, "this");
+		std::ignore = luabridge::getGlobal(_L, "other");
+		std::ignore = luabridge::getGlobal(_L, "this");
 	}
 }
 
@@ -96,16 +96,16 @@ void eden_ec::CLuaBehaviour::OnCollisionExit(eden_ec::Entity* other)
 	luabridge::LuaRef onCollisionExitLua =
 		(*_behaviourLua)["OnCollisionExit"];
 	if (onCollisionExitLua.isFunction()) {
-		luabridge::setGlobal(_L, this, "this");
-		luabridge::setGlobal(_L, other, "other");
+		std::ignore = luabridge::setGlobal(_L, this, "this");
+		std::ignore = luabridge::setGlobal(_L, other, "other");
 		try {
 			onCollisionExitLua();
 		}
 		catch (luabridge::LuaException e) {
 			std::cout << e.what() << "\n";
 		}
-		luabridge::getGlobal(_L, "other");
-		luabridge::getGlobal(_L, "this");
+		std::ignore = luabridge::getGlobal(_L, "other");
+		std::ignore = luabridge::getGlobal(_L, "this");
 	}
 }
 

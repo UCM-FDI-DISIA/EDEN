@@ -12,8 +12,6 @@
 
 #include <string>
 #include "SceneManager.h"
-#include "AudioManager.h"
-#include "Sound.h"
 
 const std::string eden_ec::Hito1Prueba::_id = "PRUEBA";
 

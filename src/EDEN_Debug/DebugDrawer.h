@@ -20,10 +20,10 @@ namespace eden_debug {
 	public:
 
 		DebugDrawer(std::string id);
-		~DebugDrawer();
+		~DebugDrawer() override;
 
 		/// @brief Elimina todas las lineas dibujadas hasta el momento
-		void clearLines();
+		void clearLines() override;
 
 		/// @brief Dibuja una nueva linea
 		/// @param origin Punto de partida de la nueva linea

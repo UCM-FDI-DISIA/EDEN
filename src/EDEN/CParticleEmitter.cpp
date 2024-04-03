@@ -1,3 +1,5 @@
+#include <vector>
+
 #include "CParticleEmitter.h"
 #include "ParticleSystem.h"
 #include "Entity.h"

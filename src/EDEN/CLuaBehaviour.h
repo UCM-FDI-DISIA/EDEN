@@ -37,7 +37,7 @@ namespace eden_ec {
 		CLuaBehaviour(std::string name, luabridge::LuaRef* behaviourLua);
 		
 		/// @brief El destructor se encarga de borrar el puntero de LuaRef
-		virtual ~CLuaBehaviour();
+		~CLuaBehaviour() override;
 
 		/// @brief Asigna valor a la LuaRef que se corresponde al script .lua
 		/// @param behaviourLua LuaRef 
@@ -63,14 +63,14 @@ namespace eden_ec {
 
 		lua_State* getLuaState();
 
-		/// @brief Construye el componente dado unos argumentos. Se obtendrán de una lectura de un .lua
-		/// @param args Argumentos leídos de .lua
-		virtual void Init(eden_script::ComponentArguments* args);
+		/// @brief Construye el componente dado unos argumentos. Se obtendrï¿½n de una lectura de un .lua
+		/// @param args Argumentos leï¿½dos de .lua
+		void Init(eden_script::ComponentArguments* args) override;
 
 		/// @brief Override necesario. No se usa
 		void Start() override {};
 
-		/// @brief Definición de método estático GetID necesario para construcción de componentes
+		/// @brief Definiciï¿½n de mï¿½todo estï¿½tico GetID necesario para construcciï¿½n de componentes
 		static std::string GetID() { return _id; }
 
 	protected:

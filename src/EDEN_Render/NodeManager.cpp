@@ -3,7 +3,7 @@
 
 #include <OgreSceneNode.h>
 #include <OgreRoot.h>
-#include <OgreVector3.h>
+#include <OgreVector.h>
 
 #include "ErrorHandler.h"
 
@@ -26,7 +26,7 @@ render_wrapper::NodeManager::NodeManager() {
 
 render_wrapper::NodeManager::~NodeManager() {
 	// Borramos todo lo que haya en el unordered_map
-	// El método clear() llama a las destructoras de los objetos que contiene, por lo que esta parte debería estar libre de memory leaks
+	// El mï¿½todo clear() llama a las destructoras de los objetos que contiene, por lo que esta parte deberï¿½a estar libre de memory leaks
 	_sceneObjectsMap.clear();
 }
 
@@ -60,7 +60,7 @@ Ogre::SceneNode* render_wrapper::NodeManager::FindNode(const std::string id) {
 		
 		eden_error::ErrorHandler::Instance()->Warning("WARNING: scene node with id: " + id + " not found in  the scene objects map\n");
 
-		// TRATAMIENTO DE ERRORES DE LUA AQUÍ --------
+		// TRATAMIENTO DE ERRORES DE LUA AQUï¿½ --------
 		// Se devuelve nullptr para que el wrapper que necesite el nodo sepa que no existe 
 		// y por tanto debera crear uno propio y lo asocie a la entidad
 		return nullptr;

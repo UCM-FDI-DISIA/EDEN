@@ -15,7 +15,7 @@ namespace eden_canvas {
 	public:
 		friend Singleton<Canvas>;
 
-		/// @brief Actualiza el tamaño y posicion de los componentes
+		/// @brief Actualiza el tamaï¿½o y posicion de los componentes
 		void Resize();
 
 		/// @brief Inicializa los valores base de los componentes
@@ -24,19 +24,19 @@ namespace eden_canvas {
 		/// @brief Destructora
 		~Canvas() = default;
 
-		/// @brief Añade un puntero a un componente de UI
-		/// para actualizar su posición y tamaño
-		/// @param ent Entidad cuya posición va a actualizarse
+		/// @brief Aï¿½ade un puntero a un componente de UI
+		/// para actualizar su posiciï¿½n y tamaï¿½o
+		/// @param ent Entidad cuya posiciï¿½n va a actualizarse
 		void addRenderEntity(eden_ec::UIComponent* ent);
 
-		/// @brief Quita el componente para dejar de actualizar su posición
+		/// @brief Quita el componente para dejar de actualizar su posiciï¿½n
 		/// @param ent Entidad que se va a quitar
 		void removeRenderEntity(eden_ec::UIComponent* ent);
 	private:
 		/// @brief Constructora
 		Canvas() = default;
-		/// @brief Conjunto de componentes para actualizar su posición
+		/// @brief Conjunto de componentes para actualizar su posiciï¿½n
 		std::unordered_set<eden_ec::UIComponent*> _entities;
 	};
 }
-#endif __CANVAS_H__
+#endif //__CANVAS_H__

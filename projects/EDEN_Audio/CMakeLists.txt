@@ -6,11 +6,12 @@ set(CMAKE_CXX_STANDARD 20)
 set(ROOT_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../")
 
 add_library(EDEN_Audio
-        ../../src/EDEN_Audio/AudioWrapper.cpp
+        ../../src/EDEN_Audio/AudioEngine.cpp
         ../../src/EDEN_Audio/Sound.cpp
-        ../../src/EDEN_Audio/SoundWrapper.cpp
         ../../src/EDEN_Audio/AudioListener.cpp
-        ../../src/EDEN_Audio/AudioManager.cpp)
+        ../../src/EDEN_Audio/AudioManager.cpp
+        ../../src/EDEN_Audio/AudioEmitter.cpp
+        ../../src/EDEN_Audio/SoundClip.cpp)
 
 set(EXTERNAL_LIB_DIR "${ROOT_DIR}/dependencies")
 set(CMAKE_CONFIGURATION_TYPES Debug Release)

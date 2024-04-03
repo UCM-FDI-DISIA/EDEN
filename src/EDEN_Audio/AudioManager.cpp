@@ -26,5 +26,5 @@ void eden_audio::AudioManager::LoadResources() {
 audio_wrapper::SoundClip* eden_audio::AudioManager::GetSoundClip(std::string filename) const {
 	auto it = _soundMap.find(filename);
 	if (it == _soundMap.end()) eden_error::ErrorHandler::Instance()->Exception("Music file not found", "El archivo de sonido " + filename + " no ha sido encontrado.");
-	else return it->second;
+	return it->second;
 }

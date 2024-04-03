@@ -11,8 +11,6 @@
 
 #define PARTICLE_EXTENSION ".particle"
 
-#include <string>
-
 #include "Component.h"
 
 namespace render_wrapper {
@@ -35,7 +33,7 @@ namespace eden_ec {
 
 		/// @brief Construye el componente dado unos argumentos. Se obtendran de una lectura de un .lua
 		/// @param args Argumentos leidos de .lua
-		virtual void Init(eden_script::ComponentArguments* args);
+		void Init(eden_script::ComponentArguments* args) override;
 
 		/// @brief Se usa para coger referencias a otros componentes
 		/// En este caso no se necesita

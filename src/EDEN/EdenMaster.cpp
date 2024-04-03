@@ -21,7 +21,7 @@ bool eden::Master::_initialized = false;
 
 eden::Master::Master()
 {
-	// la comprobación de que se haya podido inicializar el RenderManager ahora se hace dentro del propio RenderManager.
+	// la comprobaciï¿½n de que se haya podido inicializar el RenderManager ahora se hace dentro del propio RenderManager.
 	_renderManager = eden_render::RenderManager::Instance("EDEN Engine");
 
 	if (!_renderManager->couldInitialize()) delete _renderManager;

@@ -39,13 +39,13 @@ namespace eden_ec {
 
 		/// @brief Construye el componente dado unos argumentos. Se obtendr�n de una lectura de un .lua
 		/// @param args Argumentos le�dos de .lua
-		virtual void Init(eden_script::ComponentArguments* args);
+		void Init(eden_script::ComponentArguments* args) override;
 
 		/// @brief Se usa para coger referencias a otros componentes
 		/// En este caso no se necesita
 		void Start() override {}
 
-		~CMeshRenderer();
+		~CMeshRenderer() override;
 
 		/// @brief Pone un material a la malla
 		/// @param material Nombre del archivo del material

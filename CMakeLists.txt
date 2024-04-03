@@ -11,6 +11,7 @@ add_subdirectory(projects/EDEN_Audio)
 add_subdirectory(projects/EDEN_Input)
 add_subdirectory(projects/EDEN_Physics)
 add_subdirectory(projects/EDEN_Script)
+add_subdirectory(projects/EDEN_Debug)
 
 add_executable(EDEN
         src/EDEN/main.cpp
@@ -18,7 +19,7 @@ add_executable(EDEN
         src/EDEN/CButton.cpp
         src/EDEN/CCamera.cpp
         src/EDEN/CCursor.cpp
-        src/EDEN/CIMage.cpp
+        src/EDEN/CImage.cpp
         src/EDEN/CMeshRenderer.cpp
         src/EDEN/Component.cpp
         src/EDEN/ComponentFactory.cpp
@@ -34,7 +35,9 @@ add_executable(EDEN
         src/EDEN/Hito1Prueba.cpp
         src/EDEN/CLuaBehaviour.cpp
         src/EDEN/ErrorHandler.cpp
-        src/EDEN/MacOSMessageBoxHelper.mm)
+        src/EDEN/MacOSMessageBoxHelper.mm
+        src/EDEN/CParticleEmitter.cpp
+        src/EDEN/CText.cpp)
 
 set(ROOT_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
 set(EXTERNAL_LIB_DIR "${ROOT_DIR}/dependencies")
@@ -47,10 +50,11 @@ target_include_directories(EDEN PUBLIC "${ROOT_DIR}/src/EDEN_Physics/")
 target_include_directories(EDEN PUBLIC "${ROOT_DIR}/src/EDEN_Render/")
 target_include_directories(EDEN PUBLIC "${ROOT_DIR}/src/EDEN_Script/")
 target_include_directories(EDEN PUBLIC "${ROOT_DIR}/src/EDEN_Audio/")
+target_include_directories(EDEN PUBLIC "${ROOT_DIR}/src/EDEN_Debug/")
 target_include_directories(EDEN PUBLIC "${ROOT_DIR}/dependencies/Lua/src/src")
 target_include_directories(EDEN PUBLIC "${ROOT_DIR}/dependencies/LuaBridge/Source/LuaBridge")
 
-target_link_libraries(EDEN PRIVATE EDEN_Render EDEN_Audio EDEN_Input EDEN_Physics EDEN_Script ${COCOA_LIBRARY})
+target_link_libraries(EDEN PRIVATE EDEN_Render EDEN_Audio EDEN_Input EDEN_Physics EDEN_Script EDEN_Debug ${COCOA_LIBRARY})
 
 if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Debug CACHE STRING "Choose the type of build (Debug or Release)" FORCE)

@@ -14,7 +14,8 @@ add_library(EDEN_Render
         ../../src/EDEN_Render/Canvas.cpp
         ../../src/EDEN_Render/CameraWrapper.cpp
         ../../src/EDEN_Render/Animator.cpp
-        ../../src/EDEN_Render/UIComponent.cpp)
+        ../../src/EDEN_Render/UIComponent.cpp
+        ../../src/EDEN_Render/ParticleSystem.cpp)
 set(EXTERNAL_LIB_DIR "${ROOT_DIR}/dependencies")
 set(CMAKE_CONFIGURATION_TYPES Debug Release)
 

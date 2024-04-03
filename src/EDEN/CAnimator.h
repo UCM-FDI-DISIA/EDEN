@@ -26,14 +26,14 @@ namespace eden_ec {
 	public:
 
 		CAnimator() = default;
-		virtual ~CAnimator();
+		~CAnimator() override;
 
 		/// @brief Inicializa el componente, guardando los argumentos recibidos desde lua
 		/// @param args los argumentos que contienen informacion sobre las animaciones
-		virtual void Init(eden_script::ComponentArguments* args);
+		void Init(eden_script::ComponentArguments* args) override;
 		/// @brief Actualiza las animaciones
 		/// @param dt El tiempo transcurrido desde el ultimo frame
-		virtual void Update(float dt);
+		void Update(float dt) override;
 		/// @brief Se usa para guardar la referencia al CMeshRenderer y registrar las animaciones
 		void Start() override;
 		/// @brief Devuelve el identificador del componente

@@ -53,6 +53,8 @@
 #include "Hito1Prueba.h"
 #include "CAnimator.h"
 
+#include <string>
+
 void RegisterComponents() {
 	// Registramos el componente Transform, que es el unico que usaremos de momento
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CTransform>();
@@ -72,12 +74,12 @@ void RegisterComponents() {
 
 int main(int argc, char* argv[]) {
 
-	char *leak;
-	leak = new char[256];
-	strcpy_s(leak, 256, "LEAK CANARIO");
+	//char *leak;
+	//leak = new char[256];
+	//strcpy_s(leak, 256, "LEAK CANARIO");
 
 	// Memory Leaks Check
-	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	//_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	//_CrtSetBreakAlloc(1032);
 
 	// Registro de componentes

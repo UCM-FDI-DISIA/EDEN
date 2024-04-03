@@ -35,20 +35,20 @@ namespace eden_ec {
 
 		/// @brief Funcion para inicializar el componente con los scripts de lua
 		/// @param args Argumentos leidos del script de lua
-		virtual void Init(eden_script::ComponentArguments* args);
+		void Init(eden_script::ComponentArguments* args) override;
 
 		/// @brief Inicializa el componente para coger referencias a otros componentes de su entidad
 		void Start() override;
 
 		/// @brief Metodo ejecutado cada frame
 		/// @param t Tiempo transcurrido desde el ultimo frame
-		virtual void Update(float t);
+		void Update(float t) override;
 
 		/// @brief Se encarga de la entrada de input
-		virtual void HandleInput();
+		void HandleInput() override;
 
 		/// @brief Destructora
-		virtual ~CRigidBody();
+		~CRigidBody() override;
 
 		/// @brief Devuelve la velocididad lineal del RigidBody de Bullet
 		/// @return Vector de velocidad lineal
@@ -113,7 +113,7 @@ namespace eden_ec {
 		/// @param Entidad que colisiona
 		void OnCollisionEnter(eden_ec::Entity* other);
 
-		/// @brief Se llama cada vez que haya una colision después de que se haya llamado el OnCollisionEnter
+		/// @brief Se llama cada vez que haya una colision despuï¿½s de que se haya llamado el OnCollisionEnter
 		/// @param Entidad que colisiona
 		void OnCollisionStay(eden_ec::Entity* other);
 		
@@ -125,19 +125,19 @@ namespace eden_ec {
 		/// @return Devuelve la propiedad de rebote 
 		float GetBounciness();
 
-		/// @brief Devuelve la propiedad de fricción
-		/// @return Devuelve la propiedad de fricción 
+		/// @brief Devuelve la propiedad de fricciï¿½n
+		/// @return Devuelve la propiedad de fricciï¿½n 
 		float GetFriction();
 
 		/// @brief Definicion de metodo estatico GetID necesario para construccion de componentes
 		static std::string GetID() { return _id; }
 
-		/// @brief Devuelve la capa de colisión del objeto
-		/// @return Devuelve la capa de colisión del objeto 
+		/// @brief Devuelve la capa de colisiï¿½n del objeto
+		/// @return Devuelve la capa de colisiï¿½n del objeto 
 		physics_wrapper::CollisionLayer* GetCollisionLayer();
 
-		/// @brief Devuelve el nombre de la capa de colisión del objeto
-		/// @return Devuelve el nombre de la capa de colisión del objeto 
+		/// @brief Devuelve el nombre de la capa de colisiï¿½n del objeto
+		/// @return Devuelve el nombre de la capa de colisiï¿½n del objeto 
 		std::string GetCollisionLayerName();
 	protected:
 		const static std::string _id;
@@ -146,10 +146,10 @@ namespace eden_ec {
 		/// @brief Masa asociada al RigidBody
 		float _mass = 0;
 
-		/// @brief Efecto de rebote, indica cuanta energía se mantiene después de la colisión
+		/// @brief Efecto de rebote, indica cuanta energï¿½a se mantiene despuï¿½s de la colisiï¿½n
 		float _restitution = 0;
 
-		/// @brief Fricción asociada al RigidBody
+		/// @brief Fricciï¿½n asociada al RigidBody
 		float _friction = 0;
 
 		/// @brief Variable que se encarga de contener los parametros de la figura asociada al rigidBody

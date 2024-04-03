@@ -95,6 +95,6 @@ namespace eden_utils {
 		float _z;
 	};
 }
-#endif  VECTOR3_H
+#endif //VECTOR3_H
 
 

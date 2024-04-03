@@ -3,7 +3,6 @@
 #define EDEN_COMPONENT_H
 
 #include <string>
-#include <unordered_map>
 
 namespace eden_script {
     class ComponentArguments;

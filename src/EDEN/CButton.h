@@ -14,7 +14,7 @@ namespace eden_ec {
 	
 	class CLuaBehaviour;
 
-	/// @brief Parámetros del botón
+	/// @brief Parï¿½metros del botï¿½n
 	struct ButtonParams {
 		std::string overlayName = std::string();
 		float xPos = 0, yPos = 0;
@@ -25,7 +25,7 @@ namespace eden_ec {
 		std::string clickedTex = std::string();
 	};
 
-	/// @brief Clase que representa un botón en la UI
+	/// @brief Clase que representa un botï¿½n en la UI
 	class CButton : public eden_ec::UIComponent {
 	public:
 
@@ -35,7 +35,7 @@ namespace eden_ec {
 		/// @brief Constructora de la clase 
 		CButton(ButtonParams& params);
 
-		/// @brief Método update heredado de component
+		/// @brief Mï¿½todo update heredado de component
 		void Update(float deltaTime) override;
 
 		/// @brief Se usa para coger referencias a otros componentes
@@ -45,38 +45,38 @@ namespace eden_ec {
 		/// @brief Destructora
 		~CButton() = default;
 
-		/// @brief Cambia la textura principal del botón
+		/// @brief Cambia la textura principal del botï¿½n
 		void ChangeButtonTexture(const std::string& textureName);
 
-		/// @brief Cambia todas las texturas del botón
+		/// @brief Cambia todas las texturas del botï¿½n
 		void ChangeTextures(const std::string& iniTex,
 			const std::string& hoverTex,
 			const std::string& clickedTex);
 
-		/// @brief Construye el componente dado unos argumentos. Se obtendrán de una lectura de un .lua
-		/// @param args Argumentos leídos de .lua
-		virtual void Init(eden_script::ComponentArguments* args);
+		/// @brief Construye el componente dado unos argumentos. Se obtendrï¿½n de una lectura de un .lua
+		/// @param args Argumentos leï¿½dos de .lua
+		void Init(eden_script::ComponentArguments* args) override;
 
-		/// @brief Definición de método estático GetID necesario para construcción de componentes
+		/// @brief Definiciï¿½n de mï¿½todo estï¿½tico GetID necesario para construcciï¿½n de componentes
 		static std::string GetID() { return _id; }
 	protected:
 		const static std::string _id;
 
 	private:
 
-		/// @brief Comprueba si el ratón está en los límites del botón
+		/// @brief Comprueba si el ratï¿½n estï¿½ en los lï¿½mites del botï¿½n
 		void CheckMousePos();
 
-		/// @brief Metodo que se llama cuando se hace click en el botón
+		/// @brief Metodo que se llama cuando se hace click en el botï¿½n
 		void OnButtonClick();
 
-		/// @brief Metodo que se llama cuando se termina click en el botón
+		/// @brief Metodo que se llama cuando se termina click en el botï¿½n
 		void OnButtonReleased();
 
-		/// @brief Metodo que se llama la primera vez que se pone el raton sobre el botón
+		/// @brief Metodo que se llama la primera vez que se pone el raton sobre el botï¿½n
 		void OnButtonHover();
 
-		/// @brief Metodo que se llama cuando el raton sale del botón
+		/// @brief Metodo que se llama cuando el raton sale del botï¿½n
 		void OnButtonUnhover();
 
 		void ButtonRectUpdate();
@@ -84,7 +84,7 @@ namespace eden_ec {
 		/// @brief textura base
 		std::string _iniTex = " ";
 
-		/// @brief textura cuando el cursor está encima
+		/// @brief textura cuando el cursor estï¿½ encima
 		std::string _hoverTex = " ";
 
 		/// @brief textura cuando pulsamos el boton
@@ -108,7 +108,7 @@ namespace eden_ec {
 		/// @brief Flag de si hemos pulsado
 		bool _clicked = 0;
 
-		/// @brief Tamaño anterior
+		/// @brief Tamaï¿½o anterior
 		std::pair<float, float>_oldScale = std::make_pair(0.0f, 0.0f);
 
 

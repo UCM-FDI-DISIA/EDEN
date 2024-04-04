@@ -39,7 +39,7 @@ eden_ec::UIComponent::UIComponent() {
 eden_ec::UIComponent::~UIComponent() {
 	eden_canvas::Canvas::Instance()->removeRenderEntity(this);
 	_overlayManager->destroyOverlayElement(_overlayContainer);
-	if(_overlayElement!=nullptr)_overlayManager->destroy(_overlayElement);
+	if(_overlayElement!=nullptr) _overlayManager->destroy(_overlayElement);
 	_overlayContainer = nullptr;
 	_overlayElement = nullptr;
 	_overlayManager = nullptr;

@@ -1,5 +1,7 @@
 // This file is part of the course TPV2@UCM - Samir Genaim
 #define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
 #ifndef EDEN_SINGLETON_H
 #define EDEN_SINGLETON_H
 
@@ -35,7 +37,7 @@ public:
 	Singleton(const Singleton<T>& o) = delete;
 	/// @brief La destructora libera el puntero único
 	virtual ~Singleton() {
-		_instance.release();
+		//_instance.release();
 	}
 
 	/// @brief Este método se puede usar para llamar a la constructora de una clase heredera de Singleton con parámetros. 

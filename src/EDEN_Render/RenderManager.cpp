@@ -60,6 +60,7 @@ eden_render::RenderManager::RenderManager(const std::string& appName)
 
 eden_render::RenderManager::~RenderManager()
 {
+	eden_canvas::Canvas::Instance()->Close();
 	CloseManager();
 	delete _fsLayer; // borra el sistema de archivos
 }
@@ -108,6 +109,7 @@ void eden_render::RenderManager::CloseManager()
 	Shutdown(); // llama al cierre de la ventana
 	if (couldInitialize()) {
 		_sceneMngr->removeRenderQueueListener(_overlaySys);
+		_root->destroySceneManager(_sceneMngr);
 		_sceneMngr = nullptr;
 		delete _overlaySys;
 		_overlaySys = nullptr;

@@ -106,6 +106,7 @@ namespace eden {
 		std::vector<eden_script::EntityInfo*> info;
 		scriptManager->ReadScene(ID, info, collisionInfo);
 		Scene* newSc = new Scene(ID, info, collisionInfo);
+		for (auto a : info) delete a;
 		_scenes.push_front(newSc);
 		_activeScene = newSc;
 		return newSc;

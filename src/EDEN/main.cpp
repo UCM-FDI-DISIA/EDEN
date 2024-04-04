@@ -4,7 +4,7 @@
 #ifdef _MSC_VER
 #include <crtdbg.h>
 #endif
-/*
+
 #ifdef _DEBUG
 #define DBG_NEW new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
 #define new new(_NORMAL_BLOCK,__FILE__,__LINE__)
@@ -13,7 +13,7 @@
 #else
 #define DBG_NEW new
 #endif
-*/
+
 #ifndef EDEN_MAIN_CPP
 #define EDEN_MAIN_CPP
 
@@ -79,7 +79,7 @@ int main(int argc, char* argv[]) {
 	//strcpy_s(leak, 256, "LEAK CANARIO");
 
 	// Memory Leaks Check
-	//_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	//_CrtSetBreakAlloc(1032);
 
 	// Registro de componentes
@@ -99,7 +99,7 @@ int main(int argc, char* argv[]) {
 		eden::SceneManager* scnManager = eden::SceneManager::Instance();
 		scnManager->PushScene("test_scene");
 		master->Loop();
-		delete master;
+		master->Close();
 	}
 #ifdef __clang__
 	catch (std::runtime_error e) {
@@ -116,6 +116,7 @@ int main(int argc, char* argv[]) {
 #ifdef _MSC_VER
 	_CrtDumpMemoryLeaks();
 #endif
+	errorHandler->Close();
 	return 0;
 }
 

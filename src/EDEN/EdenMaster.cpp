@@ -39,13 +39,17 @@ void eden::Master::CloseApplication() {
 
 eden::Master::~Master()
 {
-	delete _scnManager;
-	delete _inputManager;
-	if(_renderManager != nullptr && _renderManager->couldInitialize()) 
-		delete _renderManager;
+	//delete _physicsManager;
+	//delete _scnManager;
+	//delete _inputManager;
+	_physicsManager->Close();
+	_scnManager->Close();
+	_inputManager->Close();
+	if (_renderManager != nullptr && _renderManager->couldInitialize()) {
 
-	delete _physicsManager;
-	Singleton::~Singleton();
+		//delete _renderManager;
+		_renderManager->Close();
+	}
 }
 
 void eden::Master::Loop()

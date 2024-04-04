@@ -7,16 +7,17 @@
 #include "Vector3.h"
 #include "Quaternion.h"
 
+#include "ErrorHandler.h"
+
 namespace eden_script {
 
 	void ComponentArguments::HandleArgumentError(std::string id, std::string type, int numArgs) {
 		std::string errorMsg = "Error while constructing '" + _id + "' component. Argument '" + id + "' has more or less than " + std::to_string(numArgs) + " value(s), so it can't be converted to " + type;
-		std::cerr << errorMsg;
 #ifdef _MSC_VER
-		throw(std::exception(errorMsg.c_str()));
+		eden_error::ErrorHandler::Instance()->Exception("Constructing " + _id, errorMsg);
 #endif
 #ifdef __clang__
-		throw std::runtime_error(errorMsg);
+		eden_error::ErrorHandler::Instance()->Exception("Constructing " + _id, errorMsg);
 #endif
 	};
 
@@ -25,20 +26,18 @@ namespace eden_script {
 		if (arg != _args.end()) {
 			if (arg->second.size() != numArgs) {
 				HandleArgumentError(id, type, numArgs);
+				return std::vector<std::string>();
 			}
 			else {
 				return arg->second;
 			}
 		}
 		else {
-			// error
-			std::cerr << '\'' << id << "' was not found while constructing '" << _id <<'\'' << '\n';
-			// deber�amos tirar excepci�n aqu� o algo?
 #ifdef _MSC_VER
-			throw(std::exception("\n\n"));
+			eden_error::ErrorHandler::Instance()->Exception("Constructing " + _id, '\'' + id + "' Was not found while constructing " + _id);
 #endif
 #ifdef __clang__
-			throw std::runtime_error("\n\n");
+			eden_error::ErrorHandler::Instance()->Exception("Constructing " + _id, '\'' + id + "' Was not found while constructing " + _id);
 #endif
 			return std::vector<std::string>();
 		}
@@ -80,7 +79,7 @@ namespace eden_script {
 	std::vector<eden_utils::Vector3> ComponentArguments::GetValueToVector3Vector(std::string id) {
 		auto arg = GetKey(id, "Vector3 vector");
 
-		int n = arg.size();
+		int n = (int)arg.size();
 
 		std::vector<eden_utils::Vector3> value(n/3);
 
@@ -106,7 +105,7 @@ namespace eden_script {
 	std::vector<eden_utils::Quaternion> ComponentArguments::GetValueToQuaternionVector(std::string id) {
 		auto arg = GetKey(id, "Quaternion vector");
 
-		int n = arg.size();
+		int n = (int)arg.size();
 
 		std::vector<eden_utils::Quaternion> value(n / 4);
 
@@ -134,7 +133,7 @@ namespace eden_script {
 	std::vector<bool> ComponentArguments::GetValueToBoolVector(std::string id) {
 		auto arg = GetKey(id, "vector bool");
 
-		int n = arg.size();
+		int n = (int)arg.size();
 		std::vector<bool> value(n);
 
 		for (int i = 0; i < n; ++i) {
@@ -157,7 +156,7 @@ namespace eden_script {
 	std::vector<int> ComponentArguments::GetValueToIntVector(std::string id) {
 		auto arg = GetKey(id, "vector int");
 
-		int n = arg.size();
+		int n = (int)arg.size();
 		std::vector<int> value(n);
 
 		for (int i = 0; i < n; ++i) {
@@ -180,7 +179,7 @@ namespace eden_script {
 	std::vector<float> ComponentArguments::GetValueToFloatVector(std::string id) {
 		auto arg = GetKey(id, "vector float");
 
-		int n = arg.size();
+		int n = (int)arg.size();
 		std::vector<float> value(n);
 
 		for (int i = 0; i < n; ++i) {
@@ -203,7 +202,7 @@ namespace eden_script {
 	std::vector<double> ComponentArguments::GetValueToDoubleVector(std::string id) {
 		auto arg = GetKey(id, "vector double");
 
-		int n = arg.size();
+		int n = (int)arg.size();
 		std::vector<double> value(n);
 
 		for (int i = 0; i < n; ++i) {

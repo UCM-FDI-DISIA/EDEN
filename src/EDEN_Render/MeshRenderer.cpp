@@ -1,14 +1,18 @@
 #define _CRTDBG_MAP_ALLOC
+
+#pragma warning(push)
+#pragma warning(disable : 26495)
+#pragma warning(disable : 4251)
 #include <OgreSceneManager.h>
 #include <OgreEntity.h>
 #include <OgreAnimationState.h>
-
-#include "ErrorHandler.h"
+#pragma warning(pop)
 
 #include "MeshRenderer.h"
 #include "Vector3.h"
 #include "RenderManager.h"
 #include "NodeManager.h"
+#include "ErrorHandler.h"
 
 render_wrapper::MeshRenderer::MeshRenderer(const std::string entityID, const std::string meshName)
 {

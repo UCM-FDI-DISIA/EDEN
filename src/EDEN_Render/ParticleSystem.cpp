@@ -1,5 +1,9 @@
+#pragma warning(push)
+#pragma warning(disable : 26495)
+#pragma warning(disable : 4251)
 #include <OgreParticleSystem.h>
 #include <OgreSceneManager.h>
+#pragma warning(pop)
 
 #include "ParticleSystem.h"
 #include "NodeManager.h"

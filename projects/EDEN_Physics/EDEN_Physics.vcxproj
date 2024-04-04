@@ -17,7 +17,6 @@
     <ClCompile Include="..\..\src\EDEN_Physics\RayCast.cpp" />
     <ClCompile Include="..\..\src\EDEN_Physics\RigidBody.cpp" />
     <ClCompile Include="..\..\src\EDEN_Physics\ShapeCreator.cpp" />
-    <ClCompile Include="..\..\src\EDEN_Physics\test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\EDEN_Physics\CollisionCallback.h" />
@@ -80,7 +79,9 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\;$(SolutionDir)dependencies\Bullet\src\src;$(SolutionDir)src\EDEN\;$(SolutionDir)src\EDEN_Debug\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\EDEN_Debug\;$(SolutionDir)src\EDEN\;$(SolutionDir)dependencies\Bullet\src\src;$(SolutionDir)src\EDEN\;$(SolutionDir)src\EDEN_Debug\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <TreatAngleIncludeAsExternal>true</TreatAngleIncludeAsExternal>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -98,7 +99,9 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\;$(SolutionDir)dependencies\Bullet\src\src;$(SolutionDir)dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)src\EDEN\;$(SolutionDir)src\EDEN_Render\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\EDEN_Debug\;$(SolutionDir)src\EDEN\;$(SolutionDir)dependencies\Bullet\src\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <TreatAngleIncludeAsExternal>true</TreatAngleIncludeAsExternal>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

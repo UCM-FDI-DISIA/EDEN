@@ -1,13 +1,12 @@
 #define _CRTDBG_MAP_ALLOC
 #include <iostream>
 
-#include "ErrorHandler.h"
-
 #include "LuaManager.h"
-#include <CLuaBehaviour.h>
-#include <Hito1Prueba.h>
-#include <Transform.h>
-#include <Entity.h>
+#include "CLuaBehaviour.h"
+#include "Hito1Prueba.h"
+#include "Transform.h"
+#include "Entity.h"
+#include "ErrorHandler.h"
 
 eden_script::LuaManager::LuaManager()
 {

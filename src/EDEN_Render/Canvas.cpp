@@ -1,6 +1,6 @@
 #define _CRTDBG_MAP_ALLOC
 #include "Canvas.h"
-#include <Entity.h>
+#include "Entity.h"
 #include "UIComponent.h"
 
 void eden_canvas::Canvas::Resize() {

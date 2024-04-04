@@ -1,17 +1,21 @@
 #define _CRTDBG_MAP_ALLOC
 #include <iostream>
 #include <sys/stat.h>
+
+#pragma warning(push)
+#pragma warning(disable : 26495)
+#pragma warning(disable : 4251)
 #include <OgreOverlay.h>
 #include <OgreOverlayContainer.h>
 #include <OgreOverlayManager.h> 
 #include <OgreTextAreaOverlayElement.h>
 #include <OgreOverlayElement.h>
 #include <OgreFontManager.h>
+#pragma warning(pop)
 
 #include "UIComponent.h"
-#include <InputManager.h>
+#include "InputManager.h"
 #include "Canvas.h"
-
 #include "ErrorHandler.h"
 
 const std::string eden_ec::UIComponent::_id = "UICOMPONENT";

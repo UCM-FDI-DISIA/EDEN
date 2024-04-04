@@ -1,19 +1,21 @@
 #define _CRTDBG_MAP_ALLOC
-#include <btBulletDynamicsCommon.h>
+#include <iostream>
 
-#include <ErrorHandler.h>
+#pragma warning(push)
+#pragma warning(disable : 26495)
+#include <btBulletDynamicsCommon.h>
+#pragma warning(pop)
 
 #include "PhysicsManager.h"
-#include <Entity.h>
-#include <CRigidBody.h>
-#include <Transform.h>
+#include "Entity.h"
+#include "CRigidBody.h"
+#include "Transform.h"
 #include "RayCast.h"
 #include "RigidBody.h"
 #include "CollisionCallback.h"
 #include "CollisionLayer.h"
 #include "DebugDrawer.h"
 #include "ErrorHandler.h"
-#include <iostream>
 
 //const eden_ec::Entity* physics_manager::PhysicsManager::getEntity(const btRigidBody* RBRef) const
 //{

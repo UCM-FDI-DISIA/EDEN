@@ -1,6 +1,10 @@
 #define _CRTDBG_MAP_ALLOC
+#pragma warning(push)
+#pragma warning(disable : 26495)
+#pragma warning(disable : 4251)
 #include <OgreSceneManager.h>
 #include <OgreLight.h>
+#pragma warning(pop)
 
 #include "Light.h"
 #include "Vector3.h"

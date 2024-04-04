@@ -1,11 +1,14 @@
 #define _CRTDBG_MAP_ALLOC
+#pragma warning(push)
+#pragma warning(disable : 26495)
 #include <BulletDynamics/Dynamics/btDynamicsWorld.h>
 #include <BulletDynamics/Dynamics/btRigidBody.h>
 #include <LinearMath/btIDebugDraw.h>
+#pragma warning(pop)
 
 #include "RayCast.h"
-#include <Entity.h>
-#include <CRigidBody.h>
+#include "Entity.h"
+#include "CRigidBody.h"
 #include "PhysicsManager.h"
 
 

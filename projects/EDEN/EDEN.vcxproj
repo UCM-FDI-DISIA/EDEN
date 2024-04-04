@@ -113,6 +113,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)src\EDEN_Render\;$(SolutionDir)src\EDEN_Input\;$(SolutionDir)src\EDEN_Audio\;$(SolutionDir)src\EDEN_Script\;$(SolutionDir)src\EDEN_Physics\;$(SolutionDir)dependencies\Lua\src\src\;$(SolutionDir)dependencies\LuaBridge\Source\LuaBridge\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -131,6 +132,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)src\EDEN_Render\;$(SolutionDir)src\EDEN_Input\;$(SolutionDir)src\EDEN_Audio\;$(SolutionDir)src\EDEN_Script\;$(SolutionDir)src\EDEN_Physics\;$(SolutionDir)dependencies\Lua\src\src\;$(SolutionDir)dependencies\LuaBridge\Source\LuaBridge\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <ExternalWarningLevel>InheritWarningLevel</ExternalWarningLevel>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

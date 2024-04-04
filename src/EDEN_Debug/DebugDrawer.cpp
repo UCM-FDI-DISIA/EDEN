@@ -5,8 +5,8 @@
 #include <OgreSceneManager.h>
 #include <OgreMovableObject.h>
 
-#include <NodeManager.h>
-#include <RenderManager.h>
+#include "NodeManager.h"
+#include "RenderManager.h"
 
 //Nota: Añadir ids distintas a cada instancia de la clase y darle ese nombre al nodo
 

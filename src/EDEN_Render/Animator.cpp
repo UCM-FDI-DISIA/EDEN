@@ -1,11 +1,15 @@
 #define _CRTDBG_MAP_ALLOC
 #include <iostream>
 
+#pragma warning(push)
+#pragma warning(disable : 26495)
+#pragma warning(disable : 4251)
 #include <OgreAnimationState.h>
 #include <OgreEntity.h>
+#pragma warning(pop)
 
 #include "Animator.h"
-#include <ErrorHandler.h>
+#include "ErrorHandler.h"
 #include "MeshRenderer.h"
 
 render_wrapper::Animator::Animator(render_wrapper::MeshRenderer* meshRend) {

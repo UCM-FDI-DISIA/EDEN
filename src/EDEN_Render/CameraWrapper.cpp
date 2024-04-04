@@ -1,12 +1,16 @@
 #define _CRTDBG_MAP_ALLOC
+#pragma warning(push)
+#pragma warning(disable : 26495)
+#pragma warning(disable : 4251)
 #include <OgreCamera.h>
 #include <OgreSceneManager.h>
 #include <OgreRenderWindow.h>
 #include <OgreViewport.h>
+#pragma warning(pop)
 
 #include "CameraWrapper.h"
 #include "Vector3.h"
-#include <Quaternion.h>
+#include "Quaternion.h"
 #include "RenderManager.h"
 #include "NodeManager.h"
 

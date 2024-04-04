@@ -3,9 +3,10 @@
 #define EDEN_LUA_MANAGER_H
 
 #include <string>
+#include <set>
+
 #include <lua.hpp>
 #include <LuaBridge.h>
-#include <set>
 
 struct lua_State;
 

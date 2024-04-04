@@ -120,6 +120,8 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)dependencies\SDL\src\include\;$(SolutionDir)dependencies\SDL\build\$(Platform)\include\;%(AdditionalIncludeDirectories);$(SolutionDir)src\EDEN\;$(SolutionDir)src\EDEN_Input\;$(SolutionDir)dependencies\Ogre\src\Components\RTShaderSystem\include\;$(SolutionDir)dependencies\Ogre\src\Components\Overlay\include</AdditionalIncludeDirectories>
+      <TreatAngleIncludeAsExternal>true</TreatAngleIncludeAsExternal>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -138,6 +140,8 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)dependencies\SDL\src\include\;$(SolutionDir)dependencies\SDL\build\$(Platform)\include\;%(AdditionalIncludeDirectories);$(SolutionDir)src\EDEN\;$(SolutionDir)src\EDEN_Input\;$(SolutionDir)dependencies\Ogre\src\Components\RTShaderSystem\include\;$(SolutionDir)dependencies\Ogre\src\Components\Overlay\include</AdditionalIncludeDirectories>
+      <TreatAngleIncludeAsExternal>true</TreatAngleIncludeAsExternal>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

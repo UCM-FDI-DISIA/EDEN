@@ -1,19 +1,20 @@
 #define _CRTDBG_MAP_ALLOC
 #include <iostream>
 
+#pragma warning(push)
+#pragma warning(disable : 26495)
+#pragma warning(disable : 4251)
 #include <OgreSceneNode.h>
 #include <OgreRoot.h>
 #include <OgreVector.h>
-
-#include "ErrorHandler.h"
-
-#include "Vector3.h"
-#include "Quaternion.h"
-
-#include "RenderManager.h"
-#include "RenderObject.h"
+#pragma warning(pop)
 
 #include "NodeManager.h"
+#include "Vector3.h"
+#include "Quaternion.h"
+#include "RenderManager.h"
+#include "RenderObject.h"
+#include "ErrorHandler.h"
 
 render_wrapper::NodeManager::NodeManager() {
 	//Inicializamos el unordered_map de nodos e ID de entidades 

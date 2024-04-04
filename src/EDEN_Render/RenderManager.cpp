@@ -2,6 +2,9 @@
 #include <iostream>
 
 // Ogre
+#pragma warning(push)
+#pragma warning(disable : 26495)
+#pragma warning(disable : 4251)
 #include <OgreRoot.h>
 #include <OgreSceneNode.h>
 #include <OgreEntity.h>
@@ -17,16 +20,20 @@
 #include <OgreOverlayManager.h> 
 #include <OgreShaderGenerator.h>
 #include <OgreMaterialManager.h>
+#pragma warning(pop)
 
 // SDL
+#pragma warning(push)
+#pragma warning(disable : 26819)
 #include <SDL.h>
 #include <SDL_video.h>
 #include <SDL_syswm.h>
+#pragma warning(pop)
 
 // EDEN
-#include <Transform.h>
-#include <Entity.h>
-#include <ErrorHandler.h>
+#include "Transform.h"
+#include "Entity.h"
+#include "ErrorHandler.h"
 
 // EDEN_Render
 #include "RenderManager.h"

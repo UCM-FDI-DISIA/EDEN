@@ -4,7 +4,6 @@
     <ClCompile Include="..\..\src\EDEN_Physics\PhysicsManager.cpp" />
     <ClCompile Include="..\..\src\EDEN_Physics\RayCast.cpp" />
     <ClCompile Include="..\..\src\EDEN_Physics\ShapeCreator.cpp" />
-    <ClCompile Include="..\..\src\EDEN_Physics\test.cpp" />
     <ClCompile Include="..\..\src\EDEN_Physics\RigidBody.cpp" />
     <ClCompile Include="..\..\src\EDEN_Physics\CollisionCallback.cpp" />
     <ClCompile Include="..\..\src\EDEN_Physics\CollisionLayer.cpp" />

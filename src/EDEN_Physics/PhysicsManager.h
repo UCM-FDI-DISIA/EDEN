@@ -4,6 +4,7 @@
 
 #include <unordered_set>
 #include <unordered_map>
+
 #include "Singleton.h"
 
 #define DEFAULT_GROUP "DEFAULT"

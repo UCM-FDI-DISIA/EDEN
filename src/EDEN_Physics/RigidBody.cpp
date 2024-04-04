@@ -1,4 +1,6 @@
 #define _CRTDBG_MAP_ALLOC
+#pragma warning(push)
+#pragma warning(disable : 26495)
 #include <BulletDynamics/Dynamics/btRigidBody.h>
 #include <LinearMath/btDefaultMotionState.h>
 #include <BulletCollision/CollisionShapes/btCompoundShape.h>
@@ -7,13 +9,12 @@
 #include <BulletCollision/CollisionShapes/btCapsuleShape.h>
 #include <BulletCollision/CollisionShapes/btCylinderShape.h>
 #include <BulletCollision/CollisionShapes/btSphereShape.h>
-
-#include <ErrorHandler.h>
+#pragma warning(pop)
 
 #include "RigidBody.h"
-#include <Transform.h>
-#include <Quaternion.h>
-#include <Entity.h>
+#include "Transform.h"
+#include "Quaternion.h"
+#include "Entity.h"
 #include "PhysicsManager.h"
 #include "CollisionLayer.h"
 #include "ShapeCreator.h"
@@ -21,6 +22,7 @@
 #include "PhysicsManager.h"
 #include "SceneManager.h"
 #include "Scene.h"
+#include "ErrorHandler.h"
 
 physics_wrapper::RigidBody::RigidBody(eden_ec::Entity* ent, const ShapeParameters& params, float mass, float friction, float bounciness, const RigidBodyType& flag, std::string* layerName)
 {

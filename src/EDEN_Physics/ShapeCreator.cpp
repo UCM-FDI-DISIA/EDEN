@@ -1,9 +1,12 @@
 #define _CRTDBG_MAP_ALLOC
+#pragma warning(push)
+#pragma warning(disable : 26495)
 #include <BulletCollision/CollisionShapes/btBoxShape.h>
 #include <BulletCollision/CollisionShapes/btSphereShape.h>
 #include <BulletCollision/CollisionShapes/btCapsuleShape.h>
 #include <BulletCollision/CollisionShapes/btCylinderShape.h>
 #include <BulletCollision/CollisionShapes/btBvhTriangleMeshShape.h>
+#pragma warning(pop)
 
 #include "ShapeCreator.h"
 #include "Vector3.h"

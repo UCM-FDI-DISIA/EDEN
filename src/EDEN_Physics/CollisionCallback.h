@@ -1,9 +1,12 @@
 #ifndef EDEN_COLLISION_CALLBACK_H
 #define EDEN_COLLISION_CALLBACK_H
 
-#include<unordered_set>
+#include <unordered_set>
 
+#pragma warning(push)
+#pragma warning(disable : 26495)
 #include <BulletCollision/CollisionDispatch/btCollisionWorld.h>
+#pragma warning(pop)
 
 namespace eden_ec {
 	class Entity;

@@ -1,9 +1,13 @@
 #define _CRTDBG_MAP_ALLOC
 #include "DebugDrawer.h"
 
+#pragma warning(push)
+#pragma warning(disable : 4251)
+#pragma warning(disable : 26495)
 #include <OgreSceneNode.h>
 #include <OgreSceneManager.h>
 #include <OgreMovableObject.h>
+#pragma warning(pop)
 
 #include "NodeManager.h"
 #include "RenderManager.h"

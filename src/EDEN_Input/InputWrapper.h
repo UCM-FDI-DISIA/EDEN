@@ -3,8 +3,10 @@
 #define EDEN_INPUT_WRAPPER_H
 
 #define SDL_MAIN_HANDLED
-
+#pragma warning(push)
+#pragma warning(disable : 26819)
 #include <SDL.h>
+#pragma warning(pop)
 
 	/// @brief Clase que gestiona los eventos de SDL
 	class InputWrapper 

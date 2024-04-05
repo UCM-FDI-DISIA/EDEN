@@ -49,15 +49,15 @@ Entity1 = {
                 Friction = "0"
             }
         },
-        {
-            Name = "PARTICLE_EMITTER",
-            Arguments = {
-                Name = "Test",
-                Loop = "true",
-                Time = "1",
-                Started = "true"
-            }
-        },
+        -- {
+        --     Name = "PARTICLE_EMITTER",
+        --     Arguments = {
+        --         Name = "Test",
+        --         Loop = "true",
+        --         Time = "1",
+        --         Started = "true"
+        --     }
+        -- },
         {
 			Name = "TEXT",
 			Arguments = {

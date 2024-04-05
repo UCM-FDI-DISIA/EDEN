@@ -52,13 +52,13 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)lib\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(ProjectDir)..\..\lib\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)..\..\temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(SolutionDir)lib\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(ProjectDir)..\..\lib\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)..\..\temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_d</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -68,7 +68,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\SDL\build\$(Platform)\include\;$(SolutionDir)dependencies\SDL\src\include\;$(SolutionDir)src\EDEN;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\dependencies\SDL\build\$(Platform)\include\;$(ProjectDir)..\..\dependencies\SDL\src\include\;$(ProjectDir)..\..\src\EDEN;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -86,7 +86,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\SDL\build\$(Platform)\include\;$(SolutionDir)src\EDEN;$(SolutionDir)dependencies\SDL\src\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\dependencies\SDL\build\$(Platform)\include\;$(ProjectDir)..\..\src\EDEN;$(ProjectDir)..\..\dependencies\SDL\src\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

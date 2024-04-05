@@ -47,13 +47,13 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(SolutionDir)lib\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(ProjectDir)..\..\lib\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)..\..\temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_d</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)lib\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(ProjectDir)..\..\lib\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)..\..\temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -65,7 +65,7 @@
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\FMOD\src;$(SolutionDir)src\EDEN</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\dependencies\FMOD\src;$(ProjectDir)..\..\src\EDEN</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -85,7 +85,7 @@
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\FMOD\src;$(SolutionDir)src\EDEN</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\dependencies\FMOD\src;$(ProjectDir)..\..\src\EDEN</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>

@@ -87,6 +87,7 @@ physics_wrapper::RigidBody::~RigidBody()
 	}
 	delete _collisionShape;
 	delete _collisionCallback;
+	delete _rigidBody;
 }
 
 

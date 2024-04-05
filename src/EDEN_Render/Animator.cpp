@@ -21,6 +21,7 @@ render_wrapper::Animator::~Animator() {
 	for (auto it = _anims.begin(); it != _anims.end(); ++it) {
 		delete (*it).second.first;
 	}
+	_anims.clear();
 }
 
 void render_wrapper::Animator::StopAnim() {
@@ -67,7 +68,7 @@ Ogre::AnimationState* render_wrapper::Animator::FindAnim(std::string ID) {
 }
 
 void render_wrapper::Animator::RegisterAnim(std::string ID, std::string oldAnimID, std::string endID, bool isLooping) {
-	auto anim = _meshRend->_ent->getAnimationState(oldAnimID);
+	Ogre::AnimationState* anim = _meshRend->_ent->getAnimationState(oldAnimID);
 	anim->setLoop(isLooping);
 	_anims.insert({ ID, {anim, endID} });
 }

@@ -30,6 +30,11 @@ namespace eden {
 			info.components = it->components;
 			_Blueprints[it->name] = info;
 		}
+
+		for (int i = 0; i < blueprints.size(); ++i) {
+			delete blueprints[i];
+		}
+		blueprints.clear();
 	}
 
 	SceneManager::~SceneManager() {

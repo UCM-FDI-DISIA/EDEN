@@ -10,7 +10,7 @@ class btTransform;
 class btVector3;
 class btQuaternion;
 class btCompoundShape;
-class btDefaultMotionState;
+struct btDefaultMotionState;
 
 namespace eden_utils {
 	class Quaternion;

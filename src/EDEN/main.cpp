@@ -29,9 +29,14 @@
 #include "Hito1Prueba.h"
 #include "CAnimator.h"
 
+#ifdef _WIN32
+#include <windows.h>
+#elif defined(__linux__) || defined(__APPLE__)
+#include <dlfcn.h>
+#endif
 
 int main() {
-	
+
 	// Registramos el componente Transform, que es el unico que usaremos de momento
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CTransform>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CMeshRenderer>();
@@ -42,7 +47,7 @@ int main() {
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CButton>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CCursor>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CRigidBody>();
-	
+
 
 	try
 	{
@@ -53,9 +58,35 @@ int main() {
 		master->Loop();
 		delete scnManager;
 		delete master;
-		
 	}
-	catch (std::exception e){}
+
+	catch (std::exception e) {}
+
+//#ifdef _DEBUG
+//	HMODULE game = LoadLibraryA("game_d.dll");
+//#else
+//	HMODULE game = LoadLibraryA("game.dll");
+//#endif
+//	if (game == NULL) { // mejor con assert
+//		std::cerr << "no se ha cargado la dll correctamente" << std::endl;
+//	}
+//
+//	else {
+//		typedef std::string (*SaludoFunc)();
+//		// SaludoFunc saludo = (SaludoFunc)(GetProcAddress(game, "saludo"));
+//		SaludoFunc saludo = reinterpret_cast<SaludoFunc>(GetProcAddress(game, "saludo"));
+//
+//		if (saludo == NULL) {
+//			std::cerr << "no existe el metodo saludo de la dll" << std::endl;
+//		}
+//
+//		else {
+//			std::cout << saludo() << std::endl;
+//
+//		}
+//
+//		FreeLibrary(game);
+//	}
 	
 	return 0;
 }

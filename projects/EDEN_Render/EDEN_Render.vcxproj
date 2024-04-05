@@ -73,14 +73,14 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)lib\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(ProjectDir)..\..\lib\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)..\..\temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_d</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)lib\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(ProjectDir)..\..\lib\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)..\..\temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -123,7 +123,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)dependencies\SDL\src\include\;$(SolutionDir)dependencies\SDL\build\$(Platform)\include\;%(AdditionalIncludeDirectories);$(SolutionDir)src\EDEN\;$(SolutionDir)dependencies\Ogre\src\Components\RTShaderSystem\include\;$(SolutionDir)dependencies\SDL_ttf\src\;$(SolutionDir)dependencies\SDL_image\src\;$(SolutionDir)dependencies\Ogre\src\Components\Overlay\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\dependencies\Ogre\build\$(Platform)\include\;$(ProjectDir)..\..\dependencies\Ogre\src\OgreMain\include\;$(ProjectDir)..\..\dependencies\SDL\src\include\;$(ProjectDir)..\..\dependencies\SDL\build\$(Platform)\include\;%(AdditionalIncludeDirectories);$(ProjectDir)..\..\src\EDEN\;$(ProjectDir)..\..\dependencies\Ogre\src\Components\RTShaderSystem\include\;$(ProjectDir)..\..\dependencies\SDL_ttf\src\;$(ProjectDir)..\..\dependencies\SDL_image\src\;$(ProjectDir)..\..\dependencies\Ogre\src\Components\Overlay\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -141,7 +141,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)dependencies\SDL\src\include\;$(SolutionDir)dependencies\SDL\build\$(Platform)\include\;%(AdditionalIncludeDirectories);$(SolutionDir)src\EDEN\;$(SolutionDir)dependencies\Ogre\src\Components\RTShaderSystem\include\;$(SolutionDir)dependencies\SDL_ttf\src\;$(SolutionDir)dependencies\SDL_image\src\;$(SolutionDir)dependencies\Ogre\src\Components\Overlay\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\dependencies\Ogre\build\$(Platform)\include\;$(ProjectDir)..\..\dependencies\Ogre\src\OgreMain\include\;$(ProjectDir)..\..\dependencies\SDL\src\include\;$(ProjectDir)..\..\dependencies\SDL\build\$(Platform)\include\;%(AdditionalIncludeDirectories);$(ProjectDir)..\..\src\EDEN\;$(ProjectDir)..\..\dependencies\Ogre\src\Components\RTShaderSystem\include\;$(ProjectDir)..\..\dependencies\SDL_ttf\src\;$(ProjectDir)..\..\dependencies\SDL_image\src\;$(ProjectDir)..\..\dependencies\Ogre\src\Components\Overlay\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

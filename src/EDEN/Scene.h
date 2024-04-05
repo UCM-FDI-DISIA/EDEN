@@ -64,13 +64,6 @@ namespace eden {
 		/// @return _isRendering True = se renderiza | _isRendering = no se renderiza
 		inline bool GetToRender() { return _isRendering; }
 
-		/// @brief Pone a true el booleano correpondiente para indicar que va a ser destruida
-		inline void SetToDestroy() { _toDestroy = true; }
-
-		/// @brief Devuelve la variable que indica si la escena se va a eliminar
-		/// @return _toDestroy True = no se quiere destruir | _toDestroy = se va a destruir
-		inline bool GetToDestroy() { return _toDestroy; }
-
 		/// @brief Instancia una entidad en la escena. Puede cambiarse su posición y rotación
 		/// @param info Información de una entidad 
 		/// @param pos Nueva posición para entidad
@@ -91,9 +84,6 @@ namespace eden {
 		///@brief booleano que indica si la escena esta activa. Si una escena no esta activa no se ejecutara el 
 		/// update pero si se seguirán renderizando sus entidades
 		bool _isRendering = true;
-
-		///@brief booleano que se activa cuando se quiere destruir una escena
-		bool _toDestroy = false;
 
 		/// @brief referencia a la camara actual
 		eden_ec::Entity* _currentCamera = nullptr;

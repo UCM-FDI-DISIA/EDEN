@@ -27,7 +27,7 @@ namespace render_wrapper {
 		/// @param meshName Nombre del archivo de la malla
 		MeshRenderer(const std::string entityID, const std::string meshName);
 
-		~MeshRenderer() = default;
+		~MeshRenderer() override;
 
 		/// @brief Setea el material a la malla 
 		/// @param material Nombre del archivo del material 

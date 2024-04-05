@@ -27,7 +27,7 @@ namespace eden_ec {
 	class Entity;
 }
 
-class SDL_Window;
+struct SDL_Window;
 typedef SDL_Window NativeWindowType;
 
 struct NativeWindowPair

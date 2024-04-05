@@ -1,10 +1,10 @@
 #define _CRTDBG_MAP_ALLOC
 #include <iostream>
+#include <unordered_map>
 
 #include "SceneManager.h"
-#include <ScriptManager.h>
+#include "ScriptManager.h"
 #include "Scene.h"
-#include <unordered_map>
 #include "Quaternion.h"
 #include "Vector3.h"
 #include "Entity.h"
@@ -30,6 +30,11 @@ namespace eden {
 			info.components = it->components;
 			_Blueprints[it->name] = info;
 		}
+
+		for (int i = 0; i < blueprints.size(); ++i) {
+			delete blueprints[i];
+		}
+		blueprints.clear();
 	}
 
 	SceneManager::~SceneManager() {
@@ -37,8 +42,7 @@ namespace eden {
 			delete (*it);
 			it = _scenes.erase(it);
 		}
-		//Está borrando una escena que YA se ha borrado
-		//if (_activeScene != nullptr) delete _activeScene;
+		_activeScene = nullptr;
 	}
 
 	eden_ec::Entity* SceneManager::InstantiateBlueprint(std::string blueprintID) {
@@ -118,7 +122,7 @@ namespace eden {
 	}
 
 	void SceneManager::PopScene() {
-		_scenes.front()->SetToDestroy();
+		_scenesToDestroy.push_back(_scenes.front());
 		_scenes.pop_front();
 	}
 
@@ -141,12 +145,9 @@ namespace eden {
 			else break;
 		}
 
-		for (auto it = _scenes.begin(); it != _scenes.end();) {
-			if ((*it)->GetToDestroy()) {
-				delete (*it);
-				it = _scenes.erase(it);
-			}
-			else ++it;
+		for (auto it = _scenesToDestroy.begin(); it != _scenesToDestroy.end();) {	
+			delete (*it);
+			it = _scenesToDestroy.erase(it);
 		}
 	}
 }

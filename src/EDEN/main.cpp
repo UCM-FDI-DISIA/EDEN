@@ -79,8 +79,9 @@ int main(int argc, char* argv[]) {
 	//strcpy_s(leak, 256, "LEAK CANARIO");
 
 	// Memory Leaks Check
+#ifdef _MSC_VER
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-	//_CrtSetBreakAlloc(1032);
+#endif
 
 	// Registro de componentes
 	RegisterComponents();
@@ -111,10 +112,6 @@ int main(int argc, char* argv[]) {
 		// en caso de generar una excepci�n no tratada, se llamar� a este m�todo, que genera (en windows) un pop-up informando del error
 		errorHandler->HandleException(e);
 	}
-#endif
-
-#ifdef _MSC_VER
-	_CrtDumpMemoryLeaks();
 #endif
 	errorHandler->Close();
 	return 0;

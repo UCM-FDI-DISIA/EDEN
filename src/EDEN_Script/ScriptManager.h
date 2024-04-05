@@ -63,6 +63,9 @@ namespace eden_script {
 		/// @brief Devuelve puntero a LuaManager
 		eden_script::LuaManager* GetLuaManager();
 
+		/// @brief Destructora que destruye la máquina virtual de Lua
+		~ScriptManager() override;
+
 	private:
 
 		/// @brief Puntero al LuaManager
@@ -73,8 +76,6 @@ namespace eden_script {
 		/// @brief Constructora que inicializa Lua
 		ScriptManager();
 		
-		/// @brief Destructora que destruye la máquina virtual de Lua
-		~ScriptManager() override;
 		/// @brief Dice si una variable es 'nil' en Lua
 		/// @param varType Tipo de la variable a ver (entero devuelto por las funciones de Lua)
 		/// @return True = Es nil | False = No es nil

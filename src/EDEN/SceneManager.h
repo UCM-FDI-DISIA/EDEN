@@ -92,6 +92,9 @@ private:
 	/// @brief Lista doblemente enlazada de punteros a escenas
 	std::deque<Scene*> _scenes;
 
+	/// @brief Lista doblemente enlazada de punteros a escenas
+	std::deque<Scene*> _scenesToDestroy;
+
 	/// @brief Constructora por defecto de la clase SceneManager
 	SceneManager();
 };

@@ -6,13 +6,6 @@
 
 #include "Singleton.h"
 
-#ifdef _MSC_VER
-#define AUDIO_ROUTE "assets\\audio\\"
-#endif
-#ifdef __APPLE__
-#define AUDIO_ROUTE "assets/audio/"
-#endif
-
 namespace audio_wrapper {
     class SoundClip;
 }

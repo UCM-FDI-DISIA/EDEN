@@ -26,6 +26,7 @@
     <ClCompile Include="..\..\src\EDEN\Hito1Prueba.cpp" />
     <ClCompile Include="..\..\src\EDEN\main.cpp" />
     <ClCompile Include="..\..\src\EDEN\Quaternion.cpp" />
+    <ClCompile Include="..\..\src\EDEN\ResourcesManager.cpp" />
     <ClCompile Include="..\..\src\EDEN\SceneManager.cpp" />
     <ClCompile Include="..\..\src\EDEN\Scene.cpp" />
     <ClCompile Include="..\..\src\EDEN\Transform.cpp" />
@@ -49,6 +50,7 @@
     <ClInclude Include="..\..\src\EDEN\Hito1Prueba.h" />
     <ClInclude Include="..\..\src\EDEN\CRigidBody.h" />
     <ClInclude Include="..\..\src\EDEN\Quaternion.h" />
+    <ClInclude Include="..\..\src\EDEN\ResourcesManager.h" />
     <ClInclude Include="..\..\src\EDEN\SceneManager.h" />
     <ClInclude Include="..\..\src\EDEN\Scene.h" />
     <ClInclude Include="..\..\src\EDEN\Singleton.h" />

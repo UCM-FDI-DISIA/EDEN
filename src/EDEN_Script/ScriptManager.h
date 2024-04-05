@@ -73,6 +73,8 @@ namespace eden_script {
 		/// @brief Constructora que inicializa Lua
 		ScriptManager();
 		
+		/// @brief Destructora que destruye la máquina virtual de Lua
+		~ScriptManager() override;
 		/// @brief Dice si una variable es 'nil' en Lua
 		/// @param varType Tipo de la variable a ver (entero devuelto por las funciones de Lua)
 		/// @return True = Es nil | False = No es nil
@@ -84,7 +86,6 @@ namespace eden_script {
 		/// @param info Informacion de entidades a rellenar
 		/// @return True = No error | False = Error
 		bool EntityTableToData(std::vector<eden_script::EntityInfo*>& info, std::string tableName);
-
 
 		/// @brief Busca en la tabla de Lua que se encuentre en el indice 'tableIndex' 
 		/// una key 'stringToRead' y devuelve su valor, si lo encuentra.

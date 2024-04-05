@@ -109,6 +109,9 @@ void eden_render::RenderManager::CloseManager()
 	Shutdown(); // llama al cierre de la ventana
 	if (couldInitialize()) {
 		_sceneMngr->removeRenderQueueListener(_overlaySys);
+		_sceneMngr->destroyAllEntities();
+		_sceneMngr->destroyAllAnimations();
+		_sceneMngr->destroyAllAnimationStates();
 		_root->destroySceneManager(_sceneMngr);
 		_sceneMngr = nullptr;
 		delete _overlaySys;

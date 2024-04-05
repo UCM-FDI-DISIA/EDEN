@@ -18,9 +18,6 @@ render_wrapper::Animator::Animator(render_wrapper::MeshRenderer* meshRend) {
 }
 
 render_wrapper::Animator::~Animator() {
-	for (auto it = _anims.begin(); it != _anims.end(); ++it) {
-		delete (*it).second.first;
-	}
 	_anims.clear();
 }
 

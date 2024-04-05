@@ -10,6 +10,7 @@ class btTransform;
 class btVector3;
 class btQuaternion;
 class btCompoundShape;
+class btDefaultMotionState;
 
 namespace eden_utils {
 	class Quaternion;
@@ -161,6 +162,7 @@ namespace physics_wrapper {
 		float GetBounciness();
 	private:
 		btRigidBody* _rigidBody = nullptr;
+		btDefaultMotionState* _motionState = nullptr;
 		btCompoundShape* _collisionShape = nullptr;
 		CollisionCallback* _collisionCallback = nullptr;
 

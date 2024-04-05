@@ -38,10 +38,10 @@ physics_wrapper::RigidBody::RigidBody(eden_ec::Entity* ent, const ShapeParameter
 	btTransform transform = btTransform(EDENToBulletQuaternion(entTransform->GetRotation()), 
 		EDENToBulletVector(entTransform->GetPosition()));
 
-	btDefaultMotionState* motionState = new btDefaultMotionState(transform);
+	_motionState = new btDefaultMotionState(transform);
 
 	_rigidBody = new btRigidBody(btRigidBody::btRigidBodyConstructionInfo(mass,
-		motionState,
+		_motionState,
 		_collisionShape,
 		localInertia));
 
@@ -87,6 +87,7 @@ physics_wrapper::RigidBody::~RigidBody()
 	}
 	delete _collisionShape;
 	delete _collisionCallback;
+	delete _motionState;
 	delete _rigidBody;
 }
 

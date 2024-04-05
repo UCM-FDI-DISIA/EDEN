@@ -120,3 +120,7 @@ float audio_wrapper::Sound::GetPitch() const {
     eden_error::ErrorHandler::Instance()->Assert(_sound, "No se encuentra el sonido con nombre " + _filename);
     return _sound->getPlaybackSpeed();
 }
+
+std::string audio_wrapper::Sound::GetFilename() const {
+    return _filename;
+}

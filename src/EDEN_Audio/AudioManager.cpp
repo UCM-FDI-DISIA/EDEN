@@ -15,6 +15,7 @@ eden_audio::AudioManager::AudioManager() {
 
 eden_audio::AudioManager::~AudioManager() {
 	_soundMap.clear();
+	audio_wrapper::AudioEngine::Instance()->Close();
 }
 
 void eden_audio::AudioManager::LoadResources() {

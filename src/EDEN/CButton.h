@@ -90,6 +90,8 @@ namespace eden_ec {
 		/// @brief textura cuando pulsamos el boton
 		std::string _clickedTex = " ";
 
+		std::string _currentTex = " ";
+
 		/// @brief limite superior del boton
 		int _topPosition = 0;
 

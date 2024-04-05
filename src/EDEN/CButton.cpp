@@ -104,7 +104,8 @@ void eden_ec::CButton::OnButtonClick() {
 		return;
 	if (!_clicked && _inputManager->IsMouseButtonDown(eden_input::InputManager::LEFT)) {
 		_clicked = true;
-		ChangeButtonTexture(_clickedTex);
+		if(_currentTex!=_clickedTex)ChangeButtonTexture(_clickedTex);
+		_currentTex = _clickedTex;
 		if (_callback != nullptr) _callback->OnButtonClick();
 	}
 }
@@ -116,7 +117,8 @@ void eden_ec::CButton::OnButtonReleased() {
 	if (_clicked) {
 		if (_inputManager->IsMouseButtonUp(eden_input::InputManager::LEFT)) {
 			_clicked = false;
-			ChangeButtonTexture(_iniTex);
+			if(_currentTex!=_iniTex)ChangeButtonTexture(_iniTex);
+			_currentTex = _iniTex;
 			if (_callback != nullptr) _callback->OnButtonReleased();
 		}
 	}
@@ -124,13 +126,18 @@ void eden_ec::CButton::OnButtonReleased() {
 
 void eden_ec::CButton::OnButtonHover() {
 
-	if (!_clicked)
+	if (!_clicked && _currentTex!=_hoverTex) {
 		ChangeButtonTexture(_hoverTex);
+		_currentTex = _hoverTex;
+	}
 }
 
 void eden_ec::CButton::OnButtonUnhover() {
 
-	ChangeButtonTexture(_iniTex);
+	if (_currentTex != _iniTex) {
+		ChangeButtonTexture(_iniTex);
+		_currentTex = _iniTex;
+	}
 }
 
 void eden_ec::CButton::CheckMousePos()
@@ -172,7 +179,7 @@ void eden_ec::CButton::ChangeButtonTexture(const std::string& textureName) {
 	else {
 		newTex = _clickedTex;
 	}
-
+	
 	SetMaterial(newTex);
 }
 

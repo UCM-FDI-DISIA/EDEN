@@ -98,7 +98,8 @@ int main(int argc, char* argv[]) {
 		eden::Master* master = eden::Master::Instance();
 		//Creamos una escena inicial de pueba 
 		eden::SceneManager* scnManager = eden::SceneManager::Instance();
-		scnManager->PushScene("test_scene");
+		//scnManager->PushScene("test_scene");
+		scnManager->PushScene("CrossThePathFinal");
 		master->Loop();
 		master->Close();
 	}

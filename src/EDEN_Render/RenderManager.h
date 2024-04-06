@@ -4,6 +4,7 @@
 
 #include <string>
 #include <unordered_set>
+#include <unordered_map>
 
 #include "Singleton.h"
 
@@ -27,6 +28,11 @@ namespace eden_ec {
 	class Entity;
 }
 
+namespace eden
+{
+	class SceneManager;
+}
+
 class SDL_Window;
 typedef SDL_Window NativeWindowType;
 
@@ -45,6 +51,7 @@ namespace render_wrapper {
 }
 namespace eden_render
 {
+	class InfoRenderWorld;
 	class RenderManager : public Singleton<RenderManager>
 	{
 	public:
@@ -58,6 +65,8 @@ namespace eden_render
 		friend render_wrapper::NodeManager;
 		friend render_wrapper::RenderObject;
 		friend render_wrapper::CameraWrapper;
+
+		friend eden::SceneManager;
 		
 		/// @brief Destructora
 		~RenderManager() override;
@@ -137,20 +146,30 @@ namespace eden_render
 		/// @param appName Nombre de la ventana
 		explicit RenderManager(const std::string& appName = "TEST_APP");
 
+		/// @brief Crea una nueva escena, si existe actualiza la escena actual 
+		/// 
+		void CreateRenderScene(std::string sceneID);
 
-		/// @brief Raï¿½z de Ogre
+		/// @brief 
+		/// @param sceneID 
+		void RemoveRenderScene(std::string sceneToRemoveID, std::string newCurrentSceneID);
+
+		/// @brief Raiz de Ogre
 		Ogre::Root* _root;
-
-		/// @brief Gestor de escenas
-		Ogre::SceneManager* _sceneMngr;
 
 		/// @brief Sistema de Overlay
 		Ogre::OverlaySystem* _overlaySys;
 
+		/// @brief Gestor de escenas
+		std::unordered_map<std::string, InfoRenderWorld*> _renderScenes;
+
+		/// @brief Escena actual de render
+		Ogre::SceneManager* _currentRenderScene;
+
 		/// @brief Ventana principal
 		NativeWindowPair _window;
 
-		/// @brief Capa de abstracciï¿½n del sistema de archivos
+		/// @brief Capa de abstraccion del sistema de archivos
 		Ogre::FileSystemLayer* _fsLayer;
 		bool _firstRun;
 
@@ -180,6 +199,20 @@ namespace eden_render
 
 		/// @brief Flag para saber si la ventana ha sido escalada
 		bool _resized = false;
+	};
+
+	class InfoRenderWorld
+	{
+		friend RenderManager;
+	public:
+		InfoRenderWorld(Ogre::Root* root, Ogre::OverlaySystem* overlaySystem, Ogre::RTShader::ShaderGenerator* shaderGenerator);
+		~InfoRenderWorld();
+	private:
+		Ogre::SceneManager* _renderScene;
+		
+		Ogre::OverlaySystem* _overlaySystem;
+		Ogre::Root* _root;
+		Ogre::SceneManager* GetRenderScene();
 	};
 }
 

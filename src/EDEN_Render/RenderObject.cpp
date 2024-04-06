@@ -10,5 +10,5 @@
 #include "RenderManager.h"
 
 Ogre::SceneManager* render_wrapper::RenderObject::getSceneManager(){
-	return eden_render::RenderManager::Instance()->_sceneMngr;
+	return eden_render::RenderManager::Instance()->_currentRenderScene;
 }

@@ -74,16 +74,12 @@ void eden_render::RenderManager::InitManager(const std::string& appName)
 	Setup(); // y arranca la inicialización base
 
 	_overlaySys = new Ogre::OverlaySystem();
-
-	_sceneMngr = _root->createSceneManager();
-	_sceneMngr->addRenderQueueListener(_overlaySys);
-	_sceneMngr->setAmbientLight(Ogre::ColourValue(0.2f, 0.2f, 0.2f));
-	_shaderGenerator->addSceneManager(_sceneMngr);
+	_currentRenderScene = nullptr;
 }
 
 Ogre::SceneManager* eden_render::RenderManager::GetOgreSceneManager()
 {
-	return _sceneMngr;
+	return _currentRenderScene;
 }
 
 void eden_render::RenderManager::Update()
@@ -108,9 +104,11 @@ void eden_render::RenderManager::CloseManager()
 {
 	Shutdown(); // llama al cierre de la ventana
 	if (couldInitialize()) {
-		_sceneMngr->removeRenderQueueListener(_overlaySys);
-		_root->destroySceneManager(_sceneMngr);
-		_sceneMngr = nullptr;
+		for (auto it : _renderScenes)
+		{
+			delete it.second;
+		}
+
 		delete _overlaySys;
 		_overlaySys = nullptr;
 		delete _root; // borra la ra�z
@@ -325,4 +323,68 @@ void eden_render::RenderManager::removeRenderEntity(eden_ec::Entity* ent) {
 void eden_render::RenderManager::ResizedWindow() {
 	_window.render->windowMovedOrResized();
 	_resized = true;
+}
+
+void eden_render::RenderManager::CreateRenderScene(std::string sceneID)
+{
+	auto sceneIt = _renderScenes.find(sceneID);
+	if (_currentRenderScene != nullptr)
+	{
+		_currentRenderScene->getRootSceneNode()->setVisible(false);
+	}
+	if (sceneIt == _renderScenes.end())
+	{
+		InfoRenderWorld* info = new InfoRenderWorld(_root, _overlaySys, _shaderGenerator);
+		_currentRenderScene = info->GetRenderScene();
+		_renderScenes[sceneID] = info;
+	}
+	else
+	{
+		_currentRenderScene = sceneIt->second->GetRenderScene();
+		_currentRenderScene->getRootSceneNode()->setVisible(true);
+
+	}
+}
+
+void eden_render::RenderManager::RemoveRenderScene(std::string sceneToRemoveID, std::string newCurrentSceneID)
+{
+	auto sceneIt = _renderScenes.find(sceneToRemoveID);
+	if (sceneIt != _renderScenes.end())
+	{
+		delete sceneIt->second;
+		_renderScenes.erase(sceneIt);
+		_currentRenderScene = nullptr;
+
+	}
+	CreateRenderScene(newCurrentSceneID);
+}
+
+eden_render::InfoRenderWorld::InfoRenderWorld(Ogre::Root* root, Ogre::OverlaySystem* overlaySystem, Ogre::RTShader::ShaderGenerator* shaderGenerator)
+{
+	_root = root;
+	_overlaySystem = overlaySystem;
+	//_overlaySys = new Ogre::OverlaySystem();
+
+	_renderScene = _root->createSceneManager();
+	_renderScene->addRenderQueueListener(_overlaySystem);
+	_renderScene->setAmbientLight(Ogre::ColourValue(0.2f, 0.2f, 0.2f));
+	shaderGenerator->addSceneManager(_renderScene);
+
+}
+
+eden_render::InfoRenderWorld::~InfoRenderWorld()
+{
+	_renderScene->removeRenderQueueListener(_overlaySystem);
+	_renderScene->destroyAllEntities();
+	_renderScene->destroyAllAnimations();
+	_renderScene->destroyAllAnimationStates();
+	_root->destroySceneManager(_renderScene);
+
+	_renderScene = nullptr;
+
+}
+
+Ogre::SceneManager* eden_render::InfoRenderWorld::GetRenderScene()
+{
+	return _renderScene;
 }

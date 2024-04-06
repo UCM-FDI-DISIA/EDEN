@@ -6,6 +6,7 @@
 #include <unordered_map>
 
 #include "Singleton.h"
+#include "Vector3.h"
 
 #define DEFAULT_GROUP "DEFAULT"
 #define RAYCAST_GROUP "RAYCAST"
@@ -25,10 +26,7 @@ namespace eden_ec {
 
 namespace eden {
 	class Scene;
-}
-
-namespace eden_utils {
-	class Vector3;
+	class SceneManager;
 }
 
 namespace physics_wrapper {
@@ -42,6 +40,7 @@ namespace eden_debug {
 
 
 namespace physics_manager {
+	class InfoPhysicWorld;
 	class LayerInfo {
 	private:
 		/// @brief Nombre de la capa
@@ -88,6 +87,8 @@ namespace physics_manager {
 		friend Singleton<PhysicsManager>;
 		friend physics_wrapper::RigidBody;
 		friend eden::Scene;
+		friend eden::SceneManager;
+
 	public:
 		/// @brief Devuelve la entidad asociada a un s�lido r�gido
 		/// @param RBRef Referencia del rigidbody que queremos buscar
@@ -100,7 +101,7 @@ namespace physics_manager {
 
 		/// @brief Devuelve la gravedad del mundo
 		/// @return Devuelve el valor de la gravedad mundial
-		eden_utils::Vector3 GetGravity();
+		eden_utils::Vector3 GetGravity(std::string sceneID);
 
 		/// @brief Añade una entidad al mundo físico
 		/// @param e Entidad a añadir
@@ -134,27 +135,21 @@ namespace physics_manager {
 		/// @brief Mapa desordenado que guarda los nombres de las capas y su respectivo objeto CollisionLayer
 		std::unordered_map <physics_manager::LayerInfo, physics_wrapper::CollisionLayer*, physics_manager::LayerHash> _layers;
 
-		/// @brief Referencia al mundo de la simulacion fisica
-		btDynamicsWorld* _dynamicWorldRef;
+		/// @brief Referencia a los mundos de la simulacion fisica
+		std::unordered_map <std::string, InfoPhysicWorld*> _physicsScenes;
 
+		/// @brief
+		btDynamicsWorld* _currentPhysicScene;
+		
 		/// @brief Encargado de hacer dibujos con caracter de debug
 		eden_debug::DebugDrawer* _debugDrawer;
 
-		/// @brief Clase de bullet encargada de determinar el algortimo de c�lculo de colisiones entre objetos segun su forma
-		btDispatcher* _worldDispatcher;
-
-		/// @brief Clase de bullet encargada de subdividir el mundo en sectores para facilitar los c�lculos de colision
-		btBroadphaseInterface* _worldBroadPhaseInterface;
-
-		/// @brief Clase de bullet encargada de gestionar las colisiones entre objetos
-		btConstraintSolver* _worldConstraintSolver;
-
-		/// @brief Clase de bullet encargada de la configuraci�n de las colisiones.
-		btCollisionConfiguration* _worldCollisionConfiguration;
+		/// @brief  Vector de Gravedad de la escena por defecto
+		eden_utils::Vector3 _defaultGravity;
 
 		/// @brief Devuelve el mundo
 		/// @return Mundo de Bullet
-		btDynamicsWorld* GetWorld();
+		btDynamicsWorld* GetWorld(std::string sceneID);
 
 		/// @brief Quita colisión a una capa con otra capa (por defecto todas las capas colisionan con todas)
 		/// @param layerName Nombre de la capa a la que le se quiere quitar colisión
@@ -170,6 +165,41 @@ namespace physics_manager {
 		/// @brief Borra todas las capas de una escena
 		/// @param sceneID ID de la escena
 		void RemoveAllSceneLayers(std::string sceneID);
+
+		/// @brief Crea una nueva escena, si existe actualiza la escena actual 
+		/// 
+		void CreatePhysicsScene(std::string sceneID);
+
+		/// @brief 
+		/// @param sceneID 
+		void RemovePhysicsScene(std::string sceneToRemoveID, std::string newCurrentSceneID);
+	};
+
+	class InfoPhysicWorld
+	{
+		friend PhysicsManager;
+
+	public:
+		InfoPhysicWorld();
+		~InfoPhysicWorld();
+
+	private:
+		/// @brief 
+		btDynamicsWorld* _dynamicWorld;
+
+		/// @brief Clase de bullet encargada de determinar el algortimo de c�lculo de colisiones entre objetos segun su forma
+		btDispatcher* _worldDispatcher;
+
+		/// @brief Clase de bullet encargada de subdividir el mundo en sectores para facilitar los c�lculos de colision
+		btBroadphaseInterface* _worldBroadPhaseInterface;
+
+		/// @brief Clase de bullet encargada de gestionar las colisiones entre objetos
+		btConstraintSolver* _worldConstraintSolver;
+
+		/// @brief Clase de bullet encargada de la configuraci�n de las colisiones.
+		btCollisionConfiguration* _worldCollisionConfiguration;
+
+		btDynamicsWorld* GetWorld();
 	};
 }
 #endif // !PHYSICS_MANAGER_h

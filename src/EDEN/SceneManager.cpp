@@ -11,6 +11,8 @@
 #include "ErrorHandler.h"
 #include "Transform.h"
 #include "ComponentArguments.h"
+#include "PhysicsManager.h"
+#include "RenderManager.h"
 
 namespace eden {
 
@@ -105,6 +107,9 @@ namespace eden {
 		std::unordered_map<std::string, std::vector<std::string>> collisionInfo;
 		std::vector<eden_script::EntityInfo*> info;
 		scriptManager->ReadScene(ID, info, collisionInfo);
+
+		physics_manager::PhysicsManager::Instance()->CreatePhysicsScene(ID);
+		eden_render::RenderManager::Instance()->CreateRenderScene(ID);
 		Scene* newSc = new Scene(ID, info, collisionInfo);
 		for (auto a : info) delete a;
 		_scenes.push_front(newSc);
@@ -118,8 +123,14 @@ namespace eden {
 	}
 
 	void SceneManager::PopScene() {
+		std::string prevScene = _scenes.front()->GetSceneID();
 		_scenes.front()->SetToDestroy();
 		_scenes.pop_front();
+		std::string currentScene = " ";
+		if(_scenes.size() > 0) currentScene = _scenes.front()->GetSceneID();
+
+		physics_manager::PhysicsManager::Instance()->RemovePhysicsScene(prevScene, currentScene);
+		eden_render::RenderManager::Instance()->RemoveRenderScene(prevScene, currentScene);
 	}
 
 	void SceneManager::PopUntil(const std::string& ID) {
@@ -133,13 +144,13 @@ namespace eden {
 	void SceneManager::Update(float dt) {
 		_scenes.front()->Update(dt);
 
-		auto it = _scenes.end();
+		/*auto it = _scenes.end();
 		it--;
 		for (; it >= _scenes.begin();) {
 			if ((*it)->GetToRender()) (*it)->Render();
 			if (it > _scenes.begin()) --it;
 			else break;
-		}
+		}*/
 
 		for (auto it = _scenes.begin(); it != _scenes.end();) {
 			if ((*it)->GetToDestroy()) {

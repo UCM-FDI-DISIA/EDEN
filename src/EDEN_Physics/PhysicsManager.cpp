@@ -27,11 +27,11 @@
 
 void physics_manager::PhysicsManager::updateSimulation(float deltaTime)
 {
-	_dynamicWorldRef->stepSimulation(deltaTime);
+	_currentPhysicScene->stepSimulation(deltaTime);
 	physics_wrapper::RigidBody* _rb;
 	for (auto ent : _entitiesSet) {
 		_rb = ent->GetComponent<eden_ec::CRigidBody>()->_rb;
-		_dynamicWorldRef->contactTest(_rb->getBulletRigidBody(), *_rb->_collisionCallback);
+		_currentPhysicScene->contactTest(_rb->getBulletRigidBody(), *_rb->_collisionCallback);
 	}
 }
 
@@ -78,27 +78,48 @@ void physics_manager::PhysicsManager::RemoveCollisionToLayer(std::string layerNa
 
 physics_manager::PhysicsManager::PhysicsManager()
 {
-	_worldCollisionConfiguration = new btDefaultCollisionConfiguration();
-	_worldDispatcher = new btCollisionDispatcher(_worldCollisionConfiguration);
-	_worldBroadPhaseInterface = new btDbvtBroadphase();
-	_worldConstraintSolver = new btSequentialImpulseConstraintSolver();
-	_dynamicWorldRef = new btDiscreteDynamicsWorld(_worldDispatcher, _worldBroadPhaseInterface, _worldConstraintSolver, _worldCollisionConfiguration);
+	_defaultGravity = eden_utils::Vector3(0,-10,0);
+
+	
+	_currentPhysicScene = nullptr;
+
 	//Inicializacion de debug drawer
 	//_debugDrawer = new eden_debug::DebugDrawer("Debug1");
 	//_dynamicWorldRef->setDebugDrawer(_debugDrawer);
-	physics_wrapper::RayCast::Instance(_dynamicWorldRef, _debugDrawer);
-	_dynamicWorldRef->setGravity({ 0,-10,0 });
+	//physics_wrapper::RayCast::Instance(_dynamicWorldRef, _debugDrawer);
 }
 
-btDynamicsWorld* physics_manager::PhysicsManager::GetWorld()
+btDynamicsWorld* physics_manager::PhysicsManager::GetWorld(std::string sceneID)
 {
-	return _dynamicWorldRef;
+	auto sceneIt = _physicsScenes.find(sceneID);
+	if (sceneIt != _physicsScenes.end())
+	{
+		return sceneIt->second->GetWorld();
+	}
+	else
+	{
+		// Añadir gestion de errores
+		return nullptr;
+	}
 }
 
-inline eden_utils::Vector3 physics_manager::PhysicsManager::GetGravity()
+inline eden_utils::Vector3 physics_manager::PhysicsManager::GetGravity(std::string sceneID)
 {
-	return eden_utils::Vector3(_dynamicWorldRef->getGravity().x(), _dynamicWorldRef->getGravity().y(),
-		_dynamicWorldRef->getGravity().z());
+	auto sceneIt = _physicsScenes.find(sceneID);
+	if (sceneIt != _physicsScenes.end())
+	{
+		btDynamicsWorld* world = sceneIt->second->GetWorld();
+		return eden_utils::Vector3(world->getGravity().x(), world->getGravity().y(),
+			world->getGravity().z());
+	}
+	else
+	{
+		std::string message = "PhysicsManager ERROR in line 108 could not find scene: " + sceneID
+			+ " \nUsing default gravity.";
+		
+		eden_error::ErrorHandler::Instance()->Warning(message.c_str());
+		return _defaultGravity;
+	}
 }
 
 physics_manager::PhysicsManager::~PhysicsManager()
@@ -107,15 +128,15 @@ physics_manager::PhysicsManager::~PhysicsManager()
 	{
 		delete it.second;
 	}
+	for (auto it : _physicsScenes)
+	{
+		delete it.second;
+	}
 	// Toda la memoria din�mica que hemos generado en la constructora, al intentar llamar a su delete aqu�,  hace que el programa explote. 
 	// Hay que revisarlo
 
 	if (_debugDrawer) delete _debugDrawer;
-	delete _dynamicWorldRef;
-	delete _worldConstraintSolver;
-	delete _worldBroadPhaseInterface;
-	delete _worldDispatcher;
-	delete _worldCollisionConfiguration;
+	
 	//delete _debugDrawer;
 	//if (_physicsDebugDrawer) delete _physicsDebugDrawer;
 
@@ -169,8 +190,60 @@ void physics_manager::PhysicsManager::RemoveAllSceneLayers(std::string sceneID) 
 	}
 }
 
+btDynamicsWorld* physics_manager::InfoPhysicWorld::GetWorld()
+{
+	return _dynamicWorld;
+}
+
+void physics_manager::PhysicsManager::CreatePhysicsScene(std::string sceneID)
+{
+	auto sceneIt = _physicsScenes.find(sceneID);
+	if (sceneIt == _physicsScenes.end())
+	{
+		InfoPhysicWorld* info = new InfoPhysicWorld();
+		_currentPhysicScene = info->GetWorld();
+		_currentPhysicScene->setGravity(btVector3(_defaultGravity.GetX(), _defaultGravity.GetY(), _defaultGravity.GetZ()));
+		_physicsScenes[sceneID] = info;
+	}
+	else
+	{
+		_currentPhysicScene = sceneIt->second->GetWorld();
+	}
+}
+
+void physics_manager::PhysicsManager::RemovePhysicsScene(std::string sceneToRemoveID, std::string newCurrentSceneID)
+{
+	auto sceneIt = _physicsScenes.find(sceneToRemoveID);
+	if (sceneIt != _physicsScenes.end())
+	{
+		delete sceneIt->second;
+		_physicsScenes.erase(sceneIt);
+
+	}
+	CreatePhysicsScene(newCurrentSceneID);
+}
+
 physics_manager::LayerInfo::LayerInfo(std::string name, std::string sceneID) : _sceneID(sceneID), _name(name) {}
 
 bool physics_manager::LayerInfo::operator==(const LayerInfo& other) const {
 	return _sceneID == other._sceneID && _name == other._name;
 }
+
+physics_manager::InfoPhysicWorld::InfoPhysicWorld()
+{
+	_worldCollisionConfiguration = new btDefaultCollisionConfiguration();
+	_worldDispatcher = new btCollisionDispatcher(_worldCollisionConfiguration);
+	_worldBroadPhaseInterface = new btDbvtBroadphase();
+	_worldConstraintSolver = new btSequentialImpulseConstraintSolver();
+	_dynamicWorld = new btDiscreteDynamicsWorld(_worldDispatcher, _worldBroadPhaseInterface, _worldConstraintSolver, _worldCollisionConfiguration);
+}
+
+physics_manager::InfoPhysicWorld::~InfoPhysicWorld()
+{
+	delete _dynamicWorld;
+	delete _worldConstraintSolver;
+	delete _worldBroadPhaseInterface;
+	delete _worldDispatcher;
+	delete _worldCollisionConfiguration;
+}
+

@@ -65,7 +65,7 @@ physics_wrapper::RigidBody::RigidBody(eden_ec::Entity* ent, const ShapeParameter
 		*layerName = DEFAULT_GROUP;
 	}
 
-	physicsManager->GetWorld()->addRigidBody(_rigidBody, layer->GetLayer(), layer->GetCollisionMask());
+	physicsManager->GetWorld(ent->GetSceneID())->addRigidBody(_rigidBody, layer->GetLayer(), layer->GetCollisionMask());
 
 	// Todos los rigidbodies tienen ahora un puntero a la entidad que los contiene
 	_rigidBody->setUserPointer(ent);

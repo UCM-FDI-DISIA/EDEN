@@ -28,19 +28,9 @@ cd ..\Lua\
 del %CHKBUILD%
 rd /s /q .\build\
 
-cd ..\FMOD\
+cd ..\irrKlang\
 del %CHKBUILD%
-
-cd ..\SDL_ttf\
-del %CHKBUILD%
-rd /s /q .\build\
-
-cd ..\SDL_image\
-del %CHKBUILD%
-rd /s /q .\build\
 
 cd ..\..
 
 call CompilacionWinVS.bat
-
-pause

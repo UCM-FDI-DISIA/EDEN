@@ -69,7 +69,7 @@ for ob in objects:
     if rot_output[2] != 0: y = 1 
     if rot_output[3] != 0: z = 1 
     #rootQ = math.sqrt(1- (rot_output[0]*rot_output[0]))
-    dato += "\t\t\t\tRotation = "+ "\""+ str(grados(2*math.acos(rot_output[0]))) + "|" + str(x) + "|" + str(y) + "|" +str(z) + "\","+ "\n"
+    dato += "\t\t\t\tRotation = "+ "\""+ "false|" + str(grados(2*math.acos(rot_output[0]))) + "|" + str(x) + "|" + str(y) + "|" +str(z) + "\","+ "\n"
     
     #file1.write(dato)
     dato += "\t\t\t\tScale = "+ "\""+ str(ob.scale.x) + "|" + str(ob.scale.y) + "|" + str(ob.scale.z)+ "\""

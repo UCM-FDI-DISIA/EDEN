@@ -90,17 +90,22 @@ namespace eden_script {
 		return value;
 	}
 
-	eden_utils::Quaternion ComponentArguments::ToQuaternion(std::string angleValue, std::string xValue, std::string yValue, std::string zValue) {
+	eden_utils::Quaternion ComponentArguments::ToQuaternion(std::string isDegree, std::string angleValue, std::string xValue, std::string yValue, std::string zValue) {
 		float angle = std::stof(angleValue);
+		
+		bool degree = isDegree == std::string("true");
 
-		return eden_utils::Quaternion(angle, ToVector3(xValue, yValue, zValue));
+		if (degree) {
+			return eden_utils::Quaternion(angle, ToVector3(xValue, yValue, zValue));
+		}
+		else {
+			return eden_utils::Quaternion(stof(angleValue), stof(xValue), stof(yValue), stof(zValue));
+		}
 	}
-
 	eden_utils::Quaternion ComponentArguments::GetValueToQuaternion(std::string id) {
-		auto arg = GetKey(id, "Quaternion", 4);
+		auto arg = GetKey(id, "Quaternion", 5);
 
-		//return ToQuaternion(arg[0], arg[1], arg[2], arg[3]);
-		return eden_utils::Quaternion(stof(arg[0]), stof(arg[1]), stof(arg[2]), stof(arg[3]));
+		return ToQuaternion(arg[0], arg[1], arg[2], arg[3], arg[4]);
 	}
 
 	std::vector<eden_utils::Quaternion> ComponentArguments::GetValueToQuaternionVector(std::string id) {
@@ -108,10 +113,12 @@ namespace eden_script {
 
 		int n = (int)arg.size();
 
-		std::vector<eden_utils::Quaternion> value(n / 4);
+		int numArgs = 5;
+
+		std::vector<eden_utils::Quaternion> value(n / numArgs);
 
 		for (int i = 0; i < n; i++) {
-			value[i] = ToQuaternion(arg[i * 4], arg[i * 4 + 1], arg[i * 4 + 2], arg[i*4 +3]);
+			value[i] = ToQuaternion(arg[i * numArgs], arg[i * numArgs + 1], arg[i * numArgs + 2], arg[i* numArgs +3], arg[i * numArgs + 4]);
 		}
 
 		return value;

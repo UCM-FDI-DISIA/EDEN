@@ -105,9 +105,9 @@ int main(int argc, char* argv[]) {
 		//scnManager->PushScene("test_scene");
 		//scnManager->PushScene("test_scene2");		
 		//scnManager->PopScene();
-		/// ------------------------------------------------------------------------------
+		/// ------------------------------------------------------------------------------ 
 		
-		scnManager->PushScene("Prueba");
+		scnManager->PushScene("CrossThePathFinal");
 		master->Loop();
 		master->Close();
 	}

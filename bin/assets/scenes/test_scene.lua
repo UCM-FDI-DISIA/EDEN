@@ -5,7 +5,7 @@ Entity1 = {
             Name = "TRANSFORM", 
             Arguments = {
                 Position = "10|-5|0",
-                Rotation = "-45|0|1|0",
+                Rotation = "true|-45|0|1|0",
                 Scale = "30|30|30"
             }
         },
@@ -81,7 +81,7 @@ Entity2 = {
 			Name = "TRANSFORM",
 			Arguments = {
 				Position = "-700|-10|750",
-                Rotation = "-45|0|1|0",
+                Rotation = "true|-45|0|1|0",
                 Scale = "0.2|0.2|0.2"
 			}
 		},
@@ -159,7 +159,7 @@ Entity6 = {
         {
             Name = "TRANSFORM", 
             Arguments = {
-                Position = "10|-200|0",
+                Position = "true|10|-200|0",
                 Rotation = "0|0|0|0",
                 Scale = "0.2|0.05|0.2"
             }

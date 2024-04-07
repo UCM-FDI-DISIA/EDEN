@@ -124,7 +124,7 @@ namespace eden_script {
 		eden_utils::Vector3 ToVector3(std::string xValue, std::string yValue, std::string zValue);
 
 		/// @brief Conversion de string a Quaternion
-		eden_utils::Quaternion ToQuaternion(std::string angleValue, std::string xValue, std::string yValue, std::string zValue);
+		eden_utils::Quaternion ToQuaternion(std::string isDegree, std::string angleValue, std::string xValue, std::string yValue, std::string zValue);
 
 		/// @brief Devuelve el vector de strings asociado a una id en el mapa _args y comprueba que sea de tamanno 'numArgs'. 
 		/// En caso negativo, se llama a HandleArgumentError()

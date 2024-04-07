@@ -46,18 +46,18 @@ void eden_ec::CTransform::Escalate(eden_utils::Vector3 scale)
 
 eden_utils::Vector3 eden_ec::CTransform::GetForward()
 {
-	std::array<std::array<int, 3>, 3> rotMat = _rotation.GetRotationMatrix();
+	std::array<std::array<float, 3>, 3> rotMat = _rotation.GetRotationMatrix();
 	return eden_utils::Vector3(float(rotMat[0][2]), float(rotMat[1][2]), float(rotMat[2][2]));
 }
 
 eden_utils::Vector3 eden_ec::CTransform::GetUp()
 {
-	std::array<std::array<int, 3>, 3> rotMat = _rotation.GetRotationMatrix();
+	std::array<std::array<float, 3>, 3> rotMat = _rotation.GetRotationMatrix();
 	return eden_utils::Vector3(float(rotMat[0][1]), float(rotMat[1][1]), float(rotMat[2][1]));
 }
 
 eden_utils::Vector3 eden_ec::CTransform::GetRight()
 {
-	std::array<std::array<int, 3>, 3> rotMat = _rotation.GetRotationMatrix();
+	std::array<std::array<float, 3>, 3> rotMat = _rotation.GetRotationMatrix();
 	return eden_utils::Vector3(float(rotMat[0][0]), float(rotMat[1][0]), float(rotMat[2][0]));
 }

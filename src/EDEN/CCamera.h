@@ -55,13 +55,6 @@ namespace eden_ec {
 		/// @param set Booleano indicando si se setea que la relacion de aspecto se recalcule automaticamente.
 		void SetAutoAspectRatio(bool set);
 
-		/// @brief Establece la posicion de la camara
-		/// @param pos Vector3 con la posicion en la que se quiere establecer la camara
-		void SetCameraPosition(eden_utils::Vector3 pos);
-
-		/// @brief Establece la rotacion de la camara
-		/// @param rot Quaternion con la rotacion de la camara
-		void SetCameraRotation(eden_utils::Quaternion rot);
 
 		/// @brief Establece la direccion en la que se quiere que apunte la camara
 		/// @param lookat Vector3 con la direccion en la que se quiere que apunte la camara
@@ -83,6 +76,13 @@ namespace eden_ec {
 
 		/// @brief Transform de la entidad sobre la que se engancha la camara
 		eden_ec::CTransform* _transform = nullptr;
+		/// @brief Establece la posicion de la camara
+		/// @param pos Vector3 con la posicion en la que se quiere establecer la camara
+		void SetCameraPosition(eden_utils::Vector3 pos);
+
+		/// @brief Establece la rotacion de la camara
+		/// @param rot Quaternion con la rotacion de la camara
+		void SetCameraRotation(eden_utils::Quaternion rot);
 	};
 }
 

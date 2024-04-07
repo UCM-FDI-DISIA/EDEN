@@ -169,24 +169,24 @@ eden_utils::Quaternion eden_utils::Quaternion::Identity()
 	return Quaternion(1, eden_utils::Vector3(0, 0, 0));
 }
 
-std::array<std::array<int, 3>, 3> eden_utils::Quaternion::GetRotationMatrix()
+std::array<std::array<float, 3>, 3> eden_utils::Quaternion::GetRotationMatrix()
 {
-	std::array<std::array<int, 3>, 3> rotMat;
+	std::array<std::array<float, 3>, 3> rotMat;
 
 	float fTx = 2.0f * _x, fTy = 2.0f * _y, fTz = 2.0f * _z,
 		fTxw = fTx * _w, fTyw = fTy * _y, fTzw = fTz * _w,
 		fTxx = fTx * _x, fTyx = fTy * _x, fTzx = fTz * _x,
 		fTyy = fTy * _y, fTzy = fTz * _y, fTzz = fTz * _z;
 
-	rotMat[0][0] = int(1.0f - (fTyy + fTzz));
-	rotMat[0][1] = int(fTyx - fTzw);
-	rotMat[0][2] = int(fTzx + fTyw);
-	rotMat[1][0] = int(fTyx + fTzw);
-	rotMat[1][1] = int(1.0f - (fTxx + fTzz));
-	rotMat[1][2] = int(fTzy - fTxw);
-	rotMat[2][0] = int(fTzx - fTyw);
-	rotMat[2][1] = int(fTzy + fTxw);
-	rotMat[2][2] = int(1.0f - (fTxx + fTyy));
+	rotMat[0][0] = float(1.0f - (fTyy + fTzz));
+	rotMat[0][1] = float(fTyx - fTzw);
+	rotMat[0][2] = float(fTzx + fTyw);
+	rotMat[1][0] = float(fTyx + fTzw);
+	rotMat[1][1] = float(1.0f - (fTxx + fTzz));
+	rotMat[1][2] = float(fTzy - fTxw);
+	rotMat[2][0] = float(fTzx - fTyw);
+	rotMat[2][1] = float(fTzy + fTxw);
+	rotMat[2][2] = float(1.0f - (fTxx + fTyy));
 
 	return rotMat;
 }

@@ -112,6 +112,7 @@ void render_wrapper::NodeManager::SetPosition(const eden_utils::Vector3 pos, con
 
 void render_wrapper::NodeManager::SetOrientation(const eden_utils::Quaternion quat, const std::string id) {
 	FindNode(id)->setOrientation(ConvertToOgreQuaternion(quat));
+	//std::cout << FindNode(id)->getOrientation().w << " " << FindNode(id)->getOrientation().x << " " << FindNode(id)->getOrientation().y << " " << FindNode(id)->getOrientation().z << std::endl;
 }
 
 void render_wrapper::NodeManager::ShowBoundingBox(bool active, const std::string id) {

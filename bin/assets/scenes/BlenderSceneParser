@@ -47,7 +47,8 @@ for ob in objects:
         #file1.write(dato)
         
         #ARGUMENTOS DEL COMPONENTE
-        dato += "\t\t\t\tMesh = "+ "\""+ ob.data.name + "\""
+        meshName = ob.data.name.split(".")
+        dato += "\t\t\t\tMesh = "+ "\""+ meshName[0] + "\""
         #file1.write(dato)
         #file1.write("\n" + "\t\t\t}"+"\n" + "\t\t},"+"\n")
         dato += "\n" + "\t\t\t}"+"\n" + "\t\t},"+"\n"
@@ -59,7 +60,17 @@ for ob in objects:
     #ARGUMENTOS DEL COMPONENTE
     dato += "\t\t\t\tPosition = "+ "\""+ str(ob.location.x) + "|" + str(ob.location.y) + "|"+ str(ob.location.z) + "\","+ "\n"
     #file1.write(dato)
-    dato += "\t\t\t\tRotation = "+ "\""+ str(grados(ob.rotation_euler[0])) + "|" + str(grados(ob.rotation_euler[1])) + "|" + str(grados(ob.rotation_euler[2])) + "\","+ "\n"
+    
+    rot_output = ob.rotation_euler.to_quaternion()
+    x = 0
+    y = 0
+    z = 0
+    if rot_output[1] != 0: x = 1 
+    if rot_output[2] != 0: y = 1 
+    if rot_output[3] != 0: z = 1 
+    #rootQ = math.sqrt(1- (rot_output[0]*rot_output[0]))
+    dato += "\t\t\t\tRotation = "+ "\""+ str(grados(2*math.acos(rot_output[0]))) + "|" + str(x) + "|" + str(y) + "|" +str(z) + "\","+ "\n"
+    
     #file1.write(dato)
     dato += "\t\t\t\tScale = "+ "\""+ str(ob.scale.x) + "|" + str(ob.scale.y) + "|" + str(ob.scale.z)+ "\""
     #file1.write(dato)
@@ -82,11 +93,21 @@ for ob in objects:
         
         #ARGUMENTOS DEL COMPONENTE
         
+        contA = 0
+        for prop_name, prop_value in child.items():
+            if isinstance(prop_value, str): contA += 1
+            
+        last_argument = contA -1
+        contA = 0
         for prop_name, prop_value in child.items():
             #Solo se comprueban valores de tipo string
             if isinstance(prop_value, str):
-                dato += "\t\t\t\t" + prop_name + " = \"" + prop_value + "\"" + "\n"
+                if contA == last_argument:
+                 dato += "\t\t\t\t" + prop_name + " = \"" + prop_value + "\"" + "\n"
+                else:
+                    dato += "\t\t\t\t" + prop_name + " = \"" + prop_value + "\"," + "\n"
                 #file1.write(dato)
+                contA += 1
         
         #FIN DE ARGUMENTOS
         if child.name == last_component:
@@ -135,5 +156,7 @@ dato += "\t}\n}"
 #file1.write("\t}\n}")
 
 file1.write(dato)
+
+
 #close the file
 file1.close()

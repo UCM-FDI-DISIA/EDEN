@@ -99,7 +99,7 @@ int main(int argc, char* argv[]) {
 		//Creamos una escena inicial de pueba 
 		eden::SceneManager* scnManager = eden::SceneManager::Instance();
 		//scnManager->PushScene("test_scene");
-		scnManager->PushScene("CrossThePathFinal");
+		scnManager->PushScene("Prueba");
 		master->Loop();
 		master->Close();
 	}

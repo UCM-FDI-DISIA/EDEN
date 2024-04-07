@@ -5,6 +5,7 @@
 #include "Entity.h"
 #include "Transform.h"
 #include "Vector3.h"
+#include <iostream>
 
 const std::string eden_ec::CCamera::_id = "CAMERA";
 
@@ -24,6 +25,8 @@ void eden_ec::CCamera::Start() {
 
 void eden_ec::CCamera::Update(float dt) {
 	SetCameraPosition(_transform->GetPosition());
+	//std::cout << _transform->GetPosition().GetX() << " " << _transform->GetPosition().GetY() << " " << _transform->GetPosition().GetZ() << std::endl;
+	//std::cout << _transform->GetForward().GetX() << " " << _transform->GetForward().GetY() << " " << _transform->GetForward().GetZ() << std::endl;
 	SetCameraRotation(_transform->GetRotation());
 }
 

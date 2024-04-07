@@ -17,6 +17,7 @@
 #include <InputManager.h>
 #include "SceneManager.h"
 #include "Scene.h"
+#include "AudioManager.h"
 
 bool eden::Master::_initialized = false;
 
@@ -46,6 +47,8 @@ eden::Master::~Master()
 	_physicsManager->Close();
 	_scnManager->Close();
 	_inputManager->Close();
+	eden_audio::AudioManager::Instance()->Close();
+
 	if (_renderManager != nullptr && _renderManager->couldInitialize()) {
 
 		//delete _renderManager;

@@ -15,18 +15,18 @@ eden_audio::AudioManager::AudioManager() {
 }
 
 eden_audio::AudioManager::~AudioManager() {
-	_soundMap.clear();
+	for (auto elem : _soundMap) delete elem.second;
 	audio_wrapper::AudioEngine::Instance()->Close();
 }
 
 void eden_audio::AudioManager::LoadResources() {
-	eden_resources::ResourcesManager* resManager = eden_resources::ResourcesManager::Instance();
-	auto ot = resManager->GetRutesAudios().begin();
-	for (auto it = resManager->GetAudios().begin(); it != resManager->GetAudios().end(); it++) {
+	std::set<std::string> audioRoutes = eden_resources::ResourcesManager::Instance()->GetRutesAudios();
+	std::set<std::string> audios = eden_resources::ResourcesManager::Instance()->GetAudios();
+	auto ot = audioRoutes.begin();
+	for (auto it = audios.begin(); it != audios.end(); it++) {
 		_soundMap[*it] = new audio_wrapper::SoundClip(*ot);
 		ot++;
 	}
-	resManager = nullptr;
 }
 
 audio_wrapper::SoundClip* eden_audio::AudioManager::GetSoundClip(std::string filename) const {

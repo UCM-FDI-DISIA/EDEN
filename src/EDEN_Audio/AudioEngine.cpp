@@ -2,8 +2,8 @@
 #include <irrKlang.h>
 
 #include "AudioEngine.h"
-#include <ErrorHandler.h>
-#include <Vector3.h>
+#include "ErrorHandler.h"
+#include "Vector3.h"
 
 audio_wrapper::AudioEngine::AudioEngine() {
 	_soundEngine = irrklang::createIrrKlangDevice();
@@ -19,6 +19,10 @@ irrklang::ISoundSource* audio_wrapper::AudioEngine::CreateSoundSource(std::strin
 	irrklang::ISoundSource* src = _soundEngine->addSoundSourceFromFile(file.c_str(), irrklang::ESM_AUTO_DETECT, true);
 	if (!src) eden_error::ErrorHandler::Instance()->Warning("No se ha podido crear la fuente de audio con nombre: " + file + ".");
 	return src;
+}
+
+void audio_wrapper::AudioEngine::RemoveSoundSource(irrklang::ISoundSource* source) {
+	_soundEngine->removeSoundSource(source);
 }
 
 irrklang::ISound* audio_wrapper::AudioEngine::Play(irrklang::ISoundSource* soundSource, bool loop) {

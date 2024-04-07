@@ -113,6 +113,7 @@ void eden_render::RenderManager::Update()
 
 void eden_render::RenderManager::CloseWindow() {
 	SDL_DestroyWindow(_window.native); // destruye la ventana de SDL
+	SDL_QuitSubSystem(SDL_INIT_EVERYTHING);
 	SDL_Quit(); // y cierra la instancia de SDL
 }
 
@@ -169,8 +170,7 @@ void eden_render::RenderManager::Shutdown()
 	}
 
 	if (_window.native != nullptr) { // si sigue habiendo ventana de SDL
-		SDL_DestroyWindow(_window.native); // la destruye
-		SDL_QuitSubSystem(SDL_INIT_VIDEO);
+		CloseWindow();
 		_window.native = nullptr; // y la apunta a nulo
 	}
 }

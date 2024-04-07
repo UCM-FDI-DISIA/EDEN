@@ -46,9 +46,14 @@
 #include "CRigidBody.h"
 #include "CLuaBehaviour.h"
 
+// Engine Script
 #include <ScriptManager.h>
 #include "SceneManager.h"
 #include "Scene.h"
+
+// Engine Audio
+#include "CAudioEmitter.h"
+#include "CAudioListener.h"
 
 #include "Hito1Prueba.h"
 #include "CAnimator.h"
@@ -73,6 +78,8 @@ void RegisterComponents() {
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CRigidBody>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CMeshRenderer>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CParticleEmitter>();
+	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CAudioEmitter>();
+	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CAudioListener>();
 }
 
 int main(int argc, char* argv[]) {

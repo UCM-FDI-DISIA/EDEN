@@ -15,6 +15,7 @@
 
 #include "UIComponent.h"
 #include "InputManager.h"
+#include "ResourcesManager.h"
 #include "Canvas.h"
 #include "ErrorHandler.h"
 
@@ -31,9 +32,7 @@ eden_ec::UIComponent::UIComponent() {
 	_oHeight = 0;
 	_oWidth = 0;
 	_rHeight = 0;
-	_rWidth = 0;
-	if (!FileExists(_rute + "UI_MATERIALS.material"))
-		eden_error::ErrorHandler::Instance()->Exception("[SPY ERROR]: Failed to load the file with all UI Materials", "UI_MATERIALS.material");
+	_rWidth = 0;	
 }
 
 eden_ec::UIComponent::~UIComponent() {
@@ -75,20 +74,33 @@ void eden_ec::UIComponent::SetRelativePosition(float xPos, float yPos) {
 	_overlayContainer->_setPosition(xPos, yPos);
 }
 
-bool eden_ec::UIComponent::FileExists(std::string const& name) {
-	struct stat buffer;
-	return (stat(name.c_str(), &buffer) == 0);
-}
-
 void eden_ec::UIComponent::SetMaterial(std::string const& matName) {
 
-	if(!FileExists(_rute+matName))
-		eden_error::ErrorHandler::Instance()->Exception("[SPY ERROR]: Failed to load Texture", matName);
-	try {
-		_overlayContainer->setMaterialName(matName);
+	std::string material = matName;
+	eden_resources::ResourcesManager::Resources res = eden_resources::ResourcesManager::Materials;
+	if (material == "default.png") res = eden_resources::ResourcesManager::Default;
+	if (!eden_resources::ResourcesManager::Instance()->FileExist(material, res)) {
+		if (material == "default.png")eden_error::ErrorHandler::Instance()->Exception("[SPY ERROR]:Load Material Error", "Failed to load Texture: " + matName);
+		else { 
+			eden_error::ErrorHandler::Instance()->Warning("No se ha encontrado el material: "+ material);
+			material = "default.png"; 
+			SetMaterial("default.png");
+		}
 	}
-	catch (std::exception e) {
-		eden_error::ErrorHandler::Instance()->Exception("[SPY ERROR]: Failed to load file of Material in UI_MATERIALS folder", matName);
+	else {
+		try {
+			_overlayContainer->setMaterialName(material);
+		}
+		catch (std::exception e) {
+			if (material != "default.png") {
+				eden_error::ErrorHandler::Instance()->Warning("No se ha podido cargar el material: " + material);
+				SetMaterial("default.png");
+			}
+			else {
+				if (material != "default.png")eden_error::ErrorHandler::Instance()->Exception("[SPY ERROR]:Load Material Error", "Failed to load file of Material in UI_MATERIALS folder: " + material);
+				else eden_error::ErrorHandler::Instance()->Exception("[SPY ERROR]:Load Material Error", "Failed to load file of Material in Default.material: " + material);
+			}
+		}
 	}
 }
 
@@ -128,6 +140,10 @@ std::string const& eden_ec::UIComponent::GetMaterialName() {
 void eden_ec::UIComponent::CreateImage(std::string overlayName, float xPos, float yPos,
 	float width, float height, std::string texture,	int depth) 
 {
+	if (!eden_resources::ResourcesManager::Instance()->FileExist("UI_MATERIALS.material", eden_resources::ResourcesManager::Materials))
+		eden_error::ErrorHandler::Instance()->Exception("[SPY ERROR]:Load Material Error", "Failed to load the file with all UI Materials: UI_MATERIALS.material");
+
+
 	_texture = texture;
 	SetOverlayContainer(overlayName, xPos, yPos, width, height);
 	SetMaterial(_texture);
@@ -137,7 +153,7 @@ void eden_ec::UIComponent::CreateImage(std::string overlayName, float xPos, floa
 }
 
 void eden_ec::UIComponent::LoadFont(std::string font) {
-
+	
 	try {
 		Ogre::FontPtr mFont = Ogre::FontManager::getSingleton().create(font, "General");
 		mFont->setParameter("type", "truetype");
@@ -146,16 +162,26 @@ void eden_ec::UIComponent::LoadFont(std::string font) {
 		mFont->setParameter("resolution", "250");
 		mFont->load();
 	}
-	catch (std::exception) {
-		eden_error::ErrorHandler::Instance()->Exception("[SPY ERROR]: Failed to load the font", font);
-	}
+	catch (std::exception e) {
+		if(font == "default.ttf")eden_error::ErrorHandler::Instance()->Exception("[SPY ERROR] Load Font Error:", "Failed to load the font: " + font);
+		else {
+			eden_error::ErrorHandler::Instance()->Warning("Failed to load the font: " + font);
+		}
+ 	}
 }
 
 void eden_ec::UIComponent::CreateText(std::string overlayName, float xPos, float yPos,
 	float tam, std::string text, std::string font, float rColor, float gColor, float bColor, int depth)
 {
 	if (!Ogre::FontManager::getSingleton().resourceExists(font)) {
-		LoadFont(font);
+		if (eden_resources::ResourcesManager::Instance()->FileExist(font, eden_resources::ResourcesManager::Fonts)) {
+			LoadFont(font);
+		}
+		else if (eden_resources::ResourcesManager::Instance()->FileExist("default.ttf", eden_resources::ResourcesManager::Default)) {
+			font = "default.ttf";
+			if (!Ogre::FontManager::getSingleton().resourceExists("default.ttf"))LoadFont("default.ttf");
+		}
+		else eden_error::ErrorHandler::Instance()->Exception("[SPY ERROR] Load Font Error:", "Failed to load the font: default.ttf");
 	}
 	
 	SetOverlayContainer(overlayName, xPos, yPos, tam *text.length(), tam);

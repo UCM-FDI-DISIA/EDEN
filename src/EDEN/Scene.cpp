@@ -4,9 +4,9 @@
 #include "Vector3.h"
 #include "Quaternion.h"
 #include "Scene.h"
-#include <ComponentArguments.h>
-#include <ScriptManager.h>
-#include <PhysicsManager.h>
+#include "ComponentArguments.h"
+#include "ScriptManager.h"
+#include "PhysicsManager.h"
 #include "Entity.h"
 #include "Transform.h"
 namespace eden {

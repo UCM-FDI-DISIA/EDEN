@@ -63,6 +63,9 @@ namespace eden_script {
 		/// @brief Devuelve puntero a LuaManager
 		eden_script::LuaManager* GetLuaManager();
 
+		/// @brief Destructora que destruye la máquina virtual de Lua
+		~ScriptManager() override;
+
 	private:
 
 		/// @brief Puntero al LuaManager
@@ -84,7 +87,6 @@ namespace eden_script {
 		/// @param info Informacion de entidades a rellenar
 		/// @return True = No error | False = Error
 		bool EntityTableToData(std::vector<eden_script::EntityInfo*>& info, std::string tableName);
-
 
 		/// @brief Busca en la tabla de Lua que se encuentre en el indice 'tableIndex' 
 		/// una key 'stringToRead' y devuelve su valor, si lo encuentra.

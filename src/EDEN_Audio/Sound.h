@@ -4,6 +4,8 @@
 
 #include <string>
 
+#include "AudioEmitter.h"
+
 namespace irrklang {
     class ISound;
 }
@@ -17,6 +19,7 @@ namespace audio_wrapper {
     /// Clase que actuara de wrapper de los sonidos de Irrklang. Cada SoundWrapper representara
     /// un sonido distinto, que se generara en el AudioWrapper.
     class Sound {
+        friend class eden_ec::AudioEmitter;
     public:
         /// Constructora por defecto del SoundWrapper
         /// @param file Ruta del archivo con el sonido
@@ -25,31 +28,9 @@ namespace audio_wrapper {
         /// Destructora por defecto de la clase SoundWrapper
         ~Sound();
 
-        /// Reproduce un sonido en un espacio 2D, sin coordenadas, por toda la escena o el espacio.
-        /// @param loop Si el sonido se quiere reproducir en bucle se pondra en true, si no, en false (false por defecto)
-        void Play(bool loop = false);
-
-        /// Reproduce un sonido en un espacio 3D, esto es, necesita unas coordenadas desde donde se quiera
-        /// reproducir, y necesitara de un listener en algun sitio para escucharlo
-        /// @param position Posicion desde la que se reproducira el sonido
-        /// @param loop Si el sonido se quiere reproducir en bucle se pondra en true, si no, en false (false por defecto)
-        void Play(eden_utils::Vector3 position, bool loop = false);
-
-        /// Pausa el sonido
-        void Pause();
-
-        /// Reanuda el sonido
-        void Resume();
-
         /// Devuelve si el sonido esta o no pausado
         /// @return Booleano que indica si el sonido esta o no pausado
         bool IsPaused() const;
-
-        /// Para la ejecucion del sonido
-        void Stop();
-
-        /// Reinicia el sonido desde el principio, tanto en 2D como en 3D de manera automatica
-        void Restart();
 
         /// Devuelve si el sonido ha terminado o no
         /// @return Booleano que indica si el sonido ha terminado o no
@@ -95,7 +76,33 @@ namespace audio_wrapper {
         /// @brief Devuelve el pitch del sonido
         /// @return Valor en punto flotante del pitch del sonido
         float GetPitch() const;
+
+        /// @brief Devuelve el nombre del archivo de sonido
+        /// @return String con el nombre del archivo de sonido
+        std::string GetFilename() const;
     private:
+        /// Reproduce un sonido en un espacio 2D, sin coordenadas, por toda la escena o el espacio.
+        /// @param loop Si el sonido se quiere reproducir en bucle se pondra en true, si no, en false (false por defecto)
+        void Play(bool loop = false);
+
+        /// Reproduce un sonido en un espacio 3D, esto es, necesita unas coordenadas desde donde se quiera
+        /// reproducir, y necesitara de un listener en algun sitio para escucharlo
+        /// @param position Posicion desde la que se reproducira el sonido
+        /// @param loop Si el sonido se quiere reproducir en bucle se pondra en true, si no, en false (false por defecto)
+        void Play(eden_utils::Vector3 position, bool loop = false);
+
+        /// Pausa el sonido
+        void Pause();
+
+        /// Reanuda el sonido
+        void Resume();
+
+        /// Para la ejecucion del sonido
+        void Stop();
+
+        /// Reinicia el sonido desde el principio, tanto en 2D como en 3D de manera automatica
+        void Restart();
+
         // Clip de sonido con la fuente
         audio_wrapper::SoundClip* _clip = nullptr;
 

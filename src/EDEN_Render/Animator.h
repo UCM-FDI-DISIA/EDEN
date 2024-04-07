@@ -65,13 +65,13 @@ namespace render_wrapper {
 		Ogre::AnimationState* FindAnim(std::string ID);
 
 		/// @brief Animacion actual
-		Ogre::AnimationState* _currentAnim;
+		Ogre::AnimationState* _currentAnim = nullptr;
 		/// @brief Identificador de la animacion actual
-		std::string _currentAnimID;
+		std::string _currentAnimID = " ";
 		/// @brief Mapa de animaciones
 		std::unordered_map<std::string, std::pair<Ogre::AnimationState*, std::string>> _anims;
 		/// @brief Referencia al wrapper de MeshRenderer
-		render_wrapper::MeshRenderer* _meshRend;
+		render_wrapper::MeshRenderer* _meshRend = nullptr;
 	};
 }
 

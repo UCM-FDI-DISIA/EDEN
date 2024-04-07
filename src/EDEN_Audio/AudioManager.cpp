@@ -5,6 +5,7 @@
 #include "SoundClip.h"
 #include "AudioEngine.h"
 #include "ErrorHandler.h"
+#include "ResourcesManager.h"
 
 eden_audio::AudioManager::AudioManager() {
 	//Inicializamos el motor de sonido en caso de que no se haya creado
@@ -15,12 +16,17 @@ eden_audio::AudioManager::AudioManager() {
 
 eden_audio::AudioManager::~AudioManager() {
 	_soundMap.clear();
+	audio_wrapper::AudioEngine::Instance()->Close();
 }
 
 void eden_audio::AudioManager::LoadResources() {
-	for (const auto& entry : std::filesystem::directory_iterator(AUDIO_ROUTE)) {
-		_soundMap[entry.path().filename().string()] = new audio_wrapper::SoundClip(entry.path().string());
+	eden_resources::ResourcesManager* resManager = eden_resources::ResourcesManager::Instance();
+	auto ot = resManager->GetRutesAudios().begin();
+	for (auto it = resManager->GetAudios().begin(); it != resManager->GetAudios().end(); it++) {
+		_soundMap[*it] = new audio_wrapper::SoundClip(*ot);
+		ot++;
 	}
+	resManager = nullptr;
 }
 
 audio_wrapper::SoundClip* eden_audio::AudioManager::GetSoundClip(std::string filename) const {

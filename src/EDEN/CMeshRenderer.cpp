@@ -4,6 +4,7 @@
 #include <ComponentArguments.h>
 #include <MeshRenderer.h>
 #include <NodeManager.h>
+#include "ResourcesManager.h"
 #include "Entity.h"
 #include "Vector3.h"
 
@@ -24,11 +25,16 @@ void eden_ec::CMeshRenderer::Init(eden_script::ComponentArguments* args)
 	
 	_renderWrapper = new render_wrapper::MeshRenderer(_ent->GetEntityID(), _mesh);
 	eden_render::RenderManager::Instance()->addRenderEntity(_ent);
+	
+	//SetMaterial("test");
 }
 
 void eden_ec::CMeshRenderer::SetMaterial(const std::string material)
 {
-	_renderWrapper->SetMaterial(material);
+	if(eden_resources::ResourcesManager::Instance()->FileExist(material,eden_resources::ResourcesManager::Materials))
+		_renderWrapper->SetMaterial(material);
+	else if (eden_resources::ResourcesManager::Instance()->FileExist("default.png", eden_resources::ResourcesManager::Default))
+		_renderWrapper->SetMaterial("default.png");
 }
 
 void eden_ec::CMeshRenderer::SetInvisible(bool visibility)

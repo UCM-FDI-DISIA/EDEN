@@ -7,7 +7,7 @@
 COMPILEDIR=../../src
 BUILDDIR=./build
 FILE=chkbuild.EDENBUILD
-OGREBUILDVER=1.2
+OGREBUILDVER=1.3
 COMPILE=1
 BINFOLDER=./../../../../bin
 
@@ -48,6 +48,8 @@ then
     echo "[General]" >> "$BINFOLDER"/resources.cfg
     echo "FileSystem=./assets/" >> "$BINFOLDER"/resources.cfg
     echo "FileSystem=./assets/mesh/" >> "$BINFOLDER"/resources.cfg
+	echo "FileSystem=./assets/fonts/" >> "$BINFOLDER"/resources.cfg
+	echo "FileSystem=./assets/default" >> "$BINFOLDER"/resources.cfg
 
     cd ../..
 

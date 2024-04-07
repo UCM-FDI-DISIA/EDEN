@@ -17,6 +17,7 @@ eden_script::ScriptManager::ScriptManager() {
 	_luaManager = new LuaManager();
 	// Inicializamos la máquina virtual para correr Lua
 	_l = luaL_newstate();
+
 	// Abrimos las librerías básicas de Lua
 	luaL_openlibs(_l);
 
@@ -25,6 +26,11 @@ eden_script::ScriptManager::ScriptManager() {
 
 	//Inicializamos el luaManager
 	_luaManager->InitLua(_l);
+}
+
+eden_script::ScriptManager::~ScriptManager() {
+	lua_close(_l);
+	delete _luaManager;
 }
 
 eden_script::LuaManager* eden_script::ScriptManager::GetLuaManager() {

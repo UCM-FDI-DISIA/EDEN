@@ -7,7 +7,7 @@ SETLOCAL ENABLEDELAYEDEXPANSION
 set COMPILEDIR=..\..\src
 set BUILDDIR=.\build
 set DLLFOLDERS=.\..\..\..\..\bin
-set OGREBUILDVER=1.3
+set OGREBUILDVER=1.4
 set COMPILE=1
 set PLATFORM=x64
 
@@ -57,6 +57,8 @@ if !COMPILE! equ 1 (
     echo [General] >> %DLLFOLDERS%\resources.cfg
     echo FileSystem=./assets/ >> %DLLFOLDERS%\resources.cfg
     echo FileSystem=./assets/mesh/ >> %DLLFOLDERS%\resources.cfg
+	echo FileSystem=./assets/fonts/ >> %DLLFOLDERS%\resources.cfg
+	echo FileSystem=./assets/default >> %DLLFOLDERS%\resources.cfg
 
     cd ..\..
     echo OGRE compilado

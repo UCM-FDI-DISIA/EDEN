@@ -158,13 +158,6 @@ namespace eden_ec {
 		Ogre::OverlayContainer* _overlayContainer = nullptr;
 		Ogre::TextAreaOverlayElement* _text;
 
-		/// @brief Ruta de la carpeta de los materiales 
-		std::string _rute = "assets/mesh/";
-
-		/// @Método que comprueba si existe un archivo concreto
-		/// @param name Nombre del archivo (ruta)
-		bool FileExists(std::string const& name);
-
 		/// @brief Método encargado de crear el overlayContainer
 		void SetOverlayContainer(std::string overlayName, float xPos, float yPos,float width, float height);
 		

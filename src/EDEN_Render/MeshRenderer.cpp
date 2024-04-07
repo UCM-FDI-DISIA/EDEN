@@ -24,6 +24,11 @@ render_wrapper::MeshRenderer::MeshRenderer(const std::string entityID, const std
 	render_wrapper::NodeManager::Instance()->Attach(GetRenderObject(), entityID);
 }
 
+render_wrapper::MeshRenderer::~MeshRenderer() {
+	_ent->getParentSceneNode()->detachObject(_ent);
+	getSceneManager()->destroyEntity(_ent);
+}
+
 void render_wrapper::MeshRenderer::SetMaterial(const std::string material)
 {
 	_ent->setMaterialName(material);

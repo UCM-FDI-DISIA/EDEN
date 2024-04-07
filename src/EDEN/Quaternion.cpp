@@ -19,7 +19,7 @@ eden_utils::Quaternion::Quaternion(float w, float x, float y, float z) {
 
 eden_utils::Quaternion::Quaternion(float angle, Vector3 axis)
 {
-	angle = (angle * 2.0f * float(PI)) / 180.0f;
+	angle = (angle * float(PI)) / 180.0f;
 	_w = float(cos(angle / 2.0f));
 	_x = axis.GetX() * float(sin(angle / 2.0f));
 	_y = axis.GetY() * float(sin(angle / 2.0f));

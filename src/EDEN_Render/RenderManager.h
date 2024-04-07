@@ -33,7 +33,7 @@ namespace eden
 	class SceneManager;
 }
 
-class SDL_Window;
+struct SDL_Window;
 typedef SDL_Window NativeWindowType;
 
 struct NativeWindowPair
@@ -74,7 +74,7 @@ namespace eden_render
 		/// @brief Ejecuta un ciclo de renderizado (ventana y raÃ¯Â¿Â½z)
 		void Update();
 
-		/// @brief Comprueba si ha habido errores en la inicialización
+		/// @brief Comprueba si ha habido errores en la inicializaciï¿½n
 		/// @return True si se ha inicializado bien, False en caso contrario
 		inline bool couldInitialize() { return _initialized; }
 
@@ -85,16 +85,16 @@ namespace eden_render
 		/// @param sceneID Identificador de la escena
 		void UpdatePositions(std::string sceneID);
 
-		/// @brief Añade una entidad que tenga componentes de renderizado (CMeshRenderer, CCamera, ...) a una escena en concreto
-		/// para actualizar su posición
-		/// @param ent Entidad cuya posición va a actualizarse
+		/// @brief Aï¿½ade una entidad que tenga componentes de renderizado (CMeshRenderer, CCamera, ...) a una escena en concreto
+		/// para actualizar su posiciï¿½n
+		/// @param ent Entidad cuya posiciï¿½n va a actualizarse
 		void addRenderEntity(eden_ec::Entity* ent);
 
-		/// @brief Quita una entidad de una escena para dejar de actualizar su posición
+		/// @brief Quita una entidad de una escena para dejar de actualizar su posiciï¿½n
 		/// @param ent Entidad que se va a quitar
 		void removeRenderEntity(eden_ec::Entity* ent);
 
-		/// @brief Función que debería llamarse en el momento en el que la ventana cambia de tamaño
+		/// @brief Funciï¿½n que deberï¿½a llamarse en el momento en el que la ventana cambia de tamaï¿½o
 		void ResizedWindow();
 
 		render_wrapper::CameraWrapper* GetCamera(eden_ec::Entity* ent);
@@ -138,7 +138,7 @@ namespace eden_render
 		/// @brief Destructora de la ventana de SDL
 		void CloseWindow();
 
-		/// @brief Destruye la raíz y llama posteriormente al método Shutdown
+		/// @brief Destruye la raï¿½z y llama posteriormente al mï¿½todo Shutdown
 		void CloseManager();
 
 		/// @brief CreaciÃ¯Â¿Â½n de la ventana de Ogre y SDL
@@ -209,7 +209,7 @@ namespace eden_render
 		~InfoRenderWorld();
 	private:
 		Ogre::SceneManager* _renderScene;
-		/// @brief Conjunto de entidades para actualizar su posición
+		/// @brief Conjunto de entidades para actualizar su posiciï¿½n
 		std::unordered_set<eden_ec::Entity*> _entities;
 		Ogre::OverlaySystem* _overlaySystem;
 		Ogre::Root* _root;

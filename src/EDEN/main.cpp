@@ -49,44 +49,41 @@ int main() {
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CRigidBody>();
 
 
-	try
-	{
-		eden::Master* master = eden::Master::Instance();
-		//Creamos una escena inicial de pueba 
-		eden::SceneManager* scnManager = eden::SceneManager::Instance();
-		scnManager->PushScene("test_scene");
-		master->Loop();
-		delete scnManager;
-		delete master;
+
+
+#ifdef _DEBUG
+	HMODULE game = LoadLibraryA("game_d.dll");
+#else
+	HMODULE game = LoadLibraryA("game.dll");
+#endif
+	if (game == NULL) { // mejor con assert
+		std::cerr << "no se ha cargado la dll correctamente" << std::endl;
 	}
 
-	catch (std::exception e) {}
+	else {
+		typedef void (*SceneFunc)();
+		// SaludoFunc saludo = (SaludoFunc)(GetProcAddress(game, "saludo"));
+		SceneFunc loadScene = reinterpret_cast<SceneFunc>(GetProcAddress(game, "saludo"));
 
-//#ifdef _DEBUG
-//	HMODULE game = LoadLibraryA("game_d.dll");
-//#else
-//	HMODULE game = LoadLibraryA("game.dll");
-//#endif
-//	if (game == NULL) { // mejor con assert
-//		std::cerr << "no se ha cargado la dll correctamente" << std::endl;
-//	}
-//
-//	else {
-//		typedef std::string (*SaludoFunc)();
-//		// SaludoFunc saludo = (SaludoFunc)(GetProcAddress(game, "saludo"));
-//		SaludoFunc saludo = reinterpret_cast<SaludoFunc>(GetProcAddress(game, "saludo"));
-//
-//		if (saludo == NULL) {
-//			std::cerr << "no existe el metodo saludo de la dll" << std::endl;
-//		}
-//
-//		else {
-//			std::cout << saludo() << std::endl;
-//
-//		}
-//
-//		FreeLibrary(game);
-//	}
+		if (loadScene == NULL) {
+			std::cerr << "no existe el metodo saludo de la dll" << std::endl;
+		}
+
+		else {
+			try
+			{
+				eden::Master* master = eden::Master::Instance();
+				//Creamos una escena inicial de pueba 
+				loadScene();
+				master->Loop();
+				delete master;
+			}
+
+			catch (std::exception e) {}
+		}
+
+		FreeLibrary(game);
+	}
 	
 	return 0;
 }

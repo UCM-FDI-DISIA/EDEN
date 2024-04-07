@@ -99,7 +99,8 @@ namespace eden_script {
 	eden_utils::Quaternion ComponentArguments::GetValueToQuaternion(std::string id) {
 		auto arg = GetKey(id, "Quaternion", 4);
 
-		return ToQuaternion(arg[0], arg[1], arg[2], arg[3]);
+		//return ToQuaternion(arg[0], arg[1], arg[2], arg[3]);
+		return eden_utils::Quaternion(stof(arg[0]), stof(arg[1]), stof(arg[2]), stof(arg[3]));
 	}
 
 	std::vector<eden_utils::Quaternion> ComponentArguments::GetValueToQuaternionVector(std::string id) {

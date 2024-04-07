@@ -6,7 +6,7 @@ var classeden__utils_1_1_quaternion =
     [ "~Quaternion", "classeden__utils_1_1_quaternion.html#acbada31935ca84afccab2cf62bc45f6d", null ],
     [ "Complex", "classeden__utils_1_1_quaternion.html#ad44101419ed36bcdac5777cca7788933", null ],
     [ "Conjugate", "classeden__utils_1_1_quaternion.html#aace0907f5e747b6fd74156c120982a54", null ],
-    [ "GetRotationMatrix", "classeden__utils_1_1_quaternion.html#a8151bd181d70b57564588948621ef8e7", null ],
+    [ "GetRotationMatrix", "classeden__utils_1_1_quaternion.html#a73eb199dc2cb6f9eecae6f0ed921376b", null ],
     [ "Inverse", "classeden__utils_1_1_quaternion.html#a361aa04343a42d19c0bfaa7dbb7228ac", null ],
     [ "Normal", "classeden__utils_1_1_quaternion.html#a9c6b6bfa01f29cc256b9ac2d7acf6a9b", null ],
     [ "Normalized", "classeden__utils_1_1_quaternion.html#a01228b41b9f6ae4923bd121fbbf39df5", null ],

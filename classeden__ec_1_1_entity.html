@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">EDEN<span id="projectnumber">&#160;v.0403</span>
+   <div id="projectname">EDEN<span id="projectnumber">&#160;v.0804</span>
    </div>
   </td>
  </tr>
@@ -93,12 +93,13 @@ $(function(){initNavTree('classeden__ec_1_1_entity.html',''); initResizable(); }
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#friends">Friends</a> &#124;
 <a href="classeden__ec_1_1_entity-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">eden_ec::Entity Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Clase que define las Entidades de nuestro juego como contenedores de Componentes, que definirán el comportamiento y las distinguirán de otras entidades. Se encarga de gestionar sus componentes, haciendo las llamdas pertinentes a los mismo.  
+<p>Clase que define las Entidades de nuestro juego como contenedores de Componentes, que definirï¿½n el comportamiento y las distinguirï¿½n de otras entidades. Se encarga de gestionar sus componentes, haciendo las llamdas pertinentes a los mismo.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_entity_8h_source.html">Entity.h</a>&gt;</code></p>
@@ -106,11 +107,11 @@ $(function(){initNavTree('classeden__ec_1_1_entity.html',''); initResizable(); }
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ab134cf6877e9f9dbeb3e7a88e5e939d7" id="r_ab134cf6877e9f9dbeb3e7a88e5e939d7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab134cf6877e9f9dbeb3e7a88e5e939d7">Entity</a> ()=default</td></tr>
-<tr class="memdesc:ab134cf6877e9f9dbeb3e7a88e5e939d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construye una entidad genérica.  <br /></td></tr>
+<tr class="memdesc:ab134cf6877e9f9dbeb3e7a88e5e939d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construye una entidad genï¿½rica.  <br /></td></tr>
 <tr class="separator:ab134cf6877e9f9dbeb3e7a88e5e939d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a178f1a67c927ac95c8b0d6569819c2d4" id="r_a178f1a67c927ac95c8b0d6569819c2d4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a178f1a67c927ac95c8b0d6569819c2d4">Entity</a> (std::string id)</td></tr>
-<tr class="memdesc:a178f1a67c927ac95c8b0d6569819c2d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construye una entidad genérica y le da nombre.  <br /></td></tr>
-<tr class="separator:a178f1a67c927ac95c8b0d6569819c2d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5a828ed768e3e55dd725b3140919823" id="r_af5a828ed768e3e55dd725b3140919823"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af5a828ed768e3e55dd725b3140919823">Entity</a> (std::string id, std::string sceneID)</td></tr>
+<tr class="memdesc:af5a828ed768e3e55dd725b3140919823"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construye una entidad genï¿½rica y le da nombre.  <br /></td></tr>
+<tr class="separator:af5a828ed768e3e55dd725b3140919823"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a214cff128dfc262a7a010d9d0a0893e4" id="r_a214cff128dfc262a7a010d9d0a0893e4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a214cff128dfc262a7a010d9d0a0893e4">~Entity</a> ()</td></tr>
 <tr class="memdesc:a214cff128dfc262a7a010d9d0a0893e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destruye la entidad y sus componentes asociados.  <br /></td></tr>
 <tr class="separator:a214cff128dfc262a7a010d9d0a0893e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -118,13 +119,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a8f09a55eaa3692f3ba8bb8f7783ae2ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve el nombre identificativo de la entidad.  <br /></td></tr>
 <tr class="separator:a8f09a55eaa3692f3ba8bb8f7783ae2ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a08425dab095dc8520fe5fde32a6cbf96" id="r_a08425dab095dc8520fe5fde32a6cbf96"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a08425dab095dc8520fe5fde32a6cbf96">IsAlive</a> () const</td></tr>
-<tr class="memdesc:a08425dab095dc8520fe5fde32a6cbf96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dice si la entidad está o no viva.  <br /></td></tr>
+<tr class="memdesc:a08425dab095dc8520fe5fde32a6cbf96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dice si la entidad estï¿½ o no viva.  <br /></td></tr>
 <tr class="separator:a08425dab095dc8520fe5fde32a6cbf96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6a0165185c341a66804f9e648a42686" id="r_ae6a0165185c341a66804f9e648a42686"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae6a0165185c341a66804f9e648a42686">SetAlive</a> (bool alive)</td></tr>
 <tr class="memdesc:ae6a0165185c341a66804f9e648a42686"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permite cambiar el estado de vida de una entidad.  <br /></td></tr>
 <tr class="separator:ae6a0165185c341a66804f9e648a42686"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd0908c4c8baf055ada7ca0aedd345bd" id="r_acd0908c4c8baf055ada7ca0aedd345bd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acd0908c4c8baf055ada7ca0aedd345bd">IsActive</a> () const</td></tr>
-<tr class="memdesc:acd0908c4c8baf055ada7ca0aedd345bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método que dice si la entidad está activa o no.  <br /></td></tr>
+<tr class="memdesc:acd0908c4c8baf055ada7ca0aedd345bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mï¿½todo que dice si la entidad estï¿½ activa o no.  <br /></td></tr>
 <tr class="separator:acd0908c4c8baf055ada7ca0aedd345bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a905d592cb49b9acf7395640231b9c9d6" id="r_a905d592cb49b9acf7395640231b9c9d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a905d592cb49b9acf7395640231b9c9d6">SetActive</a> (bool active)</td></tr>
 <tr class="memdesc:a905d592cb49b9acf7395640231b9c9d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permite cambiar el estado de una entidad entre activa e inactiva.  <br /></td></tr>
@@ -134,17 +135,23 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ab232ac16ced29b6ec091b4dac69498d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a063af5aad31f55d96ae7aebce3924b16" id="r_a063af5aad31f55d96ae7aebce3924b16"><td class="memTemplParams" colspan="2">template&lt;typename T , typename... Ts&gt; </td></tr>
 <tr class="memitem:a063af5aad31f55d96ae7aebce3924b16"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classeden__ec_1_1_component.html">Component</a> *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a063af5aad31f55d96ae7aebce3924b16">AddComponent</a> (Ts &amp;&amp;... args)</td></tr>
-<tr class="memdesc:a063af5aad31f55d96ae7aebce3924b16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Añade un componente a la entidad dado su tipo y los argumentos que requiera el componente dado.  <br /></td></tr>
+<tr class="memdesc:a063af5aad31f55d96ae7aebce3924b16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aï¿½ade un componente a la entidad dado su tipo y los argumentos que requiera el componente dado.  <br /></td></tr>
 <tr class="separator:a063af5aad31f55d96ae7aebce3924b16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a638d6e7ec52766ec921fb193ea95626f" id="r_a638d6e7ec52766ec921fb193ea95626f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classeden__ec_1_1_component.html">Component</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a638d6e7ec52766ec921fb193ea95626f">AddComponentByRead</a> (<a class="el" href="classeden__script_1_1_component_arguments.html">eden_script::ComponentArguments</a> *info)</td></tr>
-<tr class="memdesc:a638d6e7ec52766ec921fb193ea95626f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Añade un componente según la información leída en un mapa.  <br /></td></tr>
+<tr class="memdesc:a638d6e7ec52766ec921fb193ea95626f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aï¿½ade un componente segï¿½n la informaciï¿½n leï¿½da en un mapa.  <br /></td></tr>
 <tr class="separator:a638d6e7ec52766ec921fb193ea95626f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a76608bfcae65b4ccbba3011170898610" id="r_a76608bfcae65b4ccbba3011170898610"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a76608bfcae65b4ccbba3011170898610">AddComponents</a> (<a class="el" href="structeden__script_1_1_entity_info.html">eden_script::EntityInfo</a> *info)</td></tr>
 <tr class="memdesc:a76608bfcae65b4ccbba3011170898610"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crea todos los componentes de la entidad.  <br /></td></tr>
 <tr class="separator:a76608bfcae65b4ccbba3011170898610"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ea10bebde598e822641ad8293267955" id="r_a5ea10bebde598e822641ad8293267955"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5ea10bebde598e822641ad8293267955">StartComponents</a> ()</td></tr>
+<tr class="memdesc:a5ea10bebde598e822641ad8293267955"><td class="mdescLeft">&#160;</td><td class="mdescRight">Llama al mï¿½todo Start de todos los componentes Se llama cuando todos los componentes estï¿½n creados.  <br /></td></tr>
+<tr class="separator:a5ea10bebde598e822641ad8293267955"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a091c8d88d16ca28778a5f7a375abc597" id="r_a091c8d88d16ca28778a5f7a375abc597"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classeden__ec_1_1_component.html">Component</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a091c8d88d16ca28778a5f7a375abc597">GetComponent</a> (std::string id)</td></tr>
 <tr class="memdesc:a091c8d88d16ca28778a5f7a375abc597"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nos devuelve un componente asociado a una entidad dada su ID.  <br /></td></tr>
 <tr class="separator:a091c8d88d16ca28778a5f7a375abc597"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f19c03e128e9ca50554695bbc2fb36c" id="r_a3f19c03e128e9ca50554695bbc2fb36c"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3f19c03e128e9ca50554695bbc2fb36c">GetSceneID</a> ()</td></tr>
+<tr class="memdesc:a3f19c03e128e9ca50554695bbc2fb36c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve el ID de la escena a la que pertenece.  <br /></td></tr>
+<tr class="separator:a3f19c03e128e9ca50554695bbc2fb36c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acc2e70146fae08209b755314ee2652e8" id="r_acc2e70146fae08209b755314ee2652e8"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:acc2e70146fae08209b755314ee2652e8"><td class="memTemplItemLeft" align="right" valign="top">T *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#acc2e70146fae08209b755314ee2652e8">GetComponent</a> ()</td></tr>
 <tr class="memdesc:acc2e70146fae08209b755314ee2652e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nos devuelve un componente asociado a una entidad dado su tipo.  <br /></td></tr>
@@ -162,9 +169,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad2e510bf1df8a3c5fc7080e46f9758b3" id="r_ad2e510bf1df8a3c5fc7080e46f9758b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad2e510bf1df8a3c5fc7080e46f9758b3">HandleInput</a> ()</td></tr>
 <tr class="memdesc:ad2e510bf1df8a3c5fc7080e46f9758b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Llama al handleInput de todos los componentes de una entidad.  <br /></td></tr>
 <tr class="separator:ad2e510bf1df8a3c5fc7080e46f9758b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:a3e070e2ae7633ec504a0130a12ae6c3d" id="r_a3e070e2ae7633ec504a0130a12ae6c3d"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3e070e2ae7633ec504a0130a12ae6c3d">eden_script::LuaManager</a></td></tr>
+<tr class="separator:a3e070e2ae7633ec504a0130a12ae6c3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Clase que define las Entidades de nuestro juego como contenedores de Componentes, que definirán el comportamiento y las distinguirán de otras entidades. Se encarga de gestionar sus componentes, haciendo las llamdas pertinentes a los mismo. </p>
+<div class="textblock"><p>Clase que define las Entidades de nuestro juego como contenedores de Componentes, que definirï¿½n el comportamiento y las distinguirï¿½n de otras entidades. Se encarga de gestionar sus componentes, haciendo las llamdas pertinentes a los mismo. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ab134cf6877e9f9dbeb3e7a88e5e939d7" name="ab134cf6877e9f9dbeb3e7a88e5e939d7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab134cf6877e9f9dbeb3e7a88e5e939d7">&#9670;&#160;</a></span>Entity() <span class="overload">[1/2]</span></h2>
@@ -189,12 +201,12 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Construye una entidad genérica. </p>
+<p>Construye una entidad genï¿½rica. </p>
 
 </div>
 </div>
-<a id="a178f1a67c927ac95c8b0d6569819c2d4" name="a178f1a67c927ac95c8b0d6569819c2d4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a178f1a67c927ac95c8b0d6569819c2d4">&#9670;&#160;</a></span>Entity() <span class="overload">[2/2]</span></h2>
+<a id="af5a828ed768e3e55dd725b3140919823" name="af5a828ed768e3e55dd725b3140919823"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5a828ed768e3e55dd725b3140919823">&#9670;&#160;</a></span>Entity() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -205,8 +217,12 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">eden_ec::Entity::Entity </td>
           <td>(</td>
-          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>id</em></span></td><td>)</td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>id</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>sceneID</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -216,7 +232,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Construye una entidad genérica y le da nombre. </p>
+<p>Construye una entidad genï¿½rica y le da nombre. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">id</td><td>El nombre que queremos darle a la entidad </td></tr>
@@ -271,10 +287,10 @@ template&lt;typename T , typename... Ts&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Añade un componente a la entidad dado su tipo y los argumentos que requiera el componente dado. </p>
+<p>Aï¿½ade un componente a la entidad dado su tipo y los argumentos que requiera el componente dado. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">...Ts</td><td>Tipos de los argumentos que se requieren para la creación del componente </td></tr>
+    <tr><td class="paramname">...Ts</td><td>Tipos de los argumentos que se requieren para la creaciï¿½n del componente </td></tr>
     <tr><td class="paramname">T</td><td>Tipo del componente </td></tr>
   </table>
   </dd>
@@ -304,10 +320,10 @@ template&lt;typename T , typename... Ts&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Añade un componente según la información leída en un mapa. </p>
+<p>Aï¿½ade un componente segï¿½n la informaciï¿½n leï¿½da en un mapa. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">info</td><td>Información leída desde un mapa .lua. </td></tr>
+    <tr><td class="paramname">info</td><td>Informaciï¿½n leï¿½da desde un mapa .lua. </td></tr>
   </table>
   </dd>
 </dl>
@@ -332,7 +348,7 @@ template&lt;typename T , typename... Ts&gt; </div>
 <p>Crea todos los componentes de la entidad. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">info</td><td>Struct que da valor al nombre y a los componentes de una entidad. Se construye a través de la lectura de archivos .lua. Ver el proyecto de EDEN_Script para más información (<a class="el" href="_script_manager_8h.html">ScriptManager.h</a>) </td></tr>
+    <tr><td class="paramname">info</td><td>Struct que da valor al nombre y a los componentes de una entidad. Se construye a travï¿½s de la lectura de archivos .lua. Ver el proyecto de EDEN_Script para mï¿½s informaciï¿½n (<a class="el" href="_script_manager_8h.html">ScriptManager.h</a>) </td></tr>
   </table>
   </dd>
 </dl>
@@ -425,6 +441,26 @@ template&lt;typename T &gt; </div>
 </div><div class="memdoc">
 
 <p>Devuelve el nombre identificativo de la entidad. </p>
+
+</div>
+</div>
+<a id="a3f19c03e128e9ca50554695bbc2fb36c" name="a3f19c03e128e9ca50554695bbc2fb36c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f19c03e128e9ca50554695bbc2fb36c">&#9670;&#160;</a></span>GetSceneID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string eden_ec::Entity::GetSceneID </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Devuelve el ID de la escena a la que pertenece. </p>
+<dl class="section return"><dt>Returns</dt><dd>Devuelve el ID de la escena a la que pertenece </dd></dl>
 
 </div>
 </div>
@@ -526,7 +562,7 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Método que dice si la entidad está activa o no. </p>
+<p>Mï¿½todo que dice si la entidad estï¿½ activa o no. </p>
 <dl class="section return"><dt>Returns</dt><dd>True = Activa | False = Inactiva </dd></dl>
 
 </div>
@@ -554,7 +590,7 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Dice si la entidad está o no viva. </p>
+<p>Dice si la entidad estï¿½ o no viva. </p>
 <dl class="section return"><dt>Returns</dt><dd>True = Viva | False = Muerta </dd></dl>
 
 </div>
@@ -651,10 +687,29 @@ template&lt;typename T &gt; </div>
 <p>Permite cambiar el estado de vida de una entidad. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">alive</td><td>Si se pasa 'true' la entidad estará viva. Si se pasa 'false', la entidad morirá y el siguiente frame no existirá </td></tr>
+    <tr><td class="paramname">alive</td><td>Si se pasa 'true' la entidad estarï¿½ viva. Si se pasa 'false', la entidad morirï¿½ y el siguiente frame no existirï¿½ </td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a5ea10bebde598e822641ad8293267955" name="a5ea10bebde598e822641ad8293267955"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ea10bebde598e822641ad8293267955">&#9670;&#160;</a></span>StartComponents()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void eden_ec::Entity::StartComponents </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Llama al mï¿½todo Start de todos los componentes Se llama cuando todos los componentes estï¿½n creados. </p>
 
 </div>
 </div>
@@ -674,6 +729,29 @@ template&lt;typename T &gt; </div>
 </div><div class="memdoc">
 
 <p>Llama al update de todos los componentes de una entidad. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Friends And Related Symbol Documentation</h2>
+<a id="a3e070e2ae7633ec504a0130a12ae6c3d" name="a3e070e2ae7633ec504a0130a12ae6c3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e070e2ae7633ec504a0130a12ae6c3d">&#9670;&#160;</a></span>eden_script::LuaManager</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend class <a class="el" href="classeden__script_1_1_lua_manager.html">eden_script::LuaManager</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>

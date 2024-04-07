@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">EDEN<span id="projectnumber">&#160;v.0403</span>
+   <div id="projectname">EDEN<span id="projectnumber">&#160;v.0804</span>
    </div>
   </td>
  </tr>
@@ -99,39 +99,40 @@ $(function(){initNavTree('_test_component_8h_source.html',''); initResizable(); 
   <div class="headertitle"><div class="title">TestComponent.h</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="_test_component_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef TEST_COMPONENT_H</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define TEST_COMPONENT_H</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_component_8h.html">Component.h</a>&quot;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceeden__ec.html">eden_ec</a> {</div>
-<div class="foldopen" id="foldopen00009" data-start="{" data-end="};">
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="classeden__ec_1_1c_test_component.html">    9</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classeden__ec_1_1c_test_component.html">cTestComponent</a> : <span class="keyword">public</span> <a class="code hl_class" href="classeden__ec_1_1_component.html">Component</a></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    {</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="classeden__ec_1_1c_test_component.html#aade6421903a2f4e57b8e831da322b51d">   13</a></span>        <a class="code hl_function" href="classeden__ec_1_1c_test_component.html#aade6421903a2f4e57b8e831da322b51d">cTestComponent</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classeden__ec_1_1c_test_component.html#a7d1df260ce54fef4755a2c852826ee12">   18</a></span>        <span class="keyword">inline</span> <span class="keyword">static</span> std::string <a class="code hl_function" href="classeden__ec_1_1c_test_component.html#a7d1df260ce54fef4755a2c852826ee12">GetID</a>() { <span class="keywordflow">return</span> _id; };</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classeden__ec_1_1c_test_component.html#afafa4ea8070b32db09288b97546d8345">update</a>(<span class="keywordtype">float</span> t);</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="classeden__ec_1_1c_test_component.html#a13ed3da5262b68e40cb99328788ef0ee">   25</a></span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classeden__ec_1_1c_test_component.html#a13ed3da5262b68e40cb99328788ef0ee">Init</a>(<a class="code hl_class" href="classeden__script_1_1_component_arguments.html">eden_script::ComponentArguments</a>* info) {};</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <span class="keyword">const</span> <span class="keyword">static</span> std::string _id;</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    };</div>
+<a href="_test_component_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno"><a class="line" href="_test_component_8h.html#afc30e481f763a8d68a861dba91be7316">    1</a></span><span class="preprocessor">#define _CRTDBG_MAP_ALLOC</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#ifndef EDEN_TEST_COMPONENT_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno"><a class="line" href="_test_component_8h.html#a6848516e0d4b3e65cf9fbc3a2bac0dbb">    3</a></span><span class="preprocessor">#define EDEN_TEST_COMPONENT_H</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_component_8h.html">Component.h</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceeden__ec.html">eden_ec</a> {</div>
+<div class="foldopen" id="foldopen00010" data-start="{" data-end="};">
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="classeden__ec_1_1c_test_component.html">   10</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classeden__ec_1_1c_test_component.html">cTestComponent</a> : <span class="keyword">public</span> <a class="code hl_class" href="classeden__ec_1_1_component.html">Component</a></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    {</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="classeden__ec_1_1c_test_component.html#aade6421903a2f4e57b8e831da322b51d">   14</a></span>        <a class="code hl_function" href="classeden__ec_1_1c_test_component.html#aade6421903a2f4e57b8e831da322b51d">cTestComponent</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="classeden__ec_1_1c_test_component.html#a7d1df260ce54fef4755a2c852826ee12">   19</a></span>        <span class="keyword">inline</span> <span class="keyword">static</span> std::string <a class="code hl_function" href="classeden__ec_1_1c_test_component.html#a7d1df260ce54fef4755a2c852826ee12">GetID</a>() { <span class="keywordflow">return</span> _id; };</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classeden__ec_1_1c_test_component.html#afafa4ea8070b32db09288b97546d8345">update</a>(<span class="keywordtype">float</span> t);</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="classeden__ec_1_1c_test_component.html#a13ed3da5262b68e40cb99328788ef0ee">   26</a></span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classeden__ec_1_1c_test_component.html#a13ed3da5262b68e40cb99328788ef0ee">Init</a>(<a class="code hl_class" href="classeden__script_1_1_component_arguments.html">eden_script::ComponentArguments</a>* info) {};</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        <span class="keyword">const</span> <span class="keyword">static</span> std::string _id;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    };</div>
 </div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>}</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#endif </span><span class="comment">// !TEST_COMPONENT_H</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>}</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#endif </span><span class="comment">// !TEST_COMPONENT_H</span></div>
 <div class="ttc" id="a_component_8h_html"><div class="ttname"><a href="_component_8h.html">Component.h</a></div></div>
 <div class="ttc" id="aclasseden__ec_1_1_component_html"><div class="ttname"><a href="classeden__ec_1_1_component.html">eden_ec::Component</a></div><div class="ttdoc">Clase genï¿½rica de component usada para la implementaciï¿½n de los comportamientos de las entidades.</div><div class="ttdef"><b>Definition</b> Component.h:15</div></div>
-<div class="ttc" id="aclasseden__ec_1_1c_test_component_html"><div class="ttname"><a href="classeden__ec_1_1c_test_component.html">eden_ec::cTestComponent</a></div><div class="ttdoc">Componente creado para comprobar el correcto funcionamiento del sistema Entidad-Componente del motor....</div><div class="ttdef"><b>Definition</b> TestComponent.h:10</div></div>
-<div class="ttc" id="aclasseden__ec_1_1c_test_component_html_a13ed3da5262b68e40cb99328788ef0ee"><div class="ttname"><a href="classeden__ec_1_1c_test_component.html#a13ed3da5262b68e40cb99328788ef0ee">eden_ec::cTestComponent::Init</a></div><div class="ttdeci">virtual void Init(eden_script::ComponentArguments *info)</div><div class="ttdoc">No toma ningún argumento extra, entonces queda vacío.</div><div class="ttdef"><b>Definition</b> TestComponent.h:25</div></div>
-<div class="ttc" id="aclasseden__ec_1_1c_test_component_html_a7d1df260ce54fef4755a2c852826ee12"><div class="ttname"><a href="classeden__ec_1_1c_test_component.html#a7d1df260ce54fef4755a2c852826ee12">eden_ec::cTestComponent::GetID</a></div><div class="ttdeci">static std::string GetID()</div><div class="ttdoc">Método que devuelve la id del componente. Inprescindible tenerlo en cada nueva clase de componente.</div><div class="ttdef"><b>Definition</b> TestComponent.h:18</div></div>
+<div class="ttc" id="aclasseden__ec_1_1c_test_component_html"><div class="ttname"><a href="classeden__ec_1_1c_test_component.html">eden_ec::cTestComponent</a></div><div class="ttdoc">Componente creado para comprobar el correcto funcionamiento del sistema Entidad-Componente del motor....</div><div class="ttdef"><b>Definition</b> TestComponent.h:11</div></div>
+<div class="ttc" id="aclasseden__ec_1_1c_test_component_html_a13ed3da5262b68e40cb99328788ef0ee"><div class="ttname"><a href="classeden__ec_1_1c_test_component.html#a13ed3da5262b68e40cb99328788ef0ee">eden_ec::cTestComponent::Init</a></div><div class="ttdeci">virtual void Init(eden_script::ComponentArguments *info)</div><div class="ttdoc">No toma ningún argumento extra, entonces queda vacío.</div><div class="ttdef"><b>Definition</b> TestComponent.h:26</div></div>
+<div class="ttc" id="aclasseden__ec_1_1c_test_component_html_a7d1df260ce54fef4755a2c852826ee12"><div class="ttname"><a href="classeden__ec_1_1c_test_component.html#a7d1df260ce54fef4755a2c852826ee12">eden_ec::cTestComponent::GetID</a></div><div class="ttdeci">static std::string GetID()</div><div class="ttdoc">Método que devuelve la id del componente. Inprescindible tenerlo en cada nueva clase de componente.</div><div class="ttdef"><b>Definition</b> TestComponent.h:19</div></div>
 <div class="ttc" id="aclasseden__ec_1_1c_test_component_html_aade6421903a2f4e57b8e831da322b51d"><div class="ttname"><a href="classeden__ec_1_1c_test_component.html#aade6421903a2f4e57b8e831da322b51d">eden_ec::cTestComponent::cTestComponent</a></div><div class="ttdeci">cTestComponent()=default</div><div class="ttdoc">Constructora por defecto.</div></div>
-<div class="ttc" id="aclasseden__ec_1_1c_test_component_html_afafa4ea8070b32db09288b97546d8345"><div class="ttname"><a href="classeden__ec_1_1c_test_component.html#afafa4ea8070b32db09288b97546d8345">eden_ec::cTestComponent::update</a></div><div class="ttdeci">virtual void update(float t)</div><div class="ttdoc">Método ejecutado cada frame.</div><div class="ttdef"><b>Definition</b> TestComponent.cpp:8</div></div>
-<div class="ttc" id="aclasseden__script_1_1_component_arguments_html"><div class="ttname"><a href="classeden__script_1_1_component_arguments.html">eden_script::ComponentArguments</a></div><div class="ttdoc">Da forma y es capaz de parsear los componentes leídos desde los mapas .lua generados por un usuario.</div><div class="ttdef"><b>Definition</b> ComponentArguments.h:17</div></div>
-<div class="ttc" id="anamespaceeden__ec_html"><div class="ttname"><a href="namespaceeden__ec.html">eden_ec</a></div><div class="ttdef"><b>Definition</b> Component.h:11</div></div>
+<div class="ttc" id="aclasseden__ec_1_1c_test_component_html_afafa4ea8070b32db09288b97546d8345"><div class="ttname"><a href="classeden__ec_1_1c_test_component.html#afafa4ea8070b32db09288b97546d8345">eden_ec::cTestComponent::update</a></div><div class="ttdeci">virtual void update(float t)</div><div class="ttdoc">Método ejecutado cada frame.</div><div class="ttdef"><b>Definition</b> TestComponent.cpp:10</div></div>
+<div class="ttc" id="aclasseden__script_1_1_component_arguments_html"><div class="ttname"><a href="classeden__script_1_1_component_arguments.html">eden_script::ComponentArguments</a></div><div class="ttdoc">Da forma y es capaz de parsear los componentes leidos desde los mapas .lua generados por un usuario.</div><div class="ttdef"><b>Definition</b> ComponentArguments.h:18</div></div>
+<div class="ttc" id="anamespaceeden__ec_html"><div class="ttname"><a href="namespaceeden__ec.html">eden_ec</a></div><div class="ttdef"><b>Definition</b> CAnimator.h:19</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

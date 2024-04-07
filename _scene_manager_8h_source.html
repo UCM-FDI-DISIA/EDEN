@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">EDEN<span id="projectnumber">&#160;v.0403</span>
+   <div id="projectname">EDEN<span id="projectnumber">&#160;v.0804</span>
    </div>
   </td>
  </tr>
@@ -99,58 +99,100 @@ $(function(){initNavTree('_scene_manager_8h_source.html',''); initResizable(); }
   <div class="headertitle"><div class="title">SceneManager.h</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="_scene_manager_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef SCENE_MANAGER_H</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define SCENE_MANAGER_H</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;deque&gt;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="_singleton_8h.html">Singleton.h</a>&quot;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">class </span><a class="code hl_class" href="class_scene.html">Scene</a>;</div>
-<div class="foldopen" id="foldopen00010" data-start="{" data-end="};">
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="class_scene_manager.html">   10</a></span><span class="keyword">class </span><a class="code hl_class" href="class_scene_manager.html">SceneManager</a> : <span class="keyword">public</span> <a class="code hl_class" href="class_singleton.html">Singleton</a>&lt;SceneManager&gt; {</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <span class="keyword">friend</span> <a class="code hl_class" href="class_singleton.html">Singleton&lt;SceneManager&gt;</a>;</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="class_scene_manager.html#aa8bc85040ab4bca8d5c5d6bcc06b1d22">   14</a></span>    <a class="code hl_function" href="class_scene_manager.html#aa8bc85040ab4bca8d5c5d6bcc06b1d22">SceneManager</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keyword">virtual</span> <a class="code hl_function" href="class_scene_manager.html#a2bb376a85d29e85f47753e26c7539229">~SceneManager</a>();</div>
+<a href="_scene_manager_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno"><a class="line" href="_scene_manager_8h.html#afc30e481f763a8d68a861dba91be7316">    1</a></span><span class="preprocessor">#define _CRTDBG_MAP_ALLOC</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#ifndef EDEN_SCENE_MANAGER_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno"><a class="line" href="_scene_manager_8h.html#aef8c17fb44b9d8f84829e2e88895ca23">    3</a></span><span class="preprocessor">#define EDEN_SCENE_MANAGER_H</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;deque&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;unordered_map&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="_singleton_8h.html">Singleton.h</a>&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceeden__script.html">eden_script</a> {</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keyword">struct </span>EntityInfo;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <span class="keyword">class </span>ComponentArguments;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>}</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <a class="code hl_class" href="class_scene.html">Scene</a>* <a class="code hl_function" href="class_scene_manager.html#ac1a82f4934f14f51bb2d99a8804eadf5">PushScene</a>(<span class="keyword">const</span> std::string&amp; ID);</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <a class="code hl_class" href="class_scene.html">Scene</a>* <a class="code hl_function" href="class_scene_manager.html#a6b9e959a25e706ae13a1f84001bf04b4">ChangeScene</a>(<span class="keyword">const</span> std::string&amp; ID);</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_scene_manager.html#a5a3440850e459813d5d05fd85f2344b2">PopScene</a>();</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_scene_manager.html#a8718d2e623056524a12ba864b572eb23">PopUntil</a>(<span class="keyword">const</span> std::string&amp; ID);</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_scene_manager.html#a83d14baf4e21ec1738eef2911a4df874">EmptyStack</a>();</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_scene_manager.html#a146f8427f6911222d00dd2617da78c46">Update</a>(<span class="keywordtype">float</span> dt);</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="class_scene_manager.html#aa12ac3807b8e59b815ec445c25fca5ae">   45</a></span>    <span class="keyword">inline</span> <a class="code hl_class" href="class_scene.html">Scene</a>* <a class="code hl_function" href="class_scene_manager.html#aa12ac3807b8e59b815ec445c25fca5ae">GetCurrentScene</a>() { <span class="keywordflow">return</span> _activeScene; }</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <a class="code hl_class" href="class_scene.html">Scene</a>* _activeScene = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    std::deque&lt;Scene*&gt; _scenes;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>};</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceeden__ec.html">eden_ec</a> {</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keyword">class </span>Entity;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>}</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceeden__utils.html">eden_utils</a> {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keyword">class </span><a class="code hl_typedef" href="namespace_ogre.html#ac94fc4008c1165dea017263fee56b273">Vector3</a>;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keyword">class </span>Quaternion;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>}</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceeden.html">eden</a> {</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">class </span>Scene;</div>
+<div class="foldopen" id="foldopen00029" data-start="{" data-end="};">
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="classeden_1_1_scene_manager.html">   29</a></span><span class="keyword">class </span><a class="code hl_class" href="classeden_1_1_scene_manager.html">SceneManager</a> : <span class="keyword">public</span> <a class="code hl_class" href="class_singleton.html">Singleton</a>&lt;SceneManager&gt; {</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keyword">friend</span> <a class="code hl_class" href="class_singleton.html">Singleton&lt;SceneManager&gt;</a>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <a class="code hl_function" href="classeden_1_1_scene_manager.html#aadb44cedca60e18a4caa03b6121fd982">~SceneManager</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <a class="code hl_class" href="classeden_1_1_scene.html">Scene</a>* <a class="code hl_function" href="classeden_1_1_scene_manager.html#a6ce9b9a2fd0c739a9153ddf19f7e921e">PushScene</a>(<span class="keyword">const</span> std::string&amp; ID);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <a class="code hl_class" href="classeden_1_1_scene.html">Scene</a>* <a class="code hl_function" href="classeden_1_1_scene_manager.html#a41c97445e0f60f5128ec8703b16a7fa5">ChangeScene</a>(<span class="keyword">const</span> std::string&amp; ID);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classeden_1_1_scene_manager.html#a8963a352b932b46bff4bf380ad12295d">PopScene</a>();</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classeden_1_1_scene_manager.html#a276b1a95ebe443bc3ff52019f43a1865">PopUntil</a>(<span class="keyword">const</span> std::string&amp; ID);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classeden_1_1_scene_manager.html#ad8982886cf1bbde301a17b036a629771">EmptyStack</a>();</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classeden_1_1_scene_manager.html#a453e84bcca90a7e695c0ae7b1dfba8db">Update</a>(<span class="keywordtype">float</span> dt);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classeden_1_1_scene_manager.html#ad8eaf4697aad07aa4954b8ed245cfd29">   64</a></span>    <span class="keyword">inline</span> <a class="code hl_class" href="classeden_1_1_scene.html">Scene</a>* <a class="code hl_function" href="classeden_1_1_scene_manager.html#ad8eaf4697aad07aa4954b8ed245cfd29">GetCurrentScene</a>() { <span class="keywordflow">return</span> _activeScene; }</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <a class="code hl_class" href="classeden__ec_1_1_entity.html">eden_ec::Entity</a>* <a class="code hl_function" href="classeden_1_1_scene_manager.html#a581e84a3ad9764ab5ce87f23880b0243">InstantiateBlueprint</a>(std::string blueprintID, <a class="code hl_class" href="classeden__utils_1_1_vector3.html">eden_utils::Vector3</a> pos, <a class="code hl_class" href="classeden__utils_1_1_quaternion.html">eden_utils::Quaternion</a> rot);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <a class="code hl_class" href="classeden__ec_1_1_entity.html">eden_ec::Entity</a>* <a class="code hl_function" href="classeden_1_1_scene_manager.html#a581e84a3ad9764ab5ce87f23880b0243">InstantiateBlueprint</a>(std::string blueprintID, <a class="code hl_class" href="classeden__utils_1_1_vector3.html">eden_utils::Vector3</a> pos);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <a class="code hl_class" href="classeden__ec_1_1_entity.html">eden_ec::Entity</a>* <a class="code hl_function" href="classeden_1_1_scene_manager.html#a581e84a3ad9764ab5ce87f23880b0243">InstantiateBlueprint</a>(std::string blueprintID, <a class="code hl_class" href="classeden__utils_1_1_quaternion.html">eden_utils::Quaternion</a> rot);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <a class="code hl_class" href="classeden__ec_1_1_entity.html">eden_ec::Entity</a>* <a class="code hl_function" href="classeden_1_1_scene_manager.html#a581e84a3ad9764ab5ce87f23880b0243">InstantiateBlueprint</a>(std::string blueprintID);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <a class="code hl_class" href="classeden_1_1_scene.html">Scene</a>* _activeScene = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keyword">struct </span>BlueprintInfo {</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        std::vector&lt;eden_script::ComponentArguments&gt; components;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        <span class="keywordtype">int</span> numInstances = 0;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    };</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keyword">static</span> std::unordered_map&lt;std::string, BlueprintInfo&gt; _Blueprints;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    std::deque&lt;Scene*&gt; _scenes;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    std::deque&lt;Scene*&gt; _scenesToDestroy;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    SceneManager();</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>};</div>
 </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">#endif </span><span class="comment">// SCENE_MANAGER_H</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>}</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="preprocessor">#endif </span><span class="comment">// SCENE_MANAGER_H</span></div>
 <div class="ttc" id="a_singleton_8h_html"><div class="ttname"><a href="_singleton_8h.html">Singleton.h</a></div></div>
-<div class="ttc" id="aclass_scene_html"><div class="ttname"><a href="class_scene.html">Scene</a></div><div class="ttdef"><b>Definition</b> Scene.h:9</div></div>
-<div class="ttc" id="aclass_scene_manager_html"><div class="ttname"><a href="class_scene_manager.html">SceneManager</a></div><div class="ttdef"><b>Definition</b> SceneManager.h:10</div></div>
-<div class="ttc" id="aclass_scene_manager_html_a146f8427f6911222d00dd2617da78c46"><div class="ttname"><a href="class_scene_manager.html#a146f8427f6911222d00dd2617da78c46">SceneManager::Update</a></div><div class="ttdeci">void Update(float dt)</div><div class="ttdoc">Metodo que llama al Update de la primera escena de la lista, y al render de todas las escenas que lo ...</div><div class="ttdef"><b>Definition</b> SceneManager.cpp:38</div></div>
-<div class="ttc" id="aclass_scene_manager_html_a2bb376a85d29e85f47753e26c7539229"><div class="ttname"><a href="class_scene_manager.html#a2bb376a85d29e85f47753e26c7539229">SceneManager::~SceneManager</a></div><div class="ttdeci">virtual ~SceneManager()</div><div class="ttdef"><b>Definition</b> SceneManager.cpp:5</div></div>
-<div class="ttc" id="aclass_scene_manager_html_a5a3440850e459813d5d05fd85f2344b2"><div class="ttname"><a href="class_scene_manager.html#a5a3440850e459813d5d05fd85f2344b2">SceneManager::PopScene</a></div><div class="ttdeci">void PopScene()</div><div class="ttdoc">Metodo encargado de eliminar la primera escena de la lista.</div><div class="ttdef"><b>Definition</b> SceneManager.cpp:25</div></div>
-<div class="ttc" id="aclass_scene_manager_html_a6b9e959a25e706ae13a1f84001bf04b4"><div class="ttname"><a href="class_scene_manager.html#a6b9e959a25e706ae13a1f84001bf04b4">SceneManager::ChangeScene</a></div><div class="ttdeci">Scene * ChangeScene(const std::string &amp;ID)</div><div class="ttdoc">Metodo encargado de vaciar la lista de escenas y añadir una nueva.</div><div class="ttdef"><b>Definition</b> SceneManager.cpp:20</div></div>
-<div class="ttc" id="aclass_scene_manager_html_a83d14baf4e21ec1738eef2911a4df874"><div class="ttname"><a href="class_scene_manager.html#a83d14baf4e21ec1738eef2911a4df874">SceneManager::EmptyStack</a></div><div class="ttdeci">void EmptyStack()</div><div class="ttdoc">Metodo encargado de eliminar todas las escenas de la lista.</div><div class="ttdef"><b>Definition</b> SceneManager.cpp:34</div></div>
-<div class="ttc" id="aclass_scene_manager_html_a8718d2e623056524a12ba864b572eb23"><div class="ttname"><a href="class_scene_manager.html#a8718d2e623056524a12ba864b572eb23">SceneManager::PopUntil</a></div><div class="ttdeci">void PopUntil(const std::string &amp;ID)</div><div class="ttdoc">Metodo encargado de eliminar la(s) primera(s) escena(s) de la lista hasta encontrar una con el ID ind...</div><div class="ttdef"><b>Definition</b> SceneManager.cpp:30</div></div>
-<div class="ttc" id="aclass_scene_manager_html_aa12ac3807b8e59b815ec445c25fca5ae"><div class="ttname"><a href="class_scene_manager.html#aa12ac3807b8e59b815ec445c25fca5ae">SceneManager::GetCurrentScene</a></div><div class="ttdeci">Scene * GetCurrentScene()</div><div class="ttdoc">Metodo que devuelve la primera escena de la lista.</div><div class="ttdef"><b>Definition</b> SceneManager.h:45</div></div>
-<div class="ttc" id="aclass_scene_manager_html_aa8bc85040ab4bca8d5c5d6bcc06b1d22"><div class="ttname"><a href="class_scene_manager.html#aa8bc85040ab4bca8d5c5d6bcc06b1d22">SceneManager::SceneManager</a></div><div class="ttdeci">SceneManager()=default</div></div>
-<div class="ttc" id="aclass_scene_manager_html_ac1a82f4934f14f51bb2d99a8804eadf5"><div class="ttname"><a href="class_scene_manager.html#ac1a82f4934f14f51bb2d99a8804eadf5">SceneManager::PushScene</a></div><div class="ttdeci">Scene * PushScene(const std::string &amp;ID)</div><div class="ttdoc">Metodo encargado de crear una nueva escena y añadirla a la lista doblemente enlazada.</div><div class="ttdef"><b>Definition</b> SceneManager.cpp:13</div></div>
-<div class="ttc" id="aclass_singleton_html"><div class="ttname"><a href="class_singleton.html">Singleton</a></div><div class="ttdoc">Una clase que herede de esta clase tiene que implementar un constructor sin argumentos.</div><div class="ttdef"><b>Definition</b> Singleton.h:30</div></div>
+<div class="ttc" id="aclass_singleton_html"><div class="ttname"><a href="class_singleton.html">Singleton</a></div><div class="ttdoc">Una clase que herede de esta clase tiene que implementar un constructor sin argumentos.</div><div class="ttdef"><b>Definition</b> Singleton.h:32</div></div>
+<div class="ttc" id="aclasseden_1_1_scene_html"><div class="ttname"><a href="classeden_1_1_scene.html">eden::Scene</a></div><div class="ttdoc">Clase que define una escena de juego. Tendra un render, un update y todos los metodos que se encargue...</div><div class="ttdef"><b>Definition</b> Scene.h:22</div></div>
+<div class="ttc" id="aclasseden_1_1_scene_manager_html"><div class="ttname"><a href="classeden_1_1_scene_manager.html">eden::SceneManager</a></div><div class="ttdoc">Clase que se encarga de gestionar las escenas, es decir, cargarlas y descargarlas,...</div><div class="ttdef"><b>Definition</b> SceneManager.h:29</div></div>
+<div class="ttc" id="aclasseden_1_1_scene_manager_html_a276b1a95ebe443bc3ff52019f43a1865"><div class="ttname"><a href="classeden_1_1_scene_manager.html#a276b1a95ebe443bc3ff52019f43a1865">eden::SceneManager::PopUntil</a></div><div class="ttdeci">void PopUntil(const std::string &amp;ID)</div><div class="ttdoc">Metodo encargado de eliminar la(s) primera(s) escena(s) de la lista hasta encontrar una con el ID ind...</div><div class="ttdef"><b>Definition</b> SceneManager.cpp:137</div></div>
+<div class="ttc" id="aclasseden_1_1_scene_manager_html_a41c97445e0f60f5128ec8703b16a7fa5"><div class="ttname"><a href="classeden_1_1_scene_manager.html#a41c97445e0f60f5128ec8703b16a7fa5">eden::SceneManager::ChangeScene</a></div><div class="ttdeci">Scene * ChangeScene(const std::string &amp;ID)</div><div class="ttdoc">Metodo encargado de vaciar la lista de escenas y añadir una nueva.</div><div class="ttdef"><b>Definition</b> SceneManager.cpp:124</div></div>
+<div class="ttc" id="aclasseden_1_1_scene_manager_html_a453e84bcca90a7e695c0ae7b1dfba8db"><div class="ttname"><a href="classeden_1_1_scene_manager.html#a453e84bcca90a7e695c0ae7b1dfba8db">eden::SceneManager::Update</a></div><div class="ttdeci">void Update(float dt)</div><div class="ttdoc">Metodo que llama al Update de la primera escena de la lista, y al render de todas las escenas que lo ...</div><div class="ttdef"><b>Definition</b> SceneManager.cpp:145</div></div>
+<div class="ttc" id="aclasseden_1_1_scene_manager_html_a581e84a3ad9764ab5ce87f23880b0243"><div class="ttname"><a href="classeden_1_1_scene_manager.html#a581e84a3ad9764ab5ce87f23880b0243">eden::SceneManager::InstantiateBlueprint</a></div><div class="ttdeci">eden_ec::Entity * InstantiateBlueprint(std::string blueprintID, eden_utils::Vector3 pos, eden_utils::Quaternion rot)</div><div class="ttdoc">Crea una instancia de un blueprint en la escena. Puede cambiarse su posición y rotación.</div><div class="ttdef"><b>Definition</b> SceneManager.cpp:95</div></div>
+<div class="ttc" id="aclasseden_1_1_scene_manager_html_a6ce9b9a2fd0c739a9153ddf19f7e921e"><div class="ttname"><a href="classeden_1_1_scene_manager.html#a6ce9b9a2fd0c739a9153ddf19f7e921e">eden::SceneManager::PushScene</a></div><div class="ttdeci">Scene * PushScene(const std::string &amp;ID)</div><div class="ttdoc">Metodo encargado de crear una nueva escena y añadirla a la lista doblemente enlazada.</div><div class="ttdef"><b>Definition</b> SceneManager.cpp:108</div></div>
+<div class="ttc" id="aclasseden_1_1_scene_manager_html_a8963a352b932b46bff4bf380ad12295d"><div class="ttname"><a href="classeden_1_1_scene_manager.html#a8963a352b932b46bff4bf380ad12295d">eden::SceneManager::PopScene</a></div><div class="ttdeci">void PopScene()</div><div class="ttdoc">Metodo encargado de eliminar la primera escena de la lista.</div><div class="ttdef"><b>Definition</b> SceneManager.cpp:129</div></div>
+<div class="ttc" id="aclasseden_1_1_scene_manager_html_aadb44cedca60e18a4caa03b6121fd982"><div class="ttname"><a href="classeden_1_1_scene_manager.html#aadb44cedca60e18a4caa03b6121fd982">eden::SceneManager::~SceneManager</a></div><div class="ttdeci">~SceneManager() override</div><div class="ttdoc">Destructora por defecto de la clase SceneManager.</div><div class="ttdef"><b>Definition</b> SceneManager.cpp:42</div></div>
+<div class="ttc" id="aclasseden_1_1_scene_manager_html_ad8982886cf1bbde301a17b036a629771"><div class="ttname"><a href="classeden_1_1_scene_manager.html#ad8982886cf1bbde301a17b036a629771">eden::SceneManager::EmptyStack</a></div><div class="ttdeci">void EmptyStack()</div><div class="ttdoc">Metodo encargado de eliminar todas las escenas de la lista.</div><div class="ttdef"><b>Definition</b> SceneManager.cpp:141</div></div>
+<div class="ttc" id="aclasseden_1_1_scene_manager_html_ad8eaf4697aad07aa4954b8ed245cfd29"><div class="ttname"><a href="classeden_1_1_scene_manager.html#ad8eaf4697aad07aa4954b8ed245cfd29">eden::SceneManager::GetCurrentScene</a></div><div class="ttdeci">Scene * GetCurrentScene()</div><div class="ttdoc">Metodo que devuelve la primera escena de la lista.</div><div class="ttdef"><b>Definition</b> SceneManager.h:64</div></div>
+<div class="ttc" id="aclasseden__ec_1_1_entity_html"><div class="ttname"><a href="classeden__ec_1_1_entity.html">eden_ec::Entity</a></div><div class="ttdoc">Clase que define las Entidades de nuestro juego como contenedores de Componentes, que definirï¿½n el co...</div><div class="ttdef"><b>Definition</b> Entity.h:22</div></div>
+<div class="ttc" id="aclasseden__utils_1_1_quaternion_html"><div class="ttname"><a href="classeden__utils_1_1_quaternion.html">eden_utils::Quaternion</a></div><div class="ttdef"><b>Definition</b> Quaternion.h:12</div></div>
+<div class="ttc" id="aclasseden__utils_1_1_vector3_html"><div class="ttname"><a href="classeden__utils_1_1_vector3.html">eden_utils::Vector3</a></div><div class="ttdef"><b>Definition</b> Vector3.h:7</div></div>
+<div class="ttc" id="anamespace_ogre_html_ac94fc4008c1165dea017263fee56b273"><div class="ttname"><a href="namespace_ogre.html#ac94fc4008c1165dea017263fee56b273">Ogre::Vector3</a></div><div class="ttdeci">Vector&lt; 3, Real &gt; Vector3</div><div class="ttdef"><b>Definition</b> NodeManager.h:13</div></div>
+<div class="ttc" id="anamespaceeden__ec_html"><div class="ttname"><a href="namespaceeden__ec.html">eden_ec</a></div><div class="ttdef"><b>Definition</b> CAnimator.h:19</div></div>
+<div class="ttc" id="anamespaceeden__script_html"><div class="ttname"><a href="namespaceeden__script.html">eden_script</a></div><div class="ttdef"><b>Definition</b> CAnimator.h:11</div></div>
+<div class="ttc" id="anamespaceeden__utils_html"><div class="ttname"><a href="namespaceeden__utils.html">eden_utils</a></div><div class="ttdef"><b>Definition</b> CCamera.h:11</div></div>
+<div class="ttc" id="anamespaceeden_html"><div class="ttname"><a href="namespaceeden.html">eden</a></div><div class="ttdef"><b>Definition</b> EdenMaster.h:22</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

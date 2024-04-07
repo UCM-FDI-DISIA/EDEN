@@ -1,7 +1,4 @@
 var searchData=
 [
-  ['textcomponent_0',['TextComponent',['../classeden__ec_1_1_text_component.html#aba7e4db7a9f65a01b7b22c618c7b135f',1,'eden_ec::TextComponent']]],
-  ['texture_1',['Texture',['../class_texture.html#a6f37ee9dc7bb5e960660df07200de426',1,'Texture::Texture(const Texture &amp;)=delete'],['../class_texture.html#a084244d7cb78794849469aabd9c602ec',1,'Texture::Texture(Texture &amp;&amp;other) noexcept'],['../class_texture.html#a7a5077bf441e7ab3aea3d9063574ba6d',1,'Texture::Texture(SDL_Renderer *renderer, const std::string &amp;fileName)'],['../class_texture.html#ab2635e026e6527bdaf782f3c37f6b00b',1,'Texture::Texture(SDL_Renderer *r, std::string filename, uint32_t numRows, uint32_t numCols)'],['../class_texture.html#a1a508509aef165dcca360064d2aeb338',1,'Texture::Texture(SDL_Renderer *renderer, const std::string &amp;text, const Font &amp;font, const SDL_Color &amp;fgColor)'],['../class_texture.html#ae54cd709dba517f2ea837cd9dfc71e49',1,'Texture::Texture(SDL_Renderer *renderer, const std::string &amp;text, const Font &amp;font, const SDL_Color &amp;fgColor, const SDL_Color &amp;bgColor)']]],
-  ['togglefullscreen_2',['toggleFullScreen',['../class_s_d_l_utils.html#a63c0ce920e2f10c08911a89a62c6be8b',1,'SDLUtils']]],
-  ['translate_3',['Translate',['../classeden__ec_1_1_c_transform.html#acf65f3383743a9d992d75254b7366525',1,'eden_ec::CTransform::Translate()'],['../classrender__wrapper_1_1_node.html#a5c75eb22edc4a34b23dd1151982cc9f0',1,'render_wrapper::Node::Translate()']]]
+  ['translate_0',['Translate',['../classeden__ec_1_1_c_transform.html#acf65f3383743a9d992d75254b7366525',1,'eden_ec::CTransform::Translate()'],['../classrender__wrapper_1_1_node_manager.html#a23a449803704a56a5af2d8a709184dfe',1,'render_wrapper::NodeManager::Translate()']]]
 ];

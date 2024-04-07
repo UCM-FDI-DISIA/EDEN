@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['uint_0',['uint',['../_texture_8h.html#a69aa29b598b851b0640aa225a9e5d61d',1,'Texture.h']]]
+  ['real_0',['Real',['../namespace_ogre.html#aa3a7b6dfb905e6572d62f0dfa3d4274d',1,'Ogre']]]
 ];

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['scene_5fextension_0',['SCENE_EXTENSION',['../_script_manager_8h.html#aadc5aa7af32480411b116c43e9087f7a',1,'ScriptManager.h']]]
+  ['max_5fcollision_5fgroup_5fnumber_0',['MAX_COLLISION_GROUP_NUMBER',['../_collision_layer_8h.html#ad641a32fcc3977bea000d7eade7a45c4',1,'CollisionLayer.h']]],
+  ['mesh_5fextension_1',['MESH_EXTENSION',['../_c_mesh_renderer_8h.html#a901d665552804ae466086343a9a6936d',1,'CMeshRenderer.h']]]
 ];

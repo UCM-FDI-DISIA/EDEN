@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">EDEN<span id="projectnumber">&#160;v.0403</span>
+   <div id="projectname">EDEN<span id="projectnumber">&#160;v.0804</span>
    </div>
   </td>
  </tr>
@@ -111,10 +111,19 @@ Inheritance diagram for eden_ec::Component:</div>
  <div class="center">
   <img src="classeden__ec_1_1_component.png" usemap="#eden_5Fec::Component_map" alt=""/>
   <map id="eden_5Fec::Component_map" name="eden_5Fec::Component_map">
-<area href="classeden__ec_1_1_c_transform.html" title="Componente que tiene toda entidad que gestiona su posici�n, rotaci�n y escala." alt="eden_ec::CTransform" shape="rect" coords="0,56,160,80"/>
-<area href="classeden__ec_1_1_image.html" title="Componente de imagen para la UI." alt="eden_ec::Image" shape="rect" coords="170,56,330,80"/>
-<area href="classeden__ec_1_1_text_component.html" title="Componente de texto para la UI." alt="eden_ec::TextComponent" shape="rect" coords="340,56,500,80"/>
-<area href="classeden__ec_1_1c_test_component.html" title="Componente creado para comprobar el correcto funcionamiento del sistema Entidad-Componente del motor...." alt="eden_ec::cTestComponent" shape="rect" coords="510,56,670,80"/>
+<area href="classeden__ec_1_1_c_animator.html" title="El coponente CAnimator se encarga de manejar las animaciones, ademas de crear e inicializar el Animat..." alt="eden_ec::CAnimator" shape="rect" coords="170,56,330,80"/>
+<area href="classeden__ec_1_1_c_audio_emitter.html" title="Componente que se encargara de emitir audio tanto en 2D como en 3D y controlarlo. Para el audio en 3D..." alt="eden_ec::CAudioEmitter" shape="rect" coords="170,112,330,136"/>
+<area href="classeden__ec_1_1_c_audio_listener.html" alt="eden_ec::CAudioListener" shape="rect" coords="170,168,330,192"/>
+<area href="classeden__ec_1_1_c_camera.html" alt="eden_ec::CCamera" shape="rect" coords="170,224,330,248"/>
+<area href="classeden__ec_1_1_c_cursor.html" title="Clase que representa el cursor." alt="eden_ec::CCursor" shape="rect" coords="170,280,330,304"/>
+<area href="classeden__ec_1_1_c_lua_behaviour.html" title="Clase que representa un script de comportamiento. El script se definira en Lua y se utilizara esta cl..." alt="eden_ec::CLuaBehaviour" shape="rect" coords="170,336,330,360"/>
+<area href="classeden__ec_1_1_c_mesh_renderer.html" alt="eden_ec::CMeshRenderer" shape="rect" coords="170,392,330,416"/>
+<area href="classeden__ec_1_1_c_particle_emitter.html" alt="eden_ec::CParticleEmitter" shape="rect" coords="170,448,330,472"/>
+<area href="classeden__ec_1_1_c_rigid_body.html" alt="eden_ec::CRigidBody" shape="rect" coords="170,504,330,528"/>
+<area href="classeden__ec_1_1_c_transform.html" title="Componente que tiene toda entidad que gestiona su posici�n, rotaci�n y escala." alt="eden_ec::CTransform" shape="rect" coords="170,560,330,584"/>
+<area href="classeden__ec_1_1_hito1_prueba.html" alt="eden_ec::Hito1Prueba" shape="rect" coords="170,616,330,640"/>
+<area href="classeden__ec_1_1_u_i_component.html" title="Clase base de la que heredan todos los elementos de la UI." alt="eden_ec::UIComponent" shape="rect" coords="170,672,330,696"/>
+<area href="classeden__ec_1_1c_test_component.html" title="Componente creado para comprobar el correcto funcionamiento del sistema Entidad-Componente del motor...." alt="eden_ec::cTestComponent" shape="rect" coords="170,728,330,752"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -129,9 +138,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6e545e5ef7b0dbacb0b8db09f954ffa7" id="r_a6e545e5ef7b0dbacb0b8db09f954ffa7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6e545e5ef7b0dbacb0b8db09f954ffa7">SetContext</a> (<a class="el" href="classeden__ec_1_1_entity.html">Entity</a> *ent)</td></tr>
 <tr class="memdesc:a6e545e5ef7b0dbacb0b8db09f954ffa7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Da contexto al componente, asgin�ndole cu�l es su entidad.  <br /></td></tr>
 <tr class="separator:a6e545e5ef7b0dbacb0b8db09f954ffa7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e2d04aa8286137595529c29b0e4bd24" id="r_a9e2d04aa8286137595529c29b0e4bd24"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9e2d04aa8286137595529c29b0e4bd24">InitComponent</a> ()</td></tr>
-<tr class="memdesc:a9e2d04aa8286137595529c29b0e4bd24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicializa el componente para coger referencias a otros componentes de su entidad.  <br /></td></tr>
-<tr class="separator:a9e2d04aa8286137595529c29b0e4bd24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a717eaae77e6301bd678e0b21256c4406" id="r_a717eaae77e6301bd678e0b21256c4406"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a717eaae77e6301bd678e0b21256c4406">Update</a> (float t)</td></tr>
 <tr class="memdesc:a717eaae77e6301bd678e0b21256c4406"><td class="mdescLeft">&#160;</td><td class="mdescRight">M�todo ejecutado cada frame.  <br /></td></tr>
 <tr class="separator:a717eaae77e6301bd678e0b21256c4406"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -144,6 +150,9 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:af7923955a5d2a8e7744082cf467b2a41" id="r_af7923955a5d2a8e7744082cf467b2a41"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af7923955a5d2a8e7744082cf467b2a41">Init</a> (<a class="el" href="classeden__script_1_1_component_arguments.html">eden_script::ComponentArguments</a> *args)=0</td></tr>
 <tr class="memdesc:af7923955a5d2a8e7744082cf467b2a41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Usaremos este método abstracto para definir en cada clase su construcción mediante 'ID'. Cada componente debe redefinirlo para poder aceptar argumentos leídos desde un fichero .lua.  <br /></td></tr>
 <tr class="separator:af7923955a5d2a8e7744082cf467b2a41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1aea3fbd188b1daee28bf30f2d3806fd" id="r_a1aea3fbd188b1daee28bf30f2d3806fd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1aea3fbd188b1daee28bf30f2d3806fd">Start</a> ()=0</td></tr>
+<tr class="memdesc:a1aea3fbd188b1daee28bf30f2d3806fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Usaremos este método para añadir referencias de otros componentes.  <br /></td></tr>
+<tr class="separator:a1aea3fbd188b1daee28bf30f2d3806fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -240,6 +249,8 @@ Static Protected Attributes</h2></td></tr>
 
 <p>Maneja la entrada del usuario. </p>
 
+<p>Reimplemented in <a class="el" href="classeden__ec_1_1_c_rigid_body.html#a7d5fe1c023b328265adae38b6995c1a1">eden_ec::CRigidBody</a>, and <a class="el" href="classeden__ec_1_1_hito1_prueba.html#af493f27e91cdae995ca7e8ad9f5dfc76">eden_ec::Hito1Prueba</a>.</p>
+
 </div>
 </div>
 <a id="af7923955a5d2a8e7744082cf467b2a41" name="af7923955a5d2a8e7744082cf467b2a41"></a>
@@ -273,36 +284,7 @@ Static Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classeden__ec_1_1_c_transform.html#a39ca73674df7268b09597704ae108411">eden_ec::CTransform</a>, and <a class="el" href="classeden__ec_1_1c_test_component.html#a13ed3da5262b68e40cb99328788ef0ee">eden_ec::cTestComponent</a>.</p>
-
-</div>
-</div>
-<a id="a9e2d04aa8286137595529c29b0e4bd24" name="a9e2d04aa8286137595529c29b0e4bd24"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9e2d04aa8286137595529c29b0e4bd24">&#9670;&#160;</a></span>InitComponent()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual void eden_ec::Component::InitComponent </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Inicializa el componente para coger referencias a otros componentes de su entidad. </p>
-
-<p>Reimplemented in <a class="el" href="classeden__ec_1_1_image.html#acd6615fa5ebee4715ea4c38a14af62a4">eden_ec::Image</a>.</p>
+<p>Implemented in <a class="el" href="classeden__ec_1_1_c_animator.html#a3081b70c2e2143626aa643d8b73d8f7a">eden_ec::CAnimator</a>, <a class="el" href="classeden__ec_1_1_c_audio_emitter.html#a009db160c87d6e350a435812040d3789">eden_ec::CAudioEmitter</a>, <a class="el" href="classeden__ec_1_1_c_audio_listener.html#ade1dff9ae0e8e3757a8526010c2963e9">eden_ec::CAudioListener</a>, <a class="el" href="classeden__ec_1_1_c_button.html#a74e5b22bb38df81def9a8483dc279718">eden_ec::CButton</a>, <a class="el" href="classeden__ec_1_1_c_camera.html#a4813cce71fcd45fb81ed7f6146a2c597">eden_ec::CCamera</a>, <a class="el" href="classeden__ec_1_1_c_cursor.html#ad333a8d102f89a3d49ffd3bca1741e18">eden_ec::CCursor</a>, <a class="el" href="classeden__ec_1_1_c_image.html#acfa7822a9c1efb283c68e0a3fd685cf1">eden_ec::CImage</a>, <a class="el" href="classeden__ec_1_1_c_lua_behaviour.html#a906dcc735df8178b5f81446fb72d9f1a">eden_ec::CLuaBehaviour</a>, <a class="el" href="classeden__ec_1_1_c_mesh_renderer.html#ac09009d2499589c90b5f3d9fa1a85a67">eden_ec::CMeshRenderer</a>, <a class="el" href="classeden__ec_1_1_c_particle_emitter.html#adcd477a92683d534ba05af95dfc0a97e">eden_ec::CParticleEmitter</a>, <a class="el" href="classeden__ec_1_1_c_rigid_body.html#a4619887bb2fcb65f6c4bde996c2e8b27">eden_ec::CRigidBody</a>, <a class="el" href="classeden__ec_1_1_c_text.html#aaaa8ed2674faab7379d869b7f6b15846">eden_ec::CText</a>, <a class="el" href="classeden__ec_1_1_hito1_prueba.html#a19c36971e42eeb881dc96ad7129f892e">eden_ec::Hito1Prueba</a>, <a class="el" href="classeden__ec_1_1_c_transform.html#a56615ca197aba97dfcd36150205dbd97">eden_ec::CTransform</a>, and <a class="el" href="classeden__ec_1_1c_test_component.html#a13ed3da5262b68e40cb99328788ef0ee">eden_ec::cTestComponent</a>.</p>
 
 </div>
 </div>
@@ -328,6 +310,35 @@ Static Protected Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a1aea3fbd188b1daee28bf30f2d3806fd" name="a1aea3fbd188b1daee28bf30f2d3806fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1aea3fbd188b1daee28bf30f2d3806fd">&#9670;&#160;</a></span>Start()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void eden_ec::Component::Start </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Usaremos este método para añadir referencias de otros componentes. </p>
+
+<p>Implemented in <a class="el" href="classeden__ec_1_1_c_animator.html#a30866faa8ad129258b91e1628e972ade">eden_ec::CAnimator</a>, <a class="el" href="classeden__ec_1_1_c_audio_emitter.html#af1911fe6c5c5378bfcc1e64375603073">eden_ec::CAudioEmitter</a>, <a class="el" href="classeden__ec_1_1_c_audio_listener.html#adf7750fafbb56e70c335a5e3aa76a7ae">eden_ec::CAudioListener</a>, <a class="el" href="classeden__ec_1_1_c_button.html#aba5a6afdf6a7e9ac8cc90b4f43ca7297">eden_ec::CButton</a>, <a class="el" href="classeden__ec_1_1_c_camera.html#a71a9f2d410605e9bcdb867a989b11608">eden_ec::CCamera</a>, <a class="el" href="classeden__ec_1_1_c_cursor.html#a748af74d6873d3aa0bae8fd21199f8fe">eden_ec::CCursor</a>, <a class="el" href="classeden__ec_1_1_c_image.html#adc862f3133afa5f03ae45f7bc164cb1e">eden_ec::CImage</a>, <a class="el" href="classeden__ec_1_1_c_lua_behaviour.html#a6b94807757a49c309c66a33b5e9e0a0e">eden_ec::CLuaBehaviour</a>, <a class="el" href="classeden__ec_1_1_c_mesh_renderer.html#a127c8a3b18f43712c70929c8cd2919a0">eden_ec::CMeshRenderer</a>, <a class="el" href="classeden__ec_1_1_c_particle_emitter.html#a5dc1b1dde24a8673b9f7512548ff1524">eden_ec::CParticleEmitter</a>, <a class="el" href="classeden__ec_1_1_c_rigid_body.html#ac0c18d4215303023e38cab4b411465ea">eden_ec::CRigidBody</a>, <a class="el" href="classeden__ec_1_1_c_text.html#a7186da94ef2d2b2b9d3b8e0b34f86bb8">eden_ec::CText</a>, <a class="el" href="classeden__ec_1_1_hito1_prueba.html#a6ac5653bad760f0ae2f73a8d051e9c52">eden_ec::Hito1Prueba</a>, and <a class="el" href="classeden__ec_1_1_c_transform.html#a435fe500da372d8306830b8bfab6aca3">eden_ec::CTransform</a>.</p>
 
 </div>
 </div>
@@ -362,7 +373,7 @@ Static Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Reimplemented in <a class="el" href="classeden__ec_1_1_image.html#a1af4aa9c0cef565c3c5d7ec5cd00bd97">eden_ec::Image</a>, and <a class="el" href="classeden__ec_1_1_text_component.html#a98214a3c30dc093dd97ad0a54efd1c82">eden_ec::TextComponent</a>.</p>
+<p>Reimplemented in <a class="el" href="classeden__ec_1_1_c_button.html#a1bfd46e136773518b97a548aa041b3d6">eden_ec::CButton</a>, <a class="el" href="classeden__ec_1_1_c_cursor.html#a50cdc5abf54ac8842e99d9ec396d082a">eden_ec::CCursor</a>, <a class="el" href="classeden__ec_1_1_c_animator.html#accf3142341ef56e95aa01b0465b6638f">eden_ec::CAnimator</a>, <a class="el" href="classeden__ec_1_1_c_camera.html#ad7bfc0879839fac719f0941685ab9845">eden_ec::CCamera</a>, <a class="el" href="classeden__ec_1_1_c_audio_emitter.html#a8ac2bc420ef54c576df71f39d91863f9">eden_ec::CAudioEmitter</a>, <a class="el" href="classeden__ec_1_1_c_audio_listener.html#ace54461f5533199cf1a4abf7c0e1fba1">eden_ec::CAudioListener</a>, <a class="el" href="classeden__ec_1_1_c_particle_emitter.html#abff6e2fe923a20a48dd9d1c74897c1c1">eden_ec::CParticleEmitter</a>, <a class="el" href="classeden__ec_1_1_c_rigid_body.html#a026dc2fbc3f787ce2090f2109bc5d292">eden_ec::CRigidBody</a>, and <a class="el" href="classeden__ec_1_1_hito1_prueba.html#acd4745c9bb900e0138c08f9ea72c51c7">eden_ec::Hito1Prueba</a>.</p>
 
 </div>
 </div>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mousebutton_0',['MOUSEBUTTON',['../classeden__input_1_1_input_manager.html#a02ab92352bfa40795f94646fd0f7cefa',1,'eden_input::InputManager']]]
+  ['lighttype_0',['LightType',['../_light_8h.html#adc3ec8293e6a97ebe43f0196b9a7f638',1,'Light.h']]]
 ];

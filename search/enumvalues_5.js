@@ -12,6 +12,5 @@ var searchData=
   ['f7_9',['F7',['../classeden__input_1_1_input_manager.html#aa828e411e5eb625e1572dfcfa92a1f7aa8fd293bdf33b3ab79956c0d5469b70cd',1,'eden_input::InputManager']]],
   ['f8_10',['F8',['../classeden__input_1_1_input_manager.html#aa828e411e5eb625e1572dfcfa92a1f7aaa7a7da0dafe86606ec00ca2db55d8156',1,'eden_input::InputManager']]],
   ['f9_11',['F9',['../classeden__input_1_1_input_manager.html#aa828e411e5eb625e1572dfcfa92a1f7aadcd5897c2ea015c971e988e8b2f99010',1,'eden_input::InputManager']]],
-  ['full_5fdisplay_12',['FULL_DISPLAY',['../class_s_d_l_utils.html#a738fffebcad8ac4759401f76d0431b78a8443baade5ed7b0559c6e7799d3dad9c',1,'SDLUtils']]],
-  ['fullscreen_13',['FULLSCREEN',['../class_s_d_l_utils.html#a738fffebcad8ac4759401f76d0431b78a939e852bfd25a403ce2d7c15b811b03a',1,'SDLUtils']]]
+  ['fonts_12',['Fonts',['../classeden__resources_1_1_resources_manager.html#ad3a5c7d98bbbcd45852f081716c3c78baf61df15e1209eee1a00ff93e6ab16fc5',1,'eden_resources::ResourcesManager']]]
 ];

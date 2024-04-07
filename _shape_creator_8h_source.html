@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">EDEN<span id="projectnumber">&#160;v.0403</span>
+   <div id="projectname">EDEN<span id="projectnumber">&#160;v.0804</span>
    </div>
   </td>
  </tr>
@@ -99,49 +99,49 @@ $(function(){initNavTree('_shape_creator_8h_source.html',''); initResizable(); }
   <div class="headertitle"><div class="title">ShapeCreator.h</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="_shape_creator_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef SHAPE_CREATOR_H</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define SHAPE_CREATOR_H</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">class </span>btBoxShape;</div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">class </span>btSphereShape;</div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">class </span>btCapsuleShape;</div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">class </span>btCylinderShape;</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceeden__utils.html">eden_utils</a> {</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    <span class="keyword">class </span>Vector3;</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>}</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacephysics__manager.html">physics_manager</a> {</div>
-<div class="foldopen" id="foldopen00015" data-start="{" data-end="};">
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classphysics__manager_1_1_shape_creator.html">   15</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classphysics__manager_1_1_shape_creator.html">ShapeCreator</a></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    {</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        <span class="keyword">static</span> btBoxShape <a class="code hl_function" href="classphysics__manager_1_1_shape_creator.html#a457679b699c99f9e741f262501d7bd7d">CreateBox</a>(<span class="keywordtype">float</span> x, <span class="keywordtype">float</span> y, <span class="keywordtype">float</span> z);</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <span class="keyword">static</span> btBoxShape <a class="code hl_function" href="classphysics__manager_1_1_shape_creator.html#a457679b699c99f9e741f262501d7bd7d">CreateBox</a>(<a class="code hl_class" href="classeden__utils_1_1_vector3.html">eden_utils::Vector3</a> lengths);</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        <span class="keyword">static</span> btSphereShape <a class="code hl_function" href="classphysics__manager_1_1_shape_creator.html#a360f1fe1747560f5249c08b50075925b">CreateSphere</a>(<span class="keywordtype">float</span> r);</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <span class="keyword">static</span> btCapsuleShape <a class="code hl_function" href="classphysics__manager_1_1_shape_creator.html#a541f3dce559decf25fe62d9032e7ff71">CreateCapsule</a>(<span class="keywordtype">float</span> r, <span class="keywordtype">float</span> h);</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <span class="keyword">static</span> btCylinderShape <a class="code hl_function" href="classphysics__manager_1_1_shape_creator.html#a11e645efd60e4b7781453b46eae5c492">CreateCylinder</a>(<span class="keywordtype">float</span> x, <span class="keywordtype">float</span> y, <span class="keywordtype">float</span> z);</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <span class="keyword">static</span> btCylinderShape <a class="code hl_function" href="classphysics__manager_1_1_shape_creator.html#a11e645efd60e4b7781453b46eae5c492">CreateCylinder</a>(<a class="code hl_class" href="classeden__utils_1_1_vector3.html">eden_utils::Vector3</a> lengths);</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    };</div>
+<a href="_shape_creator_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno"><a class="line" href="_shape_creator_8h.html#afc30e481f763a8d68a861dba91be7316">    1</a></span><span class="preprocessor">#define _CRTDBG_MAP_ALLOC</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#ifndef EDEN_SHAPE_CREATOR_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno"><a class="line" href="_shape_creator_8h.html#a9bc0fd9d749e34ff180ebd9c06d30373">    3</a></span><span class="preprocessor">#define EDEN_SHAPE_CREATOR_H</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">class </span>btBoxShape;</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">class </span>btSphereShape;</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">class </span>btCapsuleShape;</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">class </span>btCylinderShape;</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceeden__utils.html">eden_utils</a> {</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <span class="keyword">class </span>Vector3;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>}</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacephysics__wrapper.html">physics_wrapper</a> {</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keyword">class </span>RigidBody;</div>
+<div class="foldopen" id="foldopen00017" data-start="{" data-end="};">
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="classphysics__wrapper_1_1_shape_creator.html">   17</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classphysics__wrapper_1_1_shape_creator.html">ShapeCreator</a></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    {</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <span class="keyword">friend</span> <a class="code hl_class" href="classphysics__wrapper_1_1_rigid_body.html">physics_wrapper::RigidBody</a>;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        <span class="keyword">static</span> btBoxShape* CreateBox(<span class="keywordtype">float</span> x, <span class="keywordtype">float</span> y, <span class="keywordtype">float</span> z);</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <span class="keyword">static</span> btBoxShape* CreateBox(<a class="code hl_class" href="classeden__utils_1_1_vector3.html">eden_utils::Vector3</a> lengths);</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <span class="keyword">static</span> btSphereShape* CreateSphere(<span class="keywordtype">float</span> r);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keyword">static</span> btCapsuleShape* CreateCapsule(<span class="keywordtype">float</span> r, <span class="keywordtype">float</span> h);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        <span class="keyword">static</span> btCylinderShape* CreateCylinder(<span class="keywordtype">float</span> x, <span class="keywordtype">float</span> y, <span class="keywordtype">float</span> z);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="keyword">static</span> btCylinderShape* CreateCylinder(<a class="code hl_class" href="classeden__utils_1_1_vector3.html">eden_utils::Vector3</a> lengths);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    };</div>
 </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>}</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">#endif </span><span class="comment">// !_SHAPE_CREATOR_H</span></div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>}</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
-<div class="ttc" id="aclasseden__utils_1_1_vector3_html"><div class="ttname"><a href="classeden__utils_1_1_vector3.html">eden_utils::Vector3</a></div><div class="ttdef"><b>Definition</b> Vector3.h:6</div></div>
-<div class="ttc" id="aclassphysics__manager_1_1_shape_creator_html"><div class="ttname"><a href="classphysics__manager_1_1_shape_creator.html">physics_manager::ShapeCreator</a></div><div class="ttdoc">Clase para construir formas para el RigidBody.</div><div class="ttdef"><b>Definition</b> ShapeCreator.h:16</div></div>
-<div class="ttc" id="aclassphysics__manager_1_1_shape_creator_html_a11e645efd60e4b7781453b46eae5c492"><div class="ttname"><a href="classphysics__manager_1_1_shape_creator.html#a11e645efd60e4b7781453b46eae5c492">physics_manager::ShapeCreator::CreateCylinder</a></div><div class="ttdeci">static btCylinderShape CreateCylinder(float x, float y, float z)</div><div class="ttdoc">Crea la clase btCylinderShape.</div><div class="ttdef"><b>Definition</b> ShapeCreator.cpp:31</div></div>
-<div class="ttc" id="aclassphysics__manager_1_1_shape_creator_html_a360f1fe1747560f5249c08b50075925b"><div class="ttname"><a href="classphysics__manager_1_1_shape_creator.html#a360f1fe1747560f5249c08b50075925b">physics_manager::ShapeCreator::CreateSphere</a></div><div class="ttdeci">static btSphereShape CreateSphere(float r)</div><div class="ttdoc">Crea la clase btSphereShape.</div><div class="ttdef"><b>Definition</b> ShapeCreator.cpp:21</div></div>
-<div class="ttc" id="aclassphysics__manager_1_1_shape_creator_html_a457679b699c99f9e741f262501d7bd7d"><div class="ttname"><a href="classphysics__manager_1_1_shape_creator.html#a457679b699c99f9e741f262501d7bd7d">physics_manager::ShapeCreator::CreateBox</a></div><div class="ttdeci">static btBoxShape CreateBox(float x, float y, float z)</div><div class="ttdoc">Crea la clase btBoxShape.</div><div class="ttdef"><b>Definition</b> ShapeCreator.cpp:11</div></div>
-<div class="ttc" id="aclassphysics__manager_1_1_shape_creator_html_a541f3dce559decf25fe62d9032e7ff71"><div class="ttname"><a href="classphysics__manager_1_1_shape_creator.html#a541f3dce559decf25fe62d9032e7ff71">physics_manager::ShapeCreator::CreateCapsule</a></div><div class="ttdeci">static btCapsuleShape CreateCapsule(float r, float h)</div><div class="ttdoc">Crea la clase btCapsuleShape.</div><div class="ttdef"><b>Definition</b> ShapeCreator.cpp:26</div></div>
-<div class="ttc" id="anamespaceeden__utils_html"><div class="ttname"><a href="namespaceeden__utils.html">eden_utils</a></div><div class="ttdef"><b>Definition</b> Quaternion.h:8</div></div>
-<div class="ttc" id="anamespacephysics__manager_html"><div class="ttname"><a href="namespacephysics__manager.html">physics_manager</a></div><div class="ttdef"><b>Definition</b> PhysicsManager.h:17</div></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="preprocessor">#endif </span><span class="comment">// !_SHAPE_CREATOR_H</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="ttc" id="aclasseden__utils_1_1_vector3_html"><div class="ttname"><a href="classeden__utils_1_1_vector3.html">eden_utils::Vector3</a></div><div class="ttdef"><b>Definition</b> Vector3.h:7</div></div>
+<div class="ttc" id="aclassphysics__wrapper_1_1_rigid_body_html"><div class="ttname"><a href="classphysics__wrapper_1_1_rigid_body.html">physics_wrapper::RigidBody</a></div><div class="ttdef"><b>Definition</b> RigidBody.h:33</div></div>
+<div class="ttc" id="aclassphysics__wrapper_1_1_shape_creator_html"><div class="ttname"><a href="classphysics__wrapper_1_1_shape_creator.html">physics_wrapper::ShapeCreator</a></div><div class="ttdoc">Clase para construir formas para el RigidBody.</div><div class="ttdef"><b>Definition</b> ShapeCreator.h:18</div></div>
+<div class="ttc" id="anamespaceeden__utils_html"><div class="ttname"><a href="namespaceeden__utils.html">eden_utils</a></div><div class="ttdef"><b>Definition</b> CCamera.h:11</div></div>
+<div class="ttc" id="anamespacephysics__wrapper_html"><div class="ttname"><a href="namespacephysics__wrapper.html">physics_wrapper</a></div><div class="ttdef"><b>Definition</b> CRigidBody.h:22</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

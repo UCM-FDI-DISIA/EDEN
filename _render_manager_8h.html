@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">EDEN<span id="projectnumber">&#160;v.0403</span>
+   <div id="projectname">EDEN<span id="projectnumber">&#160;v.0804</span>
    </div>
   </td>
  </tr>
@@ -94,11 +94,14 @@ $(function(){initNavTree('_render_manager_8h.html',''); initResizable(); });
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a> &#124;
+<a href="#define-members">Macros</a> &#124;
 <a href="#typedef-members">Typedefs</a>  </div>
   <div class="headertitle"><div class="title">RenderManager.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;string&gt;</code><br />
+<code>#include &lt;unordered_set&gt;</code><br />
+<code>#include &lt;unordered_map&gt;</code><br />
 <code>#include &quot;<a class="el" href="_singleton_8h_source.html">Singleton.h</a>&quot;</code><br />
 </div>
 <p><a href="_render_manager_8h_source.html">Go to the source code of this file.</a></p>
@@ -109,23 +112,67 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeden__render_1_1_render_manager.html">eden_render::RenderManager</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeden__render_1_1_info_render_world.html">eden_render::InfoRenderWorld</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
+<tr class="memitem:namespaceeden__debug" id="r_namespaceeden__debug"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceeden__debug.html">eden_debug</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespace_ogre" id="r_namespace_ogre"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_ogre.html">Ogre</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespace_ogre_1_1_r_t_shader" id="r_namespace_ogre_1_1_r_t_shader"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_ogre_1_1_r_t_shader.html">Ogre::RTShader</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespaceeden__ec" id="r_namespaceeden__ec"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceeden__ec.html">eden_ec</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespaceeden" id="r_namespaceeden"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceeden.html">eden</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespacerender__wrapper" id="r_namespacerender__wrapper"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacerender__wrapper.html">render_wrapper</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespaceeden__render" id="r_namespaceeden__render"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceeden__render.html">eden_render</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:afc30e481f763a8d68a861dba91be7316" id="r_afc30e481f763a8d68a861dba91be7316"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afc30e481f763a8d68a861dba91be7316">_CRTDBG_MAP_ALLOC</a></td></tr>
+<tr class="separator:afc30e481f763a8d68a861dba91be7316"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa872649b2a77da498e6a548e356e4d1c" id="r_aa872649b2a77da498e6a548e356e4d1c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa872649b2a77da498e6a548e356e4d1c">EDEN_RENDER_MANAGER_H</a></td></tr>
+<tr class="separator:aa872649b2a77da498e6a548e356e4d1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:adc4080f5f1e2de1336f359ed5eeb1afe" id="r_adc4080f5f1e2de1336f359ed5eeb1afe"><td class="memItemLeft" align="right" valign="top">typedef SDL_Window&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adc4080f5f1e2de1336f359ed5eeb1afe">NativeWindowType</a></td></tr>
 <tr class="separator:adc4080f5f1e2de1336f359ed5eeb1afe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="afc30e481f763a8d68a861dba91be7316" name="afc30e481f763a8d68a861dba91be7316"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc30e481f763a8d68a861dba91be7316">&#9670;&#160;</a></span>_CRTDBG_MAP_ALLOC</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _CRTDBG_MAP_ALLOC</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa872649b2a77da498e6a548e356e4d1c" name="aa872649b2a77da498e6a548e356e4d1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa872649b2a77da498e6a548e356e4d1c">&#9670;&#160;</a></span>EDEN_RENDER_MANAGER_H</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EDEN_RENDER_MANAGER_H</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Typedef Documentation</h2>
 <a id="adc4080f5f1e2de1336f359ed5eeb1afe" name="adc4080f5f1e2de1336f359ed5eeb1afe"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adc4080f5f1e2de1336f359ed5eeb1afe">&#9670;&#160;</a></span>NativeWindowType</h2>

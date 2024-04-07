@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">EDEN<span id="projectnumber">&#160;v.0403</span>
+   <div id="projectname">EDEN<span id="projectnumber">&#160;v.0804</span>
    </div>
   </td>
  </tr>
@@ -98,7 +98,7 @@ $(function(){initNavTree('classeden__script_1_1_script_manager.html',''); initRe
 </div><!--header-->
 <div class="contents">
 
-<p>Funciona como Wrapper de Lua y es capaz de leer de un .lua las entidades que necesitan ser creadas en escena y su información.  
+<p>Funciona como Wrapper de Lua y es capaz de leer de un .lua las entidades que necesitan ser creadas en escena y su informacion.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_script_manager_8h_source.html">ScriptManager.h</a>&gt;</code></p>
@@ -114,9 +114,18 @@ Inheritance diagram for eden_script::ScriptManager:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a606ccb8f1560223edc9dbfcaffb7fbf0" id="r_a606ccb8f1560223edc9dbfcaffb7fbf0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a606ccb8f1560223edc9dbfcaffb7fbf0">ReadScene</a> (std::string sceneName, std::vector&lt; <a class="el" href="structeden__script_1_1_entity_info.html">eden_script::EntityInfo</a> * &gt; &amp;info)</td></tr>
-<tr class="memdesc:a606ccb8f1560223edc9dbfcaffb7fbf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lee la escena "bin/assets/&lt;sceneName&gt;.lua" y rellena &lt;info&gt; con información del componente.  <br /></td></tr>
-<tr class="separator:a606ccb8f1560223edc9dbfcaffb7fbf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad76e13e3ef30cc3bac929329619b0e62" id="r_ad76e13e3ef30cc3bac929329619b0e62"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad76e13e3ef30cc3bac929329619b0e62">ReadScene</a> (std::string sceneName, std::vector&lt; <a class="el" href="structeden__script_1_1_entity_info.html">eden_script::EntityInfo</a> * &gt; &amp;info, std::unordered_map&lt; std::string, std::vector&lt; std::string &gt; &gt; &amp;collisionInfo)</td></tr>
+<tr class="memdesc:ad76e13e3ef30cc3bac929329619b0e62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lee la escena "bin/assets/&lt;sceneName&gt;.lua" y rellena &lt;info&gt; con informacion del componente.  <br /></td></tr>
+<tr class="separator:ad76e13e3ef30cc3bac929329619b0e62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2111ec5d912c5ac17eedd7e180caa573" id="r_a2111ec5d912c5ac17eedd7e180caa573"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2111ec5d912c5ac17eedd7e180caa573">ReadBlueprints</a> (std::vector&lt; <a class="el" href="structeden__script_1_1_entity_info.html">eden_script::EntityInfo</a> * &gt; &amp;info)</td></tr>
+<tr class="memdesc:a2111ec5d912c5ac17eedd7e180caa573"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lee el archivo "bin/assets/Blueprints.lua" y rellena info con la información de los blueprints que existan.  <br /></td></tr>
+<tr class="separator:a2111ec5d912c5ac17eedd7e180caa573"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a404f2f5a178d46ad8dea5ba6e7109fd8" id="r_a404f2f5a178d46ad8dea5ba6e7109fd8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classeden__script_1_1_lua_manager.html">eden_script::LuaManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a404f2f5a178d46ad8dea5ba6e7109fd8">GetLuaManager</a> ()</td></tr>
+<tr class="memdesc:a404f2f5a178d46ad8dea5ba6e7109fd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve puntero a <a class="el" href="classeden__script_1_1_lua_manager.html" title="Clase encargada de gestionar la maquina virtual de Lua y los scripts de comportamiento.">LuaManager</a>.  <br /></td></tr>
+<tr class="separator:a404f2f5a178d46ad8dea5ba6e7109fd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87f4055f5050581330cb95ee894af5d6" id="r_a87f4055f5050581330cb95ee894af5d6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a87f4055f5050581330cb95ee894af5d6">~ScriptManager</a> () override</td></tr>
+<tr class="memdesc:a87f4055f5050581330cb95ee894af5d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructora que destruye la máquina virtual de Lua.  <br /></td></tr>
+<tr class="separator:a87f4055f5050581330cb95ee894af5d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_singleton"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_singleton')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_singleton.html">Singleton&lt; ScriptManager &gt;</a></td></tr>
 <tr class="memitem:a4db35d9dba54f3f0809831bcfdd408c3 inherit pub_methods_class_singleton" id="r_a4db35d9dba54f3f0809831bcfdd408c3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_singleton.html">Singleton</a>&lt; ScriptManager &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_singleton.html#a4db35d9dba54f3f0809831bcfdd408c3">operator=</a> (const <a class="el" href="class_singleton.html">Singleton</a>&lt; ScriptManager &gt; &amp;o)=delete</td></tr>
 <tr class="memdesc:a4db35d9dba54f3f0809831bcfdd408c3 inherit pub_methods_class_singleton"><td class="mdescLeft">&#160;</td><td class="mdescRight">No se pueden copiar objetos de este tipo.  <br /></td></tr>
@@ -144,10 +153,83 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a923b995920da9c06590adb170ab2f890 inherit pro_methods_class_singleton"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Funciona como Wrapper de Lua y es capaz de leer de un .lua las entidades que necesitan ser creadas en escena y su información. </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a606ccb8f1560223edc9dbfcaffb7fbf0" name="a606ccb8f1560223edc9dbfcaffb7fbf0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a606ccb8f1560223edc9dbfcaffb7fbf0">&#9670;&#160;</a></span>ReadScene()</h2>
+<div class="textblock"><p>Funciona como Wrapper de Lua y es capaz de leer de un .lua las entidades que necesitan ser creadas en escena y su informacion. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a87f4055f5050581330cb95ee894af5d6" name="a87f4055f5050581330cb95ee894af5d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87f4055f5050581330cb95ee894af5d6">&#9670;&#160;</a></span>~ScriptManager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">eden_script::ScriptManager::~ScriptManager </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Destructora que destruye la máquina virtual de Lua. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a404f2f5a178d46ad8dea5ba6e7109fd8" name="a404f2f5a178d46ad8dea5ba6e7109fd8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a404f2f5a178d46ad8dea5ba6e7109fd8">&#9670;&#160;</a></span>GetLuaManager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classeden__script_1_1_lua_manager.html">eden_script::LuaManager</a> * eden_script::ScriptManager::GetLuaManager </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Devuelve puntero a <a class="el" href="classeden__script_1_1_lua_manager.html" title="Clase encargada de gestionar la maquina virtual de Lua y los scripts de comportamiento.">LuaManager</a>. </p>
+
+</div>
+</div>
+<a id="a2111ec5d912c5ac17eedd7e180caa573" name="a2111ec5d912c5ac17eedd7e180caa573"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2111ec5d912c5ac17eedd7e180caa573">&#9670;&#160;</a></span>ReadBlueprints()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool eden_script::ScriptManager::ReadBlueprints </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="structeden__script_1_1_entity_info.html">eden_script::EntityInfo</a> * &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>info</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Lee el archivo "bin/assets/Blueprints.lua" y rellena info con la información de los blueprints que existan. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">info</td><td>Información a rellenar </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True = No error | False = Error </dd></dl>
+
+</div>
+</div>
+<a id="ad76e13e3ef30cc3bac929329619b0e62" name="ad76e13e3ef30cc3bac929329619b0e62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad76e13e3ef30cc3bac929329619b0e62">&#9670;&#160;</a></span>ReadScene()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -160,16 +242,22 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="structeden__script_1_1_entity_info.html">eden_script::EntityInfo</a> * &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>info</em></span>&#160;)</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="structeden__script_1_1_entity_info.html">eden_script::EntityInfo</a> * &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>info</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::unordered_map&lt; std::string, std::vector&lt; std::string &gt; &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>collisionInfo</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Lee la escena "bin/assets/&lt;sceneName&gt;.lua" y rellena &lt;info&gt; con información del componente. </p>
+<p>Lee la escena "bin/assets/&lt;sceneName&gt;.lua" y rellena &lt;info&gt; con informacion del componente. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">sceneName</td><td>Escena a cargar desde la carpeta "bin/assets" </td></tr>
-    <tr><td class="paramname">info</td><td>Vector pasado por referencia donde se guardará toda la información de las entidades leídas de mapa </td></tr>
+    <tr><td class="paramname">info</td><td>Vector pasado por referencia donde se guardara toda la informacion de las entidades leidas de mapa </td></tr>
+    <tr><td class="paramname">collisionInfo</td><td>Vector pasado por referencia donde se guardara toda la informacion de las capas de colision leidas de mapa </td></tr>
   </table>
   </dd>
 </dl>

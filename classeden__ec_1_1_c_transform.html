@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">EDEN<span id="projectnumber">&#160;v.0403</span>
+   <div id="projectname">EDEN<span id="projectnumber">&#160;v.0804</span>
    </div>
   </td>
  </tr>
@@ -130,11 +130,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7c83c2fa30c8511b37372131fa028859" id="r_a7c83c2fa30c8511b37372131fa028859"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c83c2fa30c8511b37372131fa028859">CTransform</a> (<a class="el" href="classeden__utils_1_1_vector3.html">eden_utils::Vector3</a> position, <a class="el" href="classeden__utils_1_1_quaternion.html">eden_utils::Quaternion</a> rotation, <a class="el" href="classeden__utils_1_1_vector3.html">eden_utils::Vector3</a> scale)</td></tr>
 <tr class="memdesc:a7c83c2fa30c8511b37372131fa028859"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructora con par�metros.  <br /></td></tr>
 <tr class="separator:a7c83c2fa30c8511b37372131fa028859"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39ca73674df7268b09597704ae108411" id="r_a39ca73674df7268b09597704ae108411"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a39ca73674df7268b09597704ae108411">Init</a> (<a class="el" href="classeden__script_1_1_component_arguments.html">eden_script::ComponentArguments</a> *args)</td></tr>
-<tr class="memdesc:a39ca73674df7268b09597704ae108411"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construye el componente dado unos argumentos. Se obtendrán de una lectura de un .lua.  <br /></td></tr>
-<tr class="separator:a39ca73674df7268b09597704ae108411"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a7eededdfe24d64572e727b77c74d91" id="r_a6a7eededdfe24d64572e727b77c74d91"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6a7eededdfe24d64572e727b77c74d91">~CTransform</a> ()=default</td></tr>
-<tr class="separator:a6a7eededdfe24d64572e727b77c74d91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56615ca197aba97dfcd36150205dbd97" id="r_a56615ca197aba97dfcd36150205dbd97"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a56615ca197aba97dfcd36150205dbd97">Init</a> (<a class="el" href="classeden__script_1_1_component_arguments.html">eden_script::ComponentArguments</a> *args) override</td></tr>
+<tr class="memdesc:a56615ca197aba97dfcd36150205dbd97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construye el componente dado unos argumentos. Se obtendrán de una lectura de un .lua.  <br /></td></tr>
+<tr class="separator:a56615ca197aba97dfcd36150205dbd97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a435fe500da372d8306830b8bfab6aca3" id="r_a435fe500da372d8306830b8bfab6aca3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a435fe500da372d8306830b8bfab6aca3">Start</a> () override</td></tr>
+<tr class="memdesc:a435fe500da372d8306830b8bfab6aca3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Se usa para coger referencias a otros componentes En este caso no se necesita.  <br /></td></tr>
+<tr class="separator:a435fe500da372d8306830b8bfab6aca3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43350b40724b046589bafd9959fff5ad" id="r_a43350b40724b046589bafd9959fff5ad"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a43350b40724b046589bafd9959fff5ad">~CTransform</a> () override=default</td></tr>
+<tr class="separator:a43350b40724b046589bafd9959fff5ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0cddddf68ea4b42c1458e6e9c479ea7d" id="r_a0cddddf68ea4b42c1458e6e9c479ea7d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classeden__utils_1_1_vector3.html">eden_utils::Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0cddddf68ea4b42c1458e6e9c479ea7d">GetPosition</a> () const</td></tr>
 <tr class="memdesc:a0cddddf68ea4b42c1458e6e9c479ea7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter de la posici�n.  <br /></td></tr>
 <tr class="separator:a0cddddf68ea4b42c1458e6e9c479ea7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -190,9 +193,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6e545e5ef7b0dbacb0b8db09f954ffa7 inherit pub_methods_classeden__ec_1_1_component" id="r_a6e545e5ef7b0dbacb0b8db09f954ffa7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeden__ec_1_1_component.html#a6e545e5ef7b0dbacb0b8db09f954ffa7">SetContext</a> (<a class="el" href="classeden__ec_1_1_entity.html">Entity</a> *ent)</td></tr>
 <tr class="memdesc:a6e545e5ef7b0dbacb0b8db09f954ffa7 inherit pub_methods_classeden__ec_1_1_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">Da contexto al componente, asgin�ndole cu�l es su entidad.  <br /></td></tr>
 <tr class="separator:a6e545e5ef7b0dbacb0b8db09f954ffa7 inherit pub_methods_classeden__ec_1_1_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e2d04aa8286137595529c29b0e4bd24 inherit pub_methods_classeden__ec_1_1_component" id="r_a9e2d04aa8286137595529c29b0e4bd24"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeden__ec_1_1_component.html#a9e2d04aa8286137595529c29b0e4bd24">InitComponent</a> ()</td></tr>
-<tr class="memdesc:a9e2d04aa8286137595529c29b0e4bd24 inherit pub_methods_classeden__ec_1_1_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicializa el componente para coger referencias a otros componentes de su entidad.  <br /></td></tr>
-<tr class="separator:a9e2d04aa8286137595529c29b0e4bd24 inherit pub_methods_classeden__ec_1_1_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a717eaae77e6301bd678e0b21256c4406 inherit pub_methods_classeden__ec_1_1_component" id="r_a717eaae77e6301bd678e0b21256c4406"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeden__ec_1_1_component.html#a717eaae77e6301bd678e0b21256c4406">Update</a> (float t)</td></tr>
 <tr class="memdesc:a717eaae77e6301bd678e0b21256c4406 inherit pub_methods_classeden__ec_1_1_component"><td class="mdescLeft">&#160;</td><td class="mdescRight">M�todo ejecutado cada frame.  <br /></td></tr>
 <tr class="separator:a717eaae77e6301bd678e0b21256c4406 inherit pub_methods_classeden__ec_1_1_component"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -208,7 +208,7 @@ Static Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-static-attribs" name="pro-static-attribs"></a>
 Static Protected Attributes</h2></td></tr>
-<tr class="memitem:a6f878e500f4cb22c7a57f8dc3611f6f5" id="r_a6f878e500f4cb22c7a57f8dc3611f6f5"><td class="memItemLeft" align="right" valign="top">static const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6f878e500f4cb22c7a57f8dc3611f6f5">_id</a> = &quot;TRASNFORM&quot;</td></tr>
+<tr class="memitem:a6f878e500f4cb22c7a57f8dc3611f6f5" id="r_a6f878e500f4cb22c7a57f8dc3611f6f5"><td class="memItemLeft" align="right" valign="top">static const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6f878e500f4cb22c7a57f8dc3611f6f5">_id</a> = &quot;TRANSFORM&quot;</td></tr>
 <tr class="separator:a6f878e500f4cb22c7a57f8dc3611f6f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_static_attribs_classeden__ec_1_1_component"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_static_attribs_classeden__ec_1_1_component')"><img src="closed.png" alt="-"/>&#160;Static Protected Attributes inherited from <a class="el" href="classeden__ec_1_1_component.html">eden_ec::Component</a></td></tr>
 <tr class="memitem:ae34e9e969ca412ed6c35d1439a3dc055 inherit pro_static_attribs_classeden__ec_1_1_component" id="r_ae34e9e969ca412ed6c35d1439a3dc055"><td class="memItemLeft" align="right" valign="top">static const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeden__ec_1_1_component.html#ae34e9e969ca412ed6c35d1439a3dc055">_id</a> = &quot;DEFAULT_ID_SHOULD_CHANGE&quot;</td></tr>
@@ -307,8 +307,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a6a7eededdfe24d64572e727b77c74d91" name="a6a7eededdfe24d64572e727b77c74d91"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6a7eededdfe24d64572e727b77c74d91">&#9670;&#160;</a></span>~CTransform()</h2>
+<a id="a43350b40724b046589bafd9959fff5ad" name="a43350b40724b046589bafd9959fff5ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43350b40724b046589bafd9959fff5ad">&#9670;&#160;</a></span>~CTransform()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -325,7 +325,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">default</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -529,8 +529,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a39ca73674df7268b09597704ae108411" name="a39ca73674df7268b09597704ae108411"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a39ca73674df7268b09597704ae108411">&#9670;&#160;</a></span>Init()</h2>
+<a id="a56615ca197aba97dfcd36150205dbd97" name="a56615ca197aba97dfcd36150205dbd97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56615ca197aba97dfcd36150205dbd97">&#9670;&#160;</a></span>Init()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -547,7 +547,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -743,6 +743,35 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="a435fe500da372d8306830b8bfab6aca3" name="a435fe500da372d8306830b8bfab6aca3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a435fe500da372d8306830b8bfab6aca3">&#9670;&#160;</a></span>Start()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void eden_ec::CTransform::Start </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Se usa para coger referencias a otros componentes En este caso no se necesita. </p>
+
+<p>Implements <a class="el" href="classeden__ec_1_1_component.html#a1aea3fbd188b1daee28bf30f2d3806fd">eden_ec::Component</a>.</p>
+
+</div>
+</div>
 <a id="acf65f3383743a9d992d75254b7366525" name="acf65f3383743a9d992d75254b7366525"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acf65f3383743a9d992d75254b7366525">&#9670;&#160;</a></span>Translate()</h2>
 
@@ -804,7 +833,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const std::string eden_ec::CTransform::_id = &quot;TRASNFORM&quot;</td>
+          <td class="memname">const std::string eden_ec::CTransform::_id = &quot;TRANSFORM&quot;</td>
         </tr>
       </table>
   </td>

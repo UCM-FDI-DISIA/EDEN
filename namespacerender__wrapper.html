@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">EDEN<span id="projectnumber">&#160;v.0403</span>
+   <div id="projectname">EDEN<span id="projectnumber">&#160;v.0804</span>
    </div>
   </td>
  </tr>
@@ -99,7 +99,23 @@ $(function(){initNavTree('namespacerender__wrapper.html',''); initResizable(); }
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrender__wrapper_1_1_node.html">Node</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrender__wrapper_1_1_animator.html">Animator</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">La clase <a class="el" href="classrender__wrapper_1_1_animator.html" title="La clase Animator forma parte del render_wrapper y se encarga de llamar a los métodos específicos de Ogre...">Animator</a> forma parte del <a class="el" href="namespacerender__wrapper.html">render_wrapper</a> y se encarga de llamar a los métodos específicos de <a class="el" href="namespace_ogre.html">Ogre</a> para que el componente no tenga que interactuar con ellos. Usa un unordered_map de strings (nombres de las animaciones) y pairs de AnimationStates de <a class="el" href="namespace_ogre.html">Ogre</a> (las animaciones como tal), y strings (nombres de las animaciones) que queremos que empiezen cuando esa acabe). <br  />
+  <a href="classrender__wrapper_1_1_animator.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrender__wrapper_1_1_camera_wrapper.html">CameraWrapper</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clase que se encarga de simplificar y "traducir" a un lenguaje que no tengan nada que ver con OGRE las llamadas a metodos relacionadas con la camara de OGRE.  <a href="classrender__wrapper_1_1_camera_wrapper.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrender__wrapper_1_1_light.html">Light</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrender__wrapper_1_1_mesh_renderer.html">MeshRenderer</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrender__wrapper_1_1_node_manager.html">NodeManager</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">La clase <a class="el" href="classrender__wrapper_1_1_node_manager.html" title="La clase NodeManager garantiza la abstraccion entre ogre y EDEN. Guarda todos los nodos de la escena ...">NodeManager</a> garantiza la abstraccion entre ogre y EDEN. Guarda todos los nodos de la escena actual, un nodo por entidad creada. Cuando se quiera manejar una entidad (por ejemplo: moverla, girarla, trasladarla, etc...), los wrappers asociados a sus componentes llamaran a los metodos correspondientes para realizar la accion pasandole la ID de su entidad. El ID de la entidad es un string unico y propio. El <a class="el" href="classrender__wrapper_1_1_node_manager.html" title="La clase NodeManager garantiza la abstraccion entre ogre y EDEN. Guarda todos los nodos de la escena ...">NodeManager</a> guardara en un unordered_map el ID de la Entidad y su nodo asociado. <br  />
+  <a href="classrender__wrapper_1_1_node_manager.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrender__wrapper_1_1_particle_system.html">ParticleSystem</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wrapper de <a class="el" href="classrender__wrapper_1_1_particle_system.html" title="Wrapper de ParticleSystem.">ParticleSystem</a>.  <a href="classrender__wrapper_1_1_particle_system.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrender__wrapper_1_1_render_object.html">RenderObject</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>

@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">EDEN<span id="projectnumber">&#160;v.0403</span>
+   <div id="projectname">EDEN<span id="projectnumber">&#160;v.0804</span>
    </div>
   </td>
  </tr>
@@ -101,6 +101,7 @@ $(function(){initNavTree('_script_manager_8h.html',''); initResizable(); });
 <div class="textblock"><code>#include &lt;string&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
 <code>#include &lt;unordered_map&gt;</code><br />
+<code>#include &lt;exception&gt;</code><br />
 <code>#include &quot;<a class="el" href="_singleton_8h_source.html">Singleton.h</a>&quot;</code><br />
 </div>
 <p><a href="_script_manager_8h_source.html">Go to the source code of this file.</a></p>
@@ -108,10 +109,10 @@ $(function(){initNavTree('_script_manager_8h.html',''); initResizable(); });
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structeden__script_1_1_entity_info.html">eden_script::EntityInfo</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Información acerca de las entidades. Contiene un nombre y un vector con información de sus componentes.  <a href="structeden__script_1_1_entity_info.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Informacion acerca de las entidades. Contiene un nombre y un vector con informacion de sus componentes.  <a href="structeden__script_1_1_entity_info.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classeden__script_1_1_script_manager.html">eden_script::ScriptManager</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funciona como Wrapper de Lua y es capaz de leer de un .lua las entidades que necesitan ser creadas en escena y su información.  <a href="classeden__script_1_1_script_manager.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funciona como Wrapper de Lua y es capaz de leer de un .lua las entidades que necesitan ser creadas en escena y su informacion.  <a href="classeden__script_1_1_script_manager.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
@@ -121,30 +122,30 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
+<tr class="memitem:afc30e481f763a8d68a861dba91be7316" id="r_afc30e481f763a8d68a861dba91be7316"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afc30e481f763a8d68a861dba91be7316">_CRTDBG_MAP_ALLOC</a></td></tr>
+<tr class="separator:afc30e481f763a8d68a861dba91be7316"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acda4630a3422fc28be8f310230deb77d" id="r_acda4630a3422fc28be8f310230deb77d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acda4630a3422fc28be8f310230deb77d">_DEBUGGING_SCENE_READING</a></td></tr>
 <tr class="separator:acda4630a3422fc28be8f310230deb77d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac2be69bbf39ae4b8ab028b9446d8710c" id="r_ac2be69bbf39ae4b8ab028b9446d8710c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac2be69bbf39ae4b8ab028b9446d8710c">ASSETS_ROUTE</a>&#160;&#160;&#160;&quot;assets\\scenes\\&quot;</td></tr>
-<tr class="separator:ac2be69bbf39ae4b8ab028b9446d8710c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aadc5aa7af32480411b116c43e9087f7a" id="r_aadc5aa7af32480411b116c43e9087f7a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aadc5aa7af32480411b116c43e9087f7a">SCENE_EXTENSION</a>&#160;&#160;&#160;&quot;.lua&quot;</td></tr>
 <tr class="separator:aadc5aa7af32480411b116c43e9087f7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2bb2c73fa360ffdc1d7c7cbb89ce13ca" id="r_a2bb2c73fa360ffdc1d7c7cbb89ce13ca"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2bb2c73fa360ffdc1d7c7cbb89ce13ca">ERROR_DEFINITION</a>&#160;&#160;&#160;&quot;Lua error in line &quot;+ std::to_string(__LINE__)</td></tr>
-<tr class="separator:a2bb2c73fa360ffdc1d7c7cbb89ce13ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5fccb4fc71e44089a1b1a77fc76c0b68" id="r_a5fccb4fc71e44089a1b1a77fc76c0b68"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5fccb4fc71e44089a1b1a77fc76c0b68">__FILENAME__</a>&#160;&#160;&#160;(strrchr(__FILE__, '\\') ? strrchr(__FILE__, '\\') + 1 : __FILE__)</td></tr>
-<tr class="separator:a5fccb4fc71e44089a1b1a77fc76c0b68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32c09aeeff939a0d290fae41e06dcf90" id="r_a32c09aeeff939a0d290fae41e06dcf90"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a32c09aeeff939a0d290fae41e06dcf90">BLUEPRINTS_FILE_NAME</a>&#160;&#160;&#160;&quot;Blueprints&quot;</td></tr>
+<tr class="separator:a32c09aeeff939a0d290fae41e06dcf90"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a10a70e5adc85e9790cbf59eb7f8445d9" id="r_a10a70e5adc85e9790cbf59eb7f8445d9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a10a70e5adc85e9790cbf59eb7f8445d9">ENTITY_TABLE_NAME</a>&#160;&#160;&#160;&quot;Entities&quot;</td></tr>
 <tr class="separator:a10a70e5adc85e9790cbf59eb7f8445d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e2c8a542761b42896dfed95a10269c1" id="r_a7e2c8a542761b42896dfed95a10269c1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7e2c8a542761b42896dfed95a10269c1">COLLISION_TABLE_NAME</a>&#160;&#160;&#160;&quot;CollisionLayers&quot;</td></tr>
+<tr class="separator:a7e2c8a542761b42896dfed95a10269c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae69c9c4de95f75fc5f722ad359bbc7b5" id="r_ae69c9c4de95f75fc5f722ad359bbc7b5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae69c9c4de95f75fc5f722ad359bbc7b5">NUM_ENTITIES</a>&#160;&#160;&#160;&quot;numEntities&quot;</td></tr>
 <tr class="separator:ae69c9c4de95f75fc5f722ad359bbc7b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="a5fccb4fc71e44089a1b1a77fc76c0b68" name="a5fccb4fc71e44089a1b1a77fc76c0b68"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5fccb4fc71e44089a1b1a77fc76c0b68">&#9670;&#160;</a></span>__FILENAME__</h2>
+<a id="afc30e481f763a8d68a861dba91be7316" name="afc30e481f763a8d68a861dba91be7316"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc30e481f763a8d68a861dba91be7316">&#9670;&#160;</a></span>_CRTDBG_MAP_ALLOC</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define __FILENAME__&#160;&#160;&#160;(strrchr(__FILE__, '\\') ? strrchr(__FILE__, '\\') + 1 : __FILE__)</td>
+          <td class="memname">#define _CRTDBG_MAP_ALLOC</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -165,14 +166,28 @@ Macros</h2></td></tr>
 
 </div>
 </div>
-<a id="ac2be69bbf39ae4b8ab028b9446d8710c" name="ac2be69bbf39ae4b8ab028b9446d8710c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac2be69bbf39ae4b8ab028b9446d8710c">&#9670;&#160;</a></span>ASSETS_ROUTE</h2>
+<a id="a32c09aeeff939a0d290fae41e06dcf90" name="a32c09aeeff939a0d290fae41e06dcf90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32c09aeeff939a0d290fae41e06dcf90">&#9670;&#160;</a></span>BLUEPRINTS_FILE_NAME</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define ASSETS_ROUTE&#160;&#160;&#160;&quot;assets\\scenes\\&quot;</td>
+          <td class="memname">#define BLUEPRINTS_FILE_NAME&#160;&#160;&#160;&quot;Blueprints&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7e2c8a542761b42896dfed95a10269c1" name="a7e2c8a542761b42896dfed95a10269c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e2c8a542761b42896dfed95a10269c1">&#9670;&#160;</a></span>COLLISION_TABLE_NAME</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define COLLISION_TABLE_NAME&#160;&#160;&#160;&quot;CollisionLayers&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -187,20 +202,6 @@ Macros</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">#define ENTITY_TABLE_NAME&#160;&#160;&#160;&quot;Entities&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a2bb2c73fa360ffdc1d7c7cbb89ce13ca" name="a2bb2c73fa360ffdc1d7c7cbb89ce13ca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2bb2c73fa360ffdc1d7c7cbb89ce13ca">&#9670;&#160;</a></span>ERROR_DEFINITION</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ERROR_DEFINITION&#160;&#160;&#160;&quot;Lua error in line &quot;+ std::to_string(__LINE__)</td>
         </tr>
       </table>
 </div><div class="memdoc">

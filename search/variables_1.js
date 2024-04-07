@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['background_0',['background',['../struct_mapa.html#a01151a3f275e4bbd44bc3bf02bb02e39',1,'Mapa']]],
-  ['bgsong_1',['bgsong',['../struct_mapa.html#a9268d6b4989eb67dc42a27476a37f1f4',1,'Mapa']]]
+  ['clickedtex_0',['clickedTex',['../structeden__ec_1_1_button_params.html#a4d6679bdd79ca0a1ced0b2d1b4dda08e',1,'eden_ec::ButtonParams']]],
+  ['components_1',['components',['../structeden__script_1_1_entity_info.html#af9daaa854ac8cfa8a0a5dcc0f33c98c7',1,'eden_script::EntityInfo']]]
 ];

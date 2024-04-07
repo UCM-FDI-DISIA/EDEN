@@ -42,7 +42,7 @@ var classeden__input_1_1_input_manager =
       [ "INSERT", "classeden__input_1_1_input_manager.html#aa828e411e5eb625e1572dfcfa92a1f7aae8ce8eadf3abd8c70d122ccbcaa38f75", null ],
       [ "HOME", "classeden__input_1_1_input_manager.html#aa828e411e5eb625e1572dfcfa92a1f7aa834b893f1f91c2ff330eec68f6366e4c", null ],
       [ "PAGEUP", "classeden__input_1_1_input_manager.html#aa828e411e5eb625e1572dfcfa92a1f7aa6c20c82bb6b046450725e814f7bafe5f", null ],
-      [ "DELETE", "classeden__input_1_1_input_manager.html#aa828e411e5eb625e1572dfcfa92a1f7aa9946d846e9e1dd8ee58e02b88e73298c", null ],
+      [ "SUPR", "classeden__input_1_1_input_manager.html#aa828e411e5eb625e1572dfcfa92a1f7aa717fcb02087d4b180822c523084055f3", null ],
       [ "END", "classeden__input_1_1_input_manager.html#aa828e411e5eb625e1572dfcfa92a1f7aa7ee0151fd72e3d27c07665ef14164b96", null ],
       [ "PAGEDOWN", "classeden__input_1_1_input_manager.html#aa828e411e5eb625e1572dfcfa92a1f7aa7cf422e5faacc48a9153f24cd3cf3e54", null ],
       [ "ARROW_RIGHT", "classeden__input_1_1_input_manager.html#aa828e411e5eb625e1572dfcfa92a1f7aa311cdb428239e8c215da22b384447f4a", null ],
@@ -61,8 +61,7 @@ var classeden__input_1_1_input_manager =
       [ "RSHIFT", "classeden__input_1_1_input_manager.html#aa828e411e5eb625e1572dfcfa92a1f7aad2ff829932fbdc366ee80710e98d24dc", null ],
       [ "RALT", "classeden__input_1_1_input_manager.html#aa828e411e5eb625e1572dfcfa92a1f7aa85bed9521e80e0bade8c8508d60bbefd", null ]
     ] ],
-    [ "InputManager", "classeden__input_1_1_input_manager.html#a410eeab742b13ed05f9019f89b4a1c50", null ],
-    [ "~InputManager", "classeden__input_1_1_input_manager.html#a043a9130148a4cfb8926928e15a7c7fc", null ],
+    [ "~InputManager", "classeden__input_1_1_input_manager.html#a08751f86cfde1f864c75a8cd663c20e4", null ],
     [ "Clean", "classeden__input_1_1_input_manager.html#a49d5da2c2780ab10afaf8e40ba1ed7b5", null ],
     [ "CloseWindowEvent", "classeden__input_1_1_input_manager.html#accff01a4a981ef027aada46935e3b073", null ],
     [ "GetMousePos", "classeden__input_1_1_input_manager.html#a638c20ff3b21beb79c52acdb306ccde2", null ],
@@ -79,7 +78,7 @@ var classeden__input_1_1_input_manager =
     [ "KeyUpEvent", "classeden__input_1_1_input_manager.html#a1effc62bdcfef4c3d4e3a9f907d9f90a", null ],
     [ "MouseButtonEvent", "classeden__input_1_1_input_manager.html#a38841f9169931f70dcff1b0286dd52be", null ],
     [ "MouseMotionEvent", "classeden__input_1_1_input_manager.html#af7e70449346c00cec2d0a9b51a456455", null ],
+    [ "ResizedWindowEvent", "classeden__input_1_1_input_manager.html#aa923d793c0a196f2e35230b9123d87a2", null ],
     [ "SetCloseWindow", "classeden__input_1_1_input_manager.html#a3d89394c65752a4ed01cc903304b40c4", null ],
-    [ "Update", "classeden__input_1_1_input_manager.html#ad0c331c0049dd8b180e029d2036a1b3a", null ],
-    [ "Singleton< InputManager >", "classeden__input_1_1_input_manager.html#ad51ca07a6db4e4f65ca2a9c3e9146b03", null ]
+    [ "Update", "classeden__input_1_1_input_manager.html#ad0c331c0049dd8b180e029d2036a1b3a", null ]
 ];

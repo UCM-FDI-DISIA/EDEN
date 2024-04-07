@@ -12,9 +12,6 @@ var searchData=
   ['f7_9',['F7',['../classeden__input_1_1_input_manager.html#aa828e411e5eb625e1572dfcfa92a1f7aa8fd293bdf33b3ab79956c0d5469b70cd',1,'eden_input::InputManager']]],
   ['f8_10',['F8',['../classeden__input_1_1_input_manager.html#aa828e411e5eb625e1572dfcfa92a1f7aaa7a7da0dafe86606ec00ca2db55d8156',1,'eden_input::InputManager']]],
   ['f9_11',['F9',['../classeden__input_1_1_input_manager.html#aa828e411e5eb625e1572dfcfa92a1f7aadcd5897c2ea015c971e988e8b2f99010',1,'eden_input::InputManager']]],
-  ['font_12',['Font',['../class_font.html',1,'Font'],['../class_font.html#ad0ce965b863f7dfbefc210812d54bca8',1,'Font::Font(const Font &amp;other)=delete'],['../class_font.html#add41c62835913dbc8abcaa44a63286b4',1,'Font::Font(Font &amp;&amp;other) noexcept'],['../class_font.html#a89b82c7b5774382b25e379f53544a5d6',1,'Font::Font(const std::string &amp;fileName, int size)']]],
-  ['font_2eh_13',['Font.h',['../_font_8h.html',1,'']]],
-  ['fonts_14',['fonts',['../class_s_d_l_utils.html#acc2f75dc34ef563dab0ad6b6201a6c47',1,'SDLUtils']]],
-  ['full_5fdisplay_15',['FULL_DISPLAY',['../class_s_d_l_utils.html#a738fffebcad8ac4759401f76d0431b78a8443baade5ed7b0559c6e7799d3dad9c',1,'SDLUtils']]],
-  ['fullscreen_16',['FULLSCREEN',['../class_s_d_l_utils.html#a738fffebcad8ac4759401f76d0431b78a939e852bfd25a403ce2d7c15b811b03a',1,'SDLUtils']]]
+  ['fileexist_12',['FileExist',['../classeden__resources_1_1_resources_manager.html#a3c2f534c66fe47bb818240a1195ba50f',1,'eden_resources::ResourcesManager']]],
+  ['fonts_13',['Fonts',['../classeden__resources_1_1_resources_manager.html#ad3a5c7d98bbbcd45852f081716c3c78baf61df15e1209eee1a00ff93e6ab16fc5',1,'eden_resources::ResourcesManager']]]
 ];

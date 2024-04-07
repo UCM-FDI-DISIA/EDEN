@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">EDEN<span id="projectnumber">&#160;v.0403</span>
+   <div id="projectname">EDEN<span id="projectnumber">&#160;v.0804</span>
    </div>
   </td>
  </tr>
@@ -92,35 +92,132 @@ $(function(){initNavTree('_e_d_e_n_2main_8cpp.html',''); initResizable(); });
 
 <div class="header">
   <div class="summary">
+<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">main.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="_eden_master_8h_source.html">EdenMaster.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;filesystem&gt;</code><br />
+<code>#include &quot;<a class="el" href="_error_handler_8h_source.html">ErrorHandler.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_eden_master_8h_source.html">EdenMaster.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_entity_8h_source.html">Entity.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_component_8h_source.html">Component.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_component_factory_8h_source.html">ComponentFactory.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_test_component_8h_source.html">TestComponent.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_transform_8h_source.html">Transform.h</a>&quot;</code><br />
-<code>#include &lt;<a class="el" href="_render_manager_8h_source.html">RenderManager.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="_input_manager_8h_source.html">InputManager.h</a>&gt;</code><br />
-<code>#include &lt;iostream&gt;</code><br />
+<code>#include &quot;<a class="el" href="_c_mesh_renderer_8h_source.html">CMeshRenderer.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_c_i_mage_8h_source.html">CImage.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_c_text_8h_source.html">CText.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_c_button_8h_source.html">CButton.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_c_cursor_8h_source.html">CCursor.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_c_camera_8h_source.html">CCamera.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_c_particle_emitter_8h_source.html">CParticleEmitter.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_c_rigid_body_8h_source.html">CRigidBody.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_c_lua_behaviour_8h_source.html">CLuaBehaviour.h</a>&quot;</code><br />
+<code>#include &lt;<a class="el" href="_script_manager_8h_source.html">ScriptManager.h</a>&gt;</code><br />
+<code>#include &quot;<a class="el" href="_scene_manager_8h_source.html">SceneManager.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_scene_8h_source.html">Scene.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_c_audio_emitter_8h_source.html">CAudioEmitter.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_c_audio_listener_8h_source.html">CAudioListener.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_hito1_prueba_8h_source.html">Hito1Prueba.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_c_animator_8h_source.html">CAnimator.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_render_manager_8h_source.html">RenderManager.h</a>&quot;</code><br />
+<code>#include &lt;string&gt;</code><br />
 </div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:afc30e481f763a8d68a861dba91be7316" id="r_afc30e481f763a8d68a861dba91be7316"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afc30e481f763a8d68a861dba91be7316">_CRTDBG_MAP_ALLOC</a></td></tr>
+<tr class="separator:afc30e481f763a8d68a861dba91be7316"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95d1b97f67f97c7e0f27519372822f43" id="r_a95d1b97f67f97c7e0f27519372822f43"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a95d1b97f67f97c7e0f27519372822f43">DBG_NEW</a>&#160;&#160;&#160;new</td></tr>
+<tr class="separator:a95d1b97f67f97c7e0f27519372822f43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4761793aa063da69be00f928b6d2016" id="r_ae4761793aa063da69be00f928b6d2016"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae4761793aa063da69be00f928b6d2016">EDEN_MAIN_CPP</a></td></tr>
+<tr class="separator:ae4761793aa063da69be00f928b6d2016"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4" id="r_ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a> ()</td></tr>
-<tr class="memdesc:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Engine Loop3.  <br /></td></tr>
-<tr class="separator:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75ce5f0e0244b40baa3e8847ff147eea" id="r_a75ce5f0e0244b40baa3e8847ff147eea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a75ce5f0e0244b40baa3e8847ff147eea">RegisterComponents</a> ()</td></tr>
+<tr class="memdesc:a75ce5f0e0244b40baa3e8847ff147eea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Engine Loop3.  <br /></td></tr>
+<tr class="separator:a75ce5f0e0244b40baa3e8847ff147eea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97" id="r_a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
+<tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="afc30e481f763a8d68a861dba91be7316" name="afc30e481f763a8d68a861dba91be7316"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc30e481f763a8d68a861dba91be7316">&#9670;&#160;</a></span>_CRTDBG_MAP_ALLOC</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _CRTDBG_MAP_ALLOC</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a95d1b97f67f97c7e0f27519372822f43" name="a95d1b97f67f97c7e0f27519372822f43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95d1b97f67f97c7e0f27519372822f43">&#9670;&#160;</a></span>DBG_NEW</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DBG_NEW&#160;&#160;&#160;new</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae4761793aa063da69be00f928b6d2016" name="ae4761793aa063da69be00f928b6d2016"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4761793aa063da69be00f928b6d2016">&#9670;&#160;</a></span>EDEN_MAIN_CPP</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EDEN_MAIN_CPP</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ae66f6b31b5ad750f1fe042a706a4e3d4" name="ae66f6b31b5ad750f1fe042a706a4e3d4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae66f6b31b5ad750f1fe042a706a4e3d4">&#9670;&#160;</a></span>main()</h2>
+<a id="a0ddf1224851353fc92bfbff6f499fa97" name="a0ddf1224851353fc92bfbff6f499fa97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ddf1224851353fc92bfbff6f499fa97">&#9670;&#160;</a></span>main()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">int main </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>argc</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>argv</em>[]</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>--------&mdash; TESTEO REFACTORIZACION DE ESCENAS, NO BORRAR -----------------&mdash;</p>
+<hr  />
+
+</div>
+</div>
+<a id="a75ce5f0e0244b40baa3e8847ff147eea" name="a75ce5f0e0244b40baa3e8847ff147eea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75ce5f0e0244b40baa3e8847ff147eea">&#9670;&#160;</a></span>RegisterComponents()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RegisterComponents </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td></td>
@@ -129,7 +226,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Engine Loop3. </p>
-<p>Entity-Component Engine Render Engine Input </p>
+<p>Entity-Component Engine Render Engine Physics </p>
 
 </div>
 </div>

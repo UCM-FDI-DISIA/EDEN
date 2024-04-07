@@ -26,7 +26,11 @@ var NAVTREE =
 [
   [ "EDEN", "index.html", [
     [ "Namespaces", "namespaces.html", [
-      [ "Namespace List", "namespaces.html", "namespaces_dup" ]
+      [ "Namespace List", "namespaces.html", "namespaces_dup" ],
+      [ "Namespace Members", "namespacemembers.html", [
+        [ "All", "namespacemembers.html", null ],
+        [ "Typedefs", "namespacemembers_type.html", null ]
+      ] ]
     ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
@@ -36,9 +40,9 @@ var NAVTREE =
         [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", "functions_func" ],
         [ "Variables", "functions_vars.html", null ],
-        [ "Typedefs", "functions_type.html", null ],
         [ "Enumerations", "functions_enum.html", null ],
-        [ "Enumerator", "functions_eval.html", null ]
+        [ "Enumerator", "functions_eval.html", null ],
+        [ "Related Symbols", "functions_rela.html", null ]
       ] ]
     ] ],
     [ "Files", "files.html", [
@@ -47,6 +51,8 @@ var NAVTREE =
         [ "All", "globals.html", null ],
         [ "Functions", "globals_func.html", null ],
         [ "Typedefs", "globals_type.html", null ],
+        [ "Enumerations", "globals_enum.html", null ],
+        [ "Enumerator", "globals_eval.html", null ],
         [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
@@ -55,10 +61,14 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_component_8cpp.html",
-"classeden__ec_1_1_c_transform.html#a5137e42e76669f6d02629a3485f7fce0a4f4b69acc2f5861bef2925f16b8a9b65",
-"classeden__input_1_1_input_manager.html#aa828e411e5eb625e1572dfcfa92a1f7aa8ca183735d811b017ab4aef3ab052c3d",
-"classphysics__manager_1_1_physics_manager.html#a3a951ee96ab24e270fdc3b8003630785"
+"_animator_8cpp.html",
+"_render_manager_8h.html#afc30e481f763a8d68a861dba91be7316",
+"classeden__canvas_1_1_canvas.html#ad9c6b865600f9f4c0774433730e5d683",
+"classeden__ec_1_1_c_rigid_body.html#a7d5fe1c023b328265adae38b6995c1a1",
+"classeden__ec_1_1_u_i_component.html#ad7f313e91ee48cf13290a9c86d0d94e8",
+"classeden__resources_1_1_resources_manager.html#ad3a5c7d98bbbcd45852f081716c3c78bae3353e3a97543b14bc06b26f94a8863c",
+"classphysics__wrapper_1_1_rigid_body.html#a29c05ca4775179ccb3cd9ac725368134",
+"files.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

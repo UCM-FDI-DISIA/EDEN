@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">EDEN<span id="projectnumber">&#160;v.0403</span>
+   <div id="projectname">EDEN<span id="projectnumber">&#160;v.0804</span>
    </div>
   </td>
  </tr>
@@ -93,21 +93,22 @@ $(function(){initNavTree('_ray_cast_8h.html',''); initResizable(); });
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a>  </div>
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#define-members">Macros</a>  </div>
   <div class="headertitle"><div class="title">RayCast.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;vector&gt;</code><br />
-<code>#include &quot;<a class="el" href="_singleton_8h_source.html">../EDEN/Singleton.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_vector3_8h_source.html">../EDEN/Vector3.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_entity_8h_source.html">../EDEN/Entity.h</a>&quot;</code><br />
+<code>#include &lt;string&gt;</code><br />
+<code>#include &quot;<a class="el" href="_singleton_8h_source.html">Singleton.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_vector3_8h_source.html">Vector3.h</a>&quot;</code><br />
 </div>
 <p><a href="_ray_cast_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structphysics__wrapper_1_1_ray_cast_hit_result.html">physics_wrapper::RayCastHitResult</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Estructura de datos que contiene la información del rayo una vez impacta.  <a href="structphysics__wrapper_1_1_ray_cast_hit_result.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Estructura de datos que contiene la informacion del rayo una vez impacta.  <a href="structphysics__wrapper_1_1_ray_cast_hit_result.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classphysics__wrapper_1_1_ray_cast.html">physics_wrapper::RayCast</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -116,9 +117,47 @@ Classes</h2></td></tr>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespacephysics__manager" id="r_namespacephysics__manager"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacephysics__manager.html">physics_manager</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespaceeden__ec" id="r_namespaceeden__ec"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceeden__ec.html">eden_ec</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespacephysics__wrapper" id="r_namespacephysics__wrapper"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacephysics__wrapper.html">physics_wrapper</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:afc30e481f763a8d68a861dba91be7316" id="r_afc30e481f763a8d68a861dba91be7316"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afc30e481f763a8d68a861dba91be7316">_CRTDBG_MAP_ALLOC</a></td></tr>
+<tr class="separator:afc30e481f763a8d68a861dba91be7316"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d14fc53f518ad0d52e9426565141391" id="r_a1d14fc53f518ad0d52e9426565141391"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1d14fc53f518ad0d52e9426565141391">EDEN_RAYCASTWRAPPER_H</a></td></tr>
+<tr class="separator:a1d14fc53f518ad0d52e9426565141391"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="afc30e481f763a8d68a861dba91be7316" name="afc30e481f763a8d68a861dba91be7316"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc30e481f763a8d68a861dba91be7316">&#9670;&#160;</a></span>_CRTDBG_MAP_ALLOC</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _CRTDBG_MAP_ALLOC</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1d14fc53f518ad0d52e9426565141391" name="a1d14fc53f518ad0d52e9426565141391"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d14fc53f518ad0d52e9426565141391">&#9670;&#160;</a></span>EDEN_RAYCASTWRAPPER_H</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EDEN_RAYCASTWRAPPER_H</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

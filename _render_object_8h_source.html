@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">EDEN<span id="projectnumber">&#160;v.0403</span>
+   <div id="projectname">EDEN<span id="projectnumber">&#160;v.0804</span>
    </div>
   </td>
  </tr>
@@ -99,27 +99,35 @@ $(function(){initNavTree('_render_object_8h_source.html',''); initResizable(); }
   <div class="headertitle"><div class="title">RenderObject.h</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="_render_object_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#ifndef _RENDER_OBJECT_H_</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno"><a class="line" href="_render_object_8h.html#a6ec6efc45f1bf3333179f69d4c6a1805">    3</a></span><span class="preprocessor">#define _RENDER_OBJECT_H_</span></div>
+<a href="_render_object_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno"><a class="line" href="_render_object_8h.html#afc30e481f763a8d68a861dba91be7316">    1</a></span><span class="preprocessor">#define _CRTDBG_MAP_ALLOC</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#ifndef EDEN_RENDER_OBJECT_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno"><a class="line" href="_render_object_8h.html#aa1ee22ea9e245426722744e6dfc06793">    3</a></span><span class="preprocessor">#define EDEN_RENDER_OBJECT_H</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;OgreMovableObject.h&gt;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacerender__wrapper.html">render_wrapper</a> {</div>
-<div class="foldopen" id="foldopen00008" data-start="{" data-end="};">
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="classrender__wrapper_1_1_render_object.html">    8</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classrender__wrapper_1_1_render_object.html">RenderObject</a> {</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="classrender__wrapper_1_1_render_object.html#a95292b617c1e58d00312e4c4ffb59561">   10</a></span>        <span class="keyword">virtual</span> <a class="code hl_function" href="classrender__wrapper_1_1_render_object.html#a95292b617c1e58d00312e4c4ffb59561">~RenderObject</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="classrender__wrapper_1_1_render_object.html#a0ebe75200c9f7d1f31052be347be6876">   11</a></span>        <span class="keyword">virtual</span> Ogre::MovableObject* <a class="code hl_function" href="classrender__wrapper_1_1_render_object.html#a0ebe75200c9f7d1f31052be347be6876">GetRenderObject</a>() = 0;</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    };</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_ogre.html">Ogre</a> {</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>    <span class="keyword">class </span>SceneManager;</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>    <span class="keyword">class </span>MovableObject;</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>}</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacerender__wrapper.html">render_wrapper</a> {</div>
+<div class="foldopen" id="foldopen00011" data-start="{" data-end="};">
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="classrender__wrapper_1_1_render_object.html">   11</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classrender__wrapper_1_1_render_object.html">RenderObject</a> {</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="classrender__wrapper_1_1_render_object.html#a95292b617c1e58d00312e4c4ffb59561">   13</a></span>        <span class="keyword">virtual</span> <a class="code hl_function" href="classrender__wrapper_1_1_render_object.html#a95292b617c1e58d00312e4c4ffb59561">~RenderObject</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="classrender__wrapper_1_1_render_object.html#a0ebe75200c9f7d1f31052be347be6876">   14</a></span>        <span class="keyword">virtual</span> Ogre::MovableObject* <a class="code hl_function" href="classrender__wrapper_1_1_render_object.html#a0ebe75200c9f7d1f31052be347be6876">GetRenderObject</a>() = 0;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        Ogre::SceneManager* <a class="code hl_function" href="classrender__wrapper_1_1_render_object.html#a2f207100c626996079dc0f91be77629c">getSceneManager</a>();</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    };</div>
 </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>}</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#endif </span><span class="comment">//_RENDER_OBJECT_H_</span></div>
-<div class="ttc" id="aclassrender__wrapper_1_1_render_object_html"><div class="ttname"><a href="classrender__wrapper_1_1_render_object.html">render_wrapper::RenderObject</a></div><div class="ttdef"><b>Definition</b> RenderObject.h:8</div></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>}</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#endif </span><span class="comment">//_RENDER_OBJECT_H_</span></div>
+<div class="ttc" id="aclassrender__wrapper_1_1_render_object_html"><div class="ttname"><a href="classrender__wrapper_1_1_render_object.html">render_wrapper::RenderObject</a></div><div class="ttdef"><b>Definition</b> RenderObject.h:11</div></div>
 <div class="ttc" id="aclassrender__wrapper_1_1_render_object_html_a0ebe75200c9f7d1f31052be347be6876"><div class="ttname"><a href="classrender__wrapper_1_1_render_object.html#a0ebe75200c9f7d1f31052be347be6876">render_wrapper::RenderObject::GetRenderObject</a></div><div class="ttdeci">virtual Ogre::MovableObject * GetRenderObject()=0</div></div>
+<div class="ttc" id="aclassrender__wrapper_1_1_render_object_html_a2f207100c626996079dc0f91be77629c"><div class="ttname"><a href="classrender__wrapper_1_1_render_object.html#a2f207100c626996079dc0f91be77629c">render_wrapper::RenderObject::getSceneManager</a></div><div class="ttdeci">Ogre::SceneManager * getSceneManager()</div><div class="ttdef"><b>Definition</b> RenderObject.cpp:12</div></div>
 <div class="ttc" id="aclassrender__wrapper_1_1_render_object_html_a95292b617c1e58d00312e4c4ffb59561"><div class="ttname"><a href="classrender__wrapper_1_1_render_object.html#a95292b617c1e58d00312e4c4ffb59561">render_wrapper::RenderObject::~RenderObject</a></div><div class="ttdeci">virtual ~RenderObject()=default</div></div>
-<div class="ttc" id="anamespacerender__wrapper_html"><div class="ttname"><a href="namespacerender__wrapper.html">render_wrapper</a></div><div class="ttdef"><b>Definition</b> Node.h:22</div></div>
+<div class="ttc" id="anamespace_ogre_html"><div class="ttname"><a href="namespace_ogre.html">Ogre</a></div><div class="ttdef"><b>Definition</b> CButton.h:9</div></div>
+<div class="ttc" id="anamespacerender__wrapper_html"><div class="ttname"><a href="namespacerender__wrapper.html">render_wrapper</a></div><div class="ttdef"><b>Definition</b> CAnimator.h:15</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

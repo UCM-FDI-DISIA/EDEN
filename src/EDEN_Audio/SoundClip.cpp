@@ -8,7 +8,7 @@ audio_wrapper::SoundClip::SoundClip(std::string filename) : _filename(filename) 
 }
 
 audio_wrapper::SoundClip::~SoundClip() {
-	_soundSource->drop();
+	audio_wrapper::AudioEngine::Instance()->RemoveSoundSource(_soundSource);
 	_soundSource = nullptr;
 }
 

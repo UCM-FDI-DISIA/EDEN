@@ -2,7 +2,7 @@
 #include <irrKlang.h>
 
 #include "Sound.h"
-#include <ErrorHandler.h>
+#include "ErrorHandler.h"
 #include "AudioEngine.h"
 #include "Vector3.h"
 #include "SoundClip.h"
@@ -12,7 +12,7 @@ audio_wrapper::Sound::Sound(SoundClip* clip): _clip(clip), _threeDimensional(fal
 }
 
 audio_wrapper::Sound::~Sound() {
-    _sound->drop();
+    if(_sound) _sound->drop();
     _clip = nullptr;
     _sound = nullptr;
 }

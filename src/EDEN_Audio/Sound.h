@@ -4,7 +4,7 @@
 
 #include <string>
 
-#include "AudioEmitter.h"
+#include "CAudioEmitter.h"
 
 namespace irrklang {
     class ISound;
@@ -19,7 +19,7 @@ namespace audio_wrapper {
     /// Clase que actuara de wrapper de los sonidos de Irrklang. Cada SoundWrapper representara
     /// un sonido distinto, que se generara en el AudioWrapper.
     class Sound {
-        friend class eden_ec::AudioEmitter;
+        friend class eden_ec::CAudioEmitter;
     public:
         /// Constructora por defecto del SoundWrapper
         /// @param file Ruta del archivo con el sonido

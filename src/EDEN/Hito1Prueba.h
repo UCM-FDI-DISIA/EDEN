@@ -12,6 +12,8 @@ namespace eden_ec {
 	class CTransform;
 	class CAnimator;
 	class CText;
+	class AudioEmitter;
+	class AudioListener;
 	class Hito1Prueba : public Component {
 	public:
 		Hito1Prueba();

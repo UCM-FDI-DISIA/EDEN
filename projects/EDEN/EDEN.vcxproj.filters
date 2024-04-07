@@ -25,6 +25,8 @@
     <ClCompile Include="..\..\src\EDEN\CParticleEmitter.cpp" />
     <ClCompile Include="..\..\src\EDEN\CText.cpp" />
     <ClCompile Include="..\..\src\EDEN\ResourcesManager.cpp" />
+    <ClCompile Include="..\..\src\EDEN\CAudioEmitter.cpp" />
+    <ClCompile Include="..\..\src\EDEN\CAudioListener.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\EDEN\Quaternion.h" />
@@ -51,5 +53,7 @@
     <ClInclude Include="..\..\src\EDEN\CParticleEmitter.h" />
     <ClInclude Include="..\..\src\EDEN\CText.h" />
     <ClInclude Include="..\..\src\EDEN\ResourcesManager.h" />
+    <ClInclude Include="..\..\src\EDEN\CAudioEmitter.h" />
+    <ClInclude Include="..\..\src\EDEN\CAudioListener.h" />
   </ItemGroup>
 </Project>

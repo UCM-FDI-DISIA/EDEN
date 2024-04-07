@@ -32,6 +32,10 @@ namespace audio_wrapper {
 		/// @return Un puntero a una fuente de sonido propia de Irrklang
 		irrklang::ISoundSource* CreateSoundSource(std::string file);
 
+		/// @brief Metodo para eliminar una fuente de sonido del motor de sonido
+		/// @param source Un puntero a una fuente de sonido propia de irrklang
+		void RemoveSoundSource(irrklang::ISoundSource* source);
+
 		/// Metodo para reproducir un sonido en un espacio bidimensional o en su defecto en toda
 		/// una escena, esto es, que no va por coordenadas
 		/// @param soundSource Fuente del sonido a reproducir

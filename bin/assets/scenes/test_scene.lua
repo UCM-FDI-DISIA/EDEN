@@ -89,6 +89,11 @@ Entity2 = {
 			Name = "CAMERA",
 			Arguments = {
 			}
+		},
+		{
+			Name = "AUDIO_LISTENER",
+			Arguments = {
+			}
 		}
 	}	
 }
@@ -206,7 +211,28 @@ Entity7 = {
 	}	
 }
 
-Entities = { Entity1, Entity2, Entity3, Entity4, Entity5, Entity6, Entity7 }
+Entity8 = {
+	Name = "AudioEmitter",
+	Components = {
+		{
+            Name = "TRANSFORM", 
+            Arguments = {
+                Position = "-700|0|250",
+                Rotation = "0|0|0|0",
+                Scale = "1|1|1"
+            }
+        },
+		{
+			Name = "AUDIO_EMITTER",
+			Arguments = {
+				SongName = "bell.wav",
+				Is3D = "false"
+			}
+		}
+	}
+}
+
+Entities = { Entity1, Entity2, Entity3, Entity4, Entity5, Entity6, Entity7, Entity8 }
 
 CollisionLayers = { 
     Layers = {

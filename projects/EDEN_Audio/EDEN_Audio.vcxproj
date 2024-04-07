@@ -11,17 +11,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\EDEN_Audio\AudioEmitter.cpp" />
     <ClCompile Include="..\..\src\EDEN_Audio\AudioEngine.cpp" />
-    <ClCompile Include="..\..\src\EDEN_Audio\AudioListener.cpp" />
     <ClCompile Include="..\..\src\EDEN_Audio\AudioManager.cpp" />
     <ClCompile Include="..\..\src\EDEN_Audio\Sound.cpp" />
     <ClCompile Include="..\..\src\EDEN_Audio\SoundClip.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\EDEN_Audio\AudioEmitter.h" />
     <ClInclude Include="..\..\src\EDEN_Audio\AudioEngine.h" />
-    <ClInclude Include="..\..\src\EDEN_Audio\AudioListener.h" />
     <ClInclude Include="..\..\src\EDEN_Audio\AudioManager.h" />
     <ClInclude Include="..\..\src\EDEN_Audio\Sound.h" />
     <ClInclude Include="..\..\src\EDEN_Audio\SoundClip.h" />
@@ -78,7 +74,7 @@
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\EDEN;$(SolutionDir)dependencies\irrKlang\src\include\;$(SolutionDir)dependencies\irrKlang\src\plugins\ikpMP3\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\EDEN;$(SolutionDir)dependencies\irrKlang\src\include\;$(SolutionDir)dependencies\irrKlang\src\plugins\ikpMP3\;$(SolutionDir)src\EDEN_Script\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -98,7 +94,7 @@
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\EDEN;$(SolutionDir)dependencies\irrKlang\src\include\;$(SolutionDir)dependencies\irrKlang\src\plugins\ikpMP3\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\EDEN;$(SolutionDir)dependencies\irrKlang\src\include\;$(SolutionDir)dependencies\irrKlang\src\plugins\ikpMP3\;$(SolutionDir)src\EDEN_Script\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>

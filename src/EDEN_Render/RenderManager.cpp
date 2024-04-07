@@ -79,7 +79,7 @@ void eden_render::RenderManager::InitManager(const std::string& appName)
 
 
 	///// CAMBIAR A COMPONENTE LIGHT//////
-	_sceneMngr->setAmbientLight(Ogre::ColourValue(0.2, 0.2, 0.2));
+	/*_sceneMngr->setAmbientLight(Ogre::ColourValue(0.2, 0.2, 0.2));
 	_shaderGenerator->addSceneManager(_sceneMngr);
 
 	Ogre::Light* luz = _sceneMngr->createLight("Luz");
@@ -88,7 +88,7 @@ void eden_render::RenderManager::InitManager(const std::string& appName)
 	Ogre::SceneNode* mLightNode = _sceneMngr->getRootSceneNode()->createChildSceneNode("nLuz");
 	mLightNode->attachObject(luz);
 
-	mLightNode->setDirection(Ogre::Vector3(1, -1, 0));
+	mLightNode->setDirection(Ogre::Vector3(1, -1, 0));*/
 	///// CAMBIAR A COMPONENTE LIGHT//////
 
 }

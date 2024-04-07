@@ -38,7 +38,7 @@ Entity2 = {
 		{
 			Name = "TRANSFORM",
 			Arguments = {
-				Position = "-700|-10|-250",
+				Position = "-700|-10|250",
                 Rotation = "-45|0|1|0",
                 Scale = "0.2|0.2|0.2"
 			}

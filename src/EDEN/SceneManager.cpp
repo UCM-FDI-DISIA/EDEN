@@ -127,17 +127,11 @@ namespace eden {
 	}
 
 	void SceneManager::PopScene() {
-		std::string prevScene = _scenes.front()->GetSceneID();
 		_scenesToDestroy.push_back(_scenes.front());
 		_scenes.pop_front();
-		std::string currentScene = " ";
 		if (_scenes.size() > 0) {
-			currentScene = _scenes.front()->GetSceneID();
 			_activeScene = _scenes.front();
 		}
-
-		physics_manager::PhysicsManager::Instance()->RemovePhysicsScene(prevScene, currentScene);
-		eden_render::RenderManager::Instance()->RemoveRenderScene(prevScene, currentScene);
 	}
 
 	void SceneManager::PopUntil(const std::string& ID) {
@@ -160,8 +154,12 @@ namespace eden {
 		}*/
 
 		for (auto it = _scenesToDestroy.begin(); it != _scenesToDestroy.end();) {	
+			std::string prevScene = (*it)->GetSceneID();
+
+			physics_manager::PhysicsManager::Instance()->RemovePhysicsScene(prevScene, _activeScene->GetSceneID());
 			delete (*it);
 			it = _scenesToDestroy.erase(it);
+			eden_render::RenderManager::Instance()->RemoveRenderScene(prevScene, _activeScene->GetSceneID());
 		}
 	}
 }

@@ -31,7 +31,7 @@ void render_wrapper::MeshRenderer::SetMaterial(const std::string material)
 
 void render_wrapper::MeshRenderer::SetInvisible(bool visibility)
 {
-	_ent->setVisible(visibility);
+	_ent->setVisible(!visibility);
 }
 
 Ogre::MovableObject* render_wrapper::MeshRenderer::GetRenderObject()

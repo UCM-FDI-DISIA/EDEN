@@ -25,11 +25,12 @@
 //	return nullptr;
 //}
 
-void physics_manager::PhysicsManager::updateSimulation(float deltaTime)
+void physics_manager::PhysicsManager::updateSimulation(float deltaTime, std::string sceneID)
 {
 	_currentPhysicScene->stepSimulation(deltaTime);
 	physics_wrapper::RigidBody* _rb;
-	for (auto ent : _entitiesSet) {
+	std::unordered_set<eden_ec::Entity*>* currentEnts = &_physicsScenes[sceneID]->_entitiesSet;
+	for (auto ent : (*currentEnts)) {
 		_rb = ent->GetComponent<eden_ec::CRigidBody>()->_rb;
 		_currentPhysicScene->contactTest(_rb->getBulletRigidBody(), *_rb->_collisionCallback);
 	}
@@ -143,26 +144,48 @@ physics_manager::PhysicsManager::~PhysicsManager()
 }
 
 void physics_manager::PhysicsManager::AddPhysicsEntity(eden_ec::Entity* e) {
-	_entitiesSet.insert(e);
-}
+	std::unordered_map<std::string, InfoPhysicWorld*>::iterator it = _physicsScenes.find(e->GetSceneID());
+	if (it != _physicsScenes.end())
+	{
+		it->second->_entitiesSet.insert(e);
+	}
+	else
+	{
+		std::string message = "PhysicsManager ERROR in line 147 could not find scene: " + e->GetSceneID()
+			+ "\n";
 
-void physics_manager::PhysicsManager::RemovePhysicsEntity(eden_ec::Entity* e) {
-	if (!_entitiesSet.erase(e)) {
-		eden_error::ErrorHandler::Instance()->Warning("Entity that you were trying to erase from Physics World was not in Physics World at first\n");
+		eden_error::ErrorHandler::Instance()->Warning(message.c_str());
 	}
 }
 
-void physics_manager::PhysicsManager::UpdatePositions() {
+void physics_manager::PhysicsManager::RemovePhysicsEntity(eden_ec::Entity* e) {
+	std::unordered_map<std::string, InfoPhysicWorld*>::iterator it = _physicsScenes.find(e->GetSceneID());
+	if (it != _physicsScenes.end())
+	{
+		it->second->_entitiesSet.erase(e);
+	}
+	else
+	{
+		std::string message = "PhysicsManager ERROR in line 147 could not find scene: " + e->GetSceneID()
+			+ "\n";
+
+		eden_error::ErrorHandler::Instance()->Warning(message.c_str());
+	}
+}
+
+void physics_manager::PhysicsManager::UpdatePositions(std::string sceneID) {
 	eden_ec::CRigidBody* _rb;
-	for (auto ent : _entitiesSet) {
+	std::unordered_set<eden_ec::Entity*>* currentEnts = &_physicsScenes[sceneID]->_entitiesSet;
+	for (auto ent : (*currentEnts)) {
 		_rb = ent->GetComponent<eden_ec::CRigidBody>();
 		_rb->EdenTransformToPhysicsTransform();
 	}
 }
 
-void physics_manager::PhysicsManager::ResolvePositions() {
+void physics_manager::PhysicsManager::ResolvePositions(std::string sceneID) {
 	eden_ec::CRigidBody* _rb;
-	for (auto ent : _entitiesSet) {
+	std::unordered_set<eden_ec::Entity*>* currentEnts = &_physicsScenes[sceneID]->_entitiesSet;
+	for (auto ent : (*currentEnts)) {
 		_rb = ent->GetComponent<eden_ec::CRigidBody>();
 		_rb->PhysicsTransformToEdenTransform();
 	}

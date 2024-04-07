@@ -70,6 +70,8 @@ Ogre::SceneNode* render_wrapper::NodeManager::FindNode(const std::string id) {
 }
 
 void render_wrapper::NodeManager::CreateSceneObject(const std::string id) {
+	Ogre::SceneManager* mSM = eden_render::RenderManager::Instance()->_currentRenderScene;
+	_rootNode = mSM->getRootSceneNode();
 	Ogre::SceneNode* auxNode = _rootNode->createChildSceneNode(id);
 	_sceneObjectsMap.insert({ id, auxNode });
 }

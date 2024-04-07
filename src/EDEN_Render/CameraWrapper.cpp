@@ -14,6 +14,8 @@
 #include "RenderManager.h"
 #include "NodeManager.h"
 
+Ogre::Viewport* render_wrapper::CameraWrapper::_viewport = nullptr;
+
 render_wrapper::CameraWrapper::CameraWrapper(std::string entityID) : _entityID(entityID) {
 	_camera = getSceneManager()->createCamera(entityID + "_camera");
 	SetNearClipDistance(1.0f);
@@ -23,7 +25,11 @@ render_wrapper::CameraWrapper::CameraWrapper(std::string entityID) : _entityID(e
 	if (!render_wrapper::NodeManager::Instance()->HasNode(entityID))
 		render_wrapper::NodeManager::Instance()->CreateSceneObject(entityID);
 
-	_viewport = eden_render::RenderManager::Instance()->_window.render->addViewport(_camera);
+	if (_viewport == nullptr) _viewport = eden_render::RenderManager::Instance()->_window.render->addViewport(_camera);
+	else {
+		_viewport = eden_render::RenderManager::Instance()->_window.render->getViewport(0);
+		SetActiveCamera();
+	}
 	SetBackgroundColor(DEFAULT_BG_COLOR, 1.0f);
 	render_wrapper::NodeManager::Instance()->Attach(GetRenderObject(), entityID);
 }
@@ -66,4 +72,9 @@ eden_utils::Vector3 render_wrapper::CameraWrapper::GetCameraPosition() const {
 
 Ogre::MovableObject* render_wrapper::CameraWrapper::GetRenderObject() {
 	return _camera;
+}
+
+void render_wrapper::CameraWrapper::SetActiveCamera()
+{
+	_viewport->setCamera(_camera);
 }

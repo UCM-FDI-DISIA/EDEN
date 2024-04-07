@@ -11,14 +11,13 @@ const std::string eden_ec::CCamera::_id = "CAMERA";
 
 eden_ec::CCamera::~CCamera() {
 	eden_render::RenderManager::Instance()->removeRenderEntity(_ent);
-	delete _cameraWrapper;
 	_cameraWrapper = nullptr;
 	_transform = nullptr;
 }
 
 void eden_ec::CCamera::Start() {
 	_transform = _ent->GetComponent<eden_ec::CTransform>();
-	_cameraWrapper = new render_wrapper::CameraWrapper(_ent->GetEntityID());
+	_cameraWrapper = eden_render::RenderManager::Instance()->GetCamera(_ent);
 	eden_render::RenderManager::Instance()->addRenderEntity(_ent);
 }
 

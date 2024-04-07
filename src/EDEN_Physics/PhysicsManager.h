@@ -97,7 +97,7 @@ namespace physics_manager {
 
 		/// @brief Realiza una actualizaci�n de la simulaci�n f�sica
 		/// @param deltaTime Tiempo entre simulaciones f�sicas, como la simulaci�n se llama con el FixedUdpate, este tiempo es fijo y constante
-		void updateSimulation(float deltaTime);
+		void updateSimulation(float deltaTime, std::string sceneID);
 
 		/// @brief Devuelve la gravedad del mundo
 		/// @return Devuelve el valor de la gravedad mundial
@@ -112,10 +112,10 @@ namespace physics_manager {
 		void RemovePhysicsEntity(eden_ec::Entity* e);
 
 		/// @brief Setear a cada rigidbody el transform de cada entidad
-		void UpdatePositions();
+		void UpdatePositions(std::string sceneID);
 
 		/// @brief Setear a cada transform de cada entidad el transform del rigidbody
-		void ResolvePositions();
+		void ResolvePositions(std::string sceneID);
 
 		~PhysicsManager() override;
 
@@ -128,9 +128,6 @@ namespace physics_manager {
 		/// @brief La constructora se encarga de crear el mundo de la simulaci�n f�sica y el objeto encargado de dibujar 
 		PhysicsManager();
 	private:
-		/// @brief Mapa desordenado que asigna a cada Entidad su rigidbody correspondiente en la simulaci�n f�sica
-		//std::unordered_map<const class btRigidBody*, eden_ec::Entity*> _entitiesMap;
-		std::unordered_set<eden_ec::Entity*> _entitiesSet;
 
 		/// @brief Mapa desordenado que guarda los nombres de las capas y su respectivo objeto CollisionLayer
 		std::unordered_map <physics_manager::LayerInfo, physics_wrapper::CollisionLayer*, physics_manager::LayerHash> _layers;
@@ -198,6 +195,10 @@ namespace physics_manager {
 
 		/// @brief Clase de bullet encargada de la configuraci�n de las colisiones.
 		btCollisionConfiguration* _worldCollisionConfiguration;
+
+		/// @brief Set desordenado que asigna a cada Entidad su rigidbody correspondiente en la simulaci�n f�sica
+		//std::unordered_map<const class btRigidBody*, eden_ec::Entity*> _entitiesMap;
+		std::unordered_set<eden_ec::Entity*> _entitiesSet;
 
 		btDynamicsWorld* GetWorld();
 	};

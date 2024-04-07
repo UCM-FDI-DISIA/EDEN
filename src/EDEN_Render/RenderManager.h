@@ -81,20 +81,23 @@ namespace eden_render
 		int GetWindowWidth();
 		int GetWindowHeight();
 		
-		/// @brief Actualiza todas las posiciones con su componente Transform
-		void UpdatePositions();
+		/// @brief Actualiza todas las posiciones de la escena con su componente Transform
+		/// @param sceneID Identificador de la escena
+		void UpdatePositions(std::string sceneID);
 
-		/// @brief Añade una entidad que tenga componentes de renderizado (CMeshRenderer, CCamera, ...)
+		/// @brief Añade una entidad que tenga componentes de renderizado (CMeshRenderer, CCamera, ...) a una escena en concreto
 		/// para actualizar su posición
 		/// @param ent Entidad cuya posición va a actualizarse
 		void addRenderEntity(eden_ec::Entity* ent);
 
-		/// @brief Quita una entidad para dejar de actualizar su posición
+		/// @brief Quita una entidad de una escena para dejar de actualizar su posición
 		/// @param ent Entidad que se va a quitar
 		void removeRenderEntity(eden_ec::Entity* ent);
 
 		/// @brief Función que debería llamarse en el momento en el que la ventana cambia de tamaño
 		void ResizedWindow();
+
+		render_wrapper::CameraWrapper* GetCamera(eden_ec::Entity* ent);
 
 	protected:
 		Ogre::SceneManager* GetOgreSceneManager();
@@ -191,9 +194,6 @@ namespace eden_render
 		/// @brief Flag para saber si se ha podido inicializar el manager
 		bool _initialized = true;
 
-		/// @brief Conjunto de entidades para actualizar su posición
-		std::unordered_set<eden_ec::Entity*> _entities;
-
 		/// @brief Flag para saber si el canvas se ha inicializado
 		bool _canvasInit = false;
 
@@ -205,14 +205,16 @@ namespace eden_render
 	{
 		friend RenderManager;
 	public:
-		InfoRenderWorld(Ogre::Root* root, Ogre::OverlaySystem* overlaySystem, Ogre::RTShader::ShaderGenerator* shaderGenerator);
+		InfoRenderWorld(Ogre::Root* root, Ogre::OverlaySystem* overlaySystem);
 		~InfoRenderWorld();
 	private:
 		Ogre::SceneManager* _renderScene;
-		
+		/// @brief Conjunto de entidades para actualizar su posición
+		std::unordered_set<eden_ec::Entity*> _entities;
 		Ogre::OverlaySystem* _overlaySystem;
 		Ogre::Root* _root;
 		Ogre::SceneManager* GetRenderScene();
+		render_wrapper::CameraWrapper* _cameraWrapper;
 	};
 }
 

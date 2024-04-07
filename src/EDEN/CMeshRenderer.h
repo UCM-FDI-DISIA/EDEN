@@ -65,7 +65,7 @@ namespace eden_ec {
 		/// @brief Puntero al wrapper del mesh renderer de la libreria
 		render_wrapper::MeshRenderer* _renderWrapper = nullptr;
 		/// @brief Variable del archivo de la malla
-		std::string _mesh; 
+		std::string _mesh;
 	};
 }
 #endif // C_MESH_RENDERER_H

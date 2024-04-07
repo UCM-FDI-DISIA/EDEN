@@ -32,6 +32,25 @@ Entity1 = {
     }
 }
 
+Entity2 = {
+	Name = "CameraEntity2",
+	Components = {
+		{
+			Name = "TRANSFORM",
+			Arguments = {
+				Position = "-700|-10|-250",
+                Rotation = "-45|0|1|0",
+                Scale = "0.2|0.2|0.2"
+			}
+		},
+		{
+			Name = "CAMERA",
+			Arguments = {
+			}
+		}
+	}	
+}
+
 Entity6 = {
     Name = "Ground2", 
     Components = {
@@ -66,7 +85,7 @@ Entity6 = {
         
     }
 }
-Entities = { Entity1, Entity6, Entity7 }
+Entities = { Entity1, Entity2, Entity6, Entity7 }
 
 CollisionLayers = { 
     Layers = {

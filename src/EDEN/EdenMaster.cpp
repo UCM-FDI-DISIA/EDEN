@@ -16,6 +16,7 @@
 #include <PhysicsManager.h>
 #include <InputManager.h>
 #include "SceneManager.h"
+#include "Scene.h"
 
 bool eden::Master::_initialized = false;
 
@@ -50,6 +51,7 @@ eden::Master::~Master()
 		//delete _renderManager;
 		_renderManager->Close();
 	}
+
 }
 
 void eden::Master::Loop()
@@ -63,11 +65,12 @@ void eden::Master::Loop()
 	while (!exit) {
 		int numPU = (int) ((_elapsedTime - lastPhysicsUpdateTime) / (_physicsUpdateTimeInterval));
 		if (numPU > 0) {
-			_physicsManager->UpdatePositions();
+			std::string sceneID = _scnManager->GetCurrentScene()->GetSceneID();
+			_physicsManager->UpdatePositions(sceneID);
 			for (int i = 0; i < numPU; ++i) {
-				_physicsManager->updateSimulation(_physicsUpdateTimeInterval);
+				_physicsManager->updateSimulation(_physicsUpdateTimeInterval, sceneID);
 			}
-			_physicsManager->ResolvePositions();
+			_physicsManager->ResolvePositions(sceneID);
 		}
 		lastPhysicsUpdateTime = lastPhysicsUpdateTime + (numPU * _physicsUpdateTimeInterval);
 
@@ -75,7 +78,7 @@ void eden::Master::Loop()
 
 		_inputManager->Update();
 		_scnManager->Update(_deltaTime);
-		_renderManager->UpdatePositions();
+		_renderManager->UpdatePositions(_scnManager->GetCurrentScene()->GetSceneID());
 		_renderManager->Update();
 		exit = _inputManager->CloseWindowEvent();
 		if (_inputManager->ResizedWindowEvent()) {

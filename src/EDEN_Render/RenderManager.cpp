@@ -39,6 +39,7 @@
 #include "RenderManager.h"
 #include "NodeManager.h"
 #include "Canvas.h"
+#include "CameraWrapper.h"
 
 eden_render::RenderManager::RenderManager(const std::string& appName)
 {
@@ -296,10 +297,11 @@ int eden_render::RenderManager::GetWindowHeight() {
 	return _window.render->getHeight();
 }
 
-void eden_render::RenderManager::UpdatePositions() {
+void eden_render::RenderManager::UpdatePositions(std::string sceneID) {
 	render_wrapper::NodeManager* nodeMngr = render_wrapper::NodeManager::Instance();
 	eden_ec::CTransform* transform;
-	for (auto ent : _entities) {
+	std::unordered_set<eden_ec::Entity*>* currentEnts = &_renderScenes[sceneID]->_entities;
+	for (auto ent : (*currentEnts)) {
 		transform = ent->GetComponent<eden_ec::CTransform>();
 		if (transform != nullptr) {
 			nodeMngr->SetPosition(transform->GetPosition(), ent->GetEntityID());
@@ -313,16 +315,59 @@ void eden_render::RenderManager::UpdatePositions() {
 }
 
 void eden_render::RenderManager::addRenderEntity(eden_ec::Entity* ent) {
-	_entities.insert(ent);
+	std::unordered_map<std::string, InfoRenderWorld*>::iterator it = _renderScenes.find(ent->GetSceneID());
+	if (it != _renderScenes.end())
+	{
+		it->second->_entities.insert(ent);
+	}
+	else
+	{
+		std::string message = "RenderManager ERROR in line 317 could not find scene: " + ent->GetSceneID()
+			+ "\n";
+
+		eden_error::ErrorHandler::Instance()->Warning(message.c_str());
+	}
 }
 
 void eden_render::RenderManager::removeRenderEntity(eden_ec::Entity* ent) {
-	_entities.erase(ent);
+	std::unordered_map<std::string, InfoRenderWorld*>::iterator it = _renderScenes.find(ent->GetSceneID());
+	if (it != _renderScenes.end())
+	{
+		it->second->_entities.erase(ent);
+	}
+	else
+	{
+		std::string message = "RenderManager ERROR in line 332 could not find scene: " + ent->GetSceneID()
+			+ "\n";
+
+		eden_error::ErrorHandler::Instance()->Warning(message.c_str());
+	}
 }
 
 void eden_render::RenderManager::ResizedWindow() {
 	_window.render->windowMovedOrResized();
 	_resized = true;
+}
+
+render_wrapper::CameraWrapper* eden_render::RenderManager::GetCamera(eden_ec::Entity* ent)
+{
+	auto sceneIt = _renderScenes.find(ent->GetSceneID());
+	if (sceneIt == _renderScenes.end())
+	{
+		std::string message = "RenderManager ERROR in line 355 could not find scene: " + ent->GetSceneID()
+			+ "\n";
+
+		eden_error::ErrorHandler::Instance()->Warning(message.c_str());
+		return nullptr;
+	}
+	else
+	{
+		if (sceneIt->second->_cameraWrapper == nullptr)
+		{
+			sceneIt->second->_cameraWrapper = new render_wrapper::CameraWrapper(ent->GetEntityID());
+		}
+		return sceneIt->second->_cameraWrapper;
+	}
 }
 
 void eden_render::RenderManager::CreateRenderScene(std::string sceneID)
@@ -331,10 +376,11 @@ void eden_render::RenderManager::CreateRenderScene(std::string sceneID)
 	if (_currentRenderScene != nullptr)
 	{
 		_currentRenderScene->getRootSceneNode()->setVisible(false);
+		_shaderGenerator->removeSceneManager(_currentRenderScene);
 	}
 	if (sceneIt == _renderScenes.end())
 	{
-		InfoRenderWorld* info = new InfoRenderWorld(_root, _overlaySys, _shaderGenerator);
+		InfoRenderWorld* info = new InfoRenderWorld(_root, _overlaySys);
 		_currentRenderScene = info->GetRenderScene();
 		_renderScenes[sceneID] = info;
 	}
@@ -342,8 +388,14 @@ void eden_render::RenderManager::CreateRenderScene(std::string sceneID)
 	{
 		_currentRenderScene = sceneIt->second->GetRenderScene();
 		_currentRenderScene->getRootSceneNode()->setVisible(true);
+		_shaderGenerator->addSceneManager(_currentRenderScene);
+		sceneIt->second->_cameraWrapper->SetActiveCamera();
 
+		// Visible pero solo las que estuviesen visibles
 	}
+	_shaderGenerator->_setActiveSceneManager(_currentRenderScene);
+	_root->_setCurrentSceneManager(_currentRenderScene);
+
 }
 
 void eden_render::RenderManager::RemoveRenderScene(std::string sceneToRemoveID, std::string newCurrentSceneID)
@@ -359,25 +411,29 @@ void eden_render::RenderManager::RemoveRenderScene(std::string sceneToRemoveID, 
 	CreateRenderScene(newCurrentSceneID);
 }
 
-eden_render::InfoRenderWorld::InfoRenderWorld(Ogre::Root* root, Ogre::OverlaySystem* overlaySystem, Ogre::RTShader::ShaderGenerator* shaderGenerator)
+eden_render::InfoRenderWorld::InfoRenderWorld(Ogre::Root* root, Ogre::OverlaySystem* overlaySystem)
 {
 	_root = root;
 	_overlaySystem = overlaySystem;
 	//_overlaySys = new Ogre::OverlaySystem();
 
+	_cameraWrapper = nullptr;
+
 	_renderScene = _root->createSceneManager();
 	_renderScene->addRenderQueueListener(_overlaySystem);
 	_renderScene->setAmbientLight(Ogre::ColourValue(0.2f, 0.2f, 0.2f));
-	shaderGenerator->addSceneManager(_renderScene);
 
 }
 
 eden_render::InfoRenderWorld::~InfoRenderWorld()
 {
+	if (_cameraWrapper != nullptr) delete _cameraWrapper;
 	_renderScene->removeRenderQueueListener(_overlaySystem);
 	_renderScene->destroyAllEntities();
 	_renderScene->destroyAllAnimations();
 	_renderScene->destroyAllAnimationStates();
+	if(Ogre::RTShader::ShaderGenerator::getSingletonPtr() != nullptr) Ogre::RTShader::ShaderGenerator::getSingletonPtr()->removeSceneManager(_renderScene);
+	
 	_root->destroySceneManager(_renderScene);
 
 	_renderScene = nullptr;

@@ -127,7 +127,10 @@ namespace eden {
 		_scenes.front()->SetToDestroy();
 		_scenes.pop_front();
 		std::string currentScene = " ";
-		if(_scenes.size() > 0) currentScene = _scenes.front()->GetSceneID();
+		if (_scenes.size() > 0) {
+			currentScene = _scenes.front()->GetSceneID();
+			_activeScene = _scenes.front();
+		}
 
 		physics_manager::PhysicsManager::Instance()->RemovePhysicsScene(prevScene, currentScene);
 		eden_render::RenderManager::Instance()->RemoveRenderScene(prevScene, currentScene);

@@ -68,6 +68,9 @@ namespace render_wrapper {
 		/// @brief Devuelve la posicion de la camara
 		/// @return Vector3 con la posicion de la camara
 		eden_utils::Vector3 GetCameraPosition() const;
+		
+		/// @brief 
+		void SetActiveCamera();
 	private:
 		/// @brief String que contiene el nombre de la entidad a la que se le va a asociar la camara (solo para su uso en llamadas a nodos)
 		std::string _entityID;
@@ -76,11 +79,12 @@ namespace render_wrapper {
 		Ogre::Camera* _camera;
 
 		/// @brief Puntero a un viewport de OGRE, que servira de soporte para la camara
-		Ogre::Viewport* _viewport;
+		static Ogre::Viewport* _viewport;
 		
 		/// @brief Devuelve el objeto de render como movable object (en este caso, nuestra camara)
 		/// @return Un movable object de OGRE, siendo en este caso, la camara
 		Ogre::MovableObject* GetRenderObject() override;
+
 	};
 
 #define DEFAULT_BG_COLOR eden_utils::Vector3(0.9f, 0.7f, 0.7f)

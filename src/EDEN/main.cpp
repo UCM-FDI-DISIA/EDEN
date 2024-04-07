@@ -53,6 +53,9 @@
 #include "Hito1Prueba.h"
 #include "CAnimator.h"
 
+#include "RenderManager.h"
+
+
 #include <string>
 
 void RegisterComponents() {
@@ -99,7 +102,7 @@ int main(int argc, char* argv[]) {
 		eden::SceneManager* scnManager = eden::SceneManager::Instance();
 		scnManager->PushScene("test_scene");
 		scnManager->PushScene("test_scene2");
-		scnManager->PopScene();
+		//scnManager->PopScene();
 		master->Loop();
 		master->Close();
 	}

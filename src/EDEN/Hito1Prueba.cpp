@@ -37,7 +37,7 @@ void eden_ec::Hito1Prueba::Start() {
 	_text = _ent->GetComponent<CText>();
 	_audioEmitter = _ent->GetComponent<CAudioEmitter>();
 	_audioEmitter->Play();
-	_audioEmitter->GetSound()->SetLoop(true);
+	_audioEmitter->SetLoop(true);
 }
 
 void eden_ec::Hito1Prueba::HandleInput() {

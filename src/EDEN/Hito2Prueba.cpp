@@ -9,5 +9,5 @@ const std::string eden_ec::Hito2Prueba::_id = "PRUEBA2";
 void eden_ec::Hito2Prueba::Start() {
 	_audioEmitter = _ent->GetComponent<CAudioEmitter>();
 	_audioEmitter->Play();
-	_audioEmitter->GetSound()->SetLoop(true);
+	_audioEmitter->SetLoop(true);
 }

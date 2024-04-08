@@ -58,10 +58,7 @@ namespace eden_ec {
 		inline void SetInvisible(bool visibility);
 
 		/// @brief Devuelve el identificador del componente
-		static std::string GetID() { return _id; }
-
-	protected:
-		const static std::string _id;
+		static std::string GetID() { return "MESH_RENDERER"; }
 
 	private:
 		/// @brief Puntero al wrapper del mesh renderer de la libreria

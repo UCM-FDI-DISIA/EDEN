@@ -46,7 +46,7 @@ namespace eden_ec {
 		void Update(float t) override;
 
 		/// @brief Devuelve el identificador del componente
-		static std::string GetID() { return _id; }
+		static std::string GetID() { return "PARTICLE_EMITTER"; }
 
 		/// @brief Indica si esta activo o no
 		/// @return True: El sistema de particulas esta activo, false: El sistema no esta activo
@@ -62,8 +62,7 @@ namespace eden_ec {
 
 		/// @brief Resetea el sistema de particulas (si está en modo loop no hace nada)
 		void Reset();
-	protected:
-		const static std::string _id;
+
 	private:
 		/// @brief Wrapper del particle system de ogre
 		render_wrapper::ParticleSystem* _pSystem;

@@ -31,7 +31,7 @@
  */
 
 template<typename T>
-class EDEN_API Singleton {
+class Singleton {
 
 public:
 	/// @brief No se pueden copiar objetos de este tipo

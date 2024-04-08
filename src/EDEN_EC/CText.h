@@ -41,9 +41,7 @@ namespace eden_ec {
 		void SetNewText(const std::string& text);
 
 		/// @brief Definición de método estático GetID necesario para construcción de componentes
-		static std::string GetID() { return _id; }
-	protected:
-		const static std::string _id;
+		static std::string GetID() { return "TEXT"; }
 	};
 } 
 

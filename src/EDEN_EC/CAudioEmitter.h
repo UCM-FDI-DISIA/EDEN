@@ -23,6 +23,7 @@ namespace eden_ec {
 		/// @brief Constructora por defecto del emisor de audio
 		CAudioEmitter() = default;
 
+
 		/// @brief Constructora por defecto del emisor de audio
 		/// @param name Nombre del fichero de sonido
 		/// @param is3D Si el sonido es o no es espacial/tridimensional
@@ -71,11 +72,9 @@ namespace eden_ec {
 		audio_wrapper::Sound* GetSound() const;
 
 		/// @brief Definición de método estático GetID necesario para construcción de componentes
-		inline static std::string GetID() { return _id; }
+		inline static std::string GetID() { return "AUDIO_EMITTER"; }
 
 	private:
-		/// @brief Id del componente necesaria para la construccion de este
-		const static std::string _id;
 
 		/// @brief Clip de sonido asociado al emisor
 		audio_wrapper::SoundClip* _soundClip;

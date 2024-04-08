@@ -67,12 +67,9 @@ namespace eden_ec {
 		eden_utils::Vector3 GetCameraPosition() const;
 
 		/// @brief Definición de método estático GetID necesario para construcción de componentes
-		inline static std::string GetID() { return _id; }
+		inline static std::string GetID() { return "CAMERA"; }
 
 	private:
-		/// @brief Id del componente necesaria para la construccion de este
-		const static std::string _id;
-
 		/// @brief Puntero al wrapper de la camara, que contendra la camara en si y sobre el que se aplicaran todos los metodos de arriba
 		render_wrapper::CameraWrapper* _cameraWrapper = nullptr;
 

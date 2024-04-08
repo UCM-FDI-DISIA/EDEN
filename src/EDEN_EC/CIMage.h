@@ -35,9 +35,7 @@ namespace eden_ec {
 		void Start() override {}
 
 		/// @brief Definición de método estático GetID necesario para construcción de componentes
-		static std::string GetID() { return _id; }
-	protected:
-		const static std::string _id;
+		static std::string GetID() { return "IMAGE"; }
 	};
 } 
 

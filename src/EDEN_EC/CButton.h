@@ -60,9 +60,7 @@ namespace eden_ec {
 		void Init(eden_script::ComponentArguments* args) override;
 
 		/// @brief Definici�n de m�todo est�tico GetID necesario para construcci�n de componentes
-		static std::string GetID() { return _id; }
-	protected:
-		const static std::string _id;
+		static std::string GetID() { return "BUTTON"; }
 
 	private:
 

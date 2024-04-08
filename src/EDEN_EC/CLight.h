@@ -39,7 +39,7 @@ namespace eden_ec {
 		void Start() override;
 		/// @brief Devuelve el identificador del componente
 		/// @return Identificador del componente
-		static std::string GetID() { return _id; }
+		static std::string GetID() { return "LIGHT"; }
 
 		/// @brief Setea la visibilidad de la luz
 		/// @param visibility True -> Visible, False -> No visible
@@ -57,8 +57,6 @@ namespace eden_ec {
 		void SetDirection(eden_utils::Vector3 dir);
 
 	protected:
-		/// @brief Identificador del componente
-		const static std::string _id;
 		/// @brief Setea la posicion de la luz
 		/// @param dir Vector de posicion de la luz
 		void SetPosition(eden_utils::Vector3 dir);

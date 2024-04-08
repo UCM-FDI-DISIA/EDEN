@@ -40,7 +40,7 @@ namespace eden_ec {
 		void Start() override;
 		/// @brief Devuelve el identificador del componente
 		/// @return Identificador del componente
-		static std::string GetID() { return _id; }
+		static std::string GetID() { return "ANIMATOR"; }
 
 		/// @brief Permite reproducir una animacion
 		/// @param ID Identificador de la animacion que se quiera reproducir
@@ -57,12 +57,6 @@ namespace eden_ec {
 		/// @brief Devuelve la animacion que se este reproduciendo actualmente
 		/// @return Identificador de la animacion actual
 		std::string GetCurrentAnim();
-
-		/// @brief Identificador del componente
-		extern const static std::string _id;
-
-	protected:
-
 
 	private:
 		/// @brief Referencia al Animator Wrapper

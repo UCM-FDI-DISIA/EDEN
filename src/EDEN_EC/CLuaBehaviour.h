@@ -73,10 +73,7 @@ namespace eden_ec {
 		void Start() override {};
 
 		/// @brief Definici�n de m�todo est�tico GetID necesario para construcci�n de componentes
-		static std::string GetID() { return _id; }
-
-	protected:
-		const static std::string _id;
+		static std::string GetID() { return "BEHAVIOUR"; }
 
 		/// @brief LuaRef del script. Esta clase representa el script .lua en C++
 		luabridge::LuaRef* _behaviourLua = nullptr;

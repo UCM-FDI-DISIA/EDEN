@@ -30,10 +30,8 @@ namespace eden_ec {
         void Update(float t) override;
 
         /// @brief Definición de método estático GetID necesario para construcción de componentes
-        inline static std::string GetID() { return _id; }
+        inline static std::string GetID() { return "AUDIO_LISTENER"; }
     private:
-        /// @brief Id del componente necesaria para la construccion de este
-        const static std::string _id;
 
         /// @brief Transform de la entidad sobre la que se engancha el listener
         eden_ec::CTransform* _transform = nullptr;

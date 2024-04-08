@@ -132,7 +132,7 @@ namespace eden_ec {
 		float GetFriction();
 
 		/// @brief Definicion de metodo estatico GetID necesario para construccion de componentes
-		static std::string GetID() { return _id; }
+		static std::string GetID() { return "RIGIDBODY"; }
 
 		/// @brief Devuelve la capa de colisi�n del objeto
 		/// @return Devuelve la capa de colisi�n del objeto 
@@ -141,8 +141,6 @@ namespace eden_ec {
 		/// @brief Devuelve el nombre de la capa de colisi�n del objeto
 		/// @return Devuelve el nombre de la capa de colisi�n del objeto 
 		std::string GetCollisionLayerName();
-	protected:
-		const static std::string _id;
 
 	private:
 		/// @brief Masa asociada al RigidBody

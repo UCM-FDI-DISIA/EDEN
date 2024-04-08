@@ -40,9 +40,7 @@ namespace eden_ec {
 		void Update(float deltaTime) override;
 
 		/// @brief Definici�n de m�todo est�tico GetID necesario para construcci�n de componentes
-		static std::string GetID() { return _id; }
-	protected:
-		const static std::string _id;
+		static std::string GetID() { return "CURSOR"; }
 
 	private:
 		/// @brief Puntero a la imagen que representa el cursor

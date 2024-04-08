@@ -18,7 +18,9 @@ namespace eden_ec {
         friend Entity;
     public:
         /// @brief Constructora por defecto
-        Component() = default;
+        Component() {
+           _id = "DEFAULT_ID_SHOULD_CHANGE";
+        }
 
         /// @brief Constructora por defecto. No hace nada especial
         virtual ~Component() = default;
@@ -43,7 +45,7 @@ namespace eden_ec {
         /// @warning ESTO DEBE SER REDEFINIDO EN CADA COMPONENTE!!!!!!!!
         /// @warning TAMBIÉN SE DEBE DEFINIR UN MÉTODO ESTÁTICA PARA CADA CLASE QUE HEREDE DE COMPONENTE
         /// QUE SE LLAME 'GetID()' Y DEVUELVA UN 'std::string _id'
-        const static std::string _id;
+        static std::string _id;
 
         /// @brief Usaremos este método abstracto para definir en cada clase su construcción mediante 'ID'.
         /// Cada componente debe redefinirlo para poder aceptar argumentos leídos desde un fichero .lua

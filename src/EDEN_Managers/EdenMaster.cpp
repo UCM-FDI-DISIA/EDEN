@@ -30,7 +30,7 @@ eden::Master::Master()
 	_scnManager = SceneManager::Instance();
 	_physicsManager = physics_manager::PhysicsManager::Instance();
 
-	_initialized = true;
+	// _initialized = true;
 }
 
 void eden::Master::CloseApplication() {

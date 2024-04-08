@@ -70,7 +70,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>EDEN_EXPORTS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\dependencies\LuaBridge\Source\LuaBridge\;$(ProjectDir)..\..\..\dependencies\Lua\src\src\;$(ProjectDir)..\..\..\src\EDEN_Managers\;$(ProjectDir)..\..\..\src\EDEN_Utils\;$(ProjectDir)..\..\..\src\EDEN_EC\;$(ProjectDir)..\..\..\src\EDEN_Physics\;$(ProjectDir)..\..\..\src\EDEN_Export\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
@@ -90,7 +90,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>EDEN_EXPORTS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\dependencies\LuaBridge\Source\LuaBridge\;$(ProjectDir)..\..\..\dependencies\Lua\src\src\;$(ProjectDir)..\..\..\src\EDEN_Managers\;$(ProjectDir)..\..\..\src\EDEN_Utils\;$(ProjectDir)..\..\..\src\EDEN_EC\;$(ProjectDir)..\..\..\src\EDEN_Physics\;$(ProjectDir)..\..\..\src\EDEN_Export\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>

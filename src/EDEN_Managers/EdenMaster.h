@@ -30,7 +30,7 @@ namespace eden
 		friend Singleton<Master>;
 
 	public:
-		static bool isInitialized() { return _initialized; }
+		static bool isInitialized() { return true; }
 
 		/// @brief Booleano de salida del bucle principal
 		bool exit = false;
@@ -44,7 +44,7 @@ namespace eden
 		~Master() override;
 	private:
 
-		static bool _initialized;
+		// static bool _initialized;
 		/// @brief El tiempo entre frames en segundos
 		float _deltaTime = 0;
 

@@ -36,7 +36,6 @@
     <ClCompile Include="..\..\src\EDEN_EC\CAudioEmitter.cpp" />
     <ClCompile Include="..\..\src\EDEN_EC\CAudioListener.cpp" />
     <ClCompile Include="..\..\src\EDEN_EC\CButton.cpp" />
-    <ClCompile Include="..\..\src\EDEN_EC\CButtonBehaviour.cpp" />
     <ClCompile Include="..\..\src\EDEN_EC\CCamera.cpp" />
     <ClCompile Include="..\..\src\EDEN_EC\CCursor.cpp" />
     <ClCompile Include="..\..\src\EDEN_EC\CIMage.cpp" />

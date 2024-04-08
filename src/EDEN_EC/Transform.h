@@ -126,9 +126,7 @@ namespace eden_ec {
 		int HasChild(eden_ec::CTransform* cTr);
 
 		/// @brief Definición de método estático GetID necesario para construcción de componentes
-		static std::string GetID() { return _id; }
-	protected:
-		const static std::string _id;
+		static std::string GetID() { return "TRANSFORM"; }
 	private:
 		/// @brief Variable de posici�n
 		eden_utils::Vector3 _position;

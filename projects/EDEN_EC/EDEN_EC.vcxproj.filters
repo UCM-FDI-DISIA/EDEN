@@ -95,9 +95,6 @@
     <ClCompile Include="..\..\src\EDEN_EC\CButton.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\EDEN_EC\CButtonBehaviour.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\EDEN_EC\CCamera.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>

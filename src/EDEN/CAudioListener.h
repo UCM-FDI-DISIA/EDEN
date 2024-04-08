@@ -4,9 +4,8 @@
 #include "Vector3.h"
 #include "Component.h"
 
-class CTransform;
-
 namespace eden_ec {
+    class CTransform;
     /// Clase que se encargara de proporcionar funcionalidad a un listener. El listener es necesario para audio en 3D, y necesitara de un AudioEmitter para poder escuchar audio.
     /// Solo se podra tener un AudioListener por escena, ya que no hay soporte para multiples listeners.
     class CAudioListener : public eden_ec::Component {

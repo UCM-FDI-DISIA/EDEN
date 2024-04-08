@@ -16,7 +16,6 @@ namespace Ogre {
 	class SceneManager;
 }
 
-
 namespace eden_debug {
 	/// @brief Dibuja las bounding boxes de los objetos fisicos
 	class DebugDrawer : public btIDebugDraw

@@ -85,9 +85,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\EDEN_Debug\Debug.cpp" />
     <ClCompile Include="..\..\src\EDEN_Debug\DebugDrawer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\EDEN_Debug\Debug.h" />
     <ClInclude Include="..\..\src\EDEN_Debug\DebugDrawer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

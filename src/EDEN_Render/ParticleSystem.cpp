@@ -8,11 +8,11 @@
 #include "ParticleSystem.h"
 #include "NodeManager.h"
 
-render_wrapper::ParticleSystem::ParticleSystem(const std::string entityID, const std::string resourceName, const std::string systemName)
+render_wrapper::ParticleSystem::ParticleSystem(const std::string entityID, const std::string sceneID, const std::string resourceName, const std::string systemName) : RenderObject(sceneID)
 {
 	_name = systemName;
 
-	_ogrePSystem = getSceneManager()->createParticleSystem(_name, resourceName);
+	_ogrePSystem = GetSceneManager()->createParticleSystem(_name, resourceName);
 
 	if (!render_wrapper::NodeManager::Instance()->HasNode(entityID))
 		render_wrapper::NodeManager::Instance()->CreateSceneObject(entityID);
@@ -21,7 +21,7 @@ render_wrapper::ParticleSystem::ParticleSystem(const std::string entityID, const
 }
 
 render_wrapper::ParticleSystem::~ParticleSystem() {
-	getSceneManager()->destroyParticleSystem(_name);
+	GetSceneManager()->destroyParticleSystem(_name);
 }
 
 bool render_wrapper::ParticleSystem::IsActive()

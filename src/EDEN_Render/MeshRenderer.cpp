@@ -14,9 +14,9 @@
 #include "NodeManager.h"
 #include "ErrorHandler.h"
 
-render_wrapper::MeshRenderer::MeshRenderer(const std::string entityID, const std::string meshName)
+render_wrapper::MeshRenderer::MeshRenderer(const std::string entityID, const std::string sceneID, const std::string meshName) : RenderObject(sceneID)
 {
-	_ent = getSceneManager()->createEntity(meshName);
+	_ent = GetSceneManager()->createEntity(meshName);
 
 	if (!render_wrapper::NodeManager::Instance()->HasNode(entityID))
 		render_wrapper::NodeManager::Instance()->CreateSceneObject(entityID);
@@ -26,7 +26,7 @@ render_wrapper::MeshRenderer::MeshRenderer(const std::string entityID, const std
 
 render_wrapper::MeshRenderer::~MeshRenderer() {
 	_ent->getParentSceneNode()->detachObject(_ent);
-	getSceneManager()->destroyEntity(_ent);
+	GetSceneManager()->destroyEntity(_ent);
 }
 
 void render_wrapper::MeshRenderer::SetMaterial(const std::string material)

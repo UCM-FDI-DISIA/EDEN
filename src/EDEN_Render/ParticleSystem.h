@@ -20,7 +20,7 @@ namespace render_wrapper {
 		/// @param entityID ID de la entidad que lo va a tener
 		/// @param resourceName nombre del particleSystem en un script .particle
 		/// @param systemName nombre del sistema de particulas
-		ParticleSystem(const std::string entityID, const std::string resourceName, const std::string systemName);
+		ParticleSystem(const std::string entityID, const std::string sceneID, const std::string resourceName, const std::string systemName);
 		
 		/// @brief Destructora del particleSystem
 		~ParticleSystem();

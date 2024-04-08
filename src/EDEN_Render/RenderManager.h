@@ -204,6 +204,7 @@ namespace eden_render
 	class InfoRenderWorld
 	{
 		friend RenderManager;
+		friend render_wrapper::RenderObject;
 	public:
 		InfoRenderWorld(Ogre::Root* root, Ogre::OverlaySystem* overlaySystem);
 		~InfoRenderWorld();

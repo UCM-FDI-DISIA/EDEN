@@ -25,7 +25,7 @@ namespace render_wrapper {
 	public:
 		/// @brief Constructora por defecto para el wrapper de la camara
 		/// @param entityID ID de la entidad a la que se quiere asociar la camara
-		CameraWrapper(std::string entityID);
+		CameraWrapper(std::string entityID, const std::string sceneID);
 
 		/// @brief Destructora por defecto para el wrapper de la camara
 		~CameraWrapper() = default;

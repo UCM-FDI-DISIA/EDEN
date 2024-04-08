@@ -16,8 +16,8 @@
 
 Ogre::Viewport* render_wrapper::CameraWrapper::_viewport = nullptr;
 
-render_wrapper::CameraWrapper::CameraWrapper(std::string entityID) : _entityID(entityID) {
-	_camera = getSceneManager()->createCamera(entityID + "_camera");
+render_wrapper::CameraWrapper::CameraWrapper(std::string entityID, const std::string sceneID) : RenderObject(sceneID), _entityID(entityID) {
+	_camera = GetSceneManager()->createCamera(entityID + "_camera");
 	SetNearClipDistance(1.0f);
 	SetFarClipDistance(10000.0f);
 	SetAutoAspectRatio(true);

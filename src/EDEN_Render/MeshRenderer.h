@@ -25,7 +25,7 @@ namespace render_wrapper {
 		/// @brief Constructora del Wrapper de libreria de renderizado de mallas
 		/// @param enetityID Nombre de la entidad asociada al componente MeshRenderer
 		/// @param meshName Nombre del archivo de la malla
-		MeshRenderer(const std::string entityID, const std::string meshName);
+		MeshRenderer(const std::string entityID, const std::string sceneID, const std::string meshName);
 
 		~MeshRenderer() override;
 
@@ -40,7 +40,7 @@ namespace render_wrapper {
 	private:
 		/// @brief Puntero a la entidad asociada al componente
 		Ogre::Entity* _ent = nullptr;
-		
+
 		/// @brief Devuelve la entidad asociada a la malla
 		Ogre::MovableObject* GetRenderObject() override;
 

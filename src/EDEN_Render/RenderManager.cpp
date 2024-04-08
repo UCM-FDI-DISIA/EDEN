@@ -379,7 +379,7 @@ render_wrapper::CameraWrapper* eden_render::RenderManager::GetCamera(eden_ec::En
 	{
 		if (sceneIt->second->_cameraWrapper == nullptr)
 		{
-			sceneIt->second->_cameraWrapper = new render_wrapper::CameraWrapper(ent->GetEntityID());
+			sceneIt->second->_cameraWrapper = new render_wrapper::CameraWrapper(ent->GetEntityID(), ent->GetSceneID());
 		}
 		return sceneIt->second->_cameraWrapper;
 	}

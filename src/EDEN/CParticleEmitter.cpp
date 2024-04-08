@@ -17,7 +17,7 @@ eden_ec::CParticleEmitter::CParticleEmitter()
 
 eden_ec::CParticleEmitter::CParticleEmitter(std::string system) : Component()
 {
-	_pSystem = new render_wrapper::ParticleSystem(_ent->GetEntityID(), system, _ent->GetEntityID());
+	_pSystem = new render_wrapper::ParticleSystem(_ent->GetEntityID(), _ent->GetSceneID(), system, _ent->GetEntityID());
 	_time = 0;
 	_elapsedTime = 0;
 	_loop = 0;
@@ -32,7 +32,7 @@ void eden_ec::CParticleEmitter::Init(eden_script::ComponentArguments* args)
 {
 	std::string name = args->GetValueToString("Name");
 
-	_pSystem = new render_wrapper::ParticleSystem(_ent->GetEntityID(), name, _ent->GetEntityID());
+	_pSystem = new render_wrapper::ParticleSystem(_ent->GetEntityID(), _ent->GetSceneID(), name, _ent->GetEntityID());
 
 	_loop = args->GetValueToBool("Loop");
 

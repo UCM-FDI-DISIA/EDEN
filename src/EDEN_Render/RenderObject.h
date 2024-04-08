@@ -10,11 +10,13 @@ namespace Ogre {
 namespace render_wrapper {
 	class RenderObject {
 	public:
+		RenderObject(std::string sceneID);
 		virtual ~RenderObject() = default;
 		virtual Ogre::MovableObject* GetRenderObject() = 0;
 
 	protected:
-		Ogre::SceneManager* getSceneManager();
+		std::string _sceneID;
+		Ogre::SceneManager* GetSceneManager();
 	};
 }
 

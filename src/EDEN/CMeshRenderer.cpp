@@ -23,7 +23,7 @@ void eden_ec::CMeshRenderer::Init(eden_script::ComponentArguments* args)
 	//GESTION DE ERRORES
 	_mesh = args->GetValueToString("Mesh") + MESH_EXTENSION;
 	
-	_renderWrapper = new render_wrapper::MeshRenderer(_ent->GetEntityID(), _mesh);
+	_renderWrapper = new render_wrapper::MeshRenderer(_ent->GetEntityID(), _ent->GetSceneID(), _mesh);
 	eden_render::RenderManager::Instance()->addRenderEntity(_ent);
 	
 	//SetMaterial("test");

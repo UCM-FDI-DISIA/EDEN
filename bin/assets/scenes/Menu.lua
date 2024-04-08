@@ -5,7 +5,7 @@ Entity1 = {
 			Name = "TRANSFORM",
 			Arguments = {
 				Position = "-9.600000381469727|4.0|14.0",
-				Rotation = "1.0|0|0|0",
+				Rotation = "false|1.0|0|0|0",
 				Scale = "1.0|1.0|1.0"
 			}
 		},

@@ -16,15 +16,6 @@ Entity1 = {
             }
         },
         {
-            Name = "ANIMATOR",
-            Arguments = {
-                AnimNames = "Die|Duck|HitReact|Idle|JumpIdle|JumpLand|JumpStart|No|Punch|Run|Walk|Wave|Weapon|Yes",
-                AnimMeshNames = "Frog_Death|Frog_Duck|Frog_HitReact|Frog_Idle|Frog_JumpIdle|Frog_JumpLand|Frog_JumpStart|Frog_No|Frog_Punch|Frog_Run|Frog_Walk|Frog_Wave|Frog_Weapon|Frog_Yes",
-                NextAnim = "Idle|Idle|Idle|Idle|JumpLand|Idle|JumpIdle|Idle|Idle|Idle|Idle|Idle|Idle|Idle",
-                LoopAnims = "false|false|false|true|false|false|false|false|false|true|true|false|false|false"
-			}
-        },
-        {
             Name = "PRUEBA",
             Arguments = {
 			}

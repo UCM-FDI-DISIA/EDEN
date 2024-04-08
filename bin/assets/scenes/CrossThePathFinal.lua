@@ -13,19 +13,7 @@ Entity1 = {
 			Name = "CAMERA",
 			Arguments = {
 			}
-		},
-		{
-			Name = "PRUEBA2",
-			Arguments = {
-			}
-		},
-		{
-            Name = "AUDIO_EMITTER",
-            Arguments = {
-				SongName = "GamePlay.mp3",
-				Is3D = "false"
-			}
-        }
+		}
 	}
 }
 
@@ -2348,7 +2336,7 @@ Entity115 = {
 			Name = "TRANSFORM",
 			Arguments = {
 				Position = "-4.544820308685303|3.982574224472046|0.1488906890153885",
-				Rotation = "false|0.7071067690849304|0.0|0.0|-0.7071067690849304",
+				Rotation = "false|0.5|0.5|-0.5|-0.5",
 				Scale = "0.10000000149011612|0.10000000149011612|0.10000000149011612"
 			}
 		},
@@ -2357,6 +2345,27 @@ Entity115 = {
             Arguments = {
                 Mesh = "Cube.057"
             }
+        },
+		{
+            Name = "ANIMATOR",
+            Arguments = {
+                AnimNames = "Die|Duck|HitReact|Idle|JumpIdle|JumpLand|JumpStart|No|Punch|Run|Walk|Wave|Weapon|Yes",
+                AnimMeshNames = "Frog_Death|Frog_Duck|Frog_HitReact|Frog_Idle|Frog_JumpIdle|Frog_JumpLand|Frog_JumpStart|Frog_No|Frog_Punch|Frog_Run|Frog_Walk|Frog_Wave|Frog_Weapon|Frog_Yes",
+                NextAnim = "Idle|Idle|Idle|Idle|JumpLand|Idle|JumpIdle|Idle|Idle|Idle|Idle|Idle|Idle|Idle",
+                LoopAnims = "false|false|false|true|false|false|false|false|false|true|true|false|false|false"
+            }
+        },
+		{
+            Name = "PRUEBA2",
+            Arguments = {
+            }
+        },
+		{
+            Name = "AUDIO_EMITTER",
+            Arguments = {
+				SongName = "GamePlay.mp3",
+				Is3D = "false"
+			}
         }
 	}
 }

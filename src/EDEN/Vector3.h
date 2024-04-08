@@ -2,8 +2,10 @@
 #ifndef EDEN_VECTOR3_H
 #define EDEN_VECTOR3_H
 
+#include "defs.h"
+
 namespace eden_utils {
-	class Vector3
+	class EDEN_API Vector3
 	{
 	public:
 		/// @brief Constructora por defecto de Vector3

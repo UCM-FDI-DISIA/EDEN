@@ -12,11 +12,15 @@
 #include "RenderManager.h"
 #include "NodeManager.h"
 
-render_wrapper::Light::Light(const std::string entityID, const std::string sceneID, const std::string type) : RenderObject(sceneID), _entityID(entityID)
+render_wrapper::Light::Light(const std::string entityID, const std::string sceneID, const std::string type,
+	const eden_utils::Vector3 DifusseColor, const eden_utils::Vector3 SpecularColor) : RenderObject(sceneID), _entityID(entityID)
 {
 	_light = GetSceneManager()->createLight();
-	
-	// inicialización genérica
+
+	if (!render_wrapper::NodeManager::Instance()->HasNode(entityID, sceneID))
+		render_wrapper::NodeManager::Instance()->CreateSceneObject(entityID, sceneID);
+
+	// inicializacion generica
 	Ogre::Light::LightTypes OgreLightType = Ogre::Light::LightTypes::LT_DIRECTIONAL;
 
 	if (type == "LT_POINT") {
@@ -34,6 +38,9 @@ render_wrapper::Light::Light(const std::string entityID, const std::string scene
 	else OgreLightType = Ogre::Light::LightTypes::LT_DIRECTIONAL;
 
 	_light->setType(OgreLightType);
+
+	SetDiffuse(DifusseColor);
+	SetSpecular(SpecularColor);
 	render_wrapper::NodeManager::Instance()->Attach(GetRenderObject(), entityID, sceneID);
 
 }

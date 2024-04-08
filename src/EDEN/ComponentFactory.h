@@ -7,13 +7,15 @@
 
 #include "Singleton.h"
 
+#include "defs.h"
+
 namespace eden_ec {
 	class Component;
 	class Entity;
 
 	/// @brief Clase cuya utilidad reside en crear los componentes de las entidades del juego.
 	/// Es capaz de crearlas a partir de su tipo o a partir de su ID.
-	class ComponentFactory : public Singleton<ComponentFactory>
+	class EDEN_API ComponentFactory : public Singleton<ComponentFactory>
 	{
 		/// @brief Necesitamos acceder al m�todo 'init' de Component, que es protegido.
 		friend Component;

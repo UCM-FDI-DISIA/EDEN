@@ -4,6 +4,8 @@
 
 #include "Component.h"
 
+#include "defs.h"
+
 namespace render_wrapper {
 	class CameraWrapper;
 }
@@ -16,7 +18,7 @@ namespace eden_utils {
 namespace eden_ec {
 	/// @brief Componente de camara.
 	class CTransform;
-	class CCamera : public Component {
+	class EDEN_API CCamera : public Component {
 	public:
 		/// @brief Constructora por defecto de la camara
 		CCamera() = default;

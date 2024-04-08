@@ -4,6 +4,8 @@
 
 #include "Singleton.h"
 
+#include "defs.h"
+
 namespace Ogre {
 	class Root;
 }
@@ -23,7 +25,7 @@ namespace eden
 	class SceneManager;
 	/// @brief El master es la clase singleton encargada de llevar el bucle principal de juego
 	/// @brief Es esta clase que gestiona el tiempo del juego
-	class Master : public Singleton<Master>
+	class EDEN_API Master : public Singleton<Master>
 	{
 		friend Singleton<Master>;
 

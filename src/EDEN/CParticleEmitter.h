@@ -13,12 +13,14 @@
 
 #include "Component.h"
 
+#include "defs.h"
+
 namespace render_wrapper {
 	class ParticleSystem;
 }
 
 namespace eden_ec {
-	class CParticleEmitter : public Component
+	class EDEN_API CParticleEmitter : public Component
 	{
 	public:
 		/// @brief Constructora por defecto del componente ParticleEmitter

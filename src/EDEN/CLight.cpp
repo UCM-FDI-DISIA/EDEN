@@ -3,7 +3,6 @@
 #include <RenderManager.h>
 #include "Entity.h"
 #include "Transform.h"
-#include "Vector3.h"
 #include "Quaternion.h"
 #include "Light.h"
 
@@ -16,6 +15,8 @@ eden_ec::CLight::~CLight() {
 
 void eden_ec::CLight::Init(eden_script::ComponentArguments* args) {
 	_lType = args->GetValueToString("LightType");
+	_diffuseColor = args->GetValueToVector3("DiffuseColor");
+	_specularColor = args->GetValueToVector3("SpecularColor");
 	eden_render::RenderManager::Instance()->addRenderEntity(_ent);
 }
 
@@ -25,7 +26,8 @@ void eden_ec::CLight::Update(float dt) {
 }
 
 void eden_ec::CLight::Start() {
-	_lightWrapper = new render_wrapper::Light(_ent->GetEntityID(), _ent->GetSceneID(), _lType);
+	_transform = _ent->GetComponent<eden_ec::CTransform>();
+	_lightWrapper = new render_wrapper::Light(_ent->GetEntityID(), _ent->GetSceneID(), _lType, _diffuseColor, _specularColor);
 }
 
 void eden_ec::CLight::SetVisibility(bool visibility) {

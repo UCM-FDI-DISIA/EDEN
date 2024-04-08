@@ -15,6 +15,8 @@
 #include "./../EDEN_Physics/RigidBody.h"
 #endif
 
+#include "defs.h"
+
 namespace physics_manager {
 	class PhysicsManager;
 }
@@ -25,7 +27,7 @@ namespace physics_wrapper{
 
 namespace eden_ec {
 	class CLuaBehaviour;
-	class CRigidBody : public Component
+	class EDEN_API CRigidBody : public Component
 	{
 
 		friend physics_manager::PhysicsManager;

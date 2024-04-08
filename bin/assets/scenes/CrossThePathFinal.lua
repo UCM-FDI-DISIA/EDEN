@@ -13,7 +13,19 @@ Entity1 = {
 			Name = "CAMERA",
 			Arguments = {
 			}
-		}
+		},
+		{
+			Name = "PRUEBA2",
+			Arguments = {
+			}
+		},
+		{
+            Name = "AUDIO_EMITTER",
+            Arguments = {
+				SongName = "GamePlay.mp3",
+				Is3D = "false"
+			}
+        }
 	}
 }
 
@@ -2204,6 +2216,22 @@ Entity110 = {
 			}
 		},
 		{
+			Name = "LIGHT",
+			Arguments = {
+				LightType = "LT_SPOTLIGHT",
+				DiffuseColor = "5.0|0.0|0.0",
+				SpecularColor = "0.0|0.0|0.0"
+			}
+		},
+		{
+			Name = "LIGHT",
+			Arguments = {
+				LightType = "LT_SPOTLIGHT",
+				DiffuseColor = "5.0|0.0|0.0",
+				SpecularColor = "0.0|0.0|0.0"
+			}
+		},
+		{
 			Name = "PARTICLE_EMITTER",
 			Arguments = {
 				Loop = "true",
@@ -2272,7 +2300,30 @@ Entity112 = {
 		}
 	}
 }
+
 Entity113 = {
+	Name = "Sun",
+	Components = {
+		{
+			Name = "TRANSFORM",
+			Arguments = {
+				Position = "-9.293344497680664|3.87427020072937|4.017282962799072",
+				Rotation = "false|0.9781476259231567|-0.20791170001029968|-0.0|0.0",
+				Scale = "1.0|1.0|1.0"
+			}
+		},
+		{
+			Name = "LIGHT",
+			Arguments = {
+				LightType = "LT_DIRECTIONAL",
+				DiffuseColor = "1.0|1.0|1.0",
+				SpecularColor = "0.0|0.0|0.0"
+			}
+		},
+	}
+}
+
+Entity114 = {
 	Name = "UI_Image",
 	Components = {
 		{
@@ -2283,13 +2334,33 @@ Entity113 = {
                 YPos = "80",
                 Width = "350",
                 Height = "250",
-                Texture = "CommingSoon.png",
+                Texture = "ComingSoon.png",
                 Depth = "1"
 			}
 		}
 	}	
 }
-Entities = { Entity1, Entity2, Entity3, Entity4, Entity5, Entity6, Entity7, Entity8, Entity9, Entity10, Entity11, Entity12, Entity13, Entity14, Entity15, Entity16, Entity17, Entity18, Entity19, Entity20, Entity21, Entity22, Entity23, Entity24, Entity25, Entity26, Entity27, Entity28, Entity29, Entity30, Entity31, Entity32, Entity33, Entity34, Entity35, Entity36, Entity37, Entity38, Entity39, Entity40, Entity41, Entity42, Entity43, Entity44, Entity45, Entity46, Entity47, Entity48, Entity49, Entity50, Entity51, Entity52, Entity53, Entity54, Entity55, Entity56, Entity57, Entity58, Entity59, Entity60, Entity61, Entity62, Entity63, Entity64, Entity65, Entity66, Entity67, Entity68, Entity69, Entity70, Entity71, Entity72, Entity73, Entity74, Entity75, Entity76, Entity77, Entity78, Entity79, Entity80, Entity81, Entity82, Entity83, Entity84, Entity85, Entity86, Entity87, Entity88, Entity89, Entity90, Entity91, Entity92, Entity93, Entity94, Entity95, Entity96, Entity97, Entity98, Entity99, Entity100, Entity101, Entity102, Entity103, Entity104, Entity105, Entity106, Entity107, Entity108, Entity109, Entity110, Entity111, Entity112, Entity113 }
+
+Entity115 = {
+	Name = "Player",
+	Components = {
+		{
+			Name = "TRANSFORM",
+			Arguments = {
+				Position = "-4.544820308685303|3.982574224472046|0.1488906890153885",
+				Rotation = "false|0.7071067690849304|0.0|0.0|-0.7071067690849304",
+				Scale = "0.10000000149011612|0.10000000149011612|0.10000000149011612"
+			}
+		},
+        {
+            Name = "MESH_RENDERER",
+            Arguments = {
+                Mesh = "Cube.057"
+            }
+        }
+	}
+}
+Entities = { Entity1, Entity2, Entity3, Entity4, Entity5, Entity6, Entity7, Entity8, Entity9, Entity10, Entity11, Entity12, Entity13, Entity14, Entity15, Entity16, Entity17, Entity18, Entity19, Entity20, Entity21, Entity22, Entity23, Entity24, Entity25, Entity26, Entity27, Entity28, Entity29, Entity30, Entity31, Entity32, Entity33, Entity34, Entity35, Entity36, Entity37, Entity38, Entity39, Entity40, Entity41, Entity42, Entity43, Entity44, Entity45, Entity46, Entity47, Entity48, Entity49, Entity50, Entity51, Entity52, Entity53, Entity54, Entity55, Entity56, Entity57, Entity58, Entity59, Entity60, Entity61, Entity62, Entity63, Entity64, Entity65, Entity66, Entity67, Entity68, Entity69, Entity70, Entity71, Entity72, Entity73, Entity74, Entity75, Entity76, Entity77, Entity78, Entity79, Entity80, Entity81, Entity82, Entity83, Entity84, Entity85, Entity86, Entity87, Entity88, Entity89, Entity90, Entity91, Entity92, Entity93, Entity94, Entity95, Entity96, Entity97, Entity98, Entity99, Entity100, Entity101, Entity102, Entity103, Entity104, Entity105, Entity106, Entity107, Entity108, Entity109, Entity110, Entity111, Entity112, Entity113,Entity114,Entity115 }
 
 CollisionLayers = {
 	Layers = {

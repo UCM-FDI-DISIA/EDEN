@@ -8,6 +8,8 @@
 
 #include "Component.h"
 
+#include "defs.h"
+
 namespace eden_script {
 	class ComponentArguments;
 }
@@ -21,7 +23,7 @@ namespace eden_ec {
 	class CMeshRenderer;
 	/// @brief El coponente CAnimator se encarga de manejar las animaciones, ademas de crear
 	/// e inicializar el Animator Wrapper y llamar a sus metodos
-	class CAnimator : public Component
+	class EDEN_API CAnimator : public Component
 	{
 	public:
 

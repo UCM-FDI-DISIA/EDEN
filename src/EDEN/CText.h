@@ -6,13 +6,15 @@
 
 #include <UIComponent.h>
 
+#include "defs.h"
+
 namespace Ogre {
 	class Overlay;
 }
 
 namespace eden_ec {
 	/// @brief Clase que representa un texto en la UI
-	class CText : public eden_ec::UIComponent {
+	class EDEN_API CText : public eden_ec::UIComponent {
 	public:
 		/// @brief Constructora de la clase Texto
 		CText() = default;

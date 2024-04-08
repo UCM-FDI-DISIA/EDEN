@@ -6,13 +6,15 @@
 
 #include <UIComponent.h>
 
+#include "defs.h"
+
 namespace Ogre {
 	class Overlay;
 }
 
 namespace eden_ec {
 	/// @brief Clase que representa una imágen en la UI
-	class CImage : public eden_ec::UIComponent {
+	class EDEN_API CImage : public eden_ec::UIComponent {
 	public:
 		/// @brief Constructora de la clase Image
 		CImage() = default;

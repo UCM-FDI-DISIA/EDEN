@@ -19,6 +19,8 @@
 // Archivos del proyecto
 #include "Component.h"
 
+#include "defs.h"
+
 namespace render_wrapper
 {
 	class MeshRenderer;
@@ -26,7 +28,7 @@ namespace render_wrapper
 
 namespace eden_ec {
 	class CAnimator;
-	class CMeshRenderer : public Component
+	class EDEN_API CMeshRenderer : public Component
 	{
 		friend eden_ec::CAnimator;
 	public:

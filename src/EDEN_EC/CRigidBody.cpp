@@ -6,8 +6,6 @@
 #include "RayCast.h"
 #include "CLuaBehaviour.h"
 
-const std::string eden_ec::CRigidBody::_id = "RIGIDBODY";
-
 void eden_ec::CRigidBody::Start()
 {
 	//Se comprueba si la entidad tiene o no un transform, en cuyo caso lo crea y lo aniade

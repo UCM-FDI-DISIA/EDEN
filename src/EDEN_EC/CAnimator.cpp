@@ -7,8 +7,6 @@
 #include "Entity.h"
 #include <RenderManager.h>
 
-const std::string eden_ec::CAnimator::_id = "ANIMATOR";
-
 eden_ec::CAnimator::~CAnimator() {
 	eden_render::RenderManager::Instance()->removeRenderEntity(_ent);
 	delete _animatorWrapper;

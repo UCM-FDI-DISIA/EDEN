@@ -5,8 +5,6 @@
 #include <ComponentArguments.h>
 #include "CImage.h"
 
-const std::string eden_ec::CCursor::_id = "CURSOR";
-
 eden_ec::CCursor::CCursor(float width, float height, std::string texture,int depth) {
 	
 	 _input = eden_input::InputManager::Instance();

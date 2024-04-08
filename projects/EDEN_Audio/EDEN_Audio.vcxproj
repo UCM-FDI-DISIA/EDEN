@@ -74,7 +74,7 @@
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\src\EDEN_Export\;$(ProjectDir)..\..\src\EDEN_Utils\;$(ProjectDir)..\..\src\EDEN_EC\;$(ProjectDir)..\..\dependencies\irrKlang\src\include\;$(ProjectDir)..\..\dependencies\irrKlang\src\plugins\ikpMP3\;$(ProjectDir)..\..\src\EDEN_Script\;$(ProjectDir)..\..\..\src\EDEN_Managers\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\src\EDEN_Export\;$(ProjectDir)..\..\src\EDEN_Utils\;$(ProjectDir)..\..\src\EDEN_EC\;$(ProjectDir)..\..\dependencies\irrKlang\src\include\;$(ProjectDir)..\..\dependencies\irrKlang\src\plugins\ikpMP3\;$(ProjectDir)..\..\src\EDEN_Script\;$(ProjectDir)..\..\src\EDEN_Managers\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -94,7 +94,7 @@
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\src\EDEN_Export\;$(ProjectDir)..\..\src\EDEN_Utils\;$(ProjectDir)..\..\src\EDEN_EC\;$(ProjectDir)..\..\dependencies\irrKlang\src\include\;$(ProjectDir)..\..\dependencies\irrKlang\src\plugins\ikpMP3\;$(ProjectDir)..\..\src\EDEN_Script\;$(ProjectDir)..\..\..\src\EDEN_Managers\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\src\EDEN_Export\;$(ProjectDir)..\..\src\EDEN_Utils\;$(ProjectDir)..\..\src\EDEN_EC\;$(ProjectDir)..\..\dependencies\irrKlang\src\include\;$(ProjectDir)..\..\dependencies\irrKlang\src\plugins\ikpMP3\;$(ProjectDir)..\..\src\EDEN_Script\;$(ProjectDir)..\..\src\EDEN_Managers\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>

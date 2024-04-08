@@ -6,8 +6,6 @@
 #include "Entity.h"
 #include "ComponentArguments.h"
 
-const std::string eden_ec::CAudioEmitter::_id = "AUDIO_EMITTER";
-
 eden_ec::CAudioEmitter::CAudioEmitter(std::string name, bool is3D) : _3D(is3D) {
 	ChangeClip(name);
 }

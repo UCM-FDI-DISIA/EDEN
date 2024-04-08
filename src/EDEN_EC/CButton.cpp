@@ -9,8 +9,6 @@
 #include "Entity.h"
 #include "CLuaBehaviour.h"
 
-const std::string eden_ec::CButton::_id = "BUTTON";
-
 eden_ec::CButton::CButton(ButtonParams& params) : UIComponent() {
 
 	auto renderManager = eden_render::RenderManager::Instance();

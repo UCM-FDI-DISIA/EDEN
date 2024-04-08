@@ -7,9 +7,6 @@
 #include "Vector3.h"
 #include <iostream>
 
-const std::string eden_ec::CCamera::_id = "CAMERA";
-
-
 eden_ec::CCamera::~CCamera() {
 	eden_render::RenderManager::Instance()->removeRenderEntity(_ent);
 	_cameraWrapper = nullptr;

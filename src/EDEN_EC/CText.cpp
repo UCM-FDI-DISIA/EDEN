@@ -5,8 +5,6 @@
 #include <ComponentArguments.h>
 
 
-const std::string eden_ec::CText::_id = "TEXT";
-
 eden_ec::CText::CText(std::string overlayName, float xPos, float yPos,
 	float tam, std::string text, std::string font, float rColor, float gColor, float bColor,
 	int depth) {

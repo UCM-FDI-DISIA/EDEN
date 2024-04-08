@@ -13,8 +13,6 @@
 #include <ComponentArguments.h>
 #include "Entity.h"
 
-const std::string eden_ec::CButtonBehaviour::_id = "BEHAVIOUR";
-
 eden_ec::CButtonBehaviour::CButtonBehaviour(std::string name) : _behaviourLua(nullptr), _name(name) { _L = nullptr; }
 
 eden_ec::CButtonBehaviour::CButtonBehaviour(std::string name, luabridge::LuaRef* behaviourLua)

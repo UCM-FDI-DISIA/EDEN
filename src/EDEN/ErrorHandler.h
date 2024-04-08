@@ -6,6 +6,8 @@
 
 #include "Singleton.h"
 
+#include "defs.h"
+
 #define _CRTDBG_MAP_ALLOC
 
 #define LOG_NAME "EDEN_ErrorLog.txt"
@@ -20,7 +22,7 @@
 #endif
 
 namespace eden_error {
-	class ErrorHandler : public Singleton<ErrorHandler> {
+	class EDEN_API ErrorHandler : public Singleton<ErrorHandler> {
 		friend class Singleton<ErrorHandler>;
 	public:
 		/// @brief Caracter que separa en una excepci�n el t�tulo de su descripci�n

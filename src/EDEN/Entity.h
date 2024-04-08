@@ -7,6 +7,8 @@
 #include "Component.h"
 #include "ComponentFactory.h"
 
+#include "defs.h"
+
 namespace eden_script {
     struct EntityInfo;
     struct ComponentInfo;
@@ -18,7 +20,7 @@ namespace eden_ec {
 	/// @brief Clase que define las Entidades de nuestro juego como contenedores de Componentes,
     /// que definir�n el comportamiento y las distinguir�n de otras entidades.
     /// Se encarga de gestionar sus componentes, haciendo las llamdas pertinentes a los mismo
-	class Entity
+	class EDEN_API Entity
 	{
         friend class eden_script::LuaManager;
 	public:

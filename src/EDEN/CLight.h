@@ -4,6 +4,8 @@
 #include "Component.h"
 #include <string>
 
+#include "defs.h"
+
 namespace eden_script {
 	class ComponentArguments;
 }
@@ -20,7 +22,7 @@ namespace eden_utils {
 namespace eden_ec {
 
 	class CTransform;
-	class CLight : public Component
+	class EDEN_API CLight : public Component
 	{
 	public:
 		

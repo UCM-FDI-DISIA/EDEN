@@ -9,11 +9,12 @@
 #include "Vector3.h"
 #include "Quaternion.h"
 
+#include "defs.h"
 
 namespace eden_ec {
 
 	/// @brief Componente que tiene toda entidad que gestiona su posici�n, rotaci�n y escala
-	class CTransform : public Component
+	class EDEN_API CTransform : public Component
 	{
 	public:
 		enum AXIS_REFERENCE {AXIS_WORLD, AXIS_LOCAL};

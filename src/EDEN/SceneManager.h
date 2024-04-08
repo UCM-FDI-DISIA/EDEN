@@ -9,6 +9,8 @@
 
 #include "Singleton.h"
 
+#include "defs.h"
+
 namespace eden_script {
 	struct EntityInfo;
 	class ComponentArguments;
@@ -24,7 +26,7 @@ namespace eden_utils {
 }
 
 namespace eden {
-class Scene;
+class EDEN_API Scene;
 /// @brief Clase que se encarga de gestionar las escenas, es decir, cargarlas y descargarlas, hacer su update, etc...
 class SceneManager : public Singleton<SceneManager> {
 	friend Singleton<SceneManager>;

@@ -4,6 +4,8 @@
 
 #include <string>
 
+#include "defs.h"
+
 namespace eden_script {
     class ComponentArguments;
 }
@@ -11,7 +13,7 @@ namespace eden_script {
 namespace eden_ec {
     class Entity;
 	/// @brief Clase gen�rica de component usada para la implementaci�n de los comportamientos de las entidades
-	class Component
+	class EDEN_API Component
 	{
         friend Entity;
     public:

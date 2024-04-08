@@ -52,6 +52,7 @@
     <ClInclude Include="..\..\src\EDEN\CMeshRenderer.h" />
     <ClInclude Include="..\..\src\EDEN\CParticleEmitter.h" />
     <ClInclude Include="..\..\src\EDEN\CText.h" />
+    <ClInclude Include="..\..\src\EDEN\defs.h" />
     <ClInclude Include="..\..\src\EDEN\ErrorHandler.h" />
     <ClInclude Include="..\..\src\EDEN\Hito1Prueba.h" />
     <ClInclude Include="..\..\src\EDEN\CRigidBody.h" />

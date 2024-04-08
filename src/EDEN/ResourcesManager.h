@@ -6,6 +6,8 @@
 #include <vector>
 #include "Singleton.h"
 
+#include "defs.h"
+
 #ifdef _MSC_VER
 #define AUDIO_ROUTE "assets\\audio\\"
 #define MATERIALS_ROUTE "assets\\mesh\\"
@@ -21,7 +23,7 @@
 
 namespace eden_resources {
     /// @brief Clase encargada de gestionar los recursos de UI
-    class ResourcesManager : public Singleton<ResourcesManager> {
+    class EDEN_API ResourcesManager : public Singleton<ResourcesManager> {
         friend Singleton<ResourcesManager>;
     public:
 
@@ -63,7 +65,5 @@ namespace eden_resources {
         std::vector<std::set<std::string>>_resourcesRutesGeneral;
     };
 }
-
-
 
 #endif //UIMANAGER_H

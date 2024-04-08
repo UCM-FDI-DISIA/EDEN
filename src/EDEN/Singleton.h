@@ -8,6 +8,8 @@
 #include <memory>
 #include <cassert>
 
+#include "defs.h"
+
 /// @brief Una clase que herede de esta clase tiene que implementar un constructor sin argumentos. 
 /// @brief Los argumentos necesarios para construir una clase se pasarán en el método Init() de la clase, que se ejecuta cuando se llama el método Instance() por primera vez.
 /*
@@ -29,7 +31,7 @@
  */
 
 template<typename T>
-class Singleton {
+class EDEN_API Singleton {
 
 public:
 	/// @brief No se pueden copiar objetos de este tipo

@@ -4,6 +4,8 @@
 
 #include "Component.h"
 
+#include "defs.h"
+
 namespace Ogre {
 	class Overlay;
 }
@@ -15,7 +17,7 @@ namespace eden_input {
 namespace eden_ec {
 	class CImage;
 	/// @brief Clase que representa el cursor
-	class  CCursor: public Component {
+	class EDEN_API CCursor: public Component {
 	public:
 		/// @brief Constructora de la clase Cursor
 		CCursor() = default;

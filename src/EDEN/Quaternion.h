@@ -4,11 +4,13 @@
 
 #include <array>
 
+#include "defs.h"
+
 #define PI 3.1415926
 
 namespace eden_utils {
 	class Vector3;
-	class Quaternion
+	class EDEN_API Quaternion
 	{
 	public:
 		/// @brief Constructora por defecto del cuaterni�n

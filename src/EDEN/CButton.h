@@ -6,6 +6,8 @@
 
 #include <UIComponent.h>
 
+#include "defs.h"
+
 namespace Ogre {
 	class Overlay;
 }
@@ -15,7 +17,7 @@ namespace eden_ec {
 	class CLuaBehaviour;
 
 	/// @brief Par�metros del bot�n
-	struct ButtonParams {
+	struct EDEN_API ButtonParams {
 		std::string overlayName = std::string();
 		float xPos = 0, yPos = 0;
 		int depth = 0;
@@ -26,7 +28,7 @@ namespace eden_ec {
 	};
 
 	/// @brief Clase que representa un bot�n en la UI
-	class CButton : public eden_ec::UIComponent {
+	class EDEN_API CButton : public eden_ec::UIComponent {
 	public:
 
 		/// @brief Constructora vacia

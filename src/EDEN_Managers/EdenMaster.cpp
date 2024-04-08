@@ -19,8 +19,6 @@
 #include "Scene.h"
 #include "AudioManager.h"
 
-bool eden::Master::_initialized = false;
-
 eden::Master::Master()
 {
 	// la comprobaci�n de que se haya podido inicializar el RenderManager ahora se hace dentro del propio RenderManager.

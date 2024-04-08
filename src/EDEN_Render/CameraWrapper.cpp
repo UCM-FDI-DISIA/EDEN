@@ -21,7 +21,7 @@ render_wrapper::CameraWrapper::CameraWrapper(std::string entityID) : _entityID(e
 	SetNearClipDistance(1.0f);
 	SetFarClipDistance(10000.0f);
 	SetAutoAspectRatio(true);
-
+	_camera->setAspectRatio(16.0f / 9.0f);
 	if (!render_wrapper::NodeManager::Instance()->HasNode(entityID))
 		render_wrapper::NodeManager::Instance()->CreateSceneObject(entityID);
 

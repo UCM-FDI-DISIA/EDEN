@@ -28,11 +28,7 @@ namespace eden_ec {
 		void Update(float t) override;
 
 		void HandleInput() override;
-
-		void Jump();
-		void ChangeText();
-
-		void Collide();
+		void StartGame();
 
 	protected:
 		const static std::string _id;

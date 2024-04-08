@@ -14,20 +14,6 @@ Entity1 = {
             Arguments = {
                 Mesh = "Cube.057"
             }
-        },
-        {
-            Name = "RIGIDBODY", 
-            Arguments = {
-                Mass = "1",
-                AABB = "1|10|1",
-                PosOffset = "0|0|0",
-                Radius = "0",
-                Shape = "BOX",
-                CollisionFlag = "DYNAMIC",
-                CollisionLayer = "PLAYER",
-                Bounciness = "1",
-                Friction = "0"
-            }
         }
     }
 }
@@ -65,27 +51,13 @@ Entity6 = {
         {
             Name = "MESH_RENDERER",
             Arguments = {
-                Mesh = "cube"
-            }
-        },
-        {
-            Name = "RIGIDBODY", 
-            Arguments = {
-                Mass = "1",
-                AABB = "100|10|100",
-                PosOffset = "0|0|0",
-                Radius = "0",
-                Shape = "BOX",
-                CollisionFlag = "STATIC",
-                CollisionLayer = "GROUND",
-                Bounciness = "1",
-                Friction = "0"
+                Mesh = "Cube.057"
             }
         }
         
     }
 }
-Entities = { Entity1, Entity2, Entity6, Entity7 }
+Entities = { Entity1, Entity2, Entity6 }
 
 CollisionLayers = { 
     Layers = {

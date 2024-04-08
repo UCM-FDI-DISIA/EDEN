@@ -164,8 +164,8 @@ Entity6 = {
         {
             Name = "TRANSFORM", 
             Arguments = {
-                Position = "true|10|-200|0",
-                Rotation = "0|0|0|0",
+                Position = "10|-200|0",
+                Rotation = "true|0|0|0|0",
                 Scale = "0.2|0.05|0.2"
             }
         },
@@ -218,7 +218,7 @@ Entity8 = {
             Name = "TRANSFORM", 
             Arguments = {
                 Position = "-700|0|250",
-                Rotation = "0|0|0|0",
+                Rotation = "true|0|0|0|0",
                 Scale = "1|1|1"
             }
         },

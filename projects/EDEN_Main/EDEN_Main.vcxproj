@@ -86,7 +86,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>EDEN_Render.lib;EDEN_Input.lib;EDEN_Physics.lib;EDEN_Script.lib;EDEN_Audio.lib;EDEN_EC.lib;EDEN_Utils.lib;EDEN_Managers.lib;OgreMain.lib;OgreOverlay.lib;SDL2.lib;SDL2main.lib;OgreRTShaderSystem.lib;BulletDynamics.lib;BulletCollision.lib;LinearMath.lib;Bullet3Geometry.lib;Bullet3Common.lib;Bullet3Dynamics.lib;irrKlang.lib;lua.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>EDEN_Render.lib;EDEN_Input.lib;EDEN_Physics.lib;EDEN_Script.lib;EDEN_Audio.lib;EDEN_Debug.lib;EDEN_EC.lib;EDEN_Managers.lib;EDEN_Utils.lib;OgreMain.lib;OgreOverlay.lib;SDL2.lib;SDL2main.lib;OgreRTShaderSystem.lib;BulletDynamics.lib;BulletCollision.lib;LinearMath.lib;Bullet3Common.lib;Bullet3Dynamics.lib;irrKlang.lib;lua.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)dependencies\Bullet\build\$(Platform)\lib\$(Configuration)\;$(SolutionDir)dependencies\SDL\build\$(Platform)\$(Configuration)\;$(SolutionDir)dependencies\Ogre\build\$(Platform)\lib\$(Configuration)\;$(SolutionDir)dependencies\Lua\build\$(Platform)\$(Configuration)\;$(SolutionDir)lib\$(Configuration)\;$(SolutionDir)dependencies\irrKlang\build\$(Platform);$(SolutionDir)dependencies\Lua\build\$(Platform)\$(Configuration)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>

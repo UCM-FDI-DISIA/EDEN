@@ -4,10 +4,12 @@
 
 #include "Component.h"
 
+#include "defs.h"
+
 namespace eden_ec {
 	/// @brief Componente creado para comprobar el correcto funcionamiento del
 	/// sistema Entidad-Componente del motor. Se debería borrar a final de proyecto.
-	class cTestComponent : public Component
+	class EDEN_API cTestComponent : public Component
 	{
 	public:
 		/// @brief Constructora por defecto
@@ -16,7 +18,7 @@ namespace eden_ec {
 		/// @brief Método que devuelve la id del componente. Inprescindible tenerlo en cada nueva clase
 		/// de componente
 		/// @return ID del componente
-		inline static std::string GetID() { return _id; };
+		inline static std::string GetID() { return "TEST_COMPONENT"; };
 
 		/// @brief Método ejecutado cada frame
 		/// @param t Tiempo transcurrido desde el último frame
@@ -24,9 +26,6 @@ namespace eden_ec {
 
 		/// @brief No toma ningún argumento extra, entonces queda vacío.
 		virtual void Init(eden_script::ComponentArguments* info) {};
-	private:
-		/// @brief Dar nuevo valor a la ID
-		const static std::string _id;
 	};
 }
 

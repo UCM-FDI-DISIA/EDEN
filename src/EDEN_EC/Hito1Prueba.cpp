@@ -12,8 +12,6 @@
 #include <string>
 #include "SceneManager.h"
 
-const std::string eden_ec::Hito1Prueba::_id = "PRUEBA";
-
 eden_ec::Hito1Prueba::Hito1Prueba() {
 
 	////PRUEBA BOTON

@@ -4,6 +4,8 @@
 
 #include "Component.h"
 
+#include "defs.h"
+
 namespace eden_input {
 	class InputManager;
 }
@@ -14,12 +16,13 @@ namespace eden_ec {
 	class CText;
 	class AudioEmitter;
 	class AudioListener;
-	class Hito1Prueba : public Component {
+
+	class EDEN_API Hito1Prueba : public Component {
 	public:
 		Hito1Prueba();
 		~Hito1Prueba() = default;
 
-		static std::string GetID() { return _id; }
+		static std::string GetID() { return "PRUEBA"; }
 
 		void Init(eden_script::ComponentArguments* args) override;
 
@@ -30,8 +33,6 @@ namespace eden_ec {
 		void HandleInput() override;
 		void StartGame();
 
-	protected:
-		const static std::string _id;
 	private:
 
 		eden_input::InputManager* inputManager;

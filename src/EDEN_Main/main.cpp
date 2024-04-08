@@ -60,7 +60,6 @@
 
 #include "RenderManager.h"
 
-
 #include <string>
 
 void RegisterComponents() {

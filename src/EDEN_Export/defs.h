@@ -6,7 +6,4 @@
 #define EDEN_API __declspec(dllimport)
 #endif
 
-#ifdef _DEBUG
-#include <iostream>
-#endif;
-#endif // EDEN_API
+#endif // EDEN_DEFS

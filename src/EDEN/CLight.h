@@ -2,6 +2,8 @@
 #define EDEN_C_LIGHT_H
 
 #include "Component.h"
+#include "Vector3.h"
+
 #include <string>
 
 #include "defs.h"
@@ -15,13 +17,14 @@ namespace render_wrapper {
 }
 
 namespace eden_utils {
-	class Vector3;
 	class Quaternion;
 }
 
 namespace eden_ec {
 
 	class CTransform;
+	/// @brief Componente encargado de generar una luz de tipo directional, point o spotlight
+	/// y te permite ajustar su color, posicion, direccion y visibilidad
 	class EDEN_API CLight : public Component
 	{
 	public:
@@ -32,10 +35,10 @@ namespace eden_ec {
 		/// @brief Inicializa el componente, guardando los argumentos recibidos desde lua
 		/// @param args los argumentos que contienen informacion sobre la luz
 		void Init(eden_script::ComponentArguments* args) override;
-		/// @brief 
+		/// @brief Metodo encargado de ajustar el transform en cada frame
 		/// @param dt El tiempo transcurrido desde el ultimo frame
 		void Update(float dt) override;
-		/// @brief 
+		/// @brief Se usa para guardad la referencia al transform y al wrapper de luz
 		void Start() override;
 		/// @brief Devuelve el identificador del componente
 		/// @return Identificador del componente
@@ -46,10 +49,10 @@ namespace eden_ec {
 		inline void SetVisibility(bool visibility);
 		/// @brief Devuelve si la luz es visible o no
 		inline bool getVisibility();
-		/// @brief 
+		/// @brief Ajusta el Diffuse Color de la luz
 		/// @param color Variable de color
 		inline void SetDiffuse(eden_utils::Vector3 color);
-		/// @brief 
+		/// @brief Ajusta el Specular Color de la luz
 		/// @param color Variable de color
 		inline void SetSpecular(eden_utils::Vector3 color);
 		/// @brief Setea la direccion de la luz
@@ -62,17 +65,22 @@ namespace eden_ec {
 		/// @brief Setea la posicion de la luz
 		/// @param dir Vector de posicion de la luz
 		inline void SetPosition(eden_utils::Vector3 dir);
-		/// @brief 
-		/// @param dir 
+		/// @brief Setea la orientacion de la luz
+		/// @param dir Quaternion de orientacion de la luz
 		inline void SetOrientation(eden_utils::Quaternion ori);
 
 	private:
 		/// @brief Transform de la entidad
 		eden_ec::CTransform* _transform = nullptr;
-		/// @brief 
+		/// @brief Referencia al wrapper de luz
 		render_wrapper::Light* _lightWrapper = nullptr;
-		/// @brief 
-		std::string _lType;
+		/// @brief String que guarda el tipo de la luz desde lua
+		std::string _lType = "";
+		/// @brief Vector de color donde se guarda el Diffuse Color desde lua
+		eden_utils::Vector3 _diffuseColor = {0.0, 0.0, 0.0};
+		/// @brief Vector de color donde se guarda el Specular Color desde lua
+		eden_utils::Vector3 _specularColor= {0.0, 0.0, 0.0};
+
 	};
 }
 

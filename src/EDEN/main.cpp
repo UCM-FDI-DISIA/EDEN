@@ -41,6 +41,7 @@
 #include "CCursor.h"
 #include "CCamera.h"
 #include "CParticleEmitter.h"
+#include "CLight.h"
 
 /// Engine Physics
 #include "CRigidBody.h"
@@ -70,6 +71,7 @@ void RegisterComponents() {
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CCamera>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CImage>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CText>();
+	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CLight>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::Hito1Prueba>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CAnimator>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CButton>();

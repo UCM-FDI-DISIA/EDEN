@@ -46,28 +46,28 @@ namespace eden_ec {
 
 		/// @brief Setea la visibilidad de la luz
 		/// @param visibility True -> Visible, False -> No visible
-		inline void SetVisibility(bool visibility);
+		void SetVisibility(bool visibility);
 		/// @brief Devuelve si la luz es visible o no
-		inline bool getVisibility();
+		bool getVisibility();
 		/// @brief Ajusta el Diffuse Color de la luz
 		/// @param color Variable de color
-		inline void SetDiffuse(eden_utils::Vector3 color);
+		void SetDiffuse(eden_utils::Vector3 color);
 		/// @brief Ajusta el Specular Color de la luz
 		/// @param color Variable de color
-		inline void SetSpecular(eden_utils::Vector3 color);
+		void SetSpecular(eden_utils::Vector3 color);
 		/// @brief Setea la direccion de la luz
 		/// @param dir Vector de direccion de la luz
-		inline void SetDirection(eden_utils::Vector3 dir);
+		void SetDirection(eden_utils::Vector3 dir);
 
 	protected:
 		/// @brief Identificador del componente
 		const static std::string _id;
 		/// @brief Setea la posicion de la luz
 		/// @param dir Vector de posicion de la luz
-		inline void SetPosition(eden_utils::Vector3 dir);
+		void SetPosition(eden_utils::Vector3 dir);
 		/// @brief Setea la orientacion de la luz
 		/// @param dir Quaternion de orientacion de la luz
-		inline void SetOrientation(eden_utils::Quaternion ori);
+		void SetOrientation(eden_utils::Quaternion ori);
 
 	private:
 		/// @brief Transform de la entidad

@@ -36,8 +36,15 @@
 *.pdb
 *.idb
 
+# User files
+*.user
+*.log
+
 # Archivos de Mac
 **/.DS_Store
+
+# Archivos de la compilacion de las librerias de EDEN
+*.EDENBUILD
 
 # Folders
 
@@ -45,13 +52,24 @@
 [Tt]emp/
 [Ll]ib/
 .vs/
+.idea/
+cmake-build-debug/
+cmake-build-release/
 
 [Dd]ependencies/[Oo]gre/[Bb]uild/
 [Dd]ependencies/[Bb]ullet/[Bb]uild/
 [Dd]ependencies/[Ll]ua/[Bb]uild/
+[Dd]ependencies/[Ll]uaBridge/[Bb]uild/
 [Dd]ependencies/[Ss][Dd][Ll]/[Bb]uild/
+[Dd]ependencies/[Ss][Dd][ll]_[Tt][Tt][Ff]/[Bb]uild/
+[Dd]ependencies/[Ss][Dd][ll]_[Ii]mage/[Bb]uild/
 
 
 # Exceptions
 
 ![Bb]in/[Aa]ssets/
+![Bb]in/resources.cfg
+![Bb]in/plugins.cfg
+![Dd]ependencies/[Ff][Mm][Oo][Dd]/[Bb]uild/x64/*
+![Dd]ependencies/[Ii]rr[Kk]lang/[Bb]uild/x64/*
+![Dd]ependencies/[Ii]rr[Kk]lang/[Bb]uild/arm64/*

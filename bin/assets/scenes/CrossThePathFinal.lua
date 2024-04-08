@@ -4,8 +4,8 @@ Entity1 = {
 		{
 			Name = "TRANSFORM",
 			Arguments = {
-				Position = "-1.989022970199585|5.776188850402832|5.704705715179443",
-				Rotation = "false|0.4937531054019928|0.13563135266304016|0.2275240123271942|0.8282782435417175",
+				Position = "-1.610821008682251|5.619948387145996|5.7784810066223145",
+				Rotation = "false|0.5458973050117493|0.14995510876178741|0.21834951639175415|0.7948793172836304",
 				Scale = "1.0|1.0|1.0"
 			}
 		},
@@ -18,26 +18,6 @@ Entity1 = {
 }
 
 Entity2 = {
-	Name = "Player",
-	Components = {
-		{
-			Name = "TRANSFORM",
-			Arguments = {
-				Position = "-4.174426078796387|4.148045063018799|0.14428526163101196",
-				Rotation = "false|0.7071067690849304|-9.974800718737242e-08|9.974801429279978e-08|-0.7071067690849304",
-				Scale = "0.10000000149011612|0.10000000149011612|0.10000000149011612"
-			}
-		},
-		{
-			Name = "MESH_RENDERER",
-			Arguments = {
-				Mesh = "Cube.057"
-			}
-		}
-	}
-}
-
-Entity3 = {
 	Name = "trash_B.002",
 	Components = {
 		{
@@ -57,7 +37,7 @@ Entity3 = {
 	}
 }
 
-Entity4 = {
+Entity3 = {
 	Name = "trash_B.001",
 	Components = {
 		{
@@ -77,7 +57,7 @@ Entity4 = {
 	}
 }
 
-Entity5 = {
+Entity4 = {
 	Name = "trafficlight_C.002",
 	Components = {
 		{
@@ -97,27 +77,7 @@ Entity5 = {
 	}
 }
 
-Entity6 = {
-	Name = "trafficlight_C.001",
-	Components = {
-		{
-			Name = "MESH_RENDERER",
-			Arguments = {
-				Mesh = "trafficlight_C"
-			}
-		},
-		{
-			Name = "TRANSFORM",
-			Arguments = {
-				Position = "-5.184809684753418|2.9659903049468994|0.7756177186965942",
-				Rotation = "false|0.9999998807907104|0.0|0.0|0.0",
-				Scale = "1.0|1.0|1.0"
-			}
-		}
-	}
-}
-
-Entity7 = {
+Entity5 = {
 	Name = "trafficlight_B.002",
 	Components = {
 		{
@@ -137,7 +97,7 @@ Entity7 = {
 	}
 }
 
-Entity8 = {
+Entity6 = {
 	Name = "trafficlight_B.001",
 	Components = {
 		{
@@ -157,7 +117,7 @@ Entity8 = {
 	}
 }
 
-Entity9 = {
+Entity7 = {
 	Name = "streetlight.004",
 	Components = {
 		{
@@ -177,7 +137,7 @@ Entity9 = {
 	}
 }
 
-Entity10 = {
+Entity8 = {
 	Name = "streetlight.003",
 	Components = {
 		{
@@ -197,7 +157,7 @@ Entity10 = {
 	}
 }
 
-Entity11 = {
+Entity9 = {
 	Name = "streetlight.002",
 	Components = {
 		{
@@ -217,7 +177,7 @@ Entity11 = {
 	}
 }
 
-Entity12 = {
+Entity10 = {
 	Name = "streetlight.001",
 	Components = {
 		{
@@ -237,7 +197,7 @@ Entity12 = {
 	}
 }
 
-Entity13 = {
+Entity11 = {
 	Name = "firehydrant.002",
 	Components = {
 		{
@@ -257,7 +217,7 @@ Entity13 = {
 	}
 }
 
-Entity14 = {
+Entity12 = {
 	Name = "firehydrant.001",
 	Components = {
 		{
@@ -277,7 +237,7 @@ Entity14 = {
 	}
 }
 
-Entity15 = {
+Entity13 = {
 	Name = "dumpster.004",
 	Components = {
 		{
@@ -297,7 +257,7 @@ Entity15 = {
 	}
 }
 
-Entity16 = {
+Entity14 = {
 	Name = "dumpster.003",
 	Components = {
 		{
@@ -317,7 +277,7 @@ Entity16 = {
 	}
 }
 
-Entity17 = {
+Entity15 = {
 	Name = "dumpster.002",
 	Components = {
 		{
@@ -337,7 +297,7 @@ Entity17 = {
 	}
 }
 
-Entity18 = {
+Entity16 = {
 	Name = "dumpster.001",
 	Components = {
 		{
@@ -357,7 +317,7 @@ Entity18 = {
 	}
 }
 
-Entity19 = {
+Entity17 = {
 	Name = "bush.006",
 	Components = {
 		{
@@ -377,7 +337,7 @@ Entity19 = {
 	}
 }
 
-Entity20 = {
+Entity18 = {
 	Name = "bush.005",
 	Components = {
 		{
@@ -397,7 +357,7 @@ Entity20 = {
 	}
 }
 
-Entity21 = {
+Entity19 = {
 	Name = "bush.004",
 	Components = {
 		{
@@ -417,7 +377,7 @@ Entity21 = {
 	}
 }
 
-Entity22 = {
+Entity20 = {
 	Name = "bush.003",
 	Components = {
 		{
@@ -437,7 +397,7 @@ Entity22 = {
 	}
 }
 
-Entity23 = {
+Entity21 = {
 	Name = "bush.002",
 	Components = {
 		{
@@ -457,7 +417,7 @@ Entity23 = {
 	}
 }
 
-Entity24 = {
+Entity22 = {
 	Name = "bush.001",
 	Components = {
 		{
@@ -477,7 +437,7 @@ Entity24 = {
 	}
 }
 
-Entity25 = {
+Entity23 = {
 	Name = "box_B.001",
 	Components = {
 		{
@@ -497,7 +457,7 @@ Entity25 = {
 	}
 }
 
-Entity26 = {
+Entity24 = {
 	Name = "box_A.002",
 	Components = {
 		{
@@ -517,7 +477,7 @@ Entity26 = {
 	}
 }
 
-Entity27 = {
+Entity25 = {
 	Name = "box_A.001",
 	Components = {
 		{
@@ -537,7 +497,7 @@ Entity27 = {
 	}
 }
 
-Entity28 = {
+Entity26 = {
 	Name = "bench.003",
 	Components = {
 		{
@@ -557,7 +517,7 @@ Entity28 = {
 	}
 }
 
-Entity29 = {
+Entity27 = {
 	Name = "bench.002",
 	Components = {
 		{
@@ -577,7 +537,7 @@ Entity29 = {
 	}
 }
 
-Entity30 = {
+Entity28 = {
 	Name = "bench.001",
 	Components = {
 		{
@@ -597,7 +557,7 @@ Entity30 = {
 	}
 }
 
-Entity31 = {
+Entity29 = {
 	Name = "building_A.001",
 	Components = {
 		{
@@ -617,7 +577,7 @@ Entity31 = {
 	}
 }
 
-Entity32 = {
+Entity30 = {
 	Name = "building_B.001",
 	Components = {
 		{
@@ -637,7 +597,7 @@ Entity32 = {
 	}
 }
 
-Entity33 = {
+Entity31 = {
 	Name = "building_C.001",
 	Components = {
 		{
@@ -657,7 +617,7 @@ Entity33 = {
 	}
 }
 
-Entity34 = {
+Entity32 = {
 	Name = "building_D.001",
 	Components = {
 		{
@@ -677,7 +637,7 @@ Entity34 = {
 	}
 }
 
-Entity35 = {
+Entity33 = {
 	Name = "building_D.002",
 	Components = {
 		{
@@ -697,7 +657,7 @@ Entity35 = {
 	}
 }
 
-Entity36 = {
+Entity34 = {
 	Name = "building_E.001",
 	Components = {
 		{
@@ -717,7 +677,7 @@ Entity36 = {
 	}
 }
 
-Entity37 = {
+Entity35 = {
 	Name = "building_F.001",
 	Components = {
 		{
@@ -737,7 +697,7 @@ Entity37 = {
 	}
 }
 
-Entity38 = {
+Entity36 = {
 	Name = "building_G.001",
 	Components = {
 		{
@@ -757,7 +717,7 @@ Entity38 = {
 	}
 }
 
-Entity39 = {
+Entity37 = {
 	Name = "building_H.001",
 	Components = {
 		{
@@ -777,7 +737,7 @@ Entity39 = {
 	}
 }
 
-Entity40 = {
+Entity38 = {
 	Name = "building_H.002",
 	Components = {
 		{
@@ -797,7 +757,7 @@ Entity40 = {
 	}
 }
 
-Entity41 = {
+Entity39 = {
 	Name = "base.001",
 	Components = {
 		{
@@ -817,7 +777,7 @@ Entity41 = {
 	}
 }
 
-Entity42 = {
+Entity40 = {
 	Name = "base.002",
 	Components = {
 		{
@@ -837,7 +797,7 @@ Entity42 = {
 	}
 }
 
-Entity43 = {
+Entity41 = {
 	Name = "base.003",
 	Components = {
 		{
@@ -857,7 +817,7 @@ Entity43 = {
 	}
 }
 
-Entity44 = {
+Entity42 = {
 	Name = "base.004",
 	Components = {
 		{
@@ -877,7 +837,7 @@ Entity44 = {
 	}
 }
 
-Entity45 = {
+Entity43 = {
 	Name = "base.005",
 	Components = {
 		{
@@ -897,7 +857,7 @@ Entity45 = {
 	}
 }
 
-Entity46 = {
+Entity44 = {
 	Name = "base.006",
 	Components = {
 		{
@@ -917,7 +877,7 @@ Entity46 = {
 	}
 }
 
-Entity47 = {
+Entity45 = {
 	Name = "base.007",
 	Components = {
 		{
@@ -937,7 +897,7 @@ Entity47 = {
 	}
 }
 
-Entity48 = {
+Entity46 = {
 	Name = "base.008",
 	Components = {
 		{
@@ -957,7 +917,7 @@ Entity48 = {
 	}
 }
 
-Entity49 = {
+Entity47 = {
 	Name = "base.009",
 	Components = {
 		{
@@ -977,7 +937,7 @@ Entity49 = {
 	}
 }
 
-Entity50 = {
+Entity48 = {
 	Name = "base.010",
 	Components = {
 		{
@@ -997,7 +957,7 @@ Entity50 = {
 	}
 }
 
-Entity51 = {
+Entity49 = {
 	Name = "base.011",
 	Components = {
 		{
@@ -1017,7 +977,7 @@ Entity51 = {
 	}
 }
 
-Entity52 = {
+Entity50 = {
 	Name = "base.012",
 	Components = {
 		{
@@ -1037,7 +997,7 @@ Entity52 = {
 	}
 }
 
-Entity53 = {
+Entity51 = {
 	Name = "base.013",
 	Components = {
 		{
@@ -1057,7 +1017,7 @@ Entity53 = {
 	}
 }
 
-Entity54 = {
+Entity52 = {
 	Name = "base.014",
 	Components = {
 		{
@@ -1077,7 +1037,7 @@ Entity54 = {
 	}
 }
 
-Entity55 = {
+Entity53 = {
 	Name = "base.015",
 	Components = {
 		{
@@ -1097,7 +1057,7 @@ Entity55 = {
 	}
 }
 
-Entity56 = {
+Entity54 = {
 	Name = "base.016",
 	Components = {
 		{
@@ -1117,7 +1077,7 @@ Entity56 = {
 	}
 }
 
-Entity57 = {
+Entity55 = {
 	Name = "base.017",
 	Components = {
 		{
@@ -1137,7 +1097,7 @@ Entity57 = {
 	}
 }
 
-Entity58 = {
+Entity56 = {
 	Name = "base.018",
 	Components = {
 		{
@@ -1157,7 +1117,7 @@ Entity58 = {
 	}
 }
 
-Entity59 = {
+Entity57 = {
 	Name = "base.019",
 	Components = {
 		{
@@ -1177,7 +1137,7 @@ Entity59 = {
 	}
 }
 
-Entity60 = {
+Entity58 = {
 	Name = "base.020",
 	Components = {
 		{
@@ -1197,7 +1157,7 @@ Entity60 = {
 	}
 }
 
-Entity61 = {
+Entity59 = {
 	Name = "road_straight.001",
 	Components = {
 		{
@@ -1217,7 +1177,7 @@ Entity61 = {
 	}
 }
 
-Entity62 = {
+Entity60 = {
 	Name = "road_straight.002",
 	Components = {
 		{
@@ -1237,7 +1197,7 @@ Entity62 = {
 	}
 }
 
-Entity63 = {
+Entity61 = {
 	Name = "road_straight.003",
 	Components = {
 		{
@@ -1257,7 +1217,7 @@ Entity63 = {
 	}
 }
 
-Entity64 = {
+Entity62 = {
 	Name = "road_straight.004",
 	Components = {
 		{
@@ -1277,7 +1237,7 @@ Entity64 = {
 	}
 }
 
-Entity65 = {
+Entity63 = {
 	Name = "road_straight.005",
 	Components = {
 		{
@@ -1297,7 +1257,7 @@ Entity65 = {
 	}
 }
 
-Entity66 = {
+Entity64 = {
 	Name = "road_straight.006",
 	Components = {
 		{
@@ -1317,7 +1277,7 @@ Entity66 = {
 	}
 }
 
-Entity67 = {
+Entity65 = {
 	Name = "road_straight.007",
 	Components = {
 		{
@@ -1337,7 +1297,7 @@ Entity67 = {
 	}
 }
 
-Entity68 = {
+Entity66 = {
 	Name = "road_straight.008",
 	Components = {
 		{
@@ -1357,7 +1317,7 @@ Entity68 = {
 	}
 }
 
-Entity69 = {
+Entity67 = {
 	Name = "road_straight.009",
 	Components = {
 		{
@@ -1377,7 +1337,7 @@ Entity69 = {
 	}
 }
 
-Entity70 = {
+Entity68 = {
 	Name = "road_straight.010",
 	Components = {
 		{
@@ -1397,7 +1357,7 @@ Entity70 = {
 	}
 }
 
-Entity71 = {
+Entity69 = {
 	Name = "road_straight.011",
 	Components = {
 		{
@@ -1417,7 +1377,7 @@ Entity71 = {
 	}
 }
 
-Entity72 = {
+Entity70 = {
 	Name = "road_straight.012",
 	Components = {
 		{
@@ -1437,7 +1397,7 @@ Entity72 = {
 	}
 }
 
-Entity73 = {
+Entity71 = {
 	Name = "road_straight.013",
 	Components = {
 		{
@@ -1457,7 +1417,7 @@ Entity73 = {
 	}
 }
 
-Entity74 = {
+Entity72 = {
 	Name = "road_straight.014",
 	Components = {
 		{
@@ -1477,7 +1437,7 @@ Entity74 = {
 	}
 }
 
-Entity75 = {
+Entity73 = {
 	Name = "road_straight.015",
 	Components = {
 		{
@@ -1497,7 +1457,7 @@ Entity75 = {
 	}
 }
 
-Entity76 = {
+Entity74 = {
 	Name = "road_straight.016",
 	Components = {
 		{
@@ -1517,7 +1477,7 @@ Entity76 = {
 	}
 }
 
-Entity77 = {
+Entity75 = {
 	Name = "road_straight_crossing.001",
 	Components = {
 		{
@@ -1537,7 +1497,7 @@ Entity77 = {
 	}
 }
 
-Entity78 = {
+Entity76 = {
 	Name = "road_straight_crossing.002",
 	Components = {
 		{
@@ -1557,7 +1517,7 @@ Entity78 = {
 	}
 }
 
-Entity79 = {
+Entity77 = {
 	Name = "road_straight_crossing.003",
 	Components = {
 		{
@@ -1577,7 +1537,7 @@ Entity79 = {
 	}
 }
 
-Entity80 = {
+Entity78 = {
 	Name = "road_straight_crossing.004",
 	Components = {
 		{
@@ -1597,7 +1557,607 @@ Entity80 = {
 	}
 }
 
+Entity79 = {
+	Name = "road_straight.017",
+	Components = {
+		{
+			Name = "MESH_RENDERER",
+			Arguments = {
+				Mesh = "road_straight"
+			}
+		},
+		{
+			Name = "TRANSFORM",
+			Arguments = {
+				Position = "-16.0|-2.0|0.048285484313964844",
+				Rotation = "false|0.9999998807907104|0.0|0.0|0.0",
+				Scale = "1.0|1.0|1.0"
+			}
+		}
+	}
+}
+
+Entity80 = {
+	Name = "road_straight.018",
+	Components = {
+		{
+			Name = "MESH_RENDERER",
+			Arguments = {
+				Mesh = "road_straight"
+			}
+		},
+		{
+			Name = "TRANSFORM",
+			Arguments = {
+				Position = "-14.0|-2.0|0.048285484313964844",
+				Rotation = "false|0.9999998807907104|0.0|0.0|0.0",
+				Scale = "1.0|1.0|1.0"
+			}
+		}
+	}
+}
+
 Entity81 = {
+	Name = "road_straight.019",
+	Components = {
+		{
+			Name = "MESH_RENDERER",
+			Arguments = {
+				Mesh = "road_straight"
+			}
+		},
+		{
+			Name = "TRANSFORM",
+			Arguments = {
+				Position = "-10.0|-2.0|0.048285484313964844",
+				Rotation = "false|0.9999998807907104|0.0|0.0|0.0",
+				Scale = "1.0|1.0|1.0"
+			}
+		}
+	}
+}
+
+Entity82 = {
+	Name = "road_straight.020",
+	Components = {
+		{
+			Name = "MESH_RENDERER",
+			Arguments = {
+				Mesh = "road_straight"
+			}
+		},
+		{
+			Name = "TRANSFORM",
+			Arguments = {
+				Position = "-6.0|-2.0|0.048285484313964844",
+				Rotation = "false|0.9999998807907104|0.0|0.0|0.0",
+				Scale = "1.0|1.0|1.0"
+			}
+		}
+	}
+}
+
+Entity83 = {
+	Name = "road_straight.021",
+	Components = {
+		{
+			Name = "MESH_RENDERER",
+			Arguments = {
+				Mesh = "road_straight"
+			}
+		},
+		{
+			Name = "TRANSFORM",
+			Arguments = {
+				Position = "-6.0|-4.0|0.048285484313964844",
+				Rotation = "false|0.9999998807907104|0.0|0.0|0.0",
+				Scale = "1.0|1.0|1.0"
+			}
+		}
+	}
+}
+
+Entity84 = {
+	Name = "road_straight.022",
+	Components = {
+		{
+			Name = "MESH_RENDERER",
+			Arguments = {
+				Mesh = "road_straight"
+			}
+		},
+		{
+			Name = "TRANSFORM",
+			Arguments = {
+				Position = "-10.0|-4.0|0.048285484313964844",
+				Rotation = "false|0.9999998807907104|0.0|0.0|0.0",
+				Scale = "1.0|1.0|1.0"
+			}
+		}
+	}
+}
+
+Entity85 = {
+	Name = "road_straight.023",
+	Components = {
+		{
+			Name = "MESH_RENDERER",
+			Arguments = {
+				Mesh = "road_straight"
+			}
+		},
+		{
+			Name = "TRANSFORM",
+			Arguments = {
+				Position = "-14.0|-4.0|0.048285484313964844",
+				Rotation = "false|0.9999998807907104|0.0|0.0|0.0",
+				Scale = "1.0|1.0|1.0"
+			}
+		}
+	}
+}
+
+Entity86 = {
+	Name = "road_straight.024",
+	Components = {
+		{
+			Name = "MESH_RENDERER",
+			Arguments = {
+				Mesh = "road_straight"
+			}
+		},
+		{
+			Name = "TRANSFORM",
+			Arguments = {
+				Position = "-16.0|-4.0|0.048285484313964844",
+				Rotation = "false|0.9999998807907104|0.0|0.0|0.0",
+				Scale = "1.0|1.0|1.0"
+			}
+		}
+	}
+}
+
+Entity87 = {
+	Name = "road_straight.025",
+	Components = {
+		{
+			Name = "MESH_RENDERER",
+			Arguments = {
+				Mesh = "road_straight"
+			}
+		},
+		{
+			Name = "TRANSFORM",
+			Arguments = {
+				Position = "-16.0|9.951753616333008|0.04828524589538574",
+				Rotation = "false|0.9999998807907104|0.0|0.0|0.0",
+				Scale = "1.0|1.0|1.0"
+			}
+		}
+	}
+}
+
+Entity88 = {
+	Name = "road_straight.026",
+	Components = {
+		{
+			Name = "MESH_RENDERER",
+			Arguments = {
+				Mesh = "road_straight"
+			}
+		},
+		{
+			Name = "TRANSFORM",
+			Arguments = {
+				Position = "-14.0|9.951753616333008|0.04828524589538574",
+				Rotation = "false|0.9999998807907104|0.0|0.0|0.0",
+				Scale = "1.0|1.0|1.0"
+			}
+		}
+	}
+}
+
+Entity89 = {
+	Name = "road_straight.027",
+	Components = {
+		{
+			Name = "MESH_RENDERER",
+			Arguments = {
+				Mesh = "road_straight"
+			}
+		},
+		{
+			Name = "TRANSFORM",
+			Arguments = {
+				Position = "-10.0|9.951753616333008|0.04828524589538574",
+				Rotation = "false|0.9999998807907104|0.0|0.0|0.0",
+				Scale = "1.0|1.0|1.0"
+			}
+		}
+	}
+}
+
+Entity90 = {
+	Name = "road_straight.028",
+	Components = {
+		{
+			Name = "MESH_RENDERER",
+			Arguments = {
+				Mesh = "road_straight"
+			}
+		},
+		{
+			Name = "TRANSFORM",
+			Arguments = {
+				Position = "-6.0|9.951753616333008|0.04828524589538574",
+				Rotation = "false|0.9999998807907104|0.0|0.0|0.0",
+				Scale = "1.0|1.0|1.0"
+			}
+		}
+	}
+}
+
+Entity91 = {
+	Name = "base.021",
+	Components = {
+		{
+			Name = "MESH_RENDERER",
+			Arguments = {
+				Mesh = "base"
+			}
+		},
+		{
+			Name = "TRANSFORM",
+			Arguments = {
+				Position = "-12.0|-2.0|0.048285484313964844",
+				Rotation = "false|0.9999998807907104|0.0|0.0|0.0",
+				Scale = "1.0|1.0|1.0"
+			}
+		}
+	}
+}
+
+Entity92 = {
+	Name = "base.022",
+	Components = {
+		{
+			Name = "MESH_RENDERER",
+			Arguments = {
+				Mesh = "base"
+			}
+		},
+		{
+			Name = "TRANSFORM",
+			Arguments = {
+				Position = "-4.000002861022949|-2.0|0.048285484313964844",
+				Rotation = "false|0.9999998807907104|0.0|0.0|0.0",
+				Scale = "1.0|1.0|1.0"
+			}
+		}
+	}
+}
+
+Entity93 = {
+	Name = "base.023",
+	Components = {
+		{
+			Name = "MESH_RENDERER",
+			Arguments = {
+				Mesh = "base"
+			}
+		},
+		{
+			Name = "TRANSFORM",
+			Arguments = {
+				Position = "-8.0|-2.0|0.048285484313964844",
+				Rotation = "false|0.9999998807907104|0.0|0.0|0.0",
+				Scale = "1.0|1.0|1.0"
+			}
+		}
+	}
+}
+
+Entity94 = {
+	Name = "base.024",
+	Components = {
+		{
+			Name = "MESH_RENDERER",
+			Arguments = {
+				Mesh = "base"
+			}
+		},
+		{
+			Name = "TRANSFORM",
+			Arguments = {
+				Position = "-2.000002861022949|-2.0|0.048285484313964844",
+				Rotation = "false|0.9999998807907104|0.0|0.0|0.0",
+				Scale = "1.0|1.0|1.0"
+			}
+		}
+	}
+}
+
+Entity95 = {
+	Name = "base.025",
+	Components = {
+		{
+			Name = "MESH_RENDERER",
+			Arguments = {
+				Mesh = "base"
+			}
+		},
+		{
+			Name = "TRANSFORM",
+			Arguments = {
+				Position = "-18.0|-2.0|0.048285484313964844",
+				Rotation = "false|0.9999998807907104|0.0|0.0|0.0",
+				Scale = "1.0|1.0|1.0"
+			}
+		}
+	}
+}
+
+Entity96 = {
+	Name = "base.026",
+	Components = {
+		{
+			Name = "MESH_RENDERER",
+			Arguments = {
+				Mesh = "base"
+			}
+		},
+		{
+			Name = "TRANSFORM",
+			Arguments = {
+				Position = "-5.7220458984375e-06|-2.0|0.048285484313964844",
+				Rotation = "false|0.9999998807907104|0.0|0.0|0.0",
+				Scale = "1.0|1.0|1.0"
+			}
+		}
+	}
+}
+
+Entity97 = {
+	Name = "base.027",
+	Components = {
+		{
+			Name = "MESH_RENDERER",
+			Arguments = {
+				Mesh = "base"
+			}
+		},
+		{
+			Name = "TRANSFORM",
+			Arguments = {
+				Position = "-5.7220458984375e-06|-4.0|0.048285484313964844",
+				Rotation = "false|0.9999998807907104|0.0|0.0|0.0",
+				Scale = "1.0|1.0|1.0"
+			}
+		}
+	}
+}
+
+Entity98 = {
+	Name = "base.028",
+	Components = {
+		{
+			Name = "MESH_RENDERER",
+			Arguments = {
+				Mesh = "base"
+			}
+		},
+		{
+			Name = "TRANSFORM",
+			Arguments = {
+				Position = "-18.0|-4.0|0.048285484313964844",
+				Rotation = "false|0.9999998807907104|0.0|0.0|0.0",
+				Scale = "1.0|1.0|1.0"
+			}
+		}
+	}
+}
+
+Entity99 = {
+	Name = "base.029",
+	Components = {
+		{
+			Name = "MESH_RENDERER",
+			Arguments = {
+				Mesh = "base"
+			}
+		},
+		{
+			Name = "TRANSFORM",
+			Arguments = {
+				Position = "-2.000002861022949|-4.0|0.048285484313964844",
+				Rotation = "false|0.9999998807907104|0.0|0.0|0.0",
+				Scale = "1.0|1.0|1.0"
+			}
+		}
+	}
+}
+
+Entity100 = {
+	Name = "base.030",
+	Components = {
+		{
+			Name = "MESH_RENDERER",
+			Arguments = {
+				Mesh = "base"
+			}
+		},
+		{
+			Name = "TRANSFORM",
+			Arguments = {
+				Position = "-8.0|-4.0|0.048285484313964844",
+				Rotation = "false|0.9999998807907104|0.0|0.0|0.0",
+				Scale = "1.0|1.0|1.0"
+			}
+		}
+	}
+}
+
+Entity101 = {
+	Name = "base.031",
+	Components = {
+		{
+			Name = "MESH_RENDERER",
+			Arguments = {
+				Mesh = "base"
+			}
+		},
+		{
+			Name = "TRANSFORM",
+			Arguments = {
+				Position = "-4.000002861022949|-4.0|0.048285484313964844",
+				Rotation = "false|0.9999998807907104|0.0|0.0|0.0",
+				Scale = "1.0|1.0|1.0"
+			}
+		}
+	}
+}
+
+Entity102 = {
+	Name = "base.032",
+	Components = {
+		{
+			Name = "MESH_RENDERER",
+			Arguments = {
+				Mesh = "base"
+			}
+		},
+		{
+			Name = "TRANSFORM",
+			Arguments = {
+				Position = "-12.0|-4.0|0.048285484313964844",
+				Rotation = "false|0.9999998807907104|0.0|0.0|0.0",
+				Scale = "1.0|1.0|1.0"
+			}
+		}
+	}
+}
+
+Entity103 = {
+	Name = "base.033",
+	Components = {
+		{
+			Name = "MESH_RENDERER",
+			Arguments = {
+				Mesh = "base"
+			}
+		},
+		{
+			Name = "TRANSFORM",
+			Arguments = {
+				Position = "-8.0|9.951753616333008|0.04828524589538574",
+				Rotation = "false|0.9999998807907104|0.0|0.0|0.0",
+				Scale = "1.0|1.0|1.0"
+			}
+		}
+	}
+}
+
+Entity104 = {
+	Name = "base.034",
+	Components = {
+		{
+			Name = "MESH_RENDERER",
+			Arguments = {
+				Mesh = "base"
+			}
+		},
+		{
+			Name = "TRANSFORM",
+			Arguments = {
+				Position = "-4.000002861022949|9.951753616333008|0.04828524589538574",
+				Rotation = "false|0.9999998807907104|0.0|0.0|0.0",
+				Scale = "1.0|1.0|1.0"
+			}
+		}
+	}
+}
+
+Entity105 = {
+	Name = "base.035",
+	Components = {
+		{
+			Name = "MESH_RENDERER",
+			Arguments = {
+				Mesh = "base"
+			}
+		},
+		{
+			Name = "TRANSFORM",
+			Arguments = {
+				Position = "-18.0|9.951753616333008|0.04828524589538574",
+				Rotation = "false|0.9999998807907104|0.0|0.0|0.0",
+				Scale = "1.0|1.0|1.0"
+			}
+		}
+	}
+}
+
+Entity106 = {
+	Name = "base.036",
+	Components = {
+		{
+			Name = "MESH_RENDERER",
+			Arguments = {
+				Mesh = "base"
+			}
+		},
+		{
+			Name = "TRANSFORM",
+			Arguments = {
+				Position = "-12.0|9.951753616333008|0.04828524589538574",
+				Rotation = "false|0.9999998807907104|0.0|0.0|0.0",
+				Scale = "1.0|1.0|1.0"
+			}
+		}
+	}
+}
+
+Entity107 = {
+	Name = "base.037",
+	Components = {
+		{
+			Name = "MESH_RENDERER",
+			Arguments = {
+				Mesh = "base"
+			}
+		},
+		{
+			Name = "TRANSFORM",
+			Arguments = {
+				Position = "-2.000002861022949|9.951753616333008|0.04828524589538574",
+				Rotation = "false|0.9999998807907104|0.0|0.0|0.0",
+				Scale = "1.0|1.0|1.0"
+			}
+		}
+	}
+}
+
+Entity108 = {
+	Name = "base.038",
+	Components = {
+		{
+			Name = "MESH_RENDERER",
+			Arguments = {
+				Mesh = "base"
+			}
+		},
+		{
+			Name = "TRANSFORM",
+			Arguments = {
+				Position = "-5.7220458984375e-06|9.951753616333008|0.04828524589538574",
+				Rotation = "false|0.9999998807907104|0.0|0.0|0.0",
+				Scale = "1.0|1.0|1.0"
+			}
+		}
+	}
+}
+
+Entity109 = {
 	Name = "car_hatchback",
 	Components = {
 		{
@@ -1609,8 +2169,8 @@ Entity81 = {
 		{
 			Name = "TRANSFORM",
 			Arguments = {
-				Position = "-4.9570159912109375|-0.45498383045196533|0.11033293604850769",
-				Rotation = "false|-4.371138828673793e-08|3.560744398173419e-15|-8.146033536604591e-08|1.0",
+				Position = "-5.70170259475708|-1.1442415714263916|0.15525513887405396",
+				Rotation = "false|1.0|-8.146033536604591e-08|-4.902029627786405e-23|-3.993209604997573e-30",
 				Scale = "1.0|1.0|1.0"
 			}
 		},
@@ -1626,7 +2186,7 @@ Entity81 = {
 	}
 }
 
-Entity82 = {
+Entity110 = {
 	Name = "car_police",
 	Components = {
 		{
@@ -1638,15 +2198,24 @@ Entity82 = {
 		{
 			Name = "TRANSFORM",
 			Arguments = {
-				Position = "-5.578700542449951|5.997310638427734|0.11033293604850769",
-				Rotation = "false|1.0|-8.146033536604591e-08|0.0|0.0",
+				Position = "-6.2756147384643555|2.3123080730438232|0.1641632616519928",
+				Rotation = "false|-4.371138828673793e-08|0.0|0.0|1.0",
 				Scale = "1.0|1.0|1.0"
+			}
+		},
+		{
+			Name = "PARTICLE_EMITTER",
+			Arguments = {
+				Loop = "true",
+				Name = "Gas",
+				Started = "true",
+				Time = "1.0"
 			}
 		}
 	}
 }
 
-Entity83 = {
+Entity111 = {
 	Name = "car_stationwagon",
 	Components = {
 		{
@@ -1658,48 +2227,8 @@ Entity83 = {
 		{
 			Name = "TRANSFORM",
 			Arguments = {
-				Position = "-5.708218097686768|1.4241535663604736|0.11033293604850769",
-				Rotation = "false|-4.371138828673793e-08|3.560744398173419e-15|-8.146033536604591e-08|1.0",
-				Scale = "1.0|1.0|1.0"
-			}
-		}
-	}
-}
-
-Entity84 = {
-	Name = "car_taxi",
-	Components = {
-		{
-			Name = "MESH_RENDERER",
-			Arguments = {
-				Mesh = "car_taxi"
-			}
-		},
-		{
-			Name = "TRANSFORM",
-			Arguments = {
-				Position = "-4.9570159912109375|8.333977699279785|0.11033293604850769",
-				Rotation = "false|1.0|-8.146033536604591e-08|0.0|0.0",
-				Scale = "1.0|1.0|1.0"
-			}
-		}
-	}
-}
-
-Entity85 = {
-	Name = "car_hatchback.001",
-	Components = {
-		{
-			Name = "MESH_RENDERER",
-			Arguments = {
-				Mesh = "car_hatchback"
-			}
-		},
-		{
-			Name = "TRANSFORM",
-			Arguments = {
-				Position = "-4.9570159912109375|-0.45498383045196533|0.11033293604850769",
-				Rotation = "false|-4.371138828673793e-08|3.560744398173419e-15|-8.146033536604591e-08|1.0",
+				Position = "-5.708219528198242|4.410501480102539|0.15682536363601685",
+				Rotation = "false|1.0|0.0|-4.902029627786405e-23|0.0",
 				Scale = "1.0|1.0|1.0"
 			}
 		},
@@ -1715,7 +2244,52 @@ Entity85 = {
 	}
 }
 
-Entities = { Entity1, Entity2, Entity3, Entity4, Entity5, Entity6, Entity7, Entity8, Entity9, Entity10, Entity11, Entity12, Entity13, Entity14, Entity15, Entity16, Entity17, Entity18, Entity19, Entity20, Entity21, Entity22, Entity23, Entity24, Entity25, Entity26, Entity27, Entity28, Entity29, Entity30, Entity31, Entity32, Entity33, Entity34, Entity35, Entity36, Entity37, Entity38, Entity39, Entity40, Entity41, Entity42, Entity43, Entity44, Entity45, Entity46, Entity47, Entity48, Entity49, Entity50, Entity51, Entity52, Entity53, Entity54, Entity55, Entity56, Entity57, Entity58, Entity59, Entity60, Entity61, Entity62, Entity63, Entity64, Entity65, Entity66, Entity67, Entity68, Entity69, Entity70, Entity71, Entity72, Entity73, Entity74, Entity75, Entity76, Entity77, Entity78, Entity79, Entity80, Entity81, Entity82, Entity83, Entity84, Entity85 }
+Entity112 = {
+	Name = "car_taxi",
+	Components = {
+		{
+			Name = "MESH_RENDERER",
+			Arguments = {
+				Mesh = "car_taxi"
+			}
+		},
+		{
+			Name = "TRANSFORM",
+			Arguments = {
+				Position = "-6.3092041015625|8.052640914916992|0.15963540971279144",
+				Rotation = "false|-4.371138828673793e-08|0.0|0.0|1.0",
+				Scale = "1.0|1.0|1.0"
+			}
+		},
+		{
+			Name = "PARTICLE_EMITTER",
+			Arguments = {
+				Loop = "true",
+				Name = "Gas",
+				Started = "true",
+				Time = "1.0"
+			}
+		}
+	}
+}
+Entity113 = {
+	Name = "UI_Image",
+	Components = {
+		{
+			Name = "IMAGE",
+			Arguments = {
+                OverlayName= "image",
+				XPos = "85",
+                YPos = "80",
+                Width = "350",
+                Height = "250",
+                Texture = "CommingSoon.png",
+                Depth = "1"
+			}
+		}
+	}	
+}
+Entities = { Entity1, Entity2, Entity3, Entity4, Entity5, Entity6, Entity7, Entity8, Entity9, Entity10, Entity11, Entity12, Entity13, Entity14, Entity15, Entity16, Entity17, Entity18, Entity19, Entity20, Entity21, Entity22, Entity23, Entity24, Entity25, Entity26, Entity27, Entity28, Entity29, Entity30, Entity31, Entity32, Entity33, Entity34, Entity35, Entity36, Entity37, Entity38, Entity39, Entity40, Entity41, Entity42, Entity43, Entity44, Entity45, Entity46, Entity47, Entity48, Entity49, Entity50, Entity51, Entity52, Entity53, Entity54, Entity55, Entity56, Entity57, Entity58, Entity59, Entity60, Entity61, Entity62, Entity63, Entity64, Entity65, Entity66, Entity67, Entity68, Entity69, Entity70, Entity71, Entity72, Entity73, Entity74, Entity75, Entity76, Entity77, Entity78, Entity79, Entity80, Entity81, Entity82, Entity83, Entity84, Entity85, Entity86, Entity87, Entity88, Entity89, Entity90, Entity91, Entity92, Entity93, Entity94, Entity95, Entity96, Entity97, Entity98, Entity99, Entity100, Entity101, Entity102, Entity103, Entity104, Entity105, Entity106, Entity107, Entity108, Entity109, Entity110, Entity111, Entity112, Entity113 }
 
 CollisionLayers = {
 	Layers = {

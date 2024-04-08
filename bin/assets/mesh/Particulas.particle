@@ -38,17 +38,18 @@ particle_system Test{
 particle_system Gas{
     renderer billboard
     billboard_type point
-    particle_width 5
+    particle_width 0.05
+    particle_height 0.05
     quota 500
     material meme
 
     emitter Point{
-        direction 1 0 0
-        angle 35
-        emission_rate 50
-        time_to_live 2
-        velocity_min 20
-        velocity_max 50
+        direction 0 1 0
+        angle 0
+        emission_rate 20
+        time_to_live 0.75
+        velocity_min 1
+        velocity_max 1
         colour 0.7 0.7 0.7 0.5
     }
 
@@ -68,6 +69,6 @@ particle_system Gas{
     }
 
     affector DirectionRandomiser{
-        randomness 5
+        randomness 2
     }
 }

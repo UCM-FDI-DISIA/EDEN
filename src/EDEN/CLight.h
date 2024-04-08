@@ -46,7 +46,7 @@ namespace eden_ec {
 
 		/// @brief Setea la visibilidad de la luz
 		/// @param visibility True -> Visible, False -> No visible
-		void SetVisibility(bool visibility);
+		void SetVisibility(bool visibility, bool sceneChanged = false);
 		/// @brief Devuelve si la luz es visible o no
 		bool getVisibility();
 		/// @brief Ajusta el Diffuse Color de la luz
@@ -80,6 +80,8 @@ namespace eden_ec {
 		eden_utils::Vector3 _diffuseColor = {0.0, 0.0, 0.0};
 		/// @brief Vector de color donde se guarda el Specular Color desde lua
 		eden_utils::Vector3 _specularColor= {0.0, 0.0, 0.0};
+		/// @brief 
+		bool _lightVisibility = true;
 
 	};
 }

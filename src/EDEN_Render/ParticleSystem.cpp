@@ -34,6 +34,11 @@ void render_wrapper::ParticleSystem::SetActive(bool active)
 	_ogrePSystem->setEmitting(active);
 }
 
+void render_wrapper::ParticleSystem::SetVisible(bool active)
+{
+	_ogrePSystem->setVisible(active);
+}
+
 void render_wrapper::ParticleSystem::SetMaterial(const std::string material)
 {
 	_ogrePSystem->setMaterialName(material);

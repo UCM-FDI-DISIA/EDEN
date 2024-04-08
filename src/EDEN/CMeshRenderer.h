@@ -55,7 +55,7 @@ namespace eden_ec {
 
 		/// @brief Setea la la visibilidad de la malla
 		/// @param visibility True -> Visible, False -> No visible
-		inline void SetInvisible(bool visibility);
+		inline void SetInvisible(bool visibility, bool sceneChanged = false);
 
 		/// @brief Devuelve el identificador del componente
 		static std::string GetID() { return _id; }
@@ -68,6 +68,9 @@ namespace eden_ec {
 		render_wrapper::MeshRenderer* _renderWrapper = nullptr;
 		/// @brief Variable del archivo de la malla
 		std::string _mesh;
+		/// @brief 
+		bool _meshVisibility = true;
+		
 	};
 }
 #endif // C_MESH_RENDERER_H

@@ -34,6 +34,9 @@
 #include "Transform.h"
 #include "Entity.h"
 #include "ErrorHandler.h"
+#include "CMeshRenderer.h"
+#include "CLight.h"
+#include "CParticleEmitter.h"
 
 // EDEN_Render
 #include "RenderManager.h"
@@ -405,9 +408,9 @@ void eden_render::RenderManager::CreateRenderScene(std::string sceneID)
 	auto sceneIt = _renderScenes.find(sceneID);
 	if (_currentRenderScene != nullptr)
 	{
-		_currentRenderScene->_renderScene->getRootSceneNode()->setVisible(false);
 		_shaderGenerator->removeSceneManager(_currentRenderScene->_renderScene);
 		eden_canvas::Canvas::Instance()->HideScene(_currentRenderScene->_sceneID);
+		ShowEntities(_currentRenderScene->_sceneID, false);
 	}
 	if (sceneIt == _renderScenes.end())
 	{
@@ -420,11 +423,10 @@ void eden_render::RenderManager::CreateRenderScene(std::string sceneID)
 	else
 	{
 		_currentRenderScene = sceneIt->second;
-		_currentRenderScene->_renderScene->getRootSceneNode()->setVisible(true);
 		_shaderGenerator->addSceneManager(_currentRenderScene->_renderScene);
 		sceneIt->second->_cameraWrapper->SetActiveCamera();
 		eden_canvas::Canvas::Instance()->ShowScene(_currentRenderScene->_sceneID);
-		// Visible pero solo las que estuviesen visibles
+		ShowEntities(_currentRenderScene->_sceneID, true);
 	}
 	_shaderGenerator->_setActiveSceneManager(_currentRenderScene->_renderScene);
 	_root->_setCurrentSceneManager(_currentRenderScene->_renderScene);
@@ -444,6 +446,31 @@ void eden_render::RenderManager::RemoveRenderScene(std::string sceneToRemoveID, 
 
 	}
 	CreateRenderScene(newCurrentSceneID);
+}
+
+void eden_render::RenderManager::ShowEntities(std::string sceneID, bool show)
+{
+	auto sceneIt = _renderScenes.find(sceneID);
+	if (sceneIt != _renderScenes.end()) {
+		for (eden_ec::Entity* ent : sceneIt->second->_entities) {
+			eden_ec::CMeshRenderer* meshEnt = ent->GetComponent<eden_ec::CMeshRenderer>();
+			eden_ec::CLight* lightEnt = ent->GetComponent<eden_ec::CLight>();
+			eden_ec::CParticleEmitter* partEnt = ent->GetComponent<eden_ec::CParticleEmitter>();
+
+			if (meshEnt != nullptr) meshEnt->SetInvisible(!show, true);
+			if (lightEnt != nullptr) lightEnt->SetVisibility(show, true);
+			if (partEnt != nullptr) 
+			{
+				partEnt->SetVisible(show, true);
+				partEnt->SetActive(show, true);
+			}
+		}
+	}
+	else {
+		std::string message = "RenderManager ERROR in line 455 scene does not exist: " + sceneID + "\n";
+
+		eden_error::ErrorHandler::Instance()->Warning(message.c_str());
+	}
 }
 
 eden_render::InfoRenderWorld::InfoRenderWorld(Ogre::Root* root, Ogre::OverlaySystem* overlaySystem, std::string sceneID)

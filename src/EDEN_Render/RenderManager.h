@@ -157,6 +157,10 @@ namespace eden_render
 		/// @param sceneID 
 		void RemoveRenderScene(std::string sceneToRemoveID, std::string newCurrentSceneID);
 
+		/// @brief 
+		/// @param sceneID 
+		
+		void ShowEntities(std::string sceneID, bool show);
 		/// @brief Raiz de Ogre
 		Ogre::Root* _root;
 

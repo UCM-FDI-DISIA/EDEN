@@ -37,7 +37,15 @@ void eden_ec::CMeshRenderer::SetMaterial(const std::string material)
 		_renderWrapper->SetMaterial("default.png");
 }
 
-void eden_ec::CMeshRenderer::SetInvisible(bool visibility)
+void eden_ec::CMeshRenderer::SetInvisible(bool visibility, bool sceneChanged)
 {
-	_renderWrapper->SetInvisible(visibility);
+	if (!visibility)
+	{
+		if(!sceneChanged || (sceneChanged && _meshVisibility)) _renderWrapper->SetInvisible(visibility);
+	}
+	else
+	{
+		_renderWrapper->SetInvisible(visibility);
+	}
+	if(!sceneChanged) _meshVisibility = !visibility;
 }

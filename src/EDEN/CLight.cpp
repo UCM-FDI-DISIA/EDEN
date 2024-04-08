@@ -30,8 +30,16 @@ void eden_ec::CLight::Start() {
 	_lightWrapper = new render_wrapper::Light(_ent->GetEntityID(), _ent->GetSceneID(), _lType, _diffuseColor, _specularColor);
 }
 
-void eden_ec::CLight::SetVisibility(bool visibility) {
-	_lightWrapper->SetVisible(visibility);
+void eden_ec::CLight::SetVisibility(bool visibility, bool sceneChanged) {
+	if (visibility)
+	{
+		if (!sceneChanged || (sceneChanged && _lightVisibility)) _lightWrapper->SetVisible(visibility);
+	}
+	else
+	{
+		_lightWrapper->SetVisible(visibility);
+	}
+	if (!sceneChanged) _lightVisibility = visibility;
 }
 
 bool eden_ec::CLight::getVisibility() {

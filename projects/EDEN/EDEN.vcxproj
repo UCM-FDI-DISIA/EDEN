@@ -118,7 +118,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\EDEN_Render\;$(SolutionDir)src\EDEN_Input\;$(SolutionDir)src\EDEN_Audio\;$(SolutionDir)src\EDEN_Script\;$(SolutionDir)src\EDEN_Physics\;$(SolutionDir)dependencies\Lua\src\src\;$(SolutionDir)dependencies\LuaBridge\Source\LuaBridge\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\EDEN_Render\;$(SolutionDir)src\EDEN_Input\;$(SolutionDir)src\EDEN_Audio\;$(SolutionDir)src\EDEN_Script\;$(SolutionDir)src\EDEN_Physics\;$(SolutionDir)dependencies\Lua\src\src\;$(SolutionDir)dependencies\LuaBridge\Source\LuaBridge\;$(SolutionDir)src\EDEN_Debug\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>

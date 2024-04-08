@@ -18,6 +18,7 @@
     <ClCompile Include="..\..\src\EDEN\CCamera.cpp" />
     <ClCompile Include="..\..\src\EDEN\CCursor.cpp" />
     <ClCompile Include="..\..\src\EDEN\CImage.cpp" />
+    <ClCompile Include="..\..\src\EDEN\CLight.cpp" />
     <ClCompile Include="..\..\src\EDEN\CLuaBehaviour.cpp" />
     <ClCompile Include="..\..\src\EDEN\CMeshRenderer.cpp" />
     <ClCompile Include="..\..\src\EDEN\CParticleEmitter.cpp" />
@@ -46,6 +47,7 @@
     <ClInclude Include="..\..\src\EDEN\CCamera.h" />
     <ClInclude Include="..\..\src\EDEN\CCursor.h" />
     <ClInclude Include="..\..\src\EDEN\CImage.h" />
+    <ClInclude Include="..\..\src\EDEN\CLight.h" />
     <ClInclude Include="..\..\src\EDEN\CLuaBehaviour.h" />
     <ClInclude Include="..\..\src\EDEN\CMeshRenderer.h" />
     <ClInclude Include="..\..\src\EDEN\CParticleEmitter.h" />

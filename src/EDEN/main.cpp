@@ -114,7 +114,7 @@ int main(int argc, char* argv[]) {
 		//scnManager->PopScene();
 		/// ------------------------------------------------------------------------------ 
 		
-		scnManager->PushScene("CrossThePathFinal");
+		scnManager->PushScene("test_scene2");
 		master->Loop();
 		master->Close();
 	}

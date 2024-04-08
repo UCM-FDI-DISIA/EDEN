@@ -44,7 +44,6 @@ eden_ec::UIComponent::~UIComponent() {
 	_overlayElement = nullptr;
 	_overlayManager = nullptr;
 	_text = nullptr;
-	_numUIElements--;
 }
 
 void eden_ec::UIComponent::Show(bool changedFromCanvas) { if(!changedFromCanvas || (changedFromCanvas && canvasVisible)) _overlayElement->show(); if(!changedFromCanvas) canvasVisible = true; }

@@ -9,6 +9,8 @@
 #include "SceneManager.h"
 #include "Sound.h"
 #include <string>
+#include <ScriptManager.h>
+#include <LuaManager.h>
 
 const std::string eden_ec::Hito2Prueba::_id = "PRUEBA2";
 void eden_ec::Hito2Prueba::Start() {
@@ -18,6 +20,11 @@ void eden_ec::Hito2Prueba::Start() {
 	transform = _ent->GetComponent<CTransform>();
 	animator = _ent->GetComponent<CAnimator>();
 	animator->PlayAnim("Idle");
+
+	eden_script::LuaManager* scriptM = eden_script::ScriptManager::Instance()->GetLuaManager();
+	scriptM->Regist(*this, "Game", &eden_ec::Hito2Prueba::Pause, "Pause", this);
+	scriptM->SetGlobal(this, "Game");
+	scriptM = nullptr;
 }
 
 void eden_ec::Hito2Prueba::Init(eden_script::ComponentArguments* args) {
@@ -91,4 +98,10 @@ void eden_ec::Hito2Prueba::Jump() {
 		jump = true;
 		idle = false;
 	}
+}
+
+void eden_ec::Hito2Prueba::Pause()
+{
+	eden::SceneManager* scnManager = eden::SceneManager::Instance();
+	scnManager->PushScene("MenuPausa");
 }

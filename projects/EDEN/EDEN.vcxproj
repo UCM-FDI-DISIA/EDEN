@@ -27,6 +27,7 @@
     <ClCompile Include="..\..\src\EDEN\EdenMaster.cpp" />
     <ClCompile Include="..\..\src\EDEN\ErrorHandler.cpp" />
     <ClCompile Include="..\..\src\EDEN\Hito1Prueba.cpp" />
+    <ClCompile Include="..\..\src\EDEN\Hito2MenuPausa.cpp" />
     <ClCompile Include="..\..\src\EDEN\Hito2Prueba.cpp" />
     <ClCompile Include="..\..\src\EDEN\main.cpp" />
     <ClCompile Include="..\..\src\EDEN\Quaternion.cpp" />
@@ -57,6 +58,7 @@
     <ClInclude Include="..\..\src\EDEN\ErrorHandler.h" />
     <ClInclude Include="..\..\src\EDEN\Hito1Prueba.h" />
     <ClInclude Include="..\..\src\EDEN\CRigidBody.h" />
+    <ClInclude Include="..\..\src\EDEN\Hito2MenuPausa.h" />
     <ClInclude Include="..\..\src\EDEN\Hito2Prueba.h" />
     <ClInclude Include="..\..\src\EDEN\Quaternion.h" />
     <ClInclude Include="..\..\src\EDEN\ResourcesManager.h" />

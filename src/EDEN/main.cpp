@@ -58,6 +58,7 @@
 
 #include "Hito1Prueba.h"
 #include "Hito2Prueba.h"
+#include "Hito2MenuPausa.h"
 #include "CAnimator.h"
 
 #include "RenderManager.h"
@@ -84,6 +85,7 @@ void RegisterComponents() {
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CParticleEmitter>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CAudioEmitter>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CAudioListener>();
+	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::Hito2MenuPausa>();
 }
 
 int main(int argc, char* argv[]) {

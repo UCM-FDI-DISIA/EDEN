@@ -1,19 +1,23 @@
 #define _CRTDBG_MAP_ALLOC
-#ifndef HITO2_PRUEBA_H
-#define HITO2_PRUEBA_H
+#ifndef HITO2_MENU_PAUSA_H
+#define HITO2_MENU_PAUSA_H
 
 #include "Component.h"
+
 namespace eden_input {
 	class InputManager;
 }
+
 namespace eden_ec {
 	class CTransform;
 	class CAnimator;
+	class CText;
 	class CAudioEmitter;
-	class Hito2Prueba : public Component {
+	class CAudioListener;
+	class Hito2MenuPausa : public Component {
 	public:
-		Hito2Prueba() = default;
-		~Hito2Prueba() = default;
+		Hito2MenuPausa();
+		~Hito2MenuPausa() = default;
 
 		static std::string GetID() { return _id; }
 
@@ -23,20 +27,19 @@ namespace eden_ec {
 
 		void Update(float t) override;
 
-		void Jump();
+		void HandleInput() override;
 
-		void Pause();
+		void ResumeGame();
+
+		void ExitGame();
+
+		void BackToMenu();
 
 	protected:
 		const static std::string _id;
 	private:
-		eden_ec::CAudioEmitter* _audioEmitter;
+
 		eden_input::InputManager* inputManager;
-		eden_ec::CTransform* transform;
-		eden_ec::CAnimator* animator;
-		bool keyPressed = false;
-		bool jump = false;
-		bool idle = true;
 	};
 }
-#endif //HITO2_PRUEBA_H
+#endif //HITO2_MENU_PAUSA_H

@@ -39,7 +39,6 @@ particle_system Gas{
     renderer billboard
     billboard_type point
     particle_width 5
-    particle_height 5
     quota 500
     material meme
 

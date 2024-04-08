@@ -1609,14 +1609,13 @@ Entity81 = {
 		{
 			Name = "TRANSFORM",
 			Arguments = {
-
 				Position = "-4.9570159912109375|-0.45498383045196533|0.11033293604850769",
 				Rotation = "false|-4.371138828673793e-08|3.560744398173419e-15|-8.146033536604591e-08|1.0",
 				Scale = "1.0|1.0|1.0"
 			}
 		},
 		{
-			Name = "PARTICLE_EMMITER",
+			Name = "PARTICLE_EMITTER",
 			Arguments = {
 				Name = "Gas",
 				Loop = "true",
@@ -1705,7 +1704,7 @@ Entity85 = {
 			}
 		},
 		{
-			Name = "PARTICLE_EMMITER",
+			Name = "PARTICLE_EMITTER",
 			Arguments = {
 				Name = "Gas",
 				Loop = "true",

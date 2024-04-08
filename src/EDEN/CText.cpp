@@ -3,7 +3,7 @@
 #include <RenderManager.h>
 #include <ScriptManager.h>
 #include <ComponentArguments.h>
-
+#include "Entity.h"
 
 const std::string eden_ec::CText::_id = "TEXT";
 
@@ -25,6 +25,7 @@ eden_ec::CText::CText(std::string overlayName, float xPos, float yPos,
 eden_ec::CText::~CText() {}
 
 void eden_ec::CText::Init(eden_script::ComponentArguments* args) {
+	Register(_ent->GetSceneID());
 
 	auto render = eden_render::RenderManager::Instance();
 	int xPos = args->GetValueToInt("XPos");

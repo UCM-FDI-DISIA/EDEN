@@ -3,6 +3,7 @@
 #include <RenderManager.h>
 #include <ScriptManager.h>
 #include <ComponentArguments.h>
+#include "Entity.h"
 
 
 const std::string eden_ec::CImage::_id = "IMAGE";
@@ -10,6 +11,7 @@ const std::string eden_ec::CImage::_id = "IMAGE";
 eden_ec::CImage::CImage(std::string overlayName, float xPos, float yPos,
 	float width, float height, std::string texture,
 	int depth) {
+
 	auto render = eden_render::RenderManager::Instance();
 	int w = render->GetWindowWidth();
 	int h = render->GetWindowHeight();
@@ -19,12 +21,12 @@ eden_ec::CImage::CImage(std::string overlayName, float xPos, float yPos,
 	yPos = yy - (height / 2);
 
 	CreateImage(overlayName, xPos, yPos, width, height, texture, depth);
-
 }
 
 eden_ec::CImage::~CImage() {}
 
 void eden_ec::CImage::Init(eden_script::ComponentArguments* args) {
+	Register(_ent->GetSceneID());
 
 	auto render = eden_render::RenderManager::Instance();
 	int xPos = args->GetValueToInt("XPos");

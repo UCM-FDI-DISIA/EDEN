@@ -17,14 +17,14 @@
 #include "InputManager.h"
 #include "ResourcesManager.h"
 #include "Canvas.h"
+#include "Entity.h"
 #include "ErrorHandler.h"
+#include <string>
 
 const std::string eden_ec::UIComponent::_id = "UICOMPONENT";
 int eden_ec::UIComponent::_numUIElements = 0;
 
 eden_ec::UIComponent::UIComponent() {
-	
-	eden_canvas::Canvas::Instance()->addRenderEntity(this);
 	_overlayManager = Ogre::OverlayManager::getSingletonPtr();
 	_inputManager = eden_input::InputManager::Instance();
 	_numUIElements++;
@@ -34,6 +34,7 @@ eden_ec::UIComponent::UIComponent() {
 	_rHeight = 0;
 	_rWidth = 0;	
 }
+
 
 eden_ec::UIComponent::~UIComponent() {
 	eden_canvas::Canvas::Instance()->removeRenderEntity(this);
@@ -46,9 +47,9 @@ eden_ec::UIComponent::~UIComponent() {
 	_numUIElements--;
 }
 
-void eden_ec::UIComponent::Show() { _overlayElement->show(); }
+void eden_ec::UIComponent::Show(bool changedFromCanvas) { if(!changedFromCanvas || (changedFromCanvas && canvasVisible)) _overlayElement->show(); if(!changedFromCanvas) canvasVisible = true; }
 
-void eden_ec::UIComponent::Hide() { _overlayElement->hide(); }
+void eden_ec::UIComponent::Hide(bool changedFromCanvas) { _overlayElement->hide(); if(!changedFromCanvas) canvasVisible = false; }
 
 void eden_ec::UIComponent::SetDepth(float pos) {
 	_overlayElement->setZOrder(Ogre::ushort(pos));
@@ -212,6 +213,12 @@ void eden_ec::UIComponent::SetText(const std::string& text) {
 		_overlayContainer->setDimensions(_text->getCharHeight() * text.length(), _text->getCharHeight());
 		Resize();
 	}
+}
+
+void eden_ec::UIComponent::Register(std::string sceneID)
+{
+	_sceneID = sceneID;
+	eden_canvas::Canvas::Instance()->addRenderEntity(this);
 }
 
 void eden_ec::UIComponent::SetOverlayContainer(std::string overlayName, float xPos, float yPos,

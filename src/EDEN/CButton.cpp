@@ -47,6 +47,8 @@ void eden_ec::CButton::Start() {
 }
 
 void eden_ec::CButton::Init(eden_script::ComponentArguments* args) {
+	Register(_ent->GetSceneID());
+
 	auto renderManager = eden_render::RenderManager::Instance();
 
 	int xPos = args->GetValueToInt("XPos");

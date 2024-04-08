@@ -95,7 +95,7 @@ void eden_render::RenderManager::InitManager(const std::string& appName)
 
 Ogre::SceneManager* eden_render::RenderManager::GetOgreSceneManager()
 {
-	return _currentRenderScene;
+	return _currentRenderScene->_renderScene;
 }
 
 void eden_render::RenderManager::Update()
@@ -203,6 +203,9 @@ void eden_render::RenderManager::DestroyRTShaderSystem()
 	}
 }
 
+/// TEMPORAL, PARA PROBAR EL TAMANO DE LA PANTALLA
+//#include "wtypes.h"
+
 NativeWindowPair eden_render::RenderManager::CreateNewWindow(const std::string& name)
 {
 	uint32_t w, h;
@@ -215,6 +218,18 @@ NativeWindowPair eden_render::RenderManager::CreateNewWindow(const std::string& 
 	mode >> w;
 	mode >> token;
 	mode >> h;
+
+	/// TEMPORAL - PRUEBAS
+	//RECT desktop;
+	//// Get a handle to the desktop window
+	//const HWND hDesktop = GetDesktopWindow();
+	//// Get the size of screen to the variable desktop
+	//GetWindowRect(hDesktop, &desktop);
+	//// The top left corner will have coordinates (0,0)
+	//// and the bottom right corner will have coordinates
+	//// (horizontal, vertical)
+	//w = desktop.right;
+	//h = desktop.bottom;
 
 	miscParams["FSAA"] = ropts["FSAA"].currentValue;
 	miscParams["vsync"] = ropts["VSync"].currentValue;
@@ -390,26 +405,29 @@ void eden_render::RenderManager::CreateRenderScene(std::string sceneID)
 	auto sceneIt = _renderScenes.find(sceneID);
 	if (_currentRenderScene != nullptr)
 	{
-		_currentRenderScene->getRootSceneNode()->setVisible(false);
-		_shaderGenerator->removeSceneManager(_currentRenderScene);
+		_currentRenderScene->_renderScene->getRootSceneNode()->setVisible(false);
+		_shaderGenerator->removeSceneManager(_currentRenderScene->_renderScene);
+		eden_canvas::Canvas::Instance()->HideScene(_currentRenderScene->_sceneID);
 	}
 	if (sceneIt == _renderScenes.end())
 	{
-		InfoRenderWorld* info = new InfoRenderWorld(_root, _overlaySys);
-		_currentRenderScene = info->GetRenderScene();
+		InfoRenderWorld* info = new InfoRenderWorld(_root, _overlaySys, sceneID);
+		_currentRenderScene = info;
 		_renderScenes[sceneID] = info;
+		eden_canvas::Canvas::Instance()->addScene(sceneID);
+		_canvasInit = false;
 	}
 	else
 	{
-		_currentRenderScene = sceneIt->second->GetRenderScene();
-		_currentRenderScene->getRootSceneNode()->setVisible(true);
-		_shaderGenerator->addSceneManager(_currentRenderScene);
+		_currentRenderScene = sceneIt->second;
+		_currentRenderScene->_renderScene->getRootSceneNode()->setVisible(true);
+		_shaderGenerator->addSceneManager(_currentRenderScene->_renderScene);
 		sceneIt->second->_cameraWrapper->SetActiveCamera();
-
+		eden_canvas::Canvas::Instance()->ShowScene(_currentRenderScene->_sceneID);
 		// Visible pero solo las que estuviesen visibles
 	}
-	_shaderGenerator->_setActiveSceneManager(_currentRenderScene);
-	_root->_setCurrentSceneManager(_currentRenderScene);
+	_shaderGenerator->_setActiveSceneManager(_currentRenderScene->_renderScene);
+	_root->_setCurrentSceneManager(_currentRenderScene->_renderScene);
 
 }
 
@@ -422,15 +440,17 @@ void eden_render::RenderManager::RemoveRenderScene(std::string sceneToRemoveID, 
 		_renderScenes.erase(sceneIt);
 		_currentRenderScene = nullptr;
 		render_wrapper::NodeManager::Instance()->RemoveScene(sceneToRemoveID);
+		eden_canvas::Canvas::Instance()->removeScene(sceneToRemoveID);
 
 	}
 	CreateRenderScene(newCurrentSceneID);
 }
 
-eden_render::InfoRenderWorld::InfoRenderWorld(Ogre::Root* root, Ogre::OverlaySystem* overlaySystem)
+eden_render::InfoRenderWorld::InfoRenderWorld(Ogre::Root* root, Ogre::OverlaySystem* overlaySystem, std::string sceneID)
 {
 	_root = root;
 	_overlaySystem = overlaySystem;
+	_sceneID = sceneID;
 	//_overlaySys = new Ogre::OverlaySystem();
 
 	_cameraWrapper = nullptr;

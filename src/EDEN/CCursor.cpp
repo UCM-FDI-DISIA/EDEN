@@ -4,6 +4,7 @@
 #include <ScriptManager.h>
 #include <ComponentArguments.h>
 #include "CImage.h"
+#include "Entity.h"
 
 const std::string eden_ec::CCursor::_id = "CURSOR";
 
@@ -29,5 +30,6 @@ void eden_ec::CCursor::Init(eden_script::ComponentArguments* args) {
 	_image = new CImage("cursor", float(_input->GetMousePos().first), float(_input->GetMousePos().second),
 		float(args->GetValueToInt("Width")), float(args->GetValueToInt("Height")),
 		args->GetValueToString("Texture"), args->GetValueToInt("Depth"));
+	_image->Register(_ent->GetSceneID());
 
 }

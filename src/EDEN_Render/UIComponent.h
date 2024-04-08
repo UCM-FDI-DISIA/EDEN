@@ -34,10 +34,10 @@ namespace eden_ec {
 		virtual ~UIComponent();
 
 		/// @brief Mostrar el elemento de la ui
-		void Show();
+		void Show(bool changedFromCanvas = false);
 
 		/// @brief Ocultar el elemento de la ui
-		void Hide();
+		void Hide(bool changedFromCanvas = false);
 
 		/// @brief Determina que elementos estan por encima de otros
 		/// @param pos Valores desde -32 hasta 32
@@ -106,9 +106,19 @@ namespace eden_ec {
 
 		/// @brief Definicion de metodo estatico GetID necesario para construccion de componentes
 		inline static std::string GetID() { return _id; }
+
+		inline std::string GetSceneID() { return _sceneID; };
+
+		void Register(std::string sceneID);
+
 	protected:
 
 		const static std::string _id;
+
+		std::string _sceneID;
+
+		bool canvasVisible = true;
+		
 		/// @brief Control de los elementos de la UI		
 		static int _numUIElements;
 
@@ -151,12 +161,13 @@ namespace eden_ec {
 
 		/// @brief Cambia el texto actual
 		void SetText(const std::string& text);
+
 	private:
 		/// @brief Managers y elementos de Ogre necesarios para el control y uso de la UI
 		Ogre::OverlayManager* _overlayManager = nullptr;
 		Ogre::Overlay* _overlayElement = nullptr;
 		Ogre::OverlayContainer* _overlayContainer = nullptr;
-		Ogre::TextAreaOverlayElement* _text;
+		Ogre::TextAreaOverlayElement* _text = nullptr;
 
 		/// @brief Método encargado de crear el overlayContainer
 		void SetOverlayContainer(std::string overlayName, float xPos, float yPos,float width, float height);

@@ -30,18 +30,18 @@ namespace render_wrapper
 
 		/// @brief Setea la visibilidad de la luz
 		/// @param visibility True -> Visible, False -> No visible
-		inline void SetVisible(bool visibility);
+		void SetVisible(bool visibility);
 		/// @brief Devuelve si la luz es visible o no
-		inline bool isVisible();
+		bool isVisible();
 		/// @brief Ajusta el Diffuse Color de la luz
 		/// @param color Variable de color
-		inline void SetDiffuse(eden_utils::Vector3 color);
+		void SetDiffuse(eden_utils::Vector3 color);
 		/// @brief Ajusta el Specular Color de la luz
 		/// @param color Variable de color
-		inline void SetSpecular(eden_utils::Vector3 color);
+		void SetSpecular(eden_utils::Vector3 color);
 		/// @brief Setea la direccion de la luz
 		/// @param dir Vector de direccion de la luz
-		inline void SetDirection(eden_utils::Vector3 dir);
+		void SetDirection(eden_utils::Vector3 dir);
 		/// @brief Setea la posicion de la luz
 		/// @param dir Vector de posicion de la luz
 		void SetPosition(eden_utils::Vector3 dir);

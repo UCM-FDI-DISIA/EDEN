@@ -17,8 +17,8 @@ render_wrapper::Light::Light(const std::string entityID, const std::string scene
 {
 	_light = GetSceneManager()->createLight();
 
-	if (!render_wrapper::NodeManager::Instance()->HasNode(entityID))
-		render_wrapper::NodeManager::Instance()->CreateSceneObject(entityID);
+	if (!render_wrapper::NodeManager::Instance()->HasNode(entityID, sceneID))
+		render_wrapper::NodeManager::Instance()->CreateSceneObject(entityID, sceneID);
 
 	// inicializacion generica
 	Ogre::Light::LightTypes OgreLightType = Ogre::Light::LightTypes::LT_DIRECTIONAL;

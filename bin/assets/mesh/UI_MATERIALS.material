@@ -30,7 +30,7 @@ material MainMenuBackground.png {
         }
     }
 }
-material CommingSoon.png {
+material ComingSoon.png {
     receive_shadows on
     technique {
         pass {
@@ -39,7 +39,7 @@ material CommingSoon.png {
                 depth_write off
                 diffuse vertexcolour
             	texture_unit {
-                texture CommingSoon.png
+                texture ComingSoon.png
                 tex_address_mode clamp
                 
             }

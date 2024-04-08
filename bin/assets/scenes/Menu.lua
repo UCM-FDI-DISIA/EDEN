@@ -45,6 +45,22 @@ Entity2 = {
 		{
             Name = "PRUEBA",
             Arguments = {
+
+			}
+        },
+		{
+			Name = "TRANSFORM",
+			Arguments = {
+				Position = "-1.610821008682251|5.619948387145996|5.7784810066223145",
+				Rotation = "false|0.5458973050117493|0.14995510876178741|0.21834951639175415|0.7948793172836304",
+				Scale = "1.0|1.0|1.0"
+			}
+		},
+		{
+            Name = "AUDIO_EMITTER",
+            Arguments = {
+				SongName = "MainMenu.mp3",
+				Is3D = "false"
 			}
         }
 	}	

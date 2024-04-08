@@ -102,12 +102,19 @@ for ob in objects:
         for prop_name, prop_value in child.items():
             #Solo se comprueban valores de tipo string
             if isinstance(prop_value, str):
-                if contA == last_argument:
-                 dato += "\t\t\t\t" + prop_name + " = \"" + prop_value + "\"" + "\n"
-                else:
-                    dato += "\t\t\t\t" + prop_name + " = \"" + prop_value + "\"," + "\n"
+                if prop_name == "AABB" and componentName[0] == "RIGIDBODY" and "autoRB" in child and child["autoRB"] == True:
+                    dato += "\t\t\t\t" + prop_name + " = \"" + str(ob.dimensions.x) + "|" +str(ob.dimensions.y) + "|" + str(ob.dimensions.z) + "\""
+                elif prop_name == "Radius" and componentName[0] == "RIGIDBODY" and "autoRB" in child and child["autoRB"] == True:
+                    dato += "\t\t\t\t" + prop_name + " = \"" + str(max(ob.dimensions.x, max(ob.dimensions.y, ob.dimensions.z))) + "\""
+                else: dato += "\t\t\t\t" + prop_name + " = \"" + prop_value + "\""
+                if contA != last_argument:
+                    dato += ","
+                dato += "\n"
+                    
                 #file1.write(dato)
                 contA += 1
+        
+        
         
         #FIN DE ARGUMENTOS
         if child.name == last_component:

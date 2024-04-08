@@ -1,5 +1,5 @@
 Entity1 = {
-    Name = "Player2", 
+    Name = "Player", 
     Components = {
         {
             Name = "TRANSFORM", 
@@ -19,7 +19,7 @@ Entity1 = {
 }
 
 Entity2 = {
-	Name = "CameraEntity2",
+	Name = "CameraEntity",
 	Components = {
 		{
 			Name = "TRANSFORM",
@@ -38,7 +38,7 @@ Entity2 = {
 }
 
 Entity6 = {
-    Name = "Ground2", 
+    Name = "Ground", 
     Components = {
         {
             Name = "TRANSFORM", 

@@ -34,7 +34,7 @@ render_wrapper::Light::Light(const std::string entityID, const std::string scene
 	else OgreLightType = Ogre::Light::LightTypes::LT_DIRECTIONAL;
 
 	_light->setType(OgreLightType);
-	render_wrapper::NodeManager::Instance()->Attach(GetRenderObject(), entityID);
+	render_wrapper::NodeManager::Instance()->Attach(GetRenderObject(), entityID, sceneID);
 
 }
 
@@ -61,16 +61,16 @@ void render_wrapper::Light::SetSpecular(eden_utils::Vector3 color)
 
 void render_wrapper::Light::SetDirection(eden_utils::Vector3 dir)
 {
-	render_wrapper::NodeManager::Instance()->LookAt(dir, _entityID);
+	render_wrapper::NodeManager::Instance()->LookAt(dir, _entityID, _sceneID);
 }
 
 void render_wrapper::Light::SetPosition(eden_utils::Vector3 dir)
 {
-	render_wrapper::NodeManager::Instance()->SetPosition(dir, _entityID);
+	render_wrapper::NodeManager::Instance()->SetPosition(dir, _entityID, _sceneID);
 }
 
 void render_wrapper::Light::SetOrientation(eden_utils::Quaternion ori) {
-	render_wrapper::NodeManager::Instance()->SetOrientation(ori, _entityID);
+	render_wrapper::NodeManager::Instance()->SetOrientation(ori, _entityID, _sceneID);
 }
 
 Ogre::MovableObject* render_wrapper::Light::GetRenderObject()

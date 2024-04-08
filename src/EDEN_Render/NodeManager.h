@@ -48,76 +48,78 @@ namespace render_wrapper {
 
 		/// @brief Crea un Nodo con el nombre de la Entidad asociada y lo inserta al mapa
 		/// @param id Identificador de la Entidad asociada para buscar su nodo
-		void CreateSceneObject(const std::string id);
+		void CreateSceneObject(const std::string id, const std::string sceneID);
 
 		/// @brief Emparenta un nodo a otro y lo inserta en el mapa
 		/// @param idChild Identificador de la entidad hijo al que queremos emparentar
 		/// @param idParent Identificador de la entidad padre 
-		void AddChildToObject(const std::string idChild, const std::string idParent);
+		void AddChildToObject(const std::string idChild, const std::string idParent, const std::string sceneID);
 
 		/// @brief Devuelve la poscicion de la entidad, haciendo las transformaciones de Ogre a Vector3 de EDEN
 		/// @param id Identificador de la Entidad asociada para buscar su nodo
 		/// @return Vector3 con la posicion de la entidad
-		eden_utils::Vector3 GetPosition(const std::string id);
+		eden_utils::Vector3 GetPosition(const std::string id, const std::string sceneID);
 
 		/// @brief Devuelve la escala de la entidad, haciendo las transformaciones de Ogre a Vector3 de EDEN
 		/// @param id Identificador de la Entidad asociada para buscar su nodo
 		/// @return Vector3 con la escala de la entidad
-		eden_utils::Vector3 GetScale(const std::string id);
+		eden_utils::Vector3 GetScale(const std::string id, const std::string sceneID);
 
 		/// @brief Modifica la posicion de la entidad
 		/// @param pos Vector3 con la nueva posicion 
 		/// @param id Identificador de la Entidad asociada para buscar su nodo
-		void SetPosition(const eden_utils::Vector3 pos, const std::string id);
+		void SetPosition(const eden_utils::Vector3 pos, const std::string id, const std::string sceneID);
 		
 		/// @brief Modifica la orientacion de la entidad
 		/// @param pos Quaternion con la nueva orientacion  
 		/// @param id Identificador de la Entidad asociada para buscar su nodo
-		void SetOrientation(const eden_utils::Quaternion quat, const std::string id);
+		void SetOrientation(const eden_utils::Quaternion quat, const std::string id, const std::string sceneID);
 
 		/// @brief Busca el nodo que se quiera borrar, lo destruye y saca del mapa
 		/// @param id Identificador de la Entidad asociada para buscar su nodo
-		void RemoveSceneObject(const std::string id);
+		void RemoveSceneObject(const std::string id, const std::string sceneID);
+
+		void RemoveScene(const std::string sceneID);
 
 		/// @brief Muestra la caja delimitadora del nodo 
 		/// @param active Booleano para activar o desactivar el BoundingBox
 		/// @param id Identificador de la Entidad asociada para buscar su nodo
-		void ShowBoundingBox(bool active, const std::string id);
+		void ShowBoundingBox(bool active, const std::string id, const std::string sceneID);
 		
 		/// @brief Modifica la rotacion de la entidad
 		/// @param rotation Vector3 con la rotacion que se quiera implementar 
 		/// @param id Identificador de la Entidad asociada para buscar su nodo
-		void Rotate(const eden_utils::Vector3 rotation, const std::string id);
+		void Rotate(const eden_utils::Vector3 rotation, const std::string id, const std::string sceneID);
 		
 		/// @brief Modifica la roatcion relativa al espacio local de la entidad
 		/// @param rotation Vector3 con la rotacion que se quiera implementar 
 		/// @param id Identificador de la Entidad asociada para buscar su nodo
-		void RotateLocal(const eden_utils::Vector3 rotation, const std::string id);
+		void RotateLocal(const eden_utils::Vector3 rotation, const std::string id, const std::string sceneID);
 		
 		/// @brief Modifica la escala de la entidad
 		/// @param scale Vector3 con la nueva escala  
 		/// @param id Identificador de la Entidad asociada para buscar su nodo
-		void Scale(const eden_utils::Vector3 scale, const std::string id);
+		void Scale(const eden_utils::Vector3 scale, const std::string id, const std::string sceneID);
 
 		/// @brief Permite que un nodo apunte/mire hacia una posicion deseada
 		/// @param pos Posicion hacia la que queremos que nuestra entidad apunte
 		/// @param id Identificador de la Entidad asociada para buscar su nodo
-		void LookAt(const eden_utils::Vector3 pos, const std::string id);
+		void LookAt(const eden_utils::Vector3 pos, const std::string id, const std::string sceneID);
 		
 		/// @brief Mueve el nodo hacia una posicion deseada
 		/// @param pos Posicion hacia la que queremos que nuestra entidad se mueva
 		/// @param id Identificador de la Entidad asociada para buscar su nodo
-		void Translate(const eden_utils::Vector3 pos, const std::string id);
+		void Translate(const eden_utils::Vector3 pos, const std::string id, const std::string sceneID);
 
 		/// @brief Asocia entidades de escena de Ogre a un nodo especifico
 		/// @param obj La entidad de ogre que queremos añadir a un nodo 
 		/// @param id Identificador de la Entidad asociada para buscar su nodo
-		void Attach(Ogre::MovableObject* obj, const std::string id);
+		void Attach(Ogre::MovableObject* obj, const std::string id, const std::string sceneID);
 
 		/// @brief Comprueba si una entidad tiene un nodo asociado buscandolo en el mapa
 		/// @param id Identificador de la Entidad asociada para buscar su nodo
 		/// @return Booleano que confirma si dicha entidad tiene un nodo creado o no
-		bool HasNode(const std::string id);
+		bool HasNode(const std::string id, const std::string sceneID);
 
 	private:
 
@@ -125,7 +127,7 @@ namespace render_wrapper {
 		/// Busca en el unordered_map el nodo asociado a la ID de una entidad
 		/// @param id Identificador de la Entidad asociada para buscar su nodo
 		/// @return Devuelve el nodo para poder realizar cualquier accion sobre el
-		Ogre::SceneNode* FindNode(const std::string id);
+		Ogre::SceneNode* FindNode(const std::string id, const std::string sceneID);
 
 		/// @brief Metodos para poder convertir los vectores y cuaterniones de Ogre en los nuestros propios de EDEN
 		eden_utils::Vector3 ConvertToEdenVector(const Ogre::Vector3 ogreVector);
@@ -136,7 +138,7 @@ namespace render_wrapper {
 		Ogre::Quaternion ConvertToOgreQuaternion(const eden_utils::Quaternion edenQuaternion);
 		
 		/// @brief Mapa que contiene los nodos asociados a un identificador de la entidad
-		std::unordered_map<std::string, Ogre::SceneNode*> _sceneObjectsMap;
+		std::unordered_map <std::string, std::unordered_map<std::string, Ogre::SceneNode*>> _sceneObjectsMap;
 
 		/// @brief Referencia al nodo raiz de Ogre para poder crear el resto de nodos como hijo suyo
 		Ogre::SceneNode* _rootNode = nullptr;

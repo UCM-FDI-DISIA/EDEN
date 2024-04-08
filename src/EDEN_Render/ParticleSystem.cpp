@@ -14,10 +14,10 @@ render_wrapper::ParticleSystem::ParticleSystem(const std::string entityID, const
 
 	_ogrePSystem = GetSceneManager()->createParticleSystem(_name, resourceName);
 
-	if (!render_wrapper::NodeManager::Instance()->HasNode(entityID))
-		render_wrapper::NodeManager::Instance()->CreateSceneObject(entityID);
+	if (!render_wrapper::NodeManager::Instance()->HasNode(entityID, sceneID))
+		render_wrapper::NodeManager::Instance()->CreateSceneObject(entityID, sceneID);
 
-	render_wrapper::NodeManager::Instance()->Attach(_ogrePSystem, entityID);
+	render_wrapper::NodeManager::Instance()->Attach(_ogrePSystem, entityID, sceneID);
 }
 
 render_wrapper::ParticleSystem::~ParticleSystem() {

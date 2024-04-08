@@ -27,7 +27,7 @@ namespace eden_debug {
 	class Debug
 	{
 	public:
-		Debug(std::string id);
+		Debug(std::string id, std::string sceneID);
 
 		~Debug();
 

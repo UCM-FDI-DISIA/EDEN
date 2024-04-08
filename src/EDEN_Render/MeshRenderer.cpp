@@ -18,10 +18,10 @@ render_wrapper::MeshRenderer::MeshRenderer(const std::string entityID, const std
 {
 	_ent = GetSceneManager()->createEntity(meshName);
 
-	if (!render_wrapper::NodeManager::Instance()->HasNode(entityID))
-		render_wrapper::NodeManager::Instance()->CreateSceneObject(entityID);
+	if (!render_wrapper::NodeManager::Instance()->HasNode(entityID, sceneID))
+		render_wrapper::NodeManager::Instance()->CreateSceneObject(entityID, sceneID);
 
-	render_wrapper::NodeManager::Instance()->Attach(GetRenderObject(), entityID);
+	render_wrapper::NodeManager::Instance()->Attach(GetRenderObject(), entityID, sceneID);
 }
 
 render_wrapper::MeshRenderer::~MeshRenderer() {

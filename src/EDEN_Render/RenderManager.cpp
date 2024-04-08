@@ -319,9 +319,9 @@ void eden_render::RenderManager::UpdatePositions(std::string sceneID) {
 	for (auto ent : (*currentEnts)) {
 		transform = ent->GetComponent<eden_ec::CTransform>();
 		if (transform != nullptr) {
-			nodeMngr->SetPosition(transform->GetPosition(), ent->GetEntityID());
-			nodeMngr->SetOrientation(transform->GetRotation(), ent->GetEntityID());
-			nodeMngr->Scale(transform->GetScale(), ent->GetEntityID());
+			nodeMngr->SetPosition(transform->GetPosition(), ent->GetEntityID(), ent->GetSceneID());
+			nodeMngr->SetOrientation(transform->GetRotation(), ent->GetEntityID(), ent->GetSceneID());
+			nodeMngr->Scale(transform->GetScale(), ent->GetEntityID(), ent->GetSceneID());
 		}
 		else {
 			eden_error::ErrorHandler::Instance()->Warning("Render Entity '" + ent->GetEntityID() + "' has no Transform");
@@ -421,6 +421,7 @@ void eden_render::RenderManager::RemoveRenderScene(std::string sceneToRemoveID, 
 		delete sceneIt->second;
 		_renderScenes.erase(sceneIt);
 		_currentRenderScene = nullptr;
+		render_wrapper::NodeManager::Instance()->RemoveScene(sceneToRemoveID);
 
 	}
 	CreateRenderScene(newCurrentSceneID);

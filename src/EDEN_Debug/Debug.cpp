@@ -4,10 +4,10 @@
 #include "Vector3.h"
 #include "DebugDrawer.h"
 
-eden_debug::Debug::Debug(std::string id)
+eden_debug::Debug::Debug(std::string id, std::string sceneID)
 {
 	_id = id;
-	_debugDrawer = new eden_debug::DebugDrawer(_id);
+	_debugDrawer = new eden_debug::DebugDrawer(_id, sceneID);
 }
 
 eden_debug::Debug::~Debug()

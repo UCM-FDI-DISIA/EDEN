@@ -75,6 +75,8 @@ namespace render_wrapper {
 		/// @brief String que contiene el nombre de la entidad a la que se le va a asociar la camara (solo para su uso en llamadas a nodos)
 		std::string _entityID;
 
+		std::string _sceneID;
+
 		/// @brief Puntero a una camara de OGRE, sobre la que trabajaremos
 		Ogre::Camera* _camera;
 

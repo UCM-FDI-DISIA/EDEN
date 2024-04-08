@@ -22,7 +22,7 @@ namespace eden_debug {
 	{
 	public:
 
-		DebugDrawer(std::string id);
+		DebugDrawer(std::string id, std::string sceneID);
 		~DebugDrawer() override;
 
 		/// @brief Elimina todas las lineas dibujadas hasta el momento
@@ -71,6 +71,8 @@ namespace eden_debug {
 		std::vector<Ogre::MovableObject*> _lines;
 
 		std::string _id;
+
+		std::string _sceneID;
 	};
 
 }

@@ -14,16 +14,17 @@
 
 //Nota: Añadir ids distintas a cada instancia de la clase y darle ese nombre al nodo
 
-eden_debug::DebugDrawer::DebugDrawer(std::string id) {
+eden_debug::DebugDrawer::DebugDrawer(std::string id, std::string sceneID) {
 	_debugMode = DBG_DrawWireframe;
 	_lines = std::vector<Ogre::MovableObject*>();
 	_id = id;
+	_sceneID = sceneID;
 	_node = eden_render::RenderManager::Instance()->GetOgreSceneManager()->getRootSceneNode()->createChildSceneNode(id);
 }
 
 eden_debug::DebugDrawer::~DebugDrawer() {
 	clearLines();
-	render_wrapper::NodeManager::Instance()->RemoveSceneObject(_id);
+	render_wrapper::NodeManager::Instance()->RemoveSceneObject(_id, _sceneID);
 	_node = nullptr;
 }
 
@@ -48,7 +49,7 @@ void eden_debug::DebugDrawer::drawLine(const btVector3& origin, const btVector3&
 	line->colour(Ogre::ColourValue(color.x(), color.y(), color.z()));
 	line->end();
 
-	render_wrapper::NodeManager::Instance()->Attach(line, _id);
+	render_wrapper::NodeManager::Instance()->Attach(line, _id, _sceneID);
 	_lines.push_back(line);
 
 }

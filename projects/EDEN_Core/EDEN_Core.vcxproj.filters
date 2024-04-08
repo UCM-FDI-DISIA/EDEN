@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="..\..\src\EDEN_Core\TestComponent.h" />
+    <ClInclude Include="..\..\src\EDEN_Core\Transform.h" />
+    <ClInclude Include="..\..\src\EDEN_Core\Vector3.h" />
+    <ClInclude Include="..\..\src\EDEN_Core\CAnimator.h" />
+    <ClInclude Include="..\..\src\EDEN_Core\CAudioEmitter.h" />
+    <ClInclude Include="..\..\src\EDEN_Core\CAudioListener.h" />
+    <ClInclude Include="..\..\src\EDEN_Core\CButton.h" />
+    <ClInclude Include="..\..\src\EDEN_Core\CCamera.h" />
+    <ClInclude Include="..\..\src\EDEN_Core\CCursor.h" />
+    <ClInclude Include="..\..\src\EDEN_Core\CIMage.h" />
+    <ClInclude Include="..\..\src\EDEN_Core\CLight.h" />
+    <ClInclude Include="..\..\src\EDEN_Core\CLuaBehaviour.h" />
+    <ClInclude Include="..\..\src\EDEN_Core\CMeshRenderer.h" />
+    <ClInclude Include="..\..\src\EDEN_Core\Component.h" />
+    <ClInclude Include="..\..\src\EDEN_Core\ComponentFactory.h" />
+    <ClInclude Include="..\..\src\EDEN_Core\CParticleEmitter.h" />
+    <ClInclude Include="..\..\src\EDEN_Core\CRigidBody.h" />
+    <ClInclude Include="..\..\src\EDEN_Core\CText.h" />
+    <ClInclude Include="..\..\src\EDEN_Core\EdenMaster.h" />
+    <ClInclude Include="..\..\src\EDEN_Core\Entity.h" />
+    <ClInclude Include="..\..\src\EDEN_Core\ErrorHandler.h" />
+    <ClInclude Include="..\..\src\EDEN_Core\Hito1Prueba.h" />
+    <ClInclude Include="..\..\src\EDEN_Core\MacOSMessageBoxHelper.h" />
+    <ClInclude Include="..\..\src\EDEN_Core\Quaternion.h" />
+    <ClInclude Include="..\..\src\EDEN_Core\ResourcesManager.h" />
+    <ClInclude Include="..\..\src\EDEN_Core\Scene.h" />
+    <ClInclude Include="..\..\src\EDEN_Core\SceneManager.h" />
+    <ClInclude Include="..\..\src\EDEN_Core\Singleton.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\EDEN_Core\Transform.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Core\Vector3.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Core\CAnimator.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Core\CAudioEmitter.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Core\CAudioListener.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Core\CButton.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Core\CButtonBehaviour.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Core\CCamera.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Core\CCursor.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Core\CIMage.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Core\CLight.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Core\CLuaBehaviour.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Core\CMeshRenderer.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Core\Component.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Core\ComponentFactory.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Core\CParticleEmitter.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Core\CRigidBody.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Core\CText.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Core\EdenMaster.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Core\Entity.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Core\ErrorHandler.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Core\Hito1Prueba.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Core\main.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Core\Quaternion.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Core\ResourcesManager.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Core\Scene.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Core\SceneManager.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Core\TestComponent.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\EDEN_Core\MacOSMessageBoxHelper.mm" />
+  </ItemGroup>
+</Project>

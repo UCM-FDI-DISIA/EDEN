@@ -58,9 +58,11 @@ namespace eden_ec {
 		/// @return Identificador de la animacion actual
 		std::string GetCurrentAnim();
 
-	protected:
 		/// @brief Identificador del componente
-		const static std::string _id;
+		extern const static std::string _id;
+
+	protected:
+
 
 	private:
 		/// @brief Referencia al Animator Wrapper

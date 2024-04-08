@@ -56,13 +56,13 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(SolutionDir)lib\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(ProjectDir)..\..\lib\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)..\..\temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_d</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)lib\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(ProjectDir)..\..\lib\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)..\..\temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -74,7 +74,7 @@
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\EDEN;$(SolutionDir)dependencies\irrKlang\src\include\;$(SolutionDir)dependencies\irrKlang\src\plugins\ikpMP3\;$(SolutionDir)src\EDEN_Script\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\src\EDEN_Export\;$(ProjectDir)..\..\src\EDEN_Utils\;$(ProjectDir)..\..\src\EDEN_EC\;$(ProjectDir)..\..\dependencies\irrKlang\src\include\;$(ProjectDir)..\..\dependencies\irrKlang\src\plugins\ikpMP3\;$(ProjectDir)..\..\src\EDEN_Script\;$(ProjectDir)..\..\..\src\EDEN_Managers\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -94,7 +94,7 @@
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)src\EDEN;$(SolutionDir)dependencies\irrKlang\src\include\;$(SolutionDir)dependencies\irrKlang\src\plugins\ikpMP3\;$(SolutionDir)src\EDEN_Script\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\src\EDEN_Export\;$(ProjectDir)..\..\src\EDEN_Utils\;$(ProjectDir)..\..\src\EDEN_EC\;$(ProjectDir)..\..\dependencies\irrKlang\src\include\;$(ProjectDir)..\..\dependencies\irrKlang\src\plugins\ikpMP3\;$(ProjectDir)..\..\src\EDEN_Script\;$(ProjectDir)..\..\..\src\EDEN_Managers\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>

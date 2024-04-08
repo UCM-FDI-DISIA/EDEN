@@ -1,5 +1,7 @@
-#ifndef RIGIDBODYWRAPPER_H
-#define RIGIDBODYWRAPPER_H
+#define _CRTDBG_MAP_ALLOC
+#ifndef EDEN_RIGIDBODYWRAPPER_H
+#define EDEN_RIGIDBODYWRAPPER_H
+#include <string>
 
 #include "Vector3.h"
 
@@ -8,6 +10,7 @@ class btTransform;
 class btVector3;
 class btQuaternion;
 class btCompoundShape;
+struct btDefaultMotionState;
 
 namespace eden_utils {
 	class Quaternion;
@@ -18,32 +21,43 @@ namespace eden_ec {
 	class Entity;
 }
 
+namespace physics_manager {
+	class PhysicsManager;
+}
+
+
 namespace physics_wrapper {
+	class CollisionCallback;
+
 	class RigidBody
 	{
-
+		friend CollisionCallback;
+		friend physics_manager::PhysicsManager;
 	public:
+		enum RigidBodyType { DYNAMIC, KINEMATIC, STATIC };
+
 		/// @brief Tipo de forma que se puede crear
-		static enum ShapeType { BOX, SPHERE, CAPSULE, CYLINDER };
+		enum ShapeType { BOX, SPHERE, CAPSULE, CYLINDER };
 
 		/// @brief Parametros de la forma que se vaya a crear
-		static struct shapeParameters {
+		struct ShapeParameters {
 		public:
 			/// @brief Tipo de forma
-			ShapeType type;
+			ShapeType type = BOX;
 			/// @brief Radio (en caso de esfera y capsula)
-			float radius;
-			/// @brief Longitudes de anchura, altura y profundidad (caso caja, altura en c醦sula y cilindro)
-			eden_utils::Vector3 length;
+			float radius = 0;
+			/// @brief Longitudes de anchura, altura y profundidad (caso caja, altura en capsula y cilindro)
+			eden_utils::Vector3 length = eden_utils::Vector3(0,0,0);
 			/// @brief Offset de posicion con respecto al centro del RigidBody
-			eden_utils::Vector3 positionOffset;
+			eden_utils::Vector3 positionOffset = eden_utils::Vector3(0, 0, 0);
 		};
 
 		/// @brief Constructora del RigidbodyWrapper
 		/// @param transform Transform de la entidad
 		/// @param mass Masa del RigidBody
 		/// @param params Parametros de la forma gemoetrica inicial
-		RigidBody(eden_ec::Entity* ent, float mass, const shapeParameters& params);
+		/// @param flag Tipo de RigidBody
+		RigidBody(eden_ec::Entity* ent, const ShapeParameters& params, float mass = 1.0f, float friction = 1.0f, float bounciness = 1.0f, const RigidBodyType& flag = STATIC, std::string* layerName = nullptr);
 
 		/// @brief Destructora del RigidbodyWrapper
 		~RigidBody();
@@ -72,7 +86,7 @@ namespace physics_wrapper {
 		/// @param velocity Vector de velocidad a la que quieres establecer
 		void SetLinealVelocity(eden_utils::Vector3 velocity);
 
-		/// @brief A馻de velocidad lineal al RigidBody
+		/// @brief A锟絘de velocidad lineal al RigidBody
 		/// @param velocity Vector de velocidad que quieres sumar
 		void AddLinearVelocity(eden_utils::Vector3 velocity);
 
@@ -84,7 +98,7 @@ namespace physics_wrapper {
 		/// @param velocity Vector de angular a la que quieres establecer
 		void SetAngularVelocity(eden_utils::Vector3 velocity);
 
-		/// @brief A馻de velocidad angular al RigidBody
+		/// @brief Annade velocidad angular al RigidBody
 		/// @param velocity Vector de velocidad que quieres sumar
 		void AddAngularVelocity(eden_utils::Vector3 velocity);
 
@@ -116,24 +130,41 @@ namespace physics_wrapper {
 		/// @param scale Valor de la escala nueva que se quiere dar
 		void SetScale(eden_utils::Vector3 scale);
 
-		/// @brief A馻de una fuerza al RigidBody
+		/// @brief Annade una fuerza al RigidBody
 		/// @param force Vector de fuerza que quieres aplicar
 		void ApplyForce(eden_utils::Vector3 force);
 
-		/// @brief A馻de torquue al RigidBody
+		/// @brief Annade torquue al RigidBody
 		/// @param torque Vector de torque que quieres aplicar
 		void ApplyTorque(eden_utils::Vector3 torque);
 
 		/// @brief Quita las fuerzas que se aplican sobre el RigidBody
 		void ClearForce();
 
-		/// @brief A馻de una forma al RigidBody
-		/// @param params Parametros de la forma que se vaya a a馻dir
-		void AddShape(const shapeParameters& params);
+		/// @brief Annade una forma al RigidBody
+		/// @param params Parametros de la forma que se vaya a a锟絘dir
+		void AddShape(const ShapeParameters& params);
+
+		/// @brief Establece un valor de fricci贸n al RigidBody
+		/// @param friction Valor nuevo de fricci贸n para el RigidBody
+		void SetFriction(float friction);
+		
+		/// @brief Devuelve la propiedad de fricci贸n
+		/// @return Devuelve la propiedad de fricci贸n
+		float GetFriction();
+
+		/// @brief Establece un valor de rebote al RigidBody
+		/// @param friction Valor nuevo de rebote para el RigidBody
+		void SetBounciness(float bounciness);
+
+		/// @brief Devuelve la propiedad de rebote
+		/// @return Devuelve la propiedad de rebote 
+		float GetBounciness();
 	private:
-		btRigidBody* _rigidBody;
-		btTransform* _transform;
-		btCompoundShape* _collisionShape;
+		btRigidBody* _rigidBody = nullptr;
+		btDefaultMotionState* _motionState = nullptr;
+		btCompoundShape* _collisionShape = nullptr;
+		CollisionCallback* _collisionCallback = nullptr;
 
 		/// @brief Traduce un vector del motor a vector de Bullet
 		/// @param vector Vector del motor que quieres traducir
@@ -154,6 +185,9 @@ namespace physics_wrapper {
 		/// @param quaternion Cuaternion de Bullet que quieres traducir
 		/// @return Cuaternion del motor traducido
 		eden_utils::Quaternion BulletToEDENQuaternion(btQuaternion quaternion);
+
+		/// @brief Devuelve el rigidBody de la libreria fisica asociado a este rigidBody
+		btRigidBody* getBulletRigidBody();
 	};
 }
 #endif

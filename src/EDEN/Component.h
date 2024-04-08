@@ -1,8 +1,10 @@
-#ifndef COMPONENT_H
-#define COMPONENT_H
+#define _CRTDBG_MAP_ALLOC
+#ifndef EDEN_COMPONENT_H
+#define EDEN_COMPONENT_H
 
 #include <string>
-#include <unordered_map>
+
+#include "defs.h"
 
 namespace eden_script {
     class ComponentArguments;
@@ -11,7 +13,7 @@ namespace eden_script {
 namespace eden_ec {
     class Entity;
 	/// @brief Clase gen�rica de component usada para la implementaci�n de los comportamientos de las entidades
-	class Component
+	class EDEN_API Component
 	{
         friend Entity;
     public:
@@ -24,9 +26,6 @@ namespace eden_ec {
         /// @brief Da contexto al componente, asgin�ndole cu�l es su entidad
         /// @param ent Es la entidad a la que pertenece el componente
         void SetContext(Entity* ent);
-
-        /// @brief Inicializa el componente para coger referencias a otros componentes de su entidad
-        virtual void InitComponent() {};
 
         /// @brief M�todo ejecutado cada frame
         /// @param t Tiempo transcurrido desde el �ltimo frame
@@ -50,6 +49,9 @@ namespace eden_ec {
         /// Cada componente debe redefinirlo para poder aceptar argumentos leídos desde un fichero .lua
         /// @param args Argumentos leídos desde un fichero .lua
         virtual void Init(eden_script::ComponentArguments* args) = 0;
+        
+        /// @brief Usaremos este método para añadir referencias de otros componentes
+        virtual void Start() = 0;
 	};
 }
 #endif // COMPONENT_H

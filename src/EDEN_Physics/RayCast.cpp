@@ -1,8 +1,15 @@
+#define _CRTDBG_MAP_ALLOC
+#pragma warning(push)
+#pragma warning(disable : 26495)
+#include <BulletDynamics/Dynamics/btDynamicsWorld.h>
+#include <BulletDynamics/Dynamics/btRigidBody.h>
+#include <LinearMath/btIDebugDraw.h>
+#pragma warning(pop)
+
 #include "RayCast.h"
+#include "Entity.h"
+#include "CRigidBody.h"
 #include "PhysicsManager.h"
-#include "BulletDynamics/Dynamics/btDynamicsWorld.h"
-#include "BulletDynamics/Dynamics/btRigidBody.h"
-#include "../../dependencies/Bullet/src/src/LinearMath/btIDebugDraw.h"
 
 
 physics_wrapper::RayCast::RayCast(btDynamicsWorld* worldRef, btIDebugDraw* drawerRef)
@@ -11,7 +18,7 @@ physics_wrapper::RayCast::RayCast(btDynamicsWorld* worldRef, btIDebugDraw* drawe
 	_debugDrawer = drawerRef;
 }
 
-const physics_wrapper::RayCastHitResult& physics_wrapper::RayCast::singleHitRayCast(const eden_utils::Vector3 rayOrigin, const eden_utils::Vector3 rayDestiny, const bool drawDebugLine, const eden_utils::Vector3 debugLineColor) const
+const physics_wrapper::RayCastHitResult physics_wrapper::RayCast::SingleHitRayCast(const eden_utils::Vector3 rayOrigin, const eden_utils::Vector3 rayDestiny, const bool drawDebugLine, const eden_utils::Vector3 debugLineColor) const
 {
 	btVector3 origin(rayOrigin.GetX(), rayOrigin.GetY(), rayOrigin.GetZ());
 	btVector3 destiny(rayDestiny.GetX(), rayDestiny.GetY(), rayDestiny.GetZ());
@@ -28,7 +35,7 @@ const physics_wrapper::RayCastHitResult& physics_wrapper::RayCast::singleHitRayC
 	return hitResult;
 }
 
-const std::vector<physics_wrapper::RayCastHitResult> physics_wrapper::RayCast::multipleHitRayCast(const eden_utils::Vector3 rayOrigin, const eden_utils::Vector3 rayDestiny, const bool drawDebugLine, const eden_utils::Vector3 debugLineColor) const
+const std::vector<physics_wrapper::RayCastHitResult> physics_wrapper::RayCast::MultipleHitRayCast(const eden_utils::Vector3 rayOrigin, const eden_utils::Vector3 rayDestiny, const bool drawDebugLine, const eden_utils::Vector3 debugLineColor) const
 {
 	btVector3 origin(rayOrigin.GetX(), rayOrigin.GetY(), rayOrigin.GetZ());
 	btVector3 destiny(rayDestiny.GetX(), rayDestiny.GetY(), rayDestiny.GetZ());
@@ -52,7 +59,33 @@ const std::vector<physics_wrapper::RayCastHitResult> physics_wrapper::RayCast::m
 	return multipleHitResult;
 }
 
-physics_wrapper::RayCast::~RayCast()
+const std::vector<physics_wrapper::RayCastHitResult> physics_wrapper::RayCast::MultipleHitRayCast(const eden_utils::Vector3 rayOrigin, const eden_utils::Vector3 rayDestiny, const char* layerName, const bool drawDebugLine, const eden_utils::Vector3 debugLineColor) const
 {
-	
+	btVector3 origin(rayOrigin.GetX(), rayOrigin.GetY(), rayOrigin.GetZ());
+	btVector3 destiny(rayDestiny.GetX(), rayDestiny.GetY(), rayDestiny.GetZ());
+	btCollisionWorld::AllHitsRayResultCallback result(origin, destiny);
+	if (drawDebugLine) {
+		btVector3 lineColor(debugLineColor.GetX(), debugLineColor.GetY(), debugLineColor.GetZ());
+		_debugDrawer->drawLine(origin, destiny, lineColor);
+	}
+	_dynamicWorldRef->rayTest(origin, destiny, result);
+	int numCollisions = result.m_hitPointWorld.size();
+	std::vector<RayCastHitResult> multipleHitResult;
+	eden_utils::Vector3 rHitPoint;
+	eden_utils::Vector3 rHitNormal;
+	eden_ec::Entity* hitEntity = nullptr;
+	for (int i = 0; i < numCollisions; ++i) {
+		rHitPoint = { result.m_hitPointWorld[i].getX(), result.m_hitPointWorld[i].getY(), result.m_hitPointWorld[i].getZ() };
+		rHitNormal = { result.m_hitNormalWorld[i].getX(), result.m_hitNormalWorld[i].getY(), result.m_hitNormalWorld[i].getZ() };
+		hitEntity = (eden_ec::Entity*)(btRigidBody::upcast(result.m_collisionObjects[i]))->getUserPointer();
+		if (hitEntity->GetComponent<eden_ec::CRigidBody>()->GetCollisionLayerName() == layerName) {
+			multipleHitResult.push_back({result.hasHit(), rHitPoint, rHitNormal, hitEntity});
+		}
+	}
+	return multipleHitResult;
+}
+
+const std::vector<physics_wrapper::RayCastHitResult> physics_wrapper::RayCast::MultipleHitRayCast(const eden_utils::Vector3 rayOrigin, const eden_utils::Vector3 rayDestiny, const std::string layerName, const bool drawDebugLine, const eden_utils::Vector3 debugLineColor) const
+{
+	return MultipleHitRayCast(rayOrigin, rayDestiny, layerName.c_str(), drawDebugLine, debugLineColor);
 }

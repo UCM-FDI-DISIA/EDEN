@@ -1,31 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="..\..\src\EDEN_Render\Node.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Render\NodeManager.cpp" />
     <ClCompile Include="..\..\src\EDEN_Render\RenderManager.cpp" />
     <ClCompile Include="..\..\src\EDEN_Render\CameraWrapper.cpp" />
     <ClCompile Include="..\..\src\EDEN_Render\MeshRenderer.cpp" />
     <ClCompile Include="..\..\src\EDEN_Render\Animator.cpp" />
     <ClCompile Include="..\..\src\EDEN_Render\RenderObject.cpp" />
     <ClCompile Include="..\..\src\EDEN_Render\Light.cpp" />
-    <ClCompile Include="..\..\src\EDEN_Render\UI-Ogre\CIMage.cpp" />
-    <ClCompile Include="..\..\src\EDEN_Render\UI-Ogre\UIComponent.cpp" />
-    <ClCompile Include="..\..\src\EDEN_Render\CCamera.cpp" />
-    <ClCompile Include="..\..\src\EDEN_Render\UI-Ogre\CButton.cpp" />
-    <ClCompile Include="..\..\src\EDEN_Render\UI-Ogre\CCursor.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Render\Canvas.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Render\UIComponent.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Render\ParticleSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\EDEN_Render\Node.h" />
+    <ClInclude Include="..\..\src\EDEN_Render\NodeManager.h" />
     <ClInclude Include="..\..\src\EDEN_Render\RenderManager.h" />
     <ClInclude Include="..\..\src\EDEN_Render\RenderObject.h" />
     <ClInclude Include="..\..\src\EDEN_Render\CameraWrapper.h" />
     <ClInclude Include="..\..\src\EDEN_Render\MeshRenderer.h" />
     <ClInclude Include="..\..\src\EDEN_Render\Animator.h" />
     <ClInclude Include="..\..\src\EDEN_Render\Light.h" />
-    <ClInclude Include="..\..\src\EDEN_Render\UI-Ogre\CIMage.h" />
-    <ClInclude Include="..\..\src\EDEN_Render\UI-Ogre\UIComponent.h" />
-    <ClInclude Include="..\..\src\EDEN_Render\CCamera.h" />
-    <ClInclude Include="..\..\src\EDEN_Render\UI-Ogre\CButton.h" />
-    <ClInclude Include="..\..\src\EDEN_Render\UI-Ogre\CCursor.h" />
+    <ClInclude Include="..\..\src\EDEN_Render\Canvas.h" />
+    <ClInclude Include="..\..\src\EDEN_Render\UIComponent.h" />
+    <ClInclude Include="..\..\src\EDEN_Render\ParticleSystem.h" />
   </ItemGroup>
 </Project>

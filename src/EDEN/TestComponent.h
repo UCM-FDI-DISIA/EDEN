@@ -1,5 +1,6 @@
-#ifndef TEST_COMPONENT_H
-#define TEST_COMPONENT_H
+#define _CRTDBG_MAP_ALLOC
+#ifndef EDEN_TEST_COMPONENT_H
+#define EDEN_TEST_COMPONENT_H
 
 #include "Component.h"
 

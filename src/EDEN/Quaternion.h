@@ -1,13 +1,16 @@
-#ifndef QUATERNION_H
-#define QUATERNION_H
+#define _CRTDBG_MAP_ALLOC
+#ifndef EDEN_QUATERNION_H
+#define EDEN_QUATERNION_H
 
 #include <array>
+
+#include "defs.h"
 
 #define PI 3.1415926
 
 namespace eden_utils {
 	class Vector3;
-	class Quaternion
+	class EDEN_API Quaternion
 	{
 	public:
 		/// @brief Constructora por defecto del cuaterni�n
@@ -122,7 +125,7 @@ namespace eden_utils {
 
 		/// @brief Calcula la matriz de rotaci�n de un cuaterni�n
 		/// @return Devuelve la matriz de rotaci�n
-		std::array<std::array<int, 3>, 3> GetRotationMatrix();
+		std::array<std::array<float, 3>, 3> GetRotationMatrix();
 	private:
 		/// @brief Componente real del cuaterni�n
 		float _w;

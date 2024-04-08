@@ -1,24 +1,35 @@
-#ifndef C_RIGIDBODY_H
-#define C_RIGIDBODY_H
+#define _CRTDBG_MAP_ALLOC
+#ifndef EDEN_C_RIGIDBODY_H
+#define EDEN_C_RIGIDBODY_H
+
+#include <string>
 
 #include "Component.h"
 #include "Transform.h"
-#include <string>
 
 //Debe incluirse en el .h para que no se generen errores de tipo del struct shapeParameters
+#ifdef _MSC_VER
 #include "RigidBody.h"
+#endif
+#ifdef __clang__
+#include "./../EDEN_Physics/RigidBody.h"
+#endif
+
+#include "defs.h"
 
 namespace physics_manager {
 	class PhysicsManager;
 }
 
-namespace physics_wrapper {
-	class RigidBody;
+namespace physics_wrapper{
+	class CollisionLayer;
 }
 
 namespace eden_ec {
-	class CRigidBody : public Component
+	class CLuaBehaviour;
+	class EDEN_API CRigidBody : public Component
 	{
+
 		friend physics_manager::PhysicsManager;
 	public:
 		/// @brief Constructora por defecto. No usar
@@ -26,20 +37,20 @@ namespace eden_ec {
 
 		/// @brief Funcion para inicializar el componente con los scripts de lua
 		/// @param args Argumentos leidos del script de lua
-		virtual void Init(eden_script::ComponentArguments* args);
+		void Init(eden_script::ComponentArguments* args) override;
 
 		/// @brief Inicializa el componente para coger referencias a otros componentes de su entidad
-		virtual void InitComponent();
+		void Start() override;
 
 		/// @brief Metodo ejecutado cada frame
 		/// @param t Tiempo transcurrido desde el ultimo frame
-		virtual void Update(float t);
+		void Update(float t) override;
 
 		/// @brief Se encarga de la entrada de input
-		virtual void HandleInput();
+		void HandleInput() override;
 
 		/// @brief Destructora
-		virtual ~CRigidBody();
+		~CRigidBody() override;
 
 		/// @brief Devuelve la velocididad lineal del RigidBody de Bullet
 		/// @return Vector de velocidad lineal
@@ -49,7 +60,7 @@ namespace eden_ec {
 		/// @param velocity Vector de velocidad a la que quieres establecer
 		void SetLinealVelocity(eden_utils::Vector3 velocity);
 
-		/// @brief Añade velocidad lineal al RigidBody
+		/// @brief Annade velocidad lineal al RigidBody
 		/// @param velocity Vector de velocidad que quieres sumar
 		void AddLinearVelocity(eden_utils::Vector3 velocity);
 
@@ -61,7 +72,7 @@ namespace eden_ec {
 		/// @param velocity Vector de angular a la que quieres establecer
 		void SetAngularVelocity(eden_utils::Vector3 velocity);
 
-		/// @brief Añade velocidad angular al RigidBody
+		/// @brief Annade velocidad angular al RigidBody
 		/// @param velocity Vector de velocidad que quieres sumar
 		void AddAngularVelocity(eden_utils::Vector3 velocity);
 
@@ -89,40 +100,79 @@ namespace eden_ec {
 		/// @param damping Valor de damping que quieres establecer
 		void SetDamping(float damping);
 
-		/// @brief Añade una fuerza al RigidBody
+		/// @brief Annade una fuerza al RigidBody
 		/// @param force Vector de fuerza que quieres aplicar
 		void ApplyForce(eden_utils::Vector3 force);
 
-		/// @brief Añade torquue al RigidBody
+		/// @brief Annade torquue al RigidBody
 		/// @param torque Vector de torque que quieres aplicar
 		void ApplyTorque(eden_utils::Vector3 torque);
 
 		/// @brief Quita las fuerzas que se aplican sobre el RigidBody
 		void ClearForce();
 
-		/// @brief Definición de método estático GetID necesario para construcción de componentes
+		/// @brief Se llama cuando un rigidBody empieza a colisionar con el rigidBody
+		/// @param Entidad que colisiona
+		void OnCollisionEnter(eden_ec::Entity* other);
+
+		/// @brief Se llama cada vez que haya una colision despuï¿½s de que se haya llamado el OnCollisionEnter
+		/// @param Entidad que colisiona
+		void OnCollisionStay(eden_ec::Entity* other);
+		
+		/// @brief Se llama cuando un rogidBody acaba de terminar la colision con el RigidBody
+		/// @param Entidad que colisiona
+		void OnCollisionExit(eden_ec::Entity* other);
+
+		/// @brief Devuelve la propiedad de rebote
+		/// @return Devuelve la propiedad de rebote 
+		float GetBounciness();
+
+		/// @brief Devuelve la propiedad de fricciï¿½n
+		/// @return Devuelve la propiedad de fricciï¿½n 
+		float GetFriction();
+
+		/// @brief Definicion de metodo estatico GetID necesario para construccion de componentes
 		static std::string GetID() { return _id; }
 
+		/// @brief Devuelve la capa de colisiï¿½n del objeto
+		/// @return Devuelve la capa de colisiï¿½n del objeto 
+		physics_wrapper::CollisionLayer* GetCollisionLayer();
+
+		/// @brief Devuelve el nombre de la capa de colisiï¿½n del objeto
+		/// @return Devuelve el nombre de la capa de colisiï¿½n del objeto 
+		std::string GetCollisionLayerName();
 	protected:
 		const static std::string _id;
 
 	private:
-		/// @brief Masa asociada al rigidBody
-		float _mass;
+		/// @brief Masa asociada al RigidBody
+		float _mass = 0;
 
-		/// @brief Variable que se encarga de contener los parámetros de la figura asociada al rigidBody
-		physics_wrapper::RigidBody::shapeParameters _params;
+		/// @brief Efecto de rebote, indica cuanta energï¿½a se mantiene despuï¿½s de la colisiï¿½n
+		float _restitution = 0;
 
-		/// @brief Referencia al wrapper de rigid body del módulo de físicas
+		/// @brief Fricciï¿½n asociada al RigidBody
+		float _friction = 0;
+
+		/// @brief Variable que se encarga de contener los parametros de la figura asociada al rigidBody
+		physics_wrapper::RigidBody::ShapeParameters _params;
+
+		physics_wrapper::RigidBody::RigidBodyType _type = physics_wrapper::RigidBody::RigidBodyType::DYNAMIC;
+
+		std::string _layer = "DEFAULT";
+
+		/// @brief Referencia al wrapper de rigid body del modulo de fisicas
 		physics_wrapper::RigidBody* _rb = nullptr;
 
 		/// @brief Referencia al componente transform
 		eden_ec::CTransform* _transform = nullptr;
 
-		/// @brief Convierte el componente transform propio al transform del motor de físicas
+		eden_ec::CLuaBehaviour* _behaviour = nullptr;
+
+		/// @brief Convierte el componente transform propio al transform del motor de fisicas
 		void EdenTransformToPhysicsTransform();
 
-		/// @brief Convierte el transform del motor de físicas al componente transform propio
+		/// @brief Convierte el transform del motor de fisicas al componente transform propio
 		void PhysicsTransformToEdenTransform();
 	};
 

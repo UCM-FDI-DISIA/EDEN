@@ -1,9 +1,16 @@
-#ifndef RENDER_MANAGER_H_
-#define RENDER_MANAGER_H_
+#define _CRTDBG_MAP_ALLOC
+#ifndef EDEN_RENDER_MANAGER_H
+#define EDEN_RENDER_MANAGER_H
 
 #include <string>
 #include <unordered_set>
+#include <unordered_map>
+
 #include "Singleton.h"
+
+namespace eden_debug {
+	class DebugDrawer;
+}
 
 namespace Ogre {
 	class FileSystemLayer;
@@ -11,6 +18,7 @@ namespace Ogre {
 	class Root;
 	class SceneManager;
 	class OverlaySystem;
+	class OverlayManager;
 	namespace RTShader {
 		class ShaderGenerator;
 	}
@@ -20,7 +28,12 @@ namespace eden_ec {
 	class Entity;
 }
 
-class SDL_Window;
+namespace eden
+{
+	class SceneManager;
+}
+
+struct SDL_Window;
 typedef SDL_Window NativeWindowType;
 
 struct NativeWindowPair
@@ -32,22 +45,28 @@ struct NativeWindowPair
 	NativeWindowType* native = nullptr;
 };
 namespace render_wrapper {
-	class Node;
+	class NodeManager;
 	class RenderObject;
 	class CameraWrapper;
 }
 namespace eden_render
 {
+	class InfoRenderWorld;
 	class RenderManager : public Singleton<RenderManager>
 	{
 	public:
 		/// @brief Singleton del RenderManager
 		friend Singleton<RenderManager>;
 
+		/// @brief Clase de debug
+		friend eden_debug::DebugDrawer;
+
 		/// @brief Nodo del RenderWrapper
-		friend render_wrapper::Node;
+		friend render_wrapper::NodeManager;
 		friend render_wrapper::RenderObject;
 		friend render_wrapper::CameraWrapper;
+
+		friend eden::SceneManager;
 		
 		/// @brief Destructora
 		~RenderManager() override;
@@ -55,24 +74,33 @@ namespace eden_render
 		/// @brief Ejecuta un ciclo de renderizado (ventana y raÃ¯Â¿Â½z)
 		void Update();
 
-		/// @brief Comprueba si ha habido errores en la inicialización
+		/// @brief Comprueba si ha habido errores en la inicializaciï¿½n
 		/// @return True si se ha inicializado bien, False en caso contrario
 		inline bool couldInitialize() { return _initialized; }
 
 		int GetWindowWidth();
 		int GetWindowHeight();
 		
-		/// @brief Actualiza todas las posiciones con su componente Transform
-		void UpdatePositions();
+		/// @brief Actualiza todas las posiciones de la escena con su componente Transform
+		/// @param sceneID Identificador de la escena
+		void UpdatePositions(std::string sceneID);
 
-		/// @brief Añade una entidad que tenga componentes de renderizado (CMeshRenderer, CCamera, ...)
-		/// para actualizar su posición
-		/// @param ent Entidad cuya posición va a actualizarse
+		/// @brief Aï¿½ade una entidad que tenga componentes de renderizado (CMeshRenderer, CCamera, ...) a una escena en concreto
+		/// para actualizar su posiciï¿½n
+		/// @param ent Entidad cuya posiciï¿½n va a actualizarse
 		void addRenderEntity(eden_ec::Entity* ent);
 
-		/// @brief Quita una entidad para dejar de actualizar su posición
+		/// @brief Quita una entidad de una escena para dejar de actualizar su posiciï¿½n
 		/// @param ent Entidad que se va a quitar
 		void removeRenderEntity(eden_ec::Entity* ent);
+
+		/// @brief Funciï¿½n que deberï¿½a llamarse en el momento en el que la ventana cambia de tamaï¿½o
+		void ResizedWindow();
+
+		render_wrapper::CameraWrapper* GetCamera(eden_ec::Entity* ent);
+
+	protected:
+		Ogre::SceneManager* GetOgreSceneManager();
 
 	private:
 		/// @brief Inicializa la librerï¿½a de renderizado,
@@ -80,6 +108,7 @@ namespace eden_render
 		/// e inicializa los shaders
 		/// @param appName Nombre de la ventana
 		void InitManager(const std::string& appName);
+
 
 		/// @brief Inicializa el sistema de sombreado de trazado de rayos
 		void InitialiseRTShaderSystem();
@@ -109,7 +138,7 @@ namespace eden_render
 		/// @brief Destructora de la ventana de SDL
 		void CloseWindow();
 
-		/// @brief Destruye la raíz y llama posteriormente al método Shutdown
+		/// @brief Destruye la raï¿½z y llama posteriormente al mï¿½todo Shutdown
 		void CloseManager();
 
 		/// @brief CreaciÃ¯Â¿Â½n de la ventana de Ogre y SDL
@@ -120,20 +149,34 @@ namespace eden_render
 		/// @param appName Nombre de la ventana
 		explicit RenderManager(const std::string& appName = "TEST_APP");
 
+		/// @brief Crea una nueva escena, si existe actualiza la escena actual 
+		/// 
+		void CreateRenderScene(std::string sceneID);
 
-		/// @brief RaÃ¯Â¿Â½z de Ogre
+		/// @brief 
+		/// @param sceneID 
+		void RemoveRenderScene(std::string sceneToRemoveID, std::string newCurrentSceneID);
+
+		/// @brief 
+		/// @param sceneID 
+		
+		void ShowEntities(std::string sceneID, bool show);
+		/// @brief Raiz de Ogre
 		Ogre::Root* _root;
-
-		/// @brief Gestor de escenas
-		Ogre::SceneManager* _sceneMngr;
 
 		/// @brief Sistema de Overlay
 		Ogre::OverlaySystem* _overlaySys;
 
+		/// @brief Gestor de escenas
+		std::unordered_map<std::string, InfoRenderWorld*> _renderScenes;
+
+		/// @brief Escena actual de render
+		InfoRenderWorld* _currentRenderScene;
+
 		/// @brief Ventana principal
 		NativeWindowPair _window;
 
-		/// @brief Capa de abstracciÃ¯Â¿Â½n del sistema de archivos
+		/// @brief Capa de abstraccion del sistema de archivos
 		Ogre::FileSystemLayer* _fsLayer;
 		bool _firstRun;
 
@@ -155,8 +198,30 @@ namespace eden_render
 		/// @brief Flag para saber si se ha podido inicializar el manager
 		bool _initialized = true;
 
-		/// @brief Conjunto de entidades para actualizar su posición
+		/// @brief Flag para saber si el canvas se ha inicializado
+		bool _canvasInit = false;
+
+		/// @brief Flag para saber si la ventana ha sido escalada
+		bool _resized = false;
+	};
+
+	class InfoRenderWorld
+	{
+		friend RenderManager;
+		friend render_wrapper::NodeManager;
+		friend render_wrapper::RenderObject;
+	public:
+		InfoRenderWorld(Ogre::Root* root, Ogre::OverlaySystem* overlaySystem, std::string sceneID);
+		~InfoRenderWorld();
+	private:
+		Ogre::SceneManager* _renderScene;
+		std::string _sceneID;
+		/// @brief Conjunto de entidades para actualizar su posiciï¿½n
 		std::unordered_set<eden_ec::Entity*> _entities;
+		Ogre::OverlaySystem* _overlaySystem;
+		Ogre::Root* _root;
+		Ogre::SceneManager* GetRenderScene();
+		render_wrapper::CameraWrapper* _cameraWrapper;
 	};
 }
 

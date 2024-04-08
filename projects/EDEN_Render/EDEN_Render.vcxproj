@@ -13,30 +13,26 @@
   <ItemGroup>
     <ClInclude Include="..\..\src\EDEN_Render\Animator.h" />
     <ClInclude Include="..\..\src\EDEN_Render\CameraWrapper.h" />
-    <ClInclude Include="..\..\src\EDEN_Render\CCamera.h" />
+    <ClInclude Include="..\..\src\EDEN_Render\Canvas.h" />
     <ClInclude Include="..\..\src\EDEN_Render\Light.h" />
     <ClInclude Include="..\..\src\EDEN_Render\MeshRenderer.h" />
-    <ClInclude Include="..\..\src\EDEN_Render\Node.h" />
+    <ClInclude Include="..\..\src\EDEN_Render\NodeManager.h" />
+    <ClInclude Include="..\..\src\EDEN_Render\ParticleSystem.h" />
     <ClInclude Include="..\..\src\EDEN_Render\RenderManager.h" />
     <ClInclude Include="..\..\src\EDEN_Render\RenderObject.h" />
-    <ClInclude Include="..\..\src\EDEN_Render\UI-Ogre\CButton.h" />
-    <ClInclude Include="..\..\src\EDEN_Render\UI-Ogre\CCursor.h" />
-    <ClInclude Include="..\..\src\EDEN_Render\UI-Ogre\CIMage.h" />
-    <ClInclude Include="..\..\src\EDEN_Render\UI-Ogre\UIComponent.h" />
+    <ClInclude Include="..\..\src\EDEN_Render\UIComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\EDEN_Render\Animator.cpp" />
     <ClCompile Include="..\..\src\EDEN_Render\CameraWrapper.cpp" />
-    <ClCompile Include="..\..\src\EDEN_Render\CCamera.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Render\Canvas.cpp" />
     <ClCompile Include="..\..\src\EDEN_Render\Light.cpp" />
     <ClCompile Include="..\..\src\EDEN_Render\MeshRenderer.cpp" />
-    <ClCompile Include="..\..\src\EDEN_Render\Node.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Render\NodeManager.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Render\ParticleSystem.cpp" />
     <ClCompile Include="..\..\src\EDEN_Render\RenderManager.cpp" />
     <ClCompile Include="..\..\src\EDEN_Render\RenderObject.cpp" />
-    <ClCompile Include="..\..\src\EDEN_Render\UI-Ogre\CButton.cpp" />
-    <ClCompile Include="..\..\src\EDEN_Render\UI-Ogre\CCursor.cpp" />
-    <ClCompile Include="..\..\src\EDEN_Render\UI-Ogre\CIMage.cpp" />
-    <ClCompile Include="..\..\src\EDEN_Render\UI-Ogre\UIComponent.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Render\UIComponent.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -73,14 +69,14 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(ProjectDir)..\..\lib\$(Configuration)\</OutDir>
-    <IntDir>$(ProjectDir)..\..\temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)lib\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_d</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(ProjectDir)..\..\lib\$(Configuration)\</OutDir>
-    <IntDir>$(ProjectDir)..\..\temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)lib\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -123,7 +119,9 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\dependencies\Ogre\build\$(Platform)\include\;$(ProjectDir)..\..\dependencies\Ogre\src\OgreMain\include\;$(ProjectDir)..\..\dependencies\SDL\src\include\;$(ProjectDir)..\..\dependencies\SDL\build\$(Platform)\include\;%(AdditionalIncludeDirectories);$(ProjectDir)..\..\src\EDEN\;$(ProjectDir)..\..\dependencies\Ogre\src\Components\RTShaderSystem\include\;$(ProjectDir)..\..\dependencies\SDL_ttf\src\;$(ProjectDir)..\..\dependencies\SDL_image\src\;$(ProjectDir)..\..\dependencies\Ogre\src\Components\Overlay\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)dependencies\SDL\src\include\;$(SolutionDir)dependencies\SDL\build\$(Platform)\include\;%(AdditionalIncludeDirectories);$(SolutionDir)src\EDEN\;$(SolutionDir)src\EDEN_Input\;$(SolutionDir)dependencies\Ogre\src\Components\RTShaderSystem\include\;$(SolutionDir)dependencies\Ogre\src\Components\Overlay\include</AdditionalIncludeDirectories>
+      <TreatAngleIncludeAsExternal>true</TreatAngleIncludeAsExternal>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -141,7 +139,9 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\dependencies\Ogre\build\$(Platform)\include\;$(ProjectDir)..\..\dependencies\Ogre\src\OgreMain\include\;$(ProjectDir)..\..\dependencies\SDL\src\include\;$(ProjectDir)..\..\dependencies\SDL\build\$(Platform)\include\;%(AdditionalIncludeDirectories);$(ProjectDir)..\..\src\EDEN\;$(ProjectDir)..\..\dependencies\Ogre\src\Components\RTShaderSystem\include\;$(ProjectDir)..\..\dependencies\SDL_ttf\src\;$(ProjectDir)..\..\dependencies\SDL_image\src\;$(ProjectDir)..\..\dependencies\Ogre\src\Components\Overlay\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)dependencies\Ogre\src\OgreMain\include\;$(SolutionDir)dependencies\SDL\src\include\;$(SolutionDir)dependencies\SDL\build\$(Platform)\include\;%(AdditionalIncludeDirectories);$(SolutionDir)src\EDEN\;$(SolutionDir)src\EDEN_Input\;$(SolutionDir)dependencies\Ogre\src\Components\RTShaderSystem\include\;$(SolutionDir)dependencies\Ogre\src\Components\Overlay\include</AdditionalIncludeDirectories>
+      <TreatAngleIncludeAsExternal>true</TreatAngleIncludeAsExternal>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

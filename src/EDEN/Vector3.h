@@ -1,8 +1,11 @@
-#ifndef VECTOR3_H
-#define VECTOR3_H
+#define _CRTDBG_MAP_ALLOC
+#ifndef EDEN_VECTOR3_H
+#define EDEN_VECTOR3_H
+
+#include "defs.h"
 
 namespace eden_utils {
-	class Vector3
+	class EDEN_API Vector3
 	{
 	public:
 		/// @brief Constructora por defecto de Vector3
@@ -94,6 +97,6 @@ namespace eden_utils {
 		float _z;
 	};
 }
-#endif  VECTOR3_H
+#endif //VECTOR3_H
 
 

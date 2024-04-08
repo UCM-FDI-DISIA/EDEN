@@ -1,5 +1,7 @@
-#include "TestComponent.h"
+#define _CRTDBG_MAP_ALLOC
 #include <iostream>
+
+#include "TestComponent.h"
 
 /// @brief Nueva ID
 const std::string eden_ec::cTestComponent::_id = "TEST_COMPONENT";

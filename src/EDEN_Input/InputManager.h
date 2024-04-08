@@ -1,5 +1,6 @@
-#ifndef __INPUT_MANAGER_H__
-#define __INPUT_MANAGER_H__
+#define _CRTDBG_MAP_ALLOC
+#ifndef EDEN_INPUT_MANAGER_H
+#define EDEN_INPUT_MANAGER_H
 
 #include <array>
 #include <unordered_map>
@@ -12,9 +13,8 @@ namespace eden_input
 	/// @brief Clase que gestiona la entrada de datos del usuario.
 	class InputManager : public Singleton<InputManager>
 	{
-	public:
-
 		friend Singleton<InputManager>;
+	public:
 
 		/// @brief enumerado de los botones del raton
 		enum MOUSEBUTTON : uint8_t { LEFT, MIDDLE, RIGHT };
@@ -82,7 +82,7 @@ namespace eden_input
 			RSHIFT = 229,
 			RALT = 230
 		};
-		
+
 		/// @brief Limpieza del mapa de teclas
 		void Clean();
 
@@ -161,6 +161,9 @@ namespace eden_input
 		/// por ejemplo)
 		void SetCloseWindow();
 
+		/// @brief Devuelve true cuando el usuario ha cambiado el tamaño de la ventana
+		bool ResizedWindowEvent();
+
 		/// @brief Update
 		void Update();
 
@@ -196,6 +199,9 @@ namespace eden_input
 		/// @brief Booleano de si se cierra la ventana
 		bool _isCloseWindowEvent;
 
+		/// @brief Booleano de si se cambia el tamaño la ventana
+		bool _isResizedWindowEvent;
+
 		/// @brief Estados de botones
 		enum STATE : uint8_t {
 			RELEASED = 0,
@@ -224,10 +230,9 @@ namespace eden_input
 		/// @brief Gestiona los eventos de ventana
 		void HandleWindowEvent();
 		
-
 		/// @brief Constructora de la clase
 		InputManager();
 	};
 }
 
-#endif __INPUT_MANAGER_H__
+#endif // __INPUT_MANAGER_H__

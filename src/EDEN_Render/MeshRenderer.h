@@ -1,30 +1,33 @@
-#ifndef MESH_RENDERER_H
-#define MESH_RENDERER_H
+#define _CRTDBG_MAP_ALLOC
+#ifndef EDEN_MESH_RENDERER_H
+#define EDEN_MESH_RENDERER_H
 
 // Libreria de C++
 #include <string>
 
-// Librerias adicionales
-#include "OgreEntity.h"
-
 // Archivos del proyecto
 #include "RenderObject.h"
+
+namespace Ogre {
+	class Entity;
+	class MovableObject;
+}
 
 namespace render_wrapper {
 
 	class Animator;
 	class RenderObject;
-	class MeshRenderer : public render_wrapper::RenderObject
+	class MeshRenderer : public RenderObject
 	{
-		friend render_wrapper::Animator;
+		friend Animator;
 
 	public:
 		/// @brief Constructora del Wrapper de libreria de renderizado de mallas
 		/// @param enetityID Nombre de la entidad asociada al componente MeshRenderer
 		/// @param meshName Nombre del archivo de la malla
-		MeshRenderer(const std::string entityID, const std::string meshName);
+		MeshRenderer(const std::string entityID, const std::string sceneID, const std::string meshName);
 
-		~MeshRenderer() {};
+		~MeshRenderer() override;
 
 		/// @brief Setea el material a la malla 
 		/// @param material Nombre del archivo del material 
@@ -34,14 +37,10 @@ namespace render_wrapper {
 		/// @param visibility True -> Visible, False -> No visible
 		void SetInvisible(bool visibility);
 
-		/// @brief 
-		/// @param dt Variable delta time
-		void ActivateAnim(float dt);
-
 	private:
 		/// @brief Puntero a la entidad asociada al componente
 		Ogre::Entity* _ent = nullptr;
-		
+
 		/// @brief Devuelve la entidad asociada a la malla
 		Ogre::MovableObject* GetRenderObject() override;
 

@@ -1,8 +1,12 @@
-#ifndef __INPUT_WRAPPER_H__
-#define __INPUT_WRAPPER_H__
+#define _CRTDBG_MAP_ALLOC
+#ifndef EDEN_INPUT_WRAPPER_H
+#define EDEN_INPUT_WRAPPER_H
 
+#define SDL_MAIN_HANDLED
+#pragma warning(push)
+#pragma warning(disable : 26819)
 #include <SDL.h>
-#undef main
+#pragma warning(pop)
 
 	/// @brief Clase que gestiona los eventos de SDL
 	class InputWrapper 
@@ -22,4 +26,4 @@
 		SDL_Event* _event;
 	};
 
-#endif __INPUT_WRAPPER_H__
+#endif //EDEN_INPUT_WRAPPER_H

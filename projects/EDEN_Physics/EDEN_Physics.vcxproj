@@ -11,13 +11,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\EDEN_Physics\CollisionCallback.cpp" />
+    <ClCompile Include="..\..\src\EDEN_Physics\CollisionLayer.cpp" />
     <ClCompile Include="..\..\src\EDEN_Physics\PhysicsManager.cpp" />
     <ClCompile Include="..\..\src\EDEN_Physics\RayCast.cpp" />
     <ClCompile Include="..\..\src\EDEN_Physics\RigidBody.cpp" />
     <ClCompile Include="..\..\src\EDEN_Physics\ShapeCreator.cpp" />
-    <ClCompile Include="..\..\src\EDEN_Physics\test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\EDEN_Physics\CollisionCallback.h" />
+    <ClInclude Include="..\..\src\EDEN_Physics\CollisionLayer.h" />
     <ClInclude Include="..\..\src\EDEN_Physics\PhysicsManager.h" />
     <ClInclude Include="..\..\src\EDEN_Physics\RayCast.h" />
     <ClInclude Include="..\..\src\EDEN_Physics\ShapeCreator.h" />
@@ -60,14 +63,14 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(ProjectDir)..\..\lib\$(Configuration)\</OutDir>
-    <IntDir>$(ProjectDir)..\..\temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)lib\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_d</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(ProjectDir)..\..\lib\$(Configuration)\</OutDir>
-    <IntDir>$(ProjectDir)..\..\temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)lib\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -76,7 +79,9 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\src\;$(ProjectDir)..\..\dependencies\Bullet\src\src;$(ProjectDir)..\..\src\EDEN\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\EDEN_Debug\;$(SolutionDir)src\EDEN\;$(SolutionDir)dependencies\Bullet\src\src;$(SolutionDir)src\EDEN\;$(SolutionDir)src\EDEN_Debug\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <TreatAngleIncludeAsExternal>true</TreatAngleIncludeAsExternal>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -94,7 +99,9 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\src\;$(ProjectDir)..\..\dependencies\Bullet\src\src;$(ProjectDir)..\..\src\EDEN\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src\EDEN_Debug\;$(SolutionDir)src\EDEN\;$(SolutionDir)dependencies\Bullet\src\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <TreatAngleIncludeAsExternal>true</TreatAngleIncludeAsExternal>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

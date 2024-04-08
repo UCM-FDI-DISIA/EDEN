@@ -1,8 +1,9 @@
-#include "ScriptManager.h"
-#include "ComponentArguments.h"
-
+#define _CRTDBG_MAP_ALLOC
 #include "Entity.h"
+#include <ScriptManager.h>
+#include <ComponentArguments.h>
 #include "Component.h"
+#include <LuaManager.h>
 
 void eden_ec::Entity::AddComponents(eden_script::EntityInfo* entityInfo) {
     for (auto it : entityInfo->components) {
@@ -26,9 +27,13 @@ eden_ec::Component* eden_ec::Entity::AddComponentByRead(eden_script::ComponentAr
     _components.emplace(id, c);
     c->SetContext(this);
     c->Init(info);
-    c->InitComponent();
-
     return c;
+}
+
+void eden_ec::Entity::StartComponents() {
+    for (auto cmp : _components) {
+        cmp.second->Start();
+    }
 }
 
 
@@ -46,7 +51,7 @@ void eden_ec::Entity::Update(float t) {
 
 void eden_ec::Entity::HandleInput() {
     if (_active) {
-        auto n = _components.size();
+        //auto n = _components.size();
         for (auto it = _components.begin(); it != _components.end(); ++it) {
             it->second->HandleInput();
         }
@@ -68,4 +73,8 @@ void eden_ec::Entity::RemoveComponent(std::string id) {
         delete (*iter).second;
         _components.erase(iter);
     }
+}
+
+std::string eden_ec::Entity::GetSceneID() {
+    return _sceneID;
 }

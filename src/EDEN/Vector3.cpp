@@ -1,5 +1,6 @@
-#include<math.h>
-#include<assert.h>
+#define _CRTDBG_MAP_ALLOC
+#include <math.h>
+#include <assert.h>
 
 #include "Vector3.h"
 
@@ -84,7 +85,7 @@ eden_utils::Vector3 eden_utils::Vector3::operator/=(float scalar)
 
 float eden_utils::Vector3::Magnitude()
 {
-	return sqrt((_x * _x) + (_y * _y) + (_z * _z));
+	return float(sqrt((_x * _x) + (_y * _y) + (_z * _z)));
 }
 
 void eden_utils::Vector3::Normalize()

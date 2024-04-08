@@ -1,35 +1,60 @@
-//Borrar, solo por motivos de test
+#define _CRTDBG_MAP_ALLOC
+#ifdef _DEBUG
 #include <iostream>
-#include <windows.h>  
+#endif
+
+#ifdef _MSC_VER
+#include <windows.h>
+#endif
 #include <ctime>
 #include <chrono>
 
+#include "ErrorHandler.h"
+
 #include "EdenMaster.h"
-#include "RenderManager.h"
-#include "PhysicsManager.h"
+#include <RenderManager.h>
+#include <PhysicsManager.h>
 #include <InputManager.h>
 #include "SceneManager.h"
+#include "Scene.h"
+#include "AudioManager.h"
 
+bool eden::Master::_initialized = false;
 
 eden::Master::Master()
 {
+	// la comprobaci�n de que se haya podido inicializar el RenderManager ahora se hace dentro del propio RenderManager.
 	_renderManager = eden_render::RenderManager::Instance("EDEN Engine");
-	if (!_renderManager->couldInitialize()) {
-		delete _renderManager;
-		std::string error = "EdenMaster ERROR in line 16: RenderManager could not initialize\n";
-		throw std::exception(error.c_str());
-	}
+
+	if (!_renderManager->couldInitialize()) delete _renderManager;
+
 	_inputManager = eden_input::InputManager::Instance();
 	_scnManager = SceneManager::Instance();
 	_physicsManager = physics_manager::PhysicsManager::Instance();
+
+	_initialized = true;
+}
+
+void eden::Master::CloseApplication() {
+	std::cout << "---------------------\n\n\n\n\nCLOSING APPLITACION\n\n\n\n\n---------------------\n\n\n\n\n";
 }
 
 eden::Master::~Master()
 {
-	delete _inputManager;
-	delete _renderManager;
-	delete _physicsManager;
-	Singleton::~Singleton();
+	//delete _physicsManager;
+	//delete _scnManager;
+	//delete _inputManager;
+	_physicsManager->Close();
+	_scnManager->Close();
+	_inputManager->Close();
+	eden_audio::AudioManager::Instance()->Close();
+
+	if (_renderManager != nullptr && _renderManager->couldInitialize()) {
+
+		//delete _renderManager;
+		_renderManager->Close();
+	}
+
 }
 
 void eden::Master::Loop()
@@ -41,22 +66,27 @@ void eden::Master::Loop()
 	float lastPhysicsUpdateTime = 0;
 	
 	while (!exit) {
-		int numPU = (_elapsedTime - lastPhysicsUpdateTime) / (_physicsUpdateTimeInterval * 1000);
-		for (int i = 0; i < numPU; ++i) {
-			//std::cout << "Fixed update " << lastPhysicsUpdateTime + (i * _physicsUpdateTimeInterval * 1000) << '\n';
+		int numPU = (int) ((_elapsedTime - lastPhysicsUpdateTime) / (_physicsUpdateTimeInterval));
+		if (numPU > 0) {
+			std::string sceneID = _scnManager->GetCurrentScene()->GetSceneID();
+			_physicsManager->UpdatePositions(sceneID);
+			for (int i = 0; i < numPU; ++i) {
+				_physicsManager->updateSimulation(_physicsUpdateTimeInterval, sceneID);
+			}
+			_physicsManager->ResolvePositions(sceneID);
 		}
-		lastPhysicsUpdateTime = lastPhysicsUpdateTime + (numPU * _physicsUpdateTimeInterval*1000);
+		lastPhysicsUpdateTime = lastPhysicsUpdateTime + (numPU * _physicsUpdateTimeInterval);
 
 		frameStartTime = std::chrono::high_resolution_clock::now();
 
 		_inputManager->Update();
 		_scnManager->Update(_deltaTime);
-		_physicsManager->UpdatePositions();
-		_physicsManager->updateSimulation(_deltaTime);
-		_physicsManager->ResolvePositions();
-		_renderManager->UpdatePositions();
+		_renderManager->UpdatePositions(_scnManager->GetCurrentScene()->GetSceneID());
 		_renderManager->Update();
 		exit = _inputManager->CloseWindowEvent();
+		if (_inputManager->ResizedWindowEvent()) {
+			_renderManager->ResizedWindow();
+		}
 
 		frameEndTime = std::chrono::high_resolution_clock::now();
 		_deltaTime = std::chrono::duration<float, std::milli>(frameEndTime - frameStartTime).count() / 1000;

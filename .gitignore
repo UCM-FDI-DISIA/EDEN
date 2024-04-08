@@ -52,6 +52,9 @@
 [Tt]emp/
 [Ll]ib/
 .vs/
+.idea/
+cmake-build-debug/
+cmake-build-release/
 
 [Dd]ependencies/[Oo]gre/[Bb]uild/
 [Dd]ependencies/[Bb]ullet/[Bb]uild/
@@ -65,4 +68,8 @@
 # Exceptions
 
 ![Bb]in/[Aa]ssets/
+![Bb]in/resources.cfg
+![Bb]in/plugins.cfg
 ![Dd]ependencies/[Ff][Mm][Oo][Dd]/[Bb]uild/x64/*
+![Dd]ependencies/[Ii]rr[Kk]lang/[Bb]uild/x64/*
+![Dd]ependencies/[Ii]rr[Kk]lang/[Bb]uild/arm64/*

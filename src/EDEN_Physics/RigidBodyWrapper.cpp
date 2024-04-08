@@ -1,11 +1,11 @@
 #include <BulletDynamics/Dynamics/btRigidBody.h>
 #include <LinearMath/btDefaultMotionState.h>
-#include <BulletCollision/CollisionShapes/btCompoundShape.h>ç
+#include <BulletCollision/CollisionShapes/btCompoundShape.h>ï¿½
 #include <BulletDynamics/Dynamics/btDiscreteDynamicsWorld.h>
 
-#include<EDEN/Transform.h>
-#include<EDEN/Vector3.h>
-#include<EDEN/Quaternion.h>
+#include "Transform.h"
+#include "Vector3.h"
+#include "Quaternion.h"
 
 #include "PhysicsManager.h"
 #include "ShapeCreator.h"

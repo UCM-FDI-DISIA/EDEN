@@ -1,8 +1,11 @@
-#ifndef SCENE_H
-#define SCENE_H
+#define _CRTDBG_MAP_ALLOC
+#ifndef EDEN_SCENE_H
+#define EDEN_SCENE_H
 
 #include <string>
 #include <unordered_map>
+
+#include "defs.h"
 
 namespace eden_script {
 	struct EntityInfo;
@@ -17,13 +20,14 @@ namespace eden_ec {
 namespace eden {
 	/// @brief Clase que define una escena de juego. Tendra un render, un update y todos los metodos que se encarguen del manejo de los gameobjects que
 	/// la componen.
-	class Scene
+	class EDEN_API Scene
 	{
 	public:
 		/// @brief Constructora por defecto de la clase Scene
 		/// @param ID Identificador de la escena
 		/// @param info Informacion de las entidades que estan en la escena
-		Scene(const std::string& ID, std::vector<eden_script::EntityInfo*> info);
+		/// @param collisionInfo Informacion de las capas de colisión que están en la escena
+		Scene(const std::string& ID, std::vector<eden_script::EntityInfo*>& info, std::unordered_map<std::string, std::vector<std::string>>& collisionInfo);
 		~Scene();
 
 		/// @brief Metodo que devuelve el nombre identificativo de la escena
@@ -34,6 +38,10 @@ namespace eden {
 
 		/// @brief Llama al update de todas las entidades de la escena
 		void Update(float dt);
+
+		/// @brief Instancia una serie de entidades en la escena
+		/// @param info Información de las entidades a instanciar
+		void Instantiate(std::vector<eden_script::EntityInfo*> info);
 
 		/// @brief Durante la ejecucion del juego, anade una entidad nueva al mapa de entidades 
 		/// @param id id Nombre de la entidad que se va a crear nueva
@@ -58,14 +66,18 @@ namespace eden {
 		/// @return _isRendering True = se renderiza | _isRendering = no se renderiza
 		inline bool GetToRender() { return _isRendering; }
 
-		/// @brief Pone a true el booleano correpondiente para indicar que va a ser destruida
-		inline void SetToDestroy() { _toDestroy = true; }
-
-		/// @brief Devuelve la variable que indica si la escena se va a eliminar
-		/// @return _toDestroy True = no se quiere destruir | _toDestroy = se va a destruir
-		inline bool GetToDestroy() { return _toDestroy; }
-
+		/// @brief Instancia una entidad en la escena. Puede cambiarse su posición y rotación
+		/// @param info Información de una entidad 
+		/// @param pos Nueva posición para entidad
+		/// @param rot Nueva orientación para entidad
+		/// @return Nueva entidad creada
+		/// @warning No se aplicarán cambios de posición ni rotación si la entidad NO tiene CTransform. NO se le pondrá uno automáticamente.
+		eden_ec::Entity* Instantiate(eden_script::EntityInfo* info, eden_utils::Vector3 pos, eden_utils::Quaternion rot);
+		eden_ec::Entity* Instantiate(eden_script::EntityInfo* info, eden_utils::Vector3 pos);
+		eden_ec::Entity* Instantiate(eden_script::EntityInfo* info, eden_utils::Quaternion rot);
+		eden_ec::Entity* Instantiate(eden_script::EntityInfo* info);
 	private:
+
 		///@brief identificador de escena
 		std::string _ID;
 
@@ -74,9 +86,6 @@ namespace eden {
 		///@brief booleano que indica si la escena esta activa. Si una escena no esta activa no se ejecutara el 
 		/// update pero si se seguirán renderizando sus entidades
 		bool _isRendering = true;
-
-		///@brief booleano que se activa cuando se quiere destruir una escena
-		bool _toDestroy = false;
 
 		/// @brief referencia a la camara actual
 		eden_ec::Entity* _currentCamera = nullptr;

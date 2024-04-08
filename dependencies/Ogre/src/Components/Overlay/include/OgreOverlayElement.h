@@ -49,7 +49,7 @@ namespace Ogre {
 
     /** Enum describing how the position / size of an element is to be recorded. 
     */
-    enum GuiMetricsMode
+    enum GuiMetricsMode : unsigned int
     {
         /// 'left', 'top', 'height' and 'width' are parametrics from 0.0 to 1.0
         GMM_RELATIVE,
@@ -62,7 +62,7 @@ namespace Ogre {
     /** Enum describing where '0' is in relation to the parent in the horizontal dimension.
     @remarks Affects how 'left' is interpreted.
     */
-    enum GuiHorizontalAlignment
+    enum GuiHorizontalAlignment : unsigned int
     {
         GHA_LEFT,
         GHA_CENTER,
@@ -71,7 +71,7 @@ namespace Ogre {
     /** Enum describing where '0' is in relation to the parent in the vertical dimension.
     @remarks Affects how 'top' is interpreted.
     */
-    enum GuiVerticalAlignment
+    enum GuiVerticalAlignment : unsigned int
     {
         GVA_TOP,
         GVA_CENTER,

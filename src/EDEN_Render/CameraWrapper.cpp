@@ -1,26 +1,36 @@
+#define _CRTDBG_MAP_ALLOC
+#pragma warning(push)
+#pragma warning(disable : 26495)
+#pragma warning(disable : 4251)
 #include <OgreCamera.h>
 #include <OgreSceneManager.h>
 #include <OgreRenderWindow.h>
 #include <OgreViewport.h>
+#pragma warning(pop)
 
 #include "CameraWrapper.h"
-#include "RenderManager.h"
-#include "Node.h"
 #include "Vector3.h"
 #include "Quaternion.h"
+#include "RenderManager.h"
+#include "NodeManager.h"
 
-render_wrapper::CameraWrapper::CameraWrapper(std::string entityID) : _entityID(entityID) {
-	_camera = getSceneManager()->createCamera(entityID + "_camera");
+Ogre::Viewport* render_wrapper::CameraWrapper::_viewport = nullptr;
+
+render_wrapper::CameraWrapper::CameraWrapper(std::string entityID, const std::string sceneID) : RenderObject(sceneID), _entityID(entityID), _sceneID(sceneID) {
+	_camera = GetSceneManager()->createCamera(entityID + "_camera_" + sceneID);
 	SetNearClipDistance(1.0f);
 	SetFarClipDistance(10000.0f);
 	SetAutoAspectRatio(true);
+	if (!render_wrapper::NodeManager::Instance()->HasNode(entityID, sceneID))
+		render_wrapper::NodeManager::Instance()->CreateSceneObject(entityID, sceneID);
 
-	if (!render_wrapper::Node::Instance()->HasNode(entityID))
-		render_wrapper::Node::Instance()->CreateSceneObject(entityID);
-
-	_viewport = eden_render::RenderManager::Instance()->_window.render->addViewport(_camera);
-	SetBackgroundColor(0.9f, 0.7f, 0.7f, 1.0f);
-	render_wrapper::Node::Instance()->Attach(GetRenderObject(), entityID);
+	if (_viewport == nullptr) _viewport = eden_render::RenderManager::Instance()->_window.render->addViewport(_camera);
+	else {
+		_viewport = eden_render::RenderManager::Instance()->_window.render->getViewport(0);
+		SetActiveCamera();
+	}
+	SetBackgroundColor(DEFAULT_BG_COLOR, 1.0f);
+	render_wrapper::NodeManager::Instance()->Attach(GetRenderObject(), entityID, sceneID);
 }
 
 void render_wrapper::CameraWrapper::SetFarClipDistance(float distance) {
@@ -35,26 +45,35 @@ void render_wrapper::CameraWrapper::SetBackgroundColor(float r, float g, float b
 	_viewport->setBackgroundColour(Ogre::ColourValue(r, g, b, a));
 }
 
+void render_wrapper::CameraWrapper::SetBackgroundColor(eden_utils::Vector3 rgb, float a) {
+	SetBackgroundColor(rgb.GetX(), rgb.GetY(), rgb.GetZ(), a);
+}
+
 void render_wrapper::CameraWrapper::SetAutoAspectRatio(bool set) {
 	_camera->setAutoAspectRatio(set);
 }
 
 void render_wrapper::CameraWrapper::SetCameraPosition(eden_utils::Vector3 pos) {
-	render_wrapper::Node::Instance()->SetPosition(pos, _entityID);
+	render_wrapper::NodeManager::Instance()->SetPosition(pos, _entityID, _sceneID);
 }
 
 void render_wrapper::CameraWrapper::SetCameraRotation(eden_utils::Quaternion rot) {
-	render_wrapper::Node::Instance()->SetOrientation(rot, _entityID);
+	render_wrapper::NodeManager::Instance()->SetOrientation(rot, _entityID, _sceneID);
 }
 
 void render_wrapper::CameraWrapper::LookAt(eden_utils::Vector3 lookat) {
-	render_wrapper::Node::Instance()->LookAt(lookat, _entityID);
+	render_wrapper::NodeManager::Instance()->LookAt(lookat, _entityID, _sceneID);
 }
 
 eden_utils::Vector3 render_wrapper::CameraWrapper::GetCameraPosition() const {
-	return render_wrapper::Node::Instance()->GetPosition(_entityID);
+	return render_wrapper::NodeManager::Instance()->GetPosition(_entityID, _sceneID);
 }
 
 Ogre::MovableObject* render_wrapper::CameraWrapper::GetRenderObject() {
 	return _camera;
+}
+
+void render_wrapper::CameraWrapper::SetActiveCamera()
+{
+	_viewport->setCamera(_camera);
 }

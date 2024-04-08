@@ -1,5 +1,6 @@
-#ifndef CAMERA_WRAPPER_H
-#define CAMERA_WRAPPER_H
+#define _CRTDBG_MAP_ALLOC
+#ifndef EDEN_CAMERA_WRAPPER_H
+#define EDEN_CAMERA_WRAPPER_H
 
 #include "RenderObject.h"
 
@@ -24,7 +25,7 @@ namespace render_wrapper {
 	public:
 		/// @brief Constructora por defecto para el wrapper de la camara
 		/// @param entityID ID de la entidad a la que se quiere asociar la camara
-		CameraWrapper(std::string entityID);
+		CameraWrapper(std::string entityID, const std::string sceneID);
 
 		/// @brief Destructora por defecto para el wrapper de la camara
 		~CameraWrapper() = default;
@@ -43,6 +44,7 @@ namespace render_wrapper {
 		/// @param b Porcentaje de azul en escala RGBA
 		/// @param a Porcentaje de transparencia (valor alfa) de la escala RGBA. Por defecto, establecido en 1.0f (opaco).
 		void SetBackgroundColor(float r, float g, float b, float a = 1.0f);
+		void SetBackgroundColor(eden_utils::Vector3 rgb, float a = 1.0f);
 
 		/// @brief Establece si el viewport que es dueno del frustrum de la camara puede recalcular la relacion de aspecto
 		/// si el frustrum cambia de tamano (esto es, se cambian las distancias de los planos cercano y lejano). Por defecto se usara
@@ -66,20 +68,29 @@ namespace render_wrapper {
 		/// @brief Devuelve la posicion de la camara
 		/// @return Vector3 con la posicion de la camara
 		eden_utils::Vector3 GetCameraPosition() const;
+		
+		/// @brief 
+		void SetActiveCamera();
 	private:
 		/// @brief String que contiene el nombre de la entidad a la que se le va a asociar la camara (solo para su uso en llamadas a nodos)
 		std::string _entityID;
+
+		std::string _sceneID;
 
 		/// @brief Puntero a una camara de OGRE, sobre la que trabajaremos
 		Ogre::Camera* _camera;
 
 		/// @brief Puntero a un viewport de OGRE, que servira de soporte para la camara
-		Ogre::Viewport* _viewport;
+		static Ogre::Viewport* _viewport;
 		
 		/// @brief Devuelve el objeto de render como movable object (en este caso, nuestra camara)
 		/// @return Un movable object de OGRE, siendo en este caso, la camara
 		Ogre::MovableObject* GetRenderObject() override;
+
 	};
+
+//#define DEFAULT_BG_COLOR eden_utils::Vector3(0.9f, 0.7f, 0.7f)
+#define DEFAULT_BG_COLOR eden_utils::Vector3(0.3f, 0.5f, 1.0f)
 }
 
 #endif //CAMERA_WRAPPER_H

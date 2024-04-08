@@ -1,10 +1,14 @@
 // This file is part of the course TPV2@UCM - Samir Genaim
-
-#ifndef SINGLETON_H
-#define SINGLETON_H
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+#ifndef EDEN_SINGLETON_H
+#define EDEN_SINGLETON_H
 
 #include <memory>
 #include <cassert>
+
+#include "defs.h"
 
 /// @brief Una clase que herede de esta clase tiene que implementar un constructor sin argumentos. 
 /// @brief Los argumentos necesarios para construir una clase se pasarán en el método Init() de la clase, que se ejecuta cuando se llama el método Instance() por primera vez.
@@ -27,16 +31,15 @@
  */
 
 template<typename T>
-class Singleton {
+class EDEN_API Singleton {
 
 public:
 	/// @brief No se pueden copiar objetos de este tipo
 	Singleton<T>& operator=(const Singleton<T>& o) = delete;
 	Singleton(const Singleton<T>& o) = delete;
-
 	/// @brief La destructora libera el puntero único
 	virtual ~Singleton() {
-		_instance.release();
+		//_instance.release();
 	}
 
 	/// @brief Este método se puede usar para llamar a la constructora de una clase heredera de Singleton con parámetros. 

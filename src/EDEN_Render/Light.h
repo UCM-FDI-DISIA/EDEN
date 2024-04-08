@@ -1,48 +1,54 @@
-#ifndef LIGHT_H
-#define LIGHT_H
+#define _CRTDBG_MAP_ALLOC
+#ifndef EDEN_LIGHT_H
+#define EDEN_LIGHT_H
 
-// Librerias adicionales
-#include "OgreLight.h"
-
-// Archivos del proyecto
 #include "RenderObject.h"
-
-enum LightType { LT_POINT, LT_DIRECTIONAL, LT_SPOTLIGHT};
+#include <string>
 
 namespace eden_utils {
 	class Vector3;
+	class Quaternion;
+}
+
+namespace Ogre {
+	class Light;
 }
 
 namespace render_wrapper
 {
+	/// @brief Clase que actua como wrapper de Ogre::Light y permite ajustar la posicion, direccion 
+	/// y orientacion de la luz. Ademas de su visivilidad color y tipo.
 	class Light : public RenderObject
 	{
 	public:
+		/// @brief enumerado que indica el tipo de luz 
 		/// @brief Constructora del Wrapper de libreria de renderizado de luces
 		/// @param enetityID Nombre de la entidad asociada 
-		/// @param type Tipo de luz (LT_POINT, LT_DIRECTIONAL, LT_SPOTLIGHT)
-		Light(const std::string entityID, LightType type);
-		
+		Light(const std::string entityID, const std::string sceneID, const std::string type,
+			  const eden_utils::Vector3 DifusseColor, const eden_utils::Vector3 SpecularColor);
 		~Light() {};
 
 		/// @brief Setea la visibilidad de la luz
 		/// @param visibility True -> Visible, False -> No visible
-		inline void SetVisible(bool visibility);
-
+		void SetVisible(bool visibility);
 		/// @brief Devuelve si la luz es visible o no
-		inline bool isVisible();
-
-		/// @brief 
+		bool isVisible();
+		/// @brief Ajusta el Diffuse Color de la luz
 		/// @param color Variable de color
-		inline void SetDiffuse(eden_utils::Vector3 color);
-
-		/// @brief 
+		void SetDiffuse(eden_utils::Vector3 color);
+		/// @brief Ajusta el Specular Color de la luz
 		/// @param color Variable de color
-		inline void SetSpecular(eden_utils::Vector3 color);
-
+		void SetSpecular(eden_utils::Vector3 color);
 		/// @brief Setea la direccion de la luz
 		/// @param dir Vector de direccion de la luz
-		inline void SetDirection(eden_utils::Vector3 dir);
+		void SetDirection(eden_utils::Vector3 dir);
+		/// @brief Setea la posicion de la luz
+		/// @param dir Vector de posicion de la luz
+		void SetPosition(eden_utils::Vector3 dir);
+		/// @brief Setea la orientacion de la luz
+		/// @param dir Quaternion de orientacion de la luz
+		void SetOrientation(eden_utils::Quaternion dir);
+
 	private:
 		/// @brief Puntero a la luz de la libreria de renderizado
 		Ogre::Light* _light = nullptr;

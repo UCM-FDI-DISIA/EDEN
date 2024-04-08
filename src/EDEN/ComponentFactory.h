@@ -1,10 +1,13 @@
-#ifndef COMPONENT_FACTORY_H
-#define COMPONENT_FACTORY_H
+#define _CRTDBG_MAP_ALLOC
+#ifndef EDEN_COMPONENT_FACTORY_H
+#define EDEN_COMPONENT_FACTORY_H
 
 #include <unordered_map>
 #include <string>
 
 #include "Singleton.h"
+
+#include "defs.h"
 
 namespace eden_ec {
 	class Component;
@@ -12,7 +15,7 @@ namespace eden_ec {
 
 	/// @brief Clase cuya utilidad reside en crear los componentes de las entidades del juego.
 	/// Es capaz de crearlas a partir de su tipo o a partir de su ID.
-	class ComponentFactory : public Singleton<ComponentFactory>
+	class EDEN_API ComponentFactory : public Singleton<ComponentFactory>
 	{
 		/// @brief Necesitamos acceder al m�todo 'init' de Component, que es protegido.
 		friend Component;

@@ -12,10 +12,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\EDEN_Script\ComponentArguments.cpp" />
+    <ClCompile Include="..\..\..\src\EDEN_Script\LuaManager.cpp" />
     <ClCompile Include="..\..\..\src\EDEN_Script\ScriptManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\EDEN_Script\ComponentArguments.h" />
+    <ClInclude Include="..\..\..\src\EDEN_Script\LuaManager.h" />
     <ClInclude Include="..\..\..\src\EDEN_Script\ScriptManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -52,15 +54,15 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IntDir>$(ProjectDir)..\..\..\temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
-    <OutDir>$(ProjectDir)..\..\..\lib\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)lib\$(Configuration)\</OutDir>
     <TargetName>$(ProjectName)_d</TargetName>
     <AllProjectBMIsArePublic>true</AllProjectBMIsArePublic>
     <PublicIncludeDirectories>$(SolutionDir)dependencies\LuaBridge\Source\;$(SolutionDir)dependencies\Lua\src\</PublicIncludeDirectories>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IntDir>$(ProjectDir)..\..\..\temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
-    <OutDir>$(ProjectDir)..\..\..\lib\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)lib\$(Configuration)\</OutDir>
     <AllProjectBMIsArePublic>true</AllProjectBMIsArePublic>
     <PublicIncludeDirectories>$(SolutionDir)dependencies\LuaBridge\Source\;$(SolutionDir)dependencies\Lua\src\</PublicIncludeDirectories>
   </PropertyGroup>
@@ -70,8 +72,10 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\dependencies\LuaBridge\Source\;$(ProjectDir)..\..\..\dependencies\Lua\src\src\;$(ProjectDir)..\..\..\src\EDEN;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\LuaBridge\Source\LuaBridge\;$(SolutionDir)dependencies\Lua\src\src\;$(SolutionDir)src\EDEN\;$(SolutionDir)src\EDEN_Physics\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <TreatAngleIncludeAsExternal>true</TreatAngleIncludeAsExternal>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -88,8 +92,10 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\dependencies\LuaBridge\Source\;$(ProjectDir)..\..\..\dependencies\Lua\src\src\;$(ProjectDir)..\..\..\src\EDEN;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\LuaBridge\Source\LuaBridge\;$(SolutionDir)dependencies\Lua\src\src\;$(SolutionDir)src\EDEN\;$(SolutionDir)src\EDEN_Physics\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <TreatAngleIncludeAsExternal>true</TreatAngleIncludeAsExternal>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

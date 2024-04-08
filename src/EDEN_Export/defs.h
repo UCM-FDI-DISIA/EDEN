@@ -6,5 +6,4 @@
 #else
 #define EDEN_API __declspec(dllimport)
 #endif
-
 #endif // EDEN_DEFS

@@ -17,7 +17,6 @@
 #ifndef EDEN_MAIN_CPP
 #define EDEN_MAIN_CPP
 
-
 #include <iostream>
 #include <filesystem>
 
@@ -61,6 +60,7 @@
 #include "RenderManager.h"
 
 #include <string>
+
 
 void RegisterComponents() {
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CTransform>();

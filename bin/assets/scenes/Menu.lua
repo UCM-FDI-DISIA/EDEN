@@ -27,9 +27,9 @@ Entity2 = {
 			Arguments = {
                 OverlayName= "button",
 				XPos = "50",
-                YPos = "80",
-                Width = "125",
-                Height = "75",
+                YPos = "70",
+                Width = "30",
+                Height = "15",
                 Texture1 = "MenuButton_Ini.png",
                 Texture2 = "MenuButton_Over.png",
                 Texture3 = "MenuButton_Clicked.png",
@@ -70,15 +70,23 @@ Entity3 = {
 	Name = "UI_Cursor",
 	Components = {
 		{
+			Name = "IMAGE",
+			Arguments = {
+				OverlayName= "image",
+				XPos = "0",
+				YPos = "0",
+				Width = "5",
+				Height = "5",
+				Texture = "Cursor.png",
+				Depth = "10"
+			}
+		},
+		{
 			Name = "CURSOR",
 			Arguments = {
-                Width = "20",
-                Height = "20",
-                Texture = "Cursor.png",
-                Depth = "10"
 			}
 		}
-	}	
+	}		
 }
 Entity4 = {
 	Name = "UI_Image",
@@ -89,8 +97,8 @@ Entity4 = {
                 OverlayName= "image",
 				XPos = "50",
                 YPos = "50",
-                Width = "650",
-                Height = "500",
+                Width = "100",
+                Height = "100",
                 Texture = "MainMenuBackground.png",
                 Depth = "1"
 			}

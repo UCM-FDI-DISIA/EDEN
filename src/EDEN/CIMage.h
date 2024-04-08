@@ -26,6 +26,10 @@ namespace eden_ec {
 		/// @brief Destructora de la clase Image
 		~CImage();
 
+		/// @brief Método que crea la Imagen
+		void Create(std::string overlayName, float xPos, float yPos, float width,
+			float height, std::string texture, int depth = 0);
+
 		/// @brief Construye el componente dado unos argumentos. Se obtendrán de una lectura de un .lua
 		/// @param args Argumentos leídos de .lua
 		void Init(eden_script::ComponentArguments* args) override;

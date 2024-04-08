@@ -12,17 +12,36 @@
 const std::string eden_ec::CButton::_id = "BUTTON";
 
 eden_ec::CButton::CButton(ButtonParams& params) : UIComponent() {
+	CreateButton(params);
+}
+
+void eden_ec::CButton::CreateButton(ButtonParams& params) {
+
+	Register(_ent->GetSceneID());
 
 	auto renderManager = eden_render::RenderManager::Instance();
 	int w = renderManager->GetWindowWidth();
 	int h = renderManager->GetWindowHeight();
 
-	int xx = (int) (w * params.xPos / 100);
-	int yy = (int) (h * params.yPos / 100);
+
+	if (params.width > 100)params.width = 100;
+	else if (params.width < 0)params.width = 0;
+	params.width = w * (params.width / 100);
+
+	if (params.height > 100)params.height = 100;
+	else if (params.height < 0)params.height = 0;
+	params.height = h * (params.height / 100);
+
+	if (params.xPos > 100)params.xPos = 100;
+	else if (params.xPos < 0)params.xPos = 0;
+	int xx = w * (params.xPos / 100);
+
+	if (params.yPos > 100)params.yPos = 100;
+	else if (params.yPos < 0)params.yPos = 0;
+	int yy = h * (params.yPos / 100);
 
 	params.xPos = xx - (params.width / 2);
 	params.yPos = yy - (params.height / 2);
-
 
 	_iniTex = params.iniTex;
 	_hoverTex = params.hoverTex;
@@ -47,46 +66,27 @@ void eden_ec::CButton::Start() {
 }
 
 void eden_ec::CButton::Init(eden_script::ComponentArguments* args) {
-	Register(_ent->GetSceneID());
 
-	auto renderManager = eden_render::RenderManager::Instance();
+	ButtonParams params;
+	params.xPos = args->GetValueToInt("XPos");
+	params.yPos = args->GetValueToInt("YPos");
 
-	int xPos = args->GetValueToInt("XPos");
-	int yPos = args->GetValueToInt("YPos");
+	params.width = args->GetValueToInt("Width");
+	params.height = args->GetValueToInt("Height");
 
-	int w = renderManager->GetWindowWidth();
-	int h = renderManager->GetWindowHeight();
-	int xx = w * xPos / 100;
-	int yy = h * yPos / 100;
+	params.iniTex = args->GetValueToString("Texture1");
+	params.hoverTex = args->GetValueToString("Texture2");
+	params.clickedTex = args->GetValueToString("Texture3");
 
-	int width = args->GetValueToInt("Width");
-	int height = args->GetValueToInt("Height");
+	params.overlayName = args->GetValueToString("OverlayName");
+	params.depth = args->GetValueToInt("Depth");
 
-	xPos = xx - (width / 2);
-	yPos = yy - (height / 2);
-
-	_iniTex = args->GetValueToString("Texture1");
-	_hoverTex = args->GetValueToString("Texture2");
-	_clickedTex = args->GetValueToString("Texture3");
-
-	CreateImage(args->GetValueToString("OverlayName"),(float)xPos, (float)yPos,
-		(float)width, (float)height, _iniTex, args->GetValueToInt("Depth"));
-
-	// Posiciones necesarias para el input de rat�n
-	// top + height
-	_topPosition = yPos;
-	_bottomPosition = _topPosition + height;
-	// left + width
-	_leftPosition = xPos;
-	_rightPosition = _leftPosition + width;
-
-	_oldScale.first = (float)width;
-	_oldScale.second = (float)height;
-
+	CreateButton(params);
 }
 
 void eden_ec::CButton::Update(float deltaTime) {
-	if (_oPos.second!=0 && (_oldScale.first != _oWidth || _oldScale.second != _oHeight))ButtonRectUpdate();
+	if (_oPos.second!=0 && (_oldScale.first != _oWidth || _oldScale.second != _oHeight))
+		ButtonRectUpdate();
 	CheckMousePos();
 }
 
@@ -98,6 +98,9 @@ void eden_ec::CButton::ButtonRectUpdate() {
 	// left + width
 	_leftPosition = (int)_oPos.first;
 	_rightPosition = _leftPosition + (int)_oWidth;
+
+	_oldScale.first = _oWidth;
+	_oldScale.second = _oHeight;
 }
 
 void eden_ec::CButton::OnButtonClick() {

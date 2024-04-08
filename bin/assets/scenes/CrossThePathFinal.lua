@@ -2332,8 +2332,8 @@ Entity114 = {
                 OverlayName= "image",
 				XPos = "85",
                 YPos = "80",
-                Width = "350",
-                Height = "250",
+                Width = "25",
+                Height = "25",
                 Texture = "ComingSoon.png",
                 Depth = "1"
 			}

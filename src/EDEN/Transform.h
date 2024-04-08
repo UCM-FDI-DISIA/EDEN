@@ -3,6 +3,7 @@
 #define EDEN_TRANSFORM_H
 
 #include <string>
+#include <vector>
 
 #include "Component.h"
 #include "Vector3.h"
@@ -49,15 +50,15 @@ namespace eden_ec {
 
 		/// @brief Setter de la posici�n
 		/// @param position Nueva posici�n del transform
-		inline void SetPosition(eden_utils::Vector3 position) { _position = position; }
+		inline void SetPosition(eden_utils::Vector3 position);
 
 		/// @brief Setter de la rotaci�n
 		/// @param rotation Nueva rotaci�n del transform
-		inline void SetRotation(eden_utils::Quaternion rotation) { _rotation = rotation; }
+		inline void SetRotation(eden_utils::Quaternion rotation);
 
 		/// @brief Setter de la escala
 		/// @param scale Nueva escala del transform
-		inline void SetScale(eden_utils::Vector3 scale) { _scale = scale; }
+		inline void SetScale(eden_utils::Vector3 scale);
 
 		/// @brief Suma la posici�n
 		/// @param position Vector que se va a sumar
@@ -96,6 +97,33 @@ namespace eden_ec {
 		/// @return Devuelve el vector right
 		eden_utils::Vector3 GetRight();
 
+		/// @brief Ajusta el padre de un transform
+		/// @param pTr Referencia al transform que queremos que sea el nuevo padre
+		void SetParent(CTransform* pTr);
+
+		/// @brief Devuelve el transform padre
+		/// @return La función devuelve un puntero al transform del padre si existe, si no, devuelve nullptr
+		CTransform* GetParent();
+
+		/// @brief Añade un transform al vector del hijos
+		/// @param cTr Referencia al transform del hijo que queremos añadir
+		void AddChild(CTransform* cTr);
+
+		/// @brief Quita un transform del vector del hijos
+		/// @param cTr Referencia al transform del hijo que queremos quitar
+		/// @return Devuelve true si la operación se pudo completar
+		bool RemoveChild(CTransform* cTr);
+
+		/// @brief Accede al transform de un hijo, si existe
+		/// @param index El índice del vector de hijos que se quiere consultar
+		/// @return Devuelve el transform del hijo, si no existe devuelve nullptr
+		CTransform* GetChild(int index);
+
+		/// @brief Devuelve el índice del hijo en el vector
+		/// @param cTr El transform del hijo
+		/// @return Devuelve el ínidice del hijo si existe, si no, devuelve -1
+		int HasChild(CTransform* cTr);
+
 		/// @brief Definición de método estático GetID necesario para construcción de componentes
 		static std::string GetID() { return _id; }
 	protected:
@@ -107,6 +135,10 @@ namespace eden_ec {
 		eden_utils::Quaternion _rotation;
 		/// @brief Variable de escala
 		eden_utils::Vector3 _scale;
+		/// @brief Vector de transform hijos
+		std::vector <eden_ec::CTransform*> _childrenVector;
+		/// @brief Referencia al padre de un transform
+		CTransform* _parentTransform = nullptr;
 	};
 }
 #endif

@@ -8,8 +8,6 @@
 #include "Entity.h"
 #include "Vector3.h"
 
-const std::string eden_ec::CMeshRenderer::_id = "MESH_RENDERER";
-
 eden_ec::CMeshRenderer::CMeshRenderer(std::string mesh) : Component(),
 _mesh(mesh) {};
 

@@ -5,8 +5,6 @@
 #include "Entity.h"
 #include <ComponentArguments.h>
 
-const std::string eden_ec::CParticleEmitter::_id = "PARTICLE_EMITTER";
-
 eden_ec::CParticleEmitter::CParticleEmitter()
 {
 	_time = 0;

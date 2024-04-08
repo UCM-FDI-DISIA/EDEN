@@ -5,8 +5,6 @@
 #include <ComponentArguments.h>
 
 
-const std::string eden_ec::CImage::_id = "IMAGE";
-
 eden_ec::CImage::CImage(std::string overlayName, float xPos, float yPos,
 	float width, float height, std::string texture,
 	int depth) {

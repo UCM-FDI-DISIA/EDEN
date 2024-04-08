@@ -11,8 +11,6 @@
 #include "Entity.h"
 #include "Hito1Prueba.h"
 
-const std::string eden_ec::CLuaBehaviour::_id = "BEHAVIOUR";
-
 eden_ec::CLuaBehaviour::CLuaBehaviour(std::string name) : _behaviourLua(nullptr), _name(name) {
 }
 

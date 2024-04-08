@@ -7,8 +7,6 @@
 #include "Quaternion.h"
 #include "Light.h"
 
-const std::string eden_ec::CLight::_id = "LIGHT";
-
 eden_ec::CLight::~CLight() {
 	eden_render::RenderManager::Instance()->removeRenderEntity(_ent);
 	delete _lightWrapper;

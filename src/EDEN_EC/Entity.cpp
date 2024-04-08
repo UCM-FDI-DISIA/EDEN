@@ -10,7 +10,7 @@ void eden_ec::Entity::AddComponents(eden_script::EntityInfo* entityInfo) {
         AddComponentByRead(&it);
     }
 }
-
+ 
 eden_ec::Component* eden_ec::Entity::GetComponent(std::string id) {
     auto it = _components.find(id);
     if (it == _components.end()) {

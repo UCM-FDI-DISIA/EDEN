@@ -14,7 +14,7 @@ void eden_ec::CTransform::Init(eden_script::ComponentArguments* args) {
 	_scale = args->GetValueToVector3("Scale");
 }
 
-inline void eden_ec::CTransform::SetPosition(eden_utils::Vector3 position)
+void eden_ec::CTransform::SetPosition(eden_utils::Vector3 position)
 {
 	for (eden_ec::CTransform* t : _childrenVector) {
 		t->SetPosition(position + (t->_position - t->_parentTransform->_position));
@@ -22,13 +22,13 @@ inline void eden_ec::CTransform::SetPosition(eden_utils::Vector3 position)
 	_position = position;
 }
 
-inline void eden_ec::CTransform::SetRotation(eden_utils::Quaternion rotation)
+void eden_ec::CTransform::SetRotation(eden_utils::Quaternion rotation)
 {
 	for (eden_ec::CTransform* t : _childrenVector) t->SetRotation(rotation);
 	_rotation = rotation;
 }
 
-inline void eden_ec::CTransform::SetScale(eden_utils::Vector3 scale)
+void eden_ec::CTransform::SetScale(eden_utils::Vector3 scale)
 {
 	for (eden_ec::CTransform* t : _childrenVector) {
 		eden_utils::Vector3 cScale(scale.GetX() * (t->_scale.GetX() / _scale.GetX()), scale.GetY() * (t->_scale.GetY() / _scale.GetY()), scale.GetZ() * (t->_scale.GetZ() / _scale.GetZ()));

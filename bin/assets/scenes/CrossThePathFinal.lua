@@ -2212,14 +2212,6 @@ Entity110 = {
 			}
 		},
 		{
-			Name = "LIGHT",
-			Arguments = {
-				LightType = "LT_SPOTLIGHT",
-				DiffuseColor = "5.0|0.0|0.0",
-				SpecularColor = "0.0|0.0|0.0"
-			}
-		},
-		{
 			Name = "PARTICLE_EMITTER",
 			Arguments = {
 				Loop = "true",
@@ -2307,7 +2299,7 @@ Entity113 = {
 				DiffuseColor = "1.0|1.0|1.0",
 				SpecularColor = "0.0|0.0|0.0"
 			}
-		},
+		}
 	}
 }
 

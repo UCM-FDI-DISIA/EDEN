@@ -19,4 +19,9 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\EDEN_Export\main.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+  </ItemGroup>
 </Project>

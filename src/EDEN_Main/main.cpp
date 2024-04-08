@@ -61,6 +61,8 @@
 
 #include <string>
 
+#include <windows.h>
+
 
 void RegisterComponents() {
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CTransform>();
@@ -105,17 +107,40 @@ int main(int argc, char* argv[]) {
 #endif
 		eden::Master* master = eden::Master::Instance();
 		//Creamos una escena inicial de pueba 
-		eden::SceneManager* scnManager = eden::SceneManager::Instance();
+		#ifdef _DEBUG
+			HMODULE game = LoadLibraryA("game_d.dll");
+		#else
+			HMODULE game = LoadLibraryA("game.dll");
+		#endif
+			if (game == NULL) { // mejor con assert
+				std::cerr << "no se ha cargado la dll correctamente" << std::endl;
+			}
+		
+			else {
+				typedef void (*SceneFunc)();
+				// SaludoFunc saludo = (SaludoFunc)(GetProcAddress(game, "saludo"));
+				SceneFunc sceneLoaded = reinterpret_cast<SceneFunc>(GetProcAddress(game, "loadScene"));
+		
+				if (sceneLoaded == NULL) {
+					std::cerr << "no existe el metodo saludo de la dll" << std::endl;
+				}
+		
+				else {
+					sceneLoaded();
+					master->Loop();
+					master->Close();
+				}
+		
+				FreeLibrary(game);
+			}
 		/// ----------- TESTEO REFACTORIZACION DE ESCENAS, NO BORRAR --------------------
 		/*scnManager->PushScene("test_scene");
 		scnManager->PushScene("test_scene2");		
 		scnManager->PopScene();*/
 		/// ------------------------------------------------------------------------------ 
 		
-		scnManager->PushScene("Menu");
+		// scnManager->PushScene("Menu");
 		//scnManager->PushScene("CrossThePathFinal");
-		master->Loop();
-		master->Close();
 	}
 #ifdef __clang__
 	catch (std::runtime_error e) {

@@ -1,3 +1,4 @@
+#pragma once
 #ifndef EDEN_DEFS
 #define EDEN_DEFS
 #ifdef EDEN_EXPORTS

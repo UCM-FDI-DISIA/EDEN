@@ -91,6 +91,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\src\EDEN_Debug\Debug.h" />
     <ClInclude Include="..\..\src\EDEN_Debug\DebugDrawer.h" />
+    <ClInclude Include="..\..\src\EDEN_Render\RenderManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

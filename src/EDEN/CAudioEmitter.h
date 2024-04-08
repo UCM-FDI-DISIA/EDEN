@@ -11,7 +11,6 @@ namespace audio_wrapper {
 	class SoundClip;
 	class Sound;
 }
-
 namespace eden_ec {
 	class CTransform;
 	/// @brief Componente que se encargara de emitir audio tanto en 2D como en 3D y controlarlo. Para el audio en 3D es necesario que haya un listener

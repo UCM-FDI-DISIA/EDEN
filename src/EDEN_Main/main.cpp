@@ -106,37 +106,39 @@ int main(int argc, char* argv[]) {
 		std::filesystem::current_path(std::filesystem::canonical(std::string(argv[0]) + "/.."));
 #endif
 		eden::Master* master = eden::Master::Instance();
+		eden::SceneManager* scnManager = eden::SceneManager::Instance();
 		//Creamos una escena inicial de pueba 
-		#ifdef _DEBUG
-			HMODULE game = LoadLibraryA("game_d.dll");
-		#else
-			HMODULE game = LoadLibraryA("game.dll");
-		#endif
-			if (game == NULL) { // mejor con assert
-				std::cerr << "no se ha cargado la dll correctamente" << std::endl;
-			}
-		
-			else {
-				typedef void (*SceneFunc)();
-				// SaludoFunc saludo = (SaludoFunc)(GetProcAddress(game, "saludo"));
-				SceneFunc sceneLoaded = reinterpret_cast<SceneFunc>(GetProcAddress(game, "loadScene"));
-		
-				if (sceneLoaded == NULL) {
-					std::cerr << "no existe el metodo saludo de la dll" << std::endl;
-				}
-		
-				else {
-					sceneLoaded();
+		//#ifdef _DEBUG
+		//	HMODULE game = LoadLibraryA("game_d.dll");
+		//#else
+		//	HMODULE game = LoadLibraryA("game.dll");
+		//#endif
+		//	if (game == NULL) { // mejor con assert
+		//		std::cerr << "no se ha cargado la dll correctamente" << std::endl;
+		//	}
+		//
+		//	else {
+		//		typedef void (*SceneFunc)();
+		//		// SaludoFunc saludo = (SaludoFunc)(GetProcAddress(game, "saludo"));
+		//		SceneFunc sceneLoaded = reinterpret_cast<SceneFunc>(GetProcAddress(game, "loadScene"));
+		//
+		//		if (sceneLoaded == NULL) {
+		//			std::cerr << "no existe el metodo saludo de la dll" << std::endl;
+		//		}
+		//
+		//		else {
+					// sceneLoaded();
+					scnManager->PushScene("Menu");
 					master->Loop();
 					master->Close();
-				}
+			//	}
 		
-				FreeLibrary(game);
-			}
+			//	FreeLibrary(game);
+			//}
 		/// ----------- TESTEO REFACTORIZACION DE ESCENAS, NO BORRAR --------------------
-		/*scnManager->PushScene("test_scene");
-		scnManager->PushScene("test_scene2");		
-		scnManager->PopScene();*/
+		// scnManager->PushScene("test_scene");
+		// scnManager->PushScene("test_scene2");		
+		// scnManager->PopScene();
 		/// ------------------------------------------------------------------------------ 
 		
 		// scnManager->PushScene("Menu");

@@ -61,6 +61,7 @@
       <PreprocessorDefinitions>EDEN_EXPORTS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\src\EDEN_Audio\;$(ProjectDir)..\..\src\EDEN_Debug\;$(ProjectDir)..\..\src\EDEN_EC\;$(ProjectDir)..\..\src\EDEN_Input\;$(ProjectDir)..\..\src\EDEN_Managers\;$(ProjectDir)..\..\src\EDEN_Physics\;$(ProjectDir)..\..\src\EDEN_Render\;$(ProjectDir)..\..\src\EDEN_Script\;$(ProjectDir)..\..\src\EDEN_Utils\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -76,6 +77,7 @@
       <PreprocessorDefinitions>EDEN_EXPORTS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\src\EDEN_Audio\;$(ProjectDir)..\..\src\EDEN_Debug\;$(ProjectDir)..\..\src\EDEN_EC\;$(ProjectDir)..\..\src\EDEN_Input\;$(ProjectDir)..\..\src\EDEN_Managers\;$(ProjectDir)..\..\src\EDEN_Physics\;$(ProjectDir)..\..\src\EDEN_Render\;$(ProjectDir)..\..\src\EDEN_Script\;$(ProjectDir)..\..\src\EDEN_Utils\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -86,6 +88,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\EDEN_Export\defs.h" />
+    <ClInclude Include="..\..\src\EDEN_Export\export.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EDEN_Audio\EDEN_Audio.vcxproj">
@@ -115,6 +118,9 @@
     <ProjectReference Include="..\EDEN_Utils\EDEN_Utils.vcxproj">
       <Project>{e37abaab-f932-4f71-9f44-c1b02e1b8e9e}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\EDEN_Export\export.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

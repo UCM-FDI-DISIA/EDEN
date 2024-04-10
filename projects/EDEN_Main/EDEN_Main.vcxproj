@@ -61,12 +61,12 @@
       <PreprocessorDefinitions>EDEN_EXPORTS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\src\EDEN_Audio\;$(ProjectDir)..\..\src\EDEN_Debug\;$(ProjectDir)..\..\src\EDEN_EC\;$(ProjectDir)..\..\src\EDEN_Export\;$(ProjectDir)..\..\src\EDEN_Input\;$(ProjectDir)..\..\src\EDEN_Managers\;$(ProjectDir)..\..\src\EDEN_Physics\;$(ProjectDir)..\..\src\EDEN_Render\;$(ProjectDir)..\..\src\EDEN_Script\;$(ProjectDir)..\..\src\EDEN_Utils\;$(ProjectDir)..\..\dependencies\LuaBridge\Source\LuaBridge\;$(ProjectDir)..\..\dependencies\Lua\src\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\src\EDEN_Export\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>EDEN_Render_d.lib;EDEN_Input_d.lib;EDEN_Physics_d.lib;EDEN_Script_d.lib;EDEN_Audio_d.lib;EDEN_Debug_d.lib;EDEN_EC_d.lib;EDEN_Managers_d.lib;EDEN_Utils_d.lib;OgreMain_d.lib;OgreOverlay_d.lib;SDL2d.lib;SDL2maind.lib;OgreRTShaderSystem_d.lib;BulletDynamics_Debug.lib;BulletCollision_Debug.lib;LinearMath_Debug.lib;Bullet3Common_Debug.lib;Bullet3Dynamics_Debug.lib;irrKlang.lib;lua.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>EDEN_Export_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(ProjectDir)..\..\dependencies\Bullet\build\$(Platform)\lib\$(Configuration)\;$(ProjectDir)..\..\dependencies\SDL\build\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\dependencies\Ogre\build\$(Platform)\lib\$(Configuration)\;$(ProjectDir)..\..\dependencies\Lua\build\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\lib\$(Configuration)\;$(ProjectDir)..\..\dependencies\irrKlang\build\$(Platform);$(ProjectDir)..\..\dependencies\Lua\build\$(Platform)\$(Configuration)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -79,14 +79,14 @@
       <PreprocessorDefinitions>EDEN_EXPORTS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\src\EDEN_Audio\;$(ProjectDir)..\..\src\EDEN_Debug\;$(ProjectDir)..\..\src\EDEN_EC\;$(ProjectDir)..\..\src\EDEN_Export\;$(ProjectDir)..\..\src\EDEN_Input\;$(ProjectDir)..\..\src\EDEN_Managers\;$(ProjectDir)..\..\src\EDEN_Physics\;$(ProjectDir)..\..\src\EDEN_Render\;$(ProjectDir)..\..\src\EDEN_Script\;$(ProjectDir)..\..\src\EDEN_Utils\;$(ProjectDir)..\..\dependencies\LuaBridge\Source\LuaBridge\;$(ProjectDir)..\..\dependencies\Lua\src\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\src\EDEN_Export\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>EDEN_Render.lib;EDEN_Input.lib;EDEN_Physics.lib;EDEN_Script.lib;EDEN_Audio.lib;EDEN_Debug.lib;EDEN_EC.lib;EDEN_Managers.lib;EDEN_Utils.lib;OgreMain.lib;OgreOverlay.lib;SDL2.lib;SDL2main.lib;OgreRTShaderSystem.lib;BulletDynamics.lib;BulletCollision.lib;LinearMath.lib;Bullet3Common.lib;Bullet3Dynamics.lib;irrKlang.lib;lua.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>EDEN_Export.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(ProjectDir)..\..\dependencies\Bullet\build\$(Platform)\lib\$(Configuration)\;$(ProjectDir)..\..\dependencies\SDL\build\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\dependencies\Ogre\build\$(Platform)\lib\$(Configuration)\;$(ProjectDir)..\..\dependencies\Lua\build\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\lib\$(Configuration)\;$(ProjectDir)..\..\dependencies\irrKlang\build\$(Platform);$(ProjectDir)..\..\dependencies\Lua\build\$(Platform)\$(Configuration)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -94,32 +94,8 @@
     <ClCompile Include="..\..\src\EDEN_Main\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EDEN_Audio\EDEN_Audio.vcxproj">
-      <Project>{65d12563-7857-4feb-a473-02cf29eca253}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\EDEN_Debug\EDEN_Debug.vcxproj">
-      <Project>{2d7adfc5-a094-43b3-8020-4c5af5ff6998}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\EDEN_EC\EDEN_EC.vcxproj">
-      <Project>{8cd86491-e6e3-4225-9be0-f67da80e059a}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\EDEN_Input\EDEN_Input.vcxproj">
-      <Project>{e56776db-8887-4913-b7b6-8f8b489cc4e2}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\EDEN_Managers\EDEN_Managers.vcxproj">
-      <Project>{f8ddd9c3-ee9a-44eb-8c7f-71af3ecdfccc}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\EDEN_Physics\EDEN_Physics.vcxproj">
-      <Project>{5578e511-8ea7-4456-82f0-dc3334ceabed}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\EDEN_Render\EDEN_Render.vcxproj">
-      <Project>{f5ca8298-8abd-4899-9d89-3c6d64d6985e}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\EDEN_Script\EDEN_Script\EDEN_Script.vcxproj">
-      <Project>{e0ded4fb-14ba-40e6-95bb-21ae65321226}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\EDEN_Utils\EDEN_Utils.vcxproj">
-      <Project>{e37abaab-f932-4f71-9f44-c1b02e1b8e9e}</Project>
+    <ProjectReference Include="..\EDEN_Export\EDEN_Export.vcxproj">
+      <Project>{d2cd25b4-633f-4916-b5fa-860855288d4b}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -12,7 +12,7 @@ namespace audio_wrapper {
 
 namespace eden_audio {
     /// @brief Clase que se encargara del manejo de los recursos de sonido del motor y permite obtener clips de sonido
-    class AudioManager : public Singleton<AudioManager> {
+    class __declspec(dllexport) AudioManager : public Singleton<AudioManager> {
         friend Singleton<AudioManager>;
     public:
         /// @brief Constructora por defecto del manager de audio

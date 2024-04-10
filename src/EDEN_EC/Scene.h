@@ -20,7 +20,7 @@ namespace eden_ec {
 namespace eden {
 	/// @brief Clase que define una escena de juego. Tendra un render, un update y todos los metodos que se encarguen del manejo de los gameobjects que
 	/// la componen.
-	class EDEN_API Scene
+	class __declspec(dllexport) Scene
 	{
 	public:
 		/// @brief Constructora por defecto de la clase Scene

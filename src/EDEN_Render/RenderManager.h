@@ -52,7 +52,7 @@ namespace render_wrapper {
 namespace eden_render
 {
 	class InfoRenderWorld;
-	class RenderManager : public Singleton<RenderManager>
+	class __declspec(dllexport) RenderManager : public Singleton<RenderManager>
 	{
 	public:
 		/// @brief Singleton del RenderManager

@@ -11,7 +11,7 @@ class InputWrapper;
 namespace eden_input 
 {
 	/// @brief Clase que gestiona la entrada de datos del usuario.
-	class InputManager : public Singleton<InputManager>
+	class __declspec(dllexport) InputManager : public Singleton<InputManager>
 	{
 		friend Singleton<InputManager>;
 	public:

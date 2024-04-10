@@ -43,7 +43,7 @@ namespace eden_script {
 	};
 	
 	/// @brief Funciona como Wrapper de Lua y es capaz de leer de un .lua las entidades que necesitan ser creadas en escena y su informacion.
-	class ScriptManager : public Singleton<ScriptManager> {
+	class __declspec(dllexport) ScriptManager : public Singleton<ScriptManager> {
 
 		friend Singleton<ScriptManager>;
 

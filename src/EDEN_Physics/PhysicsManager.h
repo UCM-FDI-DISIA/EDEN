@@ -82,7 +82,7 @@ namespace physics_manager {
 		}
 	};
 
-	class PhysicsManager : public Singleton<PhysicsManager>
+	class __declspec(dllexport) PhysicsManager : public Singleton<PhysicsManager>
 	{
 		friend Singleton<PhysicsManager>;
 		friend physics_wrapper::RigidBody;

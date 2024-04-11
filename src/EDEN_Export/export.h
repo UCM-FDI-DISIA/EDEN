@@ -19,8 +19,8 @@ namespace eden_export {
 	__declspec(dllexport) void StopEDEN();
 }
 
-eden::Master* master;
-eden::SceneManager* scnManager;
-eden_error::ErrorHandler* errorHandler;
+eden::Master* master = nullptr;
+eden::SceneManager* scnManager = nullptr;
+eden_error::ErrorHandler* errorHandler = nullptr;
 
 #endif /*EDEN_EXPORT_H_*/

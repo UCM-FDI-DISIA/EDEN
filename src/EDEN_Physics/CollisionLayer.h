@@ -12,7 +12,7 @@ namespace physics_manager {
 }
 
 namespace physics_wrapper {
-	class CollisionLayer
+	class __declspec(dllexport) CollisionLayer
 	{
 		friend physics_manager::PhysicsManager;
 	private:

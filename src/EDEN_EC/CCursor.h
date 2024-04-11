@@ -17,7 +17,7 @@ namespace eden_input {
 namespace eden_ec {
 	class CImage;
 	/// @brief Clase que representa el cursor
-	class EDEN_API CCursor: public Component {
+	class __declspec(dllexport) CCursor: public Component {
 	public:
 		/// @brief Constructora de la clase Cursor
 		CCursor() = default;

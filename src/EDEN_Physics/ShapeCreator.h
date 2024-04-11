@@ -14,7 +14,7 @@ namespace eden_utils {
 namespace physics_wrapper {
 	class RigidBody;
 	/// @brief Clase para construir formas para el RigidBody
-	class ShapeCreator
+	class __declspec(dllexport) ShapeCreator
 	{
 		friend physics_wrapper::RigidBody;
 	private:

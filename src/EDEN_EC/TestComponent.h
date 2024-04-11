@@ -9,7 +9,7 @@
 namespace eden_ec {
 	/// @brief Componente creado para comprobar el correcto funcionamiento del
 	/// sistema Entidad-Componente del motor. Se debería borrar a final de proyecto.
-	class EDEN_API cTestComponent : public Component
+	class __declspec(dllexport) cTestComponent : public Component
 	{
 	public:
 		/// @brief Constructora por defecto

@@ -22,7 +22,7 @@ namespace render_wrapper {
 	/// unordered_map de strings (nombres de las animaciones) y pairs de AnimationStates de Ogre 
 	/// (las animaciones como tal), y strings (nombres de las animaciones) que queremos que empiezen 
 	/// cuando esa acabe). 
-	class Animator
+	class __declspec(dllexport) Animator
 	{
 	public:
 

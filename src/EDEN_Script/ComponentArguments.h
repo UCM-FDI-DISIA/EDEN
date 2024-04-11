@@ -14,7 +14,7 @@ namespace eden_script {
 	class ScriptManager;
 
 	/// @brief Da forma y es capaz de parsear los componentes leidos desde los mapas .lua generados por un usuario.
-	class ComponentArguments
+	class __declspec(dllexport) ComponentArguments
 	{
 		friend ScriptManager;
 	public:

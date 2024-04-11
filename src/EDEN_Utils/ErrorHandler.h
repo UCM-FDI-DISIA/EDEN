@@ -22,7 +22,7 @@
 #endif
 
 namespace eden_error {
-	class EDEN_API ErrorHandler : public Singleton<ErrorHandler> {
+	class __declspec(dllexport) ErrorHandler : public Singleton<ErrorHandler> {
 		friend class Singleton<ErrorHandler>;
 	public:
 		/// @brief Caracter que separa en una excepci�n el t�tulo de su descripci�n

@@ -17,7 +17,7 @@ namespace eden_ec {
 	class AudioEmitter;
 	class AudioListener;
 
-	class EDEN_API Hito1Prueba : public Component {
+	class __declspec(dllexport) Hito1Prueba : public Component {
 	public:
 		Hito1Prueba();
 		~Hito1Prueba() = default;

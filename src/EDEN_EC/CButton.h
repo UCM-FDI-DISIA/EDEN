@@ -17,7 +17,7 @@ namespace eden_ec {
 	class CLuaBehaviour;
 
 	/// @brief Par�metros del bot�n
-	struct EDEN_API ButtonParams {
+	struct ButtonParams {
 		std::string overlayName = std::string();
 		float xPos = 0, yPos = 0;
 		int depth = 0;
@@ -28,7 +28,7 @@ namespace eden_ec {
 	};
 
 	/// @brief Clase que representa un bot�n en la UI
-	class EDEN_API CButton : public eden_ec::UIComponent {
+	class __declspec(dllexport) CButton : public eden_ec::UIComponent {
 	public:
 
 		/// @brief Constructora vacia

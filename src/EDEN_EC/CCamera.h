@@ -18,7 +18,7 @@ namespace eden_utils {
 namespace eden_ec {
 	/// @brief Componente de camara.
 	class CTransform;
-	class EDEN_API CCamera : public Component {
+	class __declspec(dllexport) CCamera : public Component {
 	public:
 		/// @brief Constructora por defecto de la camara
 		CCamera() = default;

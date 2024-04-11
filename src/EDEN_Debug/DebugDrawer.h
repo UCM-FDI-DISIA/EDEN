@@ -18,7 +18,7 @@ namespace Ogre {
 
 namespace eden_debug {
 	/// @brief Dibuja las bounding boxes de los objetos fisicos
-	class DebugDrawer : public btIDebugDraw
+	class __declspec(dllexport) DebugDrawer : public btIDebugDraw
 	{
 	public:
 

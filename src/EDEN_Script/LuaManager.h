@@ -18,7 +18,7 @@ namespace eden_ec {
 namespace eden_script {
 
 	/// @brief Clase encargada de gestionar la maquina virtual de Lua y los scripts de comportamiento
-	class LuaManager
+	class __declspec(dllexport) LuaManager
 	{
 	public:
 	

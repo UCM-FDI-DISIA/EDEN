@@ -14,7 +14,7 @@
 namespace eden_ec {
 
 	/// @brief Componente que tiene toda entidad que gestiona su posici�n, rotaci�n y escala
-	class EDEN_API CTransform : public Component
+	class __declspec(dllexport) CTransform : public Component
 	{
 	public:
 		enum AXIS_REFERENCE {AXIS_WORLD, AXIS_LOCAL};

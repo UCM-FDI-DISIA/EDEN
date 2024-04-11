@@ -13,7 +13,7 @@ namespace eden_script {
 namespace eden_ec {
     class Entity;
 	/// @brief Clase gen�rica de component usada para la implementaci�n de los comportamientos de las entidades
-	class EDEN_API Component
+	class __declspec(dllexport) Component
 	{
         friend Entity;
     public:

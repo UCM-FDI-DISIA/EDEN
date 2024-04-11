@@ -31,7 +31,7 @@ namespace physics_wrapper {
 		const eden_ec::Entity* entityHit = nullptr;
 	};
 
-	class RayCast : public Singleton<RayCast>
+	class __declspec(dllexport) RayCast : public Singleton<RayCast>
 	{
 		friend Singleton<RayCast>;
 

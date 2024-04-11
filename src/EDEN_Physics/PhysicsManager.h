@@ -41,7 +41,7 @@ namespace eden_debug {
 
 namespace physics_manager {
 	class InfoPhysicWorld;
-	class LayerInfo {
+	class __declspec(dllexport) LayerInfo {
 	private:
 		/// @brief Nombre de la capa
 		std::string _name;
@@ -172,7 +172,7 @@ namespace physics_manager {
 		void RemovePhysicsScene(std::string sceneToRemoveID, std::string newCurrentSceneID);
 	};
 
-	class InfoPhysicWorld
+	class __declspec(dllexport) InfoPhysicWorld
 	{
 		friend PhysicsManager;
 

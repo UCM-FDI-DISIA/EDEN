@@ -16,7 +16,7 @@ namespace Ogre {
 
 namespace render_wrapper
 {
-	class Light : public RenderObject
+	class __declspec(dllexport) Light : public RenderObject
 	{
 	public:
 		/// @brief enumerado que indica el tipo de luz 

@@ -35,7 +35,7 @@ namespace render_wrapper {
 	/// @brief Cuando se quiera realizar alguna accion, NodeManager buscara el Nodo asociado y, si no lo encuentra, lo crea ya que todo
 	/// objeto en escena funciona mediante nodos. Esto garantiza que solo haya un nodo en cada Entidad y no por Componente y, por tanto,
 	/// que sea mas eficiente a la hora de actualizar su Transform.
-	class NodeManager :  public Singleton<NodeManager>
+	class __declspec(dllexport) NodeManager :  public Singleton<NodeManager>
 	{
 	public:
 		friend Singleton<NodeManager>;

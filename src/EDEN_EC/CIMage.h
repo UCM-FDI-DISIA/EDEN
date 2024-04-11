@@ -14,7 +14,7 @@ namespace Ogre {
 
 namespace eden_ec {
 	/// @brief Clase que representa una imágen en la UI
-	class EDEN_API CImage : public eden_ec::UIComponent {
+	class __declspec(dllexport) CImage : public eden_ec::UIComponent {
 	public:
 		/// @brief Constructora de la clase Image
 		CImage() = default;

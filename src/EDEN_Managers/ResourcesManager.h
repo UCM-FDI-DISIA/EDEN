@@ -23,7 +23,7 @@
 
 namespace eden_resources {
     /// @brief Clase encargada de gestionar los recursos de UI
-    class EDEN_API ResourcesManager : public Singleton<ResourcesManager> {
+    class __declspec(dllexport) ResourcesManager : public Singleton<ResourcesManager> {
         friend Singleton<ResourcesManager>;
     public:
 

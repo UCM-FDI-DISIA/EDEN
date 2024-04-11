@@ -10,7 +10,7 @@ namespace irrklang {
 namespace audio_wrapper {
 	/// @brief Clase que proporciona una abstraccion a las fuentes de sonido de Irrklang como un "clip" de sonido, al estilo de Unity.
 	/// El clip solo contendra informacion acerca de la fuente y del nombre del archivo del que proviene.
-	class SoundClip {
+	class __declspec(dllexport) SoundClip {
 	public:
 		/// @brief Constructora por defecto del clip de sonido
 		/// @param filename Nombre del archivo (incluido el .mp3, .wav, .ogg, lo que sea) de sonido

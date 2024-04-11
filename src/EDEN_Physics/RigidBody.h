@@ -29,7 +29,7 @@ namespace physics_manager {
 namespace physics_wrapper {
 	class CollisionCallback;
 
-	class RigidBody
+	class __declspec(dllexport) RigidBody
 	{
 		friend CollisionCallback;
 		friend physics_manager::PhysicsManager;

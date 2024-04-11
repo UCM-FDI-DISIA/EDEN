@@ -10,7 +10,7 @@
 
 namespace eden_utils {
 	class Vector3;
-	class EDEN_API Quaternion
+	class __declspec(dllexport) Quaternion
 	{
 	public:
 		/// @brief Constructora por defecto del cuaterni�n

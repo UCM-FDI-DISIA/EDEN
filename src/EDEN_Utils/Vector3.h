@@ -5,7 +5,7 @@
 #include "defs.h"
 
 namespace eden_utils {
-	class EDEN_API Vector3
+	class __declspec(dllexport) Vector3
 	{
 	public:
 		/// @brief Constructora por defecto de Vector3

@@ -24,7 +24,7 @@ namespace eden_input {
 }
 namespace eden_ec {
 	/// @brief Clase base de la que heredan todos los elementos de la UI
-	class UIComponent : public Component 
+	class __declspec(dllexport) UIComponent : public Component
 	{
 	public:
 		/// @brief Constructora de la clase

@@ -20,7 +20,7 @@ namespace eden_ec {
 	/// @brief Clase que define las Entidades de nuestro juego como contenedores de Componentes,
     /// que definir�n el comportamiento y las distinguir�n de otras entidades.
     /// Se encarga de gestionar sus componentes, haciendo las llamdas pertinentes a los mismo
-	class EDEN_API Entity
+	class __declspec(dllexport) Entity
 	{
         friend class eden_script::LuaManager;
 	public:

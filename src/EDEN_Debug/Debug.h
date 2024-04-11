@@ -24,7 +24,7 @@ namespace eden_debug {
 
 	class DebugDrawer;
 
-	class Debug
+	class __declspec(dllexport) Debug
 	{
 	public:
 		Debug(std::string id, std::string sceneID);

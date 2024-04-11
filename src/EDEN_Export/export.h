@@ -25,7 +25,7 @@ namespace eden_export
 {
 	/// @brief El master es la clase singleton encargada de llevar el bucle principal de juego
 	/// @brief Es esta clase que gestiona el tiempo del juego
-	class Master : public Singleton<Master>
+	class __declspec(dllexport) Master : public Singleton<Master>
 	{
 		friend Singleton<Master>;
 

@@ -8,7 +8,7 @@ namespace Ogre {
 }
 
 namespace render_wrapper {
-	class RenderObject {
+	class __declspec(dllexport) RenderObject {
 	public:
 		RenderObject(std::string sceneID);
 		virtual ~RenderObject() = default;

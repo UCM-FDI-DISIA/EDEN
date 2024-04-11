@@ -31,7 +31,7 @@
  */
 
 template<typename T>
-class Singleton {
+class __declspec(dllexport) Singleton {
 
 public:
 	/// @brief No se pueden copiar objetos de este tipo

@@ -201,7 +201,7 @@ namespace eden_render
 		bool _resized = false;
 	};
 
-	class InfoRenderWorld
+	class __declspec(dllexport) InfoRenderWorld
 	{
 		friend RenderManager;
 		friend render_wrapper::RenderObject;

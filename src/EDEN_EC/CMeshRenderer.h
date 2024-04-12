@@ -28,7 +28,7 @@ namespace render_wrapper
 
 namespace eden_ec {
 	class CAnimator;
-	class __declspec(dllexport) CMeshRenderer : public Component
+	class EDEN_API CMeshRenderer : public Component
 	{
 		friend eden_ec::CAnimator;
 	public:

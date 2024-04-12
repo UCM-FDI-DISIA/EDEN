@@ -28,7 +28,7 @@ namespace eden_utils {
 namespace eden {
 class Scene;
 /// @brief Clase que se encarga de gestionar las escenas, es decir, cargarlas y descargarlas, hacer su update, etc...
-class __declspec(dllexport) SceneManager : public Singleton<SceneManager> {
+class EDEN_API SceneManager : public Singleton<SceneManager> {
 	friend Singleton<SceneManager>;
 
 public:

@@ -21,7 +21,7 @@ namespace eden_render {
 namespace render_wrapper {
 	/// @brief Clase que se encarga de simplificar y "traducir" a un lenguaje que no tengan nada que ver con OGRE las llamadas a metodos relacionadas
 	/// con la camara de OGRE
-	class __declspec(dllexport) CameraWrapper : public RenderObject {
+	class CameraWrapper : public RenderObject {
 	public:
 		/// @brief Constructora por defecto para el wrapper de la camara
 		/// @param entityID ID de la entidad a la que se quiere asociar la camara

@@ -9,7 +9,7 @@
 #pragma warning(pop)
 
 	/// @brief Clase que gestiona los eventos de SDL
-	class __declspec(dllexport) InputWrapper
+	class InputWrapper
 	{
 	public:
 		/// @brief Constructora por defecto de la clase InputWrapper

@@ -12,7 +12,7 @@ namespace eden_ec {
 	class UIComponent;
 }
 namespace eden_canvas {
-	class __declspec(dllexport) Canvas :public Singleton<Canvas>
+	class Canvas :public Singleton<Canvas>
 	{
 	public:
 		friend Singleton<Canvas>;

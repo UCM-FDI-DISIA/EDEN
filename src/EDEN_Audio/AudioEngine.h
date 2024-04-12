@@ -21,7 +21,7 @@ namespace audio_wrapper {
 	/// puesto que solo necesitamos un unico motor de sonido y no varios.
 	/// El motor de sonido gestiona la creacion y reproduccion de sonidos desde archivos,
 	/// tanto .wav, .ogg, .mp3 y varios mas.
-	class __declspec(dllexport) AudioEngine : public Singleton<AudioEngine> {
+	class AudioEngine : public Singleton<AudioEngine> {
 		friend Singleton<AudioEngine>;
 	public:
 		/// Destructora por defecto del wrapper del motor de sonido

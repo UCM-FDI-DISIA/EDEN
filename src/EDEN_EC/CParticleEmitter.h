@@ -20,7 +20,7 @@ namespace render_wrapper {
 }
 
 namespace eden_ec {
-	class __declspec(dllexport) CParticleEmitter : public Component
+	class EDEN_API CParticleEmitter : public Component
 	{
 	public:
 		/// @brief Constructora por defecto del componente ParticleEmitter

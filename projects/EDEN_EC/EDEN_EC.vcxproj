@@ -27,6 +27,8 @@
     <ClInclude Include="..\..\src\EDEN_EC\CText.h" />
     <ClInclude Include="..\..\src\EDEN_EC\Entity.h" />
     <ClInclude Include="..\..\src\EDEN_EC\Hito1Prueba.h" />
+    <ClInclude Include="..\..\src\EDEN_EC\Hito2MenuPausa.h" />
+    <ClInclude Include="..\..\src\EDEN_EC\Hito2Prueba.h" />
     <ClInclude Include="..\..\src\EDEN_EC\Scene.h" />
     <ClInclude Include="..\..\src\EDEN_EC\TestComponent.h" />
     <ClInclude Include="..\..\src\EDEN_EC\Transform.h" />
@@ -48,6 +50,8 @@
     <ClCompile Include="..\..\src\EDEN_EC\CText.cpp" />
     <ClCompile Include="..\..\src\EDEN_EC\Entity.cpp" />
     <ClCompile Include="..\..\src\EDEN_EC\Hito1Prueba.cpp" />
+    <ClCompile Include="..\..\src\EDEN_EC\Hito2MenuPausa.cpp" />
+    <ClCompile Include="..\..\src\EDEN_EC\Hito2Prueba.cpp" />
     <ClCompile Include="..\..\src\EDEN_EC\Scene.cpp" />
     <ClCompile Include="..\..\src\EDEN_EC\TestComponent.cpp" />
     <ClCompile Include="..\..\src\EDEN_EC\Transform.cpp" />

@@ -7,6 +7,8 @@ class btSphereShape;
 class btCapsuleShape;
 class btCylinderShape;
 
+#include "defs.h"
+
 namespace eden_utils {
 	class Vector3;
 }
@@ -14,7 +16,7 @@ namespace eden_utils {
 namespace physics_wrapper {
 	class RigidBody;
 	/// @brief Clase para construir formas para el RigidBody
-	class __declspec(dllexport) ShapeCreator
+	class EDEN_API ShapeCreator
 	{
 		friend physics_wrapper::RigidBody;
 	private:

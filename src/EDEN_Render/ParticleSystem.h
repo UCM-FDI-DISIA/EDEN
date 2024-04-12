@@ -13,7 +13,7 @@ namespace Ogre {
 
 namespace render_wrapper {
 	/// @brief Wrapper de ParticleSystem
-	class __declspec(dllexport) ParticleSystem : public RenderObject
+	class ParticleSystem : public RenderObject
 	{
 	public:
 		/// @brief Constructora del wrapper

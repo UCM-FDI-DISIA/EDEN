@@ -8,6 +8,8 @@
 
 #include "Singleton.h"
 
+#include "defs.h"
+
 #define _CRTDBG_MAP_ALLOC
 
 // Esta Macro se usa para ver la informacion que se esta leyendo del mapa por salida estandar
@@ -43,7 +45,7 @@ namespace eden_script {
 	};
 	
 	/// @brief Funciona como Wrapper de Lua y es capaz de leer de un .lua las entidades que necesitan ser creadas en escena y su informacion.
-	class __declspec(dllexport) ScriptManager : public Singleton<ScriptManager> {
+	class EDEN_API ScriptManager : public Singleton<ScriptManager> {
 
 		friend Singleton<ScriptManager>;
 

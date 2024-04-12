@@ -7,11 +7,13 @@
 
 #include "Singleton.h"
 
+#include "defs.h"
+
 class InputWrapper;
 namespace eden_input 
 {
 	/// @brief Clase que gestiona la entrada de datos del usuario.
-	class __declspec(dllexport) InputManager : public Singleton<InputManager>
+	class EDEN_API InputManager : public Singleton<InputManager>
 	{
 		friend Singleton<InputManager>;
 	public:

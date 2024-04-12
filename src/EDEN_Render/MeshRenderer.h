@@ -17,7 +17,7 @@ namespace render_wrapper {
 
 	class Animator;
 	class RenderObject;
-	class __declspec(dllexport) MeshRenderer : public RenderObject
+	class MeshRenderer : public RenderObject
 	{
 		friend Animator;
 

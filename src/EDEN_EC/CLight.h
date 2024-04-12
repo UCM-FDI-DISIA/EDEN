@@ -23,7 +23,7 @@ namespace eden_utils {
 namespace eden_ec {
 
 	class CTransform;
-	class __declspec(dllexport) CLight : public Component
+	class EDEN_API CLight : public Component
 	{
 	public:
 		

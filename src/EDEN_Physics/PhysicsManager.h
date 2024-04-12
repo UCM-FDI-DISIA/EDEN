@@ -39,9 +39,11 @@ namespace eden_debug {
 }
 
 
+#include "defs.h"
+
 namespace physics_manager {
 	class InfoPhysicWorld;
-	class __declspec(dllexport) LayerInfo {
+	class EDEN_API LayerInfo {
 	private:
 		/// @brief Nombre de la capa
 		std::string _name;

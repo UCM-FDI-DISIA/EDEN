@@ -23,7 +23,7 @@ namespace eden_ec {
 	/// @brief Clase que representa un script de comportamiento. El script se definira
 	/// en Lua y se utilizara esta clase para poder gestionar su ciclo de vida y
 	/// llamada a metodos en C++.
-	class __declspec(dllexport) CLuaBehaviour : public Component {
+	class EDEN_API CLuaBehaviour : public Component {
 		friend class eden_script::LuaManager;
 	public:
 

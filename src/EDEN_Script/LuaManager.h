@@ -8,6 +8,8 @@
 #include <lua.hpp>
 #include <LuaBridge.h>
 
+#include "defs.h"
+
 struct lua_State;
 
 namespace eden_ec {
@@ -18,7 +20,7 @@ namespace eden_ec {
 namespace eden_script {
 
 	/// @brief Clase encargada de gestionar la maquina virtual de Lua y los scripts de comportamiento
-	class __declspec(dllexport) LuaManager
+	class EDEN_API LuaManager
 	{
 	public:
 	

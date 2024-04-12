@@ -8,6 +8,8 @@
 #include "Singleton.h"
 #include "Vector3.h"
 
+#include "defs.h"
+
 class btDynamicsWorld;
 class btIDebugDraw;
 namespace physics_manager {
@@ -31,7 +33,7 @@ namespace physics_wrapper {
 		const eden_ec::Entity* entityHit = nullptr;
 	};
 
-	class __declspec(dllexport) RayCast : public Singleton<RayCast>
+	class EDEN_API RayCast : public Singleton<RayCast>
 	{
 		friend Singleton<RayCast>;
 

@@ -8,6 +8,8 @@
 #include "Component.h"
 #include "Vector3.h"
 
+#include "defs.h"
+
 namespace Ogre {
 	class OverlayManager;
 	class Overlay;
@@ -24,7 +26,7 @@ namespace eden_input {
 }
 namespace eden_ec {
 	/// @brief Clase base de la que heredan todos los elementos de la UI
-	class __declspec(dllexport) UIComponent : public Component
+	class EDEN_API UIComponent : public Component
 	{
 	public:
 		/// @brief Constructora de la clase

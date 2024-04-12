@@ -10,7 +10,7 @@ namespace eden_ec {
     class CTransform;
     /// Clase que se encargara de proporcionar funcionalidad a un listener. El listener es necesario para audio en 3D, y necesitara de un AudioEmitter para poder escuchar audio.
     /// Solo se podra tener un AudioListener por escena, ya que no hay soporte para multiples listeners.
-    class __declspec(dllexport) CAudioListener : public eden_ec::Component {
+    class EDEN_API CAudioListener : public eden_ec::Component {
     public:
         /// @brief Constructora por defecto del listener de audio
         CAudioListener() = default;

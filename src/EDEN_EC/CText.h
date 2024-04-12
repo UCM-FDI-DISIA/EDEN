@@ -14,7 +14,7 @@ namespace Ogre {
 
 namespace eden_ec {
 	/// @brief Clase que representa un texto en la UI
-	class __declspec(dllexport) CText : public eden_ec::UIComponent {
+	class EDEN_API CText : public eden_ec::UIComponent {
 	public:
 		/// @brief Constructora de la clase Texto
 		CText() = default;

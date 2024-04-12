@@ -31,7 +31,7 @@
  */
 
 template<typename T>
-class __declspec(dllexport) Singleton {
+class EDEN_API Singleton {
 
 public:
 	/// @brief No se pueden copiar objetos de este tipo

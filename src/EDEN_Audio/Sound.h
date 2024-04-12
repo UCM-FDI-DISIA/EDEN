@@ -18,7 +18,7 @@ namespace audio_wrapper {
     class SoundClip;
     /// Clase que actuara de wrapper de los sonidos de Irrklang. Cada SoundWrapper representara
     /// un sonido distinto, que se generara en el AudioWrapper.
-    class __declspec(dllexport) Sound {
+    class Sound {
         friend class eden_ec::CAudioEmitter;
     public:
         /// Constructora por defecto del SoundWrapper

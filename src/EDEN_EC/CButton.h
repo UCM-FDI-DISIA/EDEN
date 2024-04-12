@@ -28,7 +28,7 @@ namespace eden_ec {
 	};
 
 	/// @brief Clase que representa un bot�n en la UI
-	class __declspec(dllexport) CButton : public eden_ec::UIComponent {
+	class EDEN_API CButton : public eden_ec::UIComponent {
 	public:
 
 		/// @brief Constructora vacia

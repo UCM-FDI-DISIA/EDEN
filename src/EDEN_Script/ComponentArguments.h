@@ -5,6 +5,8 @@
 #include <string>
 #include <unordered_map>
 
+#include "defs.h"
+
 namespace eden_utils {
 	class Vector3;
 	class Quaternion;
@@ -14,7 +16,7 @@ namespace eden_script {
 	class ScriptManager;
 
 	/// @brief Da forma y es capaz de parsear los componentes leidos desde los mapas .lua generados por un usuario.
-	class __declspec(dllexport) ComponentArguments
+	class EDEN_API ComponentArguments
 	{
 		friend ScriptManager;
 	public:

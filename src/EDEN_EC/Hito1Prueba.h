@@ -16,7 +16,8 @@ namespace eden_ec {
 	class CText;
 	class CAudioEmitter;
 	class CAudioListener;
-	class Hito1Prueba : public Component {
+
+	class EDEN_API Hito1Prueba : public Component {
 	public:
 		Hito1Prueba();
 		~Hito1Prueba() = default;

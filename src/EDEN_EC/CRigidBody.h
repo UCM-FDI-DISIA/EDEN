@@ -27,7 +27,7 @@ namespace physics_wrapper{
 
 namespace eden_ec {
 	class CLuaBehaviour;
-	class __declspec(dllexport) CRigidBody : public Component
+	class EDEN_API CRigidBody : public Component
 	{
 
 		friend physics_manager::PhysicsManager;

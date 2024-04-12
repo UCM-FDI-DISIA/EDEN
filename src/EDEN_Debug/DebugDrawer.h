@@ -10,6 +10,8 @@
 #include <vector>
 #include <string>
 
+#include "defs.h"
+
 namespace Ogre {
 	class SceneNode;
 	class MovableObject;
@@ -18,7 +20,7 @@ namespace Ogre {
 
 namespace eden_debug {
 	/// @brief Dibuja las bounding boxes de los objetos fisicos
-	class __declspec(dllexport) DebugDrawer : public btIDebugDraw
+	class EDEN_API DebugDrawer : public btIDebugDraw
 	{
 	public:
 

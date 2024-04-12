@@ -54,8 +54,6 @@
 #include "CAudioListener.h"
 
 #include "Hito1Prueba.h"
-#include "Hito2Prueba.h"
-#include "Hito2MenuPausa.h"
 #include "CAnimator.h"
 
 #include "RenderManager.h"
@@ -74,7 +72,6 @@ void RegisterEngineComponents() {
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CText>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CLight>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::Hito1Prueba>();
-	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::Hito2Prueba>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CAnimator>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CButton>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CLuaBehaviour>();
@@ -84,7 +81,6 @@ void RegisterEngineComponents() {
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CParticleEmitter>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CAudioEmitter>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CAudioListener>();
-	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::Hito2MenuPausa>();
 }
 
 void eden_export::RunEDEN()
@@ -116,7 +112,7 @@ void eden_export::RunEDEN()
 			throw("aqui no hay dll");
 		}
 		else {
-			typedef void (*CompFunc)();
+			typedef void (*CompFunc)(eden_ec::ComponentFactory*);
 			CompFunc RegisterGameComponents = reinterpret_cast<CompFunc>(GetProcAddress(game, "RegisterComponents"));
 
 			typedef void (*SceneFunc)(eden::SceneManager*);
@@ -133,7 +129,8 @@ void eden_export::RunEDEN()
 			else {
 				// Registro de componentes
 				RegisterEngineComponents();
-				RegisterGameComponents();
+				eden_ec::ComponentFactory* factory = eden_ec::ComponentFactory::Instance();
+				RegisterGameComponents(factory);
 
 				master = eden::Master::Instance(); // creación instancia master
 				scnManager = eden::SceneManager::Instance(); // creación instancia de gestor de escenas

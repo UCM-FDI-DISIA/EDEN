@@ -39,14 +39,12 @@ eden_script::LuaManager* eden_script::ScriptManager::GetLuaManager() {
 
 bool eden_script::ScriptManager::CheckLua(int err, std::string errorTitle) {
 	bool result = err == LUA_OK;
-#ifdef _DEBUG
 	if (!result) {
 		// Cogemos el mensaje de error que se ha generado en el Stack de Lua y lo lanzamos en Debug.
 		std::string errorMsg = lua_tostring(_l, -1);
 		// std::cerr << "Lua ERROR: " << errorMsg << '\n';
 		eden_error::ErrorHandler::Instance()->Exception(errorTitle, errorMsg);
 	}
-#endif
 	
 	return result;
 }

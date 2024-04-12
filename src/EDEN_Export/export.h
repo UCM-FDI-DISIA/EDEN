@@ -1,6 +1,8 @@
 #ifndef EDEN_EXPORT_H_
 #define EDEN_EXPORT_H_
 
+#include "defs.h"
+
 namespace eden {
 	class Master;
 	class SceneManager;
@@ -15,8 +17,8 @@ namespace eden_error {
 }
 
 namespace eden_export {
-	__declspec(dllexport) void RunEDEN();
-	__declspec(dllexport) void StopEDEN();
+	EDEN_API void RunEDEN();
+	EDEN_API void StopEDEN();
 }
 
 eden::Master* master;

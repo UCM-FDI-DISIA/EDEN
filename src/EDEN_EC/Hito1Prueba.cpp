@@ -9,8 +9,10 @@
 #include "CAnimator.h"
 #include"CLuaBehaviour.h"
 #include"CText.h"
-#include <string>
 #include "SceneManager.h"
+#include "CAudioEmitter.h"
+#include <string>
+#include "Sound.h"
 
 eden_ec::Hito1Prueba::Hito1Prueba() {
 
@@ -31,6 +33,9 @@ void eden_ec::Hito1Prueba::StartGame() {
 void eden_ec::Hito1Prueba::Start() {
 	transform = _ent->GetComponent<CTransform>();
 	_text = _ent->GetComponent<CText>();
+	_audioEmitter = _ent->GetComponent<CAudioEmitter>();
+	_audioEmitter->Play();
+	_audioEmitter->SetLoop(true);
 }
 
 void eden_ec::Hito1Prueba::HandleInput() {

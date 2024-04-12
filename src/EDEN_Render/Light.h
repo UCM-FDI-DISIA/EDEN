@@ -16,13 +16,16 @@ namespace Ogre {
 
 namespace render_wrapper
 {
-	class __declspec(dllexport) Light : public RenderObject
+	/// @brief Clase que actua como wrapper de Ogre::Light y permite ajustar la posicion, direccion 
+	/// y orientacion de la luz. Ademas de su visivilidad color y tipo.
+	class Light : public RenderObject
 	{
 	public:
 		/// @brief enumerado que indica el tipo de luz 
 		/// @brief Constructora del Wrapper de libreria de renderizado de luces
 		/// @param enetityID Nombre de la entidad asociada 
-		Light(const std::string entityID, const std::string sceneID, const std::string type);
+		Light(const std::string entityID, const std::string sceneID, const std::string type,
+			  const eden_utils::Vector3 DifusseColor, const eden_utils::Vector3 SpecularColor);
 		~Light() {};
 
 		/// @brief Setea la visibilidad de la luz
@@ -30,10 +33,10 @@ namespace render_wrapper
 		void SetVisible(bool visibility);
 		/// @brief Devuelve si la luz es visible o no
 		bool isVisible();
-		/// @brief 
+		/// @brief Ajusta el Diffuse Color de la luz
 		/// @param color Variable de color
 		void SetDiffuse(eden_utils::Vector3 color);
-		/// @brief 
+		/// @brief Ajusta el Specular Color de la luz
 		/// @param color Variable de color
 		void SetSpecular(eden_utils::Vector3 color);
 		/// @brief Setea la direccion de la luz

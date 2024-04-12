@@ -33,6 +33,10 @@ namespace render_wrapper {
 		/// @param active Booleano que establece si está activo
 		void SetActive(bool active);
 
+		/// @brief 
+		/// @param active 
+		void SetVisible(bool active);
+
 		/// @brief Cambias el material de las particulas
 		/// @param material Material al que quieres cambiar
 		void SetMaterial(const std::string material);

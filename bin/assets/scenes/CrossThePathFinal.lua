@@ -2204,6 +2204,14 @@ Entity110 = {
 			}
 		},
 		{
+			Name = "LIGHT",
+			Arguments = {
+				LightType = "LT_SPOTLIGHT",
+				DiffuseColor = "5.0|0.0|0.0",
+				SpecularColor = "0.0|0.0|0.0"
+			}
+		},
+		{
 			Name = "PARTICLE_EMITTER",
 			Arguments = {
 				Loop = "true",
@@ -2272,7 +2280,30 @@ Entity112 = {
 		}
 	}
 }
+
 Entity113 = {
+	Name = "Sun",
+	Components = {
+		{
+			Name = "TRANSFORM",
+			Arguments = {
+				Position = "-9.293344497680664|3.87427020072937|4.017282962799072",
+				Rotation = "false|0.9781476259231567|-0.20791170001029968|-0.0|0.0",
+				Scale = "1.0|1.0|1.0"
+			}
+		},
+		{
+			Name = "LIGHT",
+			Arguments = {
+				LightType = "LT_DIRECTIONAL",
+				DiffuseColor = "1.0|1.0|1.0",
+				SpecularColor = "0.0|0.0|0.0"
+			}
+		}
+	}
+}
+
+Entity114 = {
 	Name = "UI_Image",
 	Components = {
 		{
@@ -2281,15 +2312,110 @@ Entity113 = {
                 OverlayName= "image",
 				XPos = "85",
                 YPos = "80",
-                Width = "350",
-                Height = "250",
-                Texture = "CommingSoon.png",
+                Width = "25",
+                Height = "25",
+                Texture = "ComingSoon.png",
                 Depth = "1"
 			}
 		}
 	}	
 }
-Entities = { Entity1, Entity2, Entity3, Entity4, Entity5, Entity6, Entity7, Entity8, Entity9, Entity10, Entity11, Entity12, Entity13, Entity14, Entity15, Entity16, Entity17, Entity18, Entity19, Entity20, Entity21, Entity22, Entity23, Entity24, Entity25, Entity26, Entity27, Entity28, Entity29, Entity30, Entity31, Entity32, Entity33, Entity34, Entity35, Entity36, Entity37, Entity38, Entity39, Entity40, Entity41, Entity42, Entity43, Entity44, Entity45, Entity46, Entity47, Entity48, Entity49, Entity50, Entity51, Entity52, Entity53, Entity54, Entity55, Entity56, Entity57, Entity58, Entity59, Entity60, Entity61, Entity62, Entity63, Entity64, Entity65, Entity66, Entity67, Entity68, Entity69, Entity70, Entity71, Entity72, Entity73, Entity74, Entity75, Entity76, Entity77, Entity78, Entity79, Entity80, Entity81, Entity82, Entity83, Entity84, Entity85, Entity86, Entity87, Entity88, Entity89, Entity90, Entity91, Entity92, Entity93, Entity94, Entity95, Entity96, Entity97, Entity98, Entity99, Entity100, Entity101, Entity102, Entity103, Entity104, Entity105, Entity106, Entity107, Entity108, Entity109, Entity110, Entity111, Entity112, Entity113 }
+
+Entity115 = {
+	Name = "Player",
+	Components = {
+		{
+			Name = "TRANSFORM",
+			Arguments = {
+				Position = "-4.544820308685303|3.982574224472046|0.1488906890153885",
+				Rotation = "false|0.5|0.5|-0.5|-0.5",
+				Scale = "0.10000000149011612|0.10000000149011612|0.10000000149011612"
+			}
+		},
+        {
+            Name = "MESH_RENDERER",
+            Arguments = {
+                Mesh = "Cube.057"
+            }
+        },
+		{
+            Name = "ANIMATOR",
+            Arguments = {
+                AnimNames = "Die|Duck|HitReact|Idle|JumpIdle|JumpLand|JumpStart|No|Punch|Run|Walk|Wave|Weapon|Yes",
+                AnimMeshNames = "Frog_Death|Frog_Duck|Frog_HitReact|Frog_Idle|Frog_JumpIdle|Frog_JumpLand|Frog_JumpStart|Frog_No|Frog_Punch|Frog_Run|Frog_Walk|Frog_Wave|Frog_Weapon|Frog_Yes",
+                NextAnim = "Idle|Idle|Idle|Idle|JumpLand|Idle|JumpIdle|Idle|Idle|Idle|Idle|Idle|Idle|Idle",
+                LoopAnims = "false|false|false|true|false|false|false|false|false|true|true|false|false|false"
+            }
+        },
+		{
+            Name = "PRUEBA2",
+            Arguments = {
+            }
+        },
+		{
+            Name = "AUDIO_EMITTER",
+            Arguments = {
+				SongName = "GamePlay.mp3",
+				Is3D = "false"
+			}
+        }
+	}
+}
+Entity116 = {
+	Name = "buttonPause",
+	Components = {
+		{
+			Name = "BUTTON",
+			Arguments = {
+                OverlayName= "buttonPause",
+				XPos = "15",
+                YPos = "15",
+                Width = "15",
+                Height = "15",
+                Texture1 = "Pause.png",
+                Texture2 = "Pause.png",
+                Texture3 = "Pause.png",
+                Depth = "2"
+			}
+		},
+        {
+            Name = "BEHAVIOUR",
+			Arguments = {
+                Script= "Pause",
+			}
+        },
+		{
+            Name = "PAUSA",
+            Arguments = {
+
+			}
+        }
+	}
+}
+Entity117 = {
+	Name = "UI_Cursor",
+	Components = {
+		{
+			Name = "IMAGE",
+			Arguments = {
+				OverlayName= "image",
+				XPos = "0",
+				YPos = "0",
+				Width = "5",
+				Height = "5",
+				Texture = "Cursor.png",
+				Depth = "10"
+			}
+		},
+		{
+			Name = "CURSOR",
+			Arguments = {
+			}
+		}
+	}		
+}
+
+Entities = { Entity1, Entity2, Entity3, Entity4, Entity5, Entity6, Entity7, Entity8, Entity9, Entity10, Entity11, Entity12, Entity13, Entity14, Entity15, Entity16, Entity17, Entity18, Entity19, Entity20, Entity21, Entity22, Entity23, Entity24, Entity25, Entity26, Entity27, Entity28, Entity29, Entity30, Entity31, Entity32, Entity33, Entity34, Entity35, Entity36, Entity37, Entity38, Entity39, Entity40, Entity41, Entity42, Entity43, Entity44, Entity45, Entity46, Entity47, Entity48, Entity49, Entity50, Entity51, Entity52, Entity53, Entity54, Entity55, Entity56, Entity57, Entity58, Entity59, Entity60, Entity61, Entity62, Entity63, Entity64, Entity65, Entity66, Entity67, Entity68, Entity69, Entity70, Entity71, Entity72, Entity73, Entity74, Entity75, Entity76, Entity77, Entity78, Entity79, Entity80, Entity81, Entity82, Entity83, Entity84, Entity85, Entity86, Entity87, Entity88, Entity89, Entity90, Entity91, Entity92, Entity93, Entity94, Entity95, Entity96, Entity97, Entity98, Entity99, Entity100, Entity101, Entity102, Entity103, Entity104, Entity105, Entity106, Entity107, Entity108, Entity109, Entity110, Entity111, Entity112, Entity113,Entity114,Entity115 ,Entity116,Entity117}
 
 CollisionLayers = {
 	Layers = {

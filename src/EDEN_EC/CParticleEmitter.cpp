@@ -39,6 +39,7 @@ void eden_ec::CParticleEmitter::Init(eden_script::ComponentArguments* args)
 	SetActive(args->GetValueToBool("Started"));
 
 	_elapsedTime = 0;
+
 }
 
 void eden_ec::CParticleEmitter::Update(float t)
@@ -55,9 +56,30 @@ bool eden_ec::CParticleEmitter::IsActive()
 	return _pSystem->IsActive();
 }
 
-void eden_ec::CParticleEmitter::SetActive(bool active)
+void eden_ec::CParticleEmitter::SetActive(bool active,bool sceneChanged)
 {
-	_pSystem->SetActive(active);
+	if (active)
+	{
+		if (!sceneChanged || (sceneChanged && _isEmiting)) _pSystem->SetActive(active);
+	}
+	else
+	{
+		_pSystem->SetActive(active);
+	}
+	if (!sceneChanged) _isEmiting = active;
+}
+
+void eden_ec::CParticleEmitter::SetVisible(bool visibility, bool sceneChanged)
+{
+	if (visibility)
+	{
+		if (!sceneChanged || (sceneChanged && _particleVisibility)) _pSystem->SetVisible(visibility);
+	}
+	else
+	{
+		_pSystem->SetVisible(visibility);
+	}
+	if (!sceneChanged) _particleVisibility = visibility;
 }
 
 void eden_ec::CParticleEmitter::SetMaterial(const std::string material)

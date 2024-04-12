@@ -27,6 +27,40 @@ namespace audio_wrapper {
 
         /// Destructora por defecto de la clase SoundWrapper
         ~Sound();
+    private:
+        // Clip de sonido con la fuente
+        audio_wrapper::SoundClip* _clip = nullptr;
+
+        /// Instancia del sonido de Irrklang para trackear datos sobre este
+        irrklang::ISound* _sound = nullptr;
+
+        /// Nombre del archivo asociado al sonido
+        std::string _filename;
+
+        /// Booleano que indica si el sonido es o no es tridimensional
+        bool _threeDimensional;
+
+        /// Reproduce un sonido en un espacio 2D, sin coordenadas, por toda la escena o el espacio.
+        /// @param loop Si el sonido se quiere reproducir en bucle se pondra en true, si no, en false (false por defecto)
+        void Play(bool loop = false);
+
+        /// Reproduce un sonido en un espacio 3D, esto es, necesita unas coordenadas desde donde se quiera
+        /// reproducir, y necesitara de un listener en algun sitio para escucharlo
+        /// @param position Posicion desde la que se reproducira el sonido
+        /// @param loop Si el sonido se quiere reproducir en bucle se pondra en true, si no, en false (false por defecto)
+        void Play(eden_utils::Vector3 position, bool loop = false);
+
+        /// Pausa el sonido
+        void Pause();
+
+        /// Reanuda el sonido
+        void Resume();
+
+        /// Para la ejecucion del sonido
+        void Stop();
+
+        /// Reinicia el sonido desde el principio, tanto en 2D como en 3D de manera automatica
+        void Restart();
 
         /// Devuelve si el sonido esta o no pausado
         /// @return Booleano que indica si el sonido esta o no pausado
@@ -80,40 +114,7 @@ namespace audio_wrapper {
         /// @brief Devuelve el nombre del archivo de sonido
         /// @return String con el nombre del archivo de sonido
         std::string GetFilename() const;
-    private:
-        /// Reproduce un sonido en un espacio 2D, sin coordenadas, por toda la escena o el espacio.
-        /// @param loop Si el sonido se quiere reproducir en bucle se pondra en true, si no, en false (false por defecto)
-        void Play(bool loop = false);
 
-        /// Reproduce un sonido en un espacio 3D, esto es, necesita unas coordenadas desde donde se quiera
-        /// reproducir, y necesitara de un listener en algun sitio para escucharlo
-        /// @param position Posicion desde la que se reproducira el sonido
-        /// @param loop Si el sonido se quiere reproducir en bucle se pondra en true, si no, en false (false por defecto)
-        void Play(eden_utils::Vector3 position, bool loop = false);
-
-        /// Pausa el sonido
-        void Pause();
-
-        /// Reanuda el sonido
-        void Resume();
-
-        /// Para la ejecucion del sonido
-        void Stop();
-
-        /// Reinicia el sonido desde el principio, tanto en 2D como en 3D de manera automatica
-        void Restart();
-
-        // Clip de sonido con la fuente
-        audio_wrapper::SoundClip* _clip = nullptr;
-
-        /// Instancia del sonido de Irrklang para trackear datos sobre este
-        irrklang::ISound* _sound = nullptr;
-
-        /// Nombre del archivo asociado al sonido
-        std::string _filename;
-
-        /// Booleano que indica si el sonido es o no es tridimensional
-        bool _threeDimensional;
     };
 }
 

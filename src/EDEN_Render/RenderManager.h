@@ -157,6 +157,10 @@ namespace eden_render
 		/// @param sceneID 
 		void RemoveRenderScene(std::string sceneToRemoveID, std::string newCurrentSceneID);
 
+		/// @brief 
+		/// @param sceneID 
+		
+		void ShowEntities(std::string sceneID, bool show);
 		/// @brief Raiz de Ogre
 		Ogre::Root* _root;
 
@@ -167,7 +171,7 @@ namespace eden_render
 		std::unordered_map<std::string, InfoRenderWorld*> _renderScenes;
 
 		/// @brief Escena actual de render
-		Ogre::SceneManager* _currentRenderScene;
+		InfoRenderWorld* _currentRenderScene;
 
 		/// @brief Ventana principal
 		NativeWindowPair _window;
@@ -204,12 +208,14 @@ namespace eden_render
 	class __declspec(dllexport) InfoRenderWorld
 	{
 		friend RenderManager;
+		friend render_wrapper::NodeManager;
 		friend render_wrapper::RenderObject;
 	public:
-		InfoRenderWorld(Ogre::Root* root, Ogre::OverlaySystem* overlaySystem);
+		InfoRenderWorld(Ogre::Root* root, Ogre::OverlaySystem* overlaySystem, std::string sceneID);
 		~InfoRenderWorld();
 	private:
 		Ogre::SceneManager* _renderScene;
+		std::string _sceneID;
 		/// @brief Conjunto de entidades para actualizar su posici�n
 		std::unordered_set<eden_ec::Entity*> _entities;
 		Ogre::OverlaySystem* _overlaySystem;

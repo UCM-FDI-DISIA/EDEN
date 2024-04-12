@@ -16,17 +16,6 @@ Entity1 = {
             }
         },
         {
-            Name = "PRUEBA",
-            Arguments = {
-			}
-        },
-        {
-            Name = "BEHAVIOUR",
-			Arguments = {
-                Script= "collisionTest",
-			}
-        },
-        {
             Name = "RIGIDBODY", 
             Arguments = {
                 Mass = "1",
@@ -40,22 +29,22 @@ Entity1 = {
                 Friction = "0"
             }
         },
-        -- {
-        --     Name = "PARTICLE_EMITTER",
-        --     Arguments = {
-        --         Name = "Test",
-        --         Loop = "true",
-        --         Time = "1",
-        --         Started = "true"
-        --     }
-        -- },
+        {
+            Name = "PARTICLE_EMITTER",
+            Arguments = {
+                Name = "Test",
+                Loop = "true",
+                Time = "1",
+                Started = "true"
+            }
+        },
         {
 			Name = "TEXT",
 			Arguments = {
                 OverlayName= "textTest",
 				XPos = "75",
                 YPos = "5",
-                Tam = "50",
+                Tam = "10",
                 Text = "Clicks: ",
                 Font = "DejaVuSerifCondensed-Italic.ttf",
                 Color = "255|255|255",
@@ -98,7 +87,7 @@ Entity3 = {
                 OverlayName= "text",
 				XPos = "25",
                 YPos = "5",
-                Tam = "50",
+                Tam = "10",
                 Text = "TEXTO UI",
                 Font = "DejaVuSerifCondensed-Italic.ttf",
                 Color = "255|255|0",
@@ -117,8 +106,8 @@ Entity4 = {
                 OverlayName= "button",
 				XPos = "50",
                 YPos = "25",
-                Width = "150",
-                Height = "50",
+                Width = "25",
+                Height = "10",
                 Texture1 = "PlayButton_Ini.png",
                 Texture2 = "PlayButton_Hover.png",
                 Texture3 = "PlayButton_Clicked.png",
@@ -137,13 +126,21 @@ Entity4 = {
 Entity5 = {
 	Name = "UI_Cursor",
 	Components = {
+        {
+			Name = "IMAGE",
+			Arguments = {
+                OverlayName= "image",
+				XPos = "0",
+                YPos = "0",
+                Width = "5",
+                Height = "5",
+                Texture = "Cursor.png",
+                Depth = "10"
+			}
+		},
 		{
 			Name = "CURSOR",
 			Arguments = {
-                Width = "20",
-                Height = "20",
-                Texture = "Cursor.png",
-                Depth = "10"
 			}
 		}
 	}	
@@ -192,9 +189,9 @@ Entity7 = {
 			Arguments = {
                 OverlayName= "image",
 				XPos = "50",
-                YPos = "70",
-                Width = "300",
-                Height = "150",
+                YPos = "60",
+                Width = "75",
+                Height = "50",
                 Texture = "meme.png",
                 Depth = "1"
 			}

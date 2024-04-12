@@ -15,6 +15,7 @@
 render_wrapper::Animator::Animator(render_wrapper::MeshRenderer* meshRend) {
 	_meshRend = meshRend;
 	_anims = std::unordered_map<std::string, std::pair<Ogre::AnimationState*, std::string>>();
+	_currentAnim = nullptr;
 }
 
 render_wrapper::Animator::~Animator() {
@@ -47,8 +48,11 @@ void render_wrapper::Animator::SetOnAnimEnd(std::string animID, std::string endA
 }
 
 void render_wrapper::Animator::UpdateAnim(float dt) {
-	_currentAnim->addTime(dt);
-	if (_currentAnim->hasEnded() && _currentAnim) OnAnimEnd();
+	if (_currentAnim != nullptr) {
+		_currentAnim->addTime(dt);
+		if (_currentAnim->hasEnded() && _currentAnim) OnAnimEnd();
+	}
+
 }
 
 std::string render_wrapper::Animator::GetCurrentAnim() {

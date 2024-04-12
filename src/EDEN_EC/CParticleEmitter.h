@@ -54,7 +54,12 @@ namespace eden_ec {
 
 		/// @brief Establece si el sistema de particulas esta activo o no
 		/// @param active Booleano que establece si está activo
-		void SetActive(bool active);
+		void SetActive(bool active, bool sceneChanged = false);
+
+		/// @brief 
+		/// @param visibility 
+		/// @param sceneChanged 
+		void SetVisible(bool visibility, bool sceneChanged = false);
 
 		/// @brief Cambias el material de las particulas
 		/// @param material Material al que quieres cambiar
@@ -72,6 +77,10 @@ namespace eden_ec {
 		float _time;
 		/// @brief Tiempo que ha pasado de actividad
 		float _elapsedTime;
+		/// @brief 
+		bool _isEmiting = true;
+		/// @brief 
+		bool _particleVisibility = true;
 	};
 }
 #endif

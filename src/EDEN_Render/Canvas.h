@@ -3,6 +3,8 @@
 #define EDEN_CANVAS_H
 
 #include <unordered_set>
+#include <unordered_map>
+#include <string>
 
 #include "Singleton.h"
 
@@ -32,11 +34,19 @@ namespace eden_canvas {
 		/// @brief Quita el componente para dejar de actualizar su posici�n
 		/// @param ent Entidad que se va a quitar
 		void removeRenderEntity(eden_ec::UIComponent* ent);
+
+		void addScene(std::string sceneID);
+
+		void removeScene(std::string sceneID);
+
+		void ShowScene(std::string sceneID);
+
+		void HideScene(std::string sceneID);
 	private:
 		/// @brief Constructora
 		Canvas() = default;
-		/// @brief Conjunto de componentes para actualizar su posici�n
-		std::unordered_set<eden_ec::UIComponent*> _entities;
+
+		std::unordered_map<std::string, std::unordered_set<eden_ec::UIComponent*>> _entities;
 	};
 }
 #endif //__CANVAS_H__

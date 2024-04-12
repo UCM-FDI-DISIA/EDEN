@@ -44,6 +44,9 @@ namespace eden_ec {
 		/// En este caso no se necesita
 		void Start() override;
 
+		/// @brief Método que crea el botón
+		void CreateButton(ButtonParams& params);
+
 		/// @brief Destructora
 		~CButton() = default;
 

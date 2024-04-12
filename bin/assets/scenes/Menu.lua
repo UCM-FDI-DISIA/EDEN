@@ -27,9 +27,9 @@ Entity2 = {
 			Arguments = {
                 OverlayName= "button",
 				XPos = "50",
-                YPos = "80",
-                Width = "125",
-                Height = "75",
+                YPos = "70",
+                Width = "30",
+                Height = "15",
                 Texture1 = "MenuButton_Ini.png",
                 Texture2 = "MenuButton_Over.png",
                 Texture3 = "MenuButton_Clicked.png",
@@ -45,6 +45,22 @@ Entity2 = {
 		{
             Name = "PRUEBA",
             Arguments = {
+
+			}
+        },
+		{
+			Name = "TRANSFORM",
+			Arguments = {
+				Position = "-1.610821008682251|5.619948387145996|5.7784810066223145",
+				Rotation = "false|0.5458973050117493|0.14995510876178741|0.21834951639175415|0.7948793172836304",
+				Scale = "1.0|1.0|1.0"
+			}
+		},
+		{
+            Name = "AUDIO_EMITTER",
+            Arguments = {
+				SongName = "MainMenu.mp3",
+				Is3D = "false"
 			}
         }
 	}	
@@ -54,15 +70,23 @@ Entity3 = {
 	Name = "UI_Cursor",
 	Components = {
 		{
+			Name = "IMAGE",
+			Arguments = {
+				OverlayName= "image",
+				XPos = "0",
+				YPos = "0",
+				Width = "5",
+				Height = "5",
+				Texture = "Cursor.png",
+				Depth = "10"
+			}
+		},
+		{
 			Name = "CURSOR",
 			Arguments = {
-                Width = "20",
-                Height = "20",
-                Texture = "Cursor.png",
-                Depth = "10"
 			}
 		}
-	}	
+	}		
 }
 Entity4 = {
 	Name = "UI_Image",
@@ -73,8 +97,8 @@ Entity4 = {
                 OverlayName= "image",
 				XPos = "50",
                 YPos = "50",
-                Width = "650",
-                Height = "500",
+                Width = "100",
+                Height = "100",
                 Texture = "MainMenuBackground.png",
                 Depth = "1"
 			}

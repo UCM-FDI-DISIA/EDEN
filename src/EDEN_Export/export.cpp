@@ -54,8 +54,8 @@
 #include "CAudioListener.h"
 
 #include "Hito1Prueba.h"
-// #include "Hito2Prueba.h"
-// #include "Hito2MenuPausa.h"
+#include "Hito2Prueba.h"
+#include "Hito2MenuPausa.h"
 #include "CAnimator.h"
 
 #include "RenderManager.h"
@@ -73,7 +73,7 @@ void RegisterComponents() {
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CText>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CLight>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::Hito1Prueba>();
-	// eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::Hito2Prueba>();
+	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::Hito2Prueba>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CAnimator>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CButton>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CLuaBehaviour>();
@@ -83,7 +83,7 @@ void RegisterComponents() {
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CParticleEmitter>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CAudioEmitter>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CAudioListener>();
-	// eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::Hito2MenuPausa>();
+	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::Hito2MenuPausa>();
 }
 
 void eden_export::RunEDEN()
@@ -110,7 +110,7 @@ void eden_export::RunEDEN()
 		scnManager = eden::SceneManager::Instance();
 		/// ----------- TESTEO REFACTORIZACION DE ESCENAS, NO BORRAR --------------------
 		//scnManager->PushScene("test_scene");
-		/*scnManager->PushScene("test_scene2");
+		/*scnManager->PushScene("test_scene2");		
 		scnManager->PopScene();*/
 		/// ------------------------------------------------------------------------------ 
 

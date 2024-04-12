@@ -34,7 +34,7 @@ namespace eden_ec {
 
 		/// @brief Se usa para coger referencias a otros componentes
 		/// En este caso no se necesita
-		void Start() override {}
+		void Start() override;
 
 		/// @brief M�todo update heredado de component 
 		void Update(float deltaTime) override;

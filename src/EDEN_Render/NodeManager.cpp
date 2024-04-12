@@ -21,7 +21,7 @@ render_wrapper::NodeManager::NodeManager() {
 	_sceneObjectsMap = std::unordered_map<std::string, std::unordered_map<std::string, Ogre::SceneNode*>>();
 
 	//Hacemos referencia al nodo raiz de Ogre mediante el RenderManager
-	Ogre::SceneManager* mSM = eden_render::RenderManager::Instance()->_currentRenderScene;
+	Ogre::SceneManager* mSM = eden_render::RenderManager::Instance()->_currentRenderScene->_renderScene;
 	_rootNode = mSM->getRootSceneNode();
 }
 
@@ -78,7 +78,7 @@ Ogre::SceneNode* render_wrapper::NodeManager::FindNode(const std::string id, con
 }
 
 void render_wrapper::NodeManager::CreateSceneObject(const std::string id, const std::string sceneID) {
-	Ogre::SceneManager* mSM = eden_render::RenderManager::Instance()->_currentRenderScene;
+	Ogre::SceneManager* mSM = eden_render::RenderManager::Instance()->_currentRenderScene->_renderScene;
 	_rootNode = mSM->getRootSceneNode();
 	std::string nodeID = id + "_" + sceneID;
 	Ogre::SceneNode* auxNode = _rootNode->createChildSceneNode(nodeID);
@@ -112,7 +112,7 @@ void render_wrapper::NodeManager::RemoveSceneObject(const std::string id, const 
 		auto auxNode = aux->second.find(id);
 		if (auxNode == aux->second.end()) {
 			auxNode->second->removeAndDestroyAllChildren();
-			eden_render::RenderManager::Instance()->_currentRenderScene->destroySceneNode(auxNode->second);
+			eden_render::RenderManager::Instance()->_currentRenderScene->_renderScene->destroySceneNode(auxNode->second);
 			_sceneObjectsMap.erase(aux);
 		}
 	}

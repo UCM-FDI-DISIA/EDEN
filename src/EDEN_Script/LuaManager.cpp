@@ -66,7 +66,7 @@ bool eden_script::LuaManager::LoadScript(std::string name, eden_ec::Entity* ent)
 
 void eden_script::LuaManager::HandleError(const char* name) {
 	std::string aux = name;
-	eden_error::ErrorHandler::Instance()->Assert(false,("[SPY ERROR]: That class already exists as global: "+ aux));
+	eden_error::ErrorHandler::Instance()->Warning("[SPY ERROR]: That class already exists as global: "+ aux);
 }
 
 lua_State* eden_script::LuaManager::GetLuaState() { return _L; }

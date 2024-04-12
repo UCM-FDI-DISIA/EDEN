@@ -14,10 +14,9 @@ namespace eden_ec {
 	class CTransform;
 	class CAnimator;
 	class CText;
-	class AudioEmitter;
-	class AudioListener;
-
-	class __declspec(dllexport) Hito1Prueba : public Component {
+	class CAudioEmitter;
+	class CAudioListener;
+	class Hito1Prueba : public Component {
 	public:
 		Hito1Prueba();
 		~Hito1Prueba() = default;
@@ -39,6 +38,7 @@ namespace eden_ec {
 		eden_ec::CTransform* transform;
 		eden_ec::CAnimator* animator;
 		eden_ec::CText* _text;
+		eden_ec::CAudioEmitter* _audioEmitter;
 		bool keyPressed = false;
 		bool jump = false;
 		bool idle = true;

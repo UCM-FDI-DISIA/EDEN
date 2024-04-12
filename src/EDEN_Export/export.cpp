@@ -63,6 +63,7 @@
 
 #include <string>
 #include "Export.h"
+#include <windows.h>
 
 void RegisterComponents() {
 	// Registramos el componente Transform, que es el unico que usaremos de momento
@@ -107,15 +108,41 @@ void eden_export::RunEDEN()
 #endif
 		master = eden::Master::Instance();
 		//Creamos una escena inicial de pueba 
-		scnManager = eden::SceneManager::Instance();
-		/// ----------- TESTEO REFACTORIZACION DE ESCENAS, NO BORRAR --------------------
-		//scnManager->PushScene("test_scene");
-		/*scnManager->PushScene("test_scene2");		
-		scnManager->PopScene();*/
-		/// ------------------------------------------------------------------------------ 
-		
-		scnManager->PushScene("Menu");
-		master->Loop();
+		// scnManager = eden::SceneManager::Instance();
+#ifdef _DEBUG
+		HMODULE game = LoadLibraryA("game_d.dll");
+#else
+		HMODULE game = LoadLibraryA("game.dll");
+#endif
+
+		if (game == NULL) {
+			throw("aqui no hay dll");
+		}
+		else {
+			typedef void (*SceneFunc)(eden::SceneManager*);
+			SceneFunc LoadScene = reinterpret_cast<SceneFunc>(GetProcAddress(game, "loadScene"));
+
+			if (LoadScene == NULL) {
+				throw("no existe esa funcion");
+			}
+
+			else {
+				master = eden::Master::Instance();
+				scnManager = eden::SceneManager::Instance();
+				// scnManager->PushScene("Menu");
+				// LoadScene(scnManager);
+				// if (scnManager->GetCurrentScene() == nullptr)
+				LoadScene(scnManager);
+				master->Loop();
+			}
+
+			FreeLibrary(game);
+		}
+
+		// scnManager->PushScene("Menu");
+		// master->Loop();
+
+		///aaa
 	}
 
 	catch (std::exception e) {

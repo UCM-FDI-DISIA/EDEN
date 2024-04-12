@@ -105,35 +105,6 @@
     <ClInclude Include="..\..\src\EDEN_Export\Export.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EDEN_Audio\EDEN_Audio.vcxproj">
-      <Project>{65d12563-7857-4feb-a473-02cf29eca253}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\EDEN_Debug\EDEN_Debug.vcxproj">
-      <Project>{2d7adfc5-a094-43b3-8020-4c5af5ff6998}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\EDEN_EC\EDEN_EC.vcxproj">
-      <Project>{8cd86491-e6e3-4225-9be0-f67da80e059a}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\EDEN_Input\EDEN_Input.vcxproj">
-      <Project>{e56776db-8887-4913-b7b6-8f8b489cc4e2}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\EDEN_Managers\EDEN_Managers.vcxproj">
-      <Project>{f8ddd9c3-ee9a-44eb-8c7f-71af3ecdfccc}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\EDEN_Physics\EDEN_Physics.vcxproj">
-      <Project>{5578e511-8ea7-4456-82f0-dc3334ceabed}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\EDEN_Render\EDEN_Render.vcxproj">
-      <Project>{f5ca8298-8abd-4899-9d89-3c6d64d6985e}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\EDEN_Script\EDEN_Script\EDEN_Script.vcxproj">
-      <Project>{e0ded4fb-14ba-40e6-95bb-21ae65321226}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\EDEN_Utils\EDEN_Utils.vcxproj">
-      <Project>{e37abaab-f932-4f71-9f44-c1b02e1b8e9e}</Project>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="..\..\src\EDEN_Export\Export.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

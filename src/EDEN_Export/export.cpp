@@ -109,7 +109,7 @@ void eden_export::RunEDEN()
 #endif
 
 		if (game == NULL) {
-			throw("aqui no hay dll");
+			throw std::domain_error("aqui no hay dll");
 		}
 		else {
 			typedef void (*CompFunc)(eden_ec::ComponentFactory*);
@@ -119,11 +119,11 @@ void eden_export::RunEDEN()
 			SceneFunc LoadScene = reinterpret_cast<SceneFunc>(GetProcAddress(game, "LoadScene"));
 
 			if (LoadScene == NULL) {
-				throw("no existe la funcion de carga de escena");
+				throw std::domain_error("no existe la funcion de carga de escena");
 			}
 
 			else if (RegisterGameComponents == NULL) {
-				throw("no existe la funcion de registro de componentes");
+				throw std::domain_error("no existe la funcion de registro de componentes");
 			}
 
 			else {

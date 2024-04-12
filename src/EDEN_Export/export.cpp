@@ -65,7 +65,7 @@
 #include "Export.h"
 #include <windows.h>
 
-void RegisterComponents() {
+void RegisterEngineComponents() {
 	// Registramos el componente Transform, que es el unico que usaremos de momento
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CTransform>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CMeshRenderer>();
@@ -94,9 +94,6 @@ void eden_export::RunEDEN()
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	#endif
 
-	// Registro de componentes
-	RegisterComponents();
-
 	// Cogemos una instancia del manejador de errores
 	errorHandler = eden_error::ErrorHandler::Instance();
 
@@ -119,30 +116,33 @@ void eden_export::RunEDEN()
 			throw("aqui no hay dll");
 		}
 		else {
+			typedef void (*CompFunc)();
+			CompFunc RegisterGameComponents = reinterpret_cast<CompFunc>(GetProcAddress(game, "RegisterComponents"));
+
 			typedef void (*SceneFunc)(eden::SceneManager*);
-			SceneFunc LoadScene = reinterpret_cast<SceneFunc>(GetProcAddress(game, "loadScene"));
+			SceneFunc LoadScene = reinterpret_cast<SceneFunc>(GetProcAddress(game, "LoadScene"));
 
 			if (LoadScene == NULL) {
-				throw("no existe esa funcion");
+				throw("no existe la funcion de carga de escena");
+			}
+
+			else if (RegisterGameComponents == NULL) {
+				throw("no existe la funcion de registro de componentes");
 			}
 
 			else {
-				master = eden::Master::Instance();
-				scnManager = eden::SceneManager::Instance();
-				// scnManager->PushScene("Menu");
-				// LoadScene(scnManager);
-				// if (scnManager->GetCurrentScene() == nullptr)
-				LoadScene(scnManager);
-				master->Loop();
+				// Registro de componentes
+				RegisterEngineComponents();
+				RegisterGameComponents();
+
+				master = eden::Master::Instance(); // creación instancia master
+				scnManager = eden::SceneManager::Instance(); // creación instancia de gestor de escenas
+				LoadScene(scnManager); // carga de escena del juego
+				master->Loop(); // bucle de juego
 			}
 
-			FreeLibrary(game);
+			FreeLibrary(game); // liberación de memoria de la .dll del juego
 		}
-
-		// scnManager->PushScene("Menu");
-		// master->Loop();
-
-		///aaa
 	}
 
 	catch (std::exception e) {

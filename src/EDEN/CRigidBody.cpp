@@ -5,8 +5,6 @@
 #include "Entity.h"
 #include "RayCast.h"
 #include "CLuaBehaviour.h"
-//Test
-#include <iostream>
 const std::string eden_ec::CRigidBody::_id = "RIGIDBODY";
 
 void eden_ec::CRigidBody::Start()
@@ -173,19 +171,16 @@ void eden_ec::CRigidBody::OnCollisionEnter(eden_ec::Entity* other)
 {
 	if (_behaviour != nullptr)
 		_behaviour->OnCollisionEnter(other);
-	std::cout << "EntroCol:" << _ent->GetEntityID() << " Other: " << other->GetEntityID() << '\n';
 }
 
 void eden_ec::CRigidBody::OnCollisionStay(eden_ec::Entity* other)
 {
 	if (_behaviour != nullptr)
 		_behaviour->OnCollisionStay(other);
-	std::cout << "MantengoCol:" << _ent->GetEntityID() << " Other: " << other->GetEntityID() << '\n';
 }
 
 void eden_ec::CRigidBody::OnCollisionExit(eden_ec::Entity* other)
 {
 	if (_behaviour != nullptr)
 		_behaviour->OnCollisionExit(other);
-	std::cout << "SalgoCol:" << _ent->GetEntityID() << " Other: " << other->GetEntityID() << '\n';
 }

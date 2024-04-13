@@ -160,6 +160,9 @@ namespace physics_wrapper {
 		/// @brief Devuelve la propiedad de rebote
 		/// @return Devuelve la propiedad de rebote 
 		float GetBounciness();
+
+		/// @brief Método que actualiza el estado de las colisiones para ver si se ha dejado de colisionar con algún objeto.
+		void Update();
 	private:
 		btRigidBody* _rigidBody = nullptr;
 		btDefaultMotionState* _motionState = nullptr;

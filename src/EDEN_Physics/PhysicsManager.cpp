@@ -17,14 +17,6 @@
 #include "DebugDrawer.h"
 #include "ErrorHandler.h"
 
-//const eden_ec::Entity* physics_manager::PhysicsManager::getEntity(const btRigidBody* RBRef) const
-//{
-//	if (_entitiesMap.find(RBRef) != _entitiesMap.end()) {
-//		return _entitiesMap.at(RBRef);
-//	}
-//	return nullptr;
-//}
-
 void physics_manager::PhysicsManager::updateSimulation(float deltaTime, std::string sceneID)
 {
 	_currentPhysicScene->stepSimulation(deltaTime);
@@ -81,7 +73,6 @@ physics_manager::PhysicsManager::PhysicsManager()
 {
 	_defaultGravity = eden_utils::Vector3(0,-10,0);
 
-	
 	_currentPhysicScene = nullptr;
 
 	//Inicializacion de debug drawer
@@ -99,7 +90,8 @@ btDynamicsWorld* physics_manager::PhysicsManager::GetWorld(std::string sceneID)
 	}
 	else
 	{
-		// Añadir gestion de errores
+		std::string message = "PhysicsManager error, the world you are trying to get does no exist";
+		eden_error::ErrorHandler::Instance()->Warning(message.c_str());
 		return nullptr;
 	}
 }
@@ -119,7 +111,7 @@ inline eden_utils::Vector3 physics_manager::PhysicsManager::GetGravity(std::stri
 			+ " \nUsing default gravity.";
 		
 		eden_error::ErrorHandler::Instance()->Warning(message.c_str());
-		return _defaultGravity;
+		return eden_utils::Vector3(0,0,0);
 	}
 }
 
@@ -133,8 +125,6 @@ physics_manager::PhysicsManager::~PhysicsManager()
 	{
 		delete it.second;
 	}
-	// Toda la memoria din�mica que hemos generado en la constructora, al intentar llamar a su delete aqu�,  hace que el programa explote. 
-	// Hay que revisarlo
 
 	if (_debugDrawer) delete _debugDrawer;
 	
@@ -147,7 +137,8 @@ void physics_manager::PhysicsManager::AddPhysicsEntity(eden_ec::Entity* e) {
 	std::unordered_map<std::string, InfoPhysicWorld*>::iterator it = _physicsScenes.find(e->GetSceneID());
 	if (it != _physicsScenes.end())
 	{
-		it->second->_entitiesSet.insert(e);
+		if(e != nullptr)
+			it->second->_entitiesSet.insert(e);
 	}
 	else
 	{
@@ -162,7 +153,8 @@ void physics_manager::PhysicsManager::RemovePhysicsEntity(eden_ec::Entity* e) {
 	std::unordered_map<std::string, InfoPhysicWorld*>::iterator it = _physicsScenes.find(e->GetSceneID());
 	if (it != _physicsScenes.end())
 	{
-		it->second->_entitiesSet.erase(e);
+		if(e != nullptr)
+			it->second->_entitiesSet.erase(e);
 	}
 	else
 	{
@@ -242,6 +234,10 @@ void physics_manager::PhysicsManager::RemovePhysicsScene(std::string sceneToRemo
 		delete sceneIt->second;
 		_physicsScenes.erase(sceneIt);
 
+	}
+	else {
+		std::string message = "Tried to delete scene: " + sceneToRemoveID + " But such scene does not exist\n";
+		eden_error::ErrorHandler::Instance()->Warning(message.c_str());
 	}
 	CreatePhysicsScene(newCurrentSceneID);
 }

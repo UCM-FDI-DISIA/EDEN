@@ -90,11 +90,6 @@ namespace physics_manager {
 		friend eden::SceneManager;
 
 	public:
-		/// @brief Devuelve la entidad asociada a un s�lido r�gido
-		/// @param RBRef Referencia del rigidbody que queremos buscar
-		/// @return Devuelve la referencia a la entidad asociada al rigid body pasado como par�metro, o nullptr si no existe
-		//const eden_ec::Entity* getEntity(const class btRigidBody* RBRef) const;
-
 		/// @brief Realiza una actualizaci�n de la simulaci�n f�sica
 		/// @param deltaTime Tiempo entre simulaciones f�sicas, como la simulaci�n se llama con el FixedUdpate, este tiempo es fijo y constante
 		void updateSimulation(float deltaTime, std::string sceneID);

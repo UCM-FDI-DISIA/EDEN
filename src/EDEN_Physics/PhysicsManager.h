@@ -84,7 +84,7 @@ namespace physics_manager {
 		}
 	};
 
-	class __declspec(dllexport) PhysicsManager : public Singleton<PhysicsManager>
+	class PhysicsManager : public Singleton<PhysicsManager>
 	{
 		friend Singleton<PhysicsManager>;
 		friend physics_wrapper::RigidBody;
@@ -99,36 +99,39 @@ namespace physics_manager {
 
 		/// @brief Realiza una actualizaci�n de la simulaci�n f�sica
 		/// @param deltaTime Tiempo entre simulaciones f�sicas, como la simulaci�n se llama con el FixedUdpate, este tiempo es fijo y constante
-		void updateSimulation(float deltaTime, std::string sceneID);
+		EDEN_API void updateSimulation(float deltaTime, std::string sceneID);
 
 		/// @brief Devuelve la gravedad del mundo
 		/// @return Devuelve el valor de la gravedad mundial
-		eden_utils::Vector3 GetGravity(std::string sceneID);
+		EDEN_API eden_utils::Vector3 GetGravity(std::string sceneID);
 
 		/// @brief Añade una entidad al mundo físico
 		/// @param e Entidad a añadir
-		void AddPhysicsEntity(eden_ec::Entity* e);
+		EDEN_API void AddPhysicsEntity(eden_ec::Entity* e);
 
 		/// @brief QUita una entidad del mundo físico
 		/// @param e Entidad a quitar
-		void RemovePhysicsEntity(eden_ec::Entity* e);
+		EDEN_API void RemovePhysicsEntity(eden_ec::Entity* e);
 
 		/// @brief Setear a cada rigidbody el transform de cada entidad
-		void UpdatePositions(std::string sceneID);
+		EDEN_API void UpdatePositions(std::string sceneID);
 
 		/// @brief Setear a cada transform de cada entidad el transform del rigidbody
-		void ResolvePositions(std::string sceneID);
+		EDEN_API void ResolvePositions(std::string sceneID);
 
-		~PhysicsManager() override;
+		EDEN_API ~PhysicsManager() override;
 
 		/// @brief Encuentra una capa dado un cierto nombre e ID de escena
 		/// @param name Nombre de la capa que se quiere buscar
 		/// @param sceneID ID de la escena en la que se encuentra la capa
 		/// @return Devuelve una capa dado un cierto nombre e ID de escena, o nullptr en caso de fallar
-		physics_wrapper::CollisionLayer* GetLayerByName(std::string name, std::string sceneID);
+		EDEN_API physics_wrapper::CollisionLayer* GetLayerByName(std::string name, std::string sceneID);
+
+		EDEN_API static PhysicsManager* getInstance();
+
 	protected:
 		/// @brief La constructora se encarga de crear el mundo de la simulaci�n f�sica y el objeto encargado de dibujar 
-		PhysicsManager();
+		EDEN_API PhysicsManager();
 	private:
 
 		/// @brief Mapa desordenado que guarda los nombres de las capas y su respectivo objeto CollisionLayer
@@ -174,7 +177,7 @@ namespace physics_manager {
 		void RemovePhysicsScene(std::string sceneToRemoveID, std::string newCurrentSceneID);
 	};
 
-	class __declspec(dllexport) InfoPhysicWorld
+	class EDEN_API InfoPhysicWorld
 	{
 		friend PhysicsManager;
 

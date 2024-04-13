@@ -25,6 +25,11 @@
 //	return nullptr;
 //}
 
+physics_manager::PhysicsManager* physics_manager::PhysicsManager::getInstance() {
+	return static_cast<PhysicsManager*>(Instance());
+}
+
+
 void physics_manager::PhysicsManager::updateSimulation(float deltaTime, std::string sceneID)
 {
 	_currentPhysicScene->stepSimulation(deltaTime);

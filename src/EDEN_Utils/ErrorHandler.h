@@ -22,7 +22,7 @@
 #endif
 
 namespace eden_error {
-	class EDEN_API ErrorHandler : public Singleton<ErrorHandler> {
+	class ErrorHandler : public Singleton<ErrorHandler> {
 		friend class Singleton<ErrorHandler>;
 	public:
 		/// @brief Caracter que separa en una excepci�n el t�tulo de su descripci�n
@@ -34,29 +34,29 @@ namespace eden_error {
 		/// @brief Lanza un warning a la salida est�ndar de errores (consola en Debug y nada en Release)
 		/// @param warningMsg El mensaje de warning a lanzar. En este m�todo se dice en qu� l�nea y en qu� archivo
 		/// se ha generado el warning
-		void Warning(std::string warningMsg);
+		EDEN_API void Warning(std::string warningMsg);
 
 		/// @brief Comprueba una condici�n (Solo en Debug)
 		/// @param condition Condici�n a comprobar en el assert. Si falla, el programa cierra
-		void Assert(bool condition, std::string errorMessage);
+		EDEN_API void Assert(bool condition, std::string errorMessage);
 
 		/// @brief Lanza un warning a la salida est�ndar de errores (consola en Debug y nada en Release)
-		void Exception(std::string title, std::string definition);
+		EDEN_API void Exception(std::string title, std::string definition);
 
 		// @brief Se llama a Handle Exception cuando se lanza una excepci�n desde cualquier punto del c�digo. Este m�todo se encuentra envolviendo
 		// al main. Las excepciones, en nuestro caso, ser�n utilizadas para errores de usuario, por lo que este m�todo lo que hace es vaciar toda la 
 		// memoria generada y (en windows) mostrar una ventana con el error que lancemos al usuario.
 		// @param e Excepci�n a manejar.
-		void HandleException(std::exception e);
+		EDEN_API void HandleException(std::exception e);
 
 		/// @brief Exactamente lo mismo que HandleException solo que para sistemas en los que
 		/// @brief std::exception no acepta como argumento en su constructora un string o una
 		/// @brief cadena de C
 		/// @param e Excepcion a manejar
-		void HandleExceptionNWin(std::runtime_error e);
+		EDEN_API void HandleExceptionNWin(std::runtime_error e);
 
 		/// @brief Borra EdenMaster, y por lo tanto, todo lo generado por el juego
-		void CloseApplication();
+		EDEN_API void CloseApplication();
 
 	private:
 		bool _generateLog = true;

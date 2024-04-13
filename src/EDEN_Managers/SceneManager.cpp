@@ -16,6 +16,11 @@
 
 namespace eden {
 
+	SceneManager* SceneManager::getInstance() {
+		return static_cast<SceneManager*>(Instance());
+	}
+
+
 	std::unordered_map<std::string, SceneManager::BlueprintInfo> SceneManager::_Blueprints = std::unordered_map<std::string, SceneManager::BlueprintInfo>();
 
 
@@ -156,10 +161,10 @@ namespace eden {
 		for (auto it = _scenesToDestroy.begin(); it != _scenesToDestroy.end();) {	
 			std::string prevScene = (*it)->GetSceneID();
 
-			physics_manager::PhysicsManager::Instance()->RemovePhysicsScene(prevScene, _activeScene->GetSceneID());
+			physics_manager::PhysicsManager::getInstance()->RemovePhysicsScene(prevScene, _activeScene->GetSceneID());
 			delete (*it);
 			it = _scenesToDestroy.erase(it);
-			eden_render::RenderManager::Instance()->RemoveRenderScene(prevScene, _activeScene->GetSceneID());
+			eden_render::RenderManager::getInstance()->RemoveRenderScene(prevScene, _activeScene->GetSceneID());
 		}
 	}
 }

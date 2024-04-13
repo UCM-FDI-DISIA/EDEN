@@ -25,23 +25,23 @@ namespace eden
 	class SceneManager;
 	/// @brief El master es la clase singleton encargada de llevar el bucle principal de juego
 	/// @brief Es esta clase que gestiona el tiempo del juego
-	class EDEN_API Master : public Singleton<Master>
+	class Master : public Singleton<Master>
 	{
 		friend Singleton<Master>;
 
 	public:
-		static bool isInitialized() { return true; }
+		EDEN_API static bool isInitialized() { return true; }
 
 		/// @brief Booleano de salida del bucle principal
 		bool exit = false;
 
 		/// @brief Bucle principal de juego
-		void Loop();
+		EDEN_API void Loop();
 
-		void CloseApplication();
+		EDEN_API void CloseApplication();
 
 		/// @brief Destructora por defecto de EdenMaster
-		~Master() override;
+		EDEN_API ~Master() override;
 	private:
 
 		// static bool _initialized;
@@ -67,7 +67,7 @@ namespace eden
 		physics_manager::PhysicsManager* _physicsManager;
 
 		/// @brief Constructora por defecto de EdenMaster
-		Master();
+		EDEN_API Master();
 	};
 }
 #endif

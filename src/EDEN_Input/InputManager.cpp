@@ -2,6 +2,10 @@
 #include "InputManager.h"
 #include "InputWrapper.h"
 
+eden_input::InputManager* eden_input::InputManager::getInstance() {
+	return static_cast<InputManager*>(Instance());
+}
+
 eden_input::InputManager::InputManager() {
 
 	_wrapper = new InputWrapper();

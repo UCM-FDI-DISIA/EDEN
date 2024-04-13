@@ -45,7 +45,7 @@ namespace eden_script {
 	};
 	
 	/// @brief Funciona como Wrapper de Lua y es capaz de leer de un .lua las entidades que necesitan ser creadas en escena y su informacion.
-	class EDEN_API ScriptManager : public Singleton<ScriptManager> {
+	class ScriptManager : public Singleton<ScriptManager> {
 
 		friend Singleton<ScriptManager>;
 
@@ -55,18 +55,20 @@ namespace eden_script {
 		/// @param info Vector pasado por referencia donde se guardara toda la informacion de las entidades leidas de mapa
 		/// @param collisionInfo Vector pasado por referencia donde se guardara toda la informacion de las capas de colision leidas de mapa
 		/// @return True = No error | False = Error
-		bool ReadScene(std::string sceneName, std::vector<eden_script::EntityInfo*>& info, std::unordered_map<std::string, std::vector<std::string>>& collisionInfo);
+		EDEN_API bool ReadScene(std::string sceneName, std::vector<eden_script::EntityInfo*>& info, std::unordered_map<std::string, std::vector<std::string>>& collisionInfo);
 
 		/// @brief Lee el archivo "bin/assets/Blueprints.lua" y rellena info con la información de los blueprints que existan.
 		/// @param info Información a rellenar
 		/// @return True = No error | False = Error
-		bool ReadBlueprints(std::vector<eden_script::EntityInfo*>& info);
+		EDEN_API bool ReadBlueprints(std::vector<eden_script::EntityInfo*>& info);
 
 		/// @brief Devuelve puntero a LuaManager
-		eden_script::LuaManager* GetLuaManager();
+		EDEN_API eden_script::LuaManager* GetLuaManager();
 
 		/// @brief Destructora que destruye la máquina virtual de Lua
-		~ScriptManager() override;
+		EDEN_API ~ScriptManager() override;
+
+		EDEN_API static ScriptManager* getInstance();
 
 	private:
 
@@ -76,7 +78,7 @@ namespace eden_script {
 		lua_State* _l;
 
 		/// @brief Constructora que inicializa Lua
-		ScriptManager();
+		EDEN_API ScriptManager();
 		
 		/// @brief Dice si una variable es 'nil' en Lua
 		/// @param varType Tipo de la variable a ver (entero devuelto por las funciones de Lua)

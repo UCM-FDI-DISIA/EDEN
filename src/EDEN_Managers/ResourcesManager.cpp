@@ -4,6 +4,10 @@
 #include "ResourcesManager.h"
 #include "ErrorHandler.h"
 
+eden_resources::ResourcesManager* eden_resources::ResourcesManager::getInstance() {
+	return static_cast<ResourcesManager*>(Instance());
+}
+
 eden_resources::ResourcesManager::ResourcesManager() {
 	//Cargamos todos los recursos de sonido
 	LoadResources();

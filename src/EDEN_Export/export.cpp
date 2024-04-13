@@ -20,6 +20,8 @@
 
 #include "ErrorHandler.h"
 
+#include "InputManager.h"
+
 /// Engine Loop3
 #include "EdenMaster.h"
 
@@ -133,6 +135,7 @@ void eden_export::RunEDEN()
 
 				master = eden::Master::Instance(); // creación instancia master
 				scnManager = eden::SceneManager::Instance(); // creación instancia de gestor de escenas
+				eden_input::InputManager::Instance();
 				LoadScene(scnManager); // carga de escena del juego
 				master->Loop(); // bucle de juego
 			}

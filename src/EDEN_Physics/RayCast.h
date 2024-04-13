@@ -33,7 +33,7 @@ namespace physics_wrapper {
 		const eden_ec::Entity* entityHit = nullptr;
 	};
 
-	class EDEN_API RayCast : public Singleton<RayCast>
+	class RayCast : public Singleton<RayCast>
 	{
 		friend Singleton<RayCast>;
 
@@ -44,7 +44,7 @@ namespace physics_wrapper {
 		/// @param drawDebugLine Un booleano que determina si se tiene o no que dibujar el rayo (para uso de debug)
 		/// @param debugLineColor Vector con la informacion RGB del color del rayo a dibujar
 		/// @return Devuelve un struct de tipo "RayCastHitResult" con la informacion de colision del rayo con el primer objeto en su trayectoria
-		const RayCastHitResult SingleHitRayCast(const eden_utils::Vector3 rayOrigin, const eden_utils::Vector3 rayDestiny, const bool drawDebugLine = false, const eden_utils::Vector3 debugLineColor = eden_utils::Vector3(1,0,0)) const;
+		EDEN_API const RayCastHitResult SingleHitRayCast(const eden_utils::Vector3 rayOrigin, const eden_utils::Vector3 rayDestiny, const bool drawDebugLine = false, const eden_utils::Vector3 debugLineColor = eden_utils::Vector3(1,0,0)) const;
 
 		/// @brief Metodo que genera un rayo que devuelve la informacion de todos los objetos con los que colisiona
 		/// @param rayOrigin Es el punto en el espacio desde donde sale el rayo
@@ -52,21 +52,21 @@ namespace physics_wrapper {
 		/// @param drawDebugLine Un booleano que determina si se tiene o no que dibujar el rayo (para uso de debug)
 		/// @param debugLineColor Vector con la informacion RGB del color del rayo a dibujar
 		/// @return Devuelve un vector de struct de tipo "RayCastHitResult" con la informacion de colision del rayo con todos los objetos en su trayectoria
-		const std::vector<RayCastHitResult> MultipleHitRayCast(const eden_utils::Vector3 rayOrigin, const eden_utils::Vector3 rayDestiny, const bool drawDebugLine = false, const eden_utils::Vector3 debugLineColor = eden_utils::Vector3(1, 0, 0)) const;
+		EDEN_API const std::vector<RayCastHitResult> MultipleHitRayCast(const eden_utils::Vector3 rayOrigin, const eden_utils::Vector3 rayDestiny, const bool drawDebugLine = false, const eden_utils::Vector3 debugLineColor = eden_utils::Vector3(1, 0, 0)) const;
 
-		const std::vector<RayCastHitResult> MultipleHitRayCast(const eden_utils::Vector3 rayOrigin, const eden_utils::Vector3 rayDestiny, const char* layerName, const bool drawDebugLine = false, const eden_utils::Vector3 debugLineColor = eden_utils::Vector3(1, 0, 0)) const;
+		EDEN_API const std::vector<RayCastHitResult> MultipleHitRayCast(const eden_utils::Vector3 rayOrigin, const eden_utils::Vector3 rayDestiny, const char* layerName, const bool drawDebugLine = false, const eden_utils::Vector3 debugLineColor = eden_utils::Vector3(1, 0, 0)) const;
 
-		const std::vector<RayCastHitResult> MultipleHitRayCast(const eden_utils::Vector3 rayOrigin, const eden_utils::Vector3 rayDestiny, std::string layerName, const bool drawDebugLine = false, const eden_utils::Vector3 debugLineColor = eden_utils::Vector3(1, 0, 0)) const;
+		EDEN_API const std::vector<RayCastHitResult> MultipleHitRayCast(const eden_utils::Vector3 rayOrigin, const eden_utils::Vector3 rayDestiny, std::string layerName, const bool drawDebugLine = false, const eden_utils::Vector3 debugLineColor = eden_utils::Vector3(1, 0, 0)) const;
 
 		~RayCast() override = default;
 	protected:
 		/// @brief Esta constructora deberia llamarse desde e metodo Instance de la clase Singleton
 		/// @param worldRef Referencia al mundo de la simulacion fisica
 		/// @param drawerRef Referencia a un objeto de dibujado de figuras debug
-		RayCast(class btDynamicsWorld* worldRef, class btIDebugDraw* drawerRef);
+		EDEN_API RayCast(class btDynamicsWorld* worldRef, class btIDebugDraw* drawerRef);
 
 		/// @brief Constructora por defecto, no deberia llamarse nunca
-		RayCast() = default;
+		EDEN_API RayCast() = default;
 	private:
 		/// @brief Referencia al mundo de la simulacion fisica
 		btDynamicsWorld* _dynamicWorldRef = nullptr;

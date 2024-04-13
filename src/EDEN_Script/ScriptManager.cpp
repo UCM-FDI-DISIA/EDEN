@@ -11,6 +11,11 @@
 #include "ComponentArguments.h"
 #include "LuaManager.h"
 
+eden_script::ScriptManager* eden_script::ScriptManager::getInstance() {
+	return static_cast<ScriptManager*>(Instance());
+}
+
+
 eden_script::ScriptManager::ScriptManager() {
 
 	//Creamos el luaManager

@@ -31,14 +31,14 @@
  */
 
 template<typename T>
-class EDEN_API Singleton {
+class Singleton {
 
 public:
 	/// @brief No se pueden copiar objetos de este tipo
-	Singleton<T>& operator=(const Singleton<T>& o) = delete;
-	Singleton(const Singleton<T>& o) = delete;
+	EDEN_API Singleton<T>& operator=(const Singleton<T>& o) = delete;
+	EDEN_API Singleton(const Singleton<T>& o) = delete;
 	/// @brief La destructora libera el puntero único
-	virtual ~Singleton() {
+	EDEN_API virtual ~Singleton() {
 		//_instance.release();
 	}
 
@@ -46,7 +46,7 @@ public:
 	/// @brief Evitar llamar a este método directamente, es preferible llamar al método "Instance".
 	/// @param args Son los parámetros que se usan para construir a la clase
 	template<typename ...Targs>
-	inline static T* Init(Targs &&...args) {
+	EDEN_API inline static T* Init(Targs &&...args) {
 		assert(_instance.get() == nullptr);
 		_instance.reset(new T(std::forward<Targs>(args)...));
 		return _instance.get();
@@ -54,7 +54,7 @@ public:
 
 	/// @brief A veces los singletons dependen entre ellos y han de cerrarse en un orden especifico por lo que tenemos este metodo
 	/// @brief Si se quiere borrar una instancia de singleton sin importar el orden, mejor usar la destructora
-	inline static void Close() {
+	EDEN_API inline static void Close() {
 		_instance.reset();
 	}
 
@@ -64,7 +64,7 @@ public:
 	/// @param args Son los parámetros que se usan para construir a la clase
 	/// @return El puntero a la instancia del singleton
 	template<typename ...Targs>
-	inline static T* Instance(Targs &&...args) {
+	EDEN_API inline static T* Instance(Targs &&...args) {
 		/// @brief puedes sustituir el "if" por assert(_instance.get() != nullptr) para forzar la incializacion al principio
 		if (_instance.get() == nullptr) {
 			Init(std::forward<Targs>(args)...);
@@ -72,7 +72,7 @@ public:
 		return _instance.get();
 	}
 protected:
-	Singleton() {
+	EDEN_API Singleton() {
 	}
 
 private:

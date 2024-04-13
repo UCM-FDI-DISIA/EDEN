@@ -15,7 +15,7 @@ namespace eden_ec {
 
 	/// @brief Clase cuya utilidad reside en crear los componentes de las entidades del juego.
 	/// Es capaz de crearlas a partir de su tipo o a partir de su ID.
-	class EDEN_API ComponentFactory : public Singleton<ComponentFactory>
+	class ComponentFactory : public Singleton<ComponentFactory>
 	{
 		/// @brief Necesitamos acceder al m�todo 'init' de Component, que es protegido.
 		friend Component;
@@ -26,7 +26,7 @@ namespace eden_ec {
 		/// para poder crearlos.
 		/// @tparam T Componente a registrar
 		template<typename T>
-		void RegisterComponent() {
+		EDEN_API void RegisterComponent() {
 			if (!ComponentExists(T::GetID()))
 				_currentComponents.emplace(T::GetID(), &ComponentFactory::CreateComponentNoArgs<T>);
 		};
@@ -39,7 +39,7 @@ namespace eden_ec {
 		/// @param ...args Par�metros de construcci�n del componente de tipo T
 		/// @return El componente creado
 		template<typename T, typename... Ts>
-		Component* CreateComponent(Ts&&... args) {
+		EDEN_API Component* CreateComponent(Ts&&... args) {
 			if (!ComponentExists(T::GetID())) return nullptr;
 
 			Component* c = new T(args...);
@@ -52,7 +52,7 @@ namespace eden_ec {
 		/// @param e Entidad que llevar� el componente a crear
 		/// @param id Id del componente a crear
 		/// @return Componente creado
-		Component* CreateComponentByName(std::string id);
+		EDEN_API Component* CreateComponentByName(std::string id);
 	private:
 		/// @brief Componentes registrados en la Factor�a.
 		/// Son IDs de componentes asociadas a las constructoras por defecto de lo mismos.
@@ -63,12 +63,12 @@ namespace eden_ec {
 		std::unordered_map<std::string, Component* (*)()> _currentComponents;
 
 		/// @brief Constructor por defecto
-		ComponentFactory() = default;
+		EDEN_API ComponentFactory() = default;
 
 		/// @brief Comprueba si un componente existe en la factor�a
 		/// @param id ID del componente a comprobar
 		/// @return True = Existe | False = No existe
-		bool ComponentExists(std::string id);
+		EDEN_API bool ComponentExists(std::string id);
 
 		/// @brief Funci�n que ser� llamada como callback para crear componentes por nombre.
 		/// Esta funci�n construye los componentes por defecto, no pasa argumentos.

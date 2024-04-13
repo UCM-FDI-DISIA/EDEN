@@ -23,7 +23,7 @@
 
 namespace eden_resources {
     /// @brief Clase encargada de gestionar los recursos de UI
-    class EDEN_API ResourcesManager : public Singleton<ResourcesManager> {
+    class ResourcesManager : public Singleton<ResourcesManager> {
         friend Singleton<ResourcesManager>;
     public:
 
@@ -34,29 +34,32 @@ namespace eden_resources {
             Default
         };
         /// @brief Constructora
-        ResourcesManager();
+        EDEN_API ResourcesManager();
         
         /// @brief Destructora
-        ~ResourcesManager();
+        EDEN_API ~ResourcesManager();
 
         /// @brief Método que comprueba si un archivo existe
-        bool FileExist(std::string name, Resources res);
+        EDEN_API bool FileExist(std::string name, Resources res);
         
-        std::set<std::string> GetMaterials();
+        EDEN_API std::set<std::string> GetMaterials();
 
-        std::set<std::string> GetAudios();
+        EDEN_API std::set<std::string> GetAudios();
 
-        std::set<std::string> GetFonts();
+        EDEN_API std::set<std::string> GetFonts();
 
-        std::set<std::string> GetRutesMaterials();
+        EDEN_API std::set<std::string> GetRutesMaterials();
 
-        std::set<std::string> GetRutesAudios();
+        EDEN_API std::set<std::string> GetRutesAudios();
 
-        std::set<std::string> GetRutesFonts();
+        EDEN_API std::set<std::string> GetRutesFonts();
+
+        EDEN_API static ResourcesManager* getInstance();
+
     private:
 
         /// @brief Método que guarda todos los archivos existentes de unas direcciones concretas
-        void LoadResources();
+        EDEN_API void LoadResources();
 
         /// @brief Lista de todos recursos
         std::vector<std::set<std::string>>_resourcesGeneral;

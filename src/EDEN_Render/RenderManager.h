@@ -5,6 +5,7 @@
 #include <string>
 #include <unordered_set>
 #include <unordered_map>
+#include <vector>
 
 #include "Singleton.h"
 
@@ -97,6 +98,20 @@ namespace eden_render
 		/// @brief Funci�n que deber�a llamarse en el momento en el que la ventana cambia de tama�o
 		void ResizedWindow();
 
+		/// @brief Método que intercambia el modo de pantalla entre "pantalla completa" y tamaño elegido
+		void FullScreen();
+
+		/// @brief Método que setea las resoluciones
+		void SetResolutions(std::vector<std::pair<int, int>> resolutions);
+
+		/// @brief Método que devuelve la resolución actual
+		std::pair<int, int> GetResolution();
+
+		/// @brief Método que cambia la resuluión actual
+		void ChangeResolution();
+
+
+
 		render_wrapper::CameraWrapper* GetCamera(eden_ec::Entity* ent);
 
 	protected:
@@ -158,9 +173,12 @@ namespace eden_render
 		void RemoveRenderScene(std::string sceneToRemoveID, std::string newCurrentSceneID);
 
 		/// @brief 
-		/// @param sceneID 
-		
+		/// @param sceneID 		
 		void ShowEntities(std::string sceneID, bool show);
+
+		/// @brief Cambia el tamaño de la ventana
+		void ChangeWindowSize(int w, int h);
+
 		/// @brief Raiz de Ogre
 		Ogre::Root* _root;
 
@@ -203,6 +221,22 @@ namespace eden_render
 
 		/// @brief Flag para saber si la ventana ha sido escalada
 		bool _resized = false;
+
+		/// @brief Tamaño actual de la pantalla
+		uint32_t _currW, _currH;
+
+		/// @brief Tamaño de la pantalla completa
+		uint32_t _fullW, _fullH;
+		bool _isFullScreen = false;
+
+		/// @brief Vector con las distintas resoluciones
+		std::vector<std::pair<int, int>> _resolutions;
+		
+		/// @brief indice de la resolucion actual
+		int _currRes = 0;
+
+		/// @brief Resolución default
+		std::pair<int, int> _defWindowSize = {640,480};
 	};
 
 	class InfoRenderWorld

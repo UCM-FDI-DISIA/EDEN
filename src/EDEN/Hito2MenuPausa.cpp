@@ -6,6 +6,8 @@
 #include"CLuaBehaviour.h"
 #include "SceneManager.h"
 
+#include <RenderManager.h>
+
 const std::string eden_ec::Hito2MenuPausa::_id = "PAUSA";
 
 eden_ec::Hito2MenuPausa::Hito2MenuPausa() {
@@ -42,6 +44,7 @@ void eden_ec::Hito2MenuPausa::ExitGame()
 
 void eden_ec::Hito2MenuPausa::BackToMenu()
 {
+	//eden_render::RenderManager::Instance()->ChangeResolution();
 	eden::SceneManager* scnManager = eden::SceneManager::Instance();
 	scnManager->ChangeScene("Menu");
 }

@@ -1,5 +1,8 @@
 #define _CRTDBG_MAP_ALLOC
 #include <iostream>
+#include "wtypes.h"
+#include <cmath>
+#include <map>
 
 // Ogre
 #pragma warning(push)
@@ -50,7 +53,9 @@ eden_render::RenderManager::RenderManager(const std::string& appName)
 	_root = nullptr; // pone la ra�z a nulo
 	_firstRun = true; // activa la primer inicializaci�n
 	_shaderGenerator = nullptr; // y mantiene el generador de sombreado a nulo
+	_resolutions.push_back(_defWindowSize); // setea la resolución default 
 
+	
 	try
 	{
 		InitManager(appName);
@@ -206,8 +211,6 @@ void eden_render::RenderManager::DestroyRTShaderSystem()
 	}
 }
 
-/// TEMPORAL, PARA PROBAR EL TAMANO DE LA PANTALLA
-//#include "wtypes.h"
 
 NativeWindowPair eden_render::RenderManager::CreateNewWindow(const std::string& name)
 {
@@ -218,21 +221,9 @@ NativeWindowPair eden_render::RenderManager::CreateNewWindow(const std::string& 
 
 	std::istringstream mode(ropts["Video Mode"].currentValue);
 	std::string token;
-	mode >> w;
 	mode >> token;
-	mode >> h;
-
-	/// TEMPORAL - PRUEBAS
-	//RECT desktop;
-	//// Get a handle to the desktop window
-	//const HWND hDesktop = GetDesktopWindow();
-	//// Get the size of screen to the variable desktop
-	//GetWindowRect(hDesktop, &desktop);
-	//// The top left corner will have coordinates (0,0)
-	//// and the bottom right corner will have coordinates
-	//// (horizontal, vertical)
-	//w = desktop.right;
-	//h = desktop.bottom;
+	w = _resolutions[_currRes].first;
+	h = _resolutions[_currRes].second;
 
 	miscParams["FSAA"] = ropts["FSAA"].currentValue;
 	miscParams["vsync"] = ropts["VSync"].currentValue;
@@ -244,10 +235,24 @@ NativeWindowPair eden_render::RenderManager::CreateNewWindow(const std::string& 
 	if (ropts["Full Screen"].currentValue == "Yes") flags = SDL_WINDOW_FULLSCREEN;
 
 	_window.native = SDL_CreateWindow(name.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, w, h, flags);
+	_currW = w;
+	_currH = h;
 
 	SDL_SysWMinfo wmInfo;
 	SDL_VERSION(&wmInfo.version);
 	SDL_GetWindowWMInfo(_window.native, &wmInfo);
+
+	//TAMAÑO FULL SCREEN
+	RECT desktop;
+	// Get a handle to the desktop window
+	const HWND hDesktop = GetDesktopWindow();
+	// Get the size of screen to the variable desktop
+	GetWindowRect(hDesktop, &desktop);
+	// The top left corner will have coordinates (0,0)
+	// and the bottom right corner will have coordinates
+	// (horizontal, vertical)
+	_fullW = desktop.right;
+	_fullH = desktop.bottom;
 
 #ifdef SDL_VIDEO_DRIVER_WINDOWS
 	miscParams["externalWindowHandle"] = Ogre::StringConverter::toString(size_t(wmInfo.info.win.window));
@@ -380,6 +385,60 @@ void eden_render::RenderManager::removeRenderEntity(eden_ec::Entity* ent) {
 void eden_render::RenderManager::ResizedWindow() {
 	_window.render->windowMovedOrResized();
 	_resized = true;
+}
+
+void eden_render::RenderManager::ChangeWindowSize(int w, int h)
+{
+	SDL_SetWindowSize(_window.native, w, h);
+	SDL_SetWindowPosition(_window.native, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
+	ResizedWindow();
+}
+
+void eden_render::RenderManager::FullScreen()
+{
+	uint32_t w, h;
+	if (_isFullScreen) {
+		w = _currW;
+		h = _currH;
+	}
+	else {
+		w = _fullW;
+		h = _fullH;
+	}
+
+	ChangeWindowSize(w, h);
+	_isFullScreen = !_isFullScreen;
+}
+
+void eden_render::RenderManager::SetResolutions(std::vector<std::pair<int, int>> resolutions)
+{
+	std::map<int, std::pair<int, int>> aux;
+
+	std::pair<int, int> res;
+	for (int i = 0; i < resolutions.size(); i++) {
+		if (resolutions[i].first < _fullW && resolutions[i].second < _fullH) {
+			res = { resolutions[i].first,resolutions[i].second };
+			aux[res.first + (sqrt(res.first * res.first + res.second * res.second))] = res;
+		}
+	}
+	_resolutions.clear();
+	for (auto it = aux.begin(); it != aux.end(); it++) {
+		_resolutions.push_back((*it).second);
+	}
+
+	if (_resolutions.empty())_resolutions.push_back(_defWindowSize);
+	_currRes = 0;
+}
+
+std::pair<int, int> eden_render::RenderManager::GetResolution()
+{
+	return { _currW,_currH };
+}
+
+void eden_render::RenderManager::ChangeResolution()
+{
+	ChangeWindowSize(_resolutions[_currRes].first, _resolutions[_currRes].second);
+	_currRes = (_currRes + 1) % _resolutions.size();
 }
 
 render_wrapper::CameraWrapper* eden_render::RenderManager::GetCamera(eden_ec::Entity* ent)

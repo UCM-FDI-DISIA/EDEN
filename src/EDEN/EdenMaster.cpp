@@ -27,7 +27,14 @@ eden::Master::Master()
 	_renderManager = eden_render::RenderManager::Instance("EDEN Engine");
 
 	if (!_renderManager->couldInitialize()) delete _renderManager;
-
+	else {
+		//Ejemplo de seteo de Resoluciones por el programador
+		std::vector<std::pair<int, int>> resolutions;
+		resolutions.push_back({ 640,480 });
+		resolutions.push_back({ 1280,720 });
+		resolutions.push_back({ 960,540 });
+		_renderManager->SetResolutions(resolutions);
+	}
 	_inputManager = eden_input::InputManager::Instance();
 	_scnManager = SceneManager::Instance();
 	_physicsManager = physics_manager::PhysicsManager::Instance();

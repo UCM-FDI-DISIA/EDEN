@@ -46,7 +46,6 @@
 
 // Engine Script
 #include <ScriptManager.h>
-#include <LuaManager.h>
 #include "SceneManager.h"
 #include "Scene.h"
 

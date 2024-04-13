@@ -58,13 +58,13 @@
     <OutDir>$(ProjectDir)..\..\..\lib\$(Configuration)\</OutDir>
     <TargetName>$(ProjectName)_d</TargetName>
     <AllProjectBMIsArePublic>true</AllProjectBMIsArePublic>
-    <PublicIncludeDirectories>$(SolutionDir)dependencies\LuaBridge\Source\;$(SolutionDir)dependencies\Lua\src\</PublicIncludeDirectories>
+    <PublicIncludeDirectories>$(ProjectDir)..\..\..\dependencies\LuaBridge\Source\;$(ProjectDir)..\..\..\dependencies\Lua\src\</PublicIncludeDirectories>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IntDir>$(ProjectDir)..\..\..\temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
     <OutDir>$(ProjectDir)..\..\..\lib\$(Configuration)\</OutDir>
     <AllProjectBMIsArePublic>true</AllProjectBMIsArePublic>
-    <PublicIncludeDirectories>$(SolutionDir)dependencies\LuaBridge\Source\;$(SolutionDir)dependencies\Lua\src\</PublicIncludeDirectories>
+    <PublicIncludeDirectories>$(ProjectDir)..\..\..\dependencies\LuaBridge\Source\;$(ProjectDir)..\..\..\dependencies\Lua\src\</PublicIncludeDirectories>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>

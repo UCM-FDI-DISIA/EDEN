@@ -30,6 +30,7 @@
     <ClCompile Include="..\..\src\EDEN\CLight.cpp" />
     <ClCompile Include="..\..\src\EDEN\Hito2Prueba.cpp" />
     <ClCompile Include="..\..\src\EDEN\Hito2MenuPausa.cpp" />
+    <ClCompile Include="..\..\src\EDEN\CBar.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\EDEN\Quaternion.h" />
@@ -62,5 +63,6 @@
     <ClInclude Include="..\..\src\EDEN\defs.h" />
     <ClInclude Include="..\..\src\EDEN\Hito2Prueba.h" />
     <ClInclude Include="..\..\src\EDEN\Hito2MenuPausa.h" />
+    <ClInclude Include="..\..\src\EDEN\CBar.h" />
   </ItemGroup>
 </Project>

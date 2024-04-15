@@ -3,6 +3,7 @@
 #include "Entity.h"
 #include "CAudioEmitter.h"
 #include <InputManager.h>
+#include <RenderManager.h>
 #include "Entity.h"
 #include "Transform.h"
 #include "CAnimator.h"
@@ -11,6 +12,8 @@
 #include <string>
 #include <ScriptManager.h>
 #include <LuaManager.h>
+
+#include "CBar.h"
 
 const std::string eden_ec::Hito2Prueba::_id = "PRUEBA2";
 void eden_ec::Hito2Prueba::Start() {
@@ -102,6 +105,7 @@ void eden_ec::Hito2Prueba::Jump() {
 
 void eden_ec::Hito2Prueba::Pause()
 {
+	//eden_render::RenderManager::Instance()->FullScreen();
 	eden::SceneManager* scnManager = eden::SceneManager::Instance();
 	scnManager->PushScene("MenuPausa");
 }

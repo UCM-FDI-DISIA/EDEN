@@ -54,12 +54,6 @@ if !COMPILE! equ 1 (
         XCOPY /y /s "%%j" %DLLFOLDERS%
     )
     XCOPY /y /s .\bin\release\plugins.cfg %DLLFOLDERS%
-    echo [General] >> %DLLFOLDERS%\resources.cfg
-    echo FileSystem=./assets/ >> %DLLFOLDERS%\resources.cfg
-    echo FileSystem=./assets/mesh/ >> %DLLFOLDERS%\resources.cfg
-	echo FileSystem=./assets/fonts/ >> %DLLFOLDERS%\resources.cfg
-	echo FileSystem=./assets/default >> %DLLFOLDERS%\resources.cfg
-
     cd ..\..
     echo OGRE compilado
 ) else (

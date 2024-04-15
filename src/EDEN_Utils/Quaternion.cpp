@@ -54,7 +54,7 @@ eden_utils::Quaternion eden_utils::Quaternion::operator-(Quaternion other)
 eden_utils::Quaternion eden_utils::Quaternion::operator*(Quaternion other)
 {
 	return Quaternion(_w * other._w - _x * other._x - _y * other._y - _z * other._z,
-		_w * other._x + _x * other._w + _y * other._z + _z * other._y,
+		_w * other._x + _x * other._w + _y * other._z - _z * other._y,
 		_w * other._y - _x * other._z + _y * other._w + _z * other._x,
 		_w * other._z + _x * other._y - _y * other._x + _z * other._w);
 }
@@ -95,9 +95,9 @@ eden_utils::Quaternion eden_utils::Quaternion::operator*=(Quaternion other)
 	float w = _w, x = _x, y = _y, z = _z;
 
 	_w = w * other._w - x * other._x - y * other._y - z * other._z;
-	_x = w * other._x + x * other._w + y * other._z + z * other._y;
-	_y = w * other._y - x * other._z + y * other._w + z * other._x;
-	_z = w * other._z + x * other._y - y * other._x + z * other._w;
+	_x = w * other._x + x * other._w - y * other._z + z * other._y;
+	_y = w * other._y + x * other._z + y * other._w - z * other._x;
+	_z = w * other._z - x * other._y + y * other._x + z * other._w;
 
 	return *this;
 }
@@ -156,12 +156,7 @@ eden_utils::Vector3 eden_utils::Quaternion::Complex() const
 
 void eden_utils::Quaternion::RotateArroundPoint(Vector3 position, float angle)
 {
-	angle = (angle * 2.0f * float(PI)) / 180.0f;
-
-	*this = UnitQuaternion(position, angle) * 
-		(*this - Quaternion(0, position.GetX(), position.GetY(), position.GetZ())) * 
-		UnitQuaternion(position, angle).Conjugate()
-		+ Quaternion(0, position.GetX(), position.GetY(), position.GetZ());
+	*this = Quaternion(angle, position)* (*this);
 }
 
 eden_utils::Quaternion eden_utils::Quaternion::Identity()

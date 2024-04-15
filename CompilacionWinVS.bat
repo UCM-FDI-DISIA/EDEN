@@ -20,6 +20,9 @@ call %BAT%
 cd ..\Lua\
 call %BAT%
 
+cd ..\irrKlang\
+call %BAT%
+
 cd ..\..
 
 call CompilarMotor.bat

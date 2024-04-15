@@ -99,6 +99,8 @@ namespace eden_render
 
 		render_wrapper::CameraWrapper* GetCamera(eden_ec::Entity* ent);
 
+		static RenderManager* getInstance();
+
 	protected:
 		Ogre::SceneManager* GetOgreSceneManager();
 

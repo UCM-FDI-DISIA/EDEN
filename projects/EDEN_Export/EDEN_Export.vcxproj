@@ -46,14 +46,14 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <TargetName>$(ProjectName)_d</TargetName>
-    <OutDir>$(ProjectDir)..\..\bin\</OutDir>
+    <OutDir>$(SolutionDir)bin\</OutDir>
     <IntDir>$(ProjectDir)..\..\temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
     <PublicIncludeDirectories>$(ProjectDir)..\..\dependencies\LuaBridge\Source;$(ProjectDir)..\..\dependencies\Lua\src;$(PublicIncludeDirectories)</PublicIncludeDirectories>
     <AllProjectBMIsArePublic>true</AllProjectBMIsArePublic>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(ProjectDir)..\..\bin\</OutDir>
+    <OutDir>$(SolutionDir)bin\</OutDir>
     <IntDir>$(ProjectDir)..\..\temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
     <AllProjectBMIsArePublic>true</AllProjectBMIsArePublic>
     <PublicIncludeDirectories>$(ProjectDir)..\..\dependencies\LuaBridge\Source;$(ProjectDir)..\..\dependencies\Lua\src;$(PublicIncludeDirectories)</PublicIncludeDirectories>
@@ -71,7 +71,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>EDEN_Audio_d.lib;EDEN_Debug_d.lib;EDEN_EC_d.lib;EDEN_Input_d.lib;EDEN_Managers_d.lib;EDEN_Physics_d.lib;EDEN_Render_d.lib;EDEN_Script_d.lib;EDEN_Utils_d.lib;OgreMain_d.lib;OgreOverlay_d.lib;SDL2d.lib;SDL2maind.lib;OgreRTShaderSystem_d.lib;BulletDynamics_Debug.lib;BulletCollision_Debug.lib;LinearMath_Debug.lib;Bullet3Common_Debug.lib;Bullet3Dynamics_Debug.lib;irrKlang.lib;lua.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\..\lib\$(Configuration)\;$(ProjectDir)..\..\dependencies\Bullet\build\$(Platform)\lib\$(Configuration)\;$(ProjectDir)..\..\dependencies\SDL\build\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\dependencies\Ogre\build\$(Platform)\lib\$(Configuration)\;$(ProjectDir)..\..\dependencies\Lua\build\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\dependencies\irrKlang\build\$(Platform)\</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\..\lib\$(Configuration)\;$(ProjectDir)..\..\dependencies\Bullet\build\$(Platform)\lib\$(Configuration)\;$(ProjectDir)..\..\dependencies\SDL\build\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\dependencies\Ogre\build\$(Platform)\lib\$(Configuration)\;$(ProjectDir)..\..\dependencies\Lua\build\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\dependencies\irrKlang\build\$(Platform)\;$(SolutionDir)bin\</AdditionalLibraryDirectories>
     </Link>
     <Lib>
       <AdditionalDependencies>

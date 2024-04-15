@@ -5,7 +5,7 @@
 SETLOCAL ENABLEDELAYEDEXPANSION
 set COMPILEDIR=..\..\src
 set BUILDDIR=.\build
-set LUABUILDVER=1.1
+set LUABUILDVER=1.0
 set COMPILE=1
 set PLATFORM=x64
 
@@ -40,8 +40,8 @@ if !COMPILE! equ 1 (
     :: Generamos con CMake a partir de la carpeta con el Src de Lua la solución de VSC++ con las tags correspondientes
     cmake -A %PLATFORM% %COMPILEDIR%
     :: Compilamos Lua tanto en Debug como en Release (solo hemos creado para x64, no tenemos que preocuparnos por Win32)
-    msbuild "LUA_C.sln" /p:configuration=Debug /p:Platform=x64
-    msbuild "LUA_C.sln" /p:configuration=Release /p:Platform=x64
+    msbuild "LUA_C.sln" /p:configuration=Debug /maxcpucount
+    msbuild "LUA_C.sln" /p:configuration=Release /maxcpucount
     :: En teoría Bullet no tiene .dll que mover a la carpeta donde se generan los .exe del motor
     cd ..\..
     echo Lua compilado

@@ -1,13 +1,11 @@
 @echo off
-:: Ejecutar este .bat si se quiere compilar aunque ya se haya compilado.
+:: Ejecutar este .bat si se quiere recompilar todas las librerías aunque ya se haya compilado.
+
 set CHKBUILD=chkbuild.EDENBUILD
 cls
 
 for %%i in (".\bin\*.dll") do (
     del "%%i"
-)
-for %%j in (".\bin\*.cfg") do (
-    del "%%j"
 )
 
 cd .\dependencies\
@@ -27,9 +25,6 @@ rd /s /q .\build\
 cd ..\Lua\
 del %CHKBUILD%
 rd /s /q .\build\
-
-cd ..\irrKlang\
-del %CHKBUILD%
 
 cd ..\..
 

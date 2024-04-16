@@ -24,8 +24,8 @@ eden_debug::DebugDrawer::DebugDrawer(std::string id, std::string sceneID) {
 
 eden_debug::DebugDrawer::~DebugDrawer() {
 	clearLines();
-	render_wrapper::NodeManager::Instance()->RemoveSceneObject(_id, _sceneID);
-	_node = nullptr;
+	//render_wrapper::NodeManager::Instance()->RemoveSceneObject(_id, _sceneID);
+	//_node = nullptr;
 }
 
 void eden_debug::DebugDrawer::clearLines() {

@@ -24,7 +24,7 @@ void physics_manager::PhysicsManager::updateSimulation(float deltaTime, std::str
 	std::unordered_set<eden_ec::Entity*>* currentEnts = &_physicsScenes[sceneID]->_entitiesSet;
 	for (auto ent : (*currentEnts)) {
 		_rb = ent->GetComponent<eden_ec::CRigidBody>()->_rb;
-
+		info->GetDebug()->DrawRigidBody(ent->GetComponent<eden_ec::CRigidBody>(), { 0,0,0 });
 		_currentPhysicScene->contactTest(_rb->getBulletRigidBody(), *_rb->_collisionCallback);
 	}
 }
@@ -166,6 +166,7 @@ void physics_manager::PhysicsManager::UpdatePositions(std::string sceneID) {
 	std::unordered_set<eden_ec::Entity*>* currentEnts = &_physicsScenes[sceneID]->_entitiesSet;
 	for (auto ent : (*currentEnts)) {
 		_rb = ent->GetComponent<eden_ec::CRigidBody>();
+
 		_rb->EdenTransformToPhysicsTransform();
 	}
 }
@@ -211,7 +212,7 @@ void physics_manager::PhysicsManager::CreatePhysicsScene(std::string sceneID)
 	auto sceneIt = _physicsScenes.find(sceneID);
 	if (sceneIt == _physicsScenes.end())
 	{
-		InfoPhysicWorld* info = new InfoPhysicWorld(sceneID);
+		info = new InfoPhysicWorld(sceneID);
 		_currentPhysicScene = info->GetWorld();
 		_currentPhysicScene->setGravity(btVector3(_defaultGravity.GetX(), _defaultGravity.GetY(), _defaultGravity.GetZ()));
 		_physicsScenes[sceneID] = info;
@@ -252,7 +253,8 @@ physics_manager::InfoPhysicWorld::InfoPhysicWorld(std::string sceneID)
 	_worldConstraintSolver = new btSequentialImpulseConstraintSolver();
 	_dynamicWorld = new btDiscreteDynamicsWorld(_worldDispatcher, _worldBroadPhaseInterface, _worldConstraintSolver, _worldCollisionConfiguration);
 #ifdef _DEBUG
-	//_debug = new eden_debug::Debug("Debug" + sceneID, sceneID);
+	_debug = new eden_debug::Debug("Debug" + sceneID, sceneID);
+	_debug->SetDebugMode(2);
 #endif
 }
 
@@ -264,7 +266,13 @@ physics_manager::InfoPhysicWorld::~InfoPhysicWorld()
 	delete _worldDispatcher;
 	delete _worldCollisionConfiguration;
 #ifdef _DEBUG
-	//delete _debug;
+	delete _debug;
 #endif
 }
 
+#ifdef _DEBUG
+eden_debug::Debug* physics_manager::InfoPhysicWorld::GetDebug()
+{
+	return _debug;
+}
+#endif

@@ -62,7 +62,6 @@
 
 #include <string>
 #include "Export.h"
-#include <windows.h>
 
 void RegisterEngineComponents() {
 	// Registramos el componente Transform, que es el unico que usaremos de momento
@@ -104,9 +103,9 @@ void eden_export::RunEDEN()
 		//Creamos una escena inicial de pueba 
 		// scnManager = eden::SceneManager::Instance();
 #ifdef _DEBUG
-		HMODULE game = LoadLibraryA("game_d.dll");
+		game = LoadLibraryA("game_d.dll");
 #else
-		HMODULE game = LoadLibraryA("game.dll");
+		game = LoadLibraryA("game.dll");
 #endif
 
 		if (game == NULL) {
@@ -139,8 +138,6 @@ void eden_export::RunEDEN()
 				LoadScene(scnManager); // carga de escena del juego
 				master->Loop(); // bucle de juego
 			}
-
-			FreeLibrary(game); // liberación de memoria de la .dll del juego
 		}
 	}
 
@@ -152,5 +149,6 @@ void eden_export::RunEDEN()
 void eden_export::StopEDEN()
 {
 	master->Close();
+	FreeLibrary(game); // liberación de memoria de la .dll del juego
 	errorHandler->Close();
 }

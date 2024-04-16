@@ -3,6 +3,8 @@
 
 #include "defs.h"
 
+#include <windows.h>
+
 namespace eden {
 	class Master;
 	class SceneManager;
@@ -21,6 +23,7 @@ namespace eden_export {
 	EDEN_API void StopEDEN();
 }
 
+HMODULE game;
 eden::Master* master;
 eden::SceneManager* scnManager;
 eden_error::ErrorHandler* errorHandler;

@@ -13,6 +13,7 @@
 #include "ComponentArguments.h"
 #include "PhysicsManager.h"
 #include "RenderManager.h"
+#include "AudioManager.h"
 
 namespace eden {
 

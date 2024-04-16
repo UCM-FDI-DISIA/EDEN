@@ -6,6 +6,7 @@
 #include "AudioEngine.h"
 #include "ErrorHandler.h"
 #include "ResourcesManager.h"
+#include "Entity.h"
 
 eden_audio::AudioManager::AudioManager() {
 	//Inicializamos el motor de sonido en caso de que no se haya creado
@@ -33,4 +34,20 @@ audio_wrapper::SoundClip* eden_audio::AudioManager::GetSoundClip(std::string fil
 	auto it = _soundMap.find(filename);
 	if (it == _soundMap.end()) eden_error::ErrorHandler::Instance()->Exception("Music file not found", "El archivo de sonido " + filename + " no ha sido encontrado.");
 	return it->second;
+}
+
+void eden_audio::AudioManager::AddAudioEntity(eden_ec::Entity* e) {
+	std::unordered_map<std::string, InfoAudioWorld*>::iterator it = _audioScenes.find(e->GetSceneID());
+	if (it != _audioScenes.end()) {
+		if (e != nullptr) it->second->_entities.insert(e);
+	}
+	else eden_error::ErrorHandler::Instance()->Warning("AudioManager ERROR in line 44 could not find scene: " + e->GetSceneID() + "\n");
+}
+
+void eden_audio::AudioManager::RemoveAudioEntity(eden_ec::Entity* e) {
+	std::unordered_map<std::string, InfoAudioWorld*>::iterator it = _audioScenes.find(e->GetSceneID());
+	if (it != _audioScenes.end()) {
+		if (e != nullptr) it->second->_entities.erase(e);
+	}
+	else eden_error::ErrorHandler::Instance()->Warning("AudioManager ERROR in line 52 could not find scene: " + e->GetSceneID() + "\n");
 }

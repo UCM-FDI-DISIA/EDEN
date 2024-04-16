@@ -113,8 +113,8 @@ namespace eden {
 		std::vector<eden_script::EntityInfo*> info;
 		scriptManager->ReadScene(ID, info, collisionInfo);
 
-		physics_manager::PhysicsManager::Instance()->CreatePhysicsScene(ID);
 		eden_render::RenderManager::Instance()->CreateRenderScene(ID);
+		physics_manager::PhysicsManager::Instance()->CreatePhysicsScene(ID);
 		Scene* newSc = new Scene(ID, info, collisionInfo);
 		for (auto a : info) delete a;
 		_scenes.push_front(newSc);

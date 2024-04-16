@@ -3,6 +3,8 @@
 
 #include "Vector3.h"
 #include "DebugDrawer.h"
+#include "CRigidBody.h"
+#include "RigidBody.h"
 
 eden_debug::Debug::Debug(std::string id, std::string sceneID)
 {
@@ -32,6 +34,16 @@ void eden_debug::Debug::DrawLine(const eden_utils::Vector3& src, const eden_util
 void eden_debug::Debug::SetDebugMode(int mode)
 {
 	_debugDrawer->setDebugMode(mode);
+}
+
+void eden_debug::Debug::DrawRigidBody(eden_ec::CRigidBody* rb, const eden_utils::Vector3& color)
+{
+	physics_wrapper::RigidBody* _rb = rb->GetWrapperRigidBody();
+	btRigidBody* btRB = _rb->getBulletRigidBody();
+	
+	btVector3 btColor = EDENToBulletVector(color);
+
+	_debugDrawer->drawRigidBody(btRB, btColor);
 }
 
 int eden_debug::Debug::GetDebugMode()

@@ -141,6 +141,9 @@ namespace eden_ec {
 		/// @brief Devuelve el nombre de la capa de colisi�n del objeto
 		/// @return Devuelve el nombre de la capa de colisi�n del objeto 
 		std::string GetCollisionLayerName();
+
+		physics_wrapper::RigidBody* GetWrapperRigidBody();
+
 	protected:
 		const static std::string _id;
 

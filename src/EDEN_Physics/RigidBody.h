@@ -25,6 +25,11 @@ namespace physics_manager {
 	class PhysicsManager;
 }
 
+#ifdef _DEBUG
+namespace eden_debug {
+	class Debug;
+}
+#endif
 
 namespace physics_wrapper {
 	class CollisionCallback;
@@ -33,6 +38,10 @@ namespace physics_wrapper {
 	{
 		friend CollisionCallback;
 		friend physics_manager::PhysicsManager;
+#ifdef _DEBUG
+		friend eden_debug::Debug;
+#endif
+
 	public:
 		enum RigidBodyType { DYNAMIC, KINEMATIC, STATIC };
 
@@ -163,6 +172,7 @@ namespace physics_wrapper {
 
 		/// @brief Método que actualiza el estado de las colisiones para ver si se ha dejado de colisionar con algún objeto.
 		void Update();
+
 	private:
 		btRigidBody* _rigidBody = nullptr;
 		btDefaultMotionState* _motionState = nullptr;
@@ -188,6 +198,8 @@ namespace physics_wrapper {
 		/// @param quaternion Cuaternion de Bullet que quieres traducir
 		/// @return Cuaternion del motor traducido
 		eden_utils::Quaternion BulletToEDENQuaternion(btQuaternion quaternion);
+
+	protected:
 
 		/// @brief Devuelve el rigidBody de la libreria fisica asociado a este rigidBody
 		btRigidBody* getBulletRigidBody();

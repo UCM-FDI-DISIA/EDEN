@@ -35,7 +35,7 @@ namespace physics_wrapper {
 }
 
 namespace eden_debug {
-	class DebugDrawer;
+	class Debug;
 }
 
 
@@ -132,9 +132,6 @@ namespace physics_manager {
 
 		/// @brief
 		btDynamicsWorld* _currentPhysicScene;
-		
-		/// @brief Encargado de hacer dibujos con caracter de debug
-		eden_debug::DebugDrawer* _debugDrawer;
 
 		/// @brief  Vector de Gravedad de la escena por defecto
 		eden_utils::Vector3 _defaultGravity;
@@ -172,7 +169,7 @@ namespace physics_manager {
 		friend PhysicsManager;
 
 	public:
-		InfoPhysicWorld();
+		InfoPhysicWorld(std::string sceneID);
 		~InfoPhysicWorld();
 
 	private:
@@ -181,6 +178,9 @@ namespace physics_manager {
 
 		/// @brief Clase de bullet encargada de determinar el algortimo de c�lculo de colisiones entre objetos segun su forma
 		btDispatcher* _worldDispatcher;
+
+		/// @brief Encargado de hacer dibujos con caracter de debug
+		eden_debug::Debug* _debug;
 
 		/// @brief Clase de bullet encargada de subdividir el mundo en sectores para facilitar los c�lculos de colision
 		btBroadphaseInterface* _worldBroadPhaseInterface;

@@ -14,7 +14,7 @@
 #include "RigidBody.h"
 #include "CollisionCallback.h"
 #include "CollisionLayer.h"
-#include "DebugDrawer.h"
+#include "Debug.h"
 #include "ErrorHandler.h"
 
 void physics_manager::PhysicsManager::updateSimulation(float deltaTime, std::string sceneID)
@@ -24,6 +24,7 @@ void physics_manager::PhysicsManager::updateSimulation(float deltaTime, std::str
 	std::unordered_set<eden_ec::Entity*>* currentEnts = &_physicsScenes[sceneID]->_entitiesSet;
 	for (auto ent : (*currentEnts)) {
 		_rb = ent->GetComponent<eden_ec::CRigidBody>()->_rb;
+
 		_currentPhysicScene->contactTest(_rb->getBulletRigidBody(), *_rb->_collisionCallback);
 	}
 }
@@ -76,7 +77,6 @@ physics_manager::PhysicsManager::PhysicsManager()
 	_currentPhysicScene = nullptr;
 
 	//Inicializacion de debug drawer
-	//_debugDrawer = new eden_debug::DebugDrawer("Debug1");
 	//_dynamicWorldRef->setDebugDrawer(_debugDrawer);
 	//physics_wrapper::RayCast::Instance(_dynamicWorldRef, _debugDrawer);
 }
@@ -126,10 +126,6 @@ physics_manager::PhysicsManager::~PhysicsManager()
 		delete it.second;
 	}
 
-	if (_debugDrawer) delete _debugDrawer;
-	
-	//delete _debugDrawer;
-	//if (_physicsDebugDrawer) delete _physicsDebugDrawer;
 
 }
 
@@ -215,7 +211,7 @@ void physics_manager::PhysicsManager::CreatePhysicsScene(std::string sceneID)
 	auto sceneIt = _physicsScenes.find(sceneID);
 	if (sceneIt == _physicsScenes.end())
 	{
-		InfoPhysicWorld* info = new InfoPhysicWorld();
+		InfoPhysicWorld* info = new InfoPhysicWorld(sceneID);
 		_currentPhysicScene = info->GetWorld();
 		_currentPhysicScene->setGravity(btVector3(_defaultGravity.GetX(), _defaultGravity.GetY(), _defaultGravity.GetZ()));
 		_physicsScenes[sceneID] = info;
@@ -248,13 +244,16 @@ bool physics_manager::LayerInfo::operator==(const LayerInfo& other) const {
 	return _sceneID == other._sceneID && _name == other._name;
 }
 
-physics_manager::InfoPhysicWorld::InfoPhysicWorld()
+physics_manager::InfoPhysicWorld::InfoPhysicWorld(std::string sceneID)
 {
 	_worldCollisionConfiguration = new btDefaultCollisionConfiguration();
 	_worldDispatcher = new btCollisionDispatcher(_worldCollisionConfiguration);
 	_worldBroadPhaseInterface = new btDbvtBroadphase();
 	_worldConstraintSolver = new btSequentialImpulseConstraintSolver();
 	_dynamicWorld = new btDiscreteDynamicsWorld(_worldDispatcher, _worldBroadPhaseInterface, _worldConstraintSolver, _worldCollisionConfiguration);
+#ifdef _DEBUG
+	//_debug = new eden_debug::Debug("Debug" + sceneID, sceneID);
+#endif
 }
 
 physics_manager::InfoPhysicWorld::~InfoPhysicWorld()
@@ -264,5 +263,8 @@ physics_manager::InfoPhysicWorld::~InfoPhysicWorld()
 	delete _worldBroadPhaseInterface;
 	delete _worldDispatcher;
 	delete _worldCollisionConfiguration;
+#ifdef _DEBUG
+	//delete _debug;
+#endif
 }
 

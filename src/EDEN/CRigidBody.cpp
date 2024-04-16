@@ -27,6 +27,11 @@ std::string eden_ec::CRigidBody::GetCollisionLayerName() {
 	return _layer;
 }
 
+physics_wrapper::RigidBody* eden_ec::CRigidBody::GetWrapperRigidBody()
+{
+	return _rb;
+}
+
 
 
 void eden_ec::CRigidBody::Update(float t)

@@ -85,10 +85,6 @@ void RegisterEngineComponents() {
 
 void eden_export::RunEDEN()
 {
-	// Memory Leaks Check
-	#ifdef _MSC_VER
-	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-	#endif
 
 	// Cogemos una instancia del manejador de errores
 	errorHandler = eden_error::ErrorHandler::Instance();

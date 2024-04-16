@@ -18,7 +18,7 @@
 #include "SceneManager.h"
 #include "Scene.h"
 #include "AudioManager.h"
-
+#include "ScriptManager.h"
 eden::Master::Master()
 {
 	// la comprobaci�n de que se haya podido inicializar el RenderManager ahora se hace dentro del propio RenderManager.
@@ -46,6 +46,7 @@ eden::Master::~Master()
 	_scnManager->Close();
 	_inputManager->Close();
 	eden_audio::AudioManager::Instance()->Close();
+	eden_script::ScriptManager::Instance()->Close();
 
 	if (_renderManager != nullptr && _renderManager->couldInitialize()) {
 

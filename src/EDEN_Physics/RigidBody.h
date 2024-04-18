@@ -25,11 +25,11 @@ namespace physics_manager {
 	class PhysicsManager;
 }
 
-#ifdef _DEBUG
+//#ifdef _DEBUG
 namespace eden_debug {
 	class Debug;
 }
-#endif
+//#endif
 
 namespace physics_wrapper {
 	class CollisionCallback;
@@ -38,9 +38,9 @@ namespace physics_wrapper {
 	{
 		friend CollisionCallback;
 		friend physics_manager::PhysicsManager;
-#ifdef _DEBUG
+//#ifdef _DEBUG
 		friend eden_debug::Debug;
-#endif
+//#endif
 
 	public:
 		enum RigidBodyType { DYNAMIC, KINEMATIC, STATIC };
@@ -173,6 +173,9 @@ namespace physics_wrapper {
 		/// @brief Método que actualiza el estado de las colisiones para ver si se ha dejado de colisionar con algún objeto.
 		void Update();
 
+		/// @brief Devuelve el rigidBody de la libreria fisica asociado a este rigidBody
+		btRigidBody* getBulletRigidBody();
+
 	private:
 		btRigidBody* _rigidBody = nullptr;
 		btDefaultMotionState* _motionState = nullptr;
@@ -201,8 +204,6 @@ namespace physics_wrapper {
 
 	protected:
 
-		/// @brief Devuelve el rigidBody de la libreria fisica asociado a este rigidBody
-		btRigidBody* getBulletRigidBody();
 	};
 }
 #endif

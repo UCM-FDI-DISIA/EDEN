@@ -23,8 +23,12 @@ void physics_manager::PhysicsManager::updateSimulation(float deltaTime, std::str
 	physics_wrapper::RigidBody* _rb;
 	std::unordered_set<eden_ec::Entity*>* currentEnts = &_physicsScenes[sceneID]->_entitiesSet;
 	for (auto ent : (*currentEnts)) {
+//#ifdef _DEBUG
+		info->GetDebug()->ClearLines();
+		info->GetDebug()->DrawRigidBody(ent->GetComponent<eden_ec::CRigidBody>(), { 1,0,0 });
+		//info->GetDebug()->DrawLine(_rb->GetPosition(), {100,0,100}, {1,1,1});
+//#endif
 		_rb = ent->GetComponent<eden_ec::CRigidBody>()->_rb;
-		info->GetDebug()->DrawRigidBody(ent->GetComponent<eden_ec::CRigidBody>(), { 0,0,0 });
 		_currentPhysicScene->contactTest(_rb->getBulletRigidBody(), *_rb->_collisionCallback);
 	}
 }
@@ -252,10 +256,10 @@ physics_manager::InfoPhysicWorld::InfoPhysicWorld(std::string sceneID)
 	_worldBroadPhaseInterface = new btDbvtBroadphase();
 	_worldConstraintSolver = new btSequentialImpulseConstraintSolver();
 	_dynamicWorld = new btDiscreteDynamicsWorld(_worldDispatcher, _worldBroadPhaseInterface, _worldConstraintSolver, _worldCollisionConfiguration);
-#ifdef _DEBUG
+//#ifdef _DEBUG
 	_debug = new eden_debug::Debug("Debug" + sceneID, sceneID);
 	_debug->SetDebugMode(2);
-#endif
+//#endif
 }
 
 physics_manager::InfoPhysicWorld::~InfoPhysicWorld()
@@ -265,14 +269,14 @@ physics_manager::InfoPhysicWorld::~InfoPhysicWorld()
 	delete _worldBroadPhaseInterface;
 	delete _worldDispatcher;
 	delete _worldCollisionConfiguration;
-#ifdef _DEBUG
+//#ifdef _DEBUG
 	delete _debug;
-#endif
+//#endif
 }
 
-#ifdef _DEBUG
+//#ifdef _DEBUG
 eden_debug::Debug* physics_manager::InfoPhysicWorld::GetDebug()
 {
 	return _debug;
 }
-#endif
+//#endif

@@ -41,9 +41,10 @@ void eden_debug::DebugDrawer::clearLines() {
 }
 
 void eden_debug::DebugDrawer::drawLine(const btVector3& origin, const btVector3& end, const btVector3& color) {
+	
 	Ogre::ManualObject* line = eden_render::RenderManager::Instance()->GetOgreSceneManager()->createManualObject();
 
-	line->begin("BaseWhiteNoLighting", Ogre::RenderOperation::OT_LINE_LIST);
+	line->begin("BaseWhite", Ogre::RenderOperation::OT_LINE_LIST);
 	line->position(origin.x(), origin.y(), origin.z());
 	line->position(end.x(), end.y(), end.z());
 	line->colour(Ogre::ColourValue(color.x(), color.y(), color.z()));

@@ -488,9 +488,9 @@ void eden_render::RenderManager::CreateRenderScene(std::string sceneID)
 		_currentRenderScene = info;
 		_renderScenes[sceneID] = info;
 		eden_canvas::Canvas::Instance()->addScene(sceneID);
-		_canvasInit = false;
 	}
 	else
+
 	{
 		_currentRenderScene = sceneIt->second;
 		_shaderGenerator->addSceneManager(_currentRenderScene->_renderScene);
@@ -500,6 +500,7 @@ void eden_render::RenderManager::CreateRenderScene(std::string sceneID)
 	}
 	_shaderGenerator->_setActiveSceneManager(_currentRenderScene->_renderScene);
 	_root->_setCurrentSceneManager(_currentRenderScene->_renderScene);
+	_canvasInit = false;
 
 }
 

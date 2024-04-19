@@ -38,6 +38,7 @@
 #include "CImage.h"
 #include "CText.h"
 #include "CButton.h"
+#include "CBar.h"
 #include "CCursor.h"
 #include "CCamera.h"
 #include "CParticleEmitter.h"
@@ -80,6 +81,7 @@ void RegisterComponents() {
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CButton>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CLuaBehaviour>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CCursor>();
+	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CBar>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CRigidBody>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CMeshRenderer>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CParticleEmitter>();

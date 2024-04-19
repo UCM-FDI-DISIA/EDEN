@@ -35,7 +35,7 @@ namespace physics_wrapper {
 }
 
 namespace eden_debug {
-	class DebugDrawer;
+	class Debug;
 }
 
 namespace physics_manager {
@@ -94,6 +94,7 @@ namespace physics_manager {
 		friend eden::SceneManager;
 
 	public:
+
 		/// @brief Realiza una actualizaci�n de la simulaci�n f�sica
 		/// @param deltaTime Tiempo entre simulaciones f�sicas, como la simulaci�n se llama con el FixedUdpate, este tiempo es fijo y constante
 		/// @param sceneID ID de la escena que se quiere actualizar
@@ -138,12 +139,12 @@ namespace physics_manager {
 
 		/// @brief Referencia al mundo fisico actual
 		btDynamicsWorld* _currentPhysicScene;
-		
-		/// @brief Encargado de hacer dibujos con caracter de debug
-		eden_debug::DebugDrawer* _debugDrawer;
 
 		/// @brief  Vector de Gravedad de la escena por defecto
 		eden_utils::Vector3 _defaultGravity;
+
+		/// @brief 
+		InfoPhysicWorld* info;
 
 		/// @brief Devuelve el mundo
 		/// @return Mundo de Bullet
@@ -184,9 +185,13 @@ namespace physics_manager {
 	class InfoPhysicWorld
 	{
 		friend PhysicsManager;
+
+//#ifdef _DEBUG
+		eden_debug::Debug* GetDebug();
+//#endif
 	private:
 		/// @brief Constructora de la clase
-		InfoPhysicWorld();
+		InfoPhysicWorld(std::string sceneID);
 		
 		/// @brief Destructora de la clase
 		~InfoPhysicWorld();
@@ -196,7 +201,10 @@ namespace physics_manager {
 
 		/// @brief Clase de bullet encargada de determinar el algortimo de c�lculo de colisiones entre objetos segun su forma
 		btDispatcher* _worldDispatcher;
-
+//#ifdef _DEBUG
+		/// @brief Encargado de hacer dibujos con caracter de debug
+		eden_debug::Debug* _debug;
+//#endif
 		/// @brief Clase de bullet encargada de subdividir el mundo en sectores para facilitar los c�lculos de colision
 		btBroadphaseInterface* _worldBroadPhaseInterface;
 

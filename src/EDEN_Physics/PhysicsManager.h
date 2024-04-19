@@ -187,11 +187,6 @@ namespace physics_manager {
 	class InfoPhysicWorld
 	{
 		friend PhysicsManager;
-
-	public:
-		InfoPhysicWorld(std::string sceneID);
-		~InfoPhysicWorld();
-
 #ifdef _DEBUG
 		eden_debug::Debug* GetDebug();
 #endif

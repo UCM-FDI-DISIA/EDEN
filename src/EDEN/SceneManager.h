@@ -6,6 +6,7 @@
 #include <vector>
 #include <string>
 #include <unordered_map>
+#include <unordered_set>
 
 #include "Singleton.h"
 
@@ -37,13 +38,11 @@ public:
 
 	/// @brief Metodo encargado de crear una nueva escena y añadirla a la lista doblemente enlazada
 	/// @param ID El nombre que identifica a la escena
-	/// @return El puntero a la escena recien creada
-	Scene* PushScene(const std::string& ID);
+	void PushScene(const std::string& ID);
 
 	/// @brief Metodo encargado de vaciar la lista de escenas y añadir una nueva
 	/// @param ID El nombre que identifica a la escena
-	/// @return El puntero a la escena recien creada
-	Scene* ChangeScene(const std::string& ID);
+	void ChangeScene(const std::string& ID);
 
 	/// @brief Metodo encargado de eliminar la primera escena de la lista
 	void PopScene();
@@ -94,11 +93,21 @@ private:
 	/// @brief Lista doblemente enlazada de punteros a escenas
 	std::deque<Scene*> _scenes;
 
-	/// @brief Lista doblemente enlazada de punteros a escenas
+	/// @brief Lista doblemente enlazada que contiene el identificador de las escenas que se quieren crear
+	std::deque<std::string> _scenesToAdd;
+
+	/// @brief Lista doblemente enlazada de punteros a escenas que se quieren borrar
 	std::deque<Scene*> _scenesToDestroy;
+
+	/// @brief Identificadores de las escenas actuales
+	std::unordered_set<std::string> _currentScenes;
 
 	/// @brief Constructora por defecto de la clase SceneManager
 	SceneManager();
+
+	/// @brief Crea una escena
+	/// @param ID Identificador de la escena que se quiere crear
+	void CreateScene(std::string& ID);
 };
 }
 

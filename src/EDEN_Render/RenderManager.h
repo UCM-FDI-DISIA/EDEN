@@ -79,7 +79,12 @@ namespace eden_render
 		/// @return True si se ha inicializado bien, False en caso contrario
 		inline bool couldInitialize() { return _initialized; }
 
+		/// @brief Devuelve el ancho de la ventana
+		/// @return Devuelve el ancho de la ventana 
 		int GetWindowWidth();
+
+		/// @brief Devuelve el alto de la ventana
+		/// @return Devuelve el alto de la ventana 
 		int GetWindowHeight();
 		
 		/// @brief Actualiza todas las posiciones de la escena con su componente Transform
@@ -89,11 +94,11 @@ namespace eden_render
 		/// @brief A�ade una entidad que tenga componentes de renderizado (CMeshRenderer, CCamera, ...) a una escena en concreto
 		/// para actualizar su posici�n
 		/// @param ent Entidad cuya posici�n va a actualizarse
-		void addRenderEntity(eden_ec::Entity* ent);
+		void AddRenderEntity(eden_ec::Entity* ent);
 
 		/// @brief Quita una entidad de una escena para dejar de actualizar su posici�n
 		/// @param ent Entidad que se va a quitar
-		void removeRenderEntity(eden_ec::Entity* ent);
+		void RemoveRenderEntity(eden_ec::Entity* ent);
 
 		/// @brief Funci�n que deber�a llamarse en el momento en el que la ventana cambia de tama�o
 		void ResizedWindow();
@@ -110,11 +115,20 @@ namespace eden_render
 		/// @brief Método que cambia la resuluión actual
 		void ChangeResolution();
 
+		/// @brief Cambia a la siguiente resolucion añadida
+		void NextResolutuion();
 
+		/// @brief Cambia a la anterior resolucion añadida
+		void PreviousResolution();
 
+		/// @brief Devuelve la camara de la escena actual. Si no existe la crea
+		/// @param ent Entidad a la que se va a añadir la camara
+		/// @return Devuelve la camara de la escena actual. Si no existe la crea
 		render_wrapper::CameraWrapper* GetCamera(eden_ec::Entity* ent);
 
 	protected:
+		/// @brief Devuelve el manager de Ogre actual
+		/// @return Devuelve el manager de Ogre actual 
 		Ogre::SceneManager* GetOgreSceneManager();
 
 	private:
@@ -123,7 +137,6 @@ namespace eden_render
 		/// e inicializa los shaders
 		/// @param appName Nombre de la ventana
 		void InitManager(const std::string& appName);
-
 
 		/// @brief Inicializa el sistema de sombreado de trazado de rayos
 		void InitialiseRTShaderSystem();
@@ -162,21 +175,25 @@ namespace eden_render
 
 		/// @brief Constructora
 		/// @param appName Nombre de la ventana
-		explicit RenderManager(const std::string& appName = "TEST_APP");
+		RenderManager(const std::string& appName = "TEST_APP");
 
-		/// @brief Crea una nueva escena, si existe actualiza la escena actual 
-		/// 
+		/// @brief Crea una nueva escena. Si existe, actualiza la escena actual 
+		/// @param sceneID ID de la escena que se quiere crear
 		void CreateRenderScene(std::string sceneID);
 
-		/// @brief 
-		/// @param sceneID 
+		/// @brief Borra la escena sceneToRemoveID si existe. Luego crea una escena con ID newCurrentSceneID
+		/// @param sceneToRemoveID ID de la escena que se quiere borrar
+		/// @param newCurrentSceneID ID de la escena que se quiere crear
 		void RemoveRenderScene(std::string sceneToRemoveID, std::string newCurrentSceneID);
 
-		/// @brief 
-		/// @param sceneID 		
+		/// @brief Muestra o esconde todas las entidades de la escena sceneID
+		/// @param sceneID ID de la escena
+		/// @param show Si es verdadero, muestra las entidades. En caso contrario, las esconde
 		void ShowEntities(std::string sceneID, bool show);
 
 		/// @brief Cambia el tamaño de la ventana
+		/// @param w Ancho de la ventana
+		/// @param h Alto de la ventana
 		void ChangeWindowSize(int w, int h);
 
 		/// @brief Raiz de Ogre
@@ -196,7 +213,6 @@ namespace eden_render
 
 		/// @brief Capa de abstraccion del sistema de archivos
 		Ogre::FileSystemLayer* _fsLayer;
-		bool _firstRun;
 
 		/// @brief Nombre de la ventana
 		std::string _appName;
@@ -239,23 +255,43 @@ namespace eden_render
 		std::pair<int, int> _defWindowSize = {640,480};
 	};
 
+	/// @brief Contiene informacion de la escena y las entidades que utilizan Ogre. Cada instancia de esta clase representa una escena.
 	class InfoRenderWorld
 	{
 		friend RenderManager;
 		friend render_wrapper::NodeManager;
 		friend render_wrapper::RenderObject;
-	public:
-		InfoRenderWorld(Ogre::Root* root, Ogre::OverlaySystem* overlaySystem, std::string sceneID);
-		~InfoRenderWorld();
 	private:
+		/// @brief Constructora de la clase
+		/// @param root Referencia a la raiz de Ogre
+		/// @param overlaySystem Referencia al sistema de overlay
+		/// @param sceneID ID del a escena que se quiere crear
+		InfoRenderWorld(Ogre::Root* root, Ogre::OverlaySystem* overlaySystem, std::string sceneID);
+
+		/// @brief Destructora de la clase
+		~InfoRenderWorld();
+
+		/// @brief Manager de Ogre
 		Ogre::SceneManager* _renderScene;
+
+		/// @brief ID de la escena
 		std::string _sceneID;
+
 		/// @brief Conjunto de entidades para actualizar su posici�n
 		std::unordered_set<eden_ec::Entity*> _entities;
+
+		/// @brief Sistema de overlay
 		Ogre::OverlaySystem* _overlaySystem;
+
+		/// @brief Raiz de Ogre
 		Ogre::Root* _root;
-		Ogre::SceneManager* GetRenderScene();
+
+		/// @brief Wrapper de la camara de la escena
 		render_wrapper::CameraWrapper* _cameraWrapper;
+
+		/// @brief Manager de la escena
+		/// @return Manager de la escena 
+		Ogre::SceneManager* GetRenderScene();
 	};
 }
 

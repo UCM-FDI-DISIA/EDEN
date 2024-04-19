@@ -10,7 +10,7 @@
 const std::string eden_ec::CAnimator::_id = "ANIMATOR";
 
 eden_ec::CAnimator::~CAnimator() {
-	eden_render::RenderManager::Instance()->removeRenderEntity(_ent);
+	eden_render::RenderManager::Instance()->RemoveRenderEntity(_ent);
 	delete _animatorWrapper;
 	//_animatorWrapper = nullptr;
 }
@@ -20,7 +20,7 @@ void eden_ec::CAnimator::Init(eden_script::ComponentArguments* args) {
 	_animMeshNames = args->GetValueToStringVector("AnimMeshNames");
 	_nextAnim = args->GetValueToStringVector("NextAnim");
 	_loopAnims = args->GetValueToBoolVector("LoopAnims");
-	eden_render::RenderManager::Instance()->addRenderEntity(_ent);
+	eden_render::RenderManager::Instance()->AddRenderEntity(_ent);
 }
 
 void eden_ec::CAnimator::Start() {

@@ -15,7 +15,7 @@ _mesh(mesh) {};
 
 eden_ec::CMeshRenderer::~CMeshRenderer() {
 	delete _renderWrapper;
-	eden_render::RenderManager::Instance()->removeRenderEntity(_ent);
+	eden_render::RenderManager::Instance()->RemoveRenderEntity(_ent);
 };
 
 void eden_ec::CMeshRenderer::Init(eden_script::ComponentArguments* args)
@@ -24,7 +24,7 @@ void eden_ec::CMeshRenderer::Init(eden_script::ComponentArguments* args)
 	_mesh = args->GetValueToString("Mesh") + MESH_EXTENSION;
 	
 	_renderWrapper = new render_wrapper::MeshRenderer(_ent->GetEntityID(), _ent->GetSceneID(), _mesh);
-	eden_render::RenderManager::Instance()->addRenderEntity(_ent);
+	eden_render::RenderManager::Instance()->AddRenderEntity(_ent);
 	
 	//SetMaterial("test");
 }

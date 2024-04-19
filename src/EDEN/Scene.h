@@ -81,8 +81,6 @@ namespace eden {
 		///@brief identificador de escena
 		std::string _ID;
 
-		//OgreWrapper _renderScene;
-
 		///@brief booleano que indica si la escena esta activa. Si una escena no esta activa no se ejecutara el 
 		/// update pero si se seguirán renderizando sus entidades
 		bool _isRendering = true;

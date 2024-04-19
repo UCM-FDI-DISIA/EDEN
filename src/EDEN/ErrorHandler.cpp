@@ -16,7 +16,6 @@ namespace eden_error {
 		if (eden::Master::isInitialized())
 		{
 			eden::Master::Instance()->Close();
-			delete eden::Master::Instance();
 		}
 	}
 

@@ -11,7 +11,7 @@ const std::string eden_ec::CCamera::_id = "CAMERA";
 
 
 eden_ec::CCamera::~CCamera() {
-	eden_render::RenderManager::Instance()->removeRenderEntity(_ent);
+	eden_render::RenderManager::Instance()->RemoveRenderEntity(_ent);
 	_cameraWrapper = nullptr;
 	_transform = nullptr;
 }
@@ -19,7 +19,7 @@ eden_ec::CCamera::~CCamera() {
 void eden_ec::CCamera::Start() {
 	_transform = _ent->GetComponent<eden_ec::CTransform>();
 	_cameraWrapper = eden_render::RenderManager::Instance()->GetCamera(_ent);
-	eden_render::RenderManager::Instance()->addRenderEntity(_ent);
+	eden_render::RenderManager::Instance()->AddRenderEntity(_ent);
 }
 
 void eden_ec::CCamera::Update(float dt) {

@@ -242,6 +242,22 @@ void physics_manager::PhysicsManager::RemovePhysicsScene(std::string sceneToRemo
 	CreatePhysicsScene(newCurrentSceneID);
 }
 
+void physics_manager::PhysicsManager::InitLayers(std::string sceneID, std::unordered_map<std::string, std::vector<std::string>>& collisionInfo)
+{
+	CreateCollisionLayer(RAYCAST_GROUP, sceneID);
+	CreateCollisionLayer(DEFAULT_GROUP, sceneID);
+	for (auto it : collisionInfo)
+	{
+		CreateCollisionLayer(it.first, sceneID);
+	}
+	for (auto it : collisionInfo)
+	{
+		for (auto collisionLayer : it.second) {
+			RemoveCollisionToLayer(it.first, collisionLayer, sceneID);
+		}
+	}
+}
+
 physics_manager::LayerInfo::LayerInfo(std::string name, std::string sceneID) : _sceneID(sceneID), _name(name) {}
 
 bool physics_manager::LayerInfo::operator==(const LayerInfo& other) const {

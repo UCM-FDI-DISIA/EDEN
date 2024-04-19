@@ -2358,7 +2358,21 @@ Entity115 = {
 				SongName = "GamePlay.mp3",
 				Is3D = "false"
 			}
-        }
+        },
+		{
+			Name = "RIGIDBODY",
+			Arguments = {
+				Mass = "1.0",
+				Bounciness = "0.0",
+				Friction = "1.0",
+				AABB = "10|10|10",
+				PosOffset = "0.0|0.0|0.0",
+				Radius = "0.0",
+				Shape = "BOX",
+				CollisionFlag = "KINEMATIC",
+				CollisionLayer = "PLAYER"
+			}
+		}
 	}
 }
 Entity116 = {

@@ -30,7 +30,8 @@ void eden_ec::Hito1Prueba::Init(eden_script::ComponentArguments* args) {
 
 void eden_ec::Hito1Prueba::StartGame() {
 	eden::SceneManager* scnManager = eden::SceneManager::Instance();
-	scnManager->ChangeScene("CrossThePathFinal");
+	scnManager->PushScene("CrossThePathFinal");
+	
 }
 void eden_ec::Hito1Prueba::Start() {
 	transform = _ent->GetComponent<CTransform>();

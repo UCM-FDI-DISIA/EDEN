@@ -22,12 +22,13 @@ void physics_manager::PhysicsManager::updateSimulation(float deltaTime, std::str
 	_currentPhysicScene->stepSimulation(deltaTime);
 	physics_wrapper::RigidBody* _rb;
 	std::unordered_set<eden_ec::Entity*>* currentEnts = &_physicsScenes[sceneID]->_entitiesSet;
+	
 	for (auto ent : (*currentEnts)) {
-//#ifdef _DEBUG
+#ifdef _DEBUG
 		info->GetDebug()->ClearLines();
 		info->GetDebug()->DrawRigidBody(ent->GetComponent<eden_ec::CRigidBody>(), { 1,0,0 });
 		//info->GetDebug()->DrawLine(_rb->GetPosition(), {100,0,100}, {1,1,1});
-//#endif
+#endif
 		_rb = ent->GetComponent<eden_ec::CRigidBody>()->_rb;
 		_currentPhysicScene->contactTest(_rb->getBulletRigidBody(), *_rb->_collisionCallback);
 	}
@@ -243,6 +244,22 @@ void physics_manager::PhysicsManager::RemovePhysicsScene(std::string sceneToRemo
 	CreatePhysicsScene(newCurrentSceneID);
 }
 
+void physics_manager::PhysicsManager::InitLayers(std::string sceneID, std::unordered_map<std::string, std::vector<std::string>>& collisionInfo)
+{
+	CreateCollisionLayer(RAYCAST_GROUP, sceneID);
+	CreateCollisionLayer(DEFAULT_GROUP, sceneID);
+	for (auto it : collisionInfo)
+	{
+		CreateCollisionLayer(it.first, sceneID);
+	}
+	for (auto it : collisionInfo)
+	{
+		for (auto collisionLayer : it.second) {
+			RemoveCollisionToLayer(it.first, collisionLayer, sceneID);
+		}
+	}
+}
+
 physics_manager::LayerInfo::LayerInfo(std::string name, std::string sceneID) : _sceneID(sceneID), _name(name) {}
 
 bool physics_manager::LayerInfo::operator==(const LayerInfo& other) const {
@@ -256,10 +273,10 @@ physics_manager::InfoPhysicWorld::InfoPhysicWorld(std::string sceneID)
 	_worldBroadPhaseInterface = new btDbvtBroadphase();
 	_worldConstraintSolver = new btSequentialImpulseConstraintSolver();
 	_dynamicWorld = new btDiscreteDynamicsWorld(_worldDispatcher, _worldBroadPhaseInterface, _worldConstraintSolver, _worldCollisionConfiguration);
-//#ifdef _DEBUG
+#ifdef _DEBUG
 	_debug = new eden_debug::Debug("Debug" + sceneID, sceneID);
 	_debug->SetDebugMode(2);
-//#endif
+#endif
 }
 
 physics_manager::InfoPhysicWorld::~InfoPhysicWorld()
@@ -269,14 +286,14 @@ physics_manager::InfoPhysicWorld::~InfoPhysicWorld()
 	delete _worldBroadPhaseInterface;
 	delete _worldDispatcher;
 	delete _worldCollisionConfiguration;
-//#ifdef _DEBUG
+#ifdef _DEBUG
 	delete _debug;
-//#endif
+#endif
 }
 
-//#ifdef _DEBUG
+#ifdef _DEBUG
 eden_debug::Debug* physics_manager::InfoPhysicWorld::GetDebug()
 {
 	return _debug;
 }
-//#endif
+#endif

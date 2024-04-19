@@ -70,9 +70,6 @@ namespace eden_debug {
 		/// @brief Tipo enumerado con los tipos de debug que existen
 		DebugDrawModes _debugMode;
 
-		/// @brief Referencia a un nodo de ogre
-		Ogre::SceneNode* _node;
-
 		/// @brief Vector con todas las aristas que se vayan a dibujar
 		std::vector<Ogre::MovableObject*> _lines;
 

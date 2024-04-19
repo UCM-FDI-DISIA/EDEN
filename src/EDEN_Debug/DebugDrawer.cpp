@@ -19,13 +19,11 @@ eden_debug::DebugDrawer::DebugDrawer(std::string id, std::string sceneID) {
 	_lines = std::vector<Ogre::MovableObject*>();
 	_id = id;
 	_sceneID = sceneID;
-	_node = eden_render::RenderManager::Instance()->GetOgreSceneManager()->getRootSceneNode()->createChildSceneNode(id);
+	render_wrapper::NodeManager::Instance()->CreateSceneObject(_id, _sceneID);
 }
 
 eden_debug::DebugDrawer::~DebugDrawer() {
 	clearLines();
-	//render_wrapper::NodeManager::Instance()->RemoveSceneObject(_id, _sceneID);
-	//_node = nullptr;
 }
 
 void eden_debug::DebugDrawer::clearLines() {
@@ -48,7 +46,7 @@ void eden_debug::DebugDrawer::drawLine(const btVector3& origin, const btVector3&
 	line->position(origin.x(), origin.y(), origin.z());
 	line->position(end.x(), end.y(), end.z());
 	line->colour(Ogre::ColourValue(color.x(), color.y(), color.z()));
-	line->end();
+	line->end(); 
 
 	render_wrapper::NodeManager::Instance()->Attach(line, _id, _sceneID);
 	_lines.push_back(line);

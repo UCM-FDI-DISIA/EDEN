@@ -34,21 +34,20 @@ namespace physics_wrapper {
 	class CollisionLayer;
 }
 
+#ifdef _DEBUG
 namespace eden_debug {
 	class Debug;
 }
-
+#endif
 
 namespace physics_manager {
 	class InfoPhysicWorld;
-	class LayerInfo {
-	private:
-		/// @brief Nombre de la capa
-		std::string _name;
+	class PhysicsManager;
 
-		/// @brief ID de la escena
-		std::string _sceneID;
-	public:
+	class LayerInfo {
+		friend PhysicsManager;
+
+	private:
 		/// @brief Constructora por defecto
 		LayerInfo() = default;
 		
@@ -56,6 +55,13 @@ namespace physics_manager {
 		/// @param name Nombre de la capa
 		/// @param sceneID ID de la escena
 		LayerInfo(std::string name, std::string sceneID);
+
+		/// @brief Nombre de la capa
+		std::string _name;
+
+		/// @brief ID de la escena
+		std::string _sceneID;
+	public:
 		
 		/// @brief Devuelve el nombre de la capa
 		/// @return Devuelve el nombre de la capa
@@ -93,6 +99,7 @@ namespace physics_manager {
 
 		/// @brief Realiza una actualizaci�n de la simulaci�n f�sica
 		/// @param deltaTime Tiempo entre simulaciones f�sicas, como la simulaci�n se llama con el FixedUdpate, este tiempo es fijo y constante
+		/// @param sceneID ID de la escena que se quiere actualizar
 		void updateSimulation(float deltaTime, std::string sceneID);
 
 		/// @brief Devuelve la gravedad del mundo
@@ -103,7 +110,7 @@ namespace physics_manager {
 		/// @param e Entidad a añadir
 		void AddPhysicsEntity(eden_ec::Entity* e);
 
-		/// @brief QUita una entidad del mundo físico
+		/// @brief Quita una entidad del mundo físico
 		/// @param e Entidad a quitar
 		void RemovePhysicsEntity(eden_ec::Entity* e);
 
@@ -113,6 +120,7 @@ namespace physics_manager {
 		/// @brief Setear a cada transform de cada entidad el transform del rigidbody
 		void ResolvePositions(std::string sceneID);
 
+		/// @brief Destructora de la clase
 		~PhysicsManager() override;
 
 		/// @brief Encuentra una capa dado un cierto nombre e ID de escena
@@ -131,7 +139,7 @@ namespace physics_manager {
 		/// @brief Referencia a los mundos de la simulacion fisica
 		std::unordered_map <std::string, InfoPhysicWorld*> _physicsScenes;
 
-		/// @brief
+		/// @brief Referencia al mundo fisico actual
 		btDynamicsWorld* _currentPhysicScene;
 
 		/// @brief  Vector de Gravedad de la escena por defecto
@@ -159,15 +167,23 @@ namespace physics_manager {
 		/// @param sceneID ID de la escena
 		void RemoveAllSceneLayers(std::string sceneID);
 
-		/// @brief Crea una nueva escena, si existe actualiza la escena actual 
-		/// 
+		/// @brief Crea una nueva escena. Si existe, actualiza la escena actual 
+		/// @param sceneID ID de la escena que se quiere crear
 		void CreatePhysicsScene(std::string sceneID);
 
-		/// @brief 
-		/// @param sceneID 
+		/// @brief Borra la escena sceneToRemoveID si existe. Luego crea una escena con ID newCurrentSceneID
+		/// @param sceneToRemoveID ID de la escena que se quiere borrar
+		/// @param newCurrentSceneID ID de la escena que se quiere crear
 		void RemovePhysicsScene(std::string sceneToRemoveID, std::string newCurrentSceneID);
+
+		/// @brief Inicializa las capas de colision de una escena
+		/// @param sceneID ID de la escena que se quiere inicializar
+		/// @param collisionInfo Informacion de la colision
+		void InitLayers(std::string sceneID, std::unordered_map<std::string, std::vector<std::string>>& collisionInfo);
+
 	};
 
+	/// @brief Contiene informacion de la escena y las entidades que utilizan Bullet. Cada instancia de esta clase representa una escena.
 	class InfoPhysicWorld
 	{
 		friend PhysicsManager;
@@ -176,19 +192,25 @@ namespace physics_manager {
 		InfoPhysicWorld(std::string sceneID);
 		~InfoPhysicWorld();
 
-//#ifdef _DEBUG
+#ifdef _DEBUG
 		eden_debug::Debug* GetDebug();
-//#endif
+#endif
 	private:
-		/// @brief 
+		/// @brief Constructora de la clase
+		InfoPhysicWorld(std::string sceneID);
+		
+		/// @brief Destructora de la clase
+		~InfoPhysicWorld();
+		
+		/// @brief Referencia al mundo fisico
 		btDynamicsWorld* _dynamicWorld;
 
 		/// @brief Clase de bullet encargada de determinar el algortimo de c�lculo de colisiones entre objetos segun su forma
 		btDispatcher* _worldDispatcher;
-//#ifdef _DEBUG
+#ifdef _DEBUG
 		/// @brief Encargado de hacer dibujos con caracter de debug
 		eden_debug::Debug* _debug;
-//#endif
+#endif
 		/// @brief Clase de bullet encargada de subdividir el mundo en sectores para facilitar los c�lculos de colision
 		btBroadphaseInterface* _worldBroadPhaseInterface;
 
@@ -199,9 +221,10 @@ namespace physics_manager {
 		btCollisionConfiguration* _worldCollisionConfiguration;
 
 		/// @brief Set desordenado que asigna a cada Entidad su rigidbody correspondiente en la simulaci�n f�sica
-		//std::unordered_map<const class btRigidBody*, eden_ec::Entity*> _entitiesMap;
 		std::unordered_set<eden_ec::Entity*> _entitiesSet;
 
+		/// @brief Devuelve el mundo fisico
+		/// @return Devuelve el mundo fisico 
 		btDynamicsWorld* GetWorld();
 	};
 }

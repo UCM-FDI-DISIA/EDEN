@@ -6,6 +6,7 @@
 
 #include "Vector3.h"
 #include "Component.h"
+#include "AudioManager.h"
 
 #include "defs.h"
 
@@ -19,6 +20,7 @@ namespace eden_ec {
 	/// @brief Componente que se encargara de emitir audio tanto en 2D como en 3D y controlarlo. Para el audio en 3D es necesario que haya un listener
 	/// en la misma escena.
 	class EDEN_API CAudioEmitter : public eden_ec::Component {
+		friend class eden_audio::AudioManager;
 	public:
 		/// @brief Constructora por defecto del emisor de audio
 		CAudioEmitter() = default;
@@ -119,6 +121,14 @@ namespace eden_ec {
 		inline static std::string GetID() { return _id; }
 
 	private:
+
+		/// @brief Enumerado que representa el estado de un sonido
+		enum class SoundState : uint8_t {
+			PLAYING,
+			PAUSED,
+			STOPPED
+		};
+
 		/// @brief Id del componente necesaria para la construccion de este
 		const static std::string _id;
 
@@ -137,6 +147,12 @@ namespace eden_ec {
 		/// @brief Transform de la entidad sobre la que se engancha el listener
 		eden_ec::CTransform* _transform;
 
+		/// @brief Estado actual del sonido, por defecto parado
+		SoundState _currentState = SoundState::STOPPED;
+
+		/// @brief Estado anterior del sonido, por defecto parado
+		SoundState _previousState = SoundState::STOPPED;
+
 		/// @brief Devuelve el clip de sonido que esta asociado a este emisor
 		/// @return Puntero al clip de sonido asociado al emisor
 		inline audio_wrapper::SoundClip* GetSoundClip() const { return _soundClip; }
@@ -144,6 +160,14 @@ namespace eden_ec {
 		/// @brief Devuelve el sonido (que no clip) que tiene ahora mismo el emisor (puede estar reproduciendo, pausado, etc...)
 		/// @return Puntero a un sonido
 		audio_wrapper::Sound* GetSound() const;
+
+		/// @brief Devuelve el estado actual de sonido
+		/// @return Estado actual de sonido
+		inline SoundState GetCurrentState() const { return _currentState; }
+
+		/// @brief Devuelve el estado anterior de sonido
+		/// @return Estado anterior de sonido
+		inline SoundState GetPreviousState() const { return _previousState; }
 	};
 }
 

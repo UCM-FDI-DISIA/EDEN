@@ -115,6 +115,7 @@ namespace eden {
 
 		eden_render::RenderManager::Instance()->CreateRenderScene(ID);
 		physics_manager::PhysicsManager::Instance()->CreatePhysicsScene(ID);
+		eden_audio::AudioManager::Instance()->CreateAudioScene(ID);
 		Scene* newSc = new Scene(ID, info, collisionInfo);
 		for (auto a : info) delete a;
 		_scenes.push_front(newSc);
@@ -157,6 +158,7 @@ namespace eden {
 		for (auto it = _scenesToDestroy.begin(); it != _scenesToDestroy.end();) {	
 			std::string prevScene = (*it)->GetSceneID();
 
+			eden_audio::AudioManager::Instance()->RemoveAudioScene(prevScene, _activeScene->GetSceneID());
 			physics_manager::PhysicsManager::Instance()->RemovePhysicsScene(prevScene, _activeScene->GetSceneID());
 			delete (*it);
 			it = _scenesToDestroy.erase(it);

@@ -34,9 +34,11 @@ namespace physics_wrapper {
 	class CollisionLayer;
 }
 
+#ifdef _DEBUG
 namespace eden_debug {
 	class Debug;
 }
+#endif
 
 namespace physics_manager {
 	class InfoPhysicWorld;
@@ -186,9 +188,13 @@ namespace physics_manager {
 	{
 		friend PhysicsManager;
 
-//#ifdef _DEBUG
+	public:
+		InfoPhysicWorld(std::string sceneID);
+		~InfoPhysicWorld();
+
+#ifdef _DEBUG
 		eden_debug::Debug* GetDebug();
-//#endif
+#endif
 	private:
 		/// @brief Constructora de la clase
 		InfoPhysicWorld(std::string sceneID);
@@ -201,10 +207,10 @@ namespace physics_manager {
 
 		/// @brief Clase de bullet encargada de determinar el algortimo de c�lculo de colisiones entre objetos segun su forma
 		btDispatcher* _worldDispatcher;
-//#ifdef _DEBUG
+#ifdef _DEBUG
 		/// @brief Encargado de hacer dibujos con caracter de debug
 		eden_debug::Debug* _debug;
-//#endif
+#endif
 		/// @brief Clase de bullet encargada de subdividir el mundo en sectores para facilitar los c�lculos de colision
 		btBroadphaseInterface* _worldBroadPhaseInterface;
 

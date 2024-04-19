@@ -117,7 +117,6 @@ int main(int argc, char* argv[]) {
 		//Creamos una escena inicial de pueba 
 		eden::SceneManager* scnManager = eden::SceneManager::Instance();
 		/// ----------- TESTEO REFACTORIZACION DE ESCENAS, NO BORRAR --------------------
-		scnManager->PushScene("test_scene");
 		/*scnManager->PushScene("test_scene2");		
 		scnManager->PopScene();*/
 		/// ------------------------------------------------------------------------------ 

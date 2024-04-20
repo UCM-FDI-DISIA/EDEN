@@ -107,15 +107,13 @@ namespace eden_ec {
 		void SetParameters();
 
 		/// @brief Definicion de metodo estatico GetID necesario para construccion de componentes
-		inline static std::string GetID() { return _id; }
+		inline static std::string GetID() { return "UICOMPONENT"; }
 
 		inline std::string GetSceneID() { return _sceneID; };
 
 		void Register(std::string sceneID);
 
 	protected:
-
-		const static std::string _id;
 
 		std::string _sceneID;
 

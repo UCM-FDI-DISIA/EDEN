@@ -7,8 +7,7 @@
 
 eden_ec::CText::CText(std::string overlayName, float xPos, float yPos,
 	float tam, std::string text, std::string font, float rColor, float gColor, float bColor,
-	int depth, Entity* ent) {
-	_ent = ent;
+	int depth) {
 	Create(overlayName, xPos, yPos, tam, text, font, rColor, gColor, bColor, depth);
 }
 
@@ -16,7 +15,7 @@ eden_ec::CText::~CText() {}
 
 void eden_ec::CText::Create(std::string overlayName, float xPos, float yPos, float tam, std::string text, std::string font, float rColor, float gColor, float bColor, int depth)
 {
-	Register(_ent->GetSceneID());
+	
 	auto render = eden_render::RenderManager::Instance();
 	int w = render->GetWindowWidth();
 	int h = render->GetWindowHeight();
@@ -51,6 +50,7 @@ void eden_ec::CText::Init(eden_script::ComponentArguments* args) {
 	Create(args->GetValueToString("OverlayName"), float(xPos), float(yPos), float(tam),
 		args->GetValueToString("Text"), args->GetValueToString("Font"), args->GetValueToVector3("Color").GetX(), 
 		args->GetValueToVector3("Color").GetY(), args->GetValueToVector3("Color").GetZ(), args->GetValueToInt("Depth"));
+	Register(_ent->GetSceneID());
 
 }
 

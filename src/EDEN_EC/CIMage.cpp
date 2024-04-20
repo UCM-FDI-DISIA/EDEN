@@ -8,8 +8,7 @@
 
 eden_ec::CImage::CImage(std::string overlayName, float xPos, float yPos,
 	float width, float height, std::string texture,
-	int depth,Entity* ent) {
-	_ent = ent;
+	int depth) {
 	Create(overlayName, xPos, yPos, width, height, texture, depth);
 }
 
@@ -17,7 +16,6 @@ void eden_ec::CImage::Create(std::string overlayName, float xPos, float yPos,
 	float width, float height, std::string texture,
 	int depth) 
 {
-	Register(_ent->GetSceneID());
 	auto render = eden_render::RenderManager::Instance();
 	int w = render->GetWindowWidth();
 	int h = render->GetWindowHeight();
@@ -54,5 +52,6 @@ void eden_ec::CImage::Init(eden_script::ComponentArguments* args) {
 
 	Create(args->GetValueToString("OverlayName"), float(xPos), float(yPos), float(width), float(height),
 		args->GetValueToString("Texture"), args->GetValueToInt("Depth"));
+	Register(_ent->GetSceneID());
 	
 }

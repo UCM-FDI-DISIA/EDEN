@@ -13,7 +13,6 @@ namespace Ogre {
 }
 
 namespace eden_ec {
-	class Entity;
 	/// @brief Clase que representa un texto en la UI
 	class EDEN_API CText : public eden_ec::UIComponent {
 	public:
@@ -22,7 +21,7 @@ namespace eden_ec {
 
 		/// @brief Constructora de la clase Texto
 		CText(std::string overlayName, float xPos, float yPos, float tam,
-			std::string text, std::string font, float rColor,float gColor, float bColor, int depth = 0, Entity* ent);
+			std::string text, std::string font, float rColor,float gColor, float bColor, int depth = 0);
 
 		/// @brief Destructora de la clase Texto
 		~CText();

@@ -15,7 +15,6 @@ namespace Ogre {
 namespace eden_ec {
 	
 	class CLuaBehaviour;
-	class Entity;
 	/// @brief Par�metros del bot�n
 	struct ButtonParams {
 		std::string overlayName = std::string();
@@ -35,7 +34,7 @@ namespace eden_ec {
 		CButton() = default;
 
 		/// @brief Constructora de la clase 
-		CButton(ButtonParams& params,Entity*ent);
+		CButton(ButtonParams& params);
 
 		/// @brief M�todo update heredado de component
 		void Update(float deltaTime) override;

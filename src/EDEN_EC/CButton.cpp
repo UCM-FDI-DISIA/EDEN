@@ -9,14 +9,13 @@
 #include "Entity.h"
 #include "CLuaBehaviour.h"
 
-eden_ec::CButton::CButton(ButtonParams& params,Entity*ent) : UIComponent() {
-	_ent = ent;
+eden_ec::CButton::CButton(ButtonParams& params) : UIComponent() {
 	CreateButton(params);
 }
 
 void eden_ec::CButton::CreateButton(ButtonParams& params) {
 
-	Register(_ent->GetSceneID());
+	
 
 	auto renderManager = eden_render::RenderManager::Instance();
 	int w = renderManager->GetWindowWidth();
@@ -81,6 +80,7 @@ void eden_ec::CButton::Init(eden_script::ComponentArguments* args) {
 	params.depth = args->GetValueToInt("Depth");
 
 	CreateButton(params);
+	Register(_ent->GetSceneID());
 }
 
 void eden_ec::CButton::Update(float deltaTime) {

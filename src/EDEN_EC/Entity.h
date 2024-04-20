@@ -65,8 +65,8 @@ namespace eden_ec {
         /// @return Componente creado
         template <typename T, typename... Ts>
         inline Component* AddComponent(Ts&&... args) {
-
-            Component* c = ComponentFactory::Instance()->CreateComponent<T>(args...);
+            
+            Component* c = new T(args...);
             _components.emplace(T::GetID(), c);
             c->SetContext(this);
             return c;

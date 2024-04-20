@@ -13,6 +13,7 @@ namespace Ogre {
 }
 
 namespace eden_ec {
+	class Entity;
 	/// @brief Clase que representa una imágen en la UI
 	class EDEN_API CImage : public eden_ec::UIComponent {
 	public:
@@ -21,7 +22,7 @@ namespace eden_ec {
 
 		/// @brief Constructora de la clase Image
 		CImage(std::string overlayName, float xPos, float yPos, float width,
-			float height, std::string texture, int depth = 0);
+			float height, std::string texture, int depth = 0, Entity* ent);
 
 		/// @brief Destructora de la clase Image
 		~CImage();

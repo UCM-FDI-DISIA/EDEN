@@ -8,8 +8,8 @@
 
 eden_ec::CImage::CImage(std::string overlayName, float xPos, float yPos,
 	float width, float height, std::string texture,
-	int depth) {
-
+	int depth,Entity* ent) {
+	_ent = ent;
 	Create(overlayName, xPos, yPos, width, height, texture, depth);
 }
 

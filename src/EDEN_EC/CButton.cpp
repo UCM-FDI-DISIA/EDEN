@@ -9,7 +9,8 @@
 #include "Entity.h"
 #include "CLuaBehaviour.h"
 
-eden_ec::CButton::CButton(ButtonParams& params) : UIComponent() {
+eden_ec::CButton::CButton(ButtonParams& params,Entity*ent) : UIComponent() {
+	_ent = ent;
 	CreateButton(params);
 }
 

@@ -72,6 +72,8 @@ namespace eden_ec {
 		/// @brief Override necesario. No se usa
 		void Start() override {};
 
+		void LoadScript();
+
 		/// @brief Definici�n de m�todo est�tico GetID necesario para construcci�n de componentes
 		static std::string GetID() { return "BEHAVIOUR"; }
 

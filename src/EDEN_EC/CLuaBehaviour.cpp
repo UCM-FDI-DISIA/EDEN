@@ -117,3 +117,8 @@ void eden_ec::CLuaBehaviour::Init(eden_script::ComponentArguments* args) {
 	_name = args->GetValueToString("Script");
 	eden_script::ScriptManager::Instance()->GetLuaManager()->LoadScript(_name, _ent);
  }
+
+void eden_ec::CLuaBehaviour::LoadScript()
+{
+	eden_script::ScriptManager::Instance()->GetLuaManager()->LoadScript(_name, _ent);
+}

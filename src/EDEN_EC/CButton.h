@@ -15,16 +15,6 @@ namespace Ogre {
 namespace eden_ec {
 	
 	class CLuaBehaviour;
-	/// @brief Par�metros del bot�n
-	struct ButtonParams {
-		std::string overlayName = std::string();
-		float xPos = 0, yPos = 0;
-		int depth = 0;
-		float width = 0, height = 0;
-		std::string iniTex = std::string();
-		std::string hoverTex = std::string();
-		std::string clickedTex = std::string();
-	};
 
 	/// @brief Clase que representa un bot�n en la UI
 	class EDEN_API CButton : public eden_ec::UIComponent {
@@ -34,7 +24,7 @@ namespace eden_ec {
 		CButton() = default;
 
 		/// @brief Constructora de la clase 
-		CButton(ButtonParams& params);
+		CButton(std::string overlayName, float xPos, float yPos, float width, float height, std::string iniTex, std::string hoverTex, std::string clickedTex, int depth);
 
 		/// @brief M�todo update heredado de component
 		void Update(float deltaTime) override;
@@ -44,7 +34,7 @@ namespace eden_ec {
 		void Start() override;
 
 		/// @brief Método que crea el botón
-		void CreateButton(ButtonParams& params);
+		void CreateButton(std::string overlayName, float xPos, float yPos, float width, float height, std::string iniTex, std::string hoverTex, std::string clickedTex, int depth);
 
 		/// @brief Destructora
 		~CButton() = default;
@@ -63,6 +53,8 @@ namespace eden_ec {
 
 		/// @brief Definici�n de m�todo est�tico GetID necesario para construcci�n de componentes
 		static std::string GetID() { return "BUTTON"; }
+
+		void SetCallBack();
 
 	private:
 

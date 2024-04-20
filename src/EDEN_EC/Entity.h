@@ -69,8 +69,6 @@ namespace eden_ec {
             Component* c = ComponentFactory::Instance()->CreateComponent<T>(args...);
             _components.emplace(T::GetID(), c);
             c->SetContext(this);
-            c->Init(std::forward<Ts>(args)...);
-
             return c;
         }
 

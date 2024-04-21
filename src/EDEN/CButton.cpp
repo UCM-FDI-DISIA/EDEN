@@ -49,7 +49,7 @@ void eden_ec::CButton::CreateButton(ButtonParams& params) {
 
 	CreateImage(params.overlayName, params.xPos, params.yPos,
 		params.width, params.height, params.iniTex, params.depth);
-	// Posiciones necesarias para el input de rat�n
+	// Posiciones necesarias para el input de raton
 	// top + height
 	_topPosition = (int)params.yPos;
 	_bottomPosition = _topPosition + (int)params.height;
@@ -91,7 +91,7 @@ void eden_ec::CButton::Update(float deltaTime) {
 }
 
 void eden_ec::CButton::ButtonRectUpdate() {
-	// Posiciones necesarias para el input de rat�n
+	// Posiciones necesarias para el input de raton
    // top + height
 	_topPosition = (int)_oPos.second;
 	_bottomPosition = _topPosition + (int)_oHeight;

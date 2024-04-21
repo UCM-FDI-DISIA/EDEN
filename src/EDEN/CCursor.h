@@ -28,18 +28,18 @@ namespace eden_ec {
 		/// @brief Destructora de la clase Cursor
 		~CCursor();
 
-		/// @brief Construye el componente dado unos argumentos. Se obtendr�n de una lectura de un .lua
-		/// @param args Argumentos le�dos de .lua
+		/// @brief Construye el componente dado unos argumentos. Se obtendran de una lectura de un .lua
+		/// @param args Argumentos leidos de .lua
 		void Init(eden_script::ComponentArguments* args) override;
 
 		/// @brief Se usa para coger referencias a otros componentes
 		/// En este caso no se necesita
 		void Start() override;
 
-		/// @brief M�todo update heredado de component 
+		/// @brief Metodo update heredado de component 
 		void Update(float deltaTime) override;
 
-		/// @brief Definici�n de m�todo est�tico GetID necesario para construcci�n de componentes
+		/// @brief Definicion de metodo estatico GetID necesario para construccion de componentes
 		static std::string GetID() { return _id; }
 	protected:
 		const static std::string _id;

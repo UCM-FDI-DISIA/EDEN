@@ -26,7 +26,7 @@ namespace eden {
 		/// @brief Constructora por defecto de la clase Scene
 		/// @param ID Identificador de la escena
 		/// @param info Informacion de las entidades que estan en la escena
-		/// @param collisionInfo Informacion de las capas de colisión que están en la escena
+		/// @param collisionInfo Informacion de las capas de colisión que estan en la escena
 		Scene(const std::string& ID, std::vector<eden_script::EntityInfo*>& info, std::unordered_map<std::string, std::vector<std::string>>& collisionInfo);
 		~Scene();
 
@@ -40,7 +40,7 @@ namespace eden {
 		void Update(float dt);
 
 		/// @brief Instancia una serie de entidades en la escena
-		/// @param info Información de las entidades a instanciar
+		/// @param info Informacion de las entidades a instanciar
 		void Instantiate(std::vector<eden_script::EntityInfo*> info);
 
 		/// @brief Durante la ejecucion del juego, anade una entidad nueva al mapa de entidades 
@@ -50,11 +50,11 @@ namespace eden {
 		/// @brief Devuleve una referencia a la camara actual 
 		inline eden_ec::Entity* GetCurrentCamara() { return _currentCamera; }
 
-		/// @brief Cambia la referencia de la variable que indica cual es la cámara actual  
+		/// @brief Cambia la referencia de la variable que indica cual es la camara actual  
 		/// @param cam Referencia a la nueva camara actual
 		inline void SetCurrentCamara(eden_ec::Entity* cam) { _currentCamera = cam; }
 
-		/// @brief Anade un componente a la entidad dado su tipo y los argumentos que requiera el
+		/// @brief Aniade un componente a la entidad dado su tipo y los argumentos que requiera el
 		/// @tparam id Nombre de la entidad a la que queremos acceder
 		/// @return Componente creado
 		eden_ec::Entity* GetEntityByID(const std::string& ID);
@@ -66,12 +66,12 @@ namespace eden {
 		/// @return _isRendering True = se renderiza | _isRendering = no se renderiza
 		inline bool GetToRender() { return _isRendering; }
 
-		/// @brief Instancia una entidad en la escena. Puede cambiarse su posición y rotación
+		/// @brief Instancia una entidad en la escena. Puede cambiarse su posicion y rotacion
 		/// @param info Información de una entidad 
 		/// @param pos Nueva posición para entidad
 		/// @param rot Nueva orientación para entidad
 		/// @return Nueva entidad creada
-		/// @warning No se aplicarán cambios de posición ni rotación si la entidad NO tiene CTransform. NO se le pondrá uno automáticamente.
+		/// @warning No se aplicarán cambios de posicion ni rotacion si la entidad NO tiene CTransform. NO se le pondra uno automáticamente.
 		eden_ec::Entity* Instantiate(eden_script::EntityInfo* info, eden_utils::Vector3 pos, eden_utils::Quaternion rot);
 		eden_ec::Entity* Instantiate(eden_script::EntityInfo* info, eden_utils::Vector3 pos);
 		eden_ec::Entity* Instantiate(eden_script::EntityInfo* info, eden_utils::Quaternion rot);
@@ -82,7 +82,7 @@ namespace eden {
 		std::string _ID;
 
 		///@brief booleano que indica si la escena esta activa. Si una escena no esta activa no se ejecutara el 
-		/// update pero si se seguirán renderizando sus entidades
+		/// update pero si se seguiran renderizando sus entidades
 		bool _isRendering = true;
 
 		/// @brief referencia a la camara actual

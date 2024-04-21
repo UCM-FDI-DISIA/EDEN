@@ -51,7 +51,7 @@ namespace eden_script {
 		else {
 			// error
 			std::cerr << '\'' << id << "' was not found while constructing '" << _id << '\'' << '\n';
-			// deber�amos tirar excepci�n aqu� o algo?
+			// deberiamos tirar excepcion aqui o algo?
 #ifdef _MSC_VER
 			throw(std::exception("\n\n"));
 #endif

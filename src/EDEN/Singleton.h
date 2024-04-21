@@ -11,7 +11,7 @@
 #include "defs.h"
 
 /// @brief Una clase que herede de esta clase tiene que implementar un constructor sin argumentos. 
-/// @brief Los argumentos necesarios para construir una clase se pasarán en el método Init() de la clase, que se ejecuta cuando se llama el método Instance() por primera vez.
+/// @brief Los argumentos necesarios para construir una clase se pasarán en el método Init() de la clase, que se ejecuta cuando se llama el metodo Instance() por primera vez.
 /*
  * >>> Usage:
  *
@@ -42,9 +42,9 @@ public:
 		//_instance.release();
 	}
 
-	/// @brief Este método se puede usar para llamar a la constructora de una clase heredera de Singleton con parámetros. 
-	/// @brief Evitar llamar a este método directamente, es preferible llamar al método "Instance".
-	/// @param args Son los parámetros que se usan para construir a la clase
+	/// @brief Este método se puede usar para llamar a la constructora de una clase heredera de Singleton con parametros. 
+	/// @brief Evitar llamar a este metodo directamente, es preferible llamar al metodo "Instance".
+	/// @param args Son los parametros que se usan para construir a la clase
 	template<typename ...Targs>
 	inline static T* Init(Targs &&...args) {
 		assert(_instance.get() == nullptr);
@@ -58,10 +58,10 @@ public:
 		_instance.reset();
 	}
 
-	/// @brief El método instance devuelve la instancia única de la clase que herede de Singleton.
-	/// @brief La primera vez que se llama a este método, se construye la instancia de la clase y se guarda en un puntero estático.
-	/// @brief Las próximas llamadas al método devuelven este puntero. Si se quiere construir una nueva instancia de la clase se puede hacer con el método Init.
-	/// @param args Son los parámetros que se usan para construir a la clase
+	/// @brief El metodo instance devuelve la instancia unica de la clase que herede de Singleton.
+	/// @brief La primera vez que se llama a este metodo, se construye la instancia de la clase y se guarda en un puntero estatico.
+	/// @brief Las próximas llamadas al metodo devuelven este puntero. Si se quiere construir una nueva instancia de la clase se puede hacer con el metodo Init.
+	/// @param args Son los parametros que se usan para construir a la clase
 	/// @return El puntero a la instancia del singleton
 	template<typename ...Targs>
 	inline static T* Instance(Targs &&...args) {

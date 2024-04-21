@@ -29,12 +29,12 @@ btScalar physics_wrapper::CollisionCallback::addSingleResult(btManifoldPoint& cp
 
 	if ((rb->GetCollisionLayer()->GetCollisionMask() & otherRb->GetCollisionLayer()->GetLayer()) != 0) {
 		if(cp.getDistance() <= 0){
-			//Acaba de haber colisión
+			//Acaba de haber colision
 			if (_otherEntities.find(otherEntity) == _otherEntities.end()) {
 				_otherEntities.insert(std::make_pair(otherEntity, true));
 				rb->OnCollisionEnter(otherEntity);
 			}
-			else { //Ya había colisión y permanece en ella
+			else { //Ya había colision y permanece en ella
 				rb->OnCollisionStay(otherEntity);
 				_otherEntities[otherEntity] = true;
 			}

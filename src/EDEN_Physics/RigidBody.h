@@ -25,11 +25,11 @@ namespace physics_manager {
 	class PhysicsManager;
 }
 
-//#ifdef _DEBUG
+#ifdef _DEBUG
 namespace eden_debug {
 	class Debug;
 }
-//#endif
+#endif
 
 namespace physics_wrapper {
 	class CollisionCallback;
@@ -38,9 +38,9 @@ namespace physics_wrapper {
 	{
 		friend CollisionCallback;
 		friend physics_manager::PhysicsManager;
-//#ifdef _DEBUG
+#ifdef _DEBUG
 		friend eden_debug::Debug;
-//#endif
+#endif
 
 	public:
 		enum RigidBodyType { DYNAMIC, KINEMATIC, STATIC };
@@ -95,7 +95,7 @@ namespace physics_wrapper {
 		/// @param velocity Vector de velocidad a la que quieres establecer
 		void SetLinealVelocity(eden_utils::Vector3 velocity);
 
-		/// @brief A�ade velocidad lineal al RigidBody
+		/// @brief Aniade velocidad lineal al RigidBody
 		/// @param velocity Vector de velocidad que quieres sumar
 		void AddLinearVelocity(eden_utils::Vector3 velocity);
 
@@ -107,7 +107,7 @@ namespace physics_wrapper {
 		/// @param velocity Vector de angular a la que quieres establecer
 		void SetAngularVelocity(eden_utils::Vector3 velocity);
 
-		/// @brief Annade velocidad angular al RigidBody
+		/// @brief Aniade velocidad angular al RigidBody
 		/// @param velocity Vector de velocidad que quieres sumar
 		void AddAngularVelocity(eden_utils::Vector3 velocity);
 
@@ -123,7 +123,7 @@ namespace physics_wrapper {
 		/// @return Vector de gravedad
 		eden_utils::Vector3 GetGravity();
 
-		/// @brief Establece la gravedada a la que esta sujeta el RigidBody
+		/// @brief Establece la gravedad a la que esta sujeta el RigidBody
 		/// @param gravity Vector de gravedad que quieres establecer
 		void SetGravity(eden_utils::Vector3 gravity);
 
@@ -143,7 +143,7 @@ namespace physics_wrapper {
 		/// @param force Vector de fuerza que quieres aplicar
 		void ApplyForce(eden_utils::Vector3 force);
 
-		/// @brief Annade torquue al RigidBody
+		/// @brief Aniade torquue al RigidBody
 		/// @param torque Vector de torque que quieres aplicar
 		void ApplyTorque(eden_utils::Vector3 torque);
 
@@ -151,15 +151,15 @@ namespace physics_wrapper {
 		void ClearForce();
 
 		/// @brief Annade una forma al RigidBody
-		/// @param params Parametros de la forma que se vaya a a�adir
+		/// @param params Parametros de la forma que se vaya a aniadir
 		void AddShape(const ShapeParameters& params);
 
-		/// @brief Establece un valor de fricción al RigidBody
-		/// @param friction Valor nuevo de fricción para el RigidBody
+		/// @brief Establece un valor de friccion al RigidBody
+		/// @param friction Valor nuevo de friccion para el RigidBody
 		void SetFriction(float friction);
 		
-		/// @brief Devuelve la propiedad de fricción
-		/// @return Devuelve la propiedad de fricción
+		/// @brief Devuelve la propiedad de friccion
+		/// @return Devuelve la propiedad de friccion
 		float GetFriction();
 
 		/// @brief Establece un valor de rebote al RigidBody
@@ -170,7 +170,7 @@ namespace physics_wrapper {
 		/// @return Devuelve la propiedad de rebote 
 		float GetBounciness();
 
-		/// @brief Método que actualiza el estado de las colisiones para ver si se ha dejado de colisionar con algún objeto.
+		/// @brief Metodo que actualiza el estado de las colisiones para ver si se ha dejado de colisionar con algun objeto.
 		void Update();
 
 		/// @brief Devuelve el rigidBody de la libreria fisica asociado a este rigidBody

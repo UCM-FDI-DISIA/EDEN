@@ -36,7 +36,7 @@ public:
 	/// @brief Destructora por defecto de la clase SceneManager
 	~SceneManager() override;
 
-	/// @brief Metodo encargado de crear una nueva escena y añadirla a la lista doblemente enlazada
+	/// @brief Metodo encargado de crear una nueva escena y aniadirla a la lista doblemente enlazada
 	/// @param ID El nombre que identifica a la escena
 	void PushScene(const std::string& ID);
 
@@ -69,7 +69,7 @@ public:
 	/// @param pos Nueva posición para entidad
 	/// @param rot Nueva orientación para entidad
 	/// @return Nueva entidad creada
-	/// @warning No se aplicarán cambios de posición ni rotación si la entidad NO tiene CTransform. NO se le pondrá uno automáticamente.
+	/// @warning No se aplicaran cambios de posicion ni rotacion si la entidad NO tiene CTransform. NO se le pondra uno automáticamente.
 	eden_ec::Entity* InstantiateBlueprint(std::string blueprintID, eden_utils::Vector3 pos, eden_utils::Quaternion rot);
 	eden_ec::Entity* InstantiateBlueprint(std::string blueprintID, eden_utils::Vector3 pos);
 	eden_ec::Entity* InstantiateBlueprint(std::string blueprintID, eden_utils::Quaternion rot);
@@ -79,15 +79,15 @@ private:
 	/// @brief Puntero a la primera escena de la lista, a la cual se llama a su Update
 	Scene* _activeScene = nullptr;
 
-	/// @brief Guarda información de un Blueprint. 
+	/// @brief Guarda informacion de un Blueprint. 
 	struct BlueprintInfo {
 		/// @brief Componentes que definen la entidad
 		std::vector<eden_script::ComponentArguments> components;
-		/// @brief Número de veces que se ha instanciado
+		/// @brief Numero de veces que se ha instanciado
 		int numInstances = 0;
 	};
 
-	/// @brief Guarda la información de los Blueprints leídos desde Lua
+	/// @brief Guarda la informacion de los Blueprints leidos desde Lua
 	static std::unordered_map<std::string, BlueprintInfo> _Blueprints;
 
 	/// @brief Lista doblemente enlazada de punteros a escenas

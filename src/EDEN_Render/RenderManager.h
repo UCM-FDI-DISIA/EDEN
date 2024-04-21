@@ -72,10 +72,10 @@ namespace eden_render
 		/// @brief Destructora
 		~RenderManager() override;
 
-		/// @brief Ejecuta un ciclo de renderizado (ventana y raï¿½z)
+		/// @brief Ejecuta un ciclo de renderizado (ventana y raiz)
 		void Update();
 
-		/// @brief Comprueba si ha habido errores en la inicializaci�n
+		/// @brief Comprueba si ha habido errores en la inicializacion
 		/// @return True si se ha inicializado bien, False en caso contrario
 		inline bool couldInitialize() { return _initialized; }
 
@@ -91,38 +91,38 @@ namespace eden_render
 		/// @param sceneID Identificador de la escena
 		void UpdatePositions(std::string sceneID);
 
-		/// @brief A�ade una entidad que tenga componentes de renderizado (CMeshRenderer, CCamera, ...) a una escena en concreto
-		/// para actualizar su posici�n
-		/// @param ent Entidad cuya posici�n va a actualizarse
+		/// @brief Aniade una entidad que tenga componentes de renderizado (CMeshRenderer, CCamera, ...) a una escena en concreto
+		/// para actualizar su posicion
+		/// @param ent Entidad cuya posicion va a actualizarse
 		void AddRenderEntity(eden_ec::Entity* ent);
 
-		/// @brief Quita una entidad de una escena para dejar de actualizar su posici�n
+		/// @brief Quita una entidad de una escena para dejar de actualizar su posicion
 		/// @param ent Entidad que se va a quitar
 		void RemoveRenderEntity(eden_ec::Entity* ent);
 
-		/// @brief Funci�n que deber�a llamarse en el momento en el que la ventana cambia de tama�o
+		/// @brief Funcion que deberia llamarse en el momento en el que la ventana cambia de tamanio
 		void ResizedWindow();
 
-		/// @brief Método que intercambia el modo de pantalla entre "pantalla completa" y tamaño elegido
+		/// @brief Metodo que intercambia el modo de pantalla entre "pantalla completa" y tamanio elegido
 		void FullScreen();
 
-		/// @brief Método que setea las resoluciones
+		/// @brief Metodo que setea las resoluciones
 		void SetResolutions(std::vector<std::pair<int, int>> resolutions);
 
-		/// @brief Método que devuelve la resolución actual
+		/// @brief Metodo que devuelve la resolución actual
 		std::pair<int, int> GetResolution();
 
-		/// @brief Método que cambia la resuluión actual
+		/// @brief Metodo que cambia la resolucin actual
 		void ChangeResolution();
 
-		/// @brief Cambia a la siguiente resolucion añadida
+		/// @brief Cambia a la siguiente resolucion aniadida
 		void NextResolutuion();
 
-		/// @brief Cambia a la anterior resolucion añadida
+		/// @brief Cambia a la anterior resolucion aniadida
 		void PreviousResolution();
 
 		/// @brief Devuelve la camara de la escena actual. Si no existe la crea
-		/// @param ent Entidad a la que se va a añadir la camara
+		/// @param ent Entidad a la que se va a aniadir la camara
 		/// @return Devuelve la camara de la escena actual. Si no existe la crea
 		render_wrapper::CameraWrapper* GetCamera(eden_ec::Entity* ent);
 
@@ -132,7 +132,7 @@ namespace eden_render
 		Ogre::SceneManager* GetOgreSceneManager();
 
 	private:
-		/// @brief Inicializa la librer�a de renderizado,
+		/// @brief Inicializa la libreria de renderizado,
 		/// crea la ventana de renderizado, localiza y carga los recursos (.mesh, .material, etc)
 		/// e inicializa los shaders
 		/// @param appName Nombre de la ventana
@@ -144,32 +144,32 @@ namespace eden_render
 		/// @brief Destruye el sistema de sombreado de trazado de rayos
 		void DestroyRTShaderSystem();
 
-		/// @brief Inicialización de ventana, RTShaderSystem y recursos
+		/// @brief Inicializacion de ventana, RTShaderSystem y recursos
 		void Setup();
 
-		/// @brief Creación de la raíz de Ogre de la escena
+		/// @brief Creación de la raiz de Ogre de la escena
 		void InitializeLib();
 
-		/// @brief Atrapa el ratón en la ventana
-		/// @param grab Activa o desactiva la funcionalidad del método
+		/// @brief Atrapa el raton en la ventana
+		/// @param grab Activa o desactiva la funcionalidad del metodo
 		void SetWindowGrab(bool grab);
 
-		/// @brief Localización de archivos para Ogre
+		/// @brief Localizacion de archivos para Ogre
 		void LocateResources();
 
 		/// @brief Carga de archivos para Ogre
 		void LoadResources();
 
-		/// @brief Cierre de ventana de SDL, así como el RTShaderSystem
+		/// @brief Cierre de ventana de SDL, asi como el RTShaderSystem
 		void Shutdown();
 
 		/// @brief Destructora de la ventana de SDL
 		void CloseWindow();
 
-		/// @brief Destruye la ra�z y llama posteriormente al m�todo Shutdown
+		/// @brief Destruye la raiz y llama posteriormente al metodo Shutdown
 		void CloseManager();
 
-		/// @brief Creaciï¿½n de la ventana de Ogre y SDL
+		/// @brief Creacion de la ventana de Ogre y SDL
 		/// @param name Nombre de la ventana
 		NativeWindowPair CreateNewWindow(const std::string& name);
 
@@ -191,7 +191,7 @@ namespace eden_render
 		/// @param show Si es verdadero, muestra las entidades. En caso contrario, las esconde
 		void ShowEntities(std::string sceneID, bool show);
 
-		/// @brief Cambia el tamaño de la ventana
+		/// @brief Cambia el tamanio de la ventana
 		/// @param w Ancho de la ventana
 		/// @param h Alto de la ventana
 		void ChangeWindowSize(int w, int h);
@@ -217,13 +217,13 @@ namespace eden_render
 		/// @brief Nombre de la ventana
 		std::string _appName;
 
-		/// @brief Localizaciï¿½n de recursos de Ogre
+		/// @brief Localizacion de recursos de Ogre
 		std::string _solutionPath;
 
-		/// @brief Localizaciï¿½n de recursos de la aplicaciï¿½n
+		/// @brief Localizacion de recursos de la aplicacion
 		const std::string _resourcesPath = "assets\\";
 
-		/// @brief Localizaciï¿½n de librerï¿½a del RTShader
+		/// @brief Localizacion de libreria del RTShader
 		std::string _rtShaderLibPath;
 
 		/// @brief Instancia de generador de sombreado
@@ -238,10 +238,10 @@ namespace eden_render
 		/// @brief Flag para saber si la ventana ha sido escalada
 		bool _resized = false;
 
-		/// @brief Tamaño actual de la pantalla
+		/// @brief Tamanio actual de la pantalla
 		uint32_t _currW, _currH;
 
-		/// @brief Tamaño de la pantalla completa
+		/// @brief Tamanio de la pantalla completa
 		uint32_t _fullW, _fullH;
 		bool _isFullScreen = false;
 
@@ -251,7 +251,7 @@ namespace eden_render
 		/// @brief indice de la resolucion actual
 		int _currRes = 0;
 
-		/// @brief Resolución default
+		/// @brief Resolucion default
 		std::pair<int, int> _defWindowSize = {640,480};
 	};
 
@@ -277,7 +277,7 @@ namespace eden_render
 		/// @brief ID de la escena
 		std::string _sceneID;
 
-		/// @brief Conjunto de entidades para actualizar su posici�n
+		/// @brief Conjunto de entidades para actualizar su posicion
 		std::unordered_set<eden_ec::Entity*> _entities;
 
 		/// @brief Sistema de overlay

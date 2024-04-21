@@ -23,7 +23,7 @@ void eden_ec::CAudioEmitter::Init(eden_script::ComponentArguments* args) {
 }
 
 void eden_ec::CAudioEmitter::Start() {
-	// Habría que cambiar esta línea cuando se cree el awake
+	// Habria que cambiar esta línea cuando se cree el awake
 	eden_audio::AudioManager::Instance()->AddAudioEntity(_ent);
 	_transform = _ent->GetComponent<eden_ec::CTransform>();
 }

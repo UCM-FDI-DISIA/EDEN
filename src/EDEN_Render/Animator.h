@@ -17,8 +17,8 @@ namespace eden_error {
 namespace render_wrapper {
 
 	class MeshRenderer;
-	/// @brief La clase Animator forma parte del render_wrapper y se encarga de llamar a los métodos 
-	/// específicos de Ogre para que el componente no tenga que interactuar con ellos. Usa un 
+	/// @brief La clase Animator forma parte del render_wrapper y se encarga de llamar a los metodos 
+	/// especificos de Ogre para que el componente no tenga que interactuar con ellos. Usa un 
 	/// unordered_map de strings (nombres de las animaciones) y pairs de AnimationStates de Ogre 
 	/// (las animaciones como tal), y strings (nombres de las animaciones) que queremos que empiezen 
 	/// cuando esa acabe). 

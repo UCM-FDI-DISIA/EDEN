@@ -22,14 +22,14 @@ namespace eden_ec {
         /// @param args Argumentos leídos de .lua
         void Init(eden_script::ComponentArguments* args) override {};
 
-        /// @brief Usaremos este método para añadir referencias de otros componentes
+        /// @brief Usaremos este metodo para aniadir referencias de otros componentes
         void Start() override;
 
         /// @brief Metodo ejecutado cada frame
         /// @param t Tiempo transcurrido desde el ultimo frame
         void Update(float t) override;
 
-        /// @brief Definición de método estático GetID necesario para construcción de componentes
+        /// @brief Definicion de metodo estático GetID necesario para construccion de componentes
         inline static std::string GetID() { return _id; }
     private:
         /// @brief Id del componente necesaria para la construccion de este

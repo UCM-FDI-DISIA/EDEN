@@ -27,7 +27,7 @@ render_wrapper::NodeManager::NodeManager() {
 
 render_wrapper::NodeManager::~NodeManager() {
 	// Borramos todo lo que haya en el unordered_map
-	// El m�todo clear() llama a las destructoras de los objetos que contiene, por lo que esta parte deber�a estar libre de memory leaks
+	// El metodo clear() llama a las destructoras de los objetos que contiene, por lo que esta parte deberia estar libre de memory leaks
 	_sceneObjectsMap.clear();
 }
 
@@ -69,7 +69,7 @@ Ogre::SceneNode* render_wrapper::NodeManager::FindNode(const std::string id, con
 		
 		eden_error::ErrorHandler::Instance()->Warning("WARNING: scene node with id: " + id + " not found in  the scene objects map\n");
 
-		// TRATAMIENTO DE ERRORES DE LUA AQU� --------
+		// TRATAMIENTO DE ERRORES DE LUA AQUI --------
 		// Se devuelve nullptr para que el wrapper que necesite el nodo sepa que no existe 
 		// y por tanto debera crear uno propio y lo asocie a la entidad
 		return nullptr;

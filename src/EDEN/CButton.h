@@ -16,7 +16,7 @@ namespace eden_ec {
 	
 	class CLuaBehaviour;
 
-	/// @brief Par�metros del bot�n
+	/// @brief Parametros del boton
 	struct EDEN_API ButtonParams {
 		std::string overlayName = std::string();
 		float xPos = 0, yPos = 0;
@@ -27,7 +27,7 @@ namespace eden_ec {
 		std::string clickedTex = std::string();
 	};
 
-	/// @brief Clase que representa un bot�n en la UI
+	/// @brief Clase que representa un boton en la UI
 	class EDEN_API CButton : public eden_ec::UIComponent {
 	public:
 
@@ -37,51 +37,51 @@ namespace eden_ec {
 		/// @brief Constructora de la clase 
 		CButton(ButtonParams& params);
 
-		/// @brief M�todo update heredado de component
+		/// @brief Metodo update heredado de component
 		void Update(float deltaTime) override;
 
 		/// @brief Se usa para coger referencias a otros componentes
 		/// En este caso no se necesita
 		void Start() override;
 
-		/// @brief Método que crea el botón
+		/// @brief Metodo que crea el boton
 		void CreateButton(ButtonParams& params);
 
 		/// @brief Destructora
 		~CButton() = default;
 
-		/// @brief Cambia la textura principal del bot�n
+		/// @brief Cambia la textura principal del boton
 		void ChangeButtonTexture(const std::string& textureName);
 
-		/// @brief Cambia todas las texturas del bot�n
+		/// @brief Cambia todas las texturas del boton
 		void ChangeTextures(const std::string& iniTex,
 			const std::string& hoverTex,
 			const std::string& clickedTex);
 
-		/// @brief Construye el componente dado unos argumentos. Se obtendr�n de una lectura de un .lua
-		/// @param args Argumentos le�dos de .lua
+		/// @brief Construye el componente dado unos argumentos. Se obtendran de una lectura de un .lua
+		/// @param args Argumentos leidos de .lua
 		void Init(eden_script::ComponentArguments* args) override;
 
-		/// @brief Definici�n de m�todo est�tico GetID necesario para construcci�n de componentes
+		/// @brief Definicion de metodo estatico GetID necesario para construccion de componentes
 		static std::string GetID() { return _id; }
 	protected:
 		const static std::string _id;
 
 	private:
 
-		/// @brief Comprueba si el rat�n est� en los l�mites del bot�n
+		/// @brief Comprueba si el raton esta en los limites del boton
 		void CheckMousePos();
 
-		/// @brief Metodo que se llama cuando se hace click en el bot�n
+		/// @brief Metodo que se llama cuando se hace click en el boton
 		void OnButtonClick();
 
-		/// @brief Metodo que se llama cuando se termina click en el bot�n
+		/// @brief Metodo que se llama cuando se termina click en el boton
 		void OnButtonReleased();
 
-		/// @brief Metodo que se llama la primera vez que se pone el raton sobre el bot�n
+		/// @brief Metodo que se llama la primera vez que se pone el raton sobre el boton
 		void OnButtonHover();
 
-		/// @brief Metodo que se llama cuando el raton sale del bot�n
+		/// @brief Metodo que se llama cuando el raton sale del boton
 		void OnButtonUnhover();
 
 		void ButtonRectUpdate();
@@ -89,7 +89,7 @@ namespace eden_ec {
 		/// @brief textura base
 		std::string _iniTex = " ";
 
-		/// @brief textura cuando el cursor est� encima
+		/// @brief textura cuando el cursor esta encima
 		std::string _hoverTex = " ";
 
 		/// @brief textura cuando pulsamos el boton
@@ -115,7 +115,7 @@ namespace eden_ec {
 		/// @brief Flag de si hemos pulsado
 		bool _clicked = 0;
 
-		/// @brief Tama�o anterior
+		/// @brief Tamanio anterior
 		std::pair<float, float>_oldScale = std::make_pair(0.0f, 0.0f);
 
 

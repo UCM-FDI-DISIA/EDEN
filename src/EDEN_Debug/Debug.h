@@ -18,7 +18,7 @@ namespace eden_ec {
 	class CRigidBody;
 }
 
-/// USO DE ESTA CLASE: Esta clase hace de wrapper de DebugDrawer y está pensada para que tambien actue de wrapper de 
+/// USO DE ESTA CLASE: Esta clase hace de wrapper de DebugDrawer y esta pensada para que tambien actue de wrapper de 
 /// cualquier otra clase o funcionalidad de debug que se quiera aniadir.
 /// Cada instancia de Debug debe hacerse con un "id" distinto a los anteriores ya que el nodo que se creara debera ser unico a 
 /// cada una.
@@ -35,7 +35,7 @@ namespace eden_debug {
 
 		~Debug();
 
-		/// @brief Borrar las líneas actuales en pantalla
+		/// @brief Borrar las lineas actuales en pantalla
 		void ClearLines();
 
 		/// @brief Dibujar una nueva linea

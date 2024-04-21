@@ -50,7 +50,7 @@
 eden_render::RenderManager::RenderManager(const std::string& appName)
 {
 	_appName = appName; // asigna el nombre de la ventana
-	_root = nullptr; // pone la ra�z a nulo
+	_root = nullptr; // pone la raiz a nulo
 	_shaderGenerator = nullptr; // y mantiene el generador de sombreado a nulo
 	_resolutions.push_back(_defWindowSize); // setea la resolución default 
 
@@ -75,11 +75,11 @@ eden_render::RenderManager::~RenderManager()
 
 void eden_render::RenderManager::InitManager(const std::string& appName)
 {
-	_appName = appName; // renombra el nombre de aplicaci�n
+	_appName = appName; // renombra el nombre de aplicacion
 	_fsLayer = new Ogre::FileSystemLayer(_appName); // crea un nuevo sistema de archivos
 
-	InitializeLib(); // crea la raíz
-	Setup(); // y arranca la inicialización base
+	InitializeLib(); // crea la raiz
+	Setup(); // y arranca la inicializacion base
 
 	_overlaySys = new Ogre::OverlaySystem();
 	_currentRenderScene = nullptr;
@@ -107,7 +107,7 @@ Ogre::SceneManager* eden_render::RenderManager::GetOgreSceneManager()
 
 void eden_render::RenderManager::Update()
 {
-	_root->renderOneFrame(); // renderiza la ra�z de Ogre
+	_root->renderOneFrame(); // renderiza la raiz de Ogre
 	if (_resized) {
 		_resized = false;
 		eden_canvas::Canvas::Instance()->Resize();
@@ -135,7 +135,7 @@ void eden_render::RenderManager::CloseManager()
 
 		delete _overlaySys;
 		_overlaySys = nullptr;
-		delete _root; // borra la ra�z
+		delete _root; // borra la raiz
 		_root = nullptr; // y la pone a nulo
 
 	}
@@ -143,23 +143,23 @@ void eden_render::RenderManager::CloseManager()
 
 void eden_render::RenderManager::InitializeLib()
 {
-	std::string pluginsPath; // localizaci�n base de los plugins
+	std::string pluginsPath; // localizacion base de los plugins
 	std::string nameFile = "plugins.cfg";
-	pluginsPath = _fsLayer->getConfigFilePath(nameFile); // consigue la direcci�n gracias al sistema de archivos
+	pluginsPath = _fsLayer->getConfigFilePath(nameFile); // consigue la direccion gracias al sistema de archivos
 
 	if (!Ogre::FileSystemLayer::fileExists(pluginsPath)) { // si no existe el plugin -> excepción de Ogre
 		eden_error::ErrorHandler::Instance()->Exception("RenderManager ERROR in line 121", "failed finding file plugins.cfg. Searched on dir: " + pluginsPath + "\n");
 	}
-	_solutionPath = pluginsPath; // copia la direcci�n de los plugins
+	_solutionPath = pluginsPath; // copia la direccion de los plugins
 	_solutionPath.resize(_solutionPath.size() - nameFile.size()); // y la reajusta
 
-	// crea una nueva raíz en base a los plugins y la configuración base de Ogre
+	// crea una nueva raiz en base a los plugins y la configuracion base de Ogre
 	_root = new Ogre::Root(pluginsPath);
 
 	if (_root != nullptr)
 	{
-		_root->showConfigDialog(nullptr); // desactiva el diálogo de configuración de Ogre
-		_root->initialise(false); // desactiva la inicialización de la raíz de Ogre
+		_root->showConfigDialog(nullptr); // desactiva el dialogo de configuracion de Ogre
+		_root->initialise(false); // desactiva la inicializacion de la raíz de Ogre
 	}
 	else
 	{
@@ -185,7 +185,7 @@ void eden_render::RenderManager::Shutdown()
 void eden_render::RenderManager::Setup()
 {
 	CreateNewWindow(_appName); // crea la ventana
-	SetWindowGrab(false); // permite que el ratón se pueda mover fuera de la ventana
+	SetWindowGrab(false); // permite que el raton se pueda mover fuera de la ventana
 
 	LocateResources(); // localiza los recursos
 	InitialiseRTShaderSystem(); // arranca el sistema de sombreado
@@ -222,7 +222,7 @@ NativeWindowPair eden_render::RenderManager::CreateNewWindow(const std::string& 
 	std::string token;
 	mode >> token;
 
-	//TAMAÑO FULL SCREEN
+	//TAMANIO FULL SCREEN
 	RECT desktop;
 	// Get a handle to the desktop window
 	const HWND hDesktop = GetDesktopWindow();

@@ -86,7 +86,7 @@ namespace eden_input
 		/// @brief Limpieza del mapa de teclas
 		void Clean();
 
-		/// @brief True si se est� pulsando
+		/// @brief True si se esta pulsando
 		/// al menos una tecla del teclado
 		bool KeyDownEvent();
 
@@ -100,7 +100,7 @@ namespace eden_input
 		bool IsKeyDown(char key);
 
 		/// @brief True mientras
-		/// la tecla est� pulsada
+		/// la tecla esta pulsada
 		/// @param key Tecla Normal (0-9 y a-z)
 		bool IsKeyHeld(char key);
 
@@ -115,7 +115,7 @@ namespace eden_input
 		bool IsKeyDown(SPECIALKEY key);
 
 		/// @brief True mientras
-		/// la tecla est� pulsada
+		/// la tecla esta pulsada
 		/// @param key Tecla Normal (macros SPECIALKEY)
 		bool IsKeyHeld(SPECIALKEY key);
 
@@ -125,31 +125,31 @@ namespace eden_input
 		bool IsKeyUp(SPECIALKEY key);
 
 		/// @brief mouse
-		/// @brief True si el rat�n
-		/// ha cambiado de posici�n
+		/// @brief True si el raton
+		/// ha cambiado de posicion
 		bool MouseMotionEvent();
 
-		/// @brief True si al menos un bot�n
-		/// del rat�n ha cambiado de estado
+		/// @brief True si al menos un boton
+		/// del raton ha cambiado de estado
 		bool MouseButtonEvent();
 
 		/// @brief True en el primer frame
-		/// en el que el bot�n del rat�n es pulsado
-		/// @param b Bot�n del rat�n (macros MOUSEBUTTON)
+		/// en el que el boton del raton es pulsado
+		/// @param b Boton del raton (macros MOUSEBUTTON)
 		bool IsMouseButtonDown(int b);
 
 		/// @brief True mientras
-		/// el bot�n del rat�n est� pulsado
-		/// @param b Bot�n del rat�n (macros MOUSEBUTTON)
+		/// el boton del raton esta pulsado
+		/// @param b Boton del raton (macros MOUSEBUTTON)
 		bool IsMouseButtonHeld(int b);
 
 		/// @brief True en el primer frame
-		/// en el que el bot�n del rat�n es liberado
-		/// @param b Bot�n del rat�n (macros MOUSEBUTTON)
+		/// en el que el boton del raton es liberado
+		/// @param b Boton del raton (macros MOUSEBUTTON)
 		bool IsMouseButtonUp(int b);
 
 		/// @brief Par (X, Y) de
-		/// la posici�n del rat�n en la pantalla.
+		/// la posicion del raton en la pantalla.
 		const std::pair<int, int>& GetMousePos();
 
 		//window events
@@ -187,7 +187,7 @@ namespace eden_input
 		/// @brief Booleano de si se ha movido el raton
 		bool _isMouseMotionEvent;
 		
-		/// @brief Booleano de si se ha pulsado alg�n bot�n del raton
+		/// @brief Booleano de si se ha pulsado algun boton del raton
 		bool _isMouseButtonEvent;
 
 		/// @brief Posicion del raton
@@ -199,7 +199,7 @@ namespace eden_input
 		/// @brief Booleano de si se cierra la ventana
 		bool _isCloseWindowEvent;
 
-		/// @brief Booleano de si se cambia el tamaño la ventana
+		/// @brief Booleano de si se cambia el tamanio la ventana
 		bool _isResizedWindowEvent;
 
 		/// @brief Estados de botones
@@ -211,7 +211,7 @@ namespace eden_input
 		};
 
 		/// @brief Gestiona el cambio de estados de los botones de teclado, mando y
-		/// rat�n (DOWN -> HELD y UP -> RELEASE). Resetea las flags de los
+		/// raton (DOWN -> HELD y UP -> RELEASE). Resetea las flags de los
 		/// eventos
 		void ClearState();
 
@@ -224,7 +224,7 @@ namespace eden_input
 		/// @brief Actualiza la posici�n del rat�n
 		void OnMouseMotion();
 
-		/// @brief Actualiza el estado de los botones del rat�n
+		/// @brief Actualiza el estado de los botones del raton
 		void OnMouseButtonChange(STATE state);
 
 		/// @brief Gestiona los eventos de ventana

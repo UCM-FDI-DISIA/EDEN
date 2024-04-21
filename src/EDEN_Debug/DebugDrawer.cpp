@@ -12,7 +12,7 @@
 #include "NodeManager.h"
 #include "RenderManager.h"
 
-//Nota: Añadir ids distintas a cada instancia de la clase y darle ese nombre al nodo
+//Nota: Aniadir ids distintas a cada instancia de la clase y darle ese nombre al nodo
 
 eden_debug::DebugDrawer::DebugDrawer(std::string id, std::string sceneID) {
 	_debugMode = DBG_DrawWireframe;

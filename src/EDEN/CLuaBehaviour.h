@@ -65,14 +65,14 @@ namespace eden_ec {
 
 		lua_State* getLuaState();
 
-		/// @brief Construye el componente dado unos argumentos. Se obtendr�n de una lectura de un .lua
-		/// @param args Argumentos le�dos de .lua
+		/// @brief Construye el componente dado unos argumentos. Se obtendran de una lectura de un .lua
+		/// @param args Argumentos leidos de .lua
 		void Init(eden_script::ComponentArguments* args) override;
 
 		/// @brief Override necesario. No se usa
 		void Start() override {};
 
-		/// @brief Definici�n de m�todo est�tico GetID necesario para construcci�n de componentes
+		/// @brief Definicion de metodo estatico GetID necesario para construccion de componentes
 		static std::string GetID() { return _id; }
 
 	protected:

@@ -39,8 +39,8 @@ namespace eden_ec {
 		/// @param mesh Nombre del archivo de la malla .mesh
 		CMeshRenderer(std::string mesh);
 
-		/// @brief Construye el componente dado unos argumentos. Se obtendr�n de una lectura de un .lua
-		/// @param args Argumentos le�dos de .lua
+		/// @brief Construye el componente dado unos argumentos. Se obtendran de una lectura de un .lua
+		/// @param args Argumentos leidos de .lua
 		void Init(eden_script::ComponentArguments* args) override;
 
 		/// @brief Se usa para coger referencias a otros componentes

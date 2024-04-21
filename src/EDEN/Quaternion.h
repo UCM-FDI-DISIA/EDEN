@@ -13,127 +13,127 @@ namespace eden_utils {
 	class EDEN_API Quaternion
 	{
 	public:
-		/// @brief Constructora por defecto del cuaterni�n
+		/// @brief Constructora por defecto del cuaternion
 		Quaternion();
-		/// @brief Constructora con par�metros del cuaterni�n
-		/// @param w Componente real del cuaterni�n
-		/// @param x Componente i del cuaterni�n
-		/// @param y Componente j del cuaterni�n
-		/// @param z Componente k del cuaterni�n
+		/// @brief Constructora con parametros del cuaternion
+		/// @param w Componente real del cuaternion
+		/// @param x Componente i del cuaternion
+		/// @param y Componente j del cuaternion
+		/// @param z Componente k del cuaternion
 		Quaternion(float w, float x, float y, float z);
 
-		/// @brief Constructor de un cuaterni�n a partir de la rotaci�n en un eje
-		/// @param angle �ngulo en el que rota en grados
+		/// @brief Constructor de un cuaternion a partir de la rotacion en un eje
+		/// @param angle angulo en el que rota en grados
 		/// @param axis Eje en el que rota
 		Quaternion(float angle, Vector3 axis);
 
-		/// @brief Devuelve un cuaterni�n unitario
+		/// @brief Devuelve un cuaternion unitario
 		/// @param axis Eje en el que rota
-		/// @param angle �ngulo que rota
-		/// @return Cuaterni�n normalizado
+		/// @param angle angulo que rota
+		/// @return Cuaternion normalizado
 		static Quaternion UnitQuaternion(Vector3 axis, float angle);
 
 		~Quaternion() = default;
 
-		/// @brief Iguala un cuaterni�n a otro
-		/// @param other Cuaterni�n al que iguala
-		/// @return Cuaterni�n resultante
+		/// @brief Iguala un cuaternion a otro
+		/// @param other Cuaternion al que iguala
+		/// @return Cuaternion resultante
 		Quaternion operator=(Quaternion other);
 
 		/// @brief Suma de dos cuaterniones
-		/// @param other Cuaterni�n al que suma
-		/// @return Cuaterni�n resultante
+		/// @param other Cuaternion al que suma
+		/// @return Cuaternion resultante
 		Quaternion operator+(Quaternion other);
 
 		/// @brief Resta de dos cuaterniones
-		/// @param other Cuaterni�n al que resta
-		/// @return Cuaterni�n resultante
+		/// @param other Cuaternion al que resta
+		/// @return Cuaternion resultante
 		Quaternion operator-(Quaternion other);
 
-		/// @brief Multiplicaci�n de dos cuaterniones
-		/// @param other Cuaterni�n que multiplica
-		/// @return Cuaterni�n resultante
+		/// @brief Multiplicacion de dos cuaterniones
+		/// @param other Cuaternion que multiplica
+		/// @return Cuaternion resultante
 		Quaternion operator*(Quaternion other);
 
-		/// @brief Multiplicaci�n de cuaterni�n con escalar
+		/// @brief Multiplicacion de cuaternion con escalar
 		/// @param scalar Escalar que multiplica
-		/// @return Cuaterni�n resultante
+		/// @return Cuaternion resultante
 		Quaternion operator*(float scalar);
 
-		/// @brief Divisi�n de un cuaterni�n entre un escalar
+		/// @brief Division de un cuaternion entre un escalar
 		/// @param scalar Escalar que divide
-		/// @return Cuaterni�n resultante
+		/// @return Cuaternion resultante
 		Quaternion operator/(float scalar);
 
-		/// @brief Suma al propio cuaterni�n con otro
-		/// @param other Cuaterni�n que suma
-		/// @return El propio cuaterni�n ya sumado
+		/// @brief Suma al propio cuaternion con otro
+		/// @param other Cuaternion que suma
+		/// @return El propio cuaternion ya sumado
 		Quaternion operator+=(Quaternion other);
 
-		/// @brief Resta al propio cuaterni�n con otro
-		/// @param other cuaterni�n que resta
-		/// @return El propio cuaterni�n ya restado
+		/// @brief Resta al propio cuaternion con otro
+		/// @param other cuaternion que resta
+		/// @return El propio cuaternion ya restado
 		Quaternion operator-=(Quaternion other);
 
-		/// @brief Multiplica al propio cuaterni�n con otro
-		/// @param other cuaterni�n que multiplica
-		/// @return El propio cuaterni�n ya multiplicado
+		/// @brief Multiplica al propio cuaternion con otro
+		/// @param other cuaternion que multiplica
+		/// @return El propio cuaternion ya multiplicado
 		Quaternion operator*=(Quaternion other);
 
-		/// @brief Multiplica al propio cuaterni�n con un escalar
+		/// @brief Multiplica al propio cuaternion con un escalar
 		/// @param scalar Escalar que multiplica
-		/// @return El propio cuaterni�n ya multiplicado
+		/// @return El propio cuaternion ya multiplicado
 		Quaternion operator*=(float scalar);
 
-		/// @brief Divide al propio cuaterni�n con un escalar
+		/// @brief Divide al propio cuaternion con un escalar
 		/// @param other Escalar que divide
-		/// @return El propio cuaterni�n ya dividido
+		/// @return El propio cuaternion ya dividido
 		Quaternion operator/=(float scalar);
 
-		/// @brief Conjugado del cuaterni�n
-		/// @return Devuelve el conjugado de un cuaterni�n
+		/// @brief Conjugado del cuaternion
+		/// @return Devuelve el conjugado de un cuaternion
 		Quaternion Conjugate();
 
-		/// @brief Normal de un cuaterni�n
-		/// @return Devuelve la normal de un cuaterni�n
+		/// @brief Normal de un cuaternion
+		/// @return Devuelve la normal de un cuaternion
 		float Normal();
 
-		/// @brief Normaliza un cuaterni�n
-		/// @return Devuelve el cuaterni�n normalizdo
+		/// @brief Normaliza un cuaternion
+		/// @return Devuelve el cuaternion normalizdo
 		Quaternion Normalized();
 
-		/// @brief Inverso de un cuaterni�n
-		/// @return Devuelve el inverso de un cuaterni�n
+		/// @brief Inverso de un cuaternion
+		/// @return Devuelve el inverso de un cuaternion
 		Quaternion Inverse();
 
-		/// @brief Componente real de un cuaterni�n
-		/// @return Devuelve la parte real de un cuaterni�n
+		/// @brief Componente real de un cuaternion
+		/// @return Devuelve la parte real de un cuaternion
 		float Real() const { return _w; };
 
-		/// @brief Componentes i, j y k del cuaterni�n
+		/// @brief Componentes i, j y k del cuaternion
 		/// @return Devuelve las componentes complejas a modo de vector
 		Vector3 Complex() const;
 
-		/// @brief Rota el cuaterni�n alrededor de un punto
+		/// @brief Rota el cuaternion alrededor de un punto
 		/// @param position Punto alrededor del que rota
-		/// @param angle �ngulo que rota en grados
+		/// @param angle angulo que rota en grados
 		void RotateArroundPoint(Vector3 position, float angle);
 
-		/// @brief Cuaterni�n sin rotaci�n
-		/// @return Devuelve el cuaterni�n identidad
+		/// @brief Cuaternion sin rotacion
+		/// @return Devuelve el cuaternion identidad
 		static Quaternion Identity();
 
-		/// @brief Calcula la matriz de rotaci�n de un cuaterni�n
-		/// @return Devuelve la matriz de rotaci�n
+		/// @brief Calcula la matriz de rotacion de un cuaternion
+		/// @return Devuelve la matriz de rotacion
 		std::array<std::array<float, 3>, 3> GetRotationMatrix();
 	private:
-		/// @brief Componente real del cuaterni�n
+		/// @brief Componente real del cuaternion
 		float _w;
-		/// @brief Componente i del cuaterni�n
+		/// @brief Componente i del cuaternion
 		float _x;
-		/// @brief Componente j del cuaterni�n
+		/// @brief Componente j del cuaternion
 		float _y;
-		/// @brief Componente k del cuaterni�n
+		/// @brief Componente k del cuaternion
 		float _z;
 	};
 }

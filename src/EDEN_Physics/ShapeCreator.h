@@ -36,8 +36,8 @@ namespace physics_wrapper {
 		static btSphereShape* CreateSphere(float r);
 
 		/// @brief Crea la clase btCapsuleShape
-		/// @param r Radio de la cápsula
-		/// @param h Altura de la cápsula
+		/// @param r Radio de la capsula
+		/// @param h Altura de la capsula
 		/// @return Devuelve una instancia de btCapsuleShape
 		static btCapsuleShape* CreateCapsule(float r, float h);
 

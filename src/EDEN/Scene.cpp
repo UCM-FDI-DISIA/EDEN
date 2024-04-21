@@ -17,19 +17,19 @@ namespace eden {
 	}
 
 	eden_ec::Entity* Scene::Instantiate(eden_script::EntityInfo* info) {
-		// Decimos qué estamos leyendo por consola
+		// Decimos que estamos leyendo por consola
 #ifdef _DEBUG
 		std::cout << "\n\nEntity: " << info->name << '\n';
 		std::cout << "Components:\n--------\n";
 #endif
-		// Cremoas una nueva entidad según el nombre que hayamos recibido en 'info' al leer el .lua
+		// Cremoas una nueva entidad segun el nombre que hayamos recibido en 'info' al leer el .lua
 		auto ent = new eden_ec::Entity(info->name, _ID);
 		// Creamos sus componentes según la info leída
 		ent->AddComponents(info);
 #ifdef _DEBUG
 		for (auto ot : info->components) {
 
-			// Esto es puro Debug, no tiene impacto en la lógica
+			// Esto es puro Debug, no tiene impacto en la logica
 			std::cout << "\tid: " << ot.GetID() << '\n';
 			std::cout << "\tArguments: \n";
 			for (auto ut : ot.GetArgs()) {

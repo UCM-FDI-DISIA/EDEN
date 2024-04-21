@@ -79,9 +79,9 @@ namespace physics_manager {
 
 	struct LayerHash
 	{
-		/// @brief Crea el código Hash necesario para el unordered_map
+		/// @brief Crea el codigo Hash necesario para el unordered_map
 		/// @param info El elemento que se va a usar en el mapa (Key)
-		/// @return Devuelve el código Hash creado con el nombre de la capa
+		/// @return Devuelve el codigo Hash creado con el nombre de la capa
 		std::size_t operator()(const physics_manager::LayerInfo& info) const
 		{
 			return std::hash<std::string>()(info.GetName());
@@ -97,8 +97,8 @@ namespace physics_manager {
 
 	public:
 
-		/// @brief Realiza una actualizaci�n de la simulaci�n f�sica
-		/// @param deltaTime Tiempo entre simulaciones f�sicas, como la simulaci�n se llama con el FixedUdpate, este tiempo es fijo y constante
+		/// @brief Realiza una actualizacion de la simulacion fisica
+		/// @param deltaTime Tiempo entre simulaciones fisicas, como la simulacion se llama con el FixedUdpate, este tiempo es fijo y constante
 		/// @param sceneID ID de la escena que se quiere actualizar
 		void updateSimulation(float deltaTime, std::string sceneID);
 
@@ -106,11 +106,11 @@ namespace physics_manager {
 		/// @return Devuelve el valor de la gravedad mundial
 		eden_utils::Vector3 GetGravity(std::string sceneID);
 
-		/// @brief Añade una entidad al mundo físico
+		/// @brief Aniade una entidad al mundo fisico
 		/// @param e Entidad a añadir
 		void AddPhysicsEntity(eden_ec::Entity* e);
 
-		/// @brief Quita una entidad del mundo físico
+		/// @brief Quita una entidad del mundo fisico
 		/// @param e Entidad a quitar
 		void RemovePhysicsEntity(eden_ec::Entity* e);
 
@@ -129,7 +129,7 @@ namespace physics_manager {
 		/// @return Devuelve una capa dado un cierto nombre e ID de escena, o nullptr en caso de fallar
 		physics_wrapper::CollisionLayer* GetLayerByName(std::string name, std::string sceneID);
 	protected:
-		/// @brief La constructora se encarga de crear el mundo de la simulaci�n f�sica y el objeto encargado de dibujar 
+		/// @brief La constructora se encarga de crear el mundo de la simulacion fisica y el objeto encargado de dibujar 
 		PhysicsManager();
 	private:
 
@@ -152,13 +152,13 @@ namespace physics_manager {
 		/// @return Mundo de Bullet
 		btDynamicsWorld* GetWorld(std::string sceneID);
 
-		/// @brief Quita colisión a una capa con otra capa (por defecto todas las capas colisionan con todas)
-		/// @param layerName Nombre de la capa a la que le se quiere quitar colisión
+		/// @brief Quita colision a una capa con otra capa (por defecto todas las capas colisionan con todas)
+		/// @param layerName Nombre de la capa a la que le se quiere quitar colision
 		/// @param collisionToAdd Nombre de la capa con la que no se quiere que colisione
 		/// @param sceneID ID de la escena asociada a ambas capas
 		void RemoveCollisionToLayer(std::string layerName, std::string collisionToAdd, std::string sceneID);
 
-		/// @brief Crea una capa de colisión
+		/// @brief Crea una capa de colision
 		/// @param name Nombre de la capa que se quiere crear
 		/// @param sceneID ID de la escena asociada a la capa
 		void CreateCollisionLayer(std::string name, std::string sceneID);
@@ -200,13 +200,13 @@ namespace physics_manager {
 		/// @brief Referencia al mundo fisico
 		btDynamicsWorld* _dynamicWorld;
 
-		/// @brief Clase de bullet encargada de determinar el algortimo de c�lculo de colisiones entre objetos segun su forma
+		/// @brief Clase de bullet encargada de determinar el algortimo de calculo de colisiones entre objetos segun su forma
 		btDispatcher* _worldDispatcher;
 #ifdef _DEBUG
 		/// @brief Encargado de hacer dibujos con caracter de debug
 		eden_debug::Debug* _debug;
 #endif
-		/// @brief Clase de bullet encargada de subdividir el mundo en sectores para facilitar los c�lculos de colision
+		/// @brief Clase de bullet encargada de subdividir el mundo en sectores para facilitar los calculos de colision
 		btBroadphaseInterface* _worldBroadPhaseInterface;
 
 		/// @brief Clase de bullet encargada de gestionar las colisiones entre objetos
@@ -215,7 +215,7 @@ namespace physics_manager {
 		/// @brief Clase de bullet encargada de la configuraci�n de las colisiones.
 		btCollisionConfiguration* _worldCollisionConfiguration;
 
-		/// @brief Set desordenado que asigna a cada Entidad su rigidbody correspondiente en la simulaci�n f�sica
+		/// @brief Set desordenado que asigna a cada Entidad su rigidbody correspondiente en la simulacion fisica
 		std::unordered_set<eden_ec::Entity*> _entitiesSet;
 
 		/// @brief Devuelve el mundo fisico

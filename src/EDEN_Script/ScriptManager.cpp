@@ -15,13 +15,13 @@ eden_script::ScriptManager::ScriptManager() {
 
 	//Creamos el luaManager
 	_luaManager = new LuaManager();
-	// Inicializamos la máquina virtual para correr Lua
+	// Inicializamos la maquina virtual para correr Lua
 	_l = luaL_newstate();
 
-	// Abrimos las librerías básicas de Lua
+	// Abrimos las librerias basicas de Lua
 	luaL_openlibs(_l);
 
-	// Comprobamos que Lua esté bien abierto
+	// Comprobamos que Lua este bien abierto
 	assert(_l);
 
 	//Inicializamos el luaManager
@@ -88,8 +88,8 @@ std::string eden_script::ScriptManager::ReadStringFromTable(std::string stringTo
 void eden_script::ScriptManager::PushTableElement(int elementIndex, int tableIndex) {
 	// Pusheamos al Stack un número, que será el índice de un elemento en la Table
 	lua_pushnumber(_l, elementIndex);
-	// Usando el número en el top del Stack, accedemos a la tabla que ahora se encuentra
-	// una posición por debajo del top del Stack (-2) y le pedimos que pushee lo que tenga en su índice i
+	// Usando el numero en el top del Stack, accedemos a la tabla que ahora se encuentra
+	// una posicion por debajo del top del Stack (-2) y le pedimos que pushee lo que tenga en su índice i
 
 	// TRATAMIENTO DE ERRORES DE LUA AQUÍ --------
 	lua_gettable(_l, tableIndex);
@@ -108,7 +108,7 @@ std::unordered_map<std::string, std::vector<std::string>> eden_script::ScriptMan
 
 		std::string temp = "";
 		// Si un valor necesita varios argumentos para construirse, estos se separan con '|'
-		// Por ejemplo, al construir un Vector3 'Position' se haría de la siguiente forma: "Position = x|y|z"
+		// Por ejemplo, al construir un Vector3 'Position' se haria de la siguiente forma: "Position = x|y|z"
 		for (int i = 0; i < value.size(); ++i) {
 			if (value[i] == '|') {
 				table[key].push_back(temp);
@@ -124,17 +124,17 @@ std::unordered_map<std::string, std::vector<std::string>> eden_script::ScriptMan
 		lua_pop(_l, 1);
 	}
 
-	// Finalmente la última key se popea al hacer lua_next y que este sea == 0
+	// Finalmente la ultima key se popea al hacer lua_next y que este sea == 0
 
 	// Devolvemos el mapa parseado al tipo que nos interesa para los componentes
 	return table;
 }
 
 std::vector<eden_script::ComponentArguments> eden_script::ScriptManager::ReadComponents(int currentTableIndex) {
-	// Ponemos en el top del Stack la table de los componentes, cuyos elementos son a su vez tables con información
+	// Ponemos en el top del Stack la table de los componentes, cuyos elementos son a su vez tables con informacion
 	PushStringToTable("Components", currentTableIndex);
 
-	// aquí hay que hacer un for por cada componente
+	// aqui hay que hacer un for por cada componente
 	int numComponentes = (int)luaL_len(_l, -1);
 	std::vector<ComponentArguments> components = std::vector<ComponentArguments>();
 	for (int i = 1; i <= numComponentes; ++i) {
@@ -151,7 +151,7 @@ std::vector<eden_script::ComponentArguments> eden_script::ScriptManager::ReadCom
 		// Se pushea la tabla de argumentos del componente
 		PushStringToTable("Arguments", -2);
 		
-		// Recibimos la información de los argumentos del componente
+		// Recibimos la informacion de los argumentos del componente
 		cmp._args = ParseTableToStringMap(-1);
 
 		components.push_back(cmp);
@@ -163,7 +163,7 @@ std::vector<eden_script::ComponentArguments> eden_script::ScriptManager::ReadCom
 }
 
 bool eden_script::ScriptManager::EntityTableToData(std::vector<eden_script::EntityInfo*>& info, std::string tableName) {
-	// L debería haber sido inicializado en la constructora. Esto NUNCA debería saltar, pero por si a caso
+	// L deberia haber sido inicializado en la constructora. Esto NUNCA deberia saltar, pero por si a caso
 	assert(_l);
 	
 	// Accedemos a la Table de Entidades del .lua de la escena
@@ -200,11 +200,11 @@ bool eden_script::ScriptManager::EntityTableToData(std::vector<eden_script::Enti
 		// Leemos la tabla de componentes y la asignamos
 		newInfo->components = ReadComponents(tableIndexOnAccess);
 
-		// Como ya no usaremos más el elemento que estamos leyendo actualmente de la tabla, debemos 
+		// Como ya no usaremos mas el elemento que estamos leyendo actualmente de la tabla, debemos 
 		// quitarlo del top del Stack para que la Table siga siendo el top.
 		lua_pop(_l, 2);
 
-		// Puhseamos la información nueva al vector de información de entidades
+		// Puhseamos la informacion nueva al vector de informacion de entidades
 		info.push_back(newInfo);
 	}
 	return true;

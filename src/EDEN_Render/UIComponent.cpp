@@ -241,7 +241,7 @@ void eden_ec::UIComponent::SetOverlayContainer(std::string overlayName, float xP
 }
 
 void eden_ec::UIComponent::SetOverlayElement(int depth) {
-	// Creo un elemento overlay para a�adirle el panel
+	// Creo un elemento overlay para aniadirle el panel
 	_overlayElement =
 		_overlayManager->create("over" + std::to_string(_numUIElements));
 	_overlayElement->add2D(_overlayContainer);

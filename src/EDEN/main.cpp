@@ -133,7 +133,7 @@ int main(int argc, char* argv[]) {
 #endif
 #ifdef _MSC_VER
 	catch (std::exception e){
-		// en caso de generar una excepci�n no tratada, se llamar� a este m�todo, que genera (en windows) un pop-up informando del error
+		// en caso de generar una excepcion no tratada, se llamara a este metodo, que genera (en windows) un pop-up informando del error
 		errorHandler->HandleException(e);
 	}
 #endif

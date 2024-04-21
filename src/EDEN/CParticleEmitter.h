@@ -65,7 +65,7 @@ namespace eden_ec {
 		/// @param material Material al que quieres cambiar
 		void SetMaterial(const std::string material);
 
-		/// @brief Resetea el sistema de particulas (si está en modo loop no hace nada)
+		/// @brief Resetea el sistema de particulas (si esta en modo loop no hace nada)
 		void Reset();
 	protected:
 		const static std::string _id;

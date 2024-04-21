@@ -112,7 +112,7 @@ namespace render_wrapper {
 		void Translate(const eden_utils::Vector3 pos, const std::string id, const std::string sceneID);
 
 		/// @brief Asocia entidades de escena de Ogre a un nodo especifico
-		/// @param obj La entidad de ogre que queremos añadir a un nodo 
+		/// @param obj La entidad de ogre que queremos aniadir a un nodo 
 		/// @param id Identificador de la Entidad asociada para buscar su nodo
 		void Attach(Ogre::MovableObject* obj, const std::string id, const std::string sceneID);
 
@@ -123,7 +123,7 @@ namespace render_wrapper {
 
 	private:
 
-		/// @brief Método privado para asegurarnos que nadie tenga acceso a los nodos de Ogre
+		/// @brief Metodo privado para asegurarnos que nadie tenga acceso a los nodos de Ogre
 		/// Busca en el unordered_map el nodo asociado a la ID de una entidad
 		/// @param id Identificador de la Entidad asociada para buscar su nodo
 		/// @return Devuelve el nodo para poder realizar cualquier accion sobre el

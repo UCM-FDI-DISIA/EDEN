@@ -26,19 +26,19 @@ namespace eden_ec {
 		/// @brief Destructora de la clase Image
 		~CImage();
 
-		/// @brief Método que crea la Imagen
+		/// @brief Metodo que crea la Imagen
 		void Create(std::string overlayName, float xPos, float yPos, float width,
 			float height, std::string texture, int depth = 0);
 
 		/// @brief Construye el componente dado unos argumentos. Se obtendrán de una lectura de un .lua
-		/// @param args Argumentos leídos de .lua
+		/// @param args Argumentos leidos de .lua
 		void Init(eden_script::ComponentArguments* args) override;
 
 		/// @brief Se usa para coger referencias a otros componentes
 		/// En este caso no se necesita
 		void Start() override {}
 
-		/// @brief Definición de método estático GetID necesario para construcción de componentes
+		/// @brief Definicion de metodo estático GetID necesario para construccion de componentes
 		static std::string GetID() { return _id; }
 	protected:
 		const static std::string _id;

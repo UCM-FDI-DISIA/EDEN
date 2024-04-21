@@ -39,7 +39,7 @@ namespace eden_resources {
         /// @brief Destructora
         ~ResourcesManager();
 
-        /// @brief Método que comprueba si un archivo existe
+        /// @brief Metodo que comprueba si un archivo existe
         bool FileExist(std::string name, Resources res);
         
         std::set<std::string> GetMaterials();
@@ -55,7 +55,7 @@ namespace eden_resources {
         std::set<std::string> GetRutesFonts();
     private:
 
-        /// @brief Método que guarda todos los archivos existentes de unas direcciones concretas
+        /// @brief Metodo que guarda todos los archivos existentes de unas direcciones concretas
         void LoadResources();
 
         /// @brief Lista de todos recursos

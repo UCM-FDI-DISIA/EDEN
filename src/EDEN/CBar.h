@@ -26,11 +26,11 @@ namespace eden_ec {
 		/// @brief Destructora de la clase Bar
 		~CBar();
 
-		/// @brief Método que crea la Barra
+		/// @brief Metodo que crea la Barra
 		void Create(std::string overlayName, float xPos, float yPos, float width,
 			float height, std::string texture, int depth = 0);
 
-		/// @brief Construye el componente dado unos argumentos. Se obtendrán de una lectura de un .lua
+		/// @brief Construye el componente dado unos argumentos. Se obtendran de una lectura de un .lua
 		/// @param args Argumentos leídos de .lua
 		void Init(eden_script::ComponentArguments* args) override;
 
@@ -38,19 +38,19 @@ namespace eden_ec {
 		/// En este caso no se necesita
 		void Start() override {}
 
-		/// @brief Método que cambia el porcentaje de la barra
+		/// @brief Metodo que cambia el porcentaje de la barra
 		/// @param p Porcentaje nuevo a cambiar
 		void SetBarPercentage(float p);
 
 		/// @brief Método que devuelve el porcentaje de la barra
 		float GetBarPercentage();
 
-		/// @brief Definición de método estático GetID necesario para construcción de componentes
+		/// @brief Definicion de metodo estático GetID necesario para construcción de componentes
 		static std::string GetID() { return _id; }
 	protected:
 		const static std::string _id;
 	private:
-		/// @brief Tamaño total de la barra
+		/// @brief Tamanio total de la barra
 		float _totalWidth = 0;
 
 		/// @brief Porcentaje de la barra

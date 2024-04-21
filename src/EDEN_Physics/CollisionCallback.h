@@ -24,7 +24,7 @@ namespace physics_wrapper {
 		CollisionCallback(RigidBody* rigidBody);
 		~CollisionCallback() = default;
 
-		/// @brief Metodo override de Bullet que determina qué hace en una colision
+		/// @brief Metodo override de Bullet que determina que hace en una colision
 		/// @param cp Informacion del punto en el que colisionan
 		/// @param colObj0Wrap Wrapper de colision de Bullet del objeto 1
 		/// @param partId0 Parametro necesario para la funcion de bullet que no utilizamos
@@ -35,15 +35,15 @@ namespace physics_wrapper {
 		/// @return Escalar de Bullet que no utilizamos
 		btScalar addSingleResult(btManifoldPoint& cp, const btCollisionObjectWrapper* colObj0Wrap, int partId0, int index0, const btCollisionObjectWrapper* colObj1Wrap, int partId1, int index1) override;
 	
-		/// @brief Método que se encarga de eliminar las entidades que no han colisionado recientemente
+		/// @brief Metodo que se encarga de eliminar las entidades que no han colisionado recientemente
 		void UpdateCollisions();
 	private:
 		/// @brief Referencia al RigidBody de la entidad
 		RigidBody* _myRigidBody;
 		/// @brief Referencia al componente RigidBody de la entidad
 		eden_ec::CRigidBody* rb;
-		/// @brief Mapa desordenado que guarda qué entidades colisionan con este rigidbodyç
-		/// @brief El booleano es para marcar aquellas entidades que han colisionado en el anterior frame, aquellas que lo tengan a false, se considerará que ya no están colisionando
+		/// @brief Mapa desordenado que guarda que entidades colisionan con este rigidbody
+		/// @brief El booleano es para marcar aquellas entidades que han colisionado en el anterior frame, aquellas que lo tengan a false, se considerara que ya no estan colisionando
 		std::unordered_map<eden_ec::Entity*, bool> _otherEntities;
 	};
 }

@@ -133,7 +133,7 @@ namespace eden_script {
 		/// @param numArgs Numero de argumentos que debe tener para ser parseado
 		std::vector<std::string> GetKey(std::string id, std::string type, int numArgs);
 
-		/// @brief Igual que GetKey(string, string, int), pero no comprueba tamanno ni lanza error
+		/// @brief Igual que GetKey(string, string, int), pero no comprueba tamanio ni lanza error
 		std::vector<std::string> GetKey(std::string id, std::string type);
 
 		/// @brief _id Debe definirse en la constructora

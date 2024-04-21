@@ -11,7 +11,7 @@ namespace eden_utils {
 		/// @brief Constructora por defecto de Vector3
 		Vector3();
 
-		/// @brief Constructora con par�metros de Vector3
+		/// @brief Constructora con parametros de Vector3
 		/// @param x Coordenada en x
 		/// @param y Coordenada en y
 		/// @param z Coordenada en z
@@ -41,12 +41,12 @@ namespace eden_utils {
 		/// @return Vector resultante
 		Vector3 operator-(Vector3 other);
 
-		/// @brief Multiplicaci�n de vector con escalar
+		/// @brief Multiplicacion de vector con escalar
 		/// @param scalar Escalar que multiplica
 		/// @return Vector resultante
 		Vector3 operator*(float scalar);
 
-		/// @brief Divisi�n de un vector entre un escalar
+		/// @brief Division de un vector entre un escalar
 		/// @param scalar Escalar que divide
 		/// @return Vector resultante
 		Vector3 operator/(float scalar);

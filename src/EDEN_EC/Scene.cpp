@@ -28,6 +28,7 @@ namespace eden {
 			}
 		}
 		Instantiate(info);
+		AwakeEntities();
 	}
 
 	eden_ec::Entity* Scene::Instantiate(eden_script::EntityInfo* info) {
@@ -50,7 +51,7 @@ namespace eden {
 			auto bInfo = scnMngr->GetBlueprintComponents(info->name);
 			std::unordered_map<std::string, eden_script::ComponentArguments> blueprintComponents;
 			for (int i = 0; i < bInfo.size(); ++i) {
-				entityComponents.insert({ bInfo[i].GetID(), bInfo[i] });
+				blueprintComponents.insert({ bInfo[i].GetID(), bInfo[i] });
 			}
 
 			for (auto it : blueprintComponents) {

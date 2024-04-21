@@ -20,10 +20,6 @@ namespace eden {
 		return static_cast<SceneManager*>(Instance());
 	}
 
-
-	std::unordered_map<std::string, SceneManager::BlueprintInfo> SceneManager::_Blueprints = std::unordered_map<std::string, SceneManager::BlueprintInfo>();
-
-
 	SceneManager::SceneManager() {
 		eden_script::ScriptManager* scriptManager = eden_script::ScriptManager::Instance();
 		std::vector<eden_script::EntityInfo*> blueprints;

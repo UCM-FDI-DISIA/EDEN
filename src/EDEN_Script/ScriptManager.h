@@ -88,7 +88,7 @@ namespace eden_script {
 		/// @brief Rellena el vector de entidades, suponiendo que ya hemos abierto antes una escena
 		/// @param info Informacion de entidades a rellenar
 		/// @return True = No error | False = Error
-		bool EntityTableToData(std::vector<eden_script::EntityInfo*>& info, std::string tableName);
+		bool EntityTableToData(std::vector<eden_script::EntityInfo*>& info, std::string tableName, bool readingBlueprints);
 
 		/// @brief Busca en la tabla de Lua que se encuentre en el indice 'tableIndex' 
 		/// una key 'stringToRead' y devuelve su valor, si lo encuentra.

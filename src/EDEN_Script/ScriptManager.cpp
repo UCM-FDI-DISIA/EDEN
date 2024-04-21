@@ -166,7 +166,7 @@ std::vector<eden_script::ComponentArguments> eden_script::ScriptManager::ReadCom
 	return components;
 }
 
-bool eden_script::ScriptManager::EntityTableToData(std::vector<eden_script::EntityInfo*>& info, std::string tableName) {
+bool eden_script::ScriptManager::EntityTableToData(std::vector<eden_script::EntityInfo*>& info, std::string tableName, bool readingBlueprints) {
 	// L debería haber sido inicializado en la constructora. Esto NUNCA debería saltar, pero por si a caso
 	assert(_l);
 	
@@ -198,7 +198,8 @@ bool eden_script::ScriptManager::EntityTableToData(std::vector<eden_script::Enti
 
 		// Nuestra tabla debe tener un string "Name" y una tabla "Components"
 		newInfo->name = ReadStringFromTable("Name" , tableIndexOnAccess);
-		newInfo->isBlueprint = eden::SceneManager::getInstance()->BlueprintExists(newInfo->name);
+		if (!readingBlueprints) newInfo->isBlueprint = eden::SceneManager::getInstance()->BlueprintExists(newInfo->name);
+		else newInfo->isBlueprint = true;
 #ifdef _DEBUG
 		std::cout << "Reading Entity '" << newInfo->name <<'\'' << '\n';
 
@@ -223,7 +224,7 @@ bool eden_script::ScriptManager::ReadScene(std::string sceneName, std::vector<ed
 	if (CheckLua(luaL_dofile(_l, fileName.c_str()), "Reading " + fileName)) {
 
 		bool readingSuccesful = CollisionTableToData(collisionInfo);
-		readingSuccesful = EntityTableToData(info, ENTITY_TABLE_NAME);
+		readingSuccesful = EntityTableToData(info, ENTITY_TABLE_NAME, false);
 		return true;
 	}
 	else {
@@ -240,7 +241,7 @@ bool eden_script::ScriptManager::ReadBlueprints(std::vector<eden_script::EntityI
 
 	if (CheckLua(luaL_dofile(_l, fileName.c_str()), "Reading " + fileName)) {
 
-		EntityTableToData(info, BLUEPRINTS_FILE_NAME);
+		EntityTableToData(info, BLUEPRINTS_FILE_NAME, true);
 		return true;
 	}
 	else {

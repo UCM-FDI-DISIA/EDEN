@@ -63,6 +63,9 @@ namespace eden_ec {
 		std::string GetCurrentAnim();
 
 	private:
+
+		void InitializeWrapper();
+
 		/// @brief Referencia al Animator Wrapper
 		render_wrapper::Animator* _animatorWrapper = nullptr;
 		/// @brief Referencia al componente CMeshRenderer

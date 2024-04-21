@@ -99,7 +99,7 @@ private:
 
 
 	/// @brief Guarda la información de los Blueprints leídos desde Lua
-	static std::unordered_map<std::string, BlueprintInfo> _Blueprints;
+	std::unordered_map<std::string, BlueprintInfo> _Blueprints;
 
 	/// @brief Lista doblemente enlazada de punteros a escenas
 	std::deque<Scene*> _scenes;

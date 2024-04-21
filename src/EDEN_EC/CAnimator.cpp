@@ -21,7 +21,8 @@ void eden_ec::CAnimator::Init(eden_script::ComponentArguments* args) {
 	eden_render::RenderManager::Instance()->addRenderEntity(_ent);
 }
 
-void eden_ec::CAnimator::Start() {
+void eden_ec::CAnimator::InitializeWrapper() {
+	if (_animatorWrapper) return;
 	_meshRend = _ent->GetComponent<CMeshRenderer>();
 	_animatorWrapper = new render_wrapper::Animator(_meshRend->_renderWrapper);
 
@@ -30,26 +31,42 @@ void eden_ec::CAnimator::Start() {
 	}
 }
 
+void eden_ec::CAnimator::Start() {
+	InitializeWrapper();
+}
+
 void eden_ec::CAnimator::Update(float dt) {
+	InitializeWrapper();
+
 	_animatorWrapper->UpdateAnim(dt);
 }
 
 void eden_ec::CAnimator::PlayAnim(std::string ID) {
+	InitializeWrapper();
+
 	_animatorWrapper->PlayAnim(ID);
 }
 
 void eden_ec::CAnimator::StopAnim() {
+	InitializeWrapper();
+
 	_animatorWrapper->StopAnim();
 }
 
 void eden_ec::CAnimator::OnAnimEnd() {
+	InitializeWrapper();
+
 	_animatorWrapper->OnAnimEnd();
 }
 
 void eden_ec::CAnimator::SetOnAnimEnd(std::string animID, std::string endAnimID) {
+	InitializeWrapper();
+
 	_animatorWrapper->SetOnAnimEnd(animID, endAnimID);
 }
 
 std::string eden_ec::CAnimator::GetCurrentAnim() {
+	InitializeWrapper();
+
 	return _animatorWrapper->GetCurrentAnim();
 }

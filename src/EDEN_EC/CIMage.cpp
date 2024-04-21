@@ -9,6 +9,7 @@
 eden_ec::CImage::CImage(std::string overlayName, float xPos, float yPos,
 	float width, float height, std::string texture,
 	int depth) {
+	if (_ent != nullptr)Register(_ent->GetSceneID());
 	Create(overlayName, xPos, yPos, width, height, texture, depth);
 }
 

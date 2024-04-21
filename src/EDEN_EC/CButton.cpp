@@ -10,6 +10,7 @@
 #include "CLuaBehaviour.h"
 
 eden_ec::CButton::CButton(std::string overlayName, float xPos, float yPos, float width, float height, std::string iniTex, std::string hoverTex, std::string clickedTex, int depth) : UIComponent() {
+	if (_ent != nullptr)Register(_ent->GetSceneID());
 	CreateButton(overlayName, xPos, yPos, width, height, iniTex, hoverTex,clickedTex,depth);
 }
 

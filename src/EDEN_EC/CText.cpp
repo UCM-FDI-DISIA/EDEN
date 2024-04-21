@@ -8,6 +8,8 @@
 eden_ec::CText::CText(std::string overlayName, float xPos, float yPos,
 	float tam, std::string text, std::string font, float rColor, float gColor, float bColor,
 	int depth) {
+
+	if(_ent!=nullptr)Register(_ent->GetSceneID());
 	Create(overlayName, xPos, yPos, tam, text, font, rColor, gColor, bColor, depth);
 }
 

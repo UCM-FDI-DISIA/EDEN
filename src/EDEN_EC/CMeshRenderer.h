@@ -43,6 +43,9 @@ namespace eden_ec {
 		/// @param args Argumentos le�dos de .lua
 		void Init(eden_script::ComponentArguments* args) override;
 
+		/// @brief Crea el wrapper de meshRenderer
+		void Awake() override;
+
 		/// @brief Se usa para coger referencias a otros componentes
 		/// En este caso no se necesita
 		void Start() override {}

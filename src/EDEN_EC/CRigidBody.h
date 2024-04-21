@@ -39,6 +39,8 @@ namespace eden_ec {
 		/// @param args Argumentos leidos del script de lua
 		void Init(eden_script::ComponentArguments* args) override;
 
+		void Awake() override {};
+
 		/// @brief Inicializa el componente para coger referencias a otros componentes de su entidad
 		void Start() override;
 

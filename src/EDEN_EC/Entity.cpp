@@ -30,6 +30,12 @@ eden_ec::Component* eden_ec::Entity::AddComponentByRead(eden_script::ComponentAr
     return c;
 }
 
+void eden_ec::Entity::AwakeComponents() {
+    for (auto cmp : _components) {
+        cmp.second->Awake();
+    }
+}
+
 void eden_ec::Entity::StartComponents() {
     for (auto cmp : _components) {
         cmp.second->Start();

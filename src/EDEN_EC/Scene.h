@@ -6,6 +6,7 @@
 #include <unordered_map>
 
 #include "defs.h"
+#include "ComponentArguments.h"
 
 namespace eden_script {
 	struct EntityInfo;
@@ -78,6 +79,9 @@ namespace eden {
 		eden_ec::Entity* Instantiate(eden_script::EntityInfo* info);
 	private:
 
+		void AwakeEntities();
+		void StartEntities();
+
 		///@brief identificador de escena
 		std::string _ID;
 
@@ -92,6 +96,9 @@ namespace eden {
 
 		/// @brief mapa que contiene las referencias a todas las entidades de la escena
 		std::unordered_map<std::string, eden_ec::Entity*> _gameEntitiesList;
+
+		/// @brief Vector que tiene las entidades que se añadirán al final del frame
+		std::vector<eden_ec::Entity*> _newEntities;
 	};
 }
 #endif // SCENE_H

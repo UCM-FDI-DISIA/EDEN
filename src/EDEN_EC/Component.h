@@ -49,8 +49,13 @@ namespace eden_ec {
         /// @param args Argumentos leídos desde un fichero .lua
         virtual void Init(eden_script::ComponentArguments* args) = 0;
         
+        /// @brief Llamado después de la creación de un componente, usado para inicilizar objetos importantes para el funcionamiento de este componente,
+        /// y que puedan ser llamados desde otro componente en su Start.
+        virtual void Awake() = 0;
+
         /// @brief Usaremos este método para añadir referencias de otros componentes
         virtual void Start() = 0;
+
 	};
 }
 #endif // COMPONENT_H

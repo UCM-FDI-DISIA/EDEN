@@ -29,6 +29,8 @@ namespace eden_ec {
 		/// @brief Necesario para evitar que sea una clase abstracta. No usado
 		void Init(eden_script::ComponentArguments* args) override {};
 
+		void Awake() override;
+
 		/// @brief Guarda la referencia al transform, crea el CameraWrapper y añade la entidad al RenderManager
 		void Start() override;
 

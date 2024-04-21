@@ -61,7 +61,7 @@ void eden_ec::CButton::CreateButton(std::string overlayName, float xPos, float y
 }
 
 void eden_ec::CButton::Start() {
-	_callback = static_cast<CLuaBehaviour*>(_ent->GetComponent("BEHAVIOUR"));
+	_callback = _ent->GetComponent<CLuaBehaviour>();
 }
 
 void eden_ec::CButton::Init(eden_script::ComponentArguments* args) {

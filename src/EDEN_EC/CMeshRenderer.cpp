@@ -9,7 +9,7 @@
 #include "Vector3.h"
 
 eden_ec::CMeshRenderer::CMeshRenderer(std::string mesh) : Component(),
-_mesh(mesh) {};
+_mesh(mesh + MESH_EXTENSION) {};
 
 eden_ec::CMeshRenderer::~CMeshRenderer() {
 	delete _renderWrapper;
@@ -21,10 +21,12 @@ void eden_ec::CMeshRenderer::Init(eden_script::ComponentArguments* args)
 	//GESTION DE ERRORES
 	_mesh = args->GetValueToString("Mesh") + MESH_EXTENSION;
 	
+	//SetMaterial("test");
+}
+
+void eden_ec::CMeshRenderer::Awake() {
 	_renderWrapper = new render_wrapper::MeshRenderer(_ent->GetEntityID(), _ent->GetSceneID(), _mesh);
 	eden_render::RenderManager::Instance()->addRenderEntity(_ent);
-	
-	//SetMaterial("test");
 }
 
 void eden_ec::CMeshRenderer::SetMaterial(const std::string material)

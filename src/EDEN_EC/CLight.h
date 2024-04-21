@@ -36,7 +36,9 @@ namespace eden_ec {
 		/// @brief Metodo encargado de ajustar el transform en cada frame
 		/// @param dt El tiempo transcurrido desde el ultimo frame
 		void Update(float dt) override;
-		/// @brief Se usa para guardad la referencia al transform y al wrapper de luz
+		/// @brief Crea el wrapper de luz
+		void Awake() override;
+		/// @brief Se usa para guardad la referencia al transform
 		void Start() override;
 		/// @brief Devuelve el identificador del componente
 		/// @return Identificador del componente

@@ -7,13 +7,13 @@
 #include <string>
 #include <unordered_map>
 
+#include "ComponentArguments.h"
 #include "Singleton.h"
 
 #include "defs.h"
 
 namespace eden_script {
 	struct EntityInfo;
-	class ComponentArguments;
 }
 
 namespace eden_ec {
@@ -30,7 +30,7 @@ class Scene;
 /// @brief Clase que se encarga de gestionar las escenas, es decir, cargarlas y descargarlas, hacer su update, etc...
 class SceneManager : public Singleton<SceneManager> {
 	friend Singleton<SceneManager>;
-
+	friend Scene;
 public:
 	/// @brief Destructora por defecto de la clase SceneManager
 	EDEN_API ~SceneManager() override;
@@ -67,6 +67,8 @@ public:
 
 	EDEN_API static SceneManager* getInstance();
 
+	EDEN_API inline bool BlueprintExists(std::string ID) { return _Blueprints.count(ID); }
+
 	/// @brief Crea una instancia de un blueprint en la escena. Puede cambiarse su posición y rotación
 	/// @param blueprintID el ID del blueprint a instanciar en la escena.
 	/// @param pos Nueva posición para entidad
@@ -77,8 +79,9 @@ public:
 	EDEN_API eden_ec::Entity* InstantiateBlueprint(std::string blueprintID, eden_utils::Vector3 pos);
 	EDEN_API eden_ec::Entity* InstantiateBlueprint(std::string blueprintID, eden_utils::Quaternion rot);
 	EDEN_API eden_ec::Entity* InstantiateBlueprint(std::string blueprintID);
-
 private:
+
+
 	/// @brief Puntero a la primera escena de la lista, a la cual se llama a su Update
 	Scene* _activeScene = nullptr;
 
@@ -89,6 +92,11 @@ private:
 		/// @brief Número de veces que se ha instanciado
 		int numInstances = 0;
 	};
+
+	EDEN_API inline std::vector<eden_script::ComponentArguments> GetBlueprintComponents(std::string ID) { return (*_Blueprints.find(ID)).second.components; }
+	EDEN_API inline int GetBlueprintNumInstances(std::string ID) { return (*_Blueprints.find(ID)).second.numInstances; }
+	EDEN_API inline void IncreaseBlueprintNumInstances(std::string ID) { (*_Blueprints.find(ID)).second.numInstances++; }
+
 
 	/// @brief Guarda la información de los Blueprints leídos desde Lua
 	static std::unordered_map<std::string, BlueprintInfo> _Blueprints;

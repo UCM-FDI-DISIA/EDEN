@@ -36,6 +36,10 @@ namespace eden_ec {
 		/// @brief Actualiza las animaciones
 		/// @param dt El tiempo transcurrido desde el ultimo frame
 		void Update(float dt) override;
+
+		/// @brief No usado
+		void Awake() override {};
+
 		/// @brief Se usa para guardar la referencia al CMeshRenderer y registrar las animaciones
 		void Start() override;
 		/// @brief Devuelve el identificador del componente

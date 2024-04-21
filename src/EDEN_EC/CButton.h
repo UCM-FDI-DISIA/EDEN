@@ -29,8 +29,9 @@ namespace eden_ec {
 		/// @brief M�todo update heredado de component
 		void Update(float deltaTime) override;
 
+		void Awake() override {};
+
 		/// @brief Se usa para coger referencias a otros componentes
-		/// En este caso no se necesita
 		void Start() override;
 
 		/// @brief Método que crea el botón

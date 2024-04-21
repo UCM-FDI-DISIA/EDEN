@@ -29,7 +29,6 @@
 #include "Entity.h"
 #include "Component.h"
 #include "ComponentFactory.h"
-#include "TestComponent.h"
 #include "Transform.h"
 #include "CMeshRenderer.h"
 

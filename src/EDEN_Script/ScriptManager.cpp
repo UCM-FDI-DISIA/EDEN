@@ -10,6 +10,7 @@
 #include "ErrorHandler.h"
 #include "ComponentArguments.h"
 #include "LuaManager.h"
+#include "SceneManager.h"
 
 eden_script::ScriptManager* eden_script::ScriptManager::getInstance() {
 	return static_cast<ScriptManager*>(Instance());
@@ -197,8 +198,10 @@ bool eden_script::ScriptManager::EntityTableToData(std::vector<eden_script::Enti
 
 		// Nuestra tabla debe tener un string "Name" y una tabla "Components"
 		newInfo->name = ReadStringFromTable("Name" , tableIndexOnAccess);
-#ifdef _DEBUGGING_SCENE_READING
+		newInfo->isBlueprint = eden::SceneManager::getInstance()->BlueprintExists(newInfo->name);
+#ifdef _DEBUG
 		std::cout << "Reading Entity '" << newInfo->name <<'\'' << '\n';
+
 #endif
 		// Leemos la tabla de componentes y la asignamos
 		newInfo->components = ReadComponents(tableIndexOnAccess);

@@ -12,11 +12,13 @@ eden_ec::CCamera::~CCamera() {
 	_cameraWrapper = nullptr;
 	_transform = nullptr;
 }
+void eden_ec::CCamera::Awake() {
+	_cameraWrapper = eden_render::RenderManager::Instance()->GetCamera(_ent);
+	eden_render::RenderManager::Instance()->addRenderEntity(_ent);
+}
 
 void eden_ec::CCamera::Start() {
 	_transform = _ent->GetComponent<eden_ec::CTransform>();
-	_cameraWrapper = eden_render::RenderManager::Instance()->GetCamera(_ent);
-	eden_render::RenderManager::Instance()->addRenderEntity(_ent);
 }
 
 void eden_ec::CCamera::Update(float dt) {

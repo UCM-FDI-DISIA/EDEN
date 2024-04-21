@@ -23,9 +23,12 @@ void eden_ec::CLight::Update(float dt) {
 	SetOrientation(_transform->GetRotation());
 }
 
+void eden_ec::CLight::Awake() {
+	_lightWrapper = new render_wrapper::Light(_ent->GetEntityID(), _ent->GetSceneID(), _lType, _diffuseColor, _specularColor);
+}
+
 void eden_ec::CLight::Start() {
 	_transform = _ent->GetComponent<eden_ec::CTransform>();
-	_lightWrapper = new render_wrapper::Light(_ent->GetEntityID(), _ent->GetSceneID(), _lType, _diffuseColor, _specularColor);
 }
 
 void eden_ec::CLight::SetVisibility(bool visibility, bool sceneChanged) {

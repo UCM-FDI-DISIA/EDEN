@@ -70,6 +70,9 @@ namespace eden_ec {
 		void Init(eden_script::ComponentArguments* args) override;
 
 		/// @brief Override necesario. No se usa
+		void Awake() override {};
+
+		/// @brief Override necesario. No se usa
 		void Start() override {};
 
 		void LoadScript();

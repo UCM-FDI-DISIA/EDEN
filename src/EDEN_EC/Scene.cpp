@@ -1,6 +1,7 @@
 #define _CRTDBG_MAP_ALLOC
 #include <iostream>
 
+#include "SceneManager.h"
 #include "Vector3.h"
 #include "Quaternion.h"
 #include "Scene.h"
@@ -9,6 +10,7 @@
 #include "PhysicsManager.h"
 #include "Entity.h"
 #include "Transform.h"
+
 namespace eden {
 	Scene::Scene(const std::string& ID, std::vector<eden_script::EntityInfo*>& info, std::unordered_map<std::string, std::vector<std::string>>& collisionInfo) {
 		_ID = ID;
@@ -34,8 +36,37 @@ namespace eden {
 		std::cout << "\n\nEntity: " << info->name << '\n';
 		std::cout << "Components:\n--------\n";
 #endif
+
+		eden_ec::Entity* ent;
+		if (info->isBlueprint) {
+			// ModifyEntity() with BlueprintInfo
+			std::unordered_map<std::string, eden_script::ComponentArguments> entityComponents;
+
+			for (int i = 0; i < info->components.size(); ++i) {
+				entityComponents.insert({ info->components[i].GetID(), info->components[i] });
+			}
+
+			SceneManager* scnMngr = SceneManager::getInstance();
+			auto bInfo = scnMngr->GetBlueprintComponents(info->name);
+			std::unordered_map<std::string, eden_script::ComponentArguments> blueprintComponents;
+			for (int i = 0; i < bInfo.size(); ++i) {
+				entityComponents.insert({ bInfo[i].GetID(), bInfo[i] });
+			}
+
+			for (auto it : blueprintComponents) {
+				auto component = entityComponents.find(it.first);
+				if (component == entityComponents.end()) {
+					info->components.push_back(it.second);
+				}
+			}
+
+			ent = new eden_ec::Entity(info->name + "_" + std::to_string(scnMngr->GetBlueprintNumInstances(info->name)), _ID);
+			scnMngr->IncreaseBlueprintNumInstances(info->name);
+		}
+		else {
+		   ent = new eden_ec::Entity(info->name, _ID);
+		}
 		// Cremoas una nueva entidad según el nombre que hayamos recibido en 'info' al leer el .lua
-		auto ent = new eden_ec::Entity(info->name, _ID);
 		// Creamos sus componentes según la info leída
 		ent->AddComponents(info);
 #ifdef _DEBUG
@@ -101,9 +132,11 @@ namespace eden {
 	}
 
 	void Scene::Update(float dt) {
+		StartEntities();
 		for (auto& obj : _gameEntitiesList) {
 			obj.second->Update(dt);
 		}
+		AwakeEntities();
 	}
 
 	void Scene::Render() {
@@ -117,7 +150,20 @@ namespace eden {
 	}
 
 	void Scene::AddGameObject(const std::string& ID, eden_ec::Entity* _ent) {
-		_ent->StartComponents();
-		_gameEntitiesList.insert({ ID, _ent });
+		_newEntities.push_back(_ent);
+	}
+
+	void Scene::AwakeEntities() {
+		for (auto it : _newEntities) {
+			it->AwakeComponents();
+		}
+	}
+
+	void Scene::StartEntities() {
+		for (auto it = _newEntities.begin(); it != _newEntities.end();) {
+			(*it)->StartComponents();
+			_gameEntitiesList.insert({ (*it)->GetEntityID(), (*it) });
+			it = _newEntities.erase(it);
+		}
 	}
 }

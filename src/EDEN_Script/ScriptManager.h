@@ -12,9 +12,6 @@
 
 #define _CRTDBG_MAP_ALLOC
 
-// Esta Macro se usa para ver la informacion que se esta leyendo del mapa por salida estandar
-#define _DEBUGGING_SCENE_READING
-
 #ifdef _MSC_VER
 #define ASSETS_ROUTE "assets\\"
 #define SCENE_ROUTE "assets\\scenes\\"
@@ -41,6 +38,7 @@ namespace eden_script {
 	/// @brief Informacion acerca de las entidades. Contiene un nombre y un vector con informacion de sus componentes
 	struct EntityInfo {
 		std::string name;
+		bool isBlueprint = false;
 		std::vector<ComponentArguments> components;
 	};
 	

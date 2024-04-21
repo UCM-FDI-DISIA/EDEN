@@ -82,7 +82,12 @@ namespace eden_ec {
         void AddComponents(eden_script::EntityInfo* info);
 
         /// @brief Llama al m�todo Start de todos los componentes
-        /// Se llama cuando todos los componentes est�n creados
+        /// Llamado al final del frame donde la entidad ha sido creada
+        void AwakeComponents();
+
+        /// @brief Llama al m�todo Start de todos los componentes
+        /// Se llama al inicializar las entidades en la escena, durante el primer instante del frame siguiente al que han sido creadas, que es cuando
+        /// las entidades comienzan a formar parte del loop 
         void StartComponents();
 
         /// @brief Nos devuelve un componente asociado a una entidad dada su ID

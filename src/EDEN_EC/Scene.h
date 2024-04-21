@@ -79,7 +79,9 @@ namespace eden {
 		eden_ec::Entity* Instantiate(eden_script::EntityInfo* info);
 	private:
 
+		/// @brief Llama al Awake de las entidades que van a añadirse a la escena. Se hace al final de cada frame si nuevas entidades se han añadido a la escena
 		void AwakeEntities();
+		/// @brief Llama al Start de las entidades que van a añadirse a la escena. Se hace al principio de cada frame si nuevas entidades se añadieron a la escena en el frame anterior
 		void StartEntities();
 
 		///@brief identificador de escena

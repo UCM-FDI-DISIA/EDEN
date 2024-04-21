@@ -37,11 +37,11 @@ namespace eden_ec {
 		/// @param dt El tiempo transcurrido desde el ultimo frame
 		void Update(float dt) override;
 
-		/// @brief No usado
-		void Awake() override {};
-
 		/// @brief Se usa para guardar la referencia al CMeshRenderer y registrar las animaciones
-		void Start() override;
+		void Awake() override;
+
+		/// @brief No usado
+		void Start() override {};
 		/// @brief Devuelve el identificador del componente
 		/// @return Identificador del componente
 		static std::string GetID() { return "ANIMATOR"; }
@@ -63,7 +63,8 @@ namespace eden_ec {
 		std::string GetCurrentAnim();
 
 	private:
-
+		/// @brief Inicializa el Wrapper de animaciones y el CMeshRenderer si por alguna 
+		/// razón este método fuera llamado antes que el de CMeshRenderer (ya que depende de él)
 		void InitializeWrapper();
 
 		/// @brief Referencia al Animator Wrapper

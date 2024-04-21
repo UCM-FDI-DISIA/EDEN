@@ -21,7 +21,8 @@ namespace eden_ec {
         /// @brief Construye el componente dado unos argumentos. Se obtendrán de una lectura de un .lua
         /// @param args Argumentos leídos de .lua
         void Init(eden_script::ComponentArguments* args) override {};
-
+        
+        /// @brief No usado
         void Awake() override {};
 
         /// @brief Usaremos este método para añadir referencias de otros componentes

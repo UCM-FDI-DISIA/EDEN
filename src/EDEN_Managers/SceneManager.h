@@ -93,8 +93,16 @@ private:
 		int numInstances = 0;
 	};
 
+	/// @brief Devuelve los componentes de un Blueprint 
+	/// @param ID ID del Blueprint que nos interesa
+	/// @return Los componentes del Blueprint
 	EDEN_API inline std::vector<eden_script::ComponentArguments> GetBlueprintComponents(std::string ID) { return (*_Blueprints.find(ID)).second.components; }
+	/// @brief Devuelve el número de instancias activas de un Blueprint
+	/// @param ID ID del Blueprint que nos interesa
+	/// @return El número de instancias del Blueprint que nos interesa
 	EDEN_API inline int GetBlueprintNumInstances(std::string ID) { return (*_Blueprints.find(ID)).second.numInstances; }
+	/// @brief Suma 1 al número de instancias de un Blueprint concreto
+	/// @param ID ID del Blueprint que nos interesa
 	EDEN_API inline void IncreaseBlueprintNumInstances(std::string ID) { (*_Blueprints.find(ID)).second.numInstances++; }
 
 

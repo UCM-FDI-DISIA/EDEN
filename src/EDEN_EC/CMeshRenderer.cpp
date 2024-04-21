@@ -24,9 +24,13 @@ void eden_ec::CMeshRenderer::Init(eden_script::ComponentArguments* args)
 	//SetMaterial("test");
 }
 
-void eden_ec::CMeshRenderer::Awake() {
+void eden_ec::CMeshRenderer::InitializeWrapper() {
 	_renderWrapper = new render_wrapper::MeshRenderer(_ent->GetEntityID(), _ent->GetSceneID(), _mesh);
 	eden_render::RenderManager::Instance()->addRenderEntity(_ent);
+}
+
+void eden_ec::CMeshRenderer::Awake() {
+	if(!_renderWrapper) InitializeWrapper();
 }
 
 void eden_ec::CMeshRenderer::SetMaterial(const std::string material)

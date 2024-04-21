@@ -64,6 +64,9 @@ namespace eden_ec {
 		static std::string GetID() { return "MESH_RENDERER"; }
 
 	private:
+		/// @brief Inicializa el Wrapper de MeshRenderer
+		void InitializeWrapper();
+
 		/// @brief Puntero al wrapper del mesh renderer de la libreria
 		render_wrapper::MeshRenderer* _renderWrapper = nullptr;
 		/// @brief Variable del archivo de la malla

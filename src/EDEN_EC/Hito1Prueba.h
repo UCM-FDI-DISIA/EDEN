@@ -26,6 +26,7 @@ namespace eden_ec {
 
 		void Init(eden_script::ComponentArguments* args) override;
 
+		/// @brief No usado
 		void Awake() override {};
 
 		void Start() override;

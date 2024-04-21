@@ -28,7 +28,7 @@ namespace eden_ec {
 
 		/// @brief M�todo update heredado de component
 		void Update(float deltaTime) override;
-
+		/// @brief No usado
 		void Awake() override {};
 
 		/// @brief Se usa para coger referencias a otros componentes

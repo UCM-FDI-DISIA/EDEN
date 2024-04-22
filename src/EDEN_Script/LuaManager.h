@@ -14,7 +14,6 @@ struct lua_State;
 
 namespace eden_ec {
 	class Entity;
-	class Hito1Prueba;
 }
 
 namespace eden_script {

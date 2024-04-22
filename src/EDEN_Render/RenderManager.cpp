@@ -239,7 +239,7 @@ NativeWindowPair eden_render::RenderManager::CreateNewWindow(const std::string& 
 	_fullH = desktop.bottom;
 	w = _defWindowSize.first;
 	h = _defWindowSize.second;
-	_isFullScreen = true;
+	_isFullScreen = false;
 	miscParams["FSAA"] = ropts["FSAA"].currentValue;
 	miscParams["vsync"] = ropts["VSync"].currentValue;
 	miscParams["gamma"] = ropts["sRGB Gamma Conversion"].currentValue;

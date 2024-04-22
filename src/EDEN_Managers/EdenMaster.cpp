@@ -46,9 +46,6 @@ void eden::Master::CloseApplication() {
 
 eden::Master::~Master()
 {
-	//delete _physicsManager;
-	//delete _scnManager;
-	//delete _inputManager;
 	_physicsManager->Close();
 	_scnManager->Close();
 	_inputManager->Close();
@@ -57,7 +54,6 @@ eden::Master::~Master()
 
 	if (_renderManager != nullptr && _renderManager->couldInitialize()) {
 
-		//delete _renderManager;
 		_renderManager->Close();
 	}
 

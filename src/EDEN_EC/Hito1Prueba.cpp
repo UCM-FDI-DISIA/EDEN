@@ -28,7 +28,7 @@ void eden_ec::Hito1Prueba::Init(eden_script::ComponentArguments* args) {
 
 void eden_ec::Hito1Prueba::StartGame() {
 	eden::SceneManager* scnManager = eden::SceneManager::Instance();
-	scnManager->PushScene("CrossThePathFinal");
+	scnManager->ChangeScene("CrossThePathFinal");
 	
 }
 void eden_ec::Hito1Prueba::Start() {

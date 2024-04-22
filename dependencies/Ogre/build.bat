@@ -42,8 +42,8 @@ if !COMPILE! equ 1 (
     :: Generamos con CMake a partir de la carpeta con el Src de OGRE la solución de VSC++ con las tags correspondientes
     cmake -A %PLATFORM% -DOGRE_BUILD_COMPONENT_BULLET:BOOL=0 -DOGRE_BUILD_COMPONENT_BITES:BOOL=0 -DOGRE_BUILD_PLUGIN_ASSIMP:BOOL=0 -DOGRE_BUILD_PLUGIN_DOT_SCENE:BOOL=0 -DOGRE_BUILD_SAMPLES:BOOL=0 -DOGRE_INSTALL_SAMPLES:BOOL=0 -DOGRE_BUILD_TOOLS:BOOL=0 -DOGRE_INSTALL_TOOLS:BOOL=0 -DOGRE_BUILD_RENDERSYSTEM_D3D11:BOOL=0 -DOGRE_BUILD_RENDERSYSTEM_D3D9:BOOL=0 -DOGRE_BUILD_RENDERSYSTEM_GL3PLUS:BOOL=0 -DOGRE_BUILD_RENDERSYSTEM_GLES2:BOOL=0 -DOGRE_BUILD_RENDERSYSTEM_TINY:BOOL=0 -DOGRE_BUILD_RENDERSYSTEM_VULKAN:BOOL=0 %COMPILEDIR%
     :: Compilamos OGRE tanto en Debug como en Release (solo hemos creado para x64, no tenemos que preocuparnos por Win32)
-    msbuild "OGRE.sln" /p:configuration=Debug
-    msbuild "OGRE.sln" /p:configuration=Release
+    msbuild "OGRE.sln" /p:configuration=Debug /p:Platform=x64
+    msbuild "OGRE.sln" /p:configuration=Release /p:Platform=x64
     :: Movemos las DLLs de OGRE generadas a la carpeta con ruta DLLFOLDERS
     :: /y suprime la solicitud para confirmar que desea sobrescribir un archivo de destino existente.
     :: /s copia directorios y subdirectorios, a menos que estén vacíos.
@@ -54,12 +54,6 @@ if !COMPILE! equ 1 (
         XCOPY /y /s "%%j" %DLLFOLDERS%
     )
     XCOPY /y /s .\bin\release\plugins.cfg %DLLFOLDERS%
-    echo [General] >> %DLLFOLDERS%\resources.cfg
-    echo FileSystem=./assets/ >> %DLLFOLDERS%\resources.cfg
-    echo FileSystem=./assets/mesh/ >> %DLLFOLDERS%\resources.cfg
-	echo FileSystem=./assets/fonts/ >> %DLLFOLDERS%\resources.cfg
-	echo FileSystem=./assets/default >> %DLLFOLDERS%\resources.cfg
-
     cd ..\..
     echo OGRE compilado
 ) else (

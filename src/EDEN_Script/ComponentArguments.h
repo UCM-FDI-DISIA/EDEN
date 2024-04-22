@@ -5,6 +5,8 @@
 #include <string>
 #include <unordered_map>
 
+#include "defs.h"
+
 namespace eden_utils {
 	class Vector3;
 	class Quaternion;
@@ -19,87 +21,87 @@ namespace eden_script {
 		friend ScriptManager;
 	public:
 		/// @brief Constructora por defecto
-		ComponentArguments() = default;
+		EDEN_API ComponentArguments() = default;
 
 		/// @brief Da valor a la ID del componente que queremos representar. Crea un mapa vacio de argumentos
 		/// @param id ID del componente
-		inline ComponentArguments(std::string id) : _args() { _id = id; }
+		EDEN_API inline ComponentArguments(std::string id) : _args() { _id = id; }
 
 		/// @brief Parsea un valor del mapa _args a Vector3
 		/// @param id Valor del mapa _args a parsear
 		/// @return valor parseado
-		eden_utils::Vector3 GetValueToVector3(std::string id);
+		EDEN_API eden_utils::Vector3 GetValueToVector3(std::string id);
 
 		/// @brief Parsea un valor del mapa _args a std::vector<Vector3>
 		/// @param id Valor del mapa _args a parsear
 		/// @return valor parseado
-		std::vector<eden_utils::Vector3> GetValueToVector3Vector(std::string id);
+		EDEN_API std::vector<eden_utils::Vector3> GetValueToVector3Vector(std::string id);
 
 		/// @brief Parsea un valor del mapa _args a bool
 		/// @param id Valor del mapa _args a parsear
 		/// @return valor parseado
-		bool GetValueToBool(std::string id);
+		EDEN_API bool GetValueToBool(std::string id);
 
 		/// @brief Parsea un valor del mapa _args a vector<bool>
 		/// @param id Valor del mapa _args a parsear
 		/// @return valor parseado
-		std::vector<bool> GetValueToBoolVector(std::string id);
+		EDEN_API std::vector<bool> GetValueToBoolVector(std::string id);
 
 		/// @brief Parsea un valor del mapa _args a int
 		/// @param id Valor del mapa _args a parsear
 		/// @return valor parseado
-		int GetValueToInt(std::string id);
+		EDEN_API int GetValueToInt(std::string id);
 
 		/// @brief Parsea un valor del mapa _args a vector<int>
 		/// @param id Valor del mapa _args a parsear
 		/// @return valor parseado
-		std::vector<int> GetValueToIntVector(std::string id);
+		EDEN_API std::vector<int> GetValueToIntVector(std::string id);
 
 		/// @brief Parsea un valor del mapa _args a float
 		/// @param id Valor del mapa _args a parsear
 		/// @return valor parseado
-		float GetValueToFloat(std::string id);
+		EDEN_API float GetValueToFloat(std::string id);
 
 		/// @brief Parsea un valor del mapa _args a vector<float>
 		/// @param id Valor del mapa _args a parsear
 		/// @return valor parseado
-		std::vector<float> GetValueToFloatVector(std::string id);
+		EDEN_API std::vector<float> GetValueToFloatVector(std::string id);
 
 		/// @brief Parsea un valor del mapa _args a double
 		/// @param id Valor del mapa _args a parsear
 		/// @return valor parseado
-		double GetValueToDouble(std::string id);
+		EDEN_API double GetValueToDouble(std::string id);
 
 		/// @brief Parsea un valor del mapa _args a vector<double>
 		/// @param id Valor del mapa _args a parsear
 		/// @return valor parseado
-		std::vector<double> GetValueToDoubleVector(std::string id);
+		EDEN_API std::vector<double> GetValueToDoubleVector(std::string id);
 		
 		/// @brief Devuelve el string asociado al valor dado en el mapa
 		/// @param id Valor del mapa _args a recibir
 		/// @return string asociado a id
-		std::string GetValueToString(std::string id);
+		EDEN_API std::string GetValueToString(std::string id);
 
 		/// @brief Devuelve el vector<string> asociado al valor dado en el mapa
 		/// @param id Valor del mapa _args a recibir
 		/// @return vector<string> asociado a id
-		std::vector<std::string> GetValueToStringVector(std::string id);
+		EDEN_API std::vector<std::string> GetValueToStringVector(std::string id);
 
 		/// @brief Parsea un valor del mapa _args a Quaternion
 		/// @param id Valor del mapa _args a parsear
 		/// @return valor parseado
-		eden_utils::Quaternion GetValueToQuaternion(std::string id);
+		EDEN_API eden_utils::Quaternion GetValueToQuaternion(std::string id);
 
 		/// @brief Parsea un valor del mapa _args a Quaternion
 		/// @param id Valor del mapa _args a parsear
 		/// @return valor parseado
-		std::vector<eden_utils::Quaternion> GetValueToQuaternionVector(std::string id);
+		EDEN_API std::vector<eden_utils::Quaternion> GetValueToQuaternionVector(std::string id);
 
 		/// @brief Devuelve la id del componente
-		inline std::string GetID() { return _id; }
+		EDEN_API inline std::string GetID() { return _id; }
 		
 		/// @brief Devuelve una copia de los argumentos del componente
-		inline std::unordered_map<std::string, std::vector<std::string>> GetArgs() { return _args; }
+		EDEN_API inline std::unordered_map<std::string, std::vector<std::string>> GetArgs() { return _args; }
 	private:
 
 		/// @brief Se ocupa de los errores cuando el valor leido de un mapa no tiene exactamente 'numArgs' argumentos

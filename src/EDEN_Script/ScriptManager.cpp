@@ -10,6 +10,12 @@
 #include "ErrorHandler.h"
 #include "ComponentArguments.h"
 #include "LuaManager.h"
+#include "SceneManager.h"
+
+eden_script::ScriptManager* eden_script::ScriptManager::getInstance() {
+	return static_cast<ScriptManager*>(Instance());
+}
+
 
 eden_script::ScriptManager::ScriptManager() {
 
@@ -39,14 +45,12 @@ eden_script::LuaManager* eden_script::ScriptManager::GetLuaManager() {
 
 bool eden_script::ScriptManager::CheckLua(int err, std::string errorTitle) {
 	bool result = err == LUA_OK;
-#ifdef _DEBUG
 	if (!result) {
 		// Cogemos el mensaje de error que se ha generado en el Stack de Lua y lo lanzamos en Debug.
 		std::string errorMsg = lua_tostring(_l, -1);
 		// std::cerr << "Lua ERROR: " << errorMsg << '\n';
 		eden_error::ErrorHandler::Instance()->Exception(errorTitle, errorMsg);
 	}
-#endif
 	
 	return result;
 }
@@ -56,14 +60,14 @@ void eden_script::ScriptManager::PushStringToTable(std::string push, int tableIn
 	lua_pushstring(_l, push.c_str());
 	// Pushear a -1 el elemento de la table con key 'push'
 
-	// TRATAMIENTO DE ERRORES DE LUA AQUÍ --------
+	// TRATAMIENTO DE ERRORES DE LUA AQUï¿½ --------
 	lua_gettable(_l, tableIndex);
 }
 
 std::string eden_script::ScriptManager::ParseString(int indexOnLuaStack) {
 	assert(indexOnLuaStack < 0);
 
-	// TRATAMIENTO DE ERRORES DE LUA AQUÍ --------
+	// TRATAMIENTO DE ERRORES DE LUA AQUï¿½ --------
 	std::string cppString = lua_tostring(_l, indexOnLuaStack);
 
 	return cppString;
@@ -72,7 +76,7 @@ std::string eden_script::ScriptManager::ParseString(int indexOnLuaStack) {
 std::string eden_script::ScriptManager::ParseAndPopString(int indexOnLuaStack) {
 	std::string cppString = ParseString(indexOnLuaStack);
 	
-	// TRATAMIENTO DE ERRORES DE LUA AQUÍ --------
+	// TRATAMIENTO DE ERRORES DE LUA AQUï¿½ --------
 	lua_pop(_l, -indexOnLuaStack);
 
 	return cppString;
@@ -86,12 +90,12 @@ std::string eden_script::ScriptManager::ReadStringFromTable(std::string stringTo
 }
 
 void eden_script::ScriptManager::PushTableElement(int elementIndex, int tableIndex) {
-	// Pusheamos al Stack un número, que será el índice de un elemento en la Table
+	// Pusheamos al Stack un nï¿½mero, que serï¿½ el ï¿½ndice de un elemento en la Table
 	lua_pushnumber(_l, elementIndex);
 	// Usando el numero en el top del Stack, accedemos a la tabla que ahora se encuentra
-	// una posicion por debajo del top del Stack (-2) y le pedimos que pushee lo que tenga en su índice i
+	// una posicion por debajo del top del Stack (-2) y le pedimos que pushee lo que tenga en su ï¿½ndice i
 
-	// TRATAMIENTO DE ERRORES DE LUA AQUÍ --------
+	// TRATAMIENTO DE ERRORES DE LUA AQUï¿½ --------
 	lua_gettable(_l, tableIndex);
 }
 
@@ -162,8 +166,8 @@ std::vector<eden_script::ComponentArguments> eden_script::ScriptManager::ReadCom
 	return components;
 }
 
-bool eden_script::ScriptManager::EntityTableToData(std::vector<eden_script::EntityInfo*>& info, std::string tableName) {
-	// L deberia haber sido inicializado en la constructora. Esto NUNCA deberia saltar, pero por si a caso
+bool eden_script::ScriptManager::EntityTableToData(std::vector<eden_script::EntityInfo*>& info, std::string tableName, bool readingBlueprints) {
+	// L deberï¿½a haber sido inicializado en la constructora. Esto NUNCA deberï¿½a saltar, pero por si a caso
 	assert(_l);
 	
 	// Accedemos a la Table de Entidades del .lua de la escena
@@ -174,7 +178,7 @@ bool eden_script::ScriptManager::EntityTableToData(std::vector<eden_script::Enti
 		return false;
 	}
 
-	// Tenemos que saber si hemos encontrado la tabla. Hacemos un assert de la función CheckLua para ello
+	// Tenemos que saber si hemos encontrado la tabla. Hacemos un assert de la funciï¿½n CheckLua para ello
 	if (!lua_istable(_l, -1)) {
 		std::string sEntityTable = ENTITY_TABLE_NAME;
 		std::cerr << "The variable '" + sEntityTable + "' was not a Table as expected'\n'";
@@ -186,7 +190,7 @@ bool eden_script::ScriptManager::EntityTableToData(std::vector<eden_script::Enti
 	int tableIndexOnAccess = -2;
 	// Recorremos la tabla, comenzando en 1 en lugar de 0
 	for (int i = 1; i <= numEntities; ++i) {
-		// Generamos un puntero de información de entidad
+		// Generamos un puntero de informaciï¿½n de entidad
 		EntityInfo* newInfo = new EntityInfo();
 
 		// Pusheamos el elemento actual de la tabla
@@ -194,8 +198,11 @@ bool eden_script::ScriptManager::EntityTableToData(std::vector<eden_script::Enti
 
 		// Nuestra tabla debe tener un string "Name" y una tabla "Components"
 		newInfo->name = ReadStringFromTable("Name" , tableIndexOnAccess);
-#ifdef _DEBUGGING_SCENE_READING
+		if (!readingBlueprints) newInfo->isBlueprint = eden::SceneManager::getInstance()->BlueprintExists(newInfo->name);
+		else newInfo->isBlueprint = true;
+#ifdef _DEBUG
 		std::cout << "Reading Entity '" << newInfo->name <<'\'' << '\n';
+
 #endif
 		// Leemos la tabla de componentes y la asignamos
 		newInfo->components = ReadComponents(tableIndexOnAccess);
@@ -217,7 +224,7 @@ bool eden_script::ScriptManager::ReadScene(std::string sceneName, std::vector<ed
 	if (CheckLua(luaL_dofile(_l, fileName.c_str()), "Reading " + fileName)) {
 
 		bool readingSuccesful = CollisionTableToData(collisionInfo);
-		readingSuccesful = EntityTableToData(info, ENTITY_TABLE_NAME);
+		readingSuccesful = EntityTableToData(info, ENTITY_TABLE_NAME, false);
 		return true;
 	}
 	else {
@@ -234,7 +241,7 @@ bool eden_script::ScriptManager::ReadBlueprints(std::vector<eden_script::EntityI
 
 	if (CheckLua(luaL_dofile(_l, fileName.c_str()), "Reading " + fileName)) {
 
-		EntityTableToData(info, BLUEPRINTS_FILE_NAME);
+		EntityTableToData(info, BLUEPRINTS_FILE_NAME, true);
 		return true;
 	}
 	else {
@@ -252,7 +259,7 @@ bool eden_script::ScriptManager::CollisionTableToData(std::unordered_map<std::st
 		return false;
 	}
 
-	// Tenemos que saber si hemos encontrado la tabla. Hacemos un assert de la función CheckLua para ello
+	// Tenemos que saber si hemos encontrado la tabla. Hacemos un assert de la funciï¿½n CheckLua para ello
 	if (!lua_istable(_l, -1)) {
 		std::string sEntityTable = COLLISION_TABLE_NAME;
 		std::cerr << "The variable '" + sEntityTable + "' was not a Table as expected'\n'";
@@ -266,7 +273,7 @@ bool eden_script::ScriptManager::CollisionTableToData(std::unordered_map<std::st
 	// Leemos la tabla de colisiones y la asignamos
 	collisionInfo = ParseTableToStringMap(tableIndexOnAccess + 1);
 
-	// Como ya no usaremos más el elemento que estamos leyendo actualmente de la tabla, debemos 
+	// Como ya no usaremos mï¿½s el elemento que estamos leyendo actualmente de la tabla, debemos 
 	// quitarlo del top del Stack.
 	lua_pop(_l, 2);
 

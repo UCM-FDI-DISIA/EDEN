@@ -6,9 +6,6 @@ cls
 for %%i in (".\bin\*.dll") do (
     del "%%i"
 )
-for %%j in (".\bin\*.cfg") do (
-    del "%%j"
-)
 
 cd .\dependencies\
 
@@ -27,9 +24,6 @@ rd /s /q .\build\
 cd ..\Lua\
 del %CHKBUILD%
 rd /s /q .\build\
-
-cd ..\irrKlang\
-del %CHKBUILD%
 
 cd ..\..
 

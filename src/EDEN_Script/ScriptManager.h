@@ -8,10 +8,9 @@
 
 #include "Singleton.h"
 
-#define _CRTDBG_MAP_ALLOC
+#include "defs.h"
 
-// Esta Macro se usa para ver la informacion que se esta leyendo del mapa por salida estandar
-#define _DEBUGGING_SCENE_READING
+#define _CRTDBG_MAP_ALLOC
 
 #ifdef _MSC_VER
 #define ASSETS_ROUTE "assets\\"
@@ -39,6 +38,7 @@ namespace eden_script {
 	/// @brief Informacion acerca de las entidades. Contiene un nombre y un vector con informacion de sus componentes
 	struct EntityInfo {
 		std::string name;
+		bool isBlueprint = false;
 		std::vector<ComponentArguments> components;
 	};
 	
@@ -53,18 +53,20 @@ namespace eden_script {
 		/// @param info Vector pasado por referencia donde se guardara toda la informacion de las entidades leidas de mapa
 		/// @param collisionInfo Vector pasado por referencia donde se guardara toda la informacion de las capas de colision leidas de mapa
 		/// @return True = No error | False = Error
-		bool ReadScene(std::string sceneName, std::vector<eden_script::EntityInfo*>& info, std::unordered_map<std::string, std::vector<std::string>>& collisionInfo);
+		EDEN_API bool ReadScene(std::string sceneName, std::vector<eden_script::EntityInfo*>& info, std::unordered_map<std::string, std::vector<std::string>>& collisionInfo);
 
 		/// @brief Lee el archivo "bin/assets/Blueprints.lua" y rellena info con la informacion de los blueprints que existan.
 		/// @param info Informacion a rellenar
 		/// @return True = No error | False = Error
-		bool ReadBlueprints(std::vector<eden_script::EntityInfo*>& info);
+		EDEN_API bool ReadBlueprints(std::vector<eden_script::EntityInfo*>& info);
 
 		/// @brief Devuelve puntero a LuaManager
-		eden_script::LuaManager* GetLuaManager();
+		EDEN_API eden_script::LuaManager* GetLuaManager();
 
-		/// @brief Destructora que destruye la maquina virtual de Lua
-		~ScriptManager() override;
+		/// @brief Destructora que destruye la m�quina virtual de Lua
+		EDEN_API ~ScriptManager() override;
+
+		EDEN_API static ScriptManager* getInstance();
 
 	private:
 
@@ -74,7 +76,7 @@ namespace eden_script {
 		lua_State* _l;
 
 		/// @brief Constructora que inicializa Lua
-		ScriptManager();
+		EDEN_API ScriptManager();
 		
 		/// @brief Dice si una variable es 'nil' en Lua
 		/// @param varType Tipo de la variable a ver (entero devuelto por las funciones de Lua)
@@ -86,7 +88,7 @@ namespace eden_script {
 		/// @brief Rellena el vector de entidades, suponiendo que ya hemos abierto antes una escena
 		/// @param info Informacion de entidades a rellenar
 		/// @return True = No error | False = Error
-		bool EntityTableToData(std::vector<eden_script::EntityInfo*>& info, std::string tableName);
+		bool EntityTableToData(std::vector<eden_script::EntityInfo*>& info, std::string tableName, bool readingBlueprints);
 
 		/// @brief Busca en la tabla de Lua que se encuentre en el indice 'tableIndex' 
 		/// una key 'stringToRead' y devuelve su valor, si lo encuentra.

@@ -5,6 +5,7 @@
 #include <string>
 #include <unordered_map>
 
+#include "defs.h"
 #define MAX_COLLISION_GROUP_NUMBER 32
 #define DEFAULT_COLLISION_LAYER 1
 namespace physics_manager {
@@ -12,7 +13,7 @@ namespace physics_manager {
 }
 
 namespace physics_wrapper {
-	class CollisionLayer
+	class EDEN_API CollisionLayer
 	{
 		friend physics_manager::PhysicsManager;
 	private:

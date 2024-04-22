@@ -44,22 +44,22 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(SolutionDir)lib\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(ProjectDir)..\..\lib\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)..\..\temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_d</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)lib\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(ProjectDir)..\..\lib\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)..\..\temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>EDEN_EXPORTS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\Bullet\src\src\;$(SolutionDir)\src\EDEN_Physics\;$(SolutionDir)\src\EDEN_Render\;$(SolutionDir)src\EDEN\;$(SolutionDir)dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)dependencies\Ogre\src\OgreMain\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\dependencies\Bullet\src\src\;$(ProjectDir)..\..\src\EDEN_Physics\;$(ProjectDir)..\..\src\EDEN_Render\;$(ProjectDir)..\..\src\EDEN_Managers\;$(ProjectDir)..\..\src\EDEN_Utils\;$(ProjectDir)..\..\src\EDEN_EC\;$(ProjectDir)..\..\dependencies\Ogre\build\$(Platform)\include\;$(ProjectDir)..\..\dependencies\Ogre\src\OgreMain\include\;$(ProjectDir)..\..\src\EDEN_Export\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -72,10 +72,10 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>EDEN_EXPORTS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\Bullet\src\src\;$(SolutionDir)\src\EDEN_Physics\;$(SolutionDir)\src\EDEN_Render\;$(SolutionDir)src\EDEN\;$(SolutionDir)dependencies\Ogre\build\$(Platform)\include\;$(SolutionDir)dependencies\Ogre\src\OgreMain\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\dependencies\Bullet\src\src\;$(ProjectDir)..\..\src\EDEN_Physics\;$(ProjectDir)..\..\src\EDEN_Render\;$(ProjectDir)..\..\src\EDEN_Managers\;$(ProjectDir)..\..\src\EDEN_Utils\;$(ProjectDir)..\..\src\EDEN_EC\;$(ProjectDir)..\..\dependencies\Ogre\build\$(Platform)\include\;$(ProjectDir)..\..\dependencies\Ogre\src\OgreMain\include\;$(ProjectDir)..\..\src\EDEN_Export\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -91,6 +91,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\src\EDEN_Debug\Debug.h" />
     <ClInclude Include="..\..\src\EDEN_Debug\DebugDrawer.h" />
+    <ClInclude Include="..\..\src\EDEN_Render\RenderManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

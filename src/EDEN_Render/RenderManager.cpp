@@ -47,6 +47,10 @@
 #include "Canvas.h"
 #include "CameraWrapper.h"
 
+eden_render::RenderManager* eden_render::RenderManager::getInstance() {
+	return static_cast<RenderManager*>(Instance());
+}
+
 eden_render::RenderManager::RenderManager(const std::string& appName)
 {
 	_appName = appName; // asigna el nombre de la ventana

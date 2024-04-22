@@ -22,7 +22,6 @@
 #include "ErrorHandler.h"
 #include <string>
 
-const std::string eden_ec::UIComponent::_id = "UICOMPONENT";
 int eden_ec::UIComponent::_numUIElements = 0;
 
 eden_ec::UIComponent::UIComponent() {

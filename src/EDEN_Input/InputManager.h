@@ -7,6 +7,8 @@
 
 #include "Singleton.h"
 
+#include "defs.h"
+
 class InputWrapper;
 namespace eden_input 
 {
@@ -17,10 +19,10 @@ namespace eden_input
 	public:
 
 		/// @brief enumerado de los botones del raton
-		enum MOUSEBUTTON : uint8_t { LEFT, MIDDLE, RIGHT };
+		EDEN_API enum MOUSEBUTTON : uint8_t { LEFT, MIDDLE, RIGHT };
 
 		/// @brief enumerado de las teclas especiales
-		enum SPECIALKEY : uint8_t {
+		EDEN_API enum SPECIALKEY : uint8_t {
 			RETURN = 40,
 			ESCAPE,
 			BACKSPACE,
@@ -84,88 +86,90 @@ namespace eden_input
 		};
 
 		/// @brief Limpieza del mapa de teclas
-		void Clean();
+		EDEN_API void Clean();
 
 		/// @brief True si se esta pulsando
 		/// al menos una tecla del teclado
-		bool KeyDownEvent();
+		EDEN_API bool KeyDownEvent();
 
 		/// @brief True si se ha soltado
 		/// al menos una tecla del teclado
-		bool KeyUpEvent();
+		EDEN_API bool KeyUpEvent();
 
 		/// @brief True en el primer frame
 		/// en el que la tecla es pulsada
 		/// @param key Tecla Normal (0-9 y a-z)
-		bool IsKeyDown(char key);
+		EDEN_API bool IsKeyDown(char key);
 
 		/// @brief True mientras
 		/// la tecla esta pulsada
 		/// @param key Tecla Normal (0-9 y a-z)
-		bool IsKeyHeld(char key);
+		EDEN_API bool IsKeyHeld(char key);
 
 		/// @brief True en el primer frame
 		/// en el que la tecla es liberada
 		/// @param key Tecla Normal (0-9 y a-z)
-		bool IsKeyUp(char key);
+		EDEN_API bool IsKeyUp(char key);
 
 		/// @brief True en el primer frame
 		/// en el que la tecla es pulsada
 		/// @param key Tecla Especial (macros SPECIALKEY)
-		bool IsKeyDown(SPECIALKEY key);
+		EDEN_API bool IsKeyDown(SPECIALKEY key);
 
 		/// @brief True mientras
 		/// la tecla esta pulsada
 		/// @param key Tecla Normal (macros SPECIALKEY)
-		bool IsKeyHeld(SPECIALKEY key);
+		EDEN_API bool IsKeyHeld(SPECIALKEY key);
 
 		/// @brief True en el primer frame
 		/// en el que la tecla es liberada
 		/// @param key Tecla Normal (macros SPECIALKEY)
-		bool IsKeyUp(SPECIALKEY key);
+		EDEN_API bool IsKeyUp(SPECIALKEY key);
 
 		/// @brief mouse
-		/// @brief True si el raton
-		/// ha cambiado de posicion
-		bool MouseMotionEvent();
+		/// @brief True si el rat�n
+		/// ha cambiado de posici�n
+		EDEN_API bool MouseMotionEvent();
 
-		/// @brief True si al menos un boton
-		/// del raton ha cambiado de estado
-		bool MouseButtonEvent();
+		/// @brief True si al menos un bot�n
+		/// del rat�n ha cambiado de estado
+		EDEN_API bool MouseButtonEvent();
 
 		/// @brief True en el primer frame
-		/// en el que el boton del raton es pulsado
-		/// @param b Boton del raton (macros MOUSEBUTTON)
-		bool IsMouseButtonDown(int b);
+		/// en el que el bot�n del rat�n es pulsado
+		/// @param b Bot�n del rat�n (macros MOUSEBUTTON)
+		EDEN_API bool IsMouseButtonDown(int b);
 
 		/// @brief True mientras
-		/// el boton del raton esta pulsado
-		/// @param b Boton del raton (macros MOUSEBUTTON)
-		bool IsMouseButtonHeld(int b);
+		/// el bot�n del rat�n est� pulsado
+		/// @param b Bot�n del rat�n (macros MOUSEBUTTON)
+		EDEN_API bool IsMouseButtonHeld(int b);
 
 		/// @brief True en el primer frame
-		/// en el que el boton del raton es liberado
-		/// @param b Boton del raton (macros MOUSEBUTTON)
-		bool IsMouseButtonUp(int b);
+		/// en el que el bot�n del rat�n es liberado
+		/// @param b Bot�n del rat�n (macros MOUSEBUTTON)
+		EDEN_API bool IsMouseButtonUp(int b);
 
 		/// @brief Par (X, Y) de
-		/// la posicion del raton en la pantalla.
-		const std::pair<int, int>& GetMousePos();
+		/// la posici�n del rat�n en la pantalla.
+		EDEN_API const std::pair<int, int>& GetMousePos();
 
 		//window events
 
 		/// @brief Devuelve true cuando el usuario ha pulsado la X de la ventana
-		bool CloseWindowEvent();
+		EDEN_API bool CloseWindowEvent();
 
 		/// @brief Se llama para cerrar la ventana de sdl (en el boto de quit del menu
 		/// por ejemplo)
-		void SetCloseWindow();
+		EDEN_API void SetCloseWindow();
 
 		/// @brief Devuelve true cuando el usuario ha cambiado el tamaño de la ventana
-		bool ResizedWindowEvent();
+		EDEN_API bool ResizedWindowEvent();
 
 		/// @brief Update
-		void Update();
+		EDEN_API void Update();
+
+		EDEN_API static InputManager* getInstance();
 
 		/// @brief Destructora de la clase
 		~InputManager() override;
@@ -231,7 +235,7 @@ namespace eden_input
 		void HandleWindowEvent();
 		
 		/// @brief Constructora de la clase
-		InputManager();
+		EDEN_API InputManager();
 	};
 }
 

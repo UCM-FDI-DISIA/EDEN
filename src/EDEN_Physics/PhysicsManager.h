@@ -104,21 +104,21 @@ namespace physics_manager {
 
 		/// @brief Devuelve la gravedad del mundo
 		/// @return Devuelve el valor de la gravedad mundial
-		eden_utils::Vector3 GetGravity(std::string sceneID);
+		EDEN_API eden_utils::Vector3 GetGravity(std::string sceneID);
 
 		/// @brief Aniade una entidad al mundo fisico
 		/// @param e Entidad a añadir
-		void AddPhysicsEntity(eden_ec::Entity* e);
+		EDEN_API void AddPhysicsEntity(eden_ec::Entity* e);
 
 		/// @brief Quita una entidad del mundo fisico
 		/// @param e Entidad a quitar
-		void RemovePhysicsEntity(eden_ec::Entity* e);
+		EDEN_API void RemovePhysicsEntity(eden_ec::Entity* e);
 
 		/// @brief Setear a cada rigidbody el transform de cada entidad
-		void UpdatePositions(std::string sceneID);
+		EDEN_API void UpdatePositions(std::string sceneID);
 
 		/// @brief Setear a cada transform de cada entidad el transform del rigidbody
-		void ResolvePositions(std::string sceneID);
+		EDEN_API void ResolvePositions(std::string sceneID);
 
 		/// @brief Destructora de la clase
 		~PhysicsManager() override;
@@ -127,7 +127,10 @@ namespace physics_manager {
 		/// @param name Nombre de la capa que se quiere buscar
 		/// @param sceneID ID de la escena en la que se encuentra la capa
 		/// @return Devuelve una capa dado un cierto nombre e ID de escena, o nullptr en caso de fallar
-		physics_wrapper::CollisionLayer* GetLayerByName(std::string name, std::string sceneID);
+		EDEN_API physics_wrapper::CollisionLayer* GetLayerByName(std::string name, std::string sceneID);
+
+		EDEN_API static PhysicsManager* getInstance();
+
 	protected:
 		/// @brief La constructora se encarga de crear el mundo de la simulacion fisica y el objeto encargado de dibujar 
 		PhysicsManager();

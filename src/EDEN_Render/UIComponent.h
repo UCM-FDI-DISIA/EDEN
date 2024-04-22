@@ -8,6 +8,8 @@
 #include "Component.h"
 #include "Vector3.h"
 
+#include "defs.h"
+
 namespace Ogre {
 	class OverlayManager;
 	class Overlay;
@@ -24,7 +26,7 @@ namespace eden_input {
 }
 namespace eden_ec {
 	/// @brief Clase base de la que heredan todos los elementos de la UI
-	class UIComponent : public Component 
+	class EDEN_API UIComponent : public Component
 	{
 	public:
 		/// @brief Constructora de la clase
@@ -101,15 +103,13 @@ namespace eden_ec {
 		void SetPosParams();
 
 		/// @brief Definicion de metodo estatico GetID necesario para construccion de componentes
-		inline static std::string GetID() { return _id; }
+		inline static std::string GetID() { return "UICOMPONENT"; }
 
 		inline std::string GetSceneID() { return _sceneID; };
 
 		void Register(std::string sceneID);
 
 	protected:
-
-		const static std::string _id;
 
 		std::string _sceneID;
 

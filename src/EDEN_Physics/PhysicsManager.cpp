@@ -17,6 +17,19 @@
 #include "Debug.h"
 #include "ErrorHandler.h"
 
+//const eden_ec::Entity* physics_manager::PhysicsManager::getEntity(const btRigidBody* RBRef) const
+//{
+//	if (_entitiesMap.find(RBRef) != _entitiesMap.end()) {
+//		return _entitiesMap.at(RBRef);
+//	}
+//	return nullptr;
+//}
+
+physics_manager::PhysicsManager* physics_manager::PhysicsManager::getInstance() {
+	return static_cast<PhysicsManager*>(Instance());
+}
+
+
 void physics_manager::PhysicsManager::updateSimulation(float deltaTime, std::string sceneID)
 {
 	_currentPhysicScene->stepSimulation(deltaTime);

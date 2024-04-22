@@ -7,5 +7,6 @@
   <ItemGroup>
     <ClInclude Include="..\..\src\EDEN_Debug\DebugDrawer.h" />
     <ClInclude Include="..\..\src\EDEN_Debug\Debug.h" />
+    <ClInclude Include="..\..\src\EDEN_Render\RenderManager.h" />
   </ItemGroup>
 </Project>

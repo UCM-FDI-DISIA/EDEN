@@ -126,6 +126,8 @@ namespace eden_render
 		/// @return Devuelve la camara de la escena actual. Si no existe la crea
 		render_wrapper::CameraWrapper* GetCamera(eden_ec::Entity* ent);
 
+		static RenderManager* getInstance();
+
 	protected:
 		/// @brief Devuelve el manager de Ogre actual
 		/// @return Devuelve el manager de Ogre actual 
@@ -255,8 +257,7 @@ namespace eden_render
 		std::pair<int, int> _defWindowSize = {640,480};
 	};
 
-	/// @brief Contiene informacion de la escena y las entidades que utilizan Ogre. Cada instancia de esta clase representa una escena.
-	class InfoRenderWorld
+	class __declspec(dllexport) InfoRenderWorld
 	{
 		friend RenderManager;
 		friend render_wrapper::NodeManager;

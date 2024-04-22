@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\EDEN_EC\CAnimator.h" />
+    <ClInclude Include="..\..\src\EDEN_EC\CAudioEmitter.h" />
+    <ClInclude Include="..\..\src\EDEN_EC\CAudioListener.h" />
+    <ClInclude Include="..\..\src\EDEN_EC\CBar.h" />
+    <ClInclude Include="..\..\src\EDEN_EC\CButton.h" />
+    <ClInclude Include="..\..\src\EDEN_EC\CCamera.h" />
+    <ClInclude Include="..\..\src\EDEN_EC\CCursor.h" />
+    <ClInclude Include="..\..\src\EDEN_EC\CIMage.h" />
+    <ClInclude Include="..\..\src\EDEN_EC\CLight.h" />
+    <ClInclude Include="..\..\src\EDEN_EC\CLuaBehaviour.h" />
+    <ClInclude Include="..\..\src\EDEN_EC\CMeshRenderer.h" />
+    <ClInclude Include="..\..\src\EDEN_EC\Component.h" />
+    <ClInclude Include="..\..\src\EDEN_EC\CParticleEmitter.h" />
+    <ClInclude Include="..\..\src\EDEN_EC\CRigidBody.h" />
+    <ClInclude Include="..\..\src\EDEN_EC\CText.h" />
+    <ClInclude Include="..\..\src\EDEN_EC\Entity.h" />
+    <ClInclude Include="..\..\src\EDEN_EC\Hito1Prueba.h" />
+    <ClInclude Include="..\..\src\EDEN_EC\Scene.h" />
+    <ClInclude Include="..\..\src\EDEN_EC\Transform.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\EDEN_EC\CAnimator.cpp" />
+    <ClCompile Include="..\..\src\EDEN_EC\CAudioEmitter.cpp" />
+    <ClCompile Include="..\..\src\EDEN_EC\CAudioListener.cpp" />
+    <ClCompile Include="..\..\src\EDEN_EC\CBar.cpp" />
+    <ClCompile Include="..\..\src\EDEN_EC\CButton.cpp" />
+    <ClCompile Include="..\..\src\EDEN_EC\CCamera.cpp" />
+    <ClCompile Include="..\..\src\EDEN_EC\CCursor.cpp" />
+    <ClCompile Include="..\..\src\EDEN_EC\CIMage.cpp" />
+    <ClCompile Include="..\..\src\EDEN_EC\CLight.cpp" />
+    <ClCompile Include="..\..\src\EDEN_EC\CLuaBehaviour.cpp" />
+    <ClCompile Include="..\..\src\EDEN_EC\CMeshRenderer.cpp" />
+    <ClCompile Include="..\..\src\EDEN_EC\Component.cpp" />
+    <ClCompile Include="..\..\src\EDEN_EC\CParticleEmitter.cpp" />
+    <ClCompile Include="..\..\src\EDEN_EC\CRigidBody.cpp" />
+    <ClCompile Include="..\..\src\EDEN_EC\CText.cpp" />
+    <ClCompile Include="..\..\src\EDEN_EC\Entity.cpp" />
+    <ClCompile Include="..\..\src\EDEN_EC\Hito1Prueba.cpp" />
+    <ClCompile Include="..\..\src\EDEN_EC\Scene.cpp" />
+    <ClCompile Include="..\..\src\EDEN_EC\Transform.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{8cd86491-e6e3-4225-9be0-f67da80e059a}</ProjectGuid>
+    <RootNamespace>EDENEC</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(ProjectDir)..\..\lib\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)..\..\temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)_d</TargetName>
+    <PublicIncludeDirectories>$(ProjectDir)..\..\dependencies\LuaBridge\Source\;$(ProjectDir)..\..\dependencies\Lua\src\</PublicIncludeDirectories>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(ProjectDir)..\..\lib\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)..\..\temp\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
+    <PublicIncludeDirectories>$(ProjectDir)..\..\dependencies\LuaBridge\Source\;$(ProjectDir)..\..\dependencies\Lua\src\</PublicIncludeDirectories>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>EDEN_EXPORTS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\src\EDEN_Input\;$(ProjectDir)..\..\src\EDEN_Export\;$(ProjectDir)..\..\src\EDEN_Utils\;$(ProjectDir)..\..\src\EDEN_Managers\;$(ProjectDir)..\..\src\EDEN_Script\;$(ProjectDir)..\..\src\EDEN_Render\;$(ProjectDir)..\..\src\EDEN_Physics\;$(ProjectDir)..\..\src\EDEN_Audio\;$(ProjectDir)..\..\dependencies\Lua\src\src\;$(ProjectDir)..\..\dependencies\LuaBridge\Source\LuaBridge\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>EDEN_EXPORTS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\src\EDEN_Input\;$(ProjectDir)..\..\src\EDEN_Export\;$(ProjectDir)..\..\src\EDEN_Utils\;$(ProjectDir)..\..\src\EDEN_Managers\;$(ProjectDir)..\..\src\EDEN_Script\;$(ProjectDir)..\..\src\EDEN_Render\;$(ProjectDir)..\..\src\EDEN_Physics\;$(ProjectDir)..\..\src\EDEN_Audio\;$(ProjectDir)..\..\dependencies\Lua\src\src\;$(ProjectDir)..\..\dependencies\LuaBridge\Source\LuaBridge\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

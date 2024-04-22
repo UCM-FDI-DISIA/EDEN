@@ -9,6 +9,8 @@
 #include <BulletCollision/CollisionDispatch/btCollisionWorld.h>
 #pragma warning(pop)
 
+#include "defs.h"
+
 namespace eden_ec {
 	class Entity;
 	class CRigidBody;
@@ -18,7 +20,7 @@ namespace physics_wrapper {
 	class RigidBody;
 
 	/// @brief Clase para hacer callbacks de colisiones
-	class CollisionCallback : public btCollisionWorld::ContactResultCallback
+	class EDEN_API CollisionCallback : public btCollisionWorld::ContactResultCallback
 	{
 	public:
 		CollisionCallback(RigidBody* rigidBody);

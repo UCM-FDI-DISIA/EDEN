@@ -42,8 +42,8 @@ if !COMPILE! equ 1 (
     :: Generamos con CMake a partir de la carpeta con el Src de SDL la solución de VSC++ con las tags correspondientes
     cmake -A %PLATFORM% %COMPILEDIR%
     :: Compilamos SDL tanto en Debug como en Release (solo hemos creado para x64, no tenemos que preocuparnos por Win32)
-    msbuild "SDL2.sln" /p:configuration=Debug
-    msbuild "SDL2.sln" /p:configuration=Release
+    msbuild "SDL2.sln" /p:configuration=Debug /p:Platform=x64
+    msbuild "SDL2.sln" /p:configuration=Release /p:Platform=x64
     :: Movemos las DLLs de SDL generadas a la carpeta con ruta DLLFOLDERS
     :: /y suprime la solicitud para confirmar que desea sobrescribir un archivo de destino existente.
     :: /s copia directorios y subdirectorios, a menos que estén vacíos.

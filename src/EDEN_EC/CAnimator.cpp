@@ -61,3 +61,7 @@ void eden_ec::CAnimator::SetOnAnimEnd(std::string animID, std::string endAnimID)
 std::string eden_ec::CAnimator::GetCurrentAnim() {
 	return _animatorWrapper->GetCurrentAnim();
 }
+
+bool eden_ec::CAnimator::HasEnded() {
+	return _animatorWrapper->HasEnded();
+}

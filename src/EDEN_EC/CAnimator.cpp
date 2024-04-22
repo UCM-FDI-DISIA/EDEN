@@ -62,6 +62,6 @@ std::string eden_ec::CAnimator::GetCurrentAnim() {
 	return _animatorWrapper->GetCurrentAnim();
 }
 
-bool eden_ec::CAnimator::HasEnded() {
-	return _animatorWrapper->HasEnded();
+bool eden_ec::CAnimator::IsPlaying(std::string animID) {
+	return _animatorWrapper->IsPlaying(animID);
 }

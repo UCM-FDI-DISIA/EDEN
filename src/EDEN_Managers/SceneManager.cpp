@@ -156,16 +156,7 @@ namespace eden {
 	}
 
 	void SceneManager::Update(float dt) {
-
-		/*auto it = _scenes.end();
-		it--;
-		for (; it >= _scenes.begin();) {
-			if ((*it)->GetToRender()) (*it)->Render();
-			if (it > _scenes.begin()) --it;
-			else break;
-		}*/
-
-		if (_scenes.size() > 0) 
+		if (_scenes.size() > 0)
 			_scenes.front()->Update(dt);
 
 
@@ -175,16 +166,23 @@ namespace eden {
 			else if (_scenes.size() > 0) newScene = _scenes.front()->GetSceneID();
 		}
 
-		for (auto it = _scenesToDestroy.begin(); it != _scenesToDestroy.end();) {	
+		for (auto it = _scenesToDestroy.begin(); it != _scenesToDestroy.end();) {
 			std::string prevScene = (*it)->GetSceneID();
 
-			physics_manager::PhysicsManager::Instance()->RemovePhysicsScene(prevScene, _activeScene->GetSceneID());
+			physics_manager::PhysicsManager::Instance()->RemovePhysicsScene(prevScene, newScene);
 			delete (*it);
 			it = _scenesToDestroy.erase(it);
-			eden_render::RenderManager::Instance()->RemoveRenderScene(prevScene, _activeScene->GetSceneID());
+			eden_render::RenderManager::Instance()->RemoveRenderScene(prevScene, newScene);
 		}
 
-		if(_scenes.size() <= 0)
+		for (auto it = _scenesToAdd.begin(); it != _scenesToAdd.end();) {
+			if (_currentScenes.find(*it) == _currentScenes.end()) {
+				CreateScene(*it);
+			}
+			it = _scenesToAdd.erase(it);
+		}
+
+		if (_scenes.size() <= 0)
 			eden_error::ErrorHandler::Instance()->Exception("scene deque empty", "SceneManager ERROR in line 188, scene deque empty");
 	}
 }

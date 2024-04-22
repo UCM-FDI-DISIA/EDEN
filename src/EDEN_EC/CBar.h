@@ -45,10 +45,10 @@ namespace eden_ec {
 		/// @param p Porcentaje nuevo a cambiar
 		void SetBarPercentage(float p);
 
-		/// @brief M�todo que devuelve el porcentaje de la barra
-		float GetBarPercentage();
+		/// @brief Metodo que devuelve el porcentaje de la barra
+		float GetBarPercentage() const;
 
-		/// @brief Definicion de metodo est�tico GetID necesario para construcci�n de componentes
+		/// @brief Definicion de metodo estatico GetID necesario para construccion de componentes
 		static std::string GetID() { return _id; }
 	protected:
 		const static std::string _id;

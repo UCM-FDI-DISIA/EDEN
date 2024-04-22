@@ -23,7 +23,7 @@ eden_audio::AudioManager::~AudioManager() {
 }
 
 void eden_audio::AudioManager::LoadResources() {
-	std::set<std::string> audioRoutes = eden_resources::ResourcesManager::Instance()->GetRutesAudios();
+	std::set<std::string> audioRoutes = eden_resources::ResourcesManager::Instance()->GetRoutesAudios();
 	std::set<std::string> audios = eden_resources::ResourcesManager::Instance()->GetAudios();
 	auto ot = audioRoutes.begin();
 	for (auto it = audios.begin(); it != audios.end(); it++) {

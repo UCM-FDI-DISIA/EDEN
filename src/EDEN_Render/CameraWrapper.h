@@ -69,8 +69,9 @@ namespace render_wrapper {
 		/// @return Vector3 con la posicion de la camara
 		eden_utils::Vector3 GetCameraPosition() const;
 		
-		/// @brief 
-		void SetActiveCamera();
+		/// @brief Settea la camara activa
+		void SetActiveCamera() const;
+
 	private:
 		/// @brief String que contiene el nombre de la entidad a la que se le va a asociar la camara (solo para su uso en llamadas a nodos)
 		std::string _entityID;

@@ -46,6 +46,7 @@ void eden_ec::CBar::Create(std::string overlayName, float xPos, float yPos,
 	CreateImage(overlayName, (float)xPos, (float)yPos, (float)width, (float)height, texture, depth);
 	_totalWidth = (float)width;
 }
+
 eden_ec::CBar::~CBar() {}
 
 void eden_ec::CBar::Init(eden_script::ComponentArguments* args) {
@@ -69,7 +70,7 @@ void eden_ec::CBar::SetBarPercentage(float p)
 	SetDimensions(_totalWidth * (p / 100), _oHeight);
 }
 
-float eden_ec::CBar::GetBarPercentage()
+float eden_ec::CBar::GetBarPercentage() const
 {
 	return _percentage;
 }

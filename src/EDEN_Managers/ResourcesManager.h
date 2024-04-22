@@ -39,7 +39,7 @@ namespace eden_resources {
         /// @brief Destructora
         EDEN_API ~ResourcesManager();
 
-        /// @brief M�todo que comprueba si un archivo existe
+        /// @brief Metodo que comprueba si un archivo existe
         EDEN_API bool FileExist(std::string name, Resources res);
         
         EDEN_API std::set<std::string> GetMaterials();
@@ -48,24 +48,24 @@ namespace eden_resources {
 
         EDEN_API std::set<std::string> GetFonts();
 
-        EDEN_API std::set<std::string> GetRutesMaterials();
+        EDEN_API std::set<std::string> GetRoutesMaterials();
 
-        EDEN_API std::set<std::string> GetRutesAudios();
+        EDEN_API std::set<std::string> GetRoutesAudios();
 
-        EDEN_API std::set<std::string> GetRutesFonts();
+        EDEN_API std::set<std::string> GetRoutesFonts();
 
         EDEN_API static ResourcesManager* getInstance();
 
     private:
 
-        /// @brief M�todo que guarda todos los archivos existentes de unas direcciones concretas
+        /// @brief Metodo que guarda todos los archivos existentes de unas direcciones concretas
         EDEN_API void LoadResources();
 
         /// @brief Lista de todos recursos
-        std::vector<std::set<std::string>>_resourcesGeneral;
+        std::vector<std::set<std::string>> _resourcesGeneral;
 
         /// @brief Lista de todos recursos
-        std::vector<std::set<std::string>>_resourcesRutesGeneral;
+        std::vector<std::set<std::string>> _resourcesRutesGeneral;
     };
 }
 

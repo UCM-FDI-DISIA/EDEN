@@ -67,14 +67,14 @@ std::set<std::string>  eden_resources::ResourcesManager::GetFonts() {
 	return _resourcesGeneral[Resources::Fonts];
 }
 
-std::set<std::string>  eden_resources::ResourcesManager::GetRutesMaterials() {
+std::set<std::string>  eden_resources::ResourcesManager::GetRoutesMaterials() {
 	return _resourcesRutesGeneral[Resources::Materials];
 }
 
-std::set<std::string>  eden_resources::ResourcesManager::GetRutesAudios() {
+std::set<std::string>  eden_resources::ResourcesManager::GetRoutesAudios() {
 	return _resourcesRutesGeneral[Resources::Audio];
 }
 
-std::set<std::string>  eden_resources::ResourcesManager::GetRutesFonts() {
+std::set<std::string>  eden_resources::ResourcesManager::GetRoutesFonts() {
 	return _resourcesRutesGeneral[Resources::Fonts];
 }

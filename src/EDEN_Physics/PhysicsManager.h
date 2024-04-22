@@ -10,6 +10,7 @@
 
 #define DEFAULT_GROUP "DEFAULT"
 #define RAYCAST_GROUP "RAYCAST"
+#define SCENEID_NULL ""
 #define COLLISIONMASK_NULL ""
 
 class btDynamicsWorld;
@@ -31,6 +32,7 @@ namespace eden {
 
 namespace physics_wrapper {
 	class RigidBody;
+	class RayCast;
 	class CollisionLayer;
 }
 
@@ -92,6 +94,7 @@ namespace physics_manager {
 	{
 		friend Singleton<PhysicsManager>;
 		friend physics_wrapper::RigidBody;
+		friend physics_wrapper::RayCast;
 		friend eden::Scene;
 		friend eden::SceneManager;
 
@@ -153,7 +156,7 @@ namespace physics_manager {
 
 		/// @brief Devuelve el mundo
 		/// @return Mundo de Bullet
-		btDynamicsWorld* GetWorld(std::string sceneID);
+		btDynamicsWorld* GetWorld(std::string sceneID = SCENEID_NULL);
 
 		/// @brief Quita colision a una capa con otra capa (por defecto todas las capas colisionan con todas)
 		/// @param layerName Nombre de la capa a la que le se quiere quitar colision

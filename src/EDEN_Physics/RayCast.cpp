@@ -18,8 +18,9 @@ physics_wrapper::RayCast::RayCast(btDynamicsWorld* worldRef, btIDebugDraw* drawe
 	_debugDrawer = drawerRef;
 }
 
-const physics_wrapper::RayCastHitResult physics_wrapper::RayCast::SingleHitRayCast(const eden_utils::Vector3 rayOrigin, const eden_utils::Vector3 rayDestiny, const bool drawDebugLine, const eden_utils::Vector3 debugLineColor) const
+const physics_wrapper::RayCastHitResult physics_wrapper::RayCast::SingleHitRayCast(const eden_utils::Vector3 rayOrigin, const eden_utils::Vector3 rayDestiny, const bool drawDebugLine, const eden_utils::Vector3 debugLineColor) 
 {
+	_dynamicWorldRef = physics_manager::PhysicsManager::getInstance()->GetWorld();
 	btVector3 origin(rayOrigin.GetX(), rayOrigin.GetY(), rayOrigin.GetZ());
 	btVector3 destiny(rayDestiny.GetX(), rayDestiny.GetY(), rayDestiny.GetZ());
 	btCollisionWorld::ClosestRayResultCallback result(origin, destiny);
@@ -35,8 +36,9 @@ const physics_wrapper::RayCastHitResult physics_wrapper::RayCast::SingleHitRayCa
 	return hitResult;
 }
 
-const std::vector<physics_wrapper::RayCastHitResult> physics_wrapper::RayCast::MultipleHitRayCast(const eden_utils::Vector3 rayOrigin, const eden_utils::Vector3 rayDestiny, const bool drawDebugLine, const eden_utils::Vector3 debugLineColor) const
+const std::vector<physics_wrapper::RayCastHitResult> physics_wrapper::RayCast::MultipleHitRayCast(const eden_utils::Vector3 rayOrigin, const eden_utils::Vector3 rayDestiny, const bool drawDebugLine, const eden_utils::Vector3 debugLineColor) 
 {
+	_dynamicWorldRef = physics_manager::PhysicsManager::getInstance()->GetWorld();
 	btVector3 origin(rayOrigin.GetX(), rayOrigin.GetY(), rayOrigin.GetZ());
 	btVector3 destiny(rayDestiny.GetX(), rayDestiny.GetY(), rayDestiny.GetZ());
 	btCollisionWorld::AllHitsRayResultCallback result(origin, destiny);
@@ -59,8 +61,9 @@ const std::vector<physics_wrapper::RayCastHitResult> physics_wrapper::RayCast::M
 	return multipleHitResult;
 }
 
-const std::vector<physics_wrapper::RayCastHitResult> physics_wrapper::RayCast::MultipleHitRayCast(const eden_utils::Vector3 rayOrigin, const eden_utils::Vector3 rayDestiny, const char* layerName, const bool drawDebugLine, const eden_utils::Vector3 debugLineColor) const
+const std::vector<physics_wrapper::RayCastHitResult> physics_wrapper::RayCast::MultipleHitRayCast(const eden_utils::Vector3 rayOrigin, const eden_utils::Vector3 rayDestiny, const char* layerName, const bool drawDebugLine, const eden_utils::Vector3 debugLineColor) 
 {
+	_dynamicWorldRef = physics_manager::PhysicsManager::getInstance()->GetWorld();
 	btVector3 origin(rayOrigin.GetX(), rayOrigin.GetY(), rayOrigin.GetZ());
 	btVector3 destiny(rayDestiny.GetX(), rayDestiny.GetY(), rayDestiny.GetZ());
 	btCollisionWorld::AllHitsRayResultCallback result(origin, destiny);
@@ -85,7 +88,7 @@ const std::vector<physics_wrapper::RayCastHitResult> physics_wrapper::RayCast::M
 	return multipleHitResult;
 }
 
-const std::vector<physics_wrapper::RayCastHitResult> physics_wrapper::RayCast::MultipleHitRayCast(const eden_utils::Vector3 rayOrigin, const eden_utils::Vector3 rayDestiny, const std::string layerName, const bool drawDebugLine, const eden_utils::Vector3 debugLineColor) const
+const std::vector<physics_wrapper::RayCastHitResult> physics_wrapper::RayCast::MultipleHitRayCast(const eden_utils::Vector3 rayOrigin, const eden_utils::Vector3 rayDestiny, const std::string layerName, const bool drawDebugLine, const eden_utils::Vector3 debugLineColor)
 {
 	return MultipleHitRayCast(rayOrigin, rayDestiny, layerName.c_str(), drawDebugLine, debugLineColor);
 }

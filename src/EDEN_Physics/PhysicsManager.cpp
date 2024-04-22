@@ -101,6 +101,9 @@ physics_manager::PhysicsManager::PhysicsManager()
 
 btDynamicsWorld* physics_manager::PhysicsManager::GetWorld(std::string sceneID)
 {
+	if (sceneID == SCENEID_NULL)
+		return _currentPhysicScene;
+
 	auto sceneIt = _physicsScenes.find(sceneID);
 	if (sceneIt != _physicsScenes.end())
 	{

@@ -43,7 +43,7 @@ namespace physics_wrapper {
 #endif
 
 	public:
-		enum RigidBodyType { DYNAMIC, KINEMATIC, STATIC };
+		enum RigidBodyType { DYNAMIC, KINEMATIC, STATIC, TRIGGER };
 
 		/// @brief Tipo de forma que se puede crear
 		enum ShapeType { BOX, SPHERE, CAPSULE, CYLINDER };

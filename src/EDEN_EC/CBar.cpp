@@ -12,6 +12,7 @@ eden_ec::CBar::CBar(std::string overlayName, float xPos, float yPos,
 	float width, float height, std::string texture,
 	int depth) {
 
+	if(_ent!=nullptr)Register(_ent->GetSceneID());
 	Create(overlayName, xPos, yPos, width, height, texture, depth);
 }
 
@@ -19,7 +20,6 @@ void eden_ec::CBar::Create(std::string overlayName, float xPos, float yPos,
 	float width, float height, std::string texture,
 	int depth)
 {
-	Register(_ent->GetSceneID());
 	auto render = eden_render::RenderManager::Instance();
 	int w = render->GetWindowWidth();
 	int h = render->GetWindowHeight();
@@ -57,7 +57,7 @@ void eden_ec::CBar::Init(eden_script::ComponentArguments* args) {
 
 	Create(args->GetValueToString("OverlayName"), float(xPos), float(yPos), float(width), float(height),
 		args->GetValueToString("Texture"), args->GetValueToInt("Depth"));
-
+	Register(_ent->GetSceneID());
 }
 
 void eden_ec::CBar::SetBarPercentage(float p)

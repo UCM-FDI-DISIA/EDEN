@@ -237,8 +237,8 @@ NativeWindowPair eden_render::RenderManager::CreateNewWindow(const std::string& 
 	// (horizontal, vertical)
 	_fullW = desktop.right;
 	_fullH = desktop.bottom;
-	w = _fullW;
-	h = _fullH;
+	w = _defWindowSize.first;
+	h = _defWindowSize.second;
 	_isFullScreen = true;
 	miscParams["FSAA"] = ropts["FSAA"].currentValue;
 	miscParams["vsync"] = ropts["VSync"].currentValue;
@@ -267,6 +267,7 @@ NativeWindowPair eden_render::RenderManager::CreateNewWindow(const std::string& 
 #endif
 
 	_window.render = _root->createRenderWindow(name, w, h, false, &miscParams);
+
 	return _window;
 }
 

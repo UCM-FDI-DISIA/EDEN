@@ -70,8 +70,8 @@ namespace eden_render
 		friend eden::SceneManager;
 		
 		/// @brief Destructora
-		~RenderManager() override;
-
+		EDEN_API ~RenderManager() override;
+		
 		/// @brief Ejecuta un ciclo de renderizado (ventana y raiz)
 		void Update();
 
@@ -81,11 +81,11 @@ namespace eden_render
 
 		/// @brief Devuelve el ancho de la ventana
 		/// @return Devuelve el ancho de la ventana 
-		int GetWindowWidth();
+		EDEN_API int GetWindowWidth();
 
 		/// @brief Devuelve el alto de la ventana
 		/// @return Devuelve el alto de la ventana 
-		int GetWindowHeight();
+		EDEN_API int GetWindowHeight();
 		
 		/// @brief Actualiza todas las posiciones de la escena con su componente Transform
 		/// @param sceneID Identificador de la escena
@@ -94,39 +94,39 @@ namespace eden_render
 		/// @brief Aniade una entidad que tenga componentes de renderizado (CMeshRenderer, CCamera, ...) a una escena en concreto
 		/// para actualizar su posicion
 		/// @param ent Entidad cuya posicion va a actualizarse
-		void AddRenderEntity(eden_ec::Entity* ent);
+		EDEN_API void AddRenderEntity(eden_ec::Entity* ent);
 
 		/// @brief Quita una entidad de una escena para dejar de actualizar su posicion
 		/// @param ent Entidad que se va a quitar
-		void RemoveRenderEntity(eden_ec::Entity* ent);
+		EDEN_API void RemoveRenderEntity(eden_ec::Entity* ent);
 
 		/// @brief Funcion que deberia llamarse en el momento en el que la ventana cambia de tamanio
-		void ResizedWindow();
+		EDEN_API void ResizedWindow();
 
 		/// @brief Metodo que intercambia el modo de pantalla entre "pantalla completa" y tamanio elegido
-		void FullScreen();
+		EDEN_API void FullScreen();
 
 		/// @brief Metodo que setea las resoluciones
-		void SetResolutions(std::vector<std::pair<int, int>> resolutions);
+		EDEN_API void SetResolutions(std::vector<std::pair<int, int>> resolutions);
 
 		/// @brief Metodo que devuelve la resolución actual
-		std::pair<int, int> GetResolution();
+		EDEN_API std::pair<int, int> GetResolution();
 
 		/// @brief Metodo que cambia la resolucin actual
-		void ChangeResolution();
+		EDEN_API void ChangeResolution();
 
 		/// @brief Cambia a la siguiente resolucion aniadida
-		void NextResolutuion();
+		EDEN_API void NextResolutuion();
 
 		/// @brief Cambia a la anterior resolucion aniadida
-		void PreviousResolution();
+		EDEN_API void PreviousResolution();
 
 		/// @brief Devuelve la camara de la escena actual. Si no existe la crea
 		/// @param ent Entidad a la que se va a aniadir la camara
 		/// @return Devuelve la camara de la escena actual. Si no existe la crea
-		render_wrapper::CameraWrapper* GetCamera(eden_ec::Entity* ent);
+		EDEN_API render_wrapper::CameraWrapper* GetCamera(eden_ec::Entity* ent);
 
-		static RenderManager* getInstance();
+		EDEN_API static RenderManager* getInstance();
 
 	protected:
 		/// @brief Devuelve el manager de Ogre actual

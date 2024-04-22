@@ -42,9 +42,6 @@
     <ClInclude Include="..\..\src\EDEN_EC\CLight.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\EDEN_EC\CLuaBehaviour.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\EDEN_EC\CMeshRenderer.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
@@ -70,6 +67,9 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\EDEN_EC\CBar.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\EDEN_EC\CLuaBehaviour.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

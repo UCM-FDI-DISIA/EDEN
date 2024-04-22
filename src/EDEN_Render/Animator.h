@@ -53,6 +53,9 @@ namespace render_wrapper {
 		/// @param endID Identificador de la animacion final
 		/// @param isLooping Booleano que indica si la animacion correspondiente Loopea o no
 		void RegisterAnim(std::string ID, std::string oldAnimName, std::string endID, bool isLooping);
+		/// @brief Permite saber si ha acabado la animacion 
+		/// @return bool que indica si la animacion actual se esta reproduciendo o ha acabado
+		bool HasEnded();
 
 
 	private:

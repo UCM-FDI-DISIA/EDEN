@@ -47,6 +47,9 @@ void render_wrapper::Animator::SetOnAnimEnd(std::string animID, std::string endA
 	_anims.at(animID).second = endAnimID;
 }
 
+bool render_wrapper::Animator::HasEnded() {
+	return _currentAnim->hasEnded();
+}
 void render_wrapper::Animator::UpdateAnim(float dt) {
 	if (_currentAnim != nullptr) {
 		_currentAnim->addTime(dt);

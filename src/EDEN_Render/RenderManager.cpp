@@ -104,9 +104,13 @@ void eden_render::RenderManager::InitManager(const std::string& appName)
 
 }
 
-Ogre::SceneManager* eden_render::RenderManager::GetOgreSceneManager()
+Ogre::SceneManager* eden_render::RenderManager::GetOgreSceneManager(std::string sceneID)
 {
-	return _currentRenderScene->_renderScene;
+	auto it = _renderScenes.find(sceneID);
+	if (it != _renderScenes.end())
+		return it->second->GetRenderScene();
+	else
+		return nullptr;
 }
 
 void eden_render::RenderManager::Update()
@@ -509,6 +513,19 @@ void eden_render::RenderManager::CreateRenderScene(std::string sceneID)
 
 }
 
+void eden_render::RenderManager::SetRenderScene(std::string sceneID)
+{
+	auto sceneIt = _renderScenes.find(sceneID);
+	if (sceneIt != _renderScenes.end())
+	{
+		_currentRenderScene = sceneIt->second;
+		_shaderGenerator->addSceneManager(_currentRenderScene->_renderScene);
+		if (sceneIt->second->_cameraWrapper != nullptr) sceneIt->second->_cameraWrapper->SetActiveCamera();
+		eden_canvas::Canvas::Instance()->ShowScene(_currentRenderScene->_sceneID);
+		ShowEntities(_currentRenderScene->_sceneID, true);
+	}
+}
+
 void eden_render::RenderManager::RemoveRenderScene(std::string sceneToRemoveID, std::string newCurrentSceneID)
 {
 	auto sceneIt = _renderScenes.find(sceneToRemoveID);
@@ -521,7 +538,7 @@ void eden_render::RenderManager::RemoveRenderScene(std::string sceneToRemoveID, 
 		eden_canvas::Canvas::Instance()->removeScene(sceneToRemoveID);
 
 	}
-	CreateRenderScene(newCurrentSceneID);
+	SetRenderScene(newCurrentSceneID);
 }
 
 void eden_render::RenderManager::ShowEntities(std::string sceneID, bool show)

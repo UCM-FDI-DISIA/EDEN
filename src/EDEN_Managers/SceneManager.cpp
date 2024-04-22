@@ -161,9 +161,8 @@ namespace eden {
 
 
 		std::string newScene = " ";
-		if (_scenesToDestroy.size() > 0) {
-			if (_scenesToAdd.size() > 0) newScene = (*(--_scenesToAdd.end()));
-			else if (_scenes.size() > 0) newScene = _scenes.front()->GetSceneID();
+		if (_scenesToDestroy.size() > 0 && _scenes.size() > 0) {
+			newScene = _scenes.front()->GetSceneID();
 		}
 
 		for (auto it = _scenesToDestroy.begin(); it != _scenesToDestroy.end();) {

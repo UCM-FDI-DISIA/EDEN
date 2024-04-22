@@ -174,6 +174,8 @@ namespace physics_manager {
 		/// @param sceneID ID de la escena que se quiere crear
 		void CreatePhysicsScene(std::string sceneID);
 
+		void SetPhysicsScene(std::string sceneID);
+
 		/// @brief Borra la escena sceneToRemoveID si existe. Luego crea una escena con ID newCurrentSceneID
 		/// @param sceneToRemoveID ID de la escena que se quiere borrar
 		/// @param newCurrentSceneID ID de la escena que se quiere crear

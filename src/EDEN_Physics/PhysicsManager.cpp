@@ -241,6 +241,15 @@ void physics_manager::PhysicsManager::CreatePhysicsScene(std::string sceneID)
 	}
 }
 
+void physics_manager::PhysicsManager::SetPhysicsScene(std::string sceneID)
+{
+	auto sceneIt = _physicsScenes.find(sceneID);
+	if (sceneIt != _physicsScenes.end())
+	{
+		_currentPhysicScene = sceneIt->second->GetWorld();
+	}
+}
+
 void physics_manager::PhysicsManager::RemovePhysicsScene(std::string sceneToRemoveID, std::string newCurrentSceneID)
 {
 	auto sceneIt = _physicsScenes.find(sceneToRemoveID);
@@ -254,7 +263,7 @@ void physics_manager::PhysicsManager::RemovePhysicsScene(std::string sceneToRemo
 		std::string message = "Tried to delete scene: " + sceneToRemoveID + " But such scene does not exist\n";
 		eden_error::ErrorHandler::Instance()->Warning(message.c_str());
 	}
-	CreatePhysicsScene(newCurrentSceneID);
+	SetPhysicsScene(newCurrentSceneID);
 }
 
 void physics_manager::PhysicsManager::InitLayers(std::string sceneID, std::unordered_map<std::string, std::vector<std::string>>& collisionInfo)

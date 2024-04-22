@@ -131,7 +131,7 @@ namespace eden_render
 	protected:
 		/// @brief Devuelve el manager de Ogre actual
 		/// @return Devuelve el manager de Ogre actual 
-		Ogre::SceneManager* GetOgreSceneManager();
+		Ogre::SceneManager* GetOgreSceneManager(std::string sceneID);
 
 	private:
 		/// @brief Inicializa la libreria de renderizado,
@@ -182,6 +182,8 @@ namespace eden_render
 		/// @brief Crea una nueva escena. Si existe, actualiza la escena actual 
 		/// @param sceneID ID de la escena que se quiere crear
 		void CreateRenderScene(std::string sceneID);
+
+		void SetRenderScene(std::string sceneID);
 
 		/// @brief Borra la escena sceneToRemoveID si existe. Luego crea una escena con ID newCurrentSceneID
 		/// @param sceneToRemoveID ID de la escena que se quiere borrar

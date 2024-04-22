@@ -29,11 +29,14 @@ eden_debug::DebugDrawer::~DebugDrawer() {
 
 void eden_debug::DebugDrawer::clearLines() {
 
-	Ogre::SceneManager* ogreSM = eden_render::RenderManager::Instance()->GetOgreSceneManager();
+	Ogre::SceneManager* ogreSM = eden_render::RenderManager::Instance()->GetOgreSceneManager(_sceneID);
 
-	for (auto& line : _lines) {
-		if (line != nullptr)
-			ogreSM->destroyMovableObject(line);
+	if (ogreSM != nullptr) {
+		for (auto& line : _lines) {
+			if (line != nullptr)
+				ogreSM->destroyMovableObject(line);
+		}
+
 	}
 
 	_lines.clear();
@@ -41,7 +44,7 @@ void eden_debug::DebugDrawer::clearLines() {
 
 void eden_debug::DebugDrawer::drawLine(const btVector3& origin, const btVector3& end, const btVector3& color) {
 	
-	Ogre::ManualObject* line = eden_render::RenderManager::Instance()->GetOgreSceneManager()->createManualObject();
+	Ogre::ManualObject* line = eden_render::RenderManager::Instance()->GetOgreSceneManager(_sceneID)->createManualObject();
 
 	line->begin("BaseWhite", Ogre::RenderOperation::OT_LINE_LIST);
 	line->position(origin.x(), origin.y(), origin.z());

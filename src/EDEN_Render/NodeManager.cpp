@@ -110,7 +110,7 @@ void render_wrapper::NodeManager::RemoveSceneObject(const std::string id, const 
 	}
 	else {
 		auto auxNode = aux->second.find(id);
-		if (auxNode == aux->second.end()) {
+		if (auxNode != aux->second.end()) {
 			auxNode->second->removeAndDestroyAllChildren();
 			eden_render::RenderManager::Instance()->_currentRenderScene->_renderScene->destroySceneNode(auxNode->second);
 			_sceneObjectsMap.erase(aux);

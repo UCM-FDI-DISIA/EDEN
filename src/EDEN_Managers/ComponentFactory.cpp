@@ -2,6 +2,10 @@
 #include "ComponentFactory.h"
 #include "Component.h"
 
+eden_ec::ComponentFactory* eden_ec::ComponentFactory::getInstance() {
+	return static_cast<ComponentFactory*>(Instance());
+}
+
 bool eden_ec::ComponentFactory::ComponentExists(std::string id) {
 	return _currentComponents.count(id);
 }

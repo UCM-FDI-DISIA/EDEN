@@ -109,10 +109,10 @@ void eden_export::RunEDEN()
 			throw std::domain_error("aqui no hay dll");
 		}
 		else {
-			typedef void (*CompFunc)(eden_ec::ComponentFactory*);
+			typedef void (*CompFunc)();
 			CompFunc RegisterGameComponents = reinterpret_cast<CompFunc>(GetProcAddress(game, "RegisterComponents"));
 
-			typedef void (*SceneFunc)(eden::SceneManager*);
+			typedef void (*SceneFunc)();
 			SceneFunc LoadScene = reinterpret_cast<SceneFunc>(GetProcAddress(game, "LoadScene"));
 
 			if (LoadScene == NULL) {
@@ -127,12 +127,12 @@ void eden_export::RunEDEN()
 				// Registro de componentes
 				RegisterEngineComponents();
 				eden_ec::ComponentFactory* factory = eden_ec::ComponentFactory::Instance();
-				RegisterGameComponents(factory);
+				RegisterGameComponents();
 
 				master = eden::Master::Instance(); // creaci�n instancia master
 				scnManager = eden::SceneManager::Instance(); // creaci�n instancia de gestor de escenas
 				eden_input::InputManager::Instance();
-				LoadScene(scnManager); // carga de escena del juego
+				LoadScene(); // carga de escena del juego
 				master->Loop(); // bucle de juego
 			}
 		}

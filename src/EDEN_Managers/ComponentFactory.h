@@ -53,6 +53,9 @@ namespace eden_ec {
 		/// @param id Id del componente a crear
 		/// @return Componente creado
 		EDEN_API Component* CreateComponentByName(std::string id);
+
+		EDEN_API static ComponentFactory* getInstance();
+
 	private:
 		/// @brief Componentes registrados en la Factoria.
 		/// Son IDs de componentes asociadas a las constructoras por defecto de lo mismos.

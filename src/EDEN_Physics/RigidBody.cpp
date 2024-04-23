@@ -55,6 +55,9 @@ physics_wrapper::RigidBody::RigidBody(eden_ec::Entity* ent, const ShapeParameter
 		case DYNAMIC:
 			_rigidBody->setCollisionFlags(btCollisionObject::CF_DYNAMIC_OBJECT);
 			break;
+		case TRIGGER:
+			_rigidBody->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT | btCollisionObject::CF_NO_CONTACT_RESPONSE);
+			break;
 	}
 	
 	physics_manager::PhysicsManager* physicsManager = physics_manager::PhysicsManager::Instance();

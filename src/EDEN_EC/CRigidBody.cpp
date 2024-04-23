@@ -63,6 +63,7 @@ void eden_ec::CRigidBody::Init(eden_script::ComponentArguments* args) {
 	if (flag == "DYNAMIC") _type = physics_wrapper::RigidBody::DYNAMIC;
 	else if (flag == "STATIC") { _type = physics_wrapper::RigidBody::STATIC; _mass = 0; }
 	else if (flag == "KINEMATIC") _type = physics_wrapper::RigidBody::KINEMATIC;
+	else if (flag == "TRIGGER") _type = physics_wrapper::RigidBody::TRIGGER;
 
 	_layer = args->GetValueToString("CollisionLayer");
 }

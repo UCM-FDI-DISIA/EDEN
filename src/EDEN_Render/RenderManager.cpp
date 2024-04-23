@@ -1,5 +1,8 @@
 #define _CRTDBG_MAP_ALLOC
 #include <iostream>
+#include "wtypes.h"
+#include <cmath>
+#include <map>
 
 // Ogre
 #pragma warning(push)
@@ -51,10 +54,11 @@ eden_render::RenderManager* eden_render::RenderManager::getInstance() {
 eden_render::RenderManager::RenderManager(const std::string& appName)
 {
 	_appName = appName; // asigna el nombre de la ventana
-	_root = nullptr; // pone la ra�z a nulo
-	_firstRun = true; // activa la primer inicializaci�n
+	_root = nullptr; // pone la raiz a nulo
 	_shaderGenerator = nullptr; // y mantiene el generador de sombreado a nulo
+	_resolutions.push_back(_defWindowSize); // setea la resolución default 
 
+	
 	try
 	{
 		InitManager(appName);
@@ -75,11 +79,11 @@ eden_render::RenderManager::~RenderManager()
 
 void eden_render::RenderManager::InitManager(const std::string& appName)
 {
-	_appName = appName; // renombra el nombre de aplicaci�n
+	_appName = appName; // renombra el nombre de aplicacion
 	_fsLayer = new Ogre::FileSystemLayer(_appName); // crea un nuevo sistema de archivos
 
-	InitializeLib(); // crea la raíz
-	Setup(); // y arranca la inicialización base
+	InitializeLib(); // crea la raiz
+	Setup(); // y arranca la inicializacion base
 
 	_overlaySys = new Ogre::OverlaySystem();
 	_currentRenderScene = nullptr;
@@ -100,14 +104,18 @@ void eden_render::RenderManager::InitManager(const std::string& appName)
 
 }
 
-Ogre::SceneManager* eden_render::RenderManager::GetOgreSceneManager()
+Ogre::SceneManager* eden_render::RenderManager::GetOgreSceneManager(std::string sceneID)
 {
-	return _currentRenderScene->_renderScene;
+	auto it = _renderScenes.find(sceneID);
+	if (it != _renderScenes.end())
+		return it->second->GetRenderScene();
+	else
+		return nullptr;
 }
 
 void eden_render::RenderManager::Update()
 {
-	_root->renderOneFrame(); // renderiza la ra�z de Ogre
+	_root->renderOneFrame(); // renderiza la raiz de Ogre
 	if (_resized) {
 		_resized = false;
 		eden_canvas::Canvas::Instance()->Resize();
@@ -135,7 +143,7 @@ void eden_render::RenderManager::CloseManager()
 
 		delete _overlaySys;
 		_overlaySys = nullptr;
-		delete _root; // borra la ra�z
+		delete _root; // borra la raiz
 		_root = nullptr; // y la pone a nulo
 
 	}
@@ -143,23 +151,23 @@ void eden_render::RenderManager::CloseManager()
 
 void eden_render::RenderManager::InitializeLib()
 {
-	std::string pluginsPath; // localizaci�n base de los plugins
+	std::string pluginsPath; // localizacion base de los plugins
 	std::string nameFile = "plugins.cfg";
-	pluginsPath = _fsLayer->getConfigFilePath(nameFile); // consigue la direcci�n gracias al sistema de archivos
+	pluginsPath = _fsLayer->getConfigFilePath(nameFile); // consigue la direccion gracias al sistema de archivos
 
 	if (!Ogre::FileSystemLayer::fileExists(pluginsPath)) { // si no existe el plugin -> excepción de Ogre
 		eden_error::ErrorHandler::Instance()->Exception("RenderManager ERROR in line 121", "failed finding file plugins.cfg. Searched on dir: " + pluginsPath + "\n");
 	}
-	_solutionPath = pluginsPath; // copia la direcci�n de los plugins
+	_solutionPath = pluginsPath; // copia la direccion de los plugins
 	_solutionPath.resize(_solutionPath.size() - nameFile.size()); // y la reajusta
 
-	// crea una nueva raíz en base a los plugins y la configuración base de Ogre
+	// crea una nueva raiz en base a los plugins y la configuracion base de Ogre
 	_root = new Ogre::Root(pluginsPath);
 
 	if (_root != nullptr)
 	{
-		_root->showConfigDialog(nullptr); // desactiva el diálogo de configuración de Ogre
-		_root->initialise(false); // desactiva la inicialización de la raíz de Ogre
+		_root->showConfigDialog(nullptr); // desactiva el dialogo de configuracion de Ogre
+		_root->initialise(false); // desactiva la inicializacion de la raíz de Ogre
 	}
 	else
 	{
@@ -185,7 +193,7 @@ void eden_render::RenderManager::Shutdown()
 void eden_render::RenderManager::Setup()
 {
 	CreateNewWindow(_appName); // crea la ventana
-	SetWindowGrab(false); // permite que el ratón se pueda mover fuera de la ventana
+	SetWindowGrab(false); // permite que el raton se pueda mover fuera de la ventana
 
 	LocateResources(); // localiza los recursos
 	InitialiseRTShaderSystem(); // arranca el sistema de sombreado
@@ -210,8 +218,6 @@ void eden_render::RenderManager::DestroyRTShaderSystem()
 	}
 }
 
-/// TEMPORAL, PARA PROBAR EL TAMANO DE LA PANTALLA
-//#include "wtypes.h"
 
 NativeWindowPair eden_render::RenderManager::CreateNewWindow(const std::string& name)
 {
@@ -222,22 +228,22 @@ NativeWindowPair eden_render::RenderManager::CreateNewWindow(const std::string& 
 
 	std::istringstream mode(ropts["Video Mode"].currentValue);
 	std::string token;
-	mode >> w;
 	mode >> token;
-	mode >> h;
 
-	/// TEMPORAL - PRUEBAS
-	//RECT desktop;
-	//// Get a handle to the desktop window
-	//const HWND hDesktop = GetDesktopWindow();
-	//// Get the size of screen to the variable desktop
-	//GetWindowRect(hDesktop, &desktop);
-	//// The top left corner will have coordinates (0,0)
-	//// and the bottom right corner will have coordinates
-	//// (horizontal, vertical)
-	//w = desktop.right;
-	//h = desktop.bottom;
-
+	//TAMANIO FULL SCREEN
+	RECT desktop;
+	// Get a handle to the desktop window
+	const HWND hDesktop = GetDesktopWindow();
+	// Get the size of screen to the variable desktop
+	GetWindowRect(hDesktop, &desktop);
+	// The top left corner will have coordinates (0,0)
+	// and the bottom right corner will have coordinates
+	// (horizontal, vertical)
+	_fullW = desktop.right;
+	_fullH = desktop.bottom;
+	w = _defWindowSize.first;
+	h = _defWindowSize.second;
+	_isFullScreen = false;
 	miscParams["FSAA"] = ropts["FSAA"].currentValue;
 	miscParams["vsync"] = ropts["VSync"].currentValue;
 	miscParams["gamma"] = ropts["sRGB Gamma Conversion"].currentValue;
@@ -248,10 +254,14 @@ NativeWindowPair eden_render::RenderManager::CreateNewWindow(const std::string& 
 	if (ropts["Full Screen"].currentValue == "Yes") flags = SDL_WINDOW_FULLSCREEN;
 
 	_window.native = SDL_CreateWindow(name.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, w, h, flags);
+	_currW = w;
+	_currH = h;
 
 	SDL_SysWMinfo wmInfo;
 	SDL_VERSION(&wmInfo.version);
 	SDL_GetWindowWMInfo(_window.native, &wmInfo);
+
+	
 
 #ifdef SDL_VIDEO_DRIVER_WINDOWS
 	miscParams["externalWindowHandle"] = Ogre::StringConverter::toString(size_t(wmInfo.info.win.window));
@@ -261,6 +271,7 @@ NativeWindowPair eden_render::RenderManager::CreateNewWindow(const std::string& 
 #endif
 
 	_window.render = _root->createRenderWindow(name, w, h, false, &miscParams);
+
 	return _window;
 }
 
@@ -351,7 +362,7 @@ void eden_render::RenderManager::UpdatePositions(std::string sceneID) {
 	}
 }
 
-void eden_render::RenderManager::addRenderEntity(eden_ec::Entity* ent) {
+void eden_render::RenderManager::AddRenderEntity(eden_ec::Entity* ent) {
 	std::unordered_map<std::string, InfoRenderWorld*>::iterator it = _renderScenes.find(ent->GetSceneID());
 	if (it != _renderScenes.end())
 	{
@@ -366,7 +377,7 @@ void eden_render::RenderManager::addRenderEntity(eden_ec::Entity* ent) {
 	}
 }
 
-void eden_render::RenderManager::removeRenderEntity(eden_ec::Entity* ent) {
+void eden_render::RenderManager::RemoveRenderEntity(eden_ec::Entity* ent) {
 	std::unordered_map<std::string, InfoRenderWorld*>::iterator it = _renderScenes.find(ent->GetSceneID());
 	if (it != _renderScenes.end())
 	{
@@ -384,6 +395,70 @@ void eden_render::RenderManager::removeRenderEntity(eden_ec::Entity* ent) {
 void eden_render::RenderManager::ResizedWindow() {
 	_window.render->windowMovedOrResized();
 	_resized = true;
+}
+
+void eden_render::RenderManager::ChangeWindowSize(int w, int h)
+{
+	SDL_SetWindowSize(_window.native, w, h);
+	SDL_SetWindowPosition(_window.native, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
+	ResizedWindow();
+}
+
+void eden_render::RenderManager::FullScreen()
+{
+	uint32_t w, h;
+	if (_isFullScreen) {
+		w = _currW;
+		h = _currH;
+	}
+	else {
+		w = _fullW;
+		h = _fullH;
+	}
+
+	ChangeWindowSize(w, h);
+	_isFullScreen = !_isFullScreen;
+}
+
+void eden_render::RenderManager::SetResolutions(std::vector<std::pair<int, int>> resolutions)
+{
+	std::map<int, std::pair<int, int>> aux;
+
+	std::pair<int, int> res;
+	for (int i = 0; i < resolutions.size(); i++) {
+		if (resolutions[i].first < _fullW && resolutions[i].second < _fullH) {
+			res = { resolutions[i].first,resolutions[i].second };
+			aux[res.first + (sqrt(res.first * res.first + res.second * res.second))] = res;
+		}
+	}
+	_resolutions.clear();
+	for (auto it = aux.begin(); it != aux.end(); it++) {
+		_resolutions.push_back((*it).second);
+	}
+
+	if (_resolutions.empty())_resolutions.push_back(_defWindowSize);
+	_currRes = 0;
+}
+
+std::pair<int, int> eden_render::RenderManager::GetResolution()
+{
+	return { _currW,_currH };
+}
+
+void eden_render::RenderManager::ChangeResolution()
+{
+	ChangeWindowSize(_resolutions[_currRes].first, _resolutions[_currRes].second);
+}
+
+void eden_render::RenderManager::NextResolutuion()
+{
+	_currRes = (_currRes + 1) % _resolutions.size();
+}
+
+void eden_render::RenderManager::PreviousResolution()
+{
+	_currRes--;
+	if (_currRes < 0)_currRes = _resolutions.size() - 1;
 }
 
 render_wrapper::CameraWrapper* eden_render::RenderManager::GetCamera(eden_ec::Entity* ent)
@@ -422,19 +497,33 @@ void eden_render::RenderManager::CreateRenderScene(std::string sceneID)
 		_currentRenderScene = info;
 		_renderScenes[sceneID] = info;
 		eden_canvas::Canvas::Instance()->addScene(sceneID);
-		_canvasInit = false;
 	}
 	else
+
 	{
 		_currentRenderScene = sceneIt->second;
 		_shaderGenerator->addSceneManager(_currentRenderScene->_renderScene);
-		sceneIt->second->_cameraWrapper->SetActiveCamera();
+		if(sceneIt->second->_cameraWrapper != nullptr) sceneIt->second->_cameraWrapper->SetActiveCamera();
 		eden_canvas::Canvas::Instance()->ShowScene(_currentRenderScene->_sceneID);
 		ShowEntities(_currentRenderScene->_sceneID, true);
 	}
 	_shaderGenerator->_setActiveSceneManager(_currentRenderScene->_renderScene);
 	_root->_setCurrentSceneManager(_currentRenderScene->_renderScene);
+	_canvasInit = false;
 
+}
+
+void eden_render::RenderManager::SetRenderScene(std::string sceneID)
+{
+	auto sceneIt = _renderScenes.find(sceneID);
+	if (sceneIt != _renderScenes.end())
+	{
+		_currentRenderScene = sceneIt->second;
+		_shaderGenerator->addSceneManager(_currentRenderScene->_renderScene);
+		if (sceneIt->second->_cameraWrapper != nullptr) sceneIt->second->_cameraWrapper->SetActiveCamera();
+		eden_canvas::Canvas::Instance()->ShowScene(_currentRenderScene->_sceneID);
+		ShowEntities(_currentRenderScene->_sceneID, true);
+	}
 }
 
 void eden_render::RenderManager::RemoveRenderScene(std::string sceneToRemoveID, std::string newCurrentSceneID)
@@ -449,7 +538,7 @@ void eden_render::RenderManager::RemoveRenderScene(std::string sceneToRemoveID, 
 		eden_canvas::Canvas::Instance()->removeScene(sceneToRemoveID);
 
 	}
-	CreateRenderScene(newCurrentSceneID);
+	SetRenderScene(newCurrentSceneID);
 }
 
 void eden_render::RenderManager::ShowEntities(std::string sceneID, bool show)

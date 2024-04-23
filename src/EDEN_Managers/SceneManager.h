@@ -6,6 +6,7 @@
 #include <vector>
 #include <string>
 #include <unordered_map>
+#include <unordered_set>
 
 #include "ComponentArguments.h"
 #include "Singleton.h"
@@ -35,15 +36,15 @@ public:
 	/// @brief Destructora por defecto de la clase SceneManager
 	EDEN_API ~SceneManager() override;
 
-	/// @brief Metodo encargado de crear una nueva escena y añadirla a la lista doblemente enlazada
+	/// @brief Metodo encargado de crear una nueva escena y aniadirla a la lista doblemente enlazada
 	/// @param ID El nombre que identifica a la escena
 	/// @return El puntero a la escena recien creada
-	EDEN_API Scene* PushScene(const std::string& ID);
+	EDEN_API void PushScene(const std::string& ID);
 
 	/// @brief Metodo encargado de vaciar la lista de escenas y añadir una nueva
 	/// @param ID El nombre que identifica a la escena
 	/// @return El puntero a la escena recien creada
-	EDEN_API Scene* ChangeScene(const std::string& ID);
+	EDEN_API void ChangeScene(const std::string& ID);
 
 	/// @brief Metodo encargado de eliminar la primera escena de la lista
 	EDEN_API void PopScene();
@@ -85,11 +86,11 @@ private:
 	/// @brief Puntero a la primera escena de la lista, a la cual se llama a su Update
 	Scene* _activeScene = nullptr;
 
-	/// @brief Guarda información de un Blueprint. 
+	/// @brief Guarda informacion de un Blueprint. 
 	struct BlueprintInfo {
 		/// @brief Componentes que definen la entidad
 		std::vector<eden_script::ComponentArguments> components;
-		/// @brief Número de veces que se ha instanciado
+		/// @brief Numero de veces que se ha instanciado
 		int numInstances = 0;
 	};
 
@@ -112,11 +113,21 @@ private:
 	/// @brief Lista doblemente enlazada de punteros a escenas
 	std::deque<Scene*> _scenes;
 
-	/// @brief Lista doblemente enlazada de punteros a escenas
+	/// @brief Lista doblemente enlazada que contiene el identificador de las escenas que se quieren crear
+	std::deque<std::string> _scenesToAdd;
+
+	/// @brief Lista doblemente enlazada de punteros a escenas que se quieren borrar
 	std::deque<Scene*> _scenesToDestroy;
+
+	/// @brief Identificadores de las escenas actuales
+	std::unordered_set<std::string> _currentScenes;
 
 	/// @brief Constructora por defecto de la clase SceneManager
 	EDEN_API SceneManager();
+
+	/// @brief Crea una escena
+	/// @param ID Identificador de la escena que se quiere crear
+	void CreateScene(std::string& ID);
 };
 }
 

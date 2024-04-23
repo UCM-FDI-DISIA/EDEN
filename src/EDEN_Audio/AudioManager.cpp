@@ -6,6 +6,8 @@
 #include "AudioEngine.h"
 #include "ErrorHandler.h"
 #include "ResourcesManager.h"
+#include "Entity.h"
+#include "CAudioEmitter.h"
 
 eden_audio::AudioManager::AudioManager() {
 	//Inicializamos el motor de sonido en caso de que no se haya creado
@@ -16,6 +18,7 @@ eden_audio::AudioManager::AudioManager() {
 
 eden_audio::AudioManager::~AudioManager() {
 	for (auto elem : _soundMap) delete elem.second;
+	for (auto scene : _audioScenes) delete scene.second;
 	audio_wrapper::AudioEngine::Instance()->Close();
 }
 
@@ -33,4 +36,66 @@ audio_wrapper::SoundClip* eden_audio::AudioManager::GetSoundClip(std::string fil
 	auto it = _soundMap.find(filename);
 	if (it == _soundMap.end()) eden_error::ErrorHandler::Instance()->Exception("Music file not found", "El archivo de sonido " + filename + " no ha sido encontrado.");
 	return it->second;
+}
+
+void eden_audio::AudioManager::AddAudioEntity(eden_ec::Entity* e) {
+	std::unordered_map<std::string, InfoAudioWorld*>::iterator it = _audioScenes.find(e->GetSceneID());
+	if (it != _audioScenes.end()) {
+		if (e != nullptr) it->second->_entities.insert(e);
+	}
+	else eden_error::ErrorHandler::Instance()->Warning("AudioManager ERROR in line 44 could not find scene: " + e->GetSceneID() + "\n");
+}
+
+void eden_audio::AudioManager::RemoveAudioEntity(eden_ec::Entity* e) {
+	std::unordered_map<std::string, InfoAudioWorld*>::iterator it = _audioScenes.find(e->GetSceneID());
+	if (it != _audioScenes.end()) {
+		if (e != nullptr) it->second->_entities.erase(e);
+	}
+	else eden_error::ErrorHandler::Instance()->Warning("AudioManager ERROR in line 52 could not find scene: " + e->GetSceneID() + "\n");
+}
+
+void eden_audio::AudioManager::CreateAudioScene(std::string id) {
+	auto sceneIt = _audioScenes.find(id);
+	if (_currentAudioScene) {
+		for (auto e : _currentAudioScene->_entities) {
+			eden_ec::CAudioEmitter* emitter = e->GetComponent<eden_ec::CAudioEmitter>();
+			switch (emitter->GetCurrentState()) {
+				case eden_ec::CAudioEmitter::SoundState::PAUSED: case eden_ec::CAudioEmitter::SoundState::PLAYING: {
+					// Vuelvo a pausar el sonido en los pausados para que su previousState se ponga en paused tambien
+					emitter->Pause();
+				} break;
+				case eden_ec::CAudioEmitter::SoundState::STOPPED: {
+					// Vuelvo a parar el sonido en los parados para que su previousState se ponga en stopped tambien
+					emitter->Stop();
+				} break;
+			}
+		}
+	}
+
+	if (sceneIt == _audioScenes.end()) {
+		InfoAudioWorld* info = new InfoAudioWorld();
+		_currentAudioScene = info;
+		_audioScenes[id] = info;
+	}
+	else {
+		_currentAudioScene = sceneIt->second;
+		for (auto e : _currentAudioScene->_entities) {
+			eden_ec::CAudioEmitter* emitter = e->GetComponent<eden_ec::CAudioEmitter>();
+			switch (emitter->GetPreviousState()) {
+				case eden_ec::CAudioEmitter::SoundState::PLAYING: {
+					emitter->Resume();
+				} break;
+			}
+		}
+	}
+}
+
+void eden_audio::AudioManager::RemoveAudioScene(std::string id1, std::string id2) {
+	auto sceneIt = _audioScenes.find(id1);
+	if (sceneIt != _audioScenes.end()) {
+		delete sceneIt->second;
+		_audioScenes.erase(sceneIt);
+		_currentAudioScene = nullptr;
+	}
+	CreateAudioScene(id2);
 }

@@ -47,7 +47,7 @@ namespace render_wrapper {
 		void SetBackgroundColor(eden_utils::Vector3 rgb, float a = 1.0f);
 
 		/// @brief Establece si el viewport que es dueno del frustrum de la camara puede recalcular la relacion de aspecto
-		/// si el frustrum cambia de tamano (esto es, se cambian las distancias de los planos cercano y lejano). Por defecto se usara
+		/// si el frustrum cambia de tamanio (esto es, se cambian las distancias de los planos cercano y lejano). Por defecto se usara
 		/// en true, ya que el frustrum/camara solo esta usado por un viewport.
 		/// @warning En caso de que se establezca en false, la relacion de aspecto para algunos viewports será incorrecta y se vera mal.
 		/// @param set Booleano indicando si se setea que la relacion de aspecto la recalcule el viewport dueno de la camara.

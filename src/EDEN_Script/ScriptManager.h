@@ -55,15 +55,15 @@ namespace eden_script {
 		/// @return True = No error | False = Error
 		EDEN_API bool ReadScene(std::string sceneName, std::vector<eden_script::EntityInfo*>& info, std::unordered_map<std::string, std::vector<std::string>>& collisionInfo);
 
-		/// @brief Lee el archivo "bin/assets/Blueprints.lua" y rellena info con la información de los blueprints que existan.
-		/// @param info Información a rellenar
+		/// @brief Lee el archivo "bin/assets/Blueprints.lua" y rellena info con la informacion de los blueprints que existan.
+		/// @param info Informacion a rellenar
 		/// @return True = No error | False = Error
 		EDEN_API bool ReadBlueprints(std::vector<eden_script::EntityInfo*>& info);
 
 		/// @brief Devuelve puntero a LuaManager
 		EDEN_API eden_script::LuaManager* GetLuaManager();
 
-		/// @brief Destructora que destruye la máquina virtual de Lua
+		/// @brief Destructora que destruye la mï¿½quina virtual de Lua
 		EDEN_API ~ScriptManager() override;
 
 		EDEN_API static ScriptManager* getInstance();
@@ -134,7 +134,7 @@ namespace eden_script {
 
 		/// @brief Comprobacion de errores de Lua. Lanza por consola el error recibido si se esta en modo Debug
 		/// @param err Resultado de una operacion de Lua
-		/// @param errorTitle Breve información acerca de dónde se produciría el error
+		/// @param errorTitle Breve informacion acerca de donde se produciria el error
 		/// @return True = No error | False = Error
 		bool CheckLua(int err, std::string errorTitle);
 	};

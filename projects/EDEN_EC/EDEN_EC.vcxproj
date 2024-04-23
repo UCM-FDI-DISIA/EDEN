@@ -14,6 +14,7 @@
     <ClInclude Include="..\..\src\EDEN_EC\CAnimator.h" />
     <ClInclude Include="..\..\src\EDEN_EC\CAudioEmitter.h" />
     <ClInclude Include="..\..\src\EDEN_EC\CAudioListener.h" />
+    <ClInclude Include="..\..\src\EDEN_EC\CBar.h" />
     <ClInclude Include="..\..\src\EDEN_EC\CButton.h" />
     <ClInclude Include="..\..\src\EDEN_EC\CCamera.h" />
     <ClInclude Include="..\..\src\EDEN_EC\CCursor.h" />
@@ -34,6 +35,7 @@
     <ClCompile Include="..\..\src\EDEN_EC\CAnimator.cpp" />
     <ClCompile Include="..\..\src\EDEN_EC\CAudioEmitter.cpp" />
     <ClCompile Include="..\..\src\EDEN_EC\CAudioListener.cpp" />
+    <ClCompile Include="..\..\src\EDEN_EC\CBar.cpp" />
     <ClCompile Include="..\..\src\EDEN_EC\CButton.cpp" />
     <ClCompile Include="..\..\src\EDEN_EC\CCamera.cpp" />
     <ClCompile Include="..\..\src\EDEN_EC\CCursor.cpp" />

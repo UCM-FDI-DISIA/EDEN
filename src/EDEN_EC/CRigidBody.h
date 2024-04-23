@@ -118,7 +118,7 @@ namespace eden_ec {
 		/// @param Entidad que colisiona
 		void OnCollisionEnter(eden_ec::Entity* other);
 
-		/// @brief Se llama cada vez que haya una colision despu�s de que se haya llamado el OnCollisionEnter
+		/// @brief Se llama cada vez que haya una colision despues de que se haya llamado el OnCollisionEnter
 		/// @param Entidad que colisiona
 		void OnCollisionStay(eden_ec::Entity* other);
 		
@@ -130,29 +130,34 @@ namespace eden_ec {
 		/// @return Devuelve la propiedad de rebote 
 		float GetBounciness();
 
-		/// @brief Devuelve la propiedad de fricci�n
-		/// @return Devuelve la propiedad de fricci�n 
+		/// @brief Devuelve la propiedad de friccion
+		/// @return Devuelve la propiedad de friccion 
 		float GetFriction();
 
 		/// @brief Definicion de metodo estatico GetID necesario para construccion de componentes
 		static std::string GetID() { return "RIGIDBODY"; }
 
-		/// @brief Devuelve la capa de colisi�n del objeto
-		/// @return Devuelve la capa de colisi�n del objeto 
+		/// @brief Devuelve la capa de colision del objeto
+		/// @return Devuelve la capa de colision del objeto 
 		physics_wrapper::CollisionLayer* GetCollisionLayer();
 
-		/// @brief Devuelve el nombre de la capa de colisi�n del objeto
-		/// @return Devuelve el nombre de la capa de colisi�n del objeto 
+		/// @brief Devuelve el nombre de la capa de colision del objeto
+		/// @return Devuelve el nombre de la capa de colision del objeto 
 		std::string GetCollisionLayerName();
+
+		physics_wrapper::RigidBody* GetWrapperRigidBody();
+
+	protected:
+		const static std::string _id;
 
 	private:
 		/// @brief Masa asociada al RigidBody
 		float _mass = 0;
 
-		/// @brief Efecto de rebote, indica cuanta energ�a se mantiene despu�s de la colisi�n
+		/// @brief Efecto de rebote, indica cuanta energia se mantiene despues de la colision
 		float _restitution = 0;
 
-		/// @brief Fricci�n asociada al RigidBody
+		/// @brief Friccion asociada al RigidBody
 		float _friction = 0;
 
 		/// @brief Variable que se encarga de contener los parametros de la figura asociada al rigidBody

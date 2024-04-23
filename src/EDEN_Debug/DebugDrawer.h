@@ -5,6 +5,7 @@
 #pragma warning(push)
 #pragma warning(disable : 26495)
 #include <btBulletDynamicsCommon.h>
+#include <btBulletCollisionCommon.h>
 #pragma warning(pop)
 
 #include <vector>
@@ -36,7 +37,12 @@ namespace eden_debug {
 		/// @param color Color que se le quiera dar
 		void drawLine(const btVector3& origin, const btVector3& end, const btVector3& color) override;
 
-		/// @brief
+		/// @brief Dibuja el bounding box de un rigid body dado
+		/// @param rb RigidBody que se quiere dibujar
+		/// @param color Color de las lineas que se van a dibujar
+		void drawRigidBody(btRigidBody* rb, const btVector3& color);
+
+		/// @brief No se usa
 		/// @param PointOnB 
 		/// @param normalOnB 
 		/// @param distance 
@@ -45,11 +51,11 @@ namespace eden_debug {
 		void drawContactPoint(const btVector3& PointOnB, const btVector3& normalOnB, btScalar distance, int lifeTime,
 			const btVector3& color) override;
 
-		/// @brief 
+		/// @brief No se usa
 		/// @param warningString Tipo de error recogido como cadena de caracteres
 		void reportErrorWarning(const char* warningString) override;
 
-		/// @brief Dibuja texto en 3d
+		/// @brief Dibuja texto en 3d (No se usa)
 		/// @param location Lugar del mundo donde se quiere posicionar
 		/// @param textString Texto que se quiere escribir
 		void draw3dText(const btVector3& location, const char* textString) override;
@@ -65,9 +71,6 @@ namespace eden_debug {
 	private:
 		/// @brief Tipo enumerado con los tipos de debug que existen
 		DebugDrawModes _debugMode;
-
-		/// @brief Referencia a un nodo de ogre
-		Ogre::SceneNode* _node;
 
 		/// @brief Vector con todas las aristas que se vayan a dibujar
 		std::vector<Ogre::MovableObject*> _lines;

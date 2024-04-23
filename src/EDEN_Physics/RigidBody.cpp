@@ -220,6 +220,11 @@ float physics_wrapper::RigidBody::GetBounciness() {
 	return (float)(_rigidBody->getRestitution());
 }
 
+void physics_wrapper::RigidBody::Update()
+{
+	_collisionCallback->UpdateCollisions();
+}
+
 void physics_wrapper::RigidBody::AddShape(const ShapeParameters& params)
 {
 	btCollisionShape* shape;

@@ -13,7 +13,7 @@ namespace Ogre {
 }
 
 namespace eden_ec {
-	/// @brief Clase que representa una imágen en la UI
+	/// @brief Clase que representa una imï¿½gen en la UI
 	class EDEN_API CImage : public eden_ec::UIComponent {
 	public:
 		/// @brief Constructora de la clase Image
@@ -26,12 +26,12 @@ namespace eden_ec {
 		/// @brief Destructora de la clase Image
 		~CImage();
 
-		/// @brief Método que crea la Imagen
+		/// @brief Metodo que crea la Imagen
 		void Create(std::string overlayName, float xPos, float yPos, float width,
 			float height, std::string texture, int depth = 0);
 
-		/// @brief Construye el componente dado unos argumentos. Se obtendrán de una lectura de un .lua
-		/// @param args Argumentos leídos de .lua
+		/// @brief Construye el componente dado unos argumentos. Se obtendrï¿½n de una lectura de un .lua
+		/// @param args Argumentos leidos de .lua
 		void Init(eden_script::ComponentArguments* args) override;
 
 		/// @brief No usado
@@ -41,7 +41,7 @@ namespace eden_ec {
 		/// En este caso no se necesita
 		void Start() override {}
 
-		/// @brief Definición de método estático GetID necesario para construcción de componentes
+		/// @brief Definiciï¿½n de mï¿½todo estï¿½tico GetID necesario para construcciï¿½n de componentes
 		static std::string GetID() { return "IMAGE"; }
 	};
 } 

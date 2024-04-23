@@ -61,6 +61,10 @@ namespace eden_ec {
 		/// @brief Devuelve la animacion que se este reproduciendo actualmente
 		/// @return Identificador de la animacion actual
 		std::string GetCurrentAnim();
+		/// @brief Permite saber si ha acabado la animacion
+		/// @param animID Identificador de la animacion indicada 
+		/// @return bool que indica si la animacion actual se esta reproduciendo o ha acabado
+		bool IsPlaying(std::string animID);
 
 	private:
 		/// @brief Inicializa el Wrapper de animaciones y el CMeshRenderer si por alguna 

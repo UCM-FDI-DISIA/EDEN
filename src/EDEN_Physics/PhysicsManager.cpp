@@ -14,7 +14,7 @@
 #include "RigidBody.h"
 #include "CollisionCallback.h"
 #include "CollisionLayer.h"
-#include "DebugDrawer.h"
+#include "Debug.h"
 #include "ErrorHandler.h"
 
 //const eden_ec::Entity* physics_manager::PhysicsManager::getEntity(const btRigidBody* RBRef) const
@@ -35,7 +35,13 @@ void physics_manager::PhysicsManager::updateSimulation(float deltaTime, std::str
 	_currentPhysicScene->stepSimulation(deltaTime);
 	physics_wrapper::RigidBody* _rb;
 	std::unordered_set<eden_ec::Entity*>* currentEnts = &_physicsScenes[sceneID]->_entitiesSet;
+	
 	for (auto ent : (*currentEnts)) {
+#ifdef _DEBUG
+		info->GetDebug()->ClearLines();
+		info->GetDebug()->DrawRigidBody(ent->GetComponent<eden_ec::CRigidBody>(), { 1,0,0 });
+		//info->GetDebug()->DrawLine(_rb->GetPosition(), {100,0,100}, {1,1,1});
+#endif
 		_rb = ent->GetComponent<eden_ec::CRigidBody>()->_rb;
 		_currentPhysicScene->contactTest(_rb->getBulletRigidBody(), *_rb->_collisionCallback);
 	}
@@ -86,11 +92,9 @@ physics_manager::PhysicsManager::PhysicsManager()
 {
 	_defaultGravity = eden_utils::Vector3(0,-10,0);
 
-	
 	_currentPhysicScene = nullptr;
 
 	//Inicializacion de debug drawer
-	//_debugDrawer = new eden_debug::DebugDrawer("Debug1");
 	//_dynamicWorldRef->setDebugDrawer(_debugDrawer);
 	//physics_wrapper::RayCast::Instance(_dynamicWorldRef, _debugDrawer);
 }
@@ -104,7 +108,8 @@ btDynamicsWorld* physics_manager::PhysicsManager::GetWorld(std::string sceneID)
 	}
 	else
 	{
-		// Añadir gestion de errores
+		std::string message = "PhysicsManager error, the world you are trying to get does no exist";
+		eden_error::ErrorHandler::Instance()->Warning(message.c_str());
 		return nullptr;
 	}
 }
@@ -124,7 +129,7 @@ inline eden_utils::Vector3 physics_manager::PhysicsManager::GetGravity(std::stri
 			+ " \nUsing default gravity.";
 		
 		eden_error::ErrorHandler::Instance()->Warning(message.c_str());
-		return _defaultGravity;
+		return eden_utils::Vector3(0,0,0);
 	}
 }
 
@@ -138,13 +143,7 @@ physics_manager::PhysicsManager::~PhysicsManager()
 	{
 		delete it.second;
 	}
-	// Toda la memoria din�mica que hemos generado en la constructora, al intentar llamar a su delete aqu�,  hace que el programa explote. 
-	// Hay que revisarlo
 
-	if (_debugDrawer) delete _debugDrawer;
-	
-	//delete _debugDrawer;
-	//if (_physicsDebugDrawer) delete _physicsDebugDrawer;
 
 }
 
@@ -152,7 +151,8 @@ void physics_manager::PhysicsManager::AddPhysicsEntity(eden_ec::Entity* e) {
 	std::unordered_map<std::string, InfoPhysicWorld*>::iterator it = _physicsScenes.find(e->GetSceneID());
 	if (it != _physicsScenes.end())
 	{
-		it->second->_entitiesSet.insert(e);
+		if(e != nullptr)
+			it->second->_entitiesSet.insert(e);
 	}
 	else
 	{
@@ -167,7 +167,8 @@ void physics_manager::PhysicsManager::RemovePhysicsEntity(eden_ec::Entity* e) {
 	std::unordered_map<std::string, InfoPhysicWorld*>::iterator it = _physicsScenes.find(e->GetSceneID());
 	if (it != _physicsScenes.end())
 	{
-		it->second->_entitiesSet.erase(e);
+		if(e != nullptr)
+			it->second->_entitiesSet.erase(e);
 	}
 	else
 	{
@@ -183,6 +184,7 @@ void physics_manager::PhysicsManager::UpdatePositions(std::string sceneID) {
 	std::unordered_set<eden_ec::Entity*>* currentEnts = &_physicsScenes[sceneID]->_entitiesSet;
 	for (auto ent : (*currentEnts)) {
 		_rb = ent->GetComponent<eden_ec::CRigidBody>();
+
 		_rb->EdenTransformToPhysicsTransform();
 	}
 }
@@ -228,12 +230,21 @@ void physics_manager::PhysicsManager::CreatePhysicsScene(std::string sceneID)
 	auto sceneIt = _physicsScenes.find(sceneID);
 	if (sceneIt == _physicsScenes.end())
 	{
-		InfoPhysicWorld* info = new InfoPhysicWorld();
+		info = new InfoPhysicWorld(sceneID);
 		_currentPhysicScene = info->GetWorld();
 		_currentPhysicScene->setGravity(btVector3(_defaultGravity.GetX(), _defaultGravity.GetY(), _defaultGravity.GetZ()));
 		_physicsScenes[sceneID] = info;
 	}
 	else
+	{
+		_currentPhysicScene = sceneIt->second->GetWorld();
+	}
+}
+
+void physics_manager::PhysicsManager::SetPhysicsScene(std::string sceneID)
+{
+	auto sceneIt = _physicsScenes.find(sceneID);
+	if (sceneIt != _physicsScenes.end())
 	{
 		_currentPhysicScene = sceneIt->second->GetWorld();
 	}
@@ -248,7 +259,27 @@ void physics_manager::PhysicsManager::RemovePhysicsScene(std::string sceneToRemo
 		_physicsScenes.erase(sceneIt);
 
 	}
-	CreatePhysicsScene(newCurrentSceneID);
+	else {
+		std::string message = "Tried to delete scene: " + sceneToRemoveID + " But such scene does not exist\n";
+		eden_error::ErrorHandler::Instance()->Warning(message.c_str());
+	}
+	SetPhysicsScene(newCurrentSceneID);
+}
+
+void physics_manager::PhysicsManager::InitLayers(std::string sceneID, std::unordered_map<std::string, std::vector<std::string>>& collisionInfo)
+{
+	CreateCollisionLayer(RAYCAST_GROUP, sceneID);
+	CreateCollisionLayer(DEFAULT_GROUP, sceneID);
+	for (auto it : collisionInfo)
+	{
+		CreateCollisionLayer(it.first, sceneID);
+	}
+	for (auto it : collisionInfo)
+	{
+		for (auto collisionLayer : it.second) {
+			RemoveCollisionToLayer(it.first, collisionLayer, sceneID);
+		}
+	}
 }
 
 physics_manager::LayerInfo::LayerInfo(std::string name, std::string sceneID) : _sceneID(sceneID), _name(name) {}
@@ -257,13 +288,17 @@ bool physics_manager::LayerInfo::operator==(const LayerInfo& other) const {
 	return _sceneID == other._sceneID && _name == other._name;
 }
 
-physics_manager::InfoPhysicWorld::InfoPhysicWorld()
+physics_manager::InfoPhysicWorld::InfoPhysicWorld(std::string sceneID)
 {
 	_worldCollisionConfiguration = new btDefaultCollisionConfiguration();
 	_worldDispatcher = new btCollisionDispatcher(_worldCollisionConfiguration);
 	_worldBroadPhaseInterface = new btDbvtBroadphase();
 	_worldConstraintSolver = new btSequentialImpulseConstraintSolver();
 	_dynamicWorld = new btDiscreteDynamicsWorld(_worldDispatcher, _worldBroadPhaseInterface, _worldConstraintSolver, _worldCollisionConfiguration);
+#ifdef _DEBUG
+	_debug = new eden_debug::Debug("Debug" + sceneID, sceneID);
+	_debug->SetDebugMode(2);
+#endif
 }
 
 physics_manager::InfoPhysicWorld::~InfoPhysicWorld()
@@ -273,5 +308,14 @@ physics_manager::InfoPhysicWorld::~InfoPhysicWorld()
 	delete _worldBroadPhaseInterface;
 	delete _worldDispatcher;
 	delete _worldCollisionConfiguration;
+#ifdef _DEBUG
+	delete _debug;
+#endif
 }
 
+#ifdef _DEBUG
+eden_debug::Debug* physics_manager::InfoPhysicWorld::GetDebug()
+{
+	return _debug;
+}
+#endif

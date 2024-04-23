@@ -21,11 +21,18 @@
 #include "ScriptManager.h"
 eden::Master::Master()
 {
-	// la comprobaci�n de que se haya podido inicializar el RenderManager ahora se hace dentro del propio RenderManager.
+	// la comprobacion de que se haya podido inicializar el RenderManager ahora se hace dentro del propio RenderManager.
 	_renderManager = eden_render::RenderManager::Instance("EDEN Engine");
 
 	if (!_renderManager->couldInitialize()) delete _renderManager;
-
+	else {
+		//Ejemplo de seteo de Resoluciones por el programador
+		std::vector<std::pair<int, int>> resolutions;
+		resolutions.push_back({ 640,480 });
+		resolutions.push_back({ 1280,720 });
+		resolutions.push_back({ 960,540 });
+		_renderManager->SetResolutions(resolutions);
+	}
 	_inputManager = eden_input::InputManager::Instance();
 	_scnManager = SceneManager::Instance();
 	_physicsManager = physics_manager::PhysicsManager::Instance();
@@ -39,9 +46,6 @@ void eden::Master::CloseApplication() {
 
 eden::Master::~Master()
 {
-	//delete _physicsManager;
-	//delete _scnManager;
-	//delete _inputManager;
 	_physicsManager->Close();
 	_scnManager->Close();
 	_inputManager->Close();
@@ -50,7 +54,6 @@ eden::Master::~Master()
 
 	if (_renderManager != nullptr && _renderManager->couldInitialize()) {
 
-		//delete _renderManager;
 		_renderManager->Close();
 	}
 

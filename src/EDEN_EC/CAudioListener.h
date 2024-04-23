@@ -18,21 +18,21 @@ namespace eden_ec {
         /// @brief Destructora por defecto del listener de audio
         ~CAudioListener() = default;
 
-        /// @brief Construye el componente dado unos argumentos. Se obtendrán de una lectura de un .lua
-        /// @param args Argumentos leídos de .lua
+        /// @brief Construye el componente dado unos argumentos. Se obtendrï¿½n de una lectura de un .lua
+        /// @param args Argumentos leï¿½dos de .lua
         void Init(eden_script::ComponentArguments* args) override {};
         
         /// @brief No usado
         void Awake() override {};
 
-        /// @brief Usaremos este método para añadir referencias de otros componentes
+        /// @brief Usaremos este metodo para aniadir referencias de otros componentes
         void Start() override;
 
         /// @brief Metodo ejecutado cada frame
         /// @param t Tiempo transcurrido desde el ultimo frame
         void Update(float t) override;
 
-        /// @brief Definición de método estático GetID necesario para construcción de componentes
+        /// @brief Definiciï¿½n de mï¿½todo estï¿½tico GetID necesario para construcciï¿½n de componentes
         inline static std::string GetID() { return "AUDIO_LISTENER"; }
     private:
 

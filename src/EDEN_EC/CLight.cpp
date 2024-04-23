@@ -7,7 +7,7 @@
 #include "Light.h"
 
 eden_ec::CLight::~CLight() {
-	eden_render::RenderManager::Instance()->removeRenderEntity(_ent);
+	eden_render::RenderManager::Instance()->RemoveRenderEntity(_ent);
 	delete _lightWrapper;
 }
 
@@ -15,7 +15,7 @@ void eden_ec::CLight::Init(eden_script::ComponentArguments* args) {
 	_lType = args->GetValueToString("LightType");
 	_diffuseColor = args->GetValueToVector3("DiffuseColor");
 	_specularColor = args->GetValueToVector3("SpecularColor");
-	eden_render::RenderManager::Instance()->addRenderEntity(_ent);
+	eden_render::RenderManager::Instance()->AddRenderEntity(_ent);
 }
 
 void eden_ec::CLight::Update(float dt) {

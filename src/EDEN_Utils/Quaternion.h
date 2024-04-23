@@ -22,12 +22,12 @@ namespace eden_utils {
 		/// @param z Componente k del cuaterni�n
 		EDEN_API Quaternion(float w, float x, float y, float z);
 
-		/// @brief Constructor de un cuaterni�n a partir de la rotaci�n en un eje
-		/// @param angle �ngulo en el que rota en grados
+		/// @brief Constructor de un cuaternion a partir de la rotacion en un eje
+		/// @param angle angulo en el que rota en grados
 		/// @param axis Eje en el que rota
 		EDEN_API Quaternion(float angle, Vector3 axis);
 
-		/// @brief Devuelve un cuaterni�n unitario
+		/// @brief Devuelve un cuaternion unitario
 		/// @param axis Eje en el que rota
 		/// @param angle �ngulo que rota
 		/// @return Cuaterni�n normalizado
@@ -55,12 +55,12 @@ namespace eden_utils {
 		/// @return Cuaterni�n resultante
 		EDEN_API Quaternion operator*(Quaternion other);
 
-		/// @brief Multiplicaci�n de cuaterni�n con escalar
+		/// @brief Multiplicacion de cuaternion con escalar
 		/// @param scalar Escalar que multiplica
 		/// @return Cuaterni�n resultante
 		EDEN_API Quaternion operator*(float scalar);
 
-		/// @brief Divisi�n de un cuaterni�n entre un escalar
+		/// @brief Division de un cuaternion entre un escalar
 		/// @param scalar Escalar que divide
 		/// @return Cuaterni�n resultante
 		EDEN_API Quaternion operator/(float scalar);
@@ -80,12 +80,12 @@ namespace eden_utils {
 		/// @return El propio cuaterni�n ya multiplicado
 		EDEN_API Quaternion operator*=(Quaternion other);
 
-		/// @brief Multiplica al propio cuaterni�n con un escalar
+		/// @brief Multiplica al propio cuaternion con un escalar
 		/// @param scalar Escalar que multiplica
 		/// @return El propio cuaterni�n ya multiplicado
 		EDEN_API Quaternion operator*=(float scalar);
 
-		/// @brief Divide al propio cuaterni�n con un escalar
+		/// @brief Divide al propio cuaternion con un escalar
 		/// @param other Escalar que divide
 		/// @return El propio cuaterni�n ya dividido
 		EDEN_API Quaternion operator/=(float scalar);
@@ -110,11 +110,11 @@ namespace eden_utils {
 		/// @return Devuelve la parte real de un cuaterni�n
 		EDEN_API float Real() const { return _w; };
 
-		/// @brief Componentes i, j y k del cuaterni�n
+		/// @brief Componentes i, j y k del cuaternion
 		/// @return Devuelve las componentes complejas a modo de vector
 		EDEN_API Vector3 Complex() const;
 
-		/// @brief Rota el cuaterni�n alrededor de un punto
+		/// @brief Rota el cuaternion alrededor de un punto
 		/// @param position Punto alrededor del que rota
 		/// @param angle �ngulo que rota en grados
 		EDEN_API void RotateArroundPoint(Vector3 position, float angle);
@@ -127,13 +127,13 @@ namespace eden_utils {
 		/// @return Devuelve la matriz de rotaci�n
 		EDEN_API std::array<std::array<float, 3>, 3> GetRotationMatrix();
 	private:
-		/// @brief Componente real del cuaterni�n
+		/// @brief Componente real del cuaternion
 		float _w;
-		/// @brief Componente i del cuaterni�n
+		/// @brief Componente i del cuaternion
 		float _x;
-		/// @brief Componente j del cuaterni�n
+		/// @brief Componente j del cuaternion
 		float _y;
-		/// @brief Componente k del cuaterni�n
+		/// @brief Componente k del cuaternion
 		float _z;
 	};
 }

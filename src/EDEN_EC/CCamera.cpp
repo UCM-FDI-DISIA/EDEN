@@ -8,13 +8,13 @@
 #include <iostream>
 
 eden_ec::CCamera::~CCamera() {
-	eden_render::RenderManager::Instance()->removeRenderEntity(_ent);
+	eden_render::RenderManager::Instance()->RemoveRenderEntity(_ent);
 	_cameraWrapper = nullptr;
 	_transform = nullptr;
 }
 void eden_ec::CCamera::Awake() {
 	_cameraWrapper = eden_render::RenderManager::Instance()->GetCamera(_ent);
-	eden_render::RenderManager::Instance()->addRenderEntity(_ent);
+	eden_render::RenderManager::Instance()->AddRenderEntity(_ent);
 }
 
 void eden_ec::CCamera::Start() {

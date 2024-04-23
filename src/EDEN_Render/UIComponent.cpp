@@ -15,6 +15,7 @@
 
 #include "UIComponent.h"
 #include "InputManager.h"
+#include "RenderManager.h"
 #include "ResourcesManager.h"
 #include "Canvas.h"
 #include "Entity.h"
@@ -59,18 +60,25 @@ void eden_ec::UIComponent::SetColor(eden_utils::Vector3 const& color) {
 
 void eden_ec::UIComponent::SetDimensions(float width, float height) {
 	_overlayContainer->setDimensions(width, height);
+	float w = ((100 * width) / _screenSize.first)/100;
+	float h = ((100 * height) / _screenSize.second) / 100;
+	_overlayContainer->_setDimensions(w, h);
+	SetSizeParams();
 }
 
 void eden_ec::UIComponent::SetRelativeDimensions(float width, float height) {
 	_overlayContainer->_setDimensions(width, height);
+	SetSizeParams();
 }
 
 void eden_ec::UIComponent::SetPosition(float xPos, float yPos) {
 	_overlayContainer->setPosition(xPos, yPos);
+	SetPosParams();
 }
 
 void eden_ec::UIComponent::SetRelativePosition(float xPos, float yPos) {
 	_overlayContainer->_setPosition(xPos, yPos);
+	SetPosParams();
 }
 
 void eden_ec::UIComponent::SetMaterial(std::string const& matName) {
@@ -232,7 +240,7 @@ void eden_ec::UIComponent::SetOverlayContainer(std::string overlayName, float xP
 }
 
 void eden_ec::UIComponent::SetOverlayElement(int depth) {
-	// Creo un elemento overlay para a�adirle el panel
+	// Creo un elemento overlay para aniadirle el panel
 	_overlayElement =
 		_overlayManager->create("over" + std::to_string(_numUIElements));
 	_overlayElement->add2D(_overlayContainer);
@@ -242,6 +250,7 @@ void eden_ec::UIComponent::SetOverlayElement(int depth) {
 
 void eden_ec::UIComponent::Resize() {
 
+	_screenSize = eden_render::RenderManager::Instance()->GetResolution();
 	SetRelativeDimensions(_rWidth, _rHeight);
 	SetRelativePosition(_rPos.first, _rPos.second);
 
@@ -257,11 +266,21 @@ void eden_ec::UIComponent::Resize() {
 }
 
 void eden_ec::UIComponent::SetParameters() {
-	_rWidth = GetRelativeDimensions().first;
-	_rHeight = GetRelativeDimensions().second;
-	_rPos = GetRelativePosition();
+	_screenSize = eden_render::RenderManager::Instance()->GetResolution();
+	SetSizeParams();
+	SetPosParams();
+}
 
+void eden_ec::UIComponent::SetSizeParams()
+{
 	_oWidth = GetDimensions().first;
 	_oHeight = GetDimensions().second;
+	_rWidth = GetRelativeDimensions().first;
+	_rHeight = GetRelativeDimensions().second;
+}
+
+void eden_ec::UIComponent::SetPosParams()
+{
+	_rPos = GetRelativePosition();
 	_oPos = GetPosition();
 }

@@ -30,15 +30,6 @@ Entity1 = {
             }
         },
         {
-            Name = "PARTICLE_EMITTER",
-            Arguments = {
-                Name = "Test",
-                Loop = "true",
-                Time = "1",
-                Started = "true"
-            }
-        },
-        {
 			Name = "TEXT",
 			Arguments = {
                 OverlayName= "textTest",
@@ -173,7 +164,7 @@ Entity6 = {
                 Shape = "BOX",
                 CollisionFlag = "STATIC",
                 CollisionLayer = "GROUND",
-                Bounciness = "1",
+                Bounciness = "0",
                 Friction = "0"
             }
         }
@@ -184,18 +175,7 @@ Entity6 = {
 Entity7 = {
 	Name = "UI_Image",
 	Components = {
-		{
-			Name = "IMAGE",
-			Arguments = {
-                OverlayName= "image",
-				XPos = "50",
-                YPos = "60",
-                Width = "75",
-                Height = "50",
-                Texture = "meme.png",
-                Depth = "1"
-			}
-		}
+		
 	}	
 }
 

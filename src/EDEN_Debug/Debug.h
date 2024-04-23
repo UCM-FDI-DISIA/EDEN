@@ -14,7 +14,11 @@ namespace eden_utils {
 	class Vector3;
 }
 
-/// USO DE ESTA CLASE: Esta clase hace de wrapper de DebugDrawer y está pensada para que tambien actue de wrapper de 
+namespace eden_ec {
+	class CRigidBody;
+}
+
+/// USO DE ESTA CLASE: Esta clase hace de wrapper de DebugDrawer y esta pensada para que tambien actue de wrapper de 
 /// cualquier otra clase o funcionalidad de debug que se quiera aniadir.
 /// Cada instancia de Debug debe hacerse con un "id" distinto a los anteriores ya que el nodo que se creara debera ser unico a 
 /// cada una.
@@ -31,7 +35,7 @@ namespace eden_debug {
 
 		~Debug();
 
-		/// @brief Borrar las líneas actuales en pantalla
+		/// @brief Borrar las lineas actuales en pantalla
 		void ClearLines();
 
 		/// @brief Dibujar una nueva linea
@@ -43,6 +47,8 @@ namespace eden_debug {
 		/// @brief Indicar el modo de debug que se quiere usar
 		/// @param mode Modo pasado como int
 		void SetDebugMode(int mode);
+
+		void DrawRigidBody(eden_ec::CRigidBody* rb, const eden_utils::Vector3& color);
 
 		/// @brief Obtiene el modo de debug actual
 		/// @return Modo de debug en int

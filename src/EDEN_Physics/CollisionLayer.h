@@ -17,7 +17,7 @@ namespace physics_wrapper {
 	{
 		friend physics_manager::PhysicsManager;
 	private:
-		/// @brief Constructora de la capa de colisión. Se encarga de gestionar que número le corresponde
+		/// @brief Constructora de la capa de colision. Se encarga de gestionar que numero le corresponde
 		/// @param layerName Nombre asociado a la capa que queremos crear 
 		/// @param sceneID ID de la escena a la que pertenece la capa
 		CollisionLayer(std::string layerName, std::string sceneID);
@@ -26,28 +26,28 @@ namespace physics_wrapper {
 		/// @param layer Capa con la que queremos que no colisione 
 		void RemoveCollisionToLayer(physics_wrapper::CollisionLayer* layer);
 		
-		/// @brief Gestiona el número de capas que lleva cada escena
+		/// @brief Gestiona el numero de capas que lleva cada escena
 		static std::unordered_map<std::string, int> _currentLayer;
 		
 		/// @brief Nombre de la capa
 		const std::string _layerName;
 		
-		/// @brief Representación númerica de la capa
+		/// @brief Representacion numerica de la capa
 		int _layer;
 		
-		/// @brief Máscara de colisión (define con que objetos colisiona)
+		/// @brief Mascara de colision (define con que objetos colisiona)
 		int _collisionMask = 0xffffff;
 	public:
 		/// @brief Devuelve el nombre de la capa
 		/// @return Devuelve el nombre de la capa
 		std::string GetName();
 
-		/// @brief Devuelve el número asociado a la capa
-		/// @return Devuelve el número asociado a la capa
+		/// @brief Devuelve el numero asociado a la capa
+		/// @return Devuelve el numero asociado a la capa
 		int GetLayer();
 		
-		/// @brief Devuelve la máscara de colisión asociada a la capa
-		/// @return Devuelve la máscara de colisión asociada a la capa
+		/// @brief Devuelve la mascara de colision asociada a la capa
+		/// @return Devuelve la mascara de colision asociada a la capa
 		int GetCollisionMask();
 	};
 }

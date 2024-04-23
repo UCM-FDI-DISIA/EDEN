@@ -39,7 +39,7 @@ namespace eden_resources {
         /// @brief Destructora
         EDEN_API ~ResourcesManager();
 
-        /// @brief Método que comprueba si un archivo existe
+        /// @brief Mï¿½todo que comprueba si un archivo existe
         EDEN_API bool FileExist(std::string name, Resources res);
         
         EDEN_API std::set<std::string> GetMaterials();
@@ -58,7 +58,7 @@ namespace eden_resources {
 
     private:
 
-        /// @brief Método que guarda todos los archivos existentes de unas direcciones concretas
+        /// @brief Mï¿½todo que guarda todos los archivos existentes de unas direcciones concretas
         EDEN_API void LoadResources();
 
         /// @brief Lista de todos recursos

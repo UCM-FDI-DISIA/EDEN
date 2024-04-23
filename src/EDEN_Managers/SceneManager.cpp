@@ -13,6 +13,7 @@
 #include "ComponentArguments.h"
 #include "PhysicsManager.h"
 #include "RenderManager.h"
+#include "AudioManager.h"
 
 namespace eden {
 
@@ -38,6 +39,23 @@ namespace eden {
 			delete blueprints[i];
 		}
 		blueprints.clear();
+	}
+
+	void SceneManager::CreateScene(std::string& ID)
+	{
+		eden_script::ScriptManager* scriptManager = eden_script::ScriptManager::Instance();
+		std::unordered_map<std::string, std::vector<std::string>> collisionInfo;
+		std::vector<eden_script::EntityInfo*> info;
+		scriptManager->ReadScene(ID, info, collisionInfo);
+
+		eden_render::RenderManager::Instance()->CreateRenderScene(ID);
+		physics_manager::PhysicsManager::Instance()->CreatePhysicsScene(ID);
+		eden_audio::AudioManager::Instance()->CreateAudioScene(ID);
+		Scene* newSc = new Scene(ID, info, collisionInfo);
+		for (auto a : info) delete a;
+		_scenes.push_front(newSc);
+		_currentScenes.insert(ID);
+		_activeScene = newSc;
 	}
 
 	SceneManager::~SceneManager() {
@@ -106,33 +124,27 @@ namespace eden {
 		return ent;
 	}
 
-	Scene* SceneManager::PushScene(const std::string& ID) {
-
-		eden_script::ScriptManager* scriptManager = eden_script::ScriptManager::Instance();
-		std::unordered_map<std::string, std::vector<std::string>> collisionInfo;
-		std::vector<eden_script::EntityInfo*> info;
-		scriptManager->ReadScene(ID, info, collisionInfo);
-
-		physics_manager::PhysicsManager::Instance()->CreatePhysicsScene(ID);
-		eden_render::RenderManager::Instance()->CreateRenderScene(ID);
-		Scene* newSc = new Scene(ID, info, collisionInfo);
-		for (auto a : info) delete a;
-		_scenes.push_front(newSc);
-		_activeScene = newSc;
-		return newSc;
+	void SceneManager::PushScene(const std::string& ID) {
+		_scenesToAdd.push_back(ID);
 	}
 
-	Scene* SceneManager::ChangeScene(const std::string& ID) {
+	void SceneManager::ChangeScene(const std::string& ID) {
 		EmptyStack();
-		return PushScene(ID);
+		PushScene(ID);
 	}
 
 	void SceneManager::PopScene() {
-		_scenesToDestroy.push_back(_scenes.front());
-		_scenes.pop_front();
 		if (_scenes.size() > 0) {
-			_activeScene = _scenes.front();
+			_currentScenes.erase(_scenes.front()->GetSceneID());
+			_scenesToDestroy.push_back(_scenes.front());
+			_scenes.pop_front();
 		}
+		else {
+			eden_error::ErrorHandler::Instance()->Warning("SceneManager ERROR in line 133, scenes deque was empty, so PopScene could not be done");
+		}
+
+		if(_scenes.size() > 0)
+			_activeScene = _scenes.front();
 	}
 
 	void SceneManager::PopUntil(const std::string& ID) {
@@ -144,23 +156,32 @@ namespace eden {
 	}
 
 	void SceneManager::Update(float dt) {
-		_scenes.front()->Update(dt);
+		if (_scenes.size() > 0)
+			_scenes.front()->Update(dt);
 
-		/*auto it = _scenes.end();
-		it--;
-		for (; it >= _scenes.begin();) {
-			if ((*it)->GetToRender()) (*it)->Render();
-			if (it > _scenes.begin()) --it;
-			else break;
-		}*/
 
-		for (auto it = _scenesToDestroy.begin(); it != _scenesToDestroy.end();) {	
+		std::string newScene = " ";
+		if (_scenesToDestroy.size() > 0 && _scenes.size() > 0) {
+			newScene = _scenes.front()->GetSceneID();
+		}
+
+		for (auto it = _scenesToDestroy.begin(); it != _scenesToDestroy.end();) {
 			std::string prevScene = (*it)->GetSceneID();
 
-			physics_manager::PhysicsManager::getInstance()->RemovePhysicsScene(prevScene, _activeScene->GetSceneID());
+			physics_manager::PhysicsManager::Instance()->RemovePhysicsScene(prevScene, newScene);
 			delete (*it);
 			it = _scenesToDestroy.erase(it);
-			eden_render::RenderManager::getInstance()->RemoveRenderScene(prevScene, _activeScene->GetSceneID());
+			eden_render::RenderManager::Instance()->RemoveRenderScene(prevScene, newScene);
 		}
+
+		for (auto it = _scenesToAdd.begin(); it != _scenesToAdd.end();) {
+			if (_currentScenes.find(*it) == _currentScenes.end()) {
+				CreateScene(*it);
+			}
+			it = _scenesToAdd.erase(it);
+		}
+
+		if (_scenes.size() <= 0)
+			eden_error::ErrorHandler::Instance()->Exception("scene deque empty", "SceneManager ERROR in line 188, scene deque empty");
 	}
 }

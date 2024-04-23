@@ -17,7 +17,7 @@ namespace eden_canvas {
 	public:
 		friend Singleton<Canvas>;
 
-		/// @brief Actualiza el tama�o y posicion de los componentes
+		/// @brief Actualiza el tamanio y posicion de los componentes
 		void Resize();
 
 		/// @brief Inicializa los valores base de los componentes
@@ -26,12 +26,12 @@ namespace eden_canvas {
 		/// @brief Destructora
 		~Canvas() = default;
 
-		/// @brief A�ade un puntero a un componente de UI
-		/// para actualizar su posici�n y tama�o
-		/// @param ent Entidad cuya posici�n va a actualizarse
+		/// @brief Aniade un puntero a un componente de UI
+		/// para actualizar su posicion y tamanio
+		/// @param ent Entidad cuya posicion va a actualizarse
 		void addRenderEntity(eden_ec::UIComponent* ent);
 
-		/// @brief Quita el componente para dejar de actualizar su posici�n
+		/// @brief Quita el componente para dejar de actualizar su posicion
 		/// @param ent Entidad que se va a quitar
 		void removeRenderEntity(eden_ec::UIComponent* ent);
 

@@ -18,16 +18,16 @@ namespace eden_script {
 
 namespace eden_ec {
 	/// @brief Clase que define las Entidades de nuestro juego como contenedores de Componentes,
-    /// que definir�n el comportamiento y las distinguir�n de otras entidades.
+    /// que definiran el comportamiento y las distinguiran de otras entidades.
     /// Se encarga de gestionar sus componentes, haciendo las llamdas pertinentes a los mismo
 	class EDEN_API Entity
 	{
         friend class eden_script::LuaManager;
 	public:
-		/// @brief Construye una entidad gen�rica
+		/// @brief Construye una entidad generica
 		Entity() = default;
 
-        /// @brief Construye una entidad gen�rica y le da nombre
+        /// @brief Construye una entidad generica y le da nombre
         /// @param id El nombre que queremos darle a la entidad
         inline Entity(std::string id, std::string sceneID) { _ID = id; _sceneID = sceneID; }
 
@@ -37,15 +37,15 @@ namespace eden_ec {
         /// @brief Devuelve el nombre identificativo de la entidad
         inline std::string GetEntityID() const { return _ID;}
 
-		/// @brief Dice si la entidad est� o no viva
+		/// @brief Dice si la entidad esta o no viva
 		/// @return True = Viva | False = Muerta
 		inline bool IsAlive() const { return _alive; }
 
 		/// @brief Permite cambiar el estado de vida de una entidad.
-		/// @param alive Si se pasa 'true' la entidad estar� viva. Si se pasa 'false', la entidad morir� y el siguiente frame no existir�
+		/// @param alive Si se pasa 'true' la entidad estara viva. Si se pasa 'false', la entidad morira y el siguiente frame no existira
 		inline void SetAlive(bool alive) { _alive = alive; }
 
-		/// @brief M�todo que dice si la entidad est� activa o no. 
+		/// @brief Metodo que dice si la entidad esta activa o no. 
 		/// @return True = Activa | False = Inactiva
 		inline bool IsActive() const { return _active; }
 
@@ -57,9 +57,9 @@ namespace eden_ec {
         /// @param id El ID del componente a quitar
         inline void RemoveComponent(std::string id);
 
-        /// @brief A�ade un componente a la entidad dado su tipo y los argumentos que requiera el
+        /// @brief Aniade un componente a la entidad dado su tipo y los argumentos que requiera el
         /// componente dado
-        /// @tparam ...Ts Tipos de los argumentos que se requieren para la creaci�n del componente
+        /// @tparam ...Ts Tipos de los argumentos que se requieren para la creacion del componente
         /// @tparam T Tipo del componente
         /// @param ...args Argumentos para el componente
         /// @return Componente creado
@@ -72,13 +72,13 @@ namespace eden_ec {
             return c;
         }
 
-        /// @brief A�ade un componente seg�n la informaci�n le�da en un mapa. 
-        /// @param info Informaci�n le�da desde un mapa .lua.
+        /// @brief Aniade un componente segun la informacion leida en un mapa. 
+        /// @param info Informacion leida desde un mapa .lua.
         Component* AddComponentByRead(eden_script::ComponentArguments* info);
 
         /// @brief Crea todos los componentes de la entidad
-        /// @param info Struct que da valor al nombre y a los componentes de una entidad. Se construye a trav�s
-        /// de la lectura de archivos .lua. Ver el proyecto de EDEN_Script para m�s informaci�n (ScriptManager.h)
+        /// @param info Struct que da valor al nombre y a los componentes de una entidad. Se construye a traves
+        /// de la lectura de archivos .lua. Ver el proyecto de EDEN_Script para m�s informacion (ScriptManager.h)
         void AddComponents(eden_script::EntityInfo* info);
 
         /// @brief Llama al m�todo Start de todos los componentes
@@ -126,14 +126,14 @@ namespace eden_ec {
         void HandleInput();
 
     private:
-        /// @brief Variable que indica si una entidad est� viva o no. En caso de no estarlo, deber�
+        /// @brief Variable que indica si una entidad esta viva o no. En caso de no estarlo, debera
         /// ser borrada en el siguiente update
         bool _alive = true;
-        /// @brief Variable que indica si una entidad est� activa o no. En caso de no estarlo,
-        /// no llamar� a los m�todos de sus componentes
+        /// @brief Variable que indica si una entidad esta activa o no. En caso de no estarlo,
+        /// no llamara a los metodos de sus componentes
         bool _active = true;
 
-        /// @brief Mapa desordenado que contiene un componente seg�n la ID del componente
+        /// @brief Mapa desordenado que contiene un componente segun la ID del componente
         std::unordered_map<std::string, Component*> _components;
 
         /// @brief Variable que identifica a la entidad por nombre 

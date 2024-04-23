@@ -14,7 +14,6 @@ struct lua_State;
 
 namespace eden_ec {
 	class Entity;
-	class Hito1Prueba;
 }
 
 namespace eden_script {
@@ -46,13 +45,13 @@ namespace eden_script {
 		/// el scripting
 		EDEN_API void InitLua(lua_State* l);
 
-		/// @brief M�todo que se encarga de registrar clases con las funciones deseadas (de clases ya existentes) mediante luabridge.
-		/// Si la clase que se est� intentando crear ya existe simplemente se le a�adir�n las funciones nuevas
+		/// @brief Metodo que se encarga de registrar clases con las funciones deseadas (de clases ya existentes) mediante luabridge.
+		/// Si la clase que se esta intentando crear ya existe simplemente se le aniadiran las funciones nuevas
 		/// @tparam T El tipo de clase que se va a registrar
 		/// @tparam Funct El tipo de las funciones que vamos a registrar
 		/// @tparam W Puntero al tipo de clase 
 		/// @param name Nombre con el que se guarda la clase registrada en luabridge
-		/// @param nameFunc Nombre con el que se guarda la funci�n deseada en la clase registrada
+		/// @param nameFunc Nombre con el que se guarda la funcion deseada en la clase registrada
 		template <class T, class Funct, class W>
 		EDEN_API void Regist(T a, const char *name, Funct _f, const char* nameFunc,W _this) {
 			if (!_classes.contains({ name,false })) {
@@ -65,7 +64,7 @@ namespace eden_script {
 			}
 			else HandleError(name);
 		}
-		/// @brief M�todo que setea de forma gloabal una clase que hemos creado para poder acceder a ella
+		/// @brief Metodo que setea de forma gloabal una clase que hemos creado para poder acceder a ella
 		/// (*Llamar despues de haber registrado la clase*)
 		/// @tparam W Puntero al tipo de clase 
 		/// @param name Nombre con el que se guarda la clase registrada en luabridge
@@ -84,7 +83,7 @@ namespace eden_script {
 		/// @brief Puntero al LuaState
 		lua_State* _L;
 
-		/// @brief registro de las clases que han sido a�adidas y flag de si han sido seteadas ya como global o no
+		/// @brief registro de las clases que han sido aniadidas y flag de si han sido seteadas ya como global o no
 		std::set<std::pair<std::string,bool>>_classes;
 
 		/// @brief M�todo que maneja los errores al crear clases en luabridge

@@ -15,8 +15,8 @@ namespace eden_error {
 	void ErrorHandler::CloseApplication() {
 		if (eden::Master::isInitialized())
 		{
+			eden::Master::Instance()->_error = true;
 			eden::Master::Instance()->Close();
-			delete eden::Master::Instance();
 		}
 	}
 

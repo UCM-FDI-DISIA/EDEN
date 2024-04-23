@@ -88,7 +88,7 @@ namespace eden_input
 		/// @brief Limpieza del mapa de teclas
 		EDEN_API void Clean();
 
-		/// @brief True si se est� pulsando
+		/// @brief True si se esta pulsando
 		/// al menos una tecla del teclado
 		EDEN_API bool KeyDownEvent();
 
@@ -102,7 +102,7 @@ namespace eden_input
 		EDEN_API bool IsKeyDown(char key);
 
 		/// @brief True mientras
-		/// la tecla est� pulsada
+		/// la tecla esta pulsada
 		/// @param key Tecla Normal (0-9 y a-z)
 		EDEN_API bool IsKeyHeld(char key);
 
@@ -117,7 +117,7 @@ namespace eden_input
 		EDEN_API bool IsKeyDown(SPECIALKEY key);
 
 		/// @brief True mientras
-		/// la tecla est� pulsada
+		/// la tecla esta pulsada
 		/// @param key Tecla Normal (macros SPECIALKEY)
 		EDEN_API bool IsKeyHeld(SPECIALKEY key);
 
@@ -191,7 +191,7 @@ namespace eden_input
 		/// @brief Booleano de si se ha movido el raton
 		bool _isMouseMotionEvent;
 		
-		/// @brief Booleano de si se ha pulsado alg�n bot�n del raton
+		/// @brief Booleano de si se ha pulsado algun boton del raton
 		bool _isMouseButtonEvent;
 
 		/// @brief Posicion del raton
@@ -203,7 +203,7 @@ namespace eden_input
 		/// @brief Booleano de si se cierra la ventana
 		bool _isCloseWindowEvent;
 
-		/// @brief Booleano de si se cambia el tamaño la ventana
+		/// @brief Booleano de si se cambia el tamanio la ventana
 		bool _isResizedWindowEvent;
 
 		/// @brief Estados de botones
@@ -215,7 +215,7 @@ namespace eden_input
 		};
 
 		/// @brief Gestiona el cambio de estados de los botones de teclado, mando y
-		/// rat�n (DOWN -> HELD y UP -> RELEASE). Resetea las flags de los
+		/// raton (DOWN -> HELD y UP -> RELEASE). Resetea las flags de los
 		/// eventos
 		void ClearState();
 
@@ -228,7 +228,7 @@ namespace eden_input
 		/// @brief Actualiza la posici�n del rat�n
 		void OnMouseMotion();
 
-		/// @brief Actualiza el estado de los botones del rat�n
+		/// @brief Actualiza el estado de los botones del raton
 		void OnMouseButtonChange(STATE state);
 
 		/// @brief Gestiona los eventos de ventana

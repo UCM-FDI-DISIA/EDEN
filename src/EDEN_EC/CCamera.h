@@ -32,7 +32,7 @@ namespace eden_ec {
 		/// @brief Da valor al _cameraWrapper
 		void Awake() override;
 
-		/// @brief Guarda la referencia al transform, crea el CameraWrapper y añade la entidad al RenderManager
+		/// @brief Guarda la referencia al transform, crea el CameraWrapper y aï¿½ade la entidad al RenderManager
 		void Start() override;
 
 		/// @brief Metodo que se ejecutara cada frame y actualizara constantemente la posicion de la camara en caso de que la entidad
@@ -69,7 +69,7 @@ namespace eden_ec {
 		/// @return Vector3 con la posicion de la camara
 		eden_utils::Vector3 GetCameraPosition() const;
 
-		/// @brief Definición de método estático GetID necesario para construcción de componentes
+		/// @brief Definiciï¿½n de mï¿½todo estï¿½tico GetID necesario para construcciï¿½n de componentes
 		inline static std::string GetID() { return "CAMERA"; }
 
 	private:

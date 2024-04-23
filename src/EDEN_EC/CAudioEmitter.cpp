@@ -1,5 +1,4 @@
 #include "CAudioEmitter.h"
-#include "AudioManager.h"
 #include "Sound.h"
 #include "SoundClip.h"
 #include "Transform.h"
@@ -11,6 +10,7 @@ eden_ec::CAudioEmitter::CAudioEmitter(std::string name, bool is3D) : _3D(is3D) {
 }
 
 eden_ec::CAudioEmitter::~CAudioEmitter() {
+	eden_audio::AudioManager::Instance()->RemoveAudioEntity(_ent);
 	Stop();
 	_transform = nullptr;
 }
@@ -21,6 +21,8 @@ void eden_ec::CAudioEmitter::Init(eden_script::ComponentArguments* args) {
 }
 
 void eden_ec::CAudioEmitter::Start() {
+	// Habria que cambiar esta línea cuando se cree el awake
+	eden_audio::AudioManager::Instance()->AddAudioEntity(_ent);
 	_transform = _ent->GetComponent<eden_ec::CTransform>();
 }
 
@@ -42,6 +44,8 @@ void eden_ec::CAudioEmitter::Play() {
 		_sound = new audio_wrapper::Sound(_soundClip);
 		_3D ? _sound->Play(_transform->GetPosition(), _loop) : _sound->Play(_loop);
 	}
+	_previousState = _currentState;
+	_currentState = SoundState::PLAYING;
 }
 
 void eden_ec::CAudioEmitter::ChangeClip(std::string name) {
@@ -50,10 +54,14 @@ void eden_ec::CAudioEmitter::ChangeClip(std::string name) {
 
 void eden_ec::CAudioEmitter::Pause() {
 	_sound->Pause();
+	_previousState = _currentState;
+	_currentState = SoundState::PAUSED;
 }
 
 void eden_ec::CAudioEmitter::Resume() {
 	_sound->Resume();
+	_previousState = _currentState;
+	_currentState = SoundState::PLAYING;
 }
 
 void eden_ec::CAudioEmitter::Restart() {
@@ -66,6 +74,8 @@ void eden_ec::CAudioEmitter::Stop() {
 		delete _sound;
 	}
 	_sound = nullptr;
+	_previousState = _currentState;
+	_currentState = SoundState::STOPPED;
 }
 
 bool eden_ec::CAudioEmitter::IsPaused() const {

@@ -36,6 +36,7 @@
 #include "CImage.h"
 #include "CText.h"
 #include "CButton.h"
+#include "CBar.h"
 #include "CCursor.h"
 #include "CCamera.h"
 #include "CParticleEmitter.h"
@@ -75,6 +76,7 @@ void RegisterEngineComponents() {
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CButton>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CLuaBehaviour>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CCursor>();
+	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CBar>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CRigidBody>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CMeshRenderer>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CParticleEmitter>();
@@ -107,10 +109,10 @@ void eden_export::RunEDEN()
 			throw std::domain_error("aqui no hay dll");
 		}
 		else {
-			typedef void (*CompFunc)(eden_ec::ComponentFactory*);
+			typedef void (*CompFunc)();
 			CompFunc RegisterGameComponents = reinterpret_cast<CompFunc>(GetProcAddress(game, "RegisterComponents"));
 
-			typedef void (*SceneFunc)(eden::SceneManager*);
+			typedef void (*SceneFunc)();
 			SceneFunc LoadScene = reinterpret_cast<SceneFunc>(GetProcAddress(game, "LoadScene"));
 
 			if (LoadScene == NULL) {
@@ -125,12 +127,12 @@ void eden_export::RunEDEN()
 				// Registro de componentes
 				RegisterEngineComponents();
 				eden_ec::ComponentFactory* factory = eden_ec::ComponentFactory::Instance();
-				RegisterGameComponents(factory);
+				RegisterGameComponents();
 
-				master = eden::Master::Instance(); // creación instancia master
-				scnManager = eden::SceneManager::Instance(); // creación instancia de gestor de escenas
+				master = eden::Master::Instance(); // creaciï¿½n instancia master
+				scnManager = eden::SceneManager::Instance(); // creaciï¿½n instancia de gestor de escenas
 				eden_input::InputManager::Instance();
-				LoadScene(scnManager); // carga de escena del juego
+				LoadScene(); // carga de escena del juego
 				master->Loop(); // bucle de juego
 			}
 		}
@@ -144,6 +146,6 @@ void eden_export::RunEDEN()
 void eden_export::StopEDEN()
 {
 	master->Close();
-	FreeLibrary(game); // liberación de memoria de la .dll del juego
+	FreeLibrary(game); // liberaciï¿½n de memoria de la .dll del juego
 	errorHandler->Close();
 }

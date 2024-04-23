@@ -19,6 +19,11 @@ namespace eden {
 		AwakeEntities();
 	}
 
+	Scene::Scene(const std::string& ID)
+	{
+		_ID = ID;
+	}
+
 	eden_ec::Entity* Scene::Instantiate(eden_script::EntityInfo* info) {
 		// Decimos que estamos leyendo por consola
 #ifdef _DEBUG

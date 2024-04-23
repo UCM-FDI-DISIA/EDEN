@@ -42,9 +42,6 @@ namespace eden
 
 		/// @brief Destructora por defecto de EdenMaster
 		EDEN_API ~Master() override;
-
-		/// @brief flag de si ha saltado error
-		bool _error = false;
 	private:
 
 		// static bool _initialized;

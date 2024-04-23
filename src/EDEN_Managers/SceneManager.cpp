@@ -49,6 +49,8 @@ namespace eden {
 			delete blueprints[i];
 		}
 		blueprints.clear();
+
+		_dontDestroyOnLoadScene = new Scene(_dontDestroyOnLoadID);
 	}
 
 	void SceneManager::CreateScene(std::string& ID)
@@ -74,6 +76,7 @@ namespace eden {
 			it = _scenes.erase(it);
 		}
 		_activeScene = nullptr;
+		delete _dontDestroyOnLoadScene;
 	}
 
 	eden_ec::Entity* SceneManager::InstantiateBlueprint(std::string blueprintID) {
@@ -95,6 +98,11 @@ namespace eden {
 		}
 
 		return ent;
+	}
+
+	EDEN_API std::string SceneManager::GetDontDestroyOnLoadSceneID()
+	{
+		return _dontDestroyOnLoadID;
 	}
 
 	eden_ec::Entity* SceneManager::InstantiateBlueprint(std::string blueprintID, eden_utils::Vector3 pos) {
@@ -169,6 +177,7 @@ namespace eden {
 		if (_scenes.size() > 0)
 			_scenes.front()->Update(dt);
 
+		_dontDestroyOnLoadScene->Update(dt);
 
 		std::string newScene = " ";
 		if (_scenesToDestroy.size() > 0 && _scenes.size() > 0) {

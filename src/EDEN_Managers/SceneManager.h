@@ -85,11 +85,16 @@ public:
 	EDEN_API eden_ec::Entity* InstantiateBlueprint(std::string blueprintID, eden_utils::Vector3 pos);
 	EDEN_API eden_ec::Entity* InstantiateBlueprint(std::string blueprintID, eden_utils::Quaternion rot);
 	EDEN_API eden_ec::Entity* InstantiateBlueprint(std::string blueprintID);
+	EDEN_API std::string GetDontDestroyOnLoadSceneID();
 private:
 
 
 	/// @brief Puntero a la primera escena de la lista, a la cual se llama a su Update
 	Scene* _activeScene = nullptr;
+
+	///@brief Escena DontDestroyOnLoad
+	Scene* _dontDestroyOnLoadScene = nullptr;
+	std::string _dontDestroyOnLoadID = "DontDestroyOnLoad";
 
 	/// @brief Guarda informacion de un Blueprint. 
 	struct BlueprintInfo {

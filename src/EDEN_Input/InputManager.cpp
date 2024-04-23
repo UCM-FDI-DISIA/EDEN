@@ -122,6 +122,8 @@ void eden_input::InputManager::ClearState() {
 		else if (_kbState[i] == UP)
 			_kbState[i] = RELEASED;
 	}
+
+	_mouseDir = { 0, 0 };
 }
 
 void eden_input::InputManager::OnKeyDown() {
@@ -140,8 +142,14 @@ void eden_input::InputManager::OnKeyUp() {
 
 void eden_input::InputManager::OnMouseMotion() {
 	_isMouseMotionEvent = true;
-	_mousePos.first = _wrapper->getEvent()->motion.x;
-	_mousePos.second = _wrapper->getEvent()->motion.y;
+
+	SDL_Event* event = _wrapper->getEvent();
+
+	_mousePos.first = event->motion.x;
+	_mousePos.second = event->motion.y;
+
+	_mouseDir.first = event->motion.xrel;
+	_mouseDir.second = event->motion.yrel;
 }
 
 void eden_input::InputManager::OnMouseButtonChange(STATE state) {

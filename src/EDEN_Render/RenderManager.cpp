@@ -281,12 +281,20 @@ NativeWindowPair eden_render::RenderManager::CreateNewWindow(const std::string& 
 	return _window;
 }
 
+void eden_render::RenderManager::ShowCursor(bool _cursor) {
+	SDL_ShowCursor(SDL_bool(_cursor));
+}
+
+void eden_render::RenderManager::SetRelativeMouseMode(bool _relative) {
+	SDL_SetRelativeMouseMode(SDL_bool(_relative));
+}
+
 void eden_render::RenderManager::SetWindowGrab(bool _grab)
 {
 	SDL_bool grab = SDL_bool(_grab);
 	SDL_SetWindowGrab(_window.native, grab);
 	// SDL_SetRelativeMouseMode(grab);
-	SDL_ShowCursor(grab);
+	ShowCursor(_grab);
 }
 
 void eden_render::RenderManager::LoadResources()

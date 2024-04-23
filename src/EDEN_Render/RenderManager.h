@@ -89,6 +89,16 @@ namespace eden_render
 		/// @return Devuelve el alto de la ventana 
 		EDEN_API int GetWindowHeight();
 		
+		/// @brief Cambia el estado de visibilidad del cursor
+		/// @param _cursor True = Se ve el cursor | False = no se ve el cursor
+		EDEN_API void ShowCursor(bool _cursor);
+
+		/// @brief Atrapa el raton en la ventana
+		/// @param grab Activa o desactiva la funcionalidad del metodo
+		EDEN_API void SetWindowGrab(bool grab);
+
+		EDEN_API void SetRelativeMouseMode(bool relative);
+
 		/// @brief Actualiza todas las posiciones de la escena con su componente Transform
 		/// @param sceneID Identificador de la escena
 		void UpdatePositions(std::string sceneID);
@@ -153,10 +163,6 @@ namespace eden_render
 
 		/// @brief Creación de la raiz de Ogre de la escena
 		void InitializeLib();
-
-		/// @brief Atrapa el raton en la ventana
-		/// @param grab Activa o desactiva la funcionalidad del metodo
-		void SetWindowGrab(bool grab);
 
 		/// @brief Localizacion de archivos para Ogre
 		void LocateResources();

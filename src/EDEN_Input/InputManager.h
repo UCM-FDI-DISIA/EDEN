@@ -154,6 +154,8 @@ namespace eden_input
 		/// la posici�n del rat�n en la pantalla.
 		EDEN_API const std::pair<int, int>& GetMousePos();
 
+		EDEN_API inline const std::pair<int, int>& GetMouseDir() { return _mouseDir; }
+
 		//window events
 
 		/// @brief Devuelve true cuando el usuario ha pulsado la X de la ventana
@@ -196,6 +198,9 @@ namespace eden_input
 
 		/// @brief Posicion del raton
 		std::pair<int, int> _mousePos;
+
+		/// @brief Dirección de movimiento del ratón
+		std::pair<int, int> _mouseDir;
 
 		/// @brief Estado del raton
 		std::array<uint8_t, 3> _mbState;

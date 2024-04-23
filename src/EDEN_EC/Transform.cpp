@@ -1,4 +1,3 @@
-#define _CRTDBG_MAP_ALLOC
 #include "Transform.h"
 #include <ScriptManager.h>
 #include <ComponentArguments.h>
@@ -37,7 +36,7 @@ void eden_ec::CTransform::SetScale(eden_utils::Vector3 scale)
 
 void eden_ec::CTransform::Translate(eden_utils::Vector3 position)
 {
-	_position += position;
+	_position += _rotation * position;
 	for (eden_ec::CTransform* t : _childrenVector) t->Translate(position);
 }
 

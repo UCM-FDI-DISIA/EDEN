@@ -35,6 +35,11 @@ namespace eden_utils {
 
 		EDEN_API ~Quaternion() = default;
 
+		/// @brief Rota un vector dado un Quaternion
+		/// @param v Vector a rotar
+		/// @return Vector rotado
+		EDEN_API Vector3 operator*(const Vector3& v) const;
+
 		/// @brief Iguala un cuaterni�n a otro
 		/// @param other Cuaterni�n al que iguala
 		/// @return Cuaterni�n resultante

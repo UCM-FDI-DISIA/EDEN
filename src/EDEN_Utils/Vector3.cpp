@@ -99,7 +99,7 @@ void eden_utils::Vector3::Normalize()
 
 eden_utils::Vector3 eden_utils::Vector3::Normalized()
 {
-	return *this / Magnitude();
+	return Magnitude() == 0? Vector3(0, 0, 0) : *this / Magnitude();
 }
 
 float eden_utils::Vector3::Dot(Vector3 other)

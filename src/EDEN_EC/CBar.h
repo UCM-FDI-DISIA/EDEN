@@ -49,9 +49,7 @@ namespace eden_ec {
 		float GetBarPercentage() const;
 
 		/// @brief Definicion de metodo estatico GetID necesario para construccion de componentes
-		static std::string GetID() { return _id; }
-	protected:
-		const static std::string _id;
+		static std::string GetID() { return "BAR"; }
 	private:
 		/// @brief Tamanio total de la barra
 		float _totalWidth = 0;

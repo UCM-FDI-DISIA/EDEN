@@ -6,8 +6,6 @@
 #include "Entity.h"
 
 
-const std::string eden_ec::CBar::_id = "BAR";
-
 eden_ec::CBar::CBar(std::string overlayName, float xPos, float yPos,
 	float width, float height, std::string texture,
 	int depth) {

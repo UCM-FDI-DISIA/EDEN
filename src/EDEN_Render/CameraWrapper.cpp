@@ -73,7 +73,7 @@ Ogre::MovableObject* render_wrapper::CameraWrapper::GetRenderObject() {
 	return _camera;
 }
 
-void render_wrapper::CameraWrapper::SetActiveCamera()
+void render_wrapper::CameraWrapper::SetActiveCamera() const
 {
 	_viewport->setCamera(_camera);
 }

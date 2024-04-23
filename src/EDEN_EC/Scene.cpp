@@ -19,6 +19,11 @@ namespace eden {
 		AwakeEntities();
 	}
 
+	Scene::Scene(const std::string& ID)
+	{
+		_ID = ID;
+	}
+
 	eden_ec::Entity* Scene::Instantiate(eden_script::EntityInfo* info) {
 		// Decimos que estamos leyendo por consola
 #ifdef _DEBUG
@@ -74,7 +79,7 @@ namespace eden {
 			std::cout << "--------\n";
 		}
 #endif
-		AddGameObject(info->name, ent);
+		AddNewGameObject(ent);
 		return ent;
 	}
 
@@ -112,6 +117,7 @@ namespace eden {
 		}
 	}
 
+
 	Scene::~Scene() {
 		for (auto it = _gameEntitiesList.begin(); it != _gameEntitiesList.end();) {
 			delete it->second; //Llamamos a la destructora de la entidad
@@ -138,8 +144,28 @@ namespace eden {
 		return _gameEntitiesList[ID];
 	}
 
-	void Scene::AddGameObject(const std::string& ID, eden_ec::Entity* _ent) {
+	void Scene::AddNewGameObject(eden_ec::Entity* _ent)
+	{
 		_newEntities.push_back(_ent);
+	}
+
+	bool Scene::AddExistingGameObject(eden_ec::Entity* _ent) {
+		if (!_gameEntitiesList.contains(_ent->GetEntityID()))
+		{
+			_gameEntitiesList[_ent->GetEntityID()] = _ent;
+			return true;
+		}
+		return false;		
+	}
+
+	bool Scene::RemoveGameObject(eden_ec::Entity* _ent)
+	{
+		if (_gameEntitiesList.contains(_ent->GetEntityID()))
+		{
+			_gameEntitiesList.erase(_ent->GetEntityID());
+			return true;
+		}
+		return false;
 	}
 
 	void Scene::AwakeEntities() {
@@ -150,8 +176,8 @@ namespace eden {
 
 	void Scene::StartEntities() {
 		for (auto it = _newEntities.begin(); it != _newEntities.end();) {
-			(*it)->StartComponents();
 			_gameEntitiesList.insert({ (*it)->GetEntityID(), (*it) });
+			(*it)->StartComponents();
 			it = _newEntities.erase(it);
 		}
 	}

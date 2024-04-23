@@ -9,6 +9,8 @@
 
 #include "Singleton.h"
 
+#define RESOURCES_LOCATION_TYPE "FileSystem"
+
 namespace eden_debug {
 	class DebugDrawer;
 }

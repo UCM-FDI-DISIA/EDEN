@@ -84,7 +84,7 @@ void eden_ec::UIComponent::SetRelativePosition(float xPos, float yPos) {
 void eden_ec::UIComponent::SetMaterial(std::string const& matName) {
 
 	std::string material = matName;
-	eden_resources::ResourcesManager::Resources res = eden_resources::ResourcesManager::Materials;
+	eden_resources::ResourcesManager::Resources res = eden_resources::ResourcesManager::UI;
 	if (material == "default.png") res = eden_resources::ResourcesManager::Default;
 	if (!eden_resources::ResourcesManager::Instance()->FileExist(material, res)) {
 		if (material == "default.png")eden_error::ErrorHandler::Instance()->Exception("[SPY ERROR]:Load Material Error", "Failed to load Texture: " + matName);

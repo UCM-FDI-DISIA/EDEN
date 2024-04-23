@@ -3,12 +3,12 @@
 #define EDEN_C_MESH_RENDERER_H
 
 #ifdef _MSC_VER
-#define MESH_ROUTE "assets\\mesh\\"
-#define MATERIAL_ROUTE "assets\\material\\"
+#define MESH_ROUTE "assets\\meshes\\"
+#define MATERIAL_ROUTE "assets\\materials\\"
 #endif
 #ifdef __APPLE__
-#define MESH_ROUTE "assets/mesh/"
-#define MATERIAL_ROUTE "assets/material/"
+#define MESH_ROUTE "assets/meshes/"
+#define MATERIAL_ROUTE "assets/materials/"
 #endif
 
 #define MESH_EXTENSION ".mesh"

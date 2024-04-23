@@ -47,6 +47,12 @@
 #include "Canvas.h"
 #include "CameraWrapper.h"
 
+// EDEN_Managers
+#include "ResourcesManager.h"
+
+// STD
+#include <vector>
+
 eden_render::RenderManager* eden_render::RenderManager::getInstance() {
 	return static_cast<RenderManager*>(Instance());
 }
@@ -290,51 +296,15 @@ void eden_render::RenderManager::LoadResources()
 
 void eden_render::RenderManager::LocateResources()
 {
-	Ogre::ConfigFile cf;
-
-	std::string resourcesPath = _fsLayer->getConfigFilePath("resources.cfg");
-	if (Ogre::FileSystemLayer::fileExists(resourcesPath)) {
-		cf.load(resourcesPath);
-		std::string sec, type, arch;
-		// go through all specified resource groups
-		Ogre::ConfigFile::SettingsBySection_::const_iterator seci;
-		for (seci = cf.getSettingsBySection().begin(); seci != cf.getSettingsBySection().end(); ++seci) {
-			sec = seci->first;
-			const Ogre::ConfigFile::SettingsMultiMap& settings = seci->second;
-			Ogre::ConfigFile::SettingsMultiMap::const_iterator i;
-
-			// go through all resource paths
-			for (i = settings.begin(); i != settings.end(); i++)
-			{
-				type = i->first;
-				arch = Ogre::FileSystemLayer::resolveBundlePath(i->second);
-#ifdef _MSC_VER
-				std::string path = _solutionPath;
-				path.append(arch);
-				Ogre::ResourceGroupManager::getSingleton().addResourceLocation(path, type, sec);
-#endif
-#ifdef __APPLE__
-				Ogre::ResourceGroupManager::getSingleton().addResourceLocation(arch, type, sec);
-#endif
-			}
-		}
-
-		sec = Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME;
-		const Ogre::ResourceGroupManager::LocationList genLocs = Ogre::ResourceGroupManager::getSingleton().getResourceLocationList(sec);
-
-		// OgreAssert(!genLocs.empty(), ("Resource Group '" + sec + "' must contain at least one entry").c_str());
-
-		arch = genLocs.front().archive->getName();
-		type = genLocs.front().archive->getType();
-
-		Ogre::ResourceGroupManager::getSingleton().addResourceLocation(_solutionPath + "materials", type, sec);
-
-		Ogre::MaterialManager::getSingleton().setActiveScheme(Ogre::MaterialManager::DEFAULT_SCHEME_NAME);
+	std::string type = RESOURCES_LOCATION_TYPE;
+	std::string sec = Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME;
+	std::vector<std::string> routes = { MESH_ROUTE,MATERIALS_ROUTE,UI_ROUTE,FONTS_ROUTE,DEFAULT_ROUTE };
+	for (std::string& it : routes) {
+		std::string path = _solutionPath;
+		path.append(it);	
+		Ogre::ResourceGroupManager::getSingleton().addResourceLocation(path, type, sec);
 	}
-	else
-	{
-		eden_error::ErrorHandler::Instance()->Exception("RenderManager ERROR in line 241", "File 'resources.cfg' not found in path " + resourcesPath + '\n');
-	}
+	Ogre::MaterialManager::getSingleton().setActiveScheme(Ogre::MaterialManager::DEFAULT_SCHEME_NAME);
 }
 
 int eden_render::RenderManager::GetWindowWidth() {

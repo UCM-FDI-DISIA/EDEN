@@ -10,13 +10,17 @@
 
 #ifdef _MSC_VER
 #define AUDIO_ROUTE "assets\\audio\\"
-#define MATERIALS_ROUTE "assets\\mesh\\"
+#define MESH_ROUTE "assets\\meshes\\"
+#define MATERIALS_ROUTE "assets\\materials\\"
+#define UI_ROUTE "assets\\ui_elements\\"
 #define FONTS_ROUTE "assets\\fonts\\"
 #define DEFAULT_ROUTE  "assets\\default\\"
 #endif
 #ifdef __APPLE__
 #define AUDIO_ROUTE "assets/audio/"
-#define MATERIALS_ROUTE "assets/mesh/"
+#define MESH_ROUTE "assets/meshes/"
+#define MATERIALS_ROUTE "assets/materials/"
+#define UI_ROUTE "assets/ui_elements/"
 #define FONTS_ROUTE "assets/fonts/"
 #define DEFAULT_ROUTE  "assets/default/"
 #endif
@@ -28,7 +32,9 @@ namespace eden_resources {
     public:
 
         enum Resources {
+            Mesh,
             Materials,
+            UI,
             Fonts,
             Audio,
             Default
@@ -42,13 +48,22 @@ namespace eden_resources {
         /// @brief Metodo que comprueba si un archivo existe
         EDEN_API bool FileExist(std::string name, Resources res);
         
+        EDEN_API std::set<std::string> GetMeshes();
+
+
         EDEN_API std::set<std::string> GetMaterials();
+
+        EDEN_API std::set<std::string> GetUIElements();
 
         EDEN_API std::set<std::string> GetAudios();
 
         EDEN_API std::set<std::string> GetFonts();
+        
+        EDEN_API std::set<std::string> GetRoutesMeshes();
 
         EDEN_API std::set<std::string> GetRoutesMaterials();
+
+        EDEN_API std::set<std::string> GetRoutesUIElements();
 
         EDEN_API std::set<std::string> GetRoutesAudios();
 

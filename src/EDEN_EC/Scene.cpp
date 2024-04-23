@@ -79,7 +79,7 @@ namespace eden {
 			std::cout << "--------\n";
 		}
 #endif
-		AddGameObject(info->name, ent);
+		AddNewGameObject(ent);
 		return ent;
 	}
 
@@ -117,6 +117,7 @@ namespace eden {
 		}
 	}
 
+
 	Scene::~Scene() {
 		for (auto it = _gameEntitiesList.begin(); it != _gameEntitiesList.end();) {
 			delete it->second; //Llamamos a la destructora de la entidad
@@ -143,8 +144,18 @@ namespace eden {
 		return _gameEntitiesList[ID];
 	}
 
-	void Scene::AddGameObject(const std::string& ID, eden_ec::Entity* _ent) {
+	void Scene::AddNewGameObject(eden_ec::Entity* _ent)
+	{
 		_newEntities.push_back(_ent);
+	}
+
+	void Scene::AddExistingGameObject(eden_ec::Entity* _ent) {
+		_gameEntitiesList[_ent->GetEntityID()] = _ent;
+	}
+
+	void Scene::RemoveGameObject(eden_ec::Entity* _ent)
+	{
+		_gameEntitiesList.erase(_ent->GetEntityID());
 	}
 
 	void Scene::AwakeEntities() {

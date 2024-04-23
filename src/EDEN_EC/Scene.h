@@ -45,9 +45,17 @@ namespace eden {
 		/// @param info Informacion de las entidades a instanciar
 		void Instantiate(std::vector<eden_script::EntityInfo*> info);
 
+		/// @brief Al principio la ejecucion del juego, anade una entidad nueva al mapa de entidades 
+		/// @param id id Nombre de la entidad que se va a crear nueva
+		void AddNewGameObject(eden_ec::Entity* _ent);
+
 		/// @brief Durante la ejecucion del juego, anade una entidad nueva al mapa de entidades 
 		/// @param id id Nombre de la entidad que se va a crear nueva
-		void AddGameObject(const std::string& ID, eden_ec::Entity* _ent);
+		void AddExistingGameObject(eden_ec::Entity* _ent);
+
+		/// @brief Durante la ejecucion del juego, borra una entidad del mapa de entidades 
+		/// @param id id Nombre de la entidad que se va a borrar
+		void RemoveGameObject(eden_ec::Entity* _ent);
 
 		/// @brief Devuleve una referencia a la camara actual 
 		inline eden_ec::Entity* GetCurrentCamara() { return _currentCamera; }

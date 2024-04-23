@@ -86,6 +86,7 @@ public:
 	EDEN_API eden_ec::Entity* InstantiateBlueprint(std::string blueprintID, eden_utils::Quaternion rot);
 	EDEN_API eden_ec::Entity* InstantiateBlueprint(std::string blueprintID);
 	EDEN_API std::string GetDontDestroyOnLoadSceneID();
+	EDEN_API inline Scene* GeDontDestroyOnLoadScene() { return _dontDestroyOnLoadScene; }
 private:
 
 

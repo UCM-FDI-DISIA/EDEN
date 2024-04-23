@@ -150,7 +150,10 @@ namespace eden {
 	}
 
 	void Scene::AddExistingGameObject(eden_ec::Entity* _ent) {
-		_gameEntitiesList[_ent->GetEntityID()] = _ent;
+		if (!_gameEntitiesList.contains(_ent->GetEntityID()))
+			_gameEntitiesList[_ent->GetEntityID()] = _ent;
+		else
+			delete _ent;
 	}
 
 	void Scene::RemoveGameObject(eden_ec::Entity* _ent)

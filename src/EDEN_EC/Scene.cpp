@@ -166,8 +166,8 @@ namespace eden {
 
 	void Scene::StartEntities() {
 		for (auto it = _newEntities.begin(); it != _newEntities.end();) {
-			(*it)->StartComponents();
 			_gameEntitiesList.insert({ (*it)->GetEntityID(), (*it) });
+			(*it)->StartComponents();
 			it = _newEntities.erase(it);
 		}
 	}

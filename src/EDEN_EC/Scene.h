@@ -51,11 +51,11 @@ namespace eden {
 
 		/// @brief Durante la ejecucion del juego, anade una entidad nueva al mapa de entidades 
 		/// @param id id Nombre de la entidad que se va a crear nueva
-		void AddExistingGameObject(eden_ec::Entity* _ent);
+		bool AddExistingGameObject(eden_ec::Entity* _ent);
 
 		/// @brief Durante la ejecucion del juego, borra una entidad del mapa de entidades 
 		/// @param id id Nombre de la entidad que se va a borrar
-		void RemoveGameObject(eden_ec::Entity* _ent);
+		bool RemoveGameObject(eden_ec::Entity* _ent);
 
 		/// @brief Devuleve una referencia a la camara actual 
 		inline eden_ec::Entity* GetCurrentCamara() { return _currentCamera; }

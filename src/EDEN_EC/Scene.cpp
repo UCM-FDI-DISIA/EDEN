@@ -149,16 +149,23 @@ namespace eden {
 		_newEntities.push_back(_ent);
 	}
 
-	void Scene::AddExistingGameObject(eden_ec::Entity* _ent) {
+	bool Scene::AddExistingGameObject(eden_ec::Entity* _ent) {
 		if (!_gameEntitiesList.contains(_ent->GetEntityID()))
+		{
 			_gameEntitiesList[_ent->GetEntityID()] = _ent;
-		else
-			delete _ent;
+			return true;
+		}
+		return false;		
 	}
 
-	void Scene::RemoveGameObject(eden_ec::Entity* _ent)
+	bool Scene::RemoveGameObject(eden_ec::Entity* _ent)
 	{
-		_gameEntitiesList.erase(_ent->GetEntityID());
+		if (_gameEntitiesList.contains(_ent->GetEntityID()))
+		{
+			_gameEntitiesList.erase(_ent->GetEntityID());
+			return true;
+		}
+		return false;
 	}
 
 	void Scene::AwakeEntities() {

@@ -72,18 +72,22 @@ namespace eden_ec {
 		/// @param angle angulo en grados 
 		/// @param axis Eje sobre el que va a rotar
 		void Rotate(float angle, eden_utils::Vector3 axis);
+		void LocalRotate(float angle, eden_utils::Vector3 axis);
 
 		/// @brief Rota el transform en el eje X
 		/// @param angle angulo en grados
 		void Pitch(float angle);
+		void LocalPitch(float angle);
 
 		/// @brief Rota el transform en el eje Y
 		/// @param angle angulo en grados
 		void Yaw(float angle);
+		void LocalYaw(float angle);
 
 		/// @brief Rota el transform en el eje Z
 		/// @param angle angulo en grados
 		void Roll(float angle);
+		void LocalRoll(float angle);
 
 		/// @brief Suma la escala del transform
 		/// @param scale Vector que suma a la escala

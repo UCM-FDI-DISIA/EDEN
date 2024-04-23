@@ -46,9 +46,21 @@ void eden_ec::CTransform::Rotate(float angle, eden_utils::Vector3 axis)
 	for (eden_ec::CTransform* t : _childrenVector) t->Rotate(angle, axis);
 }
 
+void eden_ec::CTransform::LocalRotate(float angle, eden_utils::Vector3 axis)
+{
+	_rotation.RotateArroundPointLocal(axis, angle);
+	for (eden_ec::CTransform* t : _childrenVector) t->Rotate(angle, axis);
+}
+
 void eden_ec::CTransform::Pitch(float angle)
 {
 	_rotation.RotateArroundPoint(eden_utils::Vector3(1.0f, 0.0f, 0.0f), angle);
+	for (eden_ec::CTransform* t : _childrenVector) t->Rotate(angle, this->GetRight());
+}
+
+void eden_ec::CTransform::LocalPitch(float angle)
+{
+	_rotation.RotateArroundPointLocal(eden_utils::Vector3(1.0f, 0.0f, 0.0f), angle);
 	for (eden_ec::CTransform* t : _childrenVector) t->Rotate(angle, this->GetRight());
 }
 
@@ -58,9 +70,21 @@ void eden_ec::CTransform::Yaw(float angle)
 	for (eden_ec::CTransform* t : _childrenVector) t->Rotate(angle, this->GetUp());
 }
 
+void eden_ec::CTransform::LocalYaw(float angle)
+{
+	_rotation.RotateArroundPointLocal(eden_utils::Vector3(0.0f, 1.0f, 0.0f), angle);
+	for (eden_ec::CTransform* t : _childrenVector) t->Rotate(angle, this->GetUp());
+}
+
 void eden_ec::CTransform::Roll(float angle)
 {
 	_rotation.RotateArroundPoint(eden_utils::Vector3(0.0f, 0.0f, 1.0f), angle);
+	for (eden_ec::CTransform* t : _childrenVector) t->Rotate(angle, this->GetForward());
+}
+
+void eden_ec::CTransform::LocalRoll(float angle)
+{
+	_rotation.RotateArroundPointLocal(eden_utils::Vector3(0.0f, 0.0f, 1.0f), angle);
 	for (eden_ec::CTransform* t : _childrenVector) t->Rotate(angle, this->GetForward());
 }
 

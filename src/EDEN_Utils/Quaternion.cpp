@@ -175,7 +175,36 @@ eden_utils::Vector3 eden_utils::Quaternion::Complex() const
 	return Vector3(_x, _y, _z);
 }
 
+
+eden_utils::Vector3 eden_utils::Quaternion::ToEuler() const {
+	// Rotacion en Z, Y y X respectivamente
+	float heading = 0, pitch = 0, bank = 0;
+
+	// Calculo de heading
+	float numerador = 2 * (_x * _y + _z * _w);
+	float denominador = 1 - 2 * (_y * _y + _z * _z);
+	float result = numerador / denominador;
+	heading = atanf(result);
+
+	// Calculo de pitch
+	result = 2 * (_x * _z - _w * _y);
+	pitch = asinf(result);
+
+	// Calculo de bank
+	numerador = 2 * (_x * _w + _y * _z);
+	denominador = 1 - 2 * (_z * _z + _w * _w);
+	result = numerador / denominador;
+	bank = atanf(result);
+
+	return eden_utils::Vector3(bank, pitch, heading);
+}
+
 void eden_utils::Quaternion::RotateArroundPoint(Vector3 position, float angle)
+{
+	*this = Quaternion(angle, position) * (*this);
+}
+
+void eden_utils::Quaternion::RotateArroundPointLocal(Vector3 position, float angle)
 {
 	*this = (*this) * Quaternion(angle, position);
 }

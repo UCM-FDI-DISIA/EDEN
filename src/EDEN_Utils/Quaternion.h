@@ -95,6 +95,8 @@ namespace eden_utils {
 		/// @return El propio cuaterni�n ya dividido
 		EDEN_API Quaternion operator/=(float scalar);
 
+		EDEN_API Vector3 ToEuler() const;
+
 		/// @brief Conjugado del cuaterni�n
 		/// @return Devuelve el conjugado de un cuaterni�n
 		EDEN_API Quaternion Conjugate();
@@ -123,6 +125,7 @@ namespace eden_utils {
 		/// @param position Punto alrededor del que rota
 		/// @param angle �ngulo que rota en grados
 		EDEN_API void RotateArroundPoint(Vector3 position, float angle);
+		EDEN_API void RotateArroundPointLocal(Vector3 position, float angle);
 
 		/// @brief Cuaterni�n sin rotaci�n
 		/// @return Devuelve el cuaterni�n identidad

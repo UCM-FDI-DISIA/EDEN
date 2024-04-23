@@ -70,6 +70,11 @@ public:
 
 	EDEN_API inline bool BlueprintExists(std::string ID) { return _Blueprints.count(ID); }
 
+	/// @brief Método que permite buscar una entidad en la escena actual, dado su ID
+	/// @param id ID de la Entidad a buscar
+	/// @return Devuelve el puntero a una entidad, devolverá nullptr si la entidad no existe en la escena
+	EDEN_API eden_ec::Entity* FindEntity(std::string ID);
+
 	/// @brief Crea una instancia de un blueprint en la escena. Puede cambiarse su posición y rotación
 	/// @param blueprintID el ID del blueprint a instanciar en la escena.
 	/// @param pos Nueva posición para entidad

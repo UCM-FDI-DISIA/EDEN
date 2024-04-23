@@ -14,11 +14,21 @@
 #include "PhysicsManager.h"
 #include "RenderManager.h"
 #include "AudioManager.h"
+#include "ErrorHandler.h"
 
 namespace eden {
 
 	SceneManager* SceneManager::getInstance() {
 		return static_cast<SceneManager*>(Instance());
+	}
+
+	EDEN_API eden_ec::Entity* SceneManager::FindEntity(std::string ID)
+	{
+		if (!_activeScene) {
+			eden_error::ErrorHandler::Instance()->Assert(true, "No active scene\n");
+			return nullptr;
+		}
+		return _activeScene->GetEntityByID(ID);
 	}
 
 	SceneManager::SceneManager() {

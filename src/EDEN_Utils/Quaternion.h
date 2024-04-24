@@ -133,7 +133,7 @@ namespace eden_utils {
 
 		/// @brief Calcula la matriz de rotaci�n de un cuaterni�n
 		/// @return Devuelve la matriz de rotaci�n
-		EDEN_API std::array<std::array<float, 3>, 3> GetRotationMatrix();
+		EDEN_API std::array<std::array<float, 3>, 3> GetRotationMatrix() const;
 	private:
 		/// @brief Componente real del cuaternion
 		float _w;

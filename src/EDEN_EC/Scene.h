@@ -100,6 +100,8 @@ namespace eden {
 		/// update pero si se seguiran renderizando sus entidades
 		bool _isRendering = true;
 
+		int _currentIteration = 0;
+
 		/// @brief referencia a la camara actual
 		eden_ec::Entity* _currentCamera = nullptr;
 
@@ -107,7 +109,7 @@ namespace eden {
 		std::unordered_map<std::string, eden_ec::Entity*> _gameEntitiesList;
 
 		/// @brief Vector que tiene las entidades que se añadirán al final del frame
-		std::vector<eden_ec::Entity*> _newEntities;
+		std::unordered_map<int, std::vector<eden_ec::Entity*>> _newEntities;
 	};
 }
 #endif // SCENE_H

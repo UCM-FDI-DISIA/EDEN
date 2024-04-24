@@ -146,7 +146,7 @@ namespace eden {
 
 	void Scene::AddNewGameObject(eden_ec::Entity* _ent)
 	{
-		_newEntities.push_back(_ent);
+		_newEntities[_currentIteration].push_back(_ent);
 	}
 
 	bool Scene::AddExistingGameObject(eden_ec::Entity* _ent) {
@@ -169,16 +169,18 @@ namespace eden {
 	}
 
 	void Scene::AwakeEntities() {
-		for (auto it : _newEntities) {
+		for (auto it : _newEntities[_currentIteration]) {
 			it->AwakeComponents();
 			_gameEntitiesList.insert({ it->GetEntityID(), it });
 		}
 	}
 
 	void Scene::StartEntities() {
-		for (auto it = _newEntities.begin(); it != _newEntities.end();) {
+		int lastIteration = _currentIteration;
+		_currentIteration++;
+		for (auto it = _newEntities[lastIteration].begin(); it != _newEntities[lastIteration].end();) {
 			(*it)->StartComponents();
-			it = _newEntities.erase(it);
+			it = _newEntities[lastIteration].erase(it);
 		}
 	}
 }

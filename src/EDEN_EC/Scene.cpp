@@ -171,12 +171,12 @@ namespace eden {
 	void Scene::AwakeEntities() {
 		for (auto it : _newEntities) {
 			it->AwakeComponents();
+			_gameEntitiesList.insert({ it->GetEntityID(), it });
 		}
 	}
 
 	void Scene::StartEntities() {
 		for (auto it = _newEntities.begin(); it != _newEntities.end();) {
-			_gameEntitiesList.insert({ (*it)->GetEntityID(), (*it) });
 			(*it)->StartComponents();
 			it = _newEntities.erase(it);
 		}

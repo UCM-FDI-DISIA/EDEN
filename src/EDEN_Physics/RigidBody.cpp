@@ -77,6 +77,8 @@ physics_wrapper::RigidBody::RigidBody(eden_ec::Entity* ent, const ShapeParameter
 	SetBounciness(bounciness);
 
 	_collisionCallback = new CollisionCallback(this);
+
+	_rigidBody->setActivationState(DISABLE_DEACTIVATION);
 }
 
 physics_wrapper::RigidBody::~RigidBody()

@@ -62,7 +62,7 @@ void eden_ec::CBar::Init(eden_script::ComponentArguments* args) {
 void eden_ec::CBar::SetBarPercentage(float p)
 {
 	_totalWidth = (100 * _oWidth) / _percentage;
-	if (p < 0)p = 1;
+	if (p <= 0)p = 1;
 	else if (p > 100)p = 100;
 	_percentage = p;
 	SetDimensions(_totalWidth * (p / 100), _oHeight);

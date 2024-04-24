@@ -425,7 +425,7 @@ std::pair<int, int> eden_render::RenderManager::GetResolution()
 
 void eden_render::RenderManager::ChangeResolution()
 {
-	ChangeWindowSize(_resolutions[_currRes].first, _resolutions[_currRes].second);
+	if(!_isFullScreen)ChangeWindowSize(_resolutions[_currRes].first, _resolutions[_currRes].second);
 	_currW = _resolutions[_currRes].first;
 	_currH = _resolutions[_currRes].second;
 }

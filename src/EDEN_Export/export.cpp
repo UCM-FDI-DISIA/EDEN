@@ -55,7 +55,6 @@
 #include "CAudioEmitter.h"
 #include "CAudioListener.h"
 
-#include "Hito1Prueba.h"
 #include "CAnimator.h"
 
 #include "RenderManager.h"
@@ -71,7 +70,6 @@ void RegisterEngineComponents() {
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CImage>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CText>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CLight>();
-	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::Hito1Prueba>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CAnimator>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CButton>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CLuaBehaviour>();

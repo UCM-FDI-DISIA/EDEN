@@ -9,7 +9,6 @@
 #include <ScriptManager.h>
 #include <ComponentArguments.h>
 #include "Entity.h"
-#include "Hito1Prueba.h"
 
 eden_ec::CLuaBehaviour::CLuaBehaviour(std::string name) : _behaviourLua(nullptr), _name(name) {
 }

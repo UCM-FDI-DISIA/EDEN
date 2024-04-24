@@ -3,7 +3,6 @@
 
 #include "LuaManager.h"
 #include "CLuaBehaviour.h"
-#include "Hito1Prueba.h"
 #include "Transform.h"
 #include "Entity.h"
 #include "ErrorHandler.h"

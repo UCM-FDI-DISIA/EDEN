@@ -60,9 +60,6 @@
     <ClInclude Include="..\..\src\EDEN_EC\Entity.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\EDEN_EC\Hito1Prueba.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\EDEN_EC\Scene.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
@@ -123,9 +120,6 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\EDEN_EC\Entity.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\EDEN_EC\Hito1Prueba.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\EDEN_EC\CBar.cpp">

@@ -68,6 +68,9 @@ void eden_ec::CButton::CreateButton(ButtonParams& params) {
 
 	_oldScale.first = params.width;
 	_oldScale.second = params.height;
+
+	_oldPos.first = params.xPos;
+	_oldPos.second = params.yPos;
 }
 
 void eden_ec::CButton::Start() {
@@ -101,8 +104,10 @@ void eden_ec::CButton::SetCallBack()
 }
 
 void eden_ec::CButton::Update(float deltaTime) {
-	if (_oPos.second!=0 && (_oldScale.first != _oWidth || _oldScale.second != _oHeight))
+	if (_oPos.second != 0 && (_oldScale.first != _oWidth || _oldScale.second != _oHeight || _oldPos.first != _oPos.first || _oldPos.second != _oPos.second)) {
+
 		ButtonRectUpdate();
+	}
 	CheckMousePos();
 }
 

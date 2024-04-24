@@ -119,6 +119,8 @@ namespace eden_ec {
 		/// @brief Tamanio anterior
 		std::pair<float, float>_oldScale = std::make_pair(0.0f, 0.0f);
 
+		std::pair<float,float>_oldPos = std::make_pair(0.0f, 0.0f);
+
 
 		/// @brief Puntero al script de lua
 		CLuaBehaviour* _callback = nullptr;

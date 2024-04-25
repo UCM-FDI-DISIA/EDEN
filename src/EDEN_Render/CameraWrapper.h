@@ -91,7 +91,7 @@ namespace render_wrapper {
 	};
 
 //#define DEFAULT_BG_COLOR eden_utils::Vector3(0.9f, 0.7f, 0.7f)
-#define DEFAULT_BG_COLOR eden_utils::Vector3(0.3f, 0.5f, 1.0f)
+#define DEFAULT_BG_COLOR eden_utils::Vector3(0.3f, 0.7f, 0.9f)
 }
 
 #endif //CAMERA_WRAPPER_H

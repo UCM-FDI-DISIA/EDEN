@@ -33,6 +33,9 @@ namespace eden {
 
 		eden_ec::Entity* ent;
 		if (info->isBlueprint) {
+#ifdef _DEBUG
+			std::cout << "THIS IS A BLUEPRINT!!!\n";
+#endif
 			// ModifyEntity() with BlueprintInfo
 			std::unordered_map<std::string, eden_script::ComponentArguments> entityComponents;
 
@@ -127,11 +130,11 @@ namespace eden {
 	}
 
 	void Scene::Update(float dt) {
-		StartEntities();
+		AwakeEntities();
 		for (auto& obj : _gameEntitiesList) {
 			obj.second->Update(dt);
 		}
-		AwakeEntities();
+		StartEntities();
 	}
 
 	void Scene::Render() {

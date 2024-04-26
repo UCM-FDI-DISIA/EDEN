@@ -128,7 +128,7 @@ namespace eden {
 		}
 	}
 
-	void Scene::Update(float dt) {
+ 	void Scene::Update(float dt) {
 		AwakeEntities();
 		StartEntities();
 		for (auto& obj : _gameEntitiesList) {

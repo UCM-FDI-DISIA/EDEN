@@ -101,9 +101,13 @@ namespace eden {
 		return ent;
 	}
 
-	EDEN_API std::string SceneManager::GetDontDestroyOnLoadSceneID()
+	EDEN_API bool SceneManager::AddEntityToDontDestroyOnLoad(eden_ec::Entity* ent)
 	{
-		return _dontDestroyOnLoadID;
+		bool done;
+		GetCurrentScene()->RemoveGameObject(ent);
+		done = _dontDestroyOnLoadScene->AddExistingGameObject(ent);
+		if (!done) ent->SetAlive(false);
+		return done;
 	}
 
 	eden_ec::Entity* SceneManager::InstantiateBlueprint(std::string blueprintID, eden_utils::Vector3 pos) {

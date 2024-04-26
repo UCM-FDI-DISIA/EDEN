@@ -16,7 +16,6 @@ namespace eden {
 		_ID = ID;
 		physics_manager::PhysicsManager::Instance()->InitLayers(ID, collisionInfo);
 		Instantiate(info);
-		AwakeEntities();
 	}
 
 	Scene::Scene(const std::string& ID)
@@ -131,10 +130,10 @@ namespace eden {
 
 	void Scene::Update(float dt) {
 		AwakeEntities();
+		StartEntities();
 		for (auto& obj : _gameEntitiesList) {
 			obj.second->Update(dt);
 		}
-		StartEntities();
 	}
 
 	void Scene::Render() {

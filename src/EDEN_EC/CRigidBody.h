@@ -52,6 +52,12 @@ namespace eden_ec {
 		/// @brief Se encarga de la entrada de input
 		void HandleInput() override;
 
+		/// @brief Los rigidbodies por defecto desactivan su simulación pasado un tiempo para evitar problemas de 
+		/// optimización. Esto también sucede si nuestro personaje recibe un input y deja de recibirlo después durante
+		/// un pequeño periodo de tiempo. Con este método podremos activar o desactivar esa opción.
+		/// @param input True = Se desactiva la desactivación | False = Se activa
+		void SetTemporalDeactivation(bool input);
+
 		/// @brief Destructora
 		~CRigidBody() override;
 

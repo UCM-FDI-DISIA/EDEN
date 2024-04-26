@@ -79,6 +79,11 @@ namespace physics_wrapper {
 		/// @param position Vector de posicion a la que la quieres establecer
 		void SetPosition(eden_utils::Vector3 position);
 
+		/// @brief Bullet tiene una desactivación temporal de objetos si no se le aplican fuerzas durante un tiempo. 
+		/// Con este método podremos Activar o Desactivar esa opción
+		/// @param activation True = Desactivado | False = Activado
+		void SetTemporalDeactivation(bool activation);
+
 		/// @brief Devuelve la rotacion del Transform de Bullet
 		/// @return Cuaternion de rotacion del Transform de Bullet
 		eden_utils::Quaternion GetRotation();

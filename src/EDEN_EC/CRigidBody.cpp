@@ -68,6 +68,11 @@ void eden_ec::CRigidBody::Init(eden_script::ComponentArguments* args) {
 	_layer = args->GetValueToString("CollisionLayer");
 }
 
+void eden_ec::CRigidBody::SetTemporalDeactivation(bool input)
+{
+	_rb->SetTemporalDeactivation(input);
+}
+
 eden_ec::CRigidBody::~CRigidBody()
 {
 	physics_manager::PhysicsManager::Instance()->RemovePhysicsEntity(_ent);

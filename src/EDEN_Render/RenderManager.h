@@ -10,6 +10,7 @@
 #include "Singleton.h"
 
 #define RESOURCES_LOCATION_TYPE "FileSystem"
+#define EDEN_RENDER_SYSTEM "OpenGL Rendering Subsystem"
 
 namespace eden_debug {
 	class DebugDrawer;

@@ -172,8 +172,9 @@ void eden_render::RenderManager::InitializeLib()
 
 	if (_root != nullptr)
 	{
-		_root->showConfigDialog(nullptr); // desactiva el dialogo de configuracion de Ogre
-		_root->initialise(false); // desactiva la inicializacion de la raíz de Ogre
+		Ogre::RenderSystem* rs = _root->getRenderSystemByName(EDEN_RENDER_SYSTEM);
+		_root->setRenderSystem(rs); // desactiva el diálogo de configuración de Ogre
+		_root->initialise(false); // inicializa ogre, sin crear ventana
 	}
 	else
 	{
@@ -229,35 +230,20 @@ NativeWindowPair eden_render::RenderManager::CreateNewWindow(const std::string& 
 {
 	uint32_t w, h;
 	Ogre::NameValuePairList miscParams;
-
-	Ogre::ConfigOptionMap ropts = _root->getRenderSystem()->getConfigOptions();
-
-	std::istringstream mode(ropts["Video Mode"].currentValue);
-	std::string token;
-	mode >> token;
-
+	
 	//TAMANIO FULL SCREEN
 	RECT desktop;
-	// Get a handle to the desktop window
 	const HWND hDesktop = GetDesktopWindow();
-	// Get the size of screen to the variable desktop
+	// Devuelve el tamanio ed la ventana
 	GetWindowRect(hDesktop, &desktop);
-	// The top left corner will have coordinates (0,0)
-	// and the bottom right corner will have coordinates
-	// (horizontal, vertical)
 	_fullW = desktop.right;
 	_fullH = desktop.bottom;
 	w = _defWindowSize.first;
 	h = _defWindowSize.second;
 	_isFullScreen = false;
-	miscParams["FSAA"] = ropts["FSAA"].currentValue;
-	miscParams["vsync"] = ropts["VSync"].currentValue;
-	miscParams["gamma"] = ropts["sRGB Gamma Conversion"].currentValue;
 
 	if (!SDL_WasInit(SDL_INIT_EVERYTHING)) SDL_InitSubSystem(SDL_INIT_EVERYTHING);
 	Uint32 flags = SDL_WINDOW_RESIZABLE;
-
-	if (ropts["Full Screen"].currentValue == "Yes") flags = SDL_WINDOW_FULLSCREEN;
 
 	_window.native = SDL_CreateWindow(name.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, w, h, flags);
 	_currW = w;
@@ -266,15 +252,6 @@ NativeWindowPair eden_render::RenderManager::CreateNewWindow(const std::string& 
 	SDL_SysWMinfo wmInfo;
 	SDL_VERSION(&wmInfo.version);
 	SDL_GetWindowWMInfo(_window.native, &wmInfo);
-
-	
-
-#ifdef SDL_VIDEO_DRIVER_WINDOWS
-	miscParams["externalWindowHandle"] = Ogre::StringConverter::toString(size_t(wmInfo.info.win.window));
-#endif
-#ifdef SDL_VIDEO_DRIVER_COCOA
-	miscParams["externalWindowHandle"] = Ogre::StringConverter::toString(size_t(wmInfo.info.cocoa.window));
-#endif
 
 	_window.render = _root->createRenderWindow(name, w, h, false, &miscParams);
 
@@ -293,7 +270,6 @@ void eden_render::RenderManager::SetWindowGrab(bool _grab)
 {
 	SDL_bool grab = SDL_bool(_grab);
 	SDL_SetWindowGrab(_window.native, grab);
-	// SDL_SetRelativeMouseMode(grab);
 	ShowCursor(_grab);
 }
 

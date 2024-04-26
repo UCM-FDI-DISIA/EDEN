@@ -92,6 +92,7 @@ namespace eden {
 			info->name = name;
 			info->components = it->second.components;
 			ent = _activeScene->Instantiate(info);
+			delete info;
 		}
 		else {
 			eden_error::ErrorHandler::Instance()->Exception("Blueprint '" + blueprintID + "' Instance failed", "'" + blueprintID + "' was not found in the Blueprints file. Are you missing any definition?");

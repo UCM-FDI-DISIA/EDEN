@@ -31,12 +31,12 @@ btScalar physics_wrapper::CollisionCallback::addSingleResult(btManifoldPoint& cp
 		if(cp.getDistance() <= 0){
 			//Acaba de haber colision
 			if (_otherEntities.find(otherEntity) == _otherEntities.end()) {
-				_otherEntities.insert(std::make_pair(otherEntity, true));
+				//_otherEntities.insert(std::make_pair(otherEntity, true));
 				rb->OnCollisionEnter(otherEntity);
 			}
 			else { //Ya había colision y permanece en ella
 				rb->OnCollisionStay(otherEntity);
-				_otherEntities[otherEntity] = true;
+				//_otherEntities[otherEntity] = true;
 			}
 		}
 	}
@@ -45,7 +45,7 @@ btScalar physics_wrapper::CollisionCallback::addSingleResult(btManifoldPoint& cp
 
 void physics_wrapper::CollisionCallback::UpdateCollisions()
 {
-	auto it = _otherEntities.begin();
+	/*auto it = _otherEntities.begin();
 	while (it != _otherEntities.end()) {
 		if (!it->second) {
 			rb->OnCollisionExit(it->first);
@@ -55,5 +55,5 @@ void physics_wrapper::CollisionCallback::UpdateCollisions()
 			it->second = false;
 			++it;
 		}
-	}
+	}*/
 }

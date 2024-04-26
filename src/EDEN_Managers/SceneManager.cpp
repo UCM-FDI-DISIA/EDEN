@@ -174,11 +174,6 @@ namespace eden {
 	}
 
 	void SceneManager::Update(float dt) {
-		if (_scenes.size() > 0)
-			_scenes.front()->Update(dt);
-
-		_dontDestroyOnLoadScene->Update(dt);
-
 		std::string newScene = " ";
 		if (_scenesToDestroy.size() > 0 && _scenes.size() > 0) {
 			newScene = _scenes.front()->GetSceneID();
@@ -202,5 +197,9 @@ namespace eden {
 
 		if (_scenes.size() <= 0)
 			eden_error::ErrorHandler::Instance()->Exception("scene deque empty", "SceneManager ERROR in line 188, scene deque empty");
+		else {
+			_scenes.front()->Update(dt);
+			_dontDestroyOnLoadScene->Update(dt);
+		}
 	}
 }

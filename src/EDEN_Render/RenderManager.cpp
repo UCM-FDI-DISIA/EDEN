@@ -253,6 +253,13 @@ NativeWindowPair eden_render::RenderManager::CreateNewWindow(const std::string& 
 	SDL_VERSION(&wmInfo.version);
 	SDL_GetWindowWMInfo(_window.native, &wmInfo);
 
+#ifdef SDL_VIDEO_DRIVER_WINDOWS
+	miscParams["externalWindowHandle"] = Ogre::StringConverter::toString(size_t(wmInfo.info.win.window));
+#endif
+#ifdef SDL_VIDEO_DRIVER_COCOA
+	miscParams["externalWindowHandle"] = Ogre::StringConverter::toString(size_t(wmInfo.info.cocoa.window));
+#endif
+
 	_window.render = _root->createRenderWindow(name, w, h, false, &miscParams);
 
 	return _window;

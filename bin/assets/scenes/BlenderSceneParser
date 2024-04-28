@@ -33,7 +33,15 @@ for ob in objects:
     #Si el objeto tiene padre, se salta, porque es un componente
     if ob.parent: continue
     dato += "Entity" + str(cont) + " = {" "\n"
-    dato += "\tName = " + "\""+ob.name+ "\"," + "\n" 
+    
+    #Si es un blueprint se coge solo la primera parte del nombre
+    nombreEnt = ob.name
+    if("isPrefab" in ob and ob["isPrefab"] == True):
+        nombreEnt = ob.name.split(".")[0]
+    
+    dato += "\tName = " + "\""+nombreEnt+ "\"," + "\n" 
+    #file1.write(dato)
+    
     dato += "\tComponents = {" + "\n" 
     #COMPONENTE MESHRENDERER
     if ob.type =="MESH":
@@ -47,17 +55,15 @@ for ob in objects:
     dato += "\t\t{" + "\n\t\t\tName = " + "\""+ "TRANSFORM" + "\"," + "\n" + "\t\t\tArguments = {"+ "\n"
     #ARGUMENTOS DEL COMPONENTE
     dato += "\t\t\t\tPosition = "+ "\""+ str(ob.location.x) + "|" + str(ob.location.z) + "|"+ str(-ob.location.y) + "\","+ "\n"
+    #file1.write(dato)
     
-    rot_output = ob.rotation_euler.to_quaternion()
-    x = 0
-    y = 0
-    z = 0
-    if rot_output[1] != 0: x = 1 
-    if rot_output[3] != 0: y = 1 
-    if rot_output[2] != 0: z = 1 
-    dato += "\t\t\t\tRotation = "+ "\""+ "false|" + str(grados(2*math.acos(rot_output[0]))) + "|" + str(x) + "|" + str(y) + "|" +str(z) + "\","+ "\n"
-
+    ob.rotation_euler[0] = ob.rotation_euler[0] + math.radians(-90)
+    ob.rotation_mode = 'QUATERNION'
+    dato += "\t\t\t\tRotation = "+ "\""+ "false|"+str(ob.rotation_quaternion.w) + "|" +  str(ob.rotation_quaternion.x) + "|" + str(ob.rotation_quaternion.z) + "|" + str(-ob.rotation_quaternion.y) + "\","+ "\n"
+    
+    #file1.write(dato)
     dato += "\t\t\t\tScale = "+ "\""+ str(ob.scale.x) + "|" + str(ob.scale.z) + "|" + str(ob.scale.y)+ "\""
+    #file1.write(dato)
     
     #FIN DE ARGUMENTOS
     if len(ob.children) == 0:
@@ -66,7 +72,7 @@ for ob in objects:
         dato += "\n" + "\t\t\t}"+"\n" + "\t\t},"+"\n"
         last_component = ob.children[-1].name
         
-    #RESTO DE COMPONETES
+   #RESTO DE COMPONETES
     for child in ob.children:
         componentName = child.name.split(".")
         dato += "\t\t{" + "\n" + "\t\t\tName = " + "\""+ componentName[0] + "\"," + "\n" + "\t\t\tArguments = {"+ "\n"
@@ -83,7 +89,7 @@ for ob in objects:
             if isinstance(prop_value, str):
                 if (prop_name == "AABB" or prop_name == "Radius") and not("manualRB" in child and child["manualRB"] == True):
                         if prop_name == "AABB":
-                            dato += "\t\t\t\t" + prop_name + " = \"" + str(ob.dimensions.x) + "|" +str(ob.dimensions.z) + "|" + str(ob.dimensions.y) + "\""
+                            dato += "\t\t\t\t" + prop_name + " = \"" + str(ob.dimensions.x/ob.scale.x) + "|" +str(ob.dimensions.z/ob.scale.z) + "|" + str(ob.dimensions.y/ob.scale.y) + "\""
                         else:
                             dato += "\t\t\t\t" + prop_name + " = \"" + str(max(ob.dimensions.x, max(ob.dimensions.y, ob.dimensions.z))) + "\""
                 else:

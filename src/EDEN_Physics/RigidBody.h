@@ -43,7 +43,7 @@ namespace physics_wrapper {
 #endif
 
 	public:
-		enum RigidBodyType { DYNAMIC, KINEMATIC, STATIC, TRIGGER };
+		enum RigidBodyType { DYNAMIC, KINEMATIC, STATIC };
 
 		/// @brief Tipo de forma que se puede crear
 		enum ShapeType { BOX, SPHERE, CAPSULE, CYLINDER };
@@ -66,7 +66,7 @@ namespace physics_wrapper {
 		/// @param mass Masa del RigidBody
 		/// @param params Parametros de la forma gemoetrica inicial
 		/// @param flag Tipo de RigidBody
-		RigidBody(eden_ec::Entity* ent, const ShapeParameters& params, float mass = 1.0f, float friction = 1.0f, float bounciness = 1.0f, const RigidBodyType& flag = STATIC, std::string* layerName = nullptr);
+		RigidBody(eden_ec::Entity* ent, const ShapeParameters& params, float mass = 1.0f, float friction = 1.0f, float bounciness = 1.0f, const RigidBodyType& flag = STATIC, std::string* layerName = nullptr, bool isTrigger = false);
 
 		/// @brief Destructora del RigidbodyWrapper
 		~RigidBody();

@@ -11,7 +11,7 @@ void eden_ec::CRigidBody::Start()
 	//Se comprueba si la entidad tiene o no un transform, en cuyo caso lo crea y lo aniade
 	if (_ent->GetComponent<CTransform>() != nullptr) {
 		_transform = _ent->GetComponent<CTransform>();
-		_rb = new physics_wrapper::RigidBody(_ent, _params, _mass, _friction, _restitution, _type, &_layer);
+		_rb = new physics_wrapper::RigidBody(_ent, _params, _mass, _friction, _restitution, _type, &_layer, _isTrigger);
 		physics_manager::PhysicsManager::Instance()->AddPhysicsEntity(_ent);
 	}
 	if(_ent->GetComponent<CLuaBehaviour>() != nullptr)
@@ -51,6 +51,7 @@ void eden_ec::CRigidBody::Init(eden_script::ComponentArguments* args) {
 	_params.length = args->GetValueToVector3("AABB");
 	_params.positionOffset = args->GetValueToVector3("PosOffset");
 	_params.radius = args->GetValueToFloat("Radius");
+	_isTrigger = args->GetValueToBool("Trigger");
 
 	std::string shape = args->GetValueToString("Shape");
 
@@ -63,7 +64,6 @@ void eden_ec::CRigidBody::Init(eden_script::ComponentArguments* args) {
 	if (flag == "DYNAMIC") _type = physics_wrapper::RigidBody::DYNAMIC;
 	else if (flag == "STATIC") { _type = physics_wrapper::RigidBody::STATIC; _mass = 0; }
 	else if (flag == "KINEMATIC") _type = physics_wrapper::RigidBody::KINEMATIC;
-	else if (flag == "TRIGGER") _type = physics_wrapper::RigidBody::TRIGGER;
 
 	_layer = args->GetValueToString("CollisionLayer");
 }

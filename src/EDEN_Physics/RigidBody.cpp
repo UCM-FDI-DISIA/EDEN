@@ -24,7 +24,7 @@
 #include "Scene.h"
 #include "ErrorHandler.h"
 
-physics_wrapper::RigidBody::RigidBody(eden_ec::Entity* ent, const ShapeParameters& params, float mass, float friction, float bounciness, const RigidBodyType& flag, std::string* layerName)
+physics_wrapper::RigidBody::RigidBody(eden_ec::Entity* ent, const ShapeParameters& params, float mass, float friction, float bounciness, const RigidBodyType& flag, std::string* layerName, bool isTrigger)
 {
 	btVector3 localInertia = btVector3();
 
@@ -45,18 +45,18 @@ physics_wrapper::RigidBody::RigidBody(eden_ec::Entity* ent, const ShapeParameter
 		_collisionShape,
 		localInertia));
 
+	int initialFlags = 0;
+	if (isTrigger) initialFlags = btCollisionObject::CF_NO_CONTACT_RESPONSE;
+
 	switch (flag) {
 		case KINEMATIC:
-			_rigidBody->setCollisionFlags(btCollisionObject::CF_KINEMATIC_OBJECT);
+			_rigidBody->setCollisionFlags(btCollisionObject::CF_KINEMATIC_OBJECT | initialFlags);
 			break;
 		case STATIC:
-			_rigidBody->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT);
+			_rigidBody->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT | initialFlags);
 			break;
 		case DYNAMIC:
-			_rigidBody->setCollisionFlags(btCollisionObject::CF_DYNAMIC_OBJECT);
-			break;
-		case TRIGGER:
-			_rigidBody->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT | btCollisionObject::CF_NO_CONTACT_RESPONSE);
+			_rigidBody->setCollisionFlags(btCollisionObject::CF_DYNAMIC_OBJECT | initialFlags);
 			break;
 	}
 	

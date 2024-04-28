@@ -166,6 +166,8 @@ namespace eden_ec {
 		/// @brief Friccion asociada al RigidBody
 		float _friction = 0;
 
+		bool _isTrigger = false;
+
 		/// @brief Variable que se encarga de contener los parametros de la figura asociada al rigidBody
 		physics_wrapper::RigidBody::ShapeParameters _params;
 

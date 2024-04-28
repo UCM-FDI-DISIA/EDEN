@@ -89,9 +89,9 @@ void eden_render::RenderManager::InitManager(const std::string& appName)
 	_fsLayer = new Ogre::FileSystemLayer(_appName); // crea un nuevo sistema de archivos
 
 	InitializeLib(); // crea la raiz
+	_overlaySys = new Ogre::OverlaySystem();
 	Setup(); // y arranca la inicializacion base
 
-	_overlaySys = new Ogre::OverlaySystem();
 	_currentRenderScene = nullptr;
 
 

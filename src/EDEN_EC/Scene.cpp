@@ -131,8 +131,18 @@ namespace eden {
  	void Scene::Update(float dt) {
 		AwakeEntities();
 		StartEntities();
-		for (auto& obj : _gameEntitiesList) {
-			obj.second->Update(dt);
+		for (auto obj = _gameEntitiesList.begin(); obj != _gameEntitiesList.end();) {
+			if (obj->second->IsAlive()) {
+				if (obj->second->IsActive()) {
+					obj->second->Update(dt);
+				}
+				++obj;
+			}
+			else{
+				delete obj->second; //Llamamos a la destructora de la entidad
+				obj->second = nullptr;
+				obj = _gameEntitiesList.erase(obj); //Lo borramos del mapa
+			}
 		}
 	}
 

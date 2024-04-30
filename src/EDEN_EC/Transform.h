@@ -66,7 +66,7 @@ namespace eden_ec {
 
 		/// @brief Suma la posicion
 		/// @param position Vector que se va a sumar
-		void Translate(eden_utils::Vector3 position);
+		void Translate(eden_utils::Vector3 position, bool isGlobal = false);
 
 		/// @brief Rota el transform 
 		/// @param angle angulo en grados 

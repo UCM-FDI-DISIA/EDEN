@@ -38,8 +38,8 @@ void physics_manager::PhysicsManager::updateSimulation(float deltaTime, std::str
 	
 	for (auto ent : (*currentEnts)) {
 #ifdef _DEBUG
-		info->GetDebug()->ClearLines();
-		info->GetDebug()->DrawRigidBody(ent->GetComponent<eden_ec::CRigidBody>(), { 1,0,0 });
+		//info->GetDebug()->ClearLines();
+		//info->GetDebug()->DrawRigidBody(ent->GetComponent<eden_ec::CRigidBody>(), { 1,0,0 });
 		//info->GetDebug()->DrawLine(_rb->GetPosition(), {100,0,100}, {1,1,1});
 #endif
 		_rb = ent->GetComponent<eden_ec::CRigidBody>()->_rb;

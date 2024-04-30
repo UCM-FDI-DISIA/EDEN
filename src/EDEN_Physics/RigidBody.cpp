@@ -26,6 +26,7 @@
 
 physics_wrapper::RigidBody::RigidBody(eden_ec::Entity* ent, const ShapeParameters& params, float mass, float friction, float bounciness, const RigidBodyType& flag, std::string* layerName, bool isTrigger)
 {
+	_entRef = ent;
 	btVector3 localInertia = btVector3();
 
 	_collisionShape = new btCompoundShape();
@@ -96,7 +97,9 @@ physics_wrapper::RigidBody::~RigidBody()
 	delete _collisionShape;
 	delete _collisionCallback;
 	delete _motionState;
-	delete _rigidBody;
+	//delete _rigidBody;
+	physics_manager::PhysicsManager::Instance()->GetWorld(_entRef->GetSceneID())->removeRigidBody(_rigidBody);
+	_entRef = nullptr;
 }
 
 

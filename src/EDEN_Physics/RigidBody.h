@@ -186,6 +186,7 @@ namespace physics_wrapper {
 		btDefaultMotionState* _motionState = nullptr;
 		btCompoundShape* _collisionShape = nullptr;
 		CollisionCallback* _collisionCallback = nullptr;
+		eden_ec::Entity* _entRef = nullptr;
 
 		/// @brief Traduce un vector del motor a vector de Bullet
 		/// @param vector Vector del motor que quieres traducir

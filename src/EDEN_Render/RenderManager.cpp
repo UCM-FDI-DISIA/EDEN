@@ -486,6 +486,7 @@ void eden_render::RenderManager::SetRenderScene(std::string sceneID)
 		if (sceneIt->second->_cameraWrapper != nullptr) sceneIt->second->_cameraWrapper->SetActiveCamera();
 		eden_canvas::Canvas::Instance()->ShowScene(_currentRenderScene->_sceneID);
 		ShowEntities(_currentRenderScene->_sceneID, true);
+		ResizedWindow();
 	}
 }
 

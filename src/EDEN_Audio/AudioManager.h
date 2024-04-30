@@ -47,6 +47,14 @@ namespace eden_audio {
         /// @param e Entidad con un componente AudioEmitter
         void RemoveAudioEntity(eden_ec::Entity* e);
 
+        /// @brief Establece el volumen general del motor
+        /// @param volume Volumen general del motor (entre 0.0f y 1.0f)
+        void SetGlobalVolume(float volume);
+
+        /// @brief Devuelve el volumen general del motor
+        /// @return Float con el volumen general del motor
+        float GetGlobalVolume() const;
+
     private:
         /// @brief Mapa que almacena los clips de sonido con un identificador, que es el nombre de su archivo
         std::unordered_map<std::string, audio_wrapper::SoundClip*> _soundMap;
@@ -56,6 +64,9 @@ namespace eden_audio {
 
         /// @brief Escena actual de sonido
         InfoAudioWorld* _currentAudioScene = nullptr;
+
+        /// @brief Volumen global/general del motor
+        float _globalVolume;
 
         /// @brief Carga todos los recursos de sonido
         void LoadResources();

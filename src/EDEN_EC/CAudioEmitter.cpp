@@ -133,3 +133,7 @@ std::string eden_ec::CAudioEmitter::GetFilename() const {
 audio_wrapper::Sound* eden_ec::CAudioEmitter::GetSound() const {
 	return _sound;
 }
+
+void eden_ec::CAudioEmitter::MixWithGlobalVolume(float volume) {
+	_sound->MixVolumeWithGeneralVolume(volume);
+}

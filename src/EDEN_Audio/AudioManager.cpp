@@ -9,7 +9,7 @@
 #include "Entity.h"
 #include "CAudioEmitter.h"
 
-eden_audio::AudioManager::AudioManager() {
+eden_audio::AudioManager::AudioManager() : _globalVolume(1.0f) {
 	//Inicializamos el motor de sonido en caso de que no se haya creado
 	audio_wrapper::AudioEngine::Instance();
 	//Cargamos todos los recursos de sonido
@@ -52,6 +52,19 @@ void eden_audio::AudioManager::RemoveAudioEntity(eden_ec::Entity* e) {
 		if (e != nullptr) it->second->_entities.erase(e);
 	}
 	else eden_error::ErrorHandler::Instance()->Warning("AudioManager ERROR in line 52 could not find scene: " + e->GetSceneID() + "\n");
+}
+
+void eden_audio::AudioManager::SetGlobalVolume(float volume) {
+	if (volume > 1.0f) volume = 1.0f;
+	if (volume < 0.0f) volume = 0.0f;
+	_globalVolume = volume;
+	for (auto it = _audioScenes.begin(); it != _audioScenes.end(); ++it) {
+		for (auto ent : it->second->_entities) ent->GetComponent<eden_ec::CAudioEmitter>()->MixWithGlobalVolume(_globalVolume);
+	}
+}
+
+float eden_audio::AudioManager::GetGlobalVolume() const {
+	return _globalVolume;
 }
 
 void eden_audio::AudioManager::CreateAudioScene(std::string id) {

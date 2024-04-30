@@ -22,6 +22,10 @@ eden_audio::AudioManager::~AudioManager() {
 	audio_wrapper::AudioEngine::Instance()->Close();
 }
 
+eden_audio::AudioManager* eden_audio::AudioManager::GetInstance() {
+	return static_cast<AudioManager*>(Instance());
+}
+
 void eden_audio::AudioManager::LoadResources() {
 	std::set<std::string> audioRoutes = eden_resources::ResourcesManager::Instance()->GetRoutesAudios();
 	std::set<std::string> audios = eden_resources::ResourcesManager::Instance()->GetAudios();

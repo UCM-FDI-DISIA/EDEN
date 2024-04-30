@@ -55,6 +55,8 @@ namespace eden_audio {
         /// @return Float con el volumen general del motor
         float GetGlobalVolume() const;
 
+        EDEN_API static AudioManager* GetInstance();
+
     private:
         /// @brief Mapa que almacena los clips de sonido con un identificador, que es el nombre de su archivo
         std::unordered_map<std::string, audio_wrapper::SoundClip*> _soundMap;

@@ -152,13 +152,16 @@ namespace eden {
 
 	eden_ec::Entity* Scene::GetEntityByID(const std::string& ID) {
 		if (_gameEntitiesList.count(ID) == 0)
-			return nullptr;
+			if (_newEntities[_currentIteration].count(ID) == 0)
+				return nullptr;
+			else
+				return _newEntities[_currentIteration][ID];
 		return _gameEntitiesList[ID];
 	}
 
 	void Scene::AddNewGameObject(eden_ec::Entity* _ent)
 	{
-		_newEntities[_currentIteration].push_back(_ent);
+		_newEntities[_currentIteration].insert({ _ent->GetEntityID(), _ent });
 	}
 
 	bool Scene::AddExistingGameObject(eden_ec::Entity* _ent) {
@@ -182,8 +185,8 @@ namespace eden {
 
 	void Scene::AwakeEntities() {
 		for (auto it : _newEntities[_currentIteration]) {
-			it->AwakeComponents();
-			_gameEntitiesList.insert({ it->GetEntityID(), it });
+			it.second->AwakeComponents();
+			_gameEntitiesList.insert({ it.second->GetEntityID(), it.second });
 		}
 	}
 
@@ -191,7 +194,7 @@ namespace eden {
 		int lastIteration = _currentIteration;
 		_currentIteration++;
 		for (auto it = _newEntities[lastIteration].begin(); it != _newEntities[lastIteration].end();) {
-			(*it)->StartComponents();
+			(*it).second->StartComponents();
 			it = _newEntities[lastIteration].erase(it);
 		}
 	}

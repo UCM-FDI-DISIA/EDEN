@@ -168,6 +168,7 @@ namespace eden {
 
 		if(_scenes.size() > 0)
 			_activeScene = _scenes.front();
+		eden_audio::AudioManager::Instance()->CreateAudioScene(_activeScene->GetSceneID());
 	}
 
 	void SceneManager::PopUntil(const std::string& ID) {

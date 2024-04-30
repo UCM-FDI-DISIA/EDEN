@@ -8,9 +8,10 @@
 #include "SoundClip.h"
 
 audio_wrapper::Sound::Sound(SoundClip* clip): _clip(clip), _threeDimensional(false), _filename(clip->GetFilename()) {
-    if (eden_audio::AudioManager::Instance()->GetGlobalVolume() > 0.0f) {
+    _volumeWithoutGeneralMixing = 1.0f;
+    if (eden_audio::AudioManager::Instance()->GetGlobalVolume() < 1.0f) {
         _isBeingMixed = true;
-        MixVolumeWithGeneralVolume(eden_audio::AudioManager::Instance()->GetGlobalVolume());
+        _volumeWithGeneralMixing = _volumeWithoutGeneralMixing * eden_audio::AudioManager::Instance()->GetGlobalVolume();
     }
     else _isBeingMixed = false;
 }

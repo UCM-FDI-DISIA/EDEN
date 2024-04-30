@@ -97,8 +97,8 @@ physics_wrapper::RigidBody::~RigidBody()
 	delete _collisionShape;
 	delete _collisionCallback;
 	delete _motionState;
-	//delete _rigidBody;
-	physics_manager::PhysicsManager::Instance()->GetWorld(_entRef->GetSceneID())->removeRigidBody(_rigidBody);
+	delete _rigidBody;
+	//physics_manager::PhysicsManager::Instance()->GetWorld(_entRef->GetSceneID())->removeRigidBody(_rigidBody);
 	_entRef = nullptr;
 }
 

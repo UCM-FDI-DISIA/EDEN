@@ -188,9 +188,9 @@ namespace eden {
 		for (auto it = _scenesToDestroy.begin(); it != _scenesToDestroy.end();) {
 			std::string prevScene = (*it)->GetSceneID();
 
-			physics_manager::PhysicsManager::Instance()->RemovePhysicsScene(prevScene, newScene);
 			delete (*it);
 			it = _scenesToDestroy.erase(it);
+			physics_manager::PhysicsManager::Instance()->RemovePhysicsScene(prevScene, newScene);
 			eden_render::RenderManager::Instance()->RemoveRenderScene(prevScene, newScene);
 		}
 

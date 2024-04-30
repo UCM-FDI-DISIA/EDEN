@@ -46,8 +46,8 @@ void eden::Master::CloseApplication() {
 
 eden::Master::~Master()
 {
-	_physicsManager->Close();
 	_scnManager->Close();
+	_physicsManager->Close();
 	_inputManager->Close();
 	eden_audio::AudioManager::Instance()->Close();
 	eden_script::ScriptManager::Instance()->Close();

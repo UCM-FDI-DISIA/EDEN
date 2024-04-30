@@ -172,6 +172,10 @@ namespace eden_ec {
 		/// @brief Devuelve el estado anterior de sonido
 		/// @return Estado anterior de sonido
 		inline SoundState GetPreviousState() const { return _previousState; }
+
+		/// @brief Mezcla el volumen del sonido con el volumen general
+		/// @param volume Volumen general del motor
+		void MixWithGlobalVolume(float volume);
 	};
 }
 

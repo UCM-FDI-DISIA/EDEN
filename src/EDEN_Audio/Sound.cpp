@@ -8,7 +8,11 @@
 #include "SoundClip.h"
 
 audio_wrapper::Sound::Sound(SoundClip* clip): _clip(clip), _threeDimensional(false), _filename(clip->GetFilename()) {
-   
+    if (eden_audio::AudioManager::Instance()->GetGlobalVolume() > 0.0f) {
+        _isBeingMixed = true;
+        MixVolumeWithGeneralVolume(eden_audio::AudioManager::Instance()->GetGlobalVolume());
+    }
+    else _isBeingMixed = false;
 }
 
 audio_wrapper::Sound::~Sound() {
@@ -21,6 +25,8 @@ void audio_wrapper::Sound::Play(bool loop) {
     eden_error::ErrorHandler::Instance()->Assert(_clip, "No se encuentra la fuente de sonido con nombre " + _filename);
     eden_error::ErrorHandler::Instance()->Assert(!_sound, "Ya hay un sonido reproduciendose derivado de la fuente de sonido con nombre " + _filename);
     _sound = audio_wrapper::AudioEngine::Instance()->Play(_clip->GetSource(), loop);
+    if (_isBeingMixed) SetVolume(_volumeWithGeneralMixing);
+    else SetVolume(_volumeWithoutGeneralMixing);
 }
 
 void audio_wrapper::Sound::Play(eden_utils::Vector3 pos, bool loop) {
@@ -28,6 +34,8 @@ void audio_wrapper::Sound::Play(eden_utils::Vector3 pos, bool loop) {
     eden_error::ErrorHandler::Instance()->Assert(!_sound, "Ya hay un sonido reproduciendose derivado de la fuente de sonido con nombre " + _filename);
     _threeDimensional = true;
     _sound = audio_wrapper::AudioEngine::Instance()->Play(_clip->GetSource(), pos, loop);
+    if (_isBeingMixed) SetVolume(_volumeWithGeneralMixing);
+    else SetVolume(_volumeWithoutGeneralMixing);
 }
 
 void audio_wrapper::Sound::Pause() {
@@ -102,12 +110,28 @@ void audio_wrapper::Sound::SetVolume(float volume) {
     eden_error::ErrorHandler::Instance()->Assert(_sound, "No se encuentra el sonido con nombre " + _filename);
     if(volume > 1.0f) volume = 1.0f;
     if(volume < 0.0f) volume = 0.0f;
+
     _sound->setVolume(volume);
+    _volumeWithoutGeneralMixing = _volumeWithGeneralMixing / eden_audio::AudioManager::Instance()->GetGlobalVolume();
 }
 
 float audio_wrapper::Sound::GetVolume() const {
     eden_error::ErrorHandler::Instance()->Assert(_sound, "No se encuentra el sonido con nombre " + _filename);
     return _sound->getVolume();
+}
+
+void audio_wrapper::Sound::MixVolumeWithGeneralVolume(float generalVolume) {
+    if (generalVolume = 1.0f) _isBeingMixed = false;
+    _volumeWithGeneralMixing = _volumeWithoutGeneralMixing * generalVolume;
+    SetVolume(_volumeWithGeneralMixing);
+}
+
+float audio_wrapper::Sound::GetRawVolume() const {
+    return _volumeWithoutGeneralMixing;
+}
+
+float audio_wrapper::Sound::GetMixedVolume() const {
+    return _volumeWithGeneralMixing;
 }
 
 void audio_wrapper::Sound::SetPitch(float pitch) {

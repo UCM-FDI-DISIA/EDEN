@@ -5,6 +5,7 @@
 #include <string>
 
 #include "CAudioEmitter.h"
+#include "AudioManager.h"
 
 namespace irrklang {
     class ISound;
@@ -20,6 +21,7 @@ namespace audio_wrapper {
     /// un sonido distinto, que se generara en el AudioWrapper.
     class Sound {
         friend class eden_ec::CAudioEmitter;
+        friend class eden_audio::AudioManager;
     public:
         /// Constructora por defecto del SoundWrapper
         /// @param file Ruta del archivo con el sonido
@@ -39,6 +41,15 @@ namespace audio_wrapper {
 
         /// Booleano que indica si el sonido es o no es tridimensional
         bool _threeDimensional;
+
+        /// @brief Volumen sin haber sido multiplicado por el volumen general
+        float _volumeWithoutGeneralMixing;
+
+        /// @brief Volumen habiendose multiplicado por el volumen general
+        float _volumeWithGeneralMixing;
+
+        /// @brief Booleano que indica si el volumen del sonido está siendo afectado por el volumen general o no
+        bool _isBeingMixed;
 
         /// Reproduce un sonido en un espacio 2D, sin coordenadas, por toda la escena o el espacio.
         /// @param loop Si el sonido se quiere reproducir en bucle se pondra en true, si no, en false (false por defecto)
@@ -101,6 +112,18 @@ namespace audio_wrapper {
         /// Devuelve el volumen del sonido
         /// @return Valor en punto flotante con el volumen actual del sonido
         float GetVolume() const;
+
+        /// @brief Multiplica los valores del volumen individual del sonido con el volumen general
+        /// @param generalVolume Volumen general del motor
+        void MixVolumeWithGeneralVolume(float generalVolume);
+
+        /// @brief Devuelve el volumen individual del sonido mezclado con el volumen general
+        /// @return Valor en punto flotante con la mezcla entre el volumen del sonido y el volumen general
+        float GetMixedVolume() const;
+
+        /// @brief Devuelve el volumen en crudo (sin ser afectado por el volumen general)
+        /// @return Valor en punto flotante con la mezcla entre el volumen del sonido y el volumen general
+        float GetRawVolume() const;
 
         /// @brief Cambia el valor de la velocidad de reproduccion del sonido (cambiando asi la frecuencia junto con el pitch (altura del sonido)). A mayor sea el valor, sonara el doble de rapido que sera
         /// mas agudo. A menor el valor, mas lento y mas grave. Valores solo entre algo mas que 0 (0 nunca reproduciria el sonido) e infinito, 1 por defecto.

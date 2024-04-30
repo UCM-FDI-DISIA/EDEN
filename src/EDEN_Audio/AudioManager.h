@@ -49,11 +49,11 @@ namespace eden_audio {
 
         /// @brief Establece el volumen general del motor
         /// @param volume Volumen general del motor (entre 0.0f y 1.0f)
-        void SetGlobalVolume(float volume);
+        EDEN_API void SetGlobalVolume(float volume);
 
         /// @brief Devuelve el volumen general del motor
         /// @return Float con el volumen general del motor
-        float GetGlobalVolume() const;
+        EDEN_API float GetGlobalVolume() const;
 
         EDEN_API static AudioManager* GetInstance();
 

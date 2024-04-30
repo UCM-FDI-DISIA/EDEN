@@ -34,9 +34,10 @@ void eden_ec::CTransform::SetScale(eden_utils::Vector3 scale)
 	_scale = scale;
 }
 
-void eden_ec::CTransform::Translate(eden_utils::Vector3 position)
+void eden_ec::CTransform::Translate(eden_utils::Vector3 position, bool isGlobal = false)
 {
-	_position += _rotation * position;
+	if (!isGlobal) _position += _rotation * position;
+	else _position += position;
 	for (eden_ec::CTransform* t : _childrenVector) t->Translate(position);
 }
 

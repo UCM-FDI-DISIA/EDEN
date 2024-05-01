@@ -9,6 +9,7 @@
 
 audio_wrapper::Sound::Sound(SoundClip* clip): _clip(clip), _threeDimensional(false), _filename(clip->GetFilename()) {
     _volumeWithoutGeneralMixing = 1.0f;
+    _volumeWithGeneralMixing = 1.0f;
     if (eden_audio::AudioManager::Instance()->GetGlobalVolume() < 1.0f) {
         _isBeingMixed = true;
         _volumeWithGeneralMixing = _volumeWithoutGeneralMixing * eden_audio::AudioManager::Instance()->GetGlobalVolume();
@@ -123,6 +124,7 @@ float audio_wrapper::Sound::GetVolume() const {
 
 void audio_wrapper::Sound::MixVolumeWithGeneralVolume(float generalVolume) {
     if (generalVolume == 1.0f) _isBeingMixed = false;
+    else _isBeingMixed = true;
     _volumeWithGeneralMixing = _volumeWithoutGeneralMixing * generalVolume;
     SetVolume(_volumeWithGeneralMixing);
 }

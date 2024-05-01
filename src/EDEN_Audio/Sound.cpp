@@ -114,7 +114,7 @@ void audio_wrapper::Sound::SetVolume(float volume) {
     if(volume < 0.0f) volume = 0.0f;
 
     _sound->setVolume(volume);
-    _volumeWithoutGeneralMixing = _volumeWithGeneralMixing / eden_audio::AudioManager::Instance()->GetGlobalVolume();
+    _volumeWithoutGeneralMixing = volume;
 }
 
 float audio_wrapper::Sound::GetVolume() const {
@@ -126,7 +126,9 @@ void audio_wrapper::Sound::MixVolumeWithGeneralVolume(float generalVolume) {
     if (generalVolume == 1.0f) _isBeingMixed = false;
     else _isBeingMixed = true;
     _volumeWithGeneralMixing = _volumeWithoutGeneralMixing * generalVolume;
-    SetVolume(_volumeWithGeneralMixing);
+    if (_volumeWithGeneralMixing > 1.0f) _volumeWithGeneralMixing = 1.0f;
+    if (_volumeWithGeneralMixing < 0.0f) _volumeWithGeneralMixing = 0.0f;
+    _sound->setVolume(_volumeWithGeneralMixing);
 }
 
 float audio_wrapper::Sound::GetRawVolume() const {

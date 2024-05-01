@@ -122,7 +122,7 @@ float audio_wrapper::Sound::GetVolume() const {
 }
 
 void audio_wrapper::Sound::MixVolumeWithGeneralVolume(float generalVolume) {
-    if (generalVolume = 1.0f) _isBeingMixed = false;
+    if (generalVolume == 1.0f) _isBeingMixed = false;
     _volumeWithGeneralMixing = _volumeWithoutGeneralMixing * generalVolume;
     SetVolume(_volumeWithGeneralMixing);
 }

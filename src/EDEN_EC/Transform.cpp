@@ -7,8 +7,8 @@ eden_ec::CTransform::CTransform(eden_utils::Vector3 position, eden_utils::Quater
 
 void eden_ec::CTransform::Init(eden_script::ComponentArguments* args) {
 	_position = args->GetValueToVector3("Position");
-	_rotation = args->GetValueToQuaternion("Rotation");
 	_scale = args->GetValueToVector3("Scale");
+	_rotation = args->GetValueToQuaternion("Rotation");
 }
 
 void eden_ec::CTransform::SetPosition(eden_utils::Vector3 position)

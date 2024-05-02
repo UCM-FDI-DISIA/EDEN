@@ -19,6 +19,9 @@
 #include "Scene.h"
 #include "AudioManager.h"
 #include "ScriptManager.h"
+
+bool eden::Master::_initialized = false;
+
 eden::Master::Master()
 {
 	// la comprobacion de que se haya podido inicializar el RenderManager ahora se hace dentro del propio RenderManager.
@@ -37,7 +40,7 @@ eden::Master::Master()
 	_scnManager = SceneManager::Instance();
 	_physicsManager = physics_manager::PhysicsManager::Instance();
 
-	// _initialized = true;
+	_initialized = true;
 }
 
 void eden::Master::CloseApplication() {

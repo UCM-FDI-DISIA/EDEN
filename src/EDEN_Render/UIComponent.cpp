@@ -32,7 +32,8 @@ eden_ec::UIComponent::UIComponent() {
 	_oHeight = 0;
 	_oWidth = 0;
 	_rHeight = 0;
-	_rWidth = 0;	
+	_rWidth = 0;
+	_screenSize = eden_render::RenderManager::Instance()->GetResolution();
 }
 
 

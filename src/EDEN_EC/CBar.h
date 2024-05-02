@@ -53,6 +53,7 @@ namespace eden_ec {
 	private:
 		/// @brief Tamanio total de la barra
 		float _totalWidth = 0;
+		float _totalHeight = 0;
 
 		/// @brief Porcentaje de la barra
 		float _percentage = 100;

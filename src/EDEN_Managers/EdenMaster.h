@@ -30,7 +30,7 @@ namespace eden
 		friend Singleton<Master>;
 
 	public:
-		EDEN_API static bool isInitialized() { return _initialized; }
+		static bool isInitialized() { return _initialized; }
 
 		/// @brief Booleano de salida del bucle principal
 		bool exit = false;
@@ -46,7 +46,7 @@ namespace eden
 		EDEN_API static Master* getInstance();
 	private:
 
-		EDEN_API static bool _initialized;
+		static bool _initialized;
 
 		// static bool _initialized;
 		/// @brief El tiempo entre frames en segundos

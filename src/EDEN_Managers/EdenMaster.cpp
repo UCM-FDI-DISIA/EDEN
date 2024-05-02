@@ -22,6 +22,10 @@
 
 bool eden::Master::_initialized = false;
 
+eden::Master* eden::Master::getInstance() {
+	return static_cast<Master*>(Instance());
+}
+
 eden::Master::Master()
 {
 	// la comprobacion de que se haya podido inicializar el RenderManager ahora se hace dentro del propio RenderManager.

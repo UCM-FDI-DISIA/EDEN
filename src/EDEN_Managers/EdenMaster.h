@@ -42,6 +42,8 @@ namespace eden
 
 		/// @brief Destructora por defecto de EdenMaster
 		EDEN_API ~Master() override;
+
+		EDEN_API static Master* getInstance();
 	private:
 
 		EDEN_API static bool _initialized;

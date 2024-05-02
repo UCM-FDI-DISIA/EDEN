@@ -44,7 +44,8 @@ eden::Master::Master()
 }
 
 void eden::Master::CloseApplication() {
-	std::cout << "---------------------\n\n\n\n\nCLOSING APPLITACION\n\n\n\n\n---------------------\n\n\n\n\n";
+	std::cout << "---------------------\n\n\n\n\nCLOSING APPLICATION\n\n\n\n\n---------------------\n\n\n\n\n";
+	exit = true;
 }
 
 eden::Master::~Master()

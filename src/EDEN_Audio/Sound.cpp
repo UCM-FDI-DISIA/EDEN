@@ -112,9 +112,11 @@ void audio_wrapper::Sound::SetVolume(float volume) {
     eden_error::ErrorHandler::Instance()->Assert(_sound, "No se encuentra el sonido con nombre " + _filename);
     if(volume > 1.0f) volume = 1.0f;
     if(volume < 0.0f) volume = 0.0f;
-
-    _sound->setVolume(volume);
     _volumeWithoutGeneralMixing = volume;
+    if (_isBeingMixed) {
+        volume *= eden_audio::AudioManager::Instance()->GetGlobalVolume();
+    }
+    _sound->setVolume(volume);
 }
 
 float audio_wrapper::Sound::GetVolume() const {

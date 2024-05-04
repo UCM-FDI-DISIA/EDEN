@@ -138,6 +138,10 @@ namespace audio_wrapper {
         /// @return String con el nombre del archivo de sonido
         std::string GetFilename() const;
 
+        /// @brief Devuelve un booleano indicando si el sonido se ha creado (se ha reproducido anteriormente) o no
+        /// @return booleano indicando si el sonido se ha creado (se ha reproducido anteriormente) o no
+        bool HasBeingCreated() const;
+
     };
 }
 

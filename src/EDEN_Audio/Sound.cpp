@@ -157,3 +157,7 @@ float audio_wrapper::Sound::GetPitch() const {
 std::string audio_wrapper::Sound::GetFilename() const {
     return _filename;
 }
+
+bool audio_wrapper::Sound::HasBeingCreated() const {
+    return _sound;
+}

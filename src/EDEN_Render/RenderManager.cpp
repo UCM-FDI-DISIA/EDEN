@@ -405,7 +405,7 @@ void eden_render::RenderManager::SetResolutions(std::vector<std::pair<int, int>>
 
 std::pair<int, int> eden_render::RenderManager::GetResolution()
 {
-	return { _currW,_currH };
+	return { _window.render->getWidth(),_window.render->getHeight()};
 }
 
 void eden_render::RenderManager::ChangeResolution()

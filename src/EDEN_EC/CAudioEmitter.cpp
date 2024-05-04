@@ -34,24 +34,25 @@ void eden_ec::CAudioEmitter::Update(float t) {
 
 void eden_ec::CAudioEmitter::Play() {
 	if (_sound) {
-		if (_sound->GetFilename() == _soundClip->GetFilename()) {
-			Restart();
-		}
-		else {
-			Stop();
-		}
-	}
-
-	if (!_sound) {
-		_sound = new audio_wrapper::Sound(_soundClip);
 		_3D ? _sound->Play(_transform->GetPosition(), _loop) : _sound->Play(_loop);
+		
+		_previousState = _currentState;
+		_currentState = SoundState::PLAYING;
 	}
-	_previousState = _currentState;
-	_currentState = SoundState::PLAYING;
 }
 
 void eden_ec::CAudioEmitter::ChangeClip(std::string name) {
 	_soundClip = eden_audio::AudioManager::Instance()->GetSoundClip(name);
+
+	if (_sound) {
+		if (_sound->GetFilename() == _soundClip->GetFilename()) {
+			Restart();
+			return;
+		}
+		Stop();
+		delete _sound;
+	}
+	_sound = new audio_wrapper::Sound(_soundClip);
 }
 
 void eden_ec::CAudioEmitter::Pause() {
@@ -73,9 +74,7 @@ void eden_ec::CAudioEmitter::Restart() {
 void eden_ec::CAudioEmitter::Stop() {
 	if (_sound) {
 		_sound->Stop();
-		delete _sound;
 	}
-	_sound = nullptr;
 	_previousState = _currentState;
 	_currentState = SoundState::STOPPED;
 }

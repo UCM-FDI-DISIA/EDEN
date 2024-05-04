@@ -56,12 +56,13 @@ bool audio_wrapper::Sound::IsPaused() const {
 }
 
 void audio_wrapper::Sound::Stop() {
-    eden_error::ErrorHandler::Instance()->Assert(_sound, "No se encuentra el sonido con nombre " + _filename);
-    _sound->stop();
-    // Dropeamos el sonido puesto que ya no sera necesario y cuando volvamos a reproducirlo se generera
-    // otra instancia de un ISound de Irrklang
-    _sound->drop();
-    _sound = nullptr;
+    if (_sound) {
+        _sound->stop();
+        // Dropeamos el sonido puesto que ya no sera necesario y cuando volvamos a reproducirlo se generera
+        // otra instancia de un ISound de Irrklang
+        _sound->drop();
+        _sound = nullptr;
+    }
 }
 
 void audio_wrapper::Sound::Restart() {

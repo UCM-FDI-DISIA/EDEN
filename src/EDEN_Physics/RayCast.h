@@ -59,6 +59,8 @@ namespace physics_wrapper {
 		EDEN_API const std::vector<RayCastHitResult> MultipleHitRayCast(const eden_utils::Vector3 rayOrigin, const eden_utils::Vector3 rayDestiny, std::string layerName, const bool drawDebugLine = false, const eden_utils::Vector3 debugLineColor = eden_utils::Vector3(1, 0, 0));
 
 		~RayCast() override = default;
+
+		EDEN_API static RayCast* getInstance();
 	protected:
 		/// @brief Esta constructora deberia llamarse desde e metodo Instance de la clase Singleton
 		/// @param worldRef Referencia al mundo de la simulacion fisica

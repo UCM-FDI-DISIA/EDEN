@@ -25,11 +25,11 @@ void eden_ec::CAudioEmitter::Awake() {
 }
 
 void eden_ec::CAudioEmitter::Start() {
-	_transform = _ent->GetComponent<eden_ec::CTransform>();
+	if(_3D) _transform = _ent->GetComponent<eden_ec::CTransform>();
 }
 
 void eden_ec::CAudioEmitter::Update(float t) {
-	if (_sound) _sound->SetPosition(_transform->GetPosition());
+	if (_3D && _sound) _sound->SetPosition(_transform->GetPosition());
 }
 
 void eden_ec::CAudioEmitter::Play() {

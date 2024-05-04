@@ -56,7 +56,7 @@ void eden_ec::CText::Init(eden_script::ComponentArguments* args) {
 
 }
 
-void eden_ec::CText::SetNewText(const std::string& text, bool resize = true) {
+void eden_ec::CText::SetNewText(const std::string& text, bool resize) {
 	SetText(text,resize);
 }
 

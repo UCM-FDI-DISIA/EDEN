@@ -356,8 +356,10 @@ void eden_render::RenderManager::RemoveRenderEntity(eden_ec::Entity* ent) {
 void eden_render::RenderManager::ResizedWindow() {
 	_window.render->windowMovedOrResized();
 	_resized = true;
-	_currH = _window.render->getHeight();
-	_currW = _window.render->getWidth();
+	if (!_isFullScreen) {
+		_currH = _window.render->getHeight();
+		_currW = _window.render->getWidth();
+	}
 }
 
 void eden_render::RenderManager::ChangeWindowSize(int w, int h)

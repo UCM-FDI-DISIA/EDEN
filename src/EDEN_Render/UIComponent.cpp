@@ -214,11 +214,14 @@ std::string eden_ec::UIComponent::GetText() {
 	return text;
 }
 
-void eden_ec::UIComponent::SetText(const std::string& text) {
+void eden_ec::UIComponent::SetText(bool resize=true, const std::string& text) {
 	if (_text != nullptr) {
 		_text->setCaption(text);
-		_overlayContainer->setDimensions(_text->getCharHeight() * text.length(), _text->getCharHeight());
-		Resize();
+		if (resize) {
+			_overlayContainer->setDimensions(_text->getCharHeight() * text.length(), _text->getCharHeight());
+			Resize();
+		}
+		else SetDimensions(_text->getCharHeight() * text.length(), _text->getCharHeight());
 	}
 }
 

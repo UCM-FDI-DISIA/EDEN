@@ -159,7 +159,7 @@ namespace eden_ec {
 		std::string GetText();
 
 		/// @brief Cambia el texto actual
-		void SetText(const std::string& text);
+		void SetText(bool resize = true, const std::string& text);
 
 	private:
 		/// @brief Managers y elementos de Ogre necesarios para el control y uso de la UI

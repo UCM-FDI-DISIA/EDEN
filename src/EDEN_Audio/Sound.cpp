@@ -102,6 +102,7 @@ float audio_wrapper::Sound::GetPan() const {
 void audio_wrapper::Sound::SetPosition(eden_utils::Vector3 position) {
     eden_error::ErrorHandler::Instance()->Assert(_sound, "No se encuentra el sonido con nombre " + _filename);
     _sound->setPosition(audio_wrapper::AudioEngine::EdenVecToIrrklangVec(position));
+    _threeDimensional = true;
 }
 
 eden_utils::Vector3 audio_wrapper::Sound::GetPlayingPosition() const {
@@ -131,7 +132,7 @@ void audio_wrapper::Sound::MixVolumeWithGeneralVolume(float generalVolume) {
     _volumeWithGeneralMixing = _volumeWithoutGeneralMixing * generalVolume;
     if (_volumeWithGeneralMixing > 1.0f) _volumeWithGeneralMixing = 1.0f;
     if (_volumeWithGeneralMixing < 0.0f) _volumeWithGeneralMixing = 0.0f;
-    _sound->setVolume(_volumeWithGeneralMixing);
+    if(_sound) _sound->setVolume(_volumeWithGeneralMixing);
 }
 
 float audio_wrapper::Sound::GetRawVolume() const {

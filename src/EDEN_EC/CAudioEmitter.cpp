@@ -11,7 +11,7 @@ eden_ec::CAudioEmitter::CAudioEmitter(std::string name, bool is3D) : _3D(is3D) {
 
 eden_ec::CAudioEmitter::~CAudioEmitter() {
 	eden_audio::AudioManager::Instance()->RemoveAudioEntity(_ent);
-	Stop();
+	if (_sound) Stop();
 	_transform = nullptr;
 }
 

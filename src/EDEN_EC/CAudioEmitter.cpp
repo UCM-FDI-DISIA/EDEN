@@ -137,5 +137,5 @@ audio_wrapper::Sound* eden_ec::CAudioEmitter::GetSound() const {
 }
 
 void eden_ec::CAudioEmitter::MixWithGlobalVolume(float volume) {
-	_sound->MixVolumeWithGeneralVolume(volume);
+	if(_sound) _sound->MixVolumeWithGeneralVolume(volume);
 }

@@ -24,39 +24,51 @@ audio_wrapper::Sound::~Sound() {
 }
 
 void audio_wrapper::Sound::Play(bool loop) {
-    eden_error::ErrorHandler::Instance()->Assert(_clip, "No se encuentra la fuente de sonido con nombre " + _filename);
-    eden_error::ErrorHandler::Instance()->Assert(!_sound, "Ya hay un sonido reproduciendose derivado de la fuente de sonido con nombre " + _filename);
-    _sound = audio_wrapper::AudioEngine::Instance()->Play(_clip->GetSource(), loop);
-    if (_isBeingMixed) SetVolume(_volumeWithGeneralMixing);
-    else SetVolume(_volumeWithoutGeneralMixing);
+    if(!_clip) eden_error::ErrorHandler::Instance()->Warning("No se encuentra la fuente de sonido con nombre " + _filename);
+    else {
+        if (_sound) Restart();
+        else {
+            _sound = audio_wrapper::AudioEngine::Instance()->Play(_clip->GetSource(), loop);
+            if (_isBeingMixed) SetVolume(_volumeWithGeneralMixing);
+            else SetVolume(_volumeWithoutGeneralMixing);
+        }
+    }
 }
 
 void audio_wrapper::Sound::Play(eden_utils::Vector3 pos, bool loop) {
-    eden_error::ErrorHandler::Instance()->Assert(_clip, "No se encuentra la fuente de sonido con nombre " + _filename);
-    eden_error::ErrorHandler::Instance()->Assert(!_sound, "Ya hay un sonido reproduciendose derivado de la fuente de sonido con nombre " + _filename);
-    _threeDimensional = true;
-    _sound = audio_wrapper::AudioEngine::Instance()->Play(_clip->GetSource(), pos, loop);
-    if (_isBeingMixed) SetVolume(_volumeWithGeneralMixing);
-    else SetVolume(_volumeWithoutGeneralMixing);
+    if (!_clip) eden_error::ErrorHandler::Instance()->Warning("No se encuentra la fuente de sonido con nombre " + _filename);
+    else {
+        if(_sound) Restart();
+        else {
+            _threeDimensional = true;
+            _sound = audio_wrapper::AudioEngine::Instance()->Play(_clip->GetSource(), pos, loop);
+            if (_isBeingMixed) SetVolume(_volumeWithGeneralMixing);
+            else SetVolume(_volumeWithoutGeneralMixing);
+        }
+    }
 }
 
 void audio_wrapper::Sound::Pause() {
-    eden_error::ErrorHandler::Instance()->Assert(_sound, "No se encuentra el sonido con nombre " + _filename);
-    _sound->setIsPaused(true);
+    if(!_sound) eden_error::ErrorHandler::Instance()->Warning("No se ha creado un sonido con ruta de clip " + _filename);
+    else _sound->setIsPaused(true);
 }
 
 void audio_wrapper::Sound::Resume() {
-    eden_error::ErrorHandler::Instance()->Assert(_sound, "No se encuentra el sonido con nombre " + _filename);
-    _sound->setIsPaused(false);
+    if (!_sound) eden_error::ErrorHandler::Instance()->Warning("No se ha creado un sonido con ruta de clip " + _filename);
+    else _sound->setIsPaused(false);
 }
 
 bool audio_wrapper::Sound::IsPaused() const {
-    eden_error::ErrorHandler::Instance()->Assert(_sound, "No se encuentra el sonido con nombre " + _filename);
-    return _sound->getIsPaused();
+    if (!_sound) {
+        eden_error::ErrorHandler::Instance()->Warning("No se ha creado un sonido con ruta de clip " + _filename);
+        return false;
+    }
+    else return _sound->getIsPaused();
 }
 
 void audio_wrapper::Sound::Stop() {
-    if (_sound) {
+    if (!_sound) eden_error::ErrorHandler::Instance()->Warning("No se ha creado un sonido con ruta de clip " + _filename);
+    else {
         _sound->stop();
         // Dropeamos el sonido puesto que ya no sera necesario y cuando volvamos a reproducirlo se generera
         // otra instancia de un ISound de Irrklang
@@ -73,53 +85,69 @@ void audio_wrapper::Sound::Restart() {
 }
 
 bool audio_wrapper::Sound::HasEnded() const {
-    eden_error::ErrorHandler::Instance()->Assert(_sound, "No se encuentra el sonido con nombre " + _filename);
-    return _sound->isFinished();
+    if (!_sound) {
+        eden_error::ErrorHandler::Instance()->Warning("No se ha creado un sonido con ruta de clip " + _filename);
+        return false;
+    }
+    else return _sound->isFinished();
 }
 
 void audio_wrapper::Sound::SetLoop(bool loop) {
-    eden_error::ErrorHandler::Instance()->Assert(_sound, "No se encuentra el sonido con nombre " + _filename);
-    _sound->setIsLooped(loop);
+    if (!_sound) eden_error::ErrorHandler::Instance()->Warning("No se ha creado un sonido con ruta de clip " + _filename);
+    else _sound->setIsLooped(loop);
 }
 
 bool audio_wrapper::Sound::IsLooped() const {
-    eden_error::ErrorHandler::Instance()->Assert(_sound, "No se encuentra el sonido con nombre " + _filename);
-    return _sound->isLooped();
+    if (!_sound) {
+        eden_error::ErrorHandler::Instance()->Warning("No se ha creado un sonido con ruta de clip " + _filename);
+        return false;
+    }
+    else return _sound->isLooped();
 }
 
 void audio_wrapper::Sound::SetPan(float pan) {
-    eden_error::ErrorHandler::Instance()->Assert(_sound, "No se encuentra el sonido con nombre " + _filename);
-    if(pan > 1.0) pan = 1.0;
-    if(pan < -1.0) pan = -1.0;
-    _sound->setPan(pan);
+    if (!_sound) eden_error::ErrorHandler::Instance()->Warning("No se ha creado un sonido con ruta de clip " + _filename);
+    else {
+        if(pan > 1.0) pan = 1.0;
+        if(pan < -1.0) pan = -1.0;
+        _sound->setPan(pan);
+    }
 }
 
 float audio_wrapper::Sound::GetPan() const {
-    eden_error::ErrorHandler::Instance()->Assert(_sound, "No se encuentra el sonido con nombre " + _filename);
-    return _sound->getPan();
+    if (!_sound) {
+        eden_error::ErrorHandler::Instance()->Warning("No se ha creado un sonido con ruta de clip " + _filename);
+        return std::numeric_limits<float>::min();
+    }
+    else return _sound->getPan();
 }
 
 void audio_wrapper::Sound::SetPosition(eden_utils::Vector3 position) {
-    eden_error::ErrorHandler::Instance()->Assert(_sound, "No se encuentra el sonido con nombre " + _filename);
-    _sound->setPosition(audio_wrapper::AudioEngine::EdenVecToIrrklangVec(position));
-    _threeDimensional = true;
+    if (!_sound) eden_error::ErrorHandler::Instance()->Warning("No se ha creado un sonido con ruta de clip " + _filename);
+    else {
+        _sound->setPosition(audio_wrapper::AudioEngine::EdenVecToIrrklangVec(position));
+        _threeDimensional = true;
+    }
 }
 
 eden_utils::Vector3 audio_wrapper::Sound::GetPlayingPosition() const {
-    eden_error::ErrorHandler::Instance()->Assert(_sound, "No se encuentra el sonido con nombre " + _filename);
-    return audio_wrapper::AudioEngine::IrrklangVecToEdenVec(_sound->getPosition());
+    if (!_sound) {
+        eden_error::ErrorHandler::Instance()->Warning("No se ha creado un sonido con ruta de clip " + _filename);
+        return { std::numeric_limits<float>::min(), std::numeric_limits<float>::min(), std::numeric_limits<float>::min()};
+    }
+    else return audio_wrapper::AudioEngine::IrrklangVecToEdenVec(_sound->getPosition());
 }
 
 void audio_wrapper::Sound::SetVolume(float volume) {
-    eden_error::ErrorHandler::Instance()->Assert(_sound, "No se encuentra el sonido con nombre " + _filename);
+    if (!_sound) eden_error::ErrorHandler::Instance()->Warning("No se ha creado un sonido con ruta de clip " + _filename);
     if(volume > 1.0f) volume = 1.0f;
     if(volume < 0.0f) volume = 0.0f;
     _volumeWithoutGeneralMixing = volume;
     if (_isBeingMixed) {
         volume *= eden_audio::AudioManager::Instance()->GetGlobalVolume();
     }
-    _sound->setVolume(volume);
-}
+    if(_sound) _sound->setVolume(volume);
+} 
 
 float audio_wrapper::Sound::GetVolume() const {
     eden_error::ErrorHandler::Instance()->Assert(_sound, "No se encuentra el sonido con nombre " + _filename);
@@ -144,14 +172,19 @@ float audio_wrapper::Sound::GetMixedVolume() const {
 }
 
 void audio_wrapper::Sound::SetPitch(float pitch) {
-    eden_error::ErrorHandler::Instance()->Assert(_sound, "No se encuentra el sonido con nombre " + _filename);
-    if (pitch < 0.0f) pitch = 0.0f;
-    _sound->setPlaybackSpeed(pitch);
+    if (!_sound) eden_error::ErrorHandler::Instance()->Warning("No se ha creado un sonido con ruta de clip " + _filename);
+    else {
+        if (pitch < 0.0f) pitch = 0.0f;
+        _sound->setPlaybackSpeed(pitch);
+    }
 }
 
 float audio_wrapper::Sound::GetPitch() const {
-    eden_error::ErrorHandler::Instance()->Assert(_sound, "No se encuentra el sonido con nombre " + _filename);
-    return _sound->getPlaybackSpeed();
+    if (!_sound) {
+        eden_error::ErrorHandler::Instance()->Warning("No se ha creado un sonido con ruta de clip " + _filename);
+        return std::numeric_limits<float>::min();
+    }
+    else return _sound->getPlaybackSpeed();
 }
 
 std::string audio_wrapper::Sound::GetFilename() const {

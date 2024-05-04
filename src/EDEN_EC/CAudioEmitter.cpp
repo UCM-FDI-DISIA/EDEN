@@ -11,7 +11,7 @@ eden_ec::CAudioEmitter::CAudioEmitter(std::string name, bool is3D) : _3D(is3D) {
 
 eden_ec::CAudioEmitter::~CAudioEmitter() {
 	eden_audio::AudioManager::Instance()->RemoveAudioEntity(_ent);
-	if (_sound) Stop();
+	Stop();
 	_transform = nullptr;
 }
 
@@ -45,90 +45,101 @@ void eden_ec::CAudioEmitter::ChangeClip(std::string name) {
 	_soundClip = eden_audio::AudioManager::Instance()->GetSoundClip(name);
 
 	if (_sound) {
-		if (_sound->GetFilename() == _soundClip->GetFilename()) {
-			Restart();
-			return;
+		if (!_sound->HasEnded()) {
+			if (_sound->GetFilename() == _soundClip->GetFilename()) {
+				Restart();
+				return;
+			}
 		}
 		Stop();
-		delete _sound;
 	}
 	_sound = new audio_wrapper::Sound(_soundClip);
 }
 
 void eden_ec::CAudioEmitter::Pause() {
-	_sound->Pause();
+	if(_sound) _sound->Pause();
 	_previousState = _currentState;
 	_currentState = SoundState::PAUSED;
 }
 
 void eden_ec::CAudioEmitter::Resume() {
-	_sound->Resume();
+	if(_sound) _sound->Resume();
 	_previousState = _currentState;
 	_currentState = SoundState::PLAYING;
 }
 
 void eden_ec::CAudioEmitter::Restart() {
-	_sound->Restart();
+	if(_sound) _sound->Restart();
 }
 
 void eden_ec::CAudioEmitter::Stop() {
 	if (_sound) {
 		_sound->Stop();
+		delete _sound;
+		_sound = nullptr;
 	}
 	_previousState = _currentState;
 	_currentState = SoundState::STOPPED;
 }
 
 bool eden_ec::CAudioEmitter::IsPaused() const {
-	return _sound->IsPaused();
+	if (!_sound) return false;
+	else return _sound->IsPaused();
 }
 
 bool eden_ec::CAudioEmitter::HasEnded() const {
-	return _sound->HasEnded();
+	if (!_sound) return true;
+	else return _sound->HasEnded();
 }
 
 void eden_ec::CAudioEmitter::SetLoop(bool loop) {
-	_sound->SetLoop(loop);
+	if(_sound) _sound->SetLoop(loop);
 }
 
 bool eden_ec::CAudioEmitter::IsLooped() const {
-	return _sound->IsLooped();
+	if (!_sound) return false;
+	else return _sound->IsLooped();
 }
 
 void eden_ec::CAudioEmitter::SetPan(float pan) {
-	_sound->SetPan(pan);
+	if(_sound) _sound->SetPan(pan);
 }
 
 float eden_ec::CAudioEmitter::GetPan() const {
-	return _sound->GetPan();
+	if (!_sound) return std::numeric_limits<float>::min();
+	else return _sound->GetPan();
 }
 
 void eden_ec::CAudioEmitter::SetPosition(eden_utils::Vector3 position) {
-	_sound->SetPosition(position);
+	if(_sound) _sound->SetPosition(position);
 }
 
 eden_utils::Vector3 eden_ec::CAudioEmitter::GetPlayingPosition() const {
-	return _sound->GetPlayingPosition();
+	if(!_sound) return { std::numeric_limits<float>::min(), std::numeric_limits<float>::min(), std::numeric_limits<float>::min() };
+	else return _sound->GetPlayingPosition();
 }
 
 void eden_ec::CAudioEmitter::SetVolume(float volume) {
-	_sound->SetVolume(volume);
+	if(_sound) _sound->SetVolume(volume);
 }
 
 float eden_ec::CAudioEmitter::GetVolume() const {
-	return _sound->GetVolume();
+	if (!_sound) return std::numeric_limits<float>::min();
+	else return _sound->GetVolume();
 }
 
 void eden_ec::CAudioEmitter::SetPitch(float pitch) {
-	_sound->SetPitch(pitch);
+	if(_sound) _sound->SetPitch(pitch);
 }
 
 float eden_ec::CAudioEmitter::GetPitch() const {
-	return _sound->GetPitch();
+	if (!_sound) return std::numeric_limits<float>::min();
+	else return _sound->GetPitch();
 }
 
 std::string eden_ec::CAudioEmitter::GetFilename() const {
-	return _sound->GetFilename();
+	if (!_sound) return "";
+	else return _sound->GetFilename();
 }
 
 audio_wrapper::Sound* eden_ec::CAudioEmitter::GetSound() const {
@@ -136,5 +147,5 @@ audio_wrapper::Sound* eden_ec::CAudioEmitter::GetSound() const {
 }
 
 void eden_ec::CAudioEmitter::MixWithGlobalVolume(float volume) {
-	_sound->MixVolumeWithGeneralVolume(volume);
+	if(_sound) _sound->MixVolumeWithGeneralVolume(volume);
 }

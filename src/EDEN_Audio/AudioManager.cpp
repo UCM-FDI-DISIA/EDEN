@@ -40,7 +40,7 @@ void eden_audio::AudioManager::LoadResources() {
 void eden_audio::AudioManager::Update(float dt) {
 	for (auto ent : _currentAudioScene->_entities) {
 		auto s = ent->GetComponent<eden_ec::CAudioEmitter>()->GetSound();
-		if (s->HasBeingCreated() && s->HasEnded()) s->Stop();
+		if (s && s->HasBeingCreated() && s->HasEnded()) s->Stop();
 	}
 }
 

@@ -214,7 +214,7 @@ std::string eden_ec::UIComponent::GetText() {
 	return text;
 }
 
-void eden_ec::UIComponent::SetText(bool resize=true, const std::string& text) {
+void eden_ec::UIComponent::SetText(const std::string& text, bool resize = true) {
 	if (_text != nullptr) {
 		_text->setCaption(text);
 		if (resize) {

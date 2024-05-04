@@ -39,7 +39,7 @@ namespace eden_ec {
 		void Init(eden_script::ComponentArguments* args) override;
 
 		/// @brief No usado
-		void Awake() override {};
+		void Awake() override;
 
 		/// @brief Usaremos este m�todo para a�adir referencias de otros componentes
 		void Start() override;

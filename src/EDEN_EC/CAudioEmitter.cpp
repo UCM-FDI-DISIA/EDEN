@@ -20,9 +20,11 @@ void eden_ec::CAudioEmitter::Init(eden_script::ComponentArguments* args) {
 	 _3D = args->GetValueToBool("Is3D");
 }
 
-void eden_ec::CAudioEmitter::Start() {
-	// Habria que cambiar esta línea cuando se cree el awake
+void eden_ec::CAudioEmitter::Awake() {
 	eden_audio::AudioManager::Instance()->AddAudioEntity(_ent);
+}
+
+void eden_ec::CAudioEmitter::Start() {
 	_transform = _ent->GetComponent<eden_ec::CTransform>();
 }
 

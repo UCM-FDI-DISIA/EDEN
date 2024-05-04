@@ -43,6 +43,7 @@ eden::Master::Master()
 	_inputManager = eden_input::InputManager::Instance();
 	_scnManager = SceneManager::Instance();
 	_physicsManager = physics_manager::PhysicsManager::Instance();
+	_audioManager = eden_audio::AudioManager::Instance();
 
 	_initialized = true;
 }
@@ -57,7 +58,7 @@ eden::Master::~Master()
 	_scnManager->Close();
 	_physicsManager->Close();
 	_inputManager->Close();
-	eden_audio::AudioManager::Instance()->Close();
+	_audioManager->Close();
 	eden_script::ScriptManager::Instance()->Close();
 
 	if (_renderManager != nullptr && _renderManager->couldInitialize()) {
@@ -93,6 +94,7 @@ void eden::Master::Loop()
 		_scnManager->Update(_deltaTime);
 		_renderManager->UpdatePositions(_scnManager->GetCurrentScene()->GetSceneID());
 		_renderManager->Update();
+		_audioManager->Update(_deltaTime);
 		exit = _inputManager->CloseWindowEvent();
 		if (_inputManager->ResizedWindowEvent()) {
 			_renderManager->ResizedWindow();

@@ -8,6 +8,7 @@
 #include "ResourcesManager.h"
 #include "Entity.h"
 #include "CAudioEmitter.h"
+#include "Sound.h"
 
 eden_audio::AudioManager::AudioManager() : _globalVolume(1.0f) {
 	//Inicializamos el motor de sonido en caso de que no se haya creado
@@ -33,6 +34,13 @@ void eden_audio::AudioManager::LoadResources() {
 	for (auto it = audios.begin(); it != audios.end(); it++) {
 		_soundMap[*it] = new audio_wrapper::SoundClip(*ot);
 		ot++;
+	}
+}
+
+void eden_audio::AudioManager::Update(float dt) {
+	for (auto ent : _currentAudioScene->_entities) {
+		auto s = ent->GetComponent<eden_ec::CAudioEmitter>()->GetSound();
+		if (s->HasEnded()) s->Stop();
 	}
 }
 

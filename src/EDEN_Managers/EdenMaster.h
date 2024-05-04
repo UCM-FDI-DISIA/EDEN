@@ -20,6 +20,10 @@ namespace physics_manager{
 	class PhysicsManager;
 }
 
+namespace eden_audio {
+	class AudioManager;
+}
+
 namespace eden 
 {
 	class SceneManager;
@@ -69,6 +73,9 @@ namespace eden
 
 		/// @brief Referencia al PhysicsManager
 		physics_manager::PhysicsManager* _physicsManager;
+
+		/// @brief Referencia al AudioManager
+		eden_audio::AudioManager* _audioManager;
 
 		/// @brief Constructora por defecto de EdenMaster
 		EDEN_API Master();

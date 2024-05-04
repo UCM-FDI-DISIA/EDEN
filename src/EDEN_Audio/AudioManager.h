@@ -57,6 +57,10 @@ namespace eden_audio {
 
         EDEN_API static AudioManager* GetInstance();
 
+        /// @brief Metodo que actualiza el estado de los sonidos de la escena actual, parandolos si han acabado.
+        /// @param dt Delta time
+        EDEN_API void Update(float dt);
+
     private:
         /// @brief Mapa que almacena los clips de sonido con un identificador, que es el nombre de su archivo
         std::unordered_map<std::string, audio_wrapper::SoundClip*> _soundMap;

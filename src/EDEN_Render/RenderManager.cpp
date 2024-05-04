@@ -52,6 +52,7 @@
 
 // STD
 #include <vector>
+#include <fstream>
 
 eden_render::RenderManager* eden_render::RenderManager::getInstance() {
 	return static_cast<RenderManager*>(Instance());
@@ -168,7 +169,9 @@ void eden_render::RenderManager::InitializeLib()
 	_solutionPath.resize(_solutionPath.size() - nameFile.size()); // y la reajusta
 
 	// crea una nueva raiz en base a los plugins y la configuracion base de Ogre
-	_root = new Ogre::Root(pluginsPath);
+	if (CheckPlugins(pluginsPath)) {
+		_root = new Ogre::Root(pluginsPath);
+	}
 
 	if (_root != nullptr)
 	{
@@ -367,6 +370,36 @@ void eden_render::RenderManager::ChangeWindowSize(int w, int h)
 	SDL_SetWindowSize(_window.native, w, h);
 	SDL_SetWindowPosition(_window.native, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
 	ResizedWindow();
+}
+
+bool eden_render::RenderManager::CheckPlugins(std::string& path)
+{
+	std::ifstream in(path);
+	while (!in.eof()) {
+		std::string line;
+		std::getline(in, line);
+		std::string pluginName = "";
+		std::string startPlugin = "";
+		int i = 0;
+		bool exit = false;
+		while (i < line.size() && !exit) {
+			if (line[i] == '=') exit = true;
+			else if (line[i] != ' ') startPlugin.push_back(line[i]);
+			++i;
+		}
+		if (startPlugin == PLUGIN_FORMAT) {
+			while (i < line.size()) {
+				if (line[i] != ' ') {
+					pluginName.push_back(line[i]);
+				}
+				++i;
+			}
+			if (!eden_resources::ResourcesManager::Instance()->FileExist(pluginName + DLL_EXTENSION, eden_resources::ResourcesManager::Bin))
+				return false;
+		}
+	}
+	in.close();
+	return true;
 }
 
 void eden_render::RenderManager::FullScreen()

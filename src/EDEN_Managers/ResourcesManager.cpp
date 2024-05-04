@@ -65,6 +65,14 @@ void eden_resources::ResourcesManager::LoadResources() {
 	}
 	_resourcesGeneral.push_back(aux);
 	_resourcesRutesGeneral.push_back(auxRutes);
+	aux.clear();
+	auxRutes.clear();
+	for (const auto& entry : std::filesystem::directory_iterator(BIN_ROUTE)) {
+		aux.insert(entry.path().filename().string());
+		auxRutes.insert(entry.path().string());
+	}
+	_resourcesGeneral.push_back(aux);
+	_resourcesRutesGeneral.push_back(auxRutes);
 }
 
 bool eden_resources::ResourcesManager::FileExist(std::string name, Resources res) {

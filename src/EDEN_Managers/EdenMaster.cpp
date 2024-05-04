@@ -19,6 +19,7 @@
 #include "Scene.h"
 #include "AudioManager.h"
 #include "ScriptManager.h"
+#include "ResourcesManager.h"
 
 bool eden::Master::_initialized = false;
 
@@ -31,7 +32,11 @@ eden::Master::Master()
 	// la comprobacion de que se haya podido inicializar el RenderManager ahora se hace dentro del propio RenderManager.
 	_renderManager = eden_render::RenderManager::Instance("EDEN Engine");
 
-	if (!_renderManager->couldInitialize()) delete _renderManager;
+	if (!_renderManager->couldInitialize()) {
+		_renderManager->Close();
+		_initialized = false;
+		return;
+	}
 	else {
 		//Ejemplo de seteo de Resoluciones por el programador
 		std::vector<std::pair<int, int>> resolutions;
@@ -66,6 +71,7 @@ eden::Master::~Master()
 		_renderManager->Close();
 	}
 
+	eden_resources::ResourcesManager::Instance()->Close();
 }
 
 void eden::Master::Loop()

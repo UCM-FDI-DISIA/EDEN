@@ -11,6 +11,8 @@
 
 #define RESOURCES_LOCATION_TYPE "FileSystem"
 #define EDEN_RENDER_SYSTEM "OpenGL Rendering Subsystem"
+#define DLL_EXTENSION ".dll"
+#define PLUGIN_FORMAT "Plugin"
 
 namespace eden_debug {
 	class DebugDrawer;
@@ -208,6 +210,13 @@ namespace eden_render
 		/// @param w Ancho de la ventana
 		/// @param h Alto de la ventana
 		void ChangeWindowSize(int w, int h);
+
+		/// <summary>
+		/// Comprueba que todos los plugins del archivo con ruta path existen
+		/// </summary>
+		/// <param name="path">Ruta del archivo plugins.cfg</param>
+		/// <returns>True si se encuentran todos los plugins, False en caso contrario</returns>
+		bool CheckPlugins(std::string& path);
 
 		/// @brief Raiz de Ogre
 		Ogre::Root* _root;

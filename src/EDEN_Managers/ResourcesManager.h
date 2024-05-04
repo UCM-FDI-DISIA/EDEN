@@ -15,6 +15,7 @@
 #define UI_ROUTE "assets\\ui_elements\\"
 #define FONTS_ROUTE "assets\\fonts\\"
 #define DEFAULT_ROUTE  "assets\\default\\"
+#define BIN_ROUTE  ".\\"
 #endif
 #ifdef __APPLE__
 #define AUDIO_ROUTE "assets/audio/"
@@ -23,6 +24,7 @@
 #define UI_ROUTE "assets/ui_elements/"
 #define FONTS_ROUTE "assets/fonts/"
 #define DEFAULT_ROUTE  "assets/default/"
+#define BIN_ROUTE  "./"
 #endif
 
 namespace eden_resources {
@@ -37,7 +39,8 @@ namespace eden_resources {
             UI,
             Fonts,
             Audio,
-            Default
+            Default,
+            Bin
         };
         /// @brief Constructora
         EDEN_API ResourcesManager();

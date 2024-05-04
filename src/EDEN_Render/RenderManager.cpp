@@ -381,8 +381,8 @@ void eden_render::RenderManager::FullScreen()
 		h = _fullH;
 	}
 
-	ChangeWindowSize(w, h);
 	_isFullScreen = !_isFullScreen;
+	ChangeWindowSize(w, h);
 }
 
 void eden_render::RenderManager::SetResolutions(std::vector<std::pair<int, int>> resolutions)

@@ -93,7 +93,7 @@ const std::vector<physics_wrapper::RayCastHitResult> physics_wrapper::RayCast::M
 	return MultipleHitRayCast(rayOrigin, rayDestiny, layerName.c_str(), drawDebugLine, debugLineColor);
 }
 
-EDEN_API physics_wrapper::RayCast* physics_wrapper::RayCast::getInstance()
+physics_wrapper::RayCast* physics_wrapper::RayCast::getInstance()
 {
 	return static_cast<physics_wrapper::RayCast*>(Instance());
 }

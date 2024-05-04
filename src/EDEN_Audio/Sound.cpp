@@ -25,19 +25,23 @@ audio_wrapper::Sound::~Sound() {
 
 void audio_wrapper::Sound::Play(bool loop) {
     eden_error::ErrorHandler::Instance()->Assert(_clip, "No se encuentra la fuente de sonido con nombre " + _filename);
-    eden_error::ErrorHandler::Instance()->Assert(!_sound, "Ya hay un sonido reproduciendose derivado de la fuente de sonido con nombre " + _filename);
-    _sound = audio_wrapper::AudioEngine::Instance()->Play(_clip->GetSource(), loop);
-    if (_isBeingMixed) SetVolume(_volumeWithGeneralMixing);
-    else SetVolume(_volumeWithoutGeneralMixing);
+    if (_sound) Restart();
+    else {
+        _sound = audio_wrapper::AudioEngine::Instance()->Play(_clip->GetSource(), loop);
+        if (_isBeingMixed) SetVolume(_volumeWithGeneralMixing);
+        else SetVolume(_volumeWithoutGeneralMixing);
+    }
 }
 
 void audio_wrapper::Sound::Play(eden_utils::Vector3 pos, bool loop) {
     eden_error::ErrorHandler::Instance()->Assert(_clip, "No se encuentra la fuente de sonido con nombre " + _filename);
-    eden_error::ErrorHandler::Instance()->Assert(!_sound, "Ya hay un sonido reproduciendose derivado de la fuente de sonido con nombre " + _filename);
-    _threeDimensional = true;
-    _sound = audio_wrapper::AudioEngine::Instance()->Play(_clip->GetSource(), pos, loop);
-    if (_isBeingMixed) SetVolume(_volumeWithGeneralMixing);
-    else SetVolume(_volumeWithoutGeneralMixing);
+    if(_sound) Restart();
+    else {
+        _threeDimensional = true;
+        _sound = audio_wrapper::AudioEngine::Instance()->Play(_clip->GetSource(), pos, loop);
+        if (_isBeingMixed) SetVolume(_volumeWithGeneralMixing);
+        else SetVolume(_volumeWithoutGeneralMixing);
+    }
 }
 
 void audio_wrapper::Sound::Pause() {

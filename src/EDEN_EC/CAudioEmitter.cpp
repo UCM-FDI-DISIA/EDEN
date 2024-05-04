@@ -50,7 +50,6 @@ void eden_ec::CAudioEmitter::ChangeClip(std::string name) {
 			return;
 		}
 		Stop();
-		delete _sound;
 	}
 	_sound = new audio_wrapper::Sound(_soundClip);
 }
@@ -74,6 +73,8 @@ void eden_ec::CAudioEmitter::Restart() {
 void eden_ec::CAudioEmitter::Stop() {
 	if (_sound) {
 		_sound->Stop();
+		delete _sound;
+		_sound = nullptr;
 	}
 	_previousState = _currentState;
 	_currentState = SoundState::STOPPED;

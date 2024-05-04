@@ -52,13 +52,13 @@ namespace eden_ec {
 		virtual void OnButtonReleased();
 
 		/// @brief Metodo que se llama cuando entra una colision
-		virtual void OnCollisionEnter(eden_ec::Entity* other);
+		virtual void OnCollisionEnter(eden_ec::Entity* self, eden_ec::Entity* other);
 
 		/// @brief Metodo que se llama cuando se mantiene una colision
-		virtual void OnCollisionStay(eden_ec::Entity* other);
+		virtual void OnCollisionStay(eden_ec::Entity* self, eden_ec::Entity* other);
 
 		/// @brief Metodo que se llama cuando termina una colision
-		virtual void OnCollisionExit(eden_ec::Entity* other);
+		virtual void OnCollisionExit(eden_ec::Entity* self, eden_ec::Entity* other);
 
 		/// Devuelve la LuaRef al behaviour en Lua
 		luabridge::LuaRef* GetBehaviourLua();

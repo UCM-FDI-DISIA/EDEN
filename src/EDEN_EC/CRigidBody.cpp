@@ -180,17 +180,17 @@ void eden_ec::CRigidBody::ClearForce()
 void eden_ec::CRigidBody::OnCollisionEnter(eden_ec::Entity* other)
 {
 	if (_behaviour != nullptr)
-		_behaviour->OnCollisionEnter(other);
+		_behaviour->OnCollisionEnter(_ent, other);
 }
 
 void eden_ec::CRigidBody::OnCollisionStay(eden_ec::Entity* other)
 {
 	if (_behaviour != nullptr)
-		_behaviour->OnCollisionStay(other);
+		_behaviour->OnCollisionStay(_ent, other);
 }
 
 void eden_ec::CRigidBody::OnCollisionExit(eden_ec::Entity* other)
 {
 	if (_behaviour != nullptr)
-		_behaviour->OnCollisionExit(other);
+		_behaviour->OnCollisionExit(_ent, other);
 }

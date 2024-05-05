@@ -4,9 +4,12 @@
 
 #include <unordered_set>
 #include <unordered_map>
+#include <vector>
+#include <string>
 
 #include "Singleton.h"
 #include "Vector3.h"
+#include "RayCast.h"
 
 #define DEFAULT_GROUP "DEFAULT"
 #define RAYCAST_GROUP "RAYCAST"
@@ -122,6 +125,15 @@ namespace physics_manager {
 
 		/// @brief Setear a cada transform de cada entidad el transform del rigidbody
 		EDEN_API void ResolvePositions(std::string sceneID);
+
+		/// @brief Lanza un rayo
+		EDEN_API const physics_wrapper::RayCastHitResult SingleHitRayCast(const eden_utils::Vector3 rayOrigin, const eden_utils::Vector3 rayDestiny, const bool drawDebugLine = false, const eden_utils::Vector3 debugLineColor = eden_utils::Vector3(1, 0, 0));
+
+		EDEN_API const std::vector<physics_wrapper::RayCastHitResult> MultipleHitRayCast(const eden_utils::Vector3 rayOrigin, const eden_utils::Vector3 rayDestiny, const bool drawDebugLine = false, const eden_utils::Vector3 debugLineColor = eden_utils::Vector3(1, 0, 0));
+
+		EDEN_API const std::vector<physics_wrapper::RayCastHitResult> MultipleHitRayCast(const eden_utils::Vector3 rayOrigin, const eden_utils::Vector3 rayDestiny, const char* layerName, const bool drawDebugLine = false, const eden_utils::Vector3 debugLineColor = eden_utils::Vector3(1, 0, 0));
+
+		EDEN_API const std::vector<physics_wrapper::RayCastHitResult> MultipleHitRayCast(const eden_utils::Vector3 rayOrigin, const eden_utils::Vector3 rayDestiny, std::string layerName, const bool drawDebugLine = false, const eden_utils::Vector3 debugLineColor = eden_utils::Vector3(1, 0, 0));
 
 		/// @brief Destructora de la clase
 		~PhysicsManager() override;

@@ -29,7 +29,7 @@ void audio_wrapper::Sound::Play(bool loop) {
         if (_sound) Restart();
         else {
             _sound = audio_wrapper::AudioEngine::Instance()->Play(_clip->GetSource(), loop);
-            if (_isBeingMixed) SetVolume(_volumeWithGeneralMixing);
+            if (_isBeingMixed) MixVolumeWithGeneralVolume(eden_audio::AudioManager::Instance()->GetGlobalVolume());
             else SetVolume(_volumeWithoutGeneralMixing);
         }
     }
@@ -42,7 +42,7 @@ void audio_wrapper::Sound::Play(eden_utils::Vector3 pos, bool loop) {
         else {
             _threeDimensional = true;
             _sound = audio_wrapper::AudioEngine::Instance()->Play(_clip->GetSource(), pos, loop);
-            if (_isBeingMixed) SetVolume(_volumeWithGeneralMixing);
+            if (_isBeingMixed) MixVolumeWithGeneralVolume(eden_audio::AudioManager::Instance()->GetGlobalVolume());
             else SetVolume(_volumeWithoutGeneralMixing);
         }
     }
@@ -150,8 +150,11 @@ void audio_wrapper::Sound::SetVolume(float volume) {
 } 
 
 float audio_wrapper::Sound::GetVolume() const {
-    eden_error::ErrorHandler::Instance()->Assert(_sound, "No se encuentra el sonido con nombre " + _filename);
-    return _sound->getVolume();
+    if (!_sound) {
+        eden_error::ErrorHandler::Instance()->Warning("No se ha creado un sonido con ruta de clip " + _filename);
+        return std::numeric_limits<float>::min();
+    }
+    else return _sound->getVolume();
 }
 
 void audio_wrapper::Sound::MixVolumeWithGeneralVolume(float generalVolume) {

@@ -19,16 +19,14 @@ namespace eden_ec {
 }
 
 namespace eden {
+	class SceneManager;
+
 	/// @brief Clase que define una escena de juego. Tendra un render, un update y todos los metodos que se encarguen del manejo de los gameobjects que
 	/// la componen.
 	class EDEN_API Scene
 	{
+		friend SceneManager;
 	public:
-		/// @brief Constructora por defecto de la clase Scene
-		/// @param ID Identificador de la escena
-		/// @param info Informacion de las entidades que estan en la escena
-		/// @param collisionInfo Informacion de las capas de colisión que estan en la escena
-		Scene(const std::string& ID, std::vector<eden_script::EntityInfo*>& info, std::unordered_map<std::string, std::vector<std::string>>& collisionInfo);
 		Scene(const std::string& ID);
 		~Scene();
 
@@ -87,7 +85,7 @@ namespace eden {
 		eden_ec::Entity* Instantiate(eden_script::EntityInfo* info, eden_utils::Quaternion rot);
 		eden_ec::Entity* Instantiate(eden_script::EntityInfo* info);
 	private:
-
+		void InitScene(std::vector<eden_script::EntityInfo*>& info, std::unordered_map<std::string, std::vector<std::string>>& collisionInfo);
 		/// @brief Llama al Awake de las entidades que van a añadirse a la escena. Se hace al final de cada frame si nuevas entidades se han añadido a la escena
 		void AwakeEntities();
 		/// @brief Llama al Start de las entidades que van a añadirse a la escena. Se hace al principio de cada frame si nuevas entidades se añadieron a la escena en el frame anterior

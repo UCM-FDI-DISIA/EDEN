@@ -10,14 +10,9 @@
 #include "PhysicsManager.h"
 #include "Entity.h"
 #include "Transform.h"
+#include "ErrorHandler.h"
 
 namespace eden {
-	Scene::Scene(const std::string& ID, std::vector<eden_script::EntityInfo*>& info, std::unordered_map<std::string, std::vector<std::string>>& collisionInfo) {
-		_ID = ID;
-		physics_manager::PhysicsManager::Instance()->InitLayers(ID, collisionInfo);
-		Instantiate(info);
-	}
-
 	Scene::Scene(const std::string& ID)
 	{
 		_ID = ID;
@@ -64,7 +59,14 @@ namespace eden {
 		}
 		// Cremoas una nueva entidad seg�n el nombre que hayamos recibido en 'info' al leer el .lua
 		// Creamos sus componentes seg�n la info le�da
-		ent->AddComponents(info);
+		try {
+			ent->AddComponents(info);
+		}
+		catch (std::exception e) {
+			delete ent;
+			eden_error::ErrorHandler::Instance()->Exception("Scene ERROR in line 62", "could not create entity" + info->name + "\n");
+		}
+
 #ifdef _DEBUG
 		for (auto ot : info->components) {
 
@@ -83,6 +85,12 @@ namespace eden {
 #endif
 		AddNewGameObject(ent);
 		return ent;
+	}
+
+	void Scene::InitScene(std::vector<eden_script::EntityInfo*>& info, std::unordered_map<std::string, std::vector<std::string>>& collisionInfo)
+	{
+		physics_manager::PhysicsManager::Instance()->InitLayers(_ID, collisionInfo);
+		Instantiate(info);
 	}
 
 	eden_ec::Entity* Scene::Instantiate(eden_script::EntityInfo* info, eden_utils::Vector3 pos) {
@@ -125,6 +133,14 @@ namespace eden {
 			delete it->second; //Llamamos a la destructora de la entidad
 			it->second = nullptr;
 			it = _gameEntitiesList.erase(it); //Lo borramos del mapa
+		}
+
+		for (auto it = _newEntities.begin(); it != _newEntities.end(); ++it) {
+			for (auto it2 = it->second.begin(); it2 != it->second.end();) {
+				delete it2->second; //Llamamos a la destructora de la entidad
+				it2->second = nullptr;
+				it2 = it->second.erase(it2); //Lo borramos del mapa
+			}
 		}
 	}
 

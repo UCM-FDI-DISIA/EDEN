@@ -63,7 +63,15 @@ namespace eden {
 		eden_render::RenderManager::Instance()->CreateRenderScene(ID);
 		physics_manager::PhysicsManager::Instance()->CreatePhysicsScene(ID);
 		eden_audio::AudioManager::Instance()->CreateAudioScene(ID);
-		Scene* newSc = new Scene(ID, info, collisionInfo);
+		Scene* newSc = new Scene(ID);
+		try {
+			newSc->InitScene(info, collisionInfo);
+		}
+		catch (std::exception e) {
+			delete newSc;
+			for (auto a : info) delete a;
+			eden_error::ErrorHandler::Instance()->Exception("SceneManager ERROR in line 68", "could not create scene " + ID + "\n");
+		}
 		for (auto a : info) delete a;
 		_scenes.push_front(newSc);
 		_currentScenes.insert(ID);

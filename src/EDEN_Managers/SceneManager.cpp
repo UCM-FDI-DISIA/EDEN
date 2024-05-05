@@ -99,7 +99,10 @@ namespace eden {
 			eden_script::EntityInfo* info = new eden_script::EntityInfo();
 			info->name = name;
 			info->components = it->second.components;
-			ent = _activeScene->Instantiate(info);
+			try {
+				ent = _activeScene->Instantiate(info);
+			}
+			catch (std::exception e) {}
 			delete info;
 		}
 		else {

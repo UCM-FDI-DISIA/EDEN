@@ -31,7 +31,7 @@ const physics_wrapper::RayCastHitResult physics_wrapper::RayCast::SingleHitRayCa
 	_dynamicWorldRef->rayTest(origin, destiny, result);
 	eden_utils::Vector3 rHitPoint(result.m_hitPointWorld.getX(), result.m_hitPointWorld.getY(), result.m_hitPointWorld.getZ());
 	eden_utils::Vector3 rHitNormal(result.m_hitNormalWorld.getX(), result.m_hitNormalWorld.getY(), result.m_hitNormalWorld.getZ());
-	const eden_ec::Entity* hitEntity = (eden_ec::Entity*)(btRigidBody::upcast(result.m_collisionObject))->getUserPointer();
+	eden_ec::Entity* hitEntity = (eden_ec::Entity*)(btRigidBody::upcast(result.m_collisionObject))->getUserPointer();
 	RayCastHitResult hitResult{ result.hasHit(), rHitPoint, rHitNormal, hitEntity };
 	return hitResult;
 }
@@ -51,7 +51,7 @@ const std::vector<physics_wrapper::RayCastHitResult> physics_wrapper::RayCast::M
 	std::vector<RayCastHitResult> multipleHitResult(numCollisions);
 	eden_utils::Vector3 rHitPoint;
 	eden_utils::Vector3 rHitNormal;
-	const eden_ec::Entity* hitEntity = nullptr;
+	eden_ec::Entity* hitEntity = nullptr;
 	for (int i = 0; i < numCollisions; ++i) {
 		rHitPoint = { result.m_hitPointWorld[i].getX(), result.m_hitPointWorld[i].getY(), result.m_hitPointWorld[i].getZ()};
 		rHitNormal = { result.m_hitNormalWorld[i].getX(), result.m_hitNormalWorld[i].getY(), result.m_hitNormalWorld[i].getZ() };
@@ -91,9 +91,4 @@ const std::vector<physics_wrapper::RayCastHitResult> physics_wrapper::RayCast::M
 const std::vector<physics_wrapper::RayCastHitResult> physics_wrapper::RayCast::MultipleHitRayCast(const eden_utils::Vector3 rayOrigin, const eden_utils::Vector3 rayDestiny, const std::string layerName, const bool drawDebugLine, const eden_utils::Vector3 debugLineColor)
 {
 	return MultipleHitRayCast(rayOrigin, rayDestiny, layerName.c_str(), drawDebugLine, debugLineColor);
-}
-
-physics_wrapper::RayCast* physics_wrapper::RayCast::getInstance()
-{
-	return static_cast<physics_wrapper::RayCast*>(Instance());
 }

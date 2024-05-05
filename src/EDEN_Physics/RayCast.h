@@ -30,7 +30,7 @@ namespace physics_wrapper {
 		bool hasHit = false;
 		eden_utils::Vector3 rayHitLocationPoint = eden_utils::Vector3(0, 0, 0);
 		eden_utils::Vector3 rayHitLocationNormal = eden_utils::Vector3(0, 0, 0);
-		const eden_ec::Entity* entityHit = nullptr;
+		eden_ec::Entity* entityHit = nullptr;
 	};
 
 	class RayCast : public Singleton<RayCast>
@@ -60,7 +60,6 @@ namespace physics_wrapper {
 
 		~RayCast() override = default;
 
-		EDEN_API static physics_wrapper::RayCast* getInstance();
 	protected:
 		/// @brief Esta constructora deberia llamarse desde e metodo Instance de la clase Singleton
 		/// @param worldRef Referencia al mundo de la simulacion fisica

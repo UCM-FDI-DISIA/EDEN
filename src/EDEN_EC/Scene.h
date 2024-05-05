@@ -104,7 +104,7 @@ namespace eden {
 		eden_ec::Entity* _currentCamera = nullptr;
 
 		/// @brief mapa que contiene las referencias a todas las entidades de la escena
-		std::unordered_map<std::string, eden_ec::Entity*> _gameEntitiesList;
+		std::unordered_map<std::string, std::pair<eden_ec::Entity*, bool>> _gameEntitiesList;
 
 		/// @brief Vector que tiene las entidades que se añadirán al final del frame
 		std::unordered_map<int, std::unordered_map<std::string, eden_ec::Entity*>> _newEntities;

@@ -229,8 +229,8 @@ namespace eden {
 		if (_scenes.size() <= 0)
 			eden_error::ErrorHandler::Instance()->Exception("scene deque empty", "SceneManager ERROR in line 188, scene deque empty");
 		else {
-			_dontDestroyOnLoadScene->Update(dt);
 			_scenes.front()->Update(dt);
+			_dontDestroyOnLoadScene->Update(dt);
 		}
 	}
 }

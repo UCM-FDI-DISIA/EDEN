@@ -28,7 +28,11 @@ namespace eden {
 			eden_error::ErrorHandler::Instance()->Assert(true, "No active scene\n");
 			return nullptr;
 		}
-		return _activeScene->GetEntityByID(ID);
+		eden_ec::Entity* e = _activeScene->GetEntityByID(ID);
+		if (e == nullptr) {
+			e = _dontDestroyOnLoadScene->GetEntityByID(ID);
+		}
+		return e;
 	}
 
 	SceneManager::SceneManager() {

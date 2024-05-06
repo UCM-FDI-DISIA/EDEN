@@ -218,10 +218,8 @@ void eden_ec::UIComponent::SetText(const std::string& text, bool resize) {
 	if (_text != nullptr) {
 		_text->setCaption(text);
 		if (resize) {
-			_overlayContainer->setDimensions(_text->getCharHeight() * text.length(), _text->getCharHeight());
 			Resize();
 		}
-		else SetDimensions(_text->getCharHeight() * text.length(), _text->getCharHeight());
 	}
 }
 
@@ -258,10 +256,6 @@ void eden_ec::UIComponent::Resize() {
 	if (_rWidth != 0 || _rHeight != 0) {
 		SetRelativeDimensions(_rWidth, _rHeight);
 		SetRelativePosition(_rPos.first, _rPos.second);
-
-		_oWidth = GetDimensions().first;
-		_oHeight = GetDimensions().second;
-		_oPos = GetPosition();
 
 		if (_text != nullptr) {
 			if (_oWidth / _text->getCaption().length() < _oHeight)_text->setCharHeight(_oWidth / _text->getCaption().length());

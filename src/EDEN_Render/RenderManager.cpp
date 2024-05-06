@@ -431,20 +431,24 @@ std::pair<int, int> eden_render::RenderManager::GetResolution()
 
 void eden_render::RenderManager::ChangeResolution()
 {
-	if(!_isFullScreen)ChangeWindowSize(_resolutions[_currRes].first, _resolutions[_currRes].second);
-	_currW = _resolutions[_currRes].first;
-	_currH = _resolutions[_currRes].second;
+	if (!_isFullScreen) {
+		ChangeWindowSize(_resolutions[_currRes].first, _resolutions[_currRes].second);
+		_currW = _resolutions[_currRes].first;
+		_currH = _resolutions[_currRes].second;
+	}
 }
 
 void eden_render::RenderManager::NextResolutuion()
 {
-	_currRes = (_currRes + 1) % _resolutions.size();
+	if (!_isFullScreen)_currRes = (_currRes + 1) % _resolutions.size();
 }
 
 void eden_render::RenderManager::PreviousResolution()
 {
-	_currRes--;
-	if (_currRes < 0)_currRes = _resolutions.size() - 1;
+	if (!_isFullScreen) {
+		_currRes--;
+		if (_currRes < 0)_currRes = _resolutions.size() - 1;
+	}
 }
 
 render_wrapper::CameraWrapper* eden_render::RenderManager::GetCamera(eden_ec::Entity* ent)

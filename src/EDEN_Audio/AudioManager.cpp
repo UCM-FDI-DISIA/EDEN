@@ -9,6 +9,7 @@
 #include "Entity.h"
 #include "CAudioEmitter.h"
 #include "Sound.h"
+#include "SceneManager.h"
 
 eden_audio::AudioManager::AudioManager() : _globalVolume(1.0f) {
 	//Inicializamos el motor de sonido en caso de que no se haya creado
@@ -42,6 +43,19 @@ void eden_audio::AudioManager::Update(float dt) {
 		auto s = ent->GetComponent<eden_ec::CAudioEmitter>()->GetSound();
 		if (s && s->HasBeingCreated() && s->HasEnded()) s->Stop();
 	}
+	for (auto ent : _dontDestroyOnLoad->_entities) {
+		auto s = ent->GetComponent<eden_ec::CAudioEmitter>()->GetSound();
+		if (s && s->HasBeingCreated() && s->HasEnded()) s->Stop();
+	}
+}
+
+EDEN_API void eden_audio::AudioManager::AddAudioEntityToDontDestoryOnLoad(eden_ec::Entity* e)
+{
+	std::unordered_map<std::string, InfoAudioWorld*>::iterator it = _audioScenes.find(eden::SceneManager::Instance()->GetDontDestroyOnLoadID());
+	if (it != _audioScenes.end()) {
+		if (e != nullptr) it->second->_entities.insert(e);
+	}
+	else eden_error::ErrorHandler::Instance()->Warning("AudioManager ERROR in line 44 could not find scene: " + e->GetSceneID() + "\n");
 }
 
 audio_wrapper::SoundClip* eden_audio::AudioManager::GetSoundClip(std::string filename) const {
@@ -99,7 +113,8 @@ void eden_audio::AudioManager::CreateAudioScene(std::string id) {
 
 	if (sceneIt == _audioScenes.end()) {
 		InfoAudioWorld* info = new InfoAudioWorld();
-		_currentAudioScene = info;
+		if (id == eden::SceneManager::Instance()->GetDontDestroyOnLoadID()) _dontDestroyOnLoad = info;
+		else _currentAudioScene = info;
 		_audioScenes[id] = info;
 	}
 	else {

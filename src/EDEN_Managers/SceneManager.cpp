@@ -55,6 +55,10 @@ namespace eden {
 
 	void SceneManager::CreateScene(std::string& ID)
 	{
+		if (!_dontDestroySceneCreated) {
+			eden_audio::AudioManager::Instance()->CreateAudioScene(_dontDestroyOnLoadID);
+			_dontDestroySceneCreated = true;
+		}
 		eden_script::ScriptManager* scriptManager = eden_script::ScriptManager::Instance();
 		std::unordered_map<std::string, std::vector<std::string>> collisionInfo;
 		std::vector<eden_script::EntityInfo*> info;
@@ -112,12 +116,14 @@ namespace eden {
 		return ent;
 	}
 
-	EDEN_API bool SceneManager::AddEntityToDontDestroyOnLoad(eden_ec::Entity* ent)
+	EDEN_API bool SceneManager::AddEntityToDontDestroyOnLoad(eden_ec::Entity* ent, bool isAudio)
 	{
 		bool done;
 		GetCurrentScene()->RemoveGameObject(ent);
+		if(isAudio)eden_audio::AudioManager::Instance()->RemoveAudioEntity(ent);
 		done = _dontDestroyOnLoadScene->AddExistingGameObject(ent);
 		if (!done) ent->SetAlive(false);
+		if(isAudio)eden_audio::AudioManager::Instance()->AddAudioEntityToDontDestoryOnLoad(ent);
 		return done;
 	}
 
@@ -203,6 +209,7 @@ namespace eden {
 			it = _scenesToDestroy.erase(it);
 			physics_manager::PhysicsManager::Instance()->RemovePhysicsScene(prevScene, newScene);
 			eden_render::RenderManager::Instance()->RemoveRenderScene(prevScene, newScene);
+			eden_audio::AudioManager::Instance()->RemoveAudioScene(prevScene, newScene);
 		}
 
 		for (auto it = _scenesToAdd.begin(); it != _scenesToAdd.end();) {

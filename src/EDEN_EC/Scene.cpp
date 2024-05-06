@@ -183,7 +183,7 @@ namespace eden {
 	bool Scene::AddExistingGameObject(eden_ec::Entity* _ent) {
 		if (!_gameEntitiesList.contains(_ent->GetEntityID()))
 		{
-			_gameEntitiesList[_ent->GetEntityID()].first = _ent;
+			_gameEntitiesList[_ent->GetEntityID()] = { _ent,true };
 			return true;
 		}
 		return false;		
@@ -210,8 +210,8 @@ namespace eden {
 		int lastIteration = _currentIteration;
 		_currentIteration++;
 		for (auto it = _newEntities[lastIteration].begin(); it != _newEntities[lastIteration].end();) {
-			(*it).second->StartComponents();
 			_gameEntitiesList[it->second->GetEntityID()] = { it->second, true};
+			(*it).second->StartComponents();
 			it = _newEntities[lastIteration].erase(it);
 		}
 	}

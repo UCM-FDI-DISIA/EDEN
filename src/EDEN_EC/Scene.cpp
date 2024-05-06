@@ -64,7 +64,7 @@ namespace eden {
 		}
 		catch (std::exception e) {
 			delete ent;
-			eden_error::ErrorHandler::Instance()->Exception("Scene ERROR in line 62", "could not create entity" + info->name + "\n");
+			eden_error::ErrorHandler::Instance()->Exception("Scene ERROR in line 62", "could not create entity" + info->name + "\n" + e.what() + "\n");
 		}
 
 #ifdef _DEBUG

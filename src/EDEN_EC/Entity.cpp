@@ -4,6 +4,7 @@
 #include <ComponentArguments.h>
 #include "Component.h"
 #include <LuaManager.h>
+#include <ErrorHandler.h>
 
 void eden_ec::Entity::AddComponents(eden_script::EntityInfo* entityInfo) {
     for (auto it : entityInfo->components) {
@@ -24,6 +25,7 @@ eden_ec::Component* eden_ec::Entity::GetComponent(std::string id) {
 eden_ec::Component* eden_ec::Entity::AddComponentByRead(eden_script::ComponentArguments* info) {
     std::string id = info->GetID();
     Component* c = ComponentFactory::Instance()->CreateComponentByName(id);
+    if (!c) eden_error::ErrorHandler::Instance()->Exception("Component not found", "Component " + id + " was not found in factory registry");
     _components.emplace(id, c);
     c->SetContext(this);
     c->Init(info);

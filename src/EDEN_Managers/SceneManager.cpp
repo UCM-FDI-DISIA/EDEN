@@ -70,7 +70,7 @@ namespace eden {
 		catch (std::exception e) {
 			delete newSc;
 			for (auto a : info) delete a;
-			eden_error::ErrorHandler::Instance()->Exception("SceneManager ERROR in line 68", "could not create scene " + ID + "\n");
+			eden_error::ErrorHandler::Instance()->Exception("SceneManager ERROR in line 68", "could not create scene " + ID + "\n" + e.what() + "\n");
 		}
 		for (auto a : info) delete a;
 		_scenes.push_front(newSc);

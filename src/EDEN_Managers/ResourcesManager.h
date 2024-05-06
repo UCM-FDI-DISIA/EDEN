@@ -74,16 +74,18 @@ namespace eden_resources {
 
         EDEN_API static ResourcesManager* getInstance();
 
-    private:
-
         /// @brief Metodo que guarda todos los archivos existentes de unas direcciones concretas
         EDEN_API void LoadResources();
+
+    private:
 
         /// @brief Lista de todos recursos
         std::vector<std::set<std::string>> _resourcesGeneral;
 
         /// @brief Lista de todos recursos
         std::vector<std::set<std::string>> _resourcesRutesGeneral;
+
+        std::vector<std::string> _routes { MESH_ROUTE, MATERIALS_ROUTE, UI_ROUTE, FONTS_ROUTE, AUDIO_ROUTE, DEFAULT_ROUTE, BIN_ROUTE };
     };
 }
 

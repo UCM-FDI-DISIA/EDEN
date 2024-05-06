@@ -9,8 +9,6 @@ eden_resources::ResourcesManager* eden_resources::ResourcesManager::getInstance(
 }
 
 eden_resources::ResourcesManager::ResourcesManager() {
-	//Cargamos todos los recursos de sonido
-	LoadResources();
 }
 
 eden_resources::ResourcesManager::~ResourcesManager() {
@@ -19,60 +17,22 @@ eden_resources::ResourcesManager::~ResourcesManager() {
 void eden_resources::ResourcesManager::LoadResources() {
 	std::set<std::string> aux;
 	std::set<std::string> auxRutes;
-	for (const auto& entry : std::filesystem::directory_iterator(MESH_ROUTE)) {
-		aux.insert(entry.path().filename().string());
-		auxRutes.insert(entry.path().string());
+	int index = 0;
+	try {
+		for (; index < _routes.size(); ++index) {
+			for (const auto& entry : std::filesystem::directory_iterator(_routes[index])) {
+				aux.insert(entry.path().filename().string());
+				auxRutes.insert(entry.path().string());
+			}
+			_resourcesGeneral.push_back(aux);
+			_resourcesRutesGeneral.push_back(auxRutes);
+			aux.clear();
+			auxRutes.clear();
+		}
 	}
-	_resourcesGeneral.push_back(aux);
-	_resourcesRutesGeneral.push_back(auxRutes);
-	aux.clear();
-	auxRutes.clear();
-	for (const auto& entry : std::filesystem::directory_iterator(MATERIALS_ROUTE)) {
-		aux.insert(entry.path().filename().string());
-		auxRutes.insert(entry.path().string());
+	catch (std::exception e) {
+		eden_error::ErrorHandler::Instance()->Exception("Route not found", "ResourcesManager ERROR in line 25, route not found " + _routes[index]);
 	}
-	_resourcesGeneral.push_back(aux);
-	_resourcesRutesGeneral.push_back(auxRutes);
-	aux.clear();
-	auxRutes.clear();
-	for (const auto& entry : std::filesystem::directory_iterator(UI_ROUTE)) {
-		aux.insert(entry.path().filename().string());
-		auxRutes.insert(entry.path().string());
-	}
-	_resourcesGeneral.push_back(aux);
-	_resourcesRutesGeneral.push_back(auxRutes);
-	aux.clear();
-	auxRutes.clear();
-	for (const auto& entry : std::filesystem::directory_iterator(FONTS_ROUTE)) {
-		aux.insert(entry.path().filename().string());
-		auxRutes.insert(entry.path().string());
-	}
-	_resourcesGeneral.push_back(aux);
-	_resourcesRutesGeneral.push_back(auxRutes);
-	aux.clear();
-	auxRutes.clear();
-	for (const auto& entry : std::filesystem::directory_iterator(AUDIO_ROUTE)) {
-		aux.insert(entry.path().filename().string());
-		auxRutes.insert(entry.path().string());
-	}
-	_resourcesGeneral.push_back(aux);
-	_resourcesRutesGeneral.push_back(auxRutes);
-	aux.clear();
-	auxRutes.clear();
-	for (const auto& entry : std::filesystem::directory_iterator(DEFAULT_ROUTE)) {
-		aux.insert(entry.path().filename().string());
-		auxRutes.insert(entry.path().string());
-	}
-	_resourcesGeneral.push_back(aux);
-	_resourcesRutesGeneral.push_back(auxRutes);
-	aux.clear();
-	auxRutes.clear();
-	for (const auto& entry : std::filesystem::directory_iterator(BIN_ROUTE)) {
-		aux.insert(entry.path().filename().string());
-		auxRutes.insert(entry.path().string());
-	}
-	_resourcesGeneral.push_back(aux);
-	_resourcesRutesGeneral.push_back(auxRutes);
 }
 
 bool eden_resources::ResourcesManager::FileExist(std::string name, Resources res) {

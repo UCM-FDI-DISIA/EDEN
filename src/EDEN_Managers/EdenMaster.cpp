@@ -29,6 +29,8 @@ eden::Master* eden::Master::getInstance() {
 
 eden::Master::Master()
 {
+	eden_resources::ResourcesManager::Instance()->LoadResources();
+
 	// la comprobacion de que se haya podido inicializar el RenderManager ahora se hace dentro del propio RenderManager.
 	_renderManager = eden_render::RenderManager::Instance("EDEN Engine");
 

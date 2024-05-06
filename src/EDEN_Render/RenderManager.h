@@ -121,6 +121,8 @@ namespace eden_render
 		/// @brief Metodo que intercambia el modo de pantalla entre "pantalla completa" y tamanio elegido
 		EDEN_API void FullScreen();
 
+		EDEN_API inline bool IsFullScreen() { return _isFullScreen; }
+
 		/// @brief Metodo que setea las resoluciones
 		EDEN_API void SetResolutions(std::vector<std::pair<int, int>> resolutions);
 

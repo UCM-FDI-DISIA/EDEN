@@ -166,13 +166,16 @@ namespace eden_ec {
 		/// @brief Friccion asociada al RigidBody
 		float _friction = 0;
 
+		/// @brief Booleano para indicar si se comporta como un trigger o un collider
 		bool _isTrigger = false;
 
 		/// @brief Variable que se encarga de contener los parametros de la figura asociada al rigidBody
 		physics_wrapper::RigidBody::ShapeParameters _params;
 
+		/// @brief Tipo de RigidBody (STATIC, DYNAMIC, KINEMATIC)
 		physics_wrapper::RigidBody::RigidBodyType _type = physics_wrapper::RigidBody::RigidBodyType::DYNAMIC;
 
+		/// @brief Nombre de la capa de colision asignada
 		std::string _layer = "DEFAULT";
 
 		/// @brief Referencia al wrapper de rigid body del modulo de fisicas

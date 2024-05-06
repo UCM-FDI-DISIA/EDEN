@@ -85,6 +85,7 @@ namespace eden_resources {
         /// @brief Lista de todos recursos
         std::vector<std::set<std::string>> _resourcesRutesGeneral;
 
+        /// @brief Vector de rutas de directorios
         std::vector<std::string> _routes { MESH_ROUTE, MATERIALS_ROUTE, UI_ROUTE, FONTS_ROUTE, AUDIO_ROUTE, DEFAULT_ROUTE, BIN_ROUTE };
     };
 }

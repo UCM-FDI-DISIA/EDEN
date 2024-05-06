@@ -62,10 +62,14 @@ namespace physics_wrapper {
 		};
 
 		/// @brief Constructora del RigidbodyWrapper
-		/// @param transform Transform de la entidad
-		/// @param mass Masa del RigidBody
+		/// @param ent Entidad a la que va a corresponder el Rigidbody
 		/// @param params Parametros de la forma gemoetrica inicial
-		/// @param flag Tipo de RigidBody
+		/// @param mass Masa del RigidBody
+		/// @param friction Friccion del RigidBody
+		/// @param bounciness Rebote del RigidBody
+		/// @param flag Tipo de RigidBody (STATIC, DYNAMIC, KINEMATIC)
+		/// @param layerName Nombre de la capa de colisión que se va a usar
+		/// @param isTrigger Booleano para indicar si se comporta como un trigger o un collider
 		RigidBody(eden_ec::Entity* ent, const ShapeParameters& params, float mass = 1.0f, float friction = 1.0f, float bounciness = 1.0f, const RigidBodyType& flag = STATIC, std::string* layerName = nullptr, bool isTrigger = false);
 
 		/// @brief Destructora del RigidbodyWrapper

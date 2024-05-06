@@ -189,6 +189,8 @@ namespace physics_manager {
 		/// @param sceneID ID de la escena que se quiere crear
 		void CreatePhysicsScene(std::string sceneID);
 
+		/// @brief Asigna como escena principal la escena sceneID
+		/// @param sceneID ID de la escena que se quiere asignar como principal
 		void SetPhysicsScene(std::string sceneID);
 
 		/// @brief Borra la escena sceneToRemoveID si existe. Luego crea una escena con ID newCurrentSceneID

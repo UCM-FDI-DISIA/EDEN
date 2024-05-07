@@ -210,9 +210,10 @@ namespace eden {
 		int lastIteration = _currentIteration;
 		_currentIteration++;
 		for (auto it = _newEntities[lastIteration].begin(); it != _newEntities[lastIteration].end();) {
-			_gameEntitiesList[it->second->GetEntityID()] = { it->second, true};
-			(*it).second->StartComponents();
+			eden_ec::Entity* ent = it->second;
+			_gameEntitiesList[ent->GetEntityID()] = { ent, true};
 			it = _newEntities[lastIteration].erase(it);
+			ent->StartComponents();
 		}
 	}
 }

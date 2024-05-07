@@ -5,6 +5,7 @@
 #include "Entity.h"
 #include "RayCast.h"
 #include "CLuaBehaviour.h"
+#include "ErrorHandler.h"
 
 void eden_ec::CRigidBody::Start()
 {
@@ -52,18 +53,20 @@ void eden_ec::CRigidBody::Init(eden_script::ComponentArguments* args) {
 	_params.positionOffset = args->GetValueToVector3("PosOffset");
 	_params.radius = args->GetValueToFloat("Radius");
 	_isTrigger = args->GetValueToBool("Trigger");
+	if (_params.length.GetX() < 0 || _params.length.GetY() < 0 || _params.length.GetZ() < 0 || _params.radius < 0)
+		eden_error::ErrorHandler::Instance()->Exception("Size was negative", "CRigdBody ERROR in line 52/54");
 
 	std::string shape = args->GetValueToString("Shape");
 
-	if (shape == "BOX") _params.type = physics_wrapper::RigidBody::BOX;
-	else if(shape == "CYLINDER") _params.type = physics_wrapper::RigidBody::CYLINDER;
+	if(shape == "CYLINDER") _params.type = physics_wrapper::RigidBody::CYLINDER;
 	else if(shape == "SPHERE") _params.type = physics_wrapper::RigidBody::SPHERE;
 	else if(shape == "CAPSULE") _params.type = physics_wrapper::RigidBody::CAPSULE;
+	else _params.type = physics_wrapper::RigidBody::BOX; // BOX por defecto
 
 	std::string flag = args->GetValueToString("CollisionFlag");
-	if (flag == "DYNAMIC") _type = physics_wrapper::RigidBody::DYNAMIC;
-	else if (flag == "STATIC") { _type = physics_wrapper::RigidBody::STATIC; _mass = 0; }
+	if (flag == "STATIC") { _type = physics_wrapper::RigidBody::STATIC; _mass = 0; }
 	else if (flag == "KINEMATIC") _type = physics_wrapper::RigidBody::KINEMATIC;
+	else _type = physics_wrapper::RigidBody::DYNAMIC; // DYNAMIC por defecto
 
 	_layer = args->GetValueToString("CollisionLayer");
 }

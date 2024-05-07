@@ -26,16 +26,12 @@ render_wrapper::Light::Light(const std::string entityID, const std::string scene
 	if (type == "LT_POINT") {
 		OgreLightType = Ogre::Light::LightTypes::LT_POINT;
 	}
-	else if (type == "LT_DIRECTIONAL") {
-		OgreLightType = Ogre::Light::LightTypes::LT_DIRECTIONAL;
-	}
 	else if (type == "LT_SPOTLIGHT") {
 		OgreLightType = Ogre::Light::LightTypes::LT_SPOTLIGHT;
 	}
-	else if (type == "LT_DIRECTIONAL") {
-		OgreLightType = Ogre::Light::LightTypes::LT_DIRECTIONAL;
+	else {
+		OgreLightType = Ogre::Light::LightTypes::LT_DIRECTIONAL; // DIRECTIONAL por defecto
 	}
-	else OgreLightType = Ogre::Light::LightTypes::LT_DIRECTIONAL;
 
 	_light->setType(OgreLightType);
 

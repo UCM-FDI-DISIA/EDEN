@@ -52,6 +52,10 @@ void eden_ec::UIComponent::Show(bool changedFromCanvas) { if(!changedFromCanvas 
 void eden_ec::UIComponent::Hide(bool changedFromCanvas) { _overlayElement->hide(); if(!changedFromCanvas) canvasVisible = false; }
 
 void eden_ec::UIComponent::SetDepth(float pos) {
+	if (pos < 0) {
+		pos = 0;
+		eden_error::ErrorHandler::Instance()->Warning("UIComponent: CDepth can not be negative");
+	}
 	_overlayElement->setZOrder(Ogre::ushort(pos));
 }
 

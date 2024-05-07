@@ -537,7 +537,15 @@ namespace Ogre
                     l += (width + char_spacer);
 
 #ifndef HAVE_FREETYPE
-                delete buffer;
+                if (buffer != NULL)
+                {
+                    int ix0, iy0, ix1, iy1;
+                    stbtt__bitmap gbm;
+                    stbtt_GetGlyphBitmapBoxSubpixel(&font, stbtt_FindGlyphIndex(&font, cp), scale, scale, 0.0f, 0.0f, &ix0, &iy0, &ix1, &iy1);
+                    gbm.w = (ix1 - ix0);
+                    gbm.h = (iy1 - iy0);
+                    STBTT_free(buffer, gbm.w * gbm.h);
+                }
 #endif
             }
         }

@@ -46,10 +46,10 @@ namespace eden_ec {
 		void SetLuaScript(luabridge::LuaRef* behaviourLua);
 		
 		/// @brief Metodo que se llama cuando se hace click en el boton
-		virtual void OnButtonClick();
+		virtual void OnButtonClick(eden_ec::Entity* selfButton);
 
 		/// brief Metodo que se llama cuando ya no se hace click en el boton
-		virtual void OnButtonReleased();
+		virtual void OnButtonReleased(eden_ec::Entity* selfButton);
 
 		/// @brief Metodo que se llama cuando entra una colision
 		virtual void OnCollisionEnter(eden_ec::Entity* self, eden_ec::Entity* other);

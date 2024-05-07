@@ -132,7 +132,7 @@ void eden_ec::CButton::OnButtonClick() {
 		_clicked = true;
 		if(_currentTex!=_clickedTex)ChangeButtonTexture(_clickedTex);
 		_currentTex = _clickedTex;
-		if (_callback != nullptr) _callback->OnButtonClick();
+		if (_callback != nullptr) _callback->OnButtonClick(_ent);
 	}
 }
 
@@ -145,7 +145,7 @@ void eden_ec::CButton::OnButtonReleased() {
 			_clicked = false;
 			if(_currentTex!=_iniTex)ChangeButtonTexture(_iniTex);
 			_currentTex = _iniTex;
-			if (_callback != nullptr) _callback->OnButtonReleased();
+			if (_callback != nullptr) _callback->OnButtonReleased(_ent);
 		}
 	}
 }

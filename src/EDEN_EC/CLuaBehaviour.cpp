@@ -24,10 +24,12 @@ void eden_ec::CLuaBehaviour::SetLuaScript(luabridge::LuaRef* behaviourLua) {
 	_L = eden_script::ScriptManager::Instance()->GetLuaManager()->GetLuaState();
 }
 
-void eden_ec::CLuaBehaviour::OnButtonClick() {
+void eden_ec::CLuaBehaviour::OnButtonClick(eden_ec::Entity* selfButton) {
 	luabridge::LuaRef OnButtonClickLua = (*_behaviourLua)["OnButtonClick"];
 	if (OnButtonClickLua.isFunction()) {
 		luabridge::setGlobal(_L, this, "this");
+
+		std::ignore = luabridge::setGlobal(_L, selfButton, "selfButton");
 		try {
 			OnButtonClickLua();
 		}
@@ -35,14 +37,17 @@ void eden_ec::CLuaBehaviour::OnButtonClick() {
 			std::cout << e.what() << "\n";
 		}
 		std::ignore = luabridge::getGlobal(_L, "this");
+		std::ignore = luabridge::getGlobal(_L, "selfButton");
 	}
 }
 
-void eden_ec::CLuaBehaviour::OnButtonReleased() {
+void eden_ec::CLuaBehaviour::OnButtonReleased(eden_ec::Entity* selfButton) {
 	luabridge::LuaRef onButtonReleasedLua =
 		(*_behaviourLua)["OnButtonReleased"];
 	if (onButtonReleasedLua.isFunction()) {
 		std::ignore = luabridge::setGlobal(_L, this, "this");
+
+		std::ignore = luabridge::setGlobal(_L, selfButton, "selfButton");
 		try {
 			onButtonReleasedLua();
 		}
@@ -50,6 +55,7 @@ void eden_ec::CLuaBehaviour::OnButtonReleased() {
 			std::cout << e.what() << "\n";
 		}
 		std::ignore = luabridge::getGlobal(_L, "this");
+		std::ignore = luabridge::getGlobal(_L, "selfButton");
 	}
 }
 

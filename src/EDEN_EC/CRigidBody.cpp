@@ -10,13 +10,16 @@
 void eden_ec::CRigidBody::Start()
 {
 	//Se comprueba si la entidad tiene o no un transform, en cuyo caso lo crea y lo aniade
+	if(_ent->GetComponent<CLuaBehaviour>() != nullptr)
+		_behaviour = _ent->GetComponent<CLuaBehaviour>();
+}
+
+void eden_ec::CRigidBody::Awake() {
 	if (_ent->GetComponent<CTransform>() != nullptr) {
 		_transform = _ent->GetComponent<CTransform>();
 		_rb = new physics_wrapper::RigidBody(_ent, _params, _mass, _friction, _restitution, _type, &_layer, _isTrigger);
 		physics_manager::PhysicsManager::Instance()->AddPhysicsEntity(_ent);
 	}
-	if(_ent->GetComponent<CLuaBehaviour>() != nullptr)
-		_behaviour = _ent->GetComponent<CLuaBehaviour>();
 }
 
 physics_wrapper::CollisionLayer* eden_ec::CRigidBody::GetCollisionLayer() {

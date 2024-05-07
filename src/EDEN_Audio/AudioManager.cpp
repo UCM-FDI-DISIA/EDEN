@@ -8,8 +8,10 @@
 #include "ResourcesManager.h"
 #include "Entity.h"
 #include "CAudioEmitter.h"
+#include "Sound.h"
+#include "SceneManager.h"
 
-eden_audio::AudioManager::AudioManager() {
+eden_audio::AudioManager::AudioManager() : _globalVolume(1.0f) {
 	//Inicializamos el motor de sonido en caso de que no se haya creado
 	audio_wrapper::AudioEngine::Instance();
 	//Cargamos todos los recursos de sonido
@@ -22,6 +24,10 @@ eden_audio::AudioManager::~AudioManager() {
 	audio_wrapper::AudioEngine::Instance()->Close();
 }
 
+eden_audio::AudioManager* eden_audio::AudioManager::GetInstance() {
+	return static_cast<AudioManager*>(Instance());
+}
+
 void eden_audio::AudioManager::LoadResources() {
 	std::set<std::string> audioRoutes = eden_resources::ResourcesManager::Instance()->GetRoutesAudios();
 	std::set<std::string> audios = eden_resources::ResourcesManager::Instance()->GetAudios();
@@ -30,6 +36,26 @@ void eden_audio::AudioManager::LoadResources() {
 		_soundMap[*it] = new audio_wrapper::SoundClip(*ot);
 		ot++;
 	}
+}
+
+void eden_audio::AudioManager::Update(float dt) {
+	for (auto ent : _currentAudioScene->_entities) {
+		auto s = ent->GetComponent<eden_ec::CAudioEmitter>()->GetSound();
+		if (s && s->HasBeingCreated() && s->HasEnded()) s->Stop();
+	}
+	for (auto ent : _dontDestroyOnLoad->_entities) {
+		auto s = ent->GetComponent<eden_ec::CAudioEmitter>()->GetSound();
+		if (s && s->HasBeingCreated() && s->HasEnded()) s->Stop();
+	}
+}
+
+EDEN_API void eden_audio::AudioManager::AddAudioEntityToDontDestoryOnLoad(eden_ec::Entity* e)
+{
+	std::unordered_map<std::string, InfoAudioWorld*>::iterator it = _audioScenes.find(eden::SceneManager::Instance()->GetDontDestroyOnLoadID());
+	if (it != _audioScenes.end()) {
+		if (e != nullptr) it->second->_entities.insert(e);
+	}
+	else eden_error::ErrorHandler::Instance()->Warning("AudioManager ERROR in line 44 could not find scene: " + e->GetSceneID() + "\n");
 }
 
 audio_wrapper::SoundClip* eden_audio::AudioManager::GetSoundClip(std::string filename) const {
@@ -54,6 +80,19 @@ void eden_audio::AudioManager::RemoveAudioEntity(eden_ec::Entity* e) {
 	else eden_error::ErrorHandler::Instance()->Warning("AudioManager ERROR in line 52 could not find scene: " + e->GetSceneID() + "\n");
 }
 
+void eden_audio::AudioManager::SetGlobalVolume(float volume) {
+	if (volume > 1.0f) volume = 1.0f;
+	if (volume < 0.0f) volume = 0.0f;
+	_globalVolume = volume;
+	for (auto it = _audioScenes.begin(); it != _audioScenes.end(); ++it) {
+		for (auto ent : it->second->_entities) ent->GetComponent<eden_ec::CAudioEmitter>()->MixWithGlobalVolume(_globalVolume);
+	}
+}
+
+float eden_audio::AudioManager::GetGlobalVolume() const {
+	return _globalVolume;
+}
+
 void eden_audio::AudioManager::CreateAudioScene(std::string id) {
 	auto sceneIt = _audioScenes.find(id);
 	if (_currentAudioScene) {
@@ -74,7 +113,8 @@ void eden_audio::AudioManager::CreateAudioScene(std::string id) {
 
 	if (sceneIt == _audioScenes.end()) {
 		InfoAudioWorld* info = new InfoAudioWorld();
-		_currentAudioScene = info;
+		if (id == eden::SceneManager::Instance()->GetDontDestroyOnLoadID()) _dontDestroyOnLoad = info;
+		else _currentAudioScene = info;
 		_audioScenes[id] = info;
 	}
 	else {

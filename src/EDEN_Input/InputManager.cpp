@@ -23,32 +23,39 @@ void eden_input::InputManager::Clean() {
 
 void eden_input::InputManager::Update() {
 	ClearState();
-	while (SDL_PollEvent(_wrapper->getEvent()))
-	{
-		switch (_wrapper->getEvent()->type)
+	if (_isActive) {
+		while (SDL_PollEvent(_wrapper->getEvent()))
 		{
-		case SDL_KEYDOWN:
-			OnKeyDown();
-			break;
-		case SDL_KEYUP:
-			OnKeyUp();
-			break;
-		case SDL_MOUSEMOTION:
-			OnMouseMotion();
-			break;
-		case SDL_MOUSEBUTTONDOWN:
-			OnMouseButtonChange(DOWN);
-			break;
-		case SDL_MOUSEBUTTONUP:
-			OnMouseButtonChange(UP);
-			break;
-		case SDL_WINDOWEVENT:
-			HandleWindowEvent();
-			break;
-		default:
-			break;
+			switch (_wrapper->getEvent()->type)
+			{
+			case SDL_KEYDOWN:
+				OnKeyDown();
+				break;
+			case SDL_KEYUP:
+				OnKeyUp();
+				break;
+			case SDL_MOUSEMOTION:
+				OnMouseMotion();
+				break;
+			case SDL_MOUSEBUTTONDOWN:
+				OnMouseButtonChange(DOWN);
+				break;
+			case SDL_MOUSEBUTTONUP:
+				OnMouseButtonChange(UP);
+				break;
+			case SDL_WINDOWEVENT:
+				HandleWindowEvent();
+				break;
+			default:
+				break;
+			}
 		}
 	}
+}
+
+void eden_input::InputManager::SetActive(bool bActive)
+{
+	_isActive = bActive;
 }
 
 bool eden_input::InputManager::KeyDownEvent() { return _isKeyDownEvent; }

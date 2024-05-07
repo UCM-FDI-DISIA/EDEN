@@ -37,6 +37,9 @@ eden_script::ScriptManager::ScriptManager() {
 eden_script::ScriptManager::~ScriptManager() {
 	lua_close(_l);
 	delete _luaManager;
+	for (auto element = _freeIfError.begin(); element != _freeIfError.end(); ++element) {
+		delete (*element);
+	}
 }
 
 eden_script::LuaManager* eden_script::ScriptManager::GetLuaManager() {
@@ -60,7 +63,12 @@ void eden_script::ScriptManager::PushStringToTable(std::string push, int tableIn
 	lua_pushstring(_l, push.c_str());
 	// Pushear a -1 el elemento de la table con key 'push'
 
-	// TRATAMIENTO DE ERRORES DE LUA AQU� --------
+	// Tenemos que saber si hemos encontrado la tabla.
+	if (!lua_istable(_l, tableIndex)) {
+		std::string error = "Bad format reading from lua\n";;
+		std::cerr << error;
+		eden_error::ErrorHandler::Instance()->Exception("ERROR reading lua table", error);
+	}
 	lua_gettable(_l, tableIndex);
 }
 
@@ -95,7 +103,12 @@ void eden_script::ScriptManager::PushTableElement(int elementIndex, int tableInd
 	// Usando el numero en el top del Stack, accedemos a la tabla que ahora se encuentra
 	// una posicion por debajo del top del Stack (-2) y le pedimos que pushee lo que tenga en su �ndice i
 
-	// TRATAMIENTO DE ERRORES DE LUA AQU� --------
+	// Tenemos que saber si hemos encontrado la tabla.
+	if (!lua_istable(_l, tableIndex)) {
+		std::string error = "Bad format reading from lua\n";;
+		std::cerr << error;
+		eden_error::ErrorHandler::Instance()->Exception("ERROR reading lua table", error);
+	}
 	lua_gettable(_l, tableIndex);
 }
 
@@ -193,6 +206,8 @@ bool eden_script::ScriptManager::EntityTableToData(std::vector<eden_script::Enti
 		// Generamos un puntero de informaci�n de entidad
 		EntityInfo* newInfo = new EntityInfo();
 
+		_freeIfError.push_back(newInfo);
+
 		// Pusheamos el elemento actual de la tabla
 		PushTableElement(i, tableIndexOnAccess);
 
@@ -214,6 +229,8 @@ bool eden_script::ScriptManager::EntityTableToData(std::vector<eden_script::Enti
 		// Puhseamos la informacion nueva al vector de informacion de entidades
 		info.push_back(newInfo);
 	}
+
+	_freeIfError.clear();
 	return true;
 }
 

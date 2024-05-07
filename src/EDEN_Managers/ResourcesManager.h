@@ -15,6 +15,7 @@
 #define UI_ROUTE "assets\\ui_elements\\"
 #define FONTS_ROUTE "assets\\fonts\\"
 #define DEFAULT_ROUTE  "assets\\default\\"
+#define BIN_ROUTE  ".\\"
 #endif
 #ifdef __APPLE__
 #define AUDIO_ROUTE "assets/audio/"
@@ -23,6 +24,7 @@
 #define UI_ROUTE "assets/ui_elements/"
 #define FONTS_ROUTE "assets/fonts/"
 #define DEFAULT_ROUTE  "assets/default/"
+#define BIN_ROUTE  "./"
 #endif
 
 namespace eden_resources {
@@ -37,7 +39,8 @@ namespace eden_resources {
             UI,
             Fonts,
             Audio,
-            Default
+            Default,
+            Bin
         };
         /// @brief Constructora
         EDEN_API ResourcesManager();
@@ -71,16 +74,19 @@ namespace eden_resources {
 
         EDEN_API static ResourcesManager* getInstance();
 
-    private:
-
         /// @brief Metodo que guarda todos los archivos existentes de unas direcciones concretas
         EDEN_API void LoadResources();
+
+    private:
 
         /// @brief Lista de todos recursos
         std::vector<std::set<std::string>> _resourcesGeneral;
 
         /// @brief Lista de todos recursos
         std::vector<std::set<std::string>> _resourcesRutesGeneral;
+
+        /// @brief Vector de rutas de directorios
+        std::vector<std::string> _routes { MESH_ROUTE, MATERIALS_ROUTE, UI_ROUTE, FONTS_ROUTE, AUDIO_ROUTE, DEFAULT_ROUTE, BIN_ROUTE };
     };
 }
 

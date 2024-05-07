@@ -66,7 +66,7 @@ namespace eden_ec {
 
 		/// @brief Suma la posicion
 		/// @param position Vector que se va a sumar
-		void Translate(eden_utils::Vector3 position);
+		void Translate(eden_utils::Vector3 position, bool isGlobal = false);
 
 		/// @brief Rota el transform 
 		/// @param angle angulo en grados 
@@ -134,6 +134,13 @@ namespace eden_ec {
 
 		/// @brief Definición de método estático GetID necesario para construcción de componentes
 		static std::string GetID() { return "TRANSFORM"; }
+
+		/// @brief Rota la entidad con respecto un transform
+		/// @param other Transform alrededor de la que rota
+		/// @param angle Angulo que rota
+		/// @param axis Eje sobre el que rota
+		void RotateAroundObject(CTransform* other, float angle, eden_utils::Vector3 axis);
+		void LocalRotateAroundObject(CTransform* other, float angle, eden_utils::Vector3 axis);
 	private:
 		/// @brief Variable de posicion
 		eden_utils::Vector3 _position;

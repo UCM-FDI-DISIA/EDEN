@@ -21,6 +21,7 @@ btScalar physics_wrapper::CollisionCallback::addSingleResult(btManifoldPoint& cp
 
 	if (colObj0Wrap->getCollisionObject() == _myRigidBody->getBulletRigidBody()) {
 		otherEntity = static_cast<eden_ec::Entity*>(colObj1Wrap->getCollisionObject()->getUserPointer());
+
 	}
 	else {
 		otherEntity = static_cast<eden_ec::Entity*>(colObj0Wrap->getCollisionObject()->getUserPointer());
@@ -32,7 +33,7 @@ btScalar physics_wrapper::CollisionCallback::addSingleResult(btManifoldPoint& cp
 			//Acaba de haber colision
 			if (_otherEntities.find(otherEntity) == _otherEntities.end()) {
 				_otherEntities.insert(std::make_pair(otherEntity, true));
-				rb->OnCollisionEnter(otherEntity);
+				rb->OnCollisionEnter( otherEntity);
 			}
 			else { //Ya había colision y permanece en ella
 				rb->OnCollisionStay(otherEntity);

@@ -45,7 +45,7 @@ namespace eden_ec {
 		std::string GetCurrentText();
 
 		/// @brief Cambia el texto actual
-		void SetNewText(const std::string& text);
+		void SetNewText(const std::string& text, bool resize = true);
 
 		/// @brief Definici�n de m�todo est�tico GetID necesario para construcci�n de componentes
 		static std::string GetID() { return "TEXT"; }

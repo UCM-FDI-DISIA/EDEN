@@ -1,4 +1,4 @@
-#define _CRTDBG_MAP_ALLOC
+ï»¿#define _CRTDBG_MAP_ALLOC
 #ifndef EDEN_SCENE_H
 #define EDEN_SCENE_H
 
@@ -19,16 +19,14 @@ namespace eden_ec {
 }
 
 namespace eden {
+	class SceneManager;
+
 	/// @brief Clase que define una escena de juego. Tendra un render, un update y todos los metodos que se encarguen del manejo de los gameobjects que
 	/// la componen.
 	class EDEN_API Scene
 	{
+		friend SceneManager;
 	public:
-		/// @brief Constructora por defecto de la clase Scene
-		/// @param ID Identificador de la escena
-		/// @param info Informacion de las entidades que estan en la escena
-		/// @param collisionInfo Informacion de las capas de colisión que estan en la escena
-		Scene(const std::string& ID, std::vector<eden_script::EntityInfo*>& info, std::unordered_map<std::string, std::vector<std::string>>& collisionInfo);
 		Scene(const std::string& ID);
 		~Scene();
 
@@ -77,20 +75,24 @@ namespace eden {
 		inline bool GetToRender() { return _isRendering; }
 
 		/// @brief Instancia una entidad en la escena. Puede cambiarse su posicion y rotacion
-		/// @param info Información de una entidad 
-		/// @param pos Nueva posición para entidad
-		/// @param rot Nueva orientación para entidad
+		/// @param info Informacion de una entidad 
+		/// @param pos Nueva posicion para entidad
+		/// @param rot Nueva orientacion para entidad
 		/// @return Nueva entidad creada
-		/// @warning No se aplicarán cambios de posicion ni rotacion si la entidad NO tiene CTransform. NO se le pondra uno automáticamente.
+		/// @warning No se aplicaran cambios de posicion ni rotacion si la entidad NO tiene CTransform. NO se le pondra uno automaticamente.
 		eden_ec::Entity* Instantiate(eden_script::EntityInfo* info, eden_utils::Vector3 pos, eden_utils::Quaternion rot);
 		eden_ec::Entity* Instantiate(eden_script::EntityInfo* info, eden_utils::Vector3 pos);
 		eden_ec::Entity* Instantiate(eden_script::EntityInfo* info, eden_utils::Quaternion rot);
 		eden_ec::Entity* Instantiate(eden_script::EntityInfo* info);
 	private:
+		/// @brief Crea entidades con la informacion dada
+		/// @param info Informacion de las entidades que estan en la escena
+		/// @param collisionInfo Informacion de las capas de colision que estan en la escena
+		void InitScene(std::vector<eden_script::EntityInfo*>& info, std::unordered_map<std::string, std::vector<std::string>>& collisionInfo);
 
-		/// @brief Llama al Awake de las entidades que van a añadirse a la escena. Se hace al final de cada frame si nuevas entidades se han añadido a la escena
+		/// @brief Llama al Awake de las entidades que van a aniadirse a la escena. Se hace al final de cada frame si nuevas entidades se han aÃ±adido a la escena
 		void AwakeEntities();
-		/// @brief Llama al Start de las entidades que van a añadirse a la escena. Se hace al principio de cada frame si nuevas entidades se añadieron a la escena en el frame anterior
+		/// @brief Llama al Start de las entidades que van a aniadirse a la escena. Se hace al principio de cada frame si nuevas entidades se aÃ±adieron a la escena en el frame anterior
 		void StartEntities();
 
 		///@brief identificador de escena
@@ -105,11 +107,11 @@ namespace eden {
 		/// @brief referencia a la camara actual
 		eden_ec::Entity* _currentCamera = nullptr;
 
-		/// @brief mapa que contiene las referencias a todas las entidades de la escena
-		std::unordered_map<std::string, eden_ec::Entity*> _gameEntitiesList;
+		/// @brief mapa que contiene las referencias a todas las entidades de la escena, el booleano sirve para controlar si se puede borrar o se encuentra en otras listas
+		std::unordered_map<std::string, std::pair<eden_ec::Entity*, bool>> _gameEntitiesList;
 
-		/// @brief Vector que tiene las entidades que se añadirán al final del frame
-		std::unordered_map<int, std::vector<eden_ec::Entity*>> _newEntities;
+		/// @brief Vector que tiene las entidades que se aÃ±adirÃ¡n al final del frame
+		std::unordered_map<int, std::unordered_map<std::string, eden_ec::Entity*>> _newEntities;
 	};
 }
 #endif // SCENE_H

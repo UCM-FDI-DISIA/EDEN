@@ -75,6 +75,9 @@ namespace eden_script {
 
 		lua_State* _l;
 
+		// @brief Lista de objetos temporales para borrar en caso de error
+		std::list<EntityInfo*> _freeIfError;
+
 		/// @brief Constructora que inicializa Lua
 		EDEN_API ScriptManager();
 		

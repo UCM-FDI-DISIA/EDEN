@@ -20,6 +20,10 @@ namespace physics_manager{
 	class PhysicsManager;
 }
 
+namespace eden_audio {
+	class AudioManager;
+}
+
 namespace eden 
 {
 	class SceneManager;
@@ -30,7 +34,7 @@ namespace eden
 		friend Singleton<Master>;
 
 	public:
-		EDEN_API static bool isInitialized() { return true; }
+		static bool isInitialized() { return _initialized; }
 
 		/// @brief Booleano de salida del bucle principal
 		bool exit = false;
@@ -42,7 +46,11 @@ namespace eden
 
 		/// @brief Destructora por defecto de EdenMaster
 		EDEN_API ~Master() override;
+
+		EDEN_API static Master* getInstance();
 	private:
+
+		static bool _initialized;
 
 		// static bool _initialized;
 		/// @brief El tiempo entre frames en segundos
@@ -65,6 +73,9 @@ namespace eden
 
 		/// @brief Referencia al PhysicsManager
 		physics_manager::PhysicsManager* _physicsManager;
+
+		/// @brief Referencia al AudioManager
+		eden_audio::AudioManager* _audioManager;
 
 		/// @brief Constructora por defecto de EdenMaster
 		EDEN_API Master();

@@ -26,6 +26,3 @@ call %BAT%
 cd ..\..
 
 call CompilarMotor.bat
-
-:: Para evitar que la ventana se cierre por si tenemos algún error, ponemos en pausa al final de la compilación
-pause

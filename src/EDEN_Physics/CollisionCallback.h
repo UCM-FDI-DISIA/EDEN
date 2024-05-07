@@ -47,6 +47,7 @@ namespace physics_wrapper {
 		/// @brief Mapa desordenado que guarda que entidades colisionan con este rigidbody
 		/// @brief El booleano es para marcar aquellas entidades que han colisionado en el anterior frame, aquellas que lo tengan a false, se considerara que ya no estan colisionando
 		std::unordered_map<eden_ec::Entity*, bool> _otherEntities;
+
 	};
 }
 #endif // !1

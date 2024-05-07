@@ -52,6 +52,7 @@
 
 // STD
 #include <vector>
+#include <fstream>
 
 eden_render::RenderManager* eden_render::RenderManager::getInstance() {
 	return static_cast<RenderManager*>(Instance());
@@ -89,24 +90,10 @@ void eden_render::RenderManager::InitManager(const std::string& appName)
 	_fsLayer = new Ogre::FileSystemLayer(_appName); // crea un nuevo sistema de archivos
 
 	InitializeLib(); // crea la raiz
+	_overlaySys = new Ogre::OverlaySystem();
 	Setup(); // y arranca la inicializacion base
 
-	_overlaySys = new Ogre::OverlaySystem();
 	_currentRenderScene = nullptr;
-
-
-	///// CAMBIAR A COMPONENTE LIGHT//////
-	/*_sceneMngr->setAmbientLight(Ogre::ColourValue(0.2, 0.2, 0.2));
-	_shaderGenerator->addSceneManager(_sceneMngr);
-
-	Ogre::Light* luz = _sceneMngr->createLight("Luz");
-	luz->setType(Ogre::Light::LT_DIRECTIONAL);
-	luz->setDiffuseColour(10, 10, 10);
-	Ogre::SceneNode* mLightNode = _sceneMngr->getRootSceneNode()->createChildSceneNode("nLuz");
-	mLightNode->attachObject(luz);
-
-	mLightNode->setDirection(Ogre::Vector3(1, -1, 0));*/
-	///// CAMBIAR A COMPONENTE LIGHT//////
 
 }
 
@@ -168,7 +155,9 @@ void eden_render::RenderManager::InitializeLib()
 	_solutionPath.resize(_solutionPath.size() - nameFile.size()); // y la reajusta
 
 	// crea una nueva raiz en base a los plugins y la configuracion base de Ogre
-	_root = new Ogre::Root(pluginsPath);
+	if (CheckPlugins(pluginsPath)) {
+		_root = new Ogre::Root(pluginsPath);
+	}
 
 	if (_root != nullptr)
 	{
@@ -356,6 +345,10 @@ void eden_render::RenderManager::RemoveRenderEntity(eden_ec::Entity* ent) {
 void eden_render::RenderManager::ResizedWindow() {
 	_window.render->windowMovedOrResized();
 	_resized = true;
+	if (!_isFullScreen) {
+		_currH = _window.render->getHeight();
+		_currW = _window.render->getWidth();
+	}
 }
 
 void eden_render::RenderManager::ChangeWindowSize(int w, int h)
@@ -363,6 +356,36 @@ void eden_render::RenderManager::ChangeWindowSize(int w, int h)
 	SDL_SetWindowSize(_window.native, w, h);
 	SDL_SetWindowPosition(_window.native, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
 	ResizedWindow();
+}
+
+bool eden_render::RenderManager::CheckPlugins(std::string& path)
+{
+	std::ifstream in(path);
+	while (!in.eof()) {
+		std::string line;
+		std::getline(in, line);
+		std::string pluginName = "";
+		std::string startPlugin = "";
+		int i = 0;
+		bool exit = false;
+		while (i < line.size() && !exit) {
+			if (line[i] == '=') exit = true;
+			else if (line[i] != ' ') startPlugin.push_back(line[i]);
+			++i;
+		}
+		if (startPlugin == PLUGIN_FORMAT) {
+			while (i < line.size()) {
+				if (line[i] != ' ') {
+					pluginName.push_back(line[i]);
+				}
+				++i;
+			}
+			if (!eden_resources::ResourcesManager::Instance()->FileExist(pluginName + DLL_EXTENSION, eden_resources::ResourcesManager::Bin))
+				return false;
+		}
+	}
+	in.close();
+	return true;
 }
 
 void eden_render::RenderManager::FullScreen()
@@ -377,8 +400,8 @@ void eden_render::RenderManager::FullScreen()
 		h = _fullH;
 	}
 
-	ChangeWindowSize(w, h);
 	_isFullScreen = !_isFullScreen;
+	ChangeWindowSize(w, h);
 }
 
 void eden_render::RenderManager::SetResolutions(std::vector<std::pair<int, int>> resolutions)
@@ -403,25 +426,29 @@ void eden_render::RenderManager::SetResolutions(std::vector<std::pair<int, int>>
 
 std::pair<int, int> eden_render::RenderManager::GetResolution()
 {
-	return { _currW,_currH };
+	return { _window.render->getWidth(),_window.render->getHeight()};
 }
 
 void eden_render::RenderManager::ChangeResolution()
 {
-	if(!_isFullScreen)ChangeWindowSize(_resolutions[_currRes].first, _resolutions[_currRes].second);
-	_currW = _resolutions[_currRes].first;
-	_currH = _resolutions[_currRes].second;
+	if (!_isFullScreen) {
+		ChangeWindowSize(_resolutions[_currRes].first, _resolutions[_currRes].second);
+		_currW = _resolutions[_currRes].first;
+		_currH = _resolutions[_currRes].second;
+	}
 }
 
 void eden_render::RenderManager::NextResolutuion()
 {
-	_currRes = (_currRes + 1) % _resolutions.size();
+	if (!_isFullScreen)_currRes = (_currRes + 1) % _resolutions.size();
 }
 
 void eden_render::RenderManager::PreviousResolution()
 {
-	_currRes--;
-	if (_currRes < 0)_currRes = _resolutions.size() - 1;
+	if (!_isFullScreen) {
+		_currRes--;
+		if (_currRes < 0)_currRes = _resolutions.size() - 1;
+	}
 }
 
 render_wrapper::CameraWrapper* eden_render::RenderManager::GetCamera(eden_ec::Entity* ent)
@@ -486,6 +513,7 @@ void eden_render::RenderManager::SetRenderScene(std::string sceneID)
 		if (sceneIt->second->_cameraWrapper != nullptr) sceneIt->second->_cameraWrapper->SetActiveCamera();
 		eden_canvas::Canvas::Instance()->ShowScene(_currentRenderScene->_sceneID);
 		ShowEntities(_currentRenderScene->_sceneID, true);
+		ResizedWindow();
 	}
 }
 

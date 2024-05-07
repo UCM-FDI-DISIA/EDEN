@@ -171,6 +171,10 @@ namespace eden_input
 		/// @brief Update
 		EDEN_API void Update();
 
+		EDEN_API void SetActive(bool active);
+
+		EDEN_API inline const bool IsActive() { return _isActive; }
+
 		EDEN_API static InputManager* getInstance();
 
 		/// @brief Destructora de la clase
@@ -180,6 +184,8 @@ namespace eden_input
 
 		/// @brief Puntero del wrapper (SDL)
 		InputWrapper* _wrapper;
+
+		bool _isActive = true;
 
 		/// @brief Booleano de si se ha dejado de pulsar una tecla
 		bool _isKeyUpEvent;

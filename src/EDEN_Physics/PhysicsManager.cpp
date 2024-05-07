@@ -10,7 +10,6 @@
 #include "Entity.h"
 #include "CRigidBody.h"
 #include "Transform.h"
-#include "RayCast.h"
 #include "RigidBody.h"
 #include "CollisionCallback.h"
 #include "CollisionLayer.h"
@@ -38,8 +37,8 @@ void physics_manager::PhysicsManager::updateSimulation(float deltaTime, std::str
 	
 	for (auto ent : (*currentEnts)) {
 #ifdef _DEBUG
-		info->GetDebug()->ClearLines();
-		info->GetDebug()->DrawRigidBody(ent->GetComponent<eden_ec::CRigidBody>(), { 1,0,0 });
+		//info->GetDebug()->ClearLines();
+		//info->GetDebug()->DrawRigidBody(ent->GetComponent<eden_ec::CRigidBody>(), { 1,0,0 });
 		//info->GetDebug()->DrawLine(_rb->GetPosition(), {100,0,100}, {1,1,1});
 #endif
 		_rb = ent->GetComponent<eden_ec::CRigidBody>()->_rb;
@@ -199,6 +198,26 @@ void physics_manager::PhysicsManager::ResolvePositions(std::string sceneID) {
 		_rb = ent->GetComponent<eden_ec::CRigidBody>();
 		_rb->PhysicsTransformToEdenTransform();
 	}
+}
+
+const physics_wrapper::RayCastHitResult physics_manager::PhysicsManager::SingleHitRayCast(const eden_utils::Vector3 rayOrigin, const eden_utils::Vector3 rayDestiny, const bool drawDebugLine, const eden_utils::Vector3 debugLineColor)
+{
+	return physics_wrapper::RayCast::Instance()->SingleHitRayCast(rayOrigin, rayDestiny, drawDebugLine, debugLineColor);
+}
+
+const std::vector<physics_wrapper::RayCastHitResult> physics_manager::PhysicsManager::MultipleHitRayCast(const eden_utils::Vector3 rayOrigin, const eden_utils::Vector3 rayDestiny, const bool drawDebugLine, const eden_utils::Vector3 debugLineColor)
+{
+	return physics_wrapper::RayCast::Instance()->MultipleHitRayCast(rayOrigin, rayDestiny, drawDebugLine, debugLineColor);
+}
+
+const std::vector<physics_wrapper::RayCastHitResult> physics_manager::PhysicsManager::MultipleHitRayCast(const eden_utils::Vector3 rayOrigin, const eden_utils::Vector3 rayDestiny, const char* layerName, const bool drawDebugLine, const eden_utils::Vector3 debugLineColor)
+{
+	return physics_wrapper::RayCast::Instance()->MultipleHitRayCast(rayOrigin, rayDestiny, layerName, drawDebugLine, debugLineColor);
+}
+
+const std::vector<physics_wrapper::RayCastHitResult> physics_manager::PhysicsManager::MultipleHitRayCast(const eden_utils::Vector3 rayOrigin, const eden_utils::Vector3 rayDestiny, std::string layerName, const bool drawDebugLine, const eden_utils::Vector3 debugLineColor)
+{
+	return physics_wrapper::RayCast::Instance()->MultipleHitRayCast(rayOrigin, rayDestiny, layerName, drawDebugLine, debugLineColor);
 }
 
 physics_wrapper::CollisionLayer* physics_manager::PhysicsManager::GetLayerByName(std::string name, std::string sceneID) {

@@ -85,10 +85,11 @@ public:
 	EDEN_API eden_ec::Entity* InstantiateBlueprint(std::string blueprintID, eden_utils::Vector3 pos);
 	EDEN_API eden_ec::Entity* InstantiateBlueprint(std::string blueprintID, eden_utils::Quaternion rot);
 	EDEN_API eden_ec::Entity* InstantiateBlueprint(std::string blueprintID);
-	EDEN_API std::string GetDontDestroyOnLoadSceneID();
-	EDEN_API inline Scene* GeDontDestroyOnLoadScene() { return _dontDestroyOnLoadScene; }
+	EDEN_API bool AddEntityToDontDestroyOnLoad(eden_ec::Entity* ent, bool isAudio=false);
+	EDEN_API inline std::string GetDontDestroyOnLoadID() { return _dontDestroyOnLoadID; }
 private:
 
+	bool _dontDestroySceneCreated = false;
 
 	/// @brief Puntero a la primera escena de la lista, a la cual se llama a su Update
 	Scene* _activeScene = nullptr;

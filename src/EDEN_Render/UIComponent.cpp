@@ -32,7 +32,8 @@ eden_ec::UIComponent::UIComponent() {
 	_oHeight = 0;
 	_oWidth = 0;
 	_rHeight = 0;
-	_rWidth = 0;	
+	_rWidth = 0;
+	_screenSize = eden_render::RenderManager::Instance()->GetResolution();
 }
 
 
@@ -213,11 +214,12 @@ std::string eden_ec::UIComponent::GetText() {
 	return text;
 }
 
-void eden_ec::UIComponent::SetText(const std::string& text) {
+void eden_ec::UIComponent::SetText(const std::string& text, bool resize) {
 	if (_text != nullptr) {
 		_text->setCaption(text);
-		_overlayContainer->setDimensions(_text->getCharHeight() * text.length(), _text->getCharHeight());
-		Resize();
+		if (resize) {
+			Resize();
+		}
 	}
 }
 
@@ -251,17 +253,15 @@ void eden_ec::UIComponent::SetOverlayElement(int depth) {
 void eden_ec::UIComponent::Resize() {
 
 	_screenSize = eden_render::RenderManager::Instance()->GetResolution();
-	SetRelativeDimensions(_rWidth, _rHeight);
-	SetRelativePosition(_rPos.first, _rPos.second);
+	if (_rWidth != 0 || _rHeight != 0) {
+		SetRelativeDimensions(_rWidth, _rHeight);
+		SetRelativePosition(_rPos.first, _rPos.second);
 
-	_oWidth = GetDimensions().first;
-	_oHeight = GetDimensions().second;
-	_oPos = GetPosition();
-
-	if (_text != nullptr) {
-		if(_oWidth/_text->getCaption().length()<_oHeight)_text->setCharHeight(_oWidth / _text->getCaption().length());
-		else _text->setCharHeight(_oHeight);
-		_text->setPosition(_overlayContainer->getWidth() / 2, _overlayContainer->getHeight() / 2);
+		if (_text != nullptr) {
+			if (_oWidth / _text->getCaption().length() < _oHeight)_text->setCharHeight(_oWidth / _text->getCaption().length());
+			else _text->setCharHeight(_oHeight);
+			_text->setPosition(_overlayContainer->getWidth() / 2, _overlayContainer->getHeight() / 2);
+		}
 	}
 }
 

@@ -39,7 +39,7 @@ namespace eden_ec {
 		void Init(eden_script::ComponentArguments* args) override;
 
 		/// @brief No usado
-		void Awake() override {};
+		void Awake() override;
 
 		/// @brief Usaremos este m�todo para a�adir referencias de otros componentes
 		void Start() override;
@@ -172,6 +172,10 @@ namespace eden_ec {
 		/// @brief Devuelve el estado anterior de sonido
 		/// @return Estado anterior de sonido
 		inline SoundState GetPreviousState() const { return _previousState; }
+
+		/// @brief Mezcla el volumen del sonido con el volumen general
+		/// @param volume Volumen general del motor
+		void MixWithGlobalVolume(float volume);
 	};
 }
 

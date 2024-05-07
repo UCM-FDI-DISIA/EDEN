@@ -2,6 +2,7 @@
 #ifndef EDEN_VECTOR3_H
 #define EDEN_VECTOR3_H
 
+#include<array>
 #include "defs.h"
 
 namespace eden_utils {
@@ -91,6 +92,18 @@ namespace eden_utils {
 		/// @param other Vector con el que se hace el producto vectorial
 		/// @return Devuelve el producto vectorial
 		EDEN_API Vector3 Cross(Vector3 other);
+
+		/// @brief Rotacion de un vector con respecto a un eje
+		/// @param axis Eje alrededor al que rota
+		/// @param angle Angulo que rota
+		/// @return Vector rotado
+		EDEN_API Vector3 RotatedAroundPoint(Vector3 axis, float angle);
+
+		/// @brief Calcula la matriz de rotacion para vectores
+		/// @param axis Eje al que rota
+		/// @param angle Angulo que rota
+		/// @return Matriz de rotacion
+		EDEN_API std::array<std::array<float, 3>, 3> GetRotationMatrix(Vector3 axis, float angle);
 	private:
 		float _x;
 		float _y;

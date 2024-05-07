@@ -53,12 +53,13 @@ void eden_ec::CLuaBehaviour::OnButtonReleased() {
 	}
 }
 
-void eden_ec::CLuaBehaviour::OnCollisionEnter(eden_ec::Entity* other)
+void eden_ec::CLuaBehaviour::OnCollisionEnter(eden_ec::Entity* self, eden_ec::Entity* other)
 {
 	luabridge::LuaRef onCollisionEnterLua = (*_behaviourLua)["OnCollisionEnter"];
 	if (onCollisionEnterLua.isFunction()) {
 		std::ignore = luabridge::setGlobal(_L, this, "this");
 		std::ignore = luabridge::setGlobal(_L, other, "other");
+		std::ignore = luabridge::setGlobal(_L, self, "self");
 		try {
 			onCollisionEnterLua(other);
 		}
@@ -67,16 +68,18 @@ void eden_ec::CLuaBehaviour::OnCollisionEnter(eden_ec::Entity* other)
 		}
 		std::ignore = luabridge::getGlobal(_L, "other");
 		std::ignore = luabridge::getGlobal(_L, "this");
+		std::ignore = luabridge::getGlobal(_L, "self");
 	}
 }
 
-void eden_ec::CLuaBehaviour::OnCollisionStay(eden_ec::Entity* other)
+void eden_ec::CLuaBehaviour::OnCollisionStay(eden_ec::Entity* self, eden_ec::Entity* other)
 {
 	luabridge::LuaRef onCollisionStayLua =
 		(*_behaviourLua)["OnCollisionStay"];
 	if (onCollisionStayLua.isFunction()) {
 		luabridge::setGlobal(_L, this, "this");
 		luabridge::setGlobal(_L, other, "other");
+		luabridge::setGlobal(_L, self, "self");
 		try {
 			onCollisionStayLua();
 		}
@@ -85,16 +88,18 @@ void eden_ec::CLuaBehaviour::OnCollisionStay(eden_ec::Entity* other)
 		}
 		std::ignore = luabridge::getGlobal(_L, "other");
 		std::ignore = luabridge::getGlobal(_L, "this");
+		std::ignore = luabridge::getGlobal(_L, "self");
 	}
 }
 
-void eden_ec::CLuaBehaviour::OnCollisionExit(eden_ec::Entity* other)
+void eden_ec::CLuaBehaviour::OnCollisionExit(eden_ec::Entity* self, eden_ec::Entity* other)
 {
 	luabridge::LuaRef onCollisionExitLua =
 		(*_behaviourLua)["OnCollisionExit"];
 	if (onCollisionExitLua.isFunction()) {
 		std::ignore = luabridge::setGlobal(_L, this, "this");
 		std::ignore = luabridge::setGlobal(_L, other, "other");
+		std::ignore = luabridge::setGlobal(_L, self, "self");
 		try {
 			onCollisionExitLua();
 		}
@@ -103,6 +108,7 @@ void eden_ec::CLuaBehaviour::OnCollisionExit(eden_ec::Entity* other)
 		}
 		std::ignore = luabridge::getGlobal(_L, "other");
 		std::ignore = luabridge::getGlobal(_L, "this");
+		std::ignore = luabridge::getGlobal(_L, "self");
 	}
 }
 

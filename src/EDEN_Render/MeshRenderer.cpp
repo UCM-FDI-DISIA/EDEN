@@ -16,7 +16,12 @@
 
 render_wrapper::MeshRenderer::MeshRenderer(const std::string entityID, const std::string sceneID, const std::string meshName) : RenderObject(sceneID)
 {
-	_ent = GetSceneManager()->createEntity(meshName);
+	try {
+		_ent = GetSceneManager()->createEntity(meshName);
+	}
+	catch (std::exception e) {
+		eden_error::ErrorHandler::Instance()->Exception("Mesh not found", "MeshRenderer ERROR in line 20, could not find mesh " + meshName);
+	}
 
 	if (!render_wrapper::NodeManager::Instance()->HasNode(entityID, sceneID))
 		render_wrapper::NodeManager::Instance()->CreateSceneObject(entityID, sceneID);

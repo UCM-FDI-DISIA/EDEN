@@ -7,8 +7,8 @@ eden_ec::CTransform::CTransform(eden_utils::Vector3 position, eden_utils::Quater
 
 void eden_ec::CTransform::Init(eden_script::ComponentArguments* args) {
 	_position = args->GetValueToVector3("Position");
-	_rotation = args->GetValueToQuaternion("Rotation");
 	_scale = args->GetValueToVector3("Scale");
+	_rotation = args->GetValueToQuaternion("Rotation");
 }
 
 void eden_ec::CTransform::SetPosition(eden_utils::Vector3 position)
@@ -34,58 +34,59 @@ void eden_ec::CTransform::SetScale(eden_utils::Vector3 scale)
 	_scale = scale;
 }
 
-void eden_ec::CTransform::Translate(eden_utils::Vector3 position)
+void eden_ec::CTransform::Translate(eden_utils::Vector3 position, bool isGlobal)
 {
-	_position += _rotation * position;
+	if (!isGlobal) _position += _rotation * position;
+	else _position += position;
 	for (eden_ec::CTransform* t : _childrenVector) t->Translate(position);
 }
 
 void eden_ec::CTransform::Rotate(float angle, eden_utils::Vector3 axis)
 {
 	_rotation.RotateArroundPoint(axis, angle);
-	for (eden_ec::CTransform* t : _childrenVector) t->Rotate(angle, axis);
+	for (eden_ec::CTransform* t : _childrenVector) t->RotateAroundObject(this, angle, axis);
 }
 
 void eden_ec::CTransform::LocalRotate(float angle, eden_utils::Vector3 axis)
 {
 	_rotation.RotateArroundPointLocal(axis, angle);
-	for (eden_ec::CTransform* t : _childrenVector) t->Rotate(angle, axis);
+	for (eden_ec::CTransform* t : _childrenVector) t->LocalRotateAroundObject(this, angle, axis);
 }
 
 void eden_ec::CTransform::Pitch(float angle)
 {
 	_rotation.RotateArroundPoint(eden_utils::Vector3(1.0f, 0.0f, 0.0f), angle);
-	for (eden_ec::CTransform* t : _childrenVector) t->Rotate(angle, this->GetRight());
+	for (eden_ec::CTransform* t : _childrenVector) t->RotateAroundObject(this, angle, eden_utils::Vector3(1, 0, 0));
 }
 
 void eden_ec::CTransform::LocalPitch(float angle)
 {
 	_rotation.RotateArroundPointLocal(eden_utils::Vector3(1.0f, 0.0f, 0.0f), angle);
-	for (eden_ec::CTransform* t : _childrenVector) t->Rotate(angle, this->GetRight());
+	for (eden_ec::CTransform* t : _childrenVector) t->LocalRotateAroundObject(this, angle, this->GetRight());
 }
 
 void eden_ec::CTransform::Yaw(float angle)
 {
 	_rotation.RotateArroundPoint(eden_utils::Vector3(0.0f, 1.0f, 0.0f), angle);
-	for (eden_ec::CTransform* t : _childrenVector) t->Rotate(angle, this->GetUp());
+	for (eden_ec::CTransform* t : _childrenVector) t->RotateAroundObject(this, angle, eden_utils::Vector3(0, 1, 0));
 }
 
 void eden_ec::CTransform::LocalYaw(float angle)
 {
 	_rotation.RotateArroundPointLocal(eden_utils::Vector3(0.0f, 1.0f, 0.0f), angle);
-	for (eden_ec::CTransform* t : _childrenVector) t->Rotate(angle, this->GetUp());
+	for (eden_ec::CTransform* t : _childrenVector) t->LocalRotateAroundObject(this, angle, this->GetUp());
 }
 
 void eden_ec::CTransform::Roll(float angle)
 {
 	_rotation.RotateArroundPoint(eden_utils::Vector3(0.0f, 0.0f, 1.0f), angle);
-	for (eden_ec::CTransform* t : _childrenVector) t->Rotate(angle, this->GetForward());
+	for (eden_ec::CTransform* t : _childrenVector) t->RotateAroundObject(this, angle, eden_utils::Vector3(0,0,1));
 }
 
 void eden_ec::CTransform::LocalRoll(float angle)
 {
 	_rotation.RotateArroundPointLocal(eden_utils::Vector3(0.0f, 0.0f, 1.0f), angle);
-	for (eden_ec::CTransform* t : _childrenVector) t->Rotate(angle, this->GetForward());
+	for (eden_ec::CTransform* t : _childrenVector) t->LocalRotateAroundObject(this, angle, this->GetForward());
 }
 
 void eden_ec::CTransform::Escalate(eden_utils::Vector3 scale)
@@ -159,5 +160,17 @@ int eden_ec::CTransform::HasChild(CTransform* cTr)
 		++it;
 	}
 	return (*it == cTr ? index : -1);
+}
+
+void eden_ec::CTransform::RotateAroundObject(CTransform* other, float angle, eden_utils::Vector3 axis)
+{
+	Rotate(angle, axis);
+	_position = (_position - other->GetPosition()).RotatedAroundPoint(axis, angle) + other->GetPosition();
+}
+
+void eden_ec::CTransform::LocalRotateAroundObject(CTransform* other, float angle, eden_utils::Vector3 axis)
+{
+	LocalRotate(angle, axis);
+	_position = (_position - other->GetPosition()).RotatedAroundPoint(axis, angle) + other->GetPosition();
 }
 

@@ -95,6 +95,7 @@ void eden_export::RunEDEN()
 		std::filesystem::current_path(std::filesystem::canonical(std::string(argv[0]) + "/.."));
 #endif
 		master = eden::Master::Instance();
+		if (!master->isInitialized()) return;
 		//Creamos una escena inicial de pueba 
 		// scnManager = eden::SceneManager::Instance();
 #ifdef _DEBUG

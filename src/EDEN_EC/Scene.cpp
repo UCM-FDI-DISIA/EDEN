@@ -10,14 +10,9 @@
 #include "PhysicsManager.h"
 #include "Entity.h"
 #include "Transform.h"
+#include "ErrorHandler.h"
 
 namespace eden {
-	Scene::Scene(const std::string& ID, std::vector<eden_script::EntityInfo*>& info, std::unordered_map<std::string, std::vector<std::string>>& collisionInfo) {
-		_ID = ID;
-		physics_manager::PhysicsManager::Instance()->InitLayers(ID, collisionInfo);
-		Instantiate(info);
-	}
-
 	Scene::Scene(const std::string& ID)
 	{
 		_ID = ID;
@@ -64,7 +59,14 @@ namespace eden {
 		}
 		// Cremoas una nueva entidad seg�n el nombre que hayamos recibido en 'info' al leer el .lua
 		// Creamos sus componentes seg�n la info le�da
-		ent->AddComponents(info);
+		try {
+			ent->AddComponents(info);
+		}
+		catch (std::exception e) {
+			delete ent;
+			eden_error::ErrorHandler::Instance()->Exception("Scene ERROR in line 62", "could not create entity" + info->name + "\n" + e.what() + "\n");
+		}
+
 #ifdef _DEBUG
 		for (auto ot : info->components) {
 
@@ -83,6 +85,12 @@ namespace eden {
 #endif
 		AddNewGameObject(ent);
 		return ent;
+	}
+
+	void Scene::InitScene(std::vector<eden_script::EntityInfo*>& info, std::unordered_map<std::string, std::vector<std::string>>& collisionInfo)
+	{
+		physics_manager::PhysicsManager::Instance()->InitLayers(_ID, collisionInfo);
+		Instantiate(info);
 	}
 
 	eden_ec::Entity* Scene::Instantiate(eden_script::EntityInfo* info, eden_utils::Vector3 pos) {
@@ -122,17 +130,35 @@ namespace eden {
 
 	Scene::~Scene() {
 		for (auto it = _gameEntitiesList.begin(); it != _gameEntitiesList.end();) {
-			delete it->second; //Llamamos a la destructora de la entidad
-			it->second = nullptr;
+			if(it->second.second) delete it->second.first; //Llamamos a la destructora de la entidad
+			it->second.first = nullptr;
 			it = _gameEntitiesList.erase(it); //Lo borramos del mapa
+		}
+
+		for (auto it = _newEntities.begin(); it != _newEntities.end(); ++it) {
+			for (auto it2 = it->second.begin(); it2 != it->second.end();) {
+				delete it2->second; //Llamamos a la destructora de la entidad
+				it2->second = nullptr;
+				it2 = it->second.erase(it2); //Lo borramos del mapa
+			}
 		}
 	}
 
-	void Scene::Update(float dt) {
+ 	void Scene::Update(float dt) {
 		AwakeEntities();
 		StartEntities();
-		for (auto& obj : _gameEntitiesList) {
-			obj.second->Update(dt);
+		for (auto obj = _gameEntitiesList.begin(); obj != _gameEntitiesList.end();) {
+			if (obj->second.first->IsAlive()) {
+				if (obj->second.first->IsActive()) {
+					obj->second.first->Update(dt);
+				}
+				++obj;
+			}
+			else{
+				delete obj->second.first; //Llamamos a la destructora de la entidad
+				obj->second.first = nullptr;
+				obj = _gameEntitiesList.erase(obj); //Lo borramos del mapa
+			}
 		}
 	}
 
@@ -142,19 +168,22 @@ namespace eden {
 
 	eden_ec::Entity* Scene::GetEntityByID(const std::string& ID) {
 		if (_gameEntitiesList.count(ID) == 0)
-			return nullptr;
-		return _gameEntitiesList[ID];
+			if (_newEntities[_currentIteration].count(ID) == 0)
+				return nullptr;
+			else
+				return _newEntities[_currentIteration][ID];
+		return _gameEntitiesList[ID].first;
 	}
 
 	void Scene::AddNewGameObject(eden_ec::Entity* _ent)
 	{
-		_newEntities[_currentIteration].push_back(_ent);
+		_newEntities[_currentIteration].insert({ _ent->GetEntityID(), _ent });
 	}
 
 	bool Scene::AddExistingGameObject(eden_ec::Entity* _ent) {
 		if (!_gameEntitiesList.contains(_ent->GetEntityID()))
 		{
-			_gameEntitiesList[_ent->GetEntityID()] = _ent;
+			_gameEntitiesList[_ent->GetEntityID()] = { _ent,true };
 			return true;
 		}
 		return false;		
@@ -172,8 +201,8 @@ namespace eden {
 
 	void Scene::AwakeEntities() {
 		for (auto it : _newEntities[_currentIteration]) {
-			it->AwakeComponents();
-			_gameEntitiesList.insert({ it->GetEntityID(), it });
+			it.second->AwakeComponents();
+			_gameEntitiesList.insert({ it.second->GetEntityID(), { it.second, false} });
 		}
 	}
 
@@ -181,7 +210,8 @@ namespace eden {
 		int lastIteration = _currentIteration;
 		_currentIteration++;
 		for (auto it = _newEntities[lastIteration].begin(); it != _newEntities[lastIteration].end();) {
-			(*it)->StartComponents();
+			_gameEntitiesList[it->second->GetEntityID()] = { it->second, true};
+			(*it).second->StartComponents();
 			it = _newEntities[lastIteration].erase(it);
 		}
 	}

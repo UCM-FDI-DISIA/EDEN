@@ -11,6 +11,8 @@
 
 #define RESOURCES_LOCATION_TYPE "FileSystem"
 #define EDEN_RENDER_SYSTEM "OpenGL Rendering Subsystem"
+#define DLL_EXTENSION ".dll"
+#define PLUGIN_FORMAT "Plugin"
 
 namespace eden_debug {
 	class DebugDrawer;
@@ -119,6 +121,8 @@ namespace eden_render
 		/// @brief Metodo que intercambia el modo de pantalla entre "pantalla completa" y tamanio elegido
 		EDEN_API void FullScreen();
 
+		EDEN_API inline bool IsFullScreen() { return _isFullScreen; }
+
 		/// @brief Metodo que setea las resoluciones
 		EDEN_API void SetResolutions(std::vector<std::pair<int, int>> resolutions);
 
@@ -192,6 +196,8 @@ namespace eden_render
 		/// @param sceneID ID de la escena que se quiere crear
 		void CreateRenderScene(std::string sceneID);
 
+		/// @brief Asigna como escena principal la escena sceneID
+		/// @param sceneID ID de la escena que se quiere asignar como principal
 		void SetRenderScene(std::string sceneID);
 
 		/// @brief Borra la escena sceneToRemoveID si existe. Luego crea una escena con ID newCurrentSceneID
@@ -208,6 +214,13 @@ namespace eden_render
 		/// @param w Ancho de la ventana
 		/// @param h Alto de la ventana
 		void ChangeWindowSize(int w, int h);
+
+		/// <summary>
+		/// Comprueba que todos los plugins del archivo con ruta path existen
+		/// </summary>
+		/// <param name="path">Ruta del archivo plugins.cfg</param>
+		/// <returns>True si se encuentran todos los plugins, False en caso contrario</returns>
+		bool CheckPlugins(std::string& path);
 
 		/// @brief Raiz de Ogre
 		Ogre::Root* _root;

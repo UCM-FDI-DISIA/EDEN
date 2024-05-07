@@ -52,6 +52,8 @@ namespace eden_error {
 	}
 
 	void ErrorHandler::HandleException(std::exception e) {
+		CloseApplication();
+
 		std::string errorTitle, errorDescription;
 
 		std::string what = e.what();
@@ -80,7 +82,6 @@ namespace eden_error {
 		MessageBoxA(nullptr, (LPCSTR)errorDescription.c_str(), (LPCSTR)errorTitle.c_str(), MB_ICONERROR);
 #endif
 
-		CloseApplication();
 	}
 
 	void ErrorHandler::Warning(std::string warningMsg) {

@@ -71,7 +71,7 @@ void eden_ec::CAudioEmitter::Resume() {
 }
 
 void eden_ec::CAudioEmitter::Restart() {
-	if(_sound) _sound->Restart();
+	if(_sound && eden_audio::AudioManager::Instance()->GetGlobalVolume() > 0.1f) _sound->Restart();
 }
 
 void eden_ec::CAudioEmitter::Stop() {

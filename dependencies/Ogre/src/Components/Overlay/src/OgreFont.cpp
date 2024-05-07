@@ -535,6 +535,10 @@ namespace Ogre
                 // Advance a column
                 if(width)
                     l += (width + char_spacer);
+
+#ifndef HAVE_FREETYPE
+                delete buffer;
+#endif
             }
         }
 #ifdef HAVE_FREETYPE

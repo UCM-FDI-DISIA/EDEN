@@ -219,12 +219,21 @@ namespace eden {
 			eden_audio::AudioManager::Instance()->RemoveAudioScene(prevScene, newScene);
 		}
 
-		for (auto it = _scenesToAdd.begin(); it != _scenesToAdd.end();) {
+		auto it = _scenesToAdd.begin();
+		if (it != _scenesToAdd.end())
+		{
+			if (_currentScenes.find(*it) == _currentScenes.end()) {
+				CreateScene(*it);
+			}
+			_scenesToAdd.erase(it);
+		}
+
+		/*for (auto it = _scenesToAdd.begin(); it != _scenesToAdd.end();) {
 			if (_currentScenes.find(*it) == _currentScenes.end()) {
 				CreateScene(*it);
 			}
 			it = _scenesToAdd.erase(it);
-		}
+		}*/
 
 		if (_scenes.size() <= 0)
 			eden_error::ErrorHandler::Instance()->Exception("scene deque empty", "SceneManager ERROR in line 188, scene deque empty");

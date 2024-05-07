@@ -170,7 +170,8 @@ namespace eden {
 
 	void SceneManager::PushScene(const std::string& ID) {
 		for (auto it : _Blueprints) {
-			it.second.numInstances = 0;
+			BlueprintInfo* bpInfo = &it.second;
+			bpInfo->numInstances = 0;
 		}
 		_scenesToAdd.push_back(ID);
 	}

@@ -34,10 +34,12 @@ void eden_ec::CAudioEmitter::Update(float t) {
 
 void eden_ec::CAudioEmitter::Play() {
 	if (_sound) {
-		_3D ? _sound->Play(_transform->GetPosition(), _loop) : _sound->Play(_loop);
+		if (eden_audio::AudioManager::Instance()->GetGlobalVolume() > 0.1f) {
+			_3D ? _sound->Play(_transform->GetPosition(), _loop) : _sound->Play(_loop);
 		
-		_previousState = _currentState;
-		_currentState = SoundState::PLAYING;
+			_previousState = _currentState;
+			_currentState = SoundState::PLAYING;
+		}
 	}
 }
 

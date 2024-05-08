@@ -460,13 +460,22 @@ void eden_render::RenderManager::SetWindowName(std::string name) {
 void eden_render::RenderManager::SetWindowIcon(std::string filename) {
 	eden_resources::ResourcesManager* _rm = eden_resources::ResourcesManager::Instance();
 	if (_rm->FileExist(filename, eden_resources::ResourcesManager::Resources::UI)) {
-		std::set<std::string> uielems = _rm->GetRoutesUIElements();
-		std::string route = *(uielems.find(filename));
-		SDL_Surface* srfc = SDL_LoadBMP(route.c_str());
-		SDL_SetWindowIcon(_window.native, srfc);
-		SDL_FreeSurface(srfc);
-		srfc = nullptr;
-		_rm = nullptr;
+		std::set<std::string> uielemsRoutes = _rm->GetRoutesUIElements();
+		std::set<std::string> uielems = _rm->GetUIElements();
+		auto rtit = uielemsRoutes.begin();
+		auto uielit = uielems.begin();
+		while (*uielit != filename && uielit != uielems.end()) {
+			++rtit;
+			++uielit;
+		}
+		if (uielit != uielems.end() && rtit != uielemsRoutes.end()) {
+			std::string route = *rtit;
+			SDL_Surface* srfc = SDL_LoadBMP(route.c_str());
+			SDL_SetWindowIcon(_window.native, srfc);
+			SDL_FreeSurface(srfc);
+			srfc = nullptr;
+			_rm = nullptr;
+		}
 	}
 }
 

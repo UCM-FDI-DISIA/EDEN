@@ -87,7 +87,7 @@ void audio_wrapper::Sound::Restart() {
 bool audio_wrapper::Sound::HasEnded() const {
     if (!_sound) {
         eden_error::ErrorHandler::Instance()->Warning("No se ha creado un sonido con ruta de clip " + _filename);
-        return false;
+        return true;
     }
     else return _sound->isFinished();
 }

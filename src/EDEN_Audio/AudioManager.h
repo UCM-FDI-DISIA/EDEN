@@ -61,7 +61,7 @@ namespace eden_audio {
         /// @param dt Delta time
         EDEN_API void Update(float dt);
 
-        EDEN_API void AddAudioEntityToDontDestoryOnLoad(eden_ec::Entity* e);
+        EDEN_API void AddAudioEntityToDontDestroyOnLoad(eden_ec::Entity* e);
 
     private:
         /// @brief Mapa que almacena los clips de sonido con un identificador, que es el nombre de su archivo

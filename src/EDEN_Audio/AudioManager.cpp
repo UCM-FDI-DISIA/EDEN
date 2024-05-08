@@ -49,7 +49,7 @@ void eden_audio::AudioManager::Update(float dt) {
 	}
 }
 
-EDEN_API void eden_audio::AudioManager::AddAudioEntityToDontDestoryOnLoad(eden_ec::Entity* e)
+EDEN_API void eden_audio::AudioManager::AddAudioEntityToDontDestroyOnLoad(eden_ec::Entity* e)
 {
 	std::unordered_map<std::string, InfoAudioWorld*>::iterator it = _audioScenes.find(eden::SceneManager::Instance()->GetDontDestroyOnLoadID());
 	if (it != _audioScenes.end()) {

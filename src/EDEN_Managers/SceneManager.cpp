@@ -123,11 +123,13 @@ namespace eden {
 	EDEN_API bool SceneManager::AddEntityToDontDestroyOnLoad(eden_ec::Entity* ent, bool isAudio)
 	{
 		bool done;
-		GetCurrentScene()->RemoveGameObject(ent);
-		if(isAudio)eden_audio::AudioManager::Instance()->RemoveAudioEntity(ent);
 		done = _dontDestroyOnLoadScene->AddExistingGameObject(ent);
 		if (!done) ent->SetAlive(false);
-		if(isAudio)eden_audio::AudioManager::Instance()->AddAudioEntityToDontDestoryOnLoad(ent);
+		else {
+			GetCurrentScene()->RemoveGameObject(ent);
+			if (isAudio)eden_audio::AudioManager::Instance()->RemoveAudioEntity(ent);
+			if (isAudio)eden_audio::AudioManager::Instance()->AddAudioEntityToDontDestroyOnLoad(ent);
+		}
 		return done;
 	}
 

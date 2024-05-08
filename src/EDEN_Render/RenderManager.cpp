@@ -31,6 +31,7 @@
 #include <SDL.h>
 #include <SDL_video.h>
 #include <SDL_syswm.h>
+#include <SDL_surface.h>
 #pragma warning(pop)
 
 // EDEN
@@ -448,6 +449,24 @@ void eden_render::RenderManager::PreviousResolution()
 	if (!_isFullScreen) {
 		_currRes--;
 		if (_currRes < 0)_currRes = _resolutions.size() - 1;
+	}
+}
+
+void eden_render::RenderManager::SetWindowName(std::string name) {
+	_appName = name;
+	SDL_SetWindowTitle(_window.native, name.c_str());
+}
+
+void eden_render::RenderManager::SetWindowIcon(std::string filename) {
+	eden_resources::ResourcesManager* _rm = eden_resources::ResourcesManager::Instance();
+	if (_rm->FileExist(filename, eden_resources::ResourcesManager::Resources::UI)) {
+		std::set<std::string> uielems = _rm->GetRoutesUIElements();
+		std::string route = *(uielems.find(filename));
+		SDL_Surface* srfc = SDL_LoadBMP(route.c_str());
+		SDL_SetWindowIcon(_window.native, srfc);
+		SDL_FreeSurface(srfc);
+		srfc = nullptr;
+		_rm = nullptr;
 	}
 }
 

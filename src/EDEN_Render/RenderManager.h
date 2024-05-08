@@ -138,6 +138,14 @@ namespace eden_render
 		/// @brief Cambia a la anterior resolucion aniadida
 		EDEN_API void PreviousResolution();
 
+		/// @brief Cambia el nombre a la ventana 
+		/// @param name Nombre de la ventana
+		EDEN_API void SetWindowName(std::string name);
+
+		/// @brief Establece el icono de la ventana
+		/// @param filename Nombre del archivo con la textura que se quiera setear el icono
+		EDEN_API void SetWindowIcon(std::string filename);
+
 		/// @brief Devuelve la camara de la escena actual. Si no existe la crea
 		/// @param ent Entidad a la que se va a aniadir la camara
 		/// @return Devuelve la camara de la escena actual. Si no existe la crea

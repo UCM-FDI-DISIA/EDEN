@@ -25,88 +25,88 @@ namespace eden_input {
 }
 namespace eden_ec {
 	/// @brief Clase base de la que heredan todos los elementos de la UI
-	class EDEN_API UIComponent : public Component
+	class UIComponent : public Component
 	{
 	public:
 		/// @brief Constructora de la clase
-		UIComponent();
+		EDEN_API UIComponent();
 
 		/// @brief Destructora de la clase
-		virtual ~UIComponent();
+		EDEN_API virtual ~UIComponent();
 
 		/// @brief Mostrar el elemento de la ui
-		void Show(bool changedFromCanvas = false);
+		EDEN_API void Show(bool changedFromCanvas = false);
 
 		/// @brief Ocultar el elemento de la ui
-		void Hide(bool changedFromCanvas = false);
+		EDEN_API void Hide(bool changedFromCanvas = false);
 
 		/// @brief Determina que elementos estan por encima de otros
 		/// @param pos Valores desde -32 hasta 32
-		void SetDepth(float pos);
+		EDEN_API void SetDepth(float pos);
 
 		/// @brief Cambia el color del componente
-		void SetColor(eden_utils::Vector3 const& color);
+		EDEN_API void SetColor(eden_utils::Vector3 const& color);
 
 		/// @brief Cambia el tamanno del componente
 		/// @param width Anchura del componente
 		/// @param height Altura del componente
-		void SetDimensions(float width, float height);
+		EDEN_API void SetDimensions(float width, float height);
 
 		/// @brief Cambia la posicion del componente
 		/// @param xPos Posicion del eje x
 		/// @param yPos Posicion del eje y
-		void SetPosition(float xPos, float yPos);
+		EDEN_API void SetPosition(float xPos, float yPos);
 
 		/// @brief Cambia el material del componente
 		/// @param matName Nombre del material
-		void SetMaterial(std::string const& matName);
+		EDEN_API void SetMaterial(std::string const& matName);
 
 		/// @brief Poner visible el overlay
 		/// @param visible Booleano para ponerlo visible
-		void SetOverlayVisible(bool visible);
+		EDEN_API void SetOverlayVisible(bool visible);
 
 		/// @brief Devuelve la visibilidad del componente
-		bool IsVisible();
+		EDEN_API bool IsVisible();
 
 		/// @brief Devuelve la profundidad del componente
-		float GetDepth();
+		EDEN_API float GetDepth();
 
 		/// @brief Devuelve color del componente
-		eden_utils::Vector3 const GetColor() const;
+		EDEN_API eden_utils::Vector3 const GetColor() const;
 
 		/// @brief Devuelve las dimensiones del componente
-		std::pair<float, float> const GetDimensions() const;
+		EDEN_API std::pair<float, float> const GetDimensions() const;
 
 		/// @brief Devuelve las dimensiones del componente
-		std::pair<float, float> const GetRelativeDimensions() const;
+		EDEN_API std::pair<float, float> const GetRelativeDimensions() const;
 
 		/// @brief Devuelve la posicion del componente
-		std::pair <float, float> const GetPosition() const;
+		EDEN_API std::pair <float, float> const GetPosition() const;
 
 		/// @brief Devuelve la posicion del componente
-		std::pair <float, float> const GetRelativePosition() const;
+		EDEN_API std::pair <float, float> const GetRelativePosition() const;
 
 		/// @brief Devuelve el material del componente
-		std::string const& GetMaterialName();
+		EDEN_API std::string const& GetMaterialName();
 
 		/// @brief Escala el tamanio y posicion 
-		void Resize();
+		EDEN_API void Resize();
 
 		/// @brief Establece los valores base
-		void SetParameters();
+		EDEN_API void SetParameters();
 
 		/// @brief Establece las dimensiones base 
-		void SetSizeParams();
+		EDEN_API void SetSizeParams();
 
 		/// @brief Establece las posiciones base 
-		void SetPosParams();
+		EDEN_API void SetPosParams();
 
 		/// @brief Definicion de metodo estatico GetID necesario para construccion de componentes
 		inline static std::string GetID() { return "UICOMPONENT"; }
 
-		inline std::string GetSceneID() { return _sceneID; };
+		EDEN_API inline std::string GetSceneID() { return _sceneID; };
 
-		void Register(std::string sceneID);
+		EDEN_API void Register(std::string sceneID);
 
 	protected:
 

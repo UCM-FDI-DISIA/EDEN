@@ -121,7 +121,7 @@ eden_utils::Vector3 eden_utils::Vector3::RotatedAroundPoint(Vector3 axis, float 
 
 	float u = axisNormalized.GetX(), v = axisNormalized.GetY(), w = axisNormalized.GetZ();
 
-	return *this * cos(angle) + axisNormalized.Cross(*this) * sin(angle) + axisNormalized * this->Dot(axisNormalized) * (1 - cos(angle));
+	return *this * (float)cos(angle) + axisNormalized.Cross(*this) * (float)sin(angle) + axisNormalized * this->Dot(axisNormalized) * (float)(1 - cos(angle));
 }
 
 std::array<std::array<float, 3>, 3> eden_utils::Vector3::GetRotationMatrix(Vector3 axis, float angle)

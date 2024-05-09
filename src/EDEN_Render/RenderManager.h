@@ -79,11 +79,11 @@ namespace eden_render
 		EDEN_API ~RenderManager() override;
 		
 		/// @brief Ejecuta un ciclo de renderizado (ventana y raiz)
-		void Update();
+		EDEN_API void Update();
 
 		/// @brief Comprueba si ha habido errores en la inicializacion
 		/// @return True si se ha inicializado bien, False en caso contrario
-		inline bool couldInitialize() { return _initialized; }
+		EDEN_API inline bool couldInitialize() { return _initialized; }
 
 		/// @brief Devuelve el ancho de la ventana
 		/// @return Devuelve el ancho de la ventana 
@@ -107,7 +107,7 @@ namespace eden_render
 
 		/// @brief Actualiza todas las posiciones de la escena con su componente Transform
 		/// @param sceneID Identificador de la escena
-		void UpdatePositions(std::string sceneID);
+		EDEN_API void UpdatePositions(std::string sceneID);
 
 		/// @brief Aniade una entidad que tenga componentes de renderizado (CMeshRenderer, CCamera, ...) a una escena en concreto
 		/// para actualizar su posicion
@@ -153,8 +153,9 @@ namespace eden_render
 		/// @param ent Entidad a la que se va a aniadir la camara
 		/// @return Devuelve la camara de la escena actual. Si no existe la crea
 		EDEN_API render_wrapper::CameraWrapper* GetCamera(eden_ec::Entity* ent);
-
-		EDEN_API static RenderManager* getInstance();
+		/// @brief Devuelve una instancia a RenderManager
+		/// @return La referencia a la instancia de RenderManager
+		static RenderManager* getInstance();
 
 	protected:
 		/// @brief Devuelve el manager de Ogre actual

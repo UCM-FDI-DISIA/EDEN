@@ -126,31 +126,31 @@ namespace eden_input
 		EDEN_API bool IsKeyUp(SPECIALKEY key);
 
 		/// @brief mouse
-		/// @brief True si el rat�n
-		/// ha cambiado de posici�n
+		/// @brief True si el raton
+		/// ha cambiado de posicion
 		EDEN_API bool MouseMotionEvent();
 
-		/// @brief True si al menos un bot�n
-		/// del rat�n ha cambiado de estado
+		/// @brief True si al menos un boton
+		/// del raton ha cambiado de estado
 		EDEN_API bool MouseButtonEvent();
 
 		/// @brief True en el primer frame
-		/// en el que el bot�n del rat�n es pulsado
-		/// @param b Bot�n del rat�n (macros MOUSEBUTTON)
+		/// en el que el boton del raton es pulsado
+		/// @param b Boton del raton (macros MOUSEBUTTON)
 		EDEN_API bool IsMouseButtonDown(int b);
 
 		/// @brief True mientras
-		/// el bot�n del rat�n est� pulsado
-		/// @param b Bot�n del rat�n (macros MOUSEBUTTON)
+		/// el boton del raton esto pulsado
+		/// @param b Boton del raton (macros MOUSEBUTTON)
 		EDEN_API bool IsMouseButtonHeld(int b);
 
 		/// @brief True en el primer frame
-		/// en el que el bot�n del rat�n es liberado
-		/// @param b Bot�n del rat�n (macros MOUSEBUTTON)
+		/// en el que el boton del raton es liberado
+		/// @param b Boton del raton (macros MOUSEBUTTON)
 		EDEN_API bool IsMouseButtonUp(int b);
 
 		/// @brief Par (X, Y) de
-		/// la posici�n del rat�n en la pantalla.
+		/// la posicion del raton en la pantalla.
 		EDEN_API const std::pair<int, int>& GetMousePos();
 
 		EDEN_API inline const std::pair<int, int>& GetMouseDir() { return _mouseDir; }
@@ -170,10 +170,12 @@ namespace eden_input
 		/// @brief Update
 		EDEN_API void Update();
 
+		/// @brief Activa o desactiva el Input segun el bool active
 		EDEN_API void SetActive(bool active);
 
 		EDEN_API inline const bool IsActive() { return _isActive; }
 
+		/// @brief Devuelve una instancia al InputManager
 		EDEN_API static InputManager* getInstance();
 
 		/// @brief Destructora de la clase
@@ -182,24 +184,25 @@ namespace eden_input
 	private:
 
 		/// @brief Puntero del wrapper (SDL)
-		InputWrapper* _wrapper;
+		InputWrapper* _wrapper = nullptr;
 
+		/// @brief Booleano que indica si se el InputManager esta activo y puede recibir input del usuario
 		bool _isActive = true;
 
 		/// @brief Booleano de si se ha dejado de pulsar una tecla
-		bool _isKeyUpEvent;
+		bool _isKeyUpEvent = false;
 
 		/// @brief Booleano de si se ha pulsado una tecla
-		bool _isKeyDownEvent;
+		bool _isKeyDownEvent = false;
 
 		/// @brief Mapa de teclas y su estado
 		std::unordered_map<uint8_t, uint8_t> _kbState;
 
 		/// @brief Booleano de si se ha movido el raton
-		bool _isMouseMotionEvent;
+		bool _isMouseMotionEvent = false;
 		
 		/// @brief Booleano de si se ha pulsado algun boton del raton
-		bool _isMouseButtonEvent;
+		bool _isMouseButtonEvent = false;
 
 		/// @brief Posicion del raton
 		std::pair<int, int> _mousePos;
@@ -211,10 +214,10 @@ namespace eden_input
 		std::array<uint8_t, 3> _mbState;
 
 		/// @brief Booleano de si se cierra la ventana
-		bool _isCloseWindowEvent;
+		bool _isCloseWindowEvent = false;
 
 		/// @brief Booleano de si se cambia el tamanio la ventana
-		bool _isResizedWindowEvent;
+		bool _isResizedWindowEvent = false;
 
 		/// @brief Estados de botones
 		enum STATE : uint8_t {

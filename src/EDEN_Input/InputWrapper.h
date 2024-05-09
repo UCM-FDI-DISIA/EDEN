@@ -22,7 +22,7 @@
 		SDL_Event* getEvent();
 	private:
 		/// @brief Evento de SDL que guarda el wrapper de input
-		SDL_Event* _event;
+		SDL_Event* _event = nullptr;
 	};
 
 #endif //EDEN_INPUT_WRAPPER_H

@@ -35,7 +35,7 @@ void eden_ec::CAudioEmitter::Update(float t) {
 void eden_ec::CAudioEmitter::Play() {
 	if (_sound) {
 		if (eden_audio::AudioManager::Instance()->GetGlobalVolume() > 0.1f) {
-			_3D ? _sound->Play(_transform->GetPosition(), _loop) : _sound->Play(_loop);
+			_3D ? _sound->Play(_ent->GetComponent<eden_ec::CTransform>()->GetPosition(), _loop) : _sound->Play(_loop);
 		
 			_previousState = _currentState;
 			_currentState = SoundState::PLAYING;

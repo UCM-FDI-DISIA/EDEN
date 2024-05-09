@@ -155,7 +155,7 @@ namespace eden_render
 		EDEN_API render_wrapper::CameraWrapper* GetCamera(eden_ec::Entity* ent);
 		/// @brief Devuelve una instancia a RenderManager
 		/// @return La referencia a la instancia de RenderManager
-		static RenderManager* getInstance();
+		EDEN_API static RenderManager* getInstance();
 
 	protected:
 		/// @brief Devuelve el manager de Ogre actual

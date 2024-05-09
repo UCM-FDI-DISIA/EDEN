@@ -73,9 +73,14 @@ void eden_script::ScriptManager::PushStringToTable(std::string push, int tableIn
 
 std::string eden_script::ScriptManager::ParseString(int indexOnLuaStack) {
 	assert(indexOnLuaStack < 0);
-
-	// TRATAMIENTO DE ERRORES DE LUA AQU� --------
-	std::string cppString = lua_tostring(_l, indexOnLuaStack);
+	std::string cppString;
+	if (lua_isstring(_l, indexOnLuaStack)) {
+		// TRATAMIENTO DE ERRORES DE LUA AQU� --------
+		cppString = lua_tostring(_l, indexOnLuaStack);
+	}
+	else {
+		eden_error::ErrorHandler::Instance()->Exception("ERROR parsing string", "ERROR trying to read property from Lua\n");
+	}
 
 	return cppString;
 }
@@ -85,7 +90,7 @@ std::string eden_script::ScriptManager::ParseAndPopString(int indexOnLuaStack) {
 	
 	// TRATAMIENTO DE ERRORES DE LUA AQU� --------
 	lua_pop(_l, -indexOnLuaStack);
-
+	
 	return cppString;
 }
 

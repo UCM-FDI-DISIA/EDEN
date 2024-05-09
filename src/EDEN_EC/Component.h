@@ -12,36 +12,36 @@ namespace eden_script {
 namespace eden_ec {
     class Entity;
 	/// @brief Clase generica de component usada para la implementacion de los comportamientos de las entidades
-	class EDEN_API Component
+	class Component
 	{
         friend Entity;
     public:
         /// @brief Constructora por defecto
-        Component() = default;
+        EDEN_API Component() = default;
 
         /// @brief Constructora por defecto. No hace nada especial
-        virtual ~Component() = default;
+        EDEN_API virtual ~Component() = default;
 
         /// @brief Da contexto al componente, asginandole cual es su entidad
         /// @param ent Es la entidad a la que pertenece el componente
-        void SetContext(Entity* ent);
+        EDEN_API void SetContext(Entity* ent);
 
         /// @brief Metodo ejecutado cada frame
         /// @param t Tiempo transcurrido desde el ultimo frame
-        virtual void Update(float t) {}
+        EDEN_API virtual void Update(float t) {}
 
         /// @brief Maneja la entrada del usuario
-        virtual void HandleInput() {}
+        EDEN_API virtual void HandleInput() {}
 
         /// @brief Metodo que desactiva el componente (No se llama su update)
         /// @param active Booleano para activar o desactivar el componente
-        inline void SetActive(bool active) {
+        EDEN_API inline void SetActive(bool active) {
             _active = active;
         }
 
         /// @brief Comprueba si el componente esta activo
         /// @return True si el componente esta activo, false en caso contrario
-        inline bool IsActive() {
+        EDEN_API inline bool IsActive() {
             return _active;
         }
 

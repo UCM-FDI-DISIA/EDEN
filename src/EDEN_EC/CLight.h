@@ -23,41 +23,41 @@ namespace eden_utils {
 namespace eden_ec {
 
 	class CTransform;
-	class EDEN_API CLight : public Component
+	class CLight : public Component
 	{
 	public:
 		
-		CLight() = default;
-		~CLight() override;
+		EDEN_API CLight() = default;
+		EDEN_API ~CLight() override;
 
 		/// @brief Inicializa el componente, guardando los argumentos recibidos desde lua
 		/// @param args los argumentos que contienen informacion sobre la luz
-		void Init(eden_script::ComponentArguments* args) override;
+		EDEN_API void Init(eden_script::ComponentArguments* args) override;
 		/// @brief Metodo encargado de ajustar el transform en cada frame
 		/// @param dt El tiempo transcurrido desde el ultimo frame
-		void Update(float dt) override;
+		EDEN_API void Update(float dt) override;
 		/// @brief Crea el wrapper de luz
-		void Awake() override;
+		EDEN_API void Awake() override;
 		/// @brief Se usa para guardad la referencia al transform
-		void Start() override;
+		EDEN_API void Start() override;
 		/// @brief Devuelve el identificador del componente
 		/// @return Identificador del componente
-		static std::string GetID() { return "LIGHT"; }
+		EDEN_API static std::string GetID() { return "LIGHT"; }
 
 		/// @brief Setea la visibilidad de la luz
 		/// @param visibility True -> Visible, False -> No visible
-		void SetVisibility(bool visibility, bool sceneChanged = false);
+		EDEN_API void SetVisibility(bool visibility, bool sceneChanged = false);
 		/// @brief Devuelve si la luz es visible o no
-		bool getVisibility();
+		EDEN_API bool getVisibility();
 		/// @brief Ajusta el Diffuse Color de la luz
 		/// @param color Variable de color
-		void SetDiffuse(eden_utils::Vector3 color);
+		EDEN_API void SetDiffuse(eden_utils::Vector3 color);
 		/// @brief Ajusta el Specular Color de la luz
 		/// @param color Variable de color
-		void SetSpecular(eden_utils::Vector3 color);
+		EDEN_API void SetSpecular(eden_utils::Vector3 color);
 		/// @brief Setea la direccion de la luz
 		/// @param dir Vector de direccion de la luz
-		void SetDirection(eden_utils::Vector3 dir);
+		EDEN_API void SetDirection(eden_utils::Vector3 dir);
 
 	protected:
 		/// @brief Setea la posicion de la luz

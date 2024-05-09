@@ -19,42 +19,42 @@ namespace eden_ec {
 	/// @brief Clase que define las Entidades de nuestro juego como contenedores de Componentes,
     /// que definiran el comportamiento y las distinguiran de otras entidades.
     /// Se encarga de gestionar sus componentes, haciendo las llamdas pertinentes a los mismo
-	class EDEN_API Entity
+	class Entity
 	{
         friend class eden_script::LuaManager;
 	public:
 		/// @brief Construye una entidad generica
-		Entity() = default;
+        EDEN_API Entity() = default;
 
         /// @brief Construye una entidad generica y le da nombre
         /// @param id El nombre que queremos darle a la entidad
-        inline Entity(std::string id, std::string sceneID) { _ID = id; _sceneID = sceneID; }
+        EDEN_API inline Entity(std::string id, std::string sceneID) { _ID = id; _sceneID = sceneID; }
 
         /// @brief Destruye la entidad y sus componentes asociados
-        ~Entity();
+        EDEN_API ~Entity();
 
         /// @brief Devuelve el nombre identificativo de la entidad
-        inline std::string GetEntityID() const { return _ID;}
+        EDEN_API inline std::string GetEntityID() const { return _ID;}
 
 		/// @brief Dice si la entidad esta o no viva
 		/// @return True = Viva | False = Muerta
-		inline bool IsAlive() const { return _alive; }
+        EDEN_API inline bool IsAlive() const { return _alive; }
 
 		/// @brief Permite cambiar el estado de vida de una entidad.
 		/// @param alive Si se pasa 'true' la entidad estara viva. Si se pasa 'false', la entidad morira y el siguiente frame no existira
-		inline void SetAlive(bool alive) { _alive = alive; }
+        EDEN_API inline void SetAlive(bool alive) { _alive = alive; }
 
 		/// @brief Metodo que dice si la entidad esta activa o no. 
 		/// @return True = Activa | False = Inactiva
-		inline bool IsActive() const { return _active; }
+        EDEN_API inline bool IsActive() const { return _active; }
 
 		/// @brief Permite cambiar el estado de una entidad entre activa e inactiva
 		/// @param active True = Activa la entidad | False = Desactiva la entidad
-		inline void SetActive(bool active) { _active = active; }
+        EDEN_API inline void SetActive(bool active) { _active = active; }
 
         /// @brief Quita un componente de la entidad dada su id
         /// @param id El ID del componente a quitar
-        inline void RemoveComponent(std::string id);
+        EDEN_API inline void RemoveComponent(std::string id);
 
         /// @brief Aniade un componente a la entidad dado su tipo y los argumentos que requiera el
         /// componente dado
@@ -63,7 +63,7 @@ namespace eden_ec {
         /// @param ...args Argumentos para el componente
         /// @return Componente creado
         template <typename T, typename... Ts>
-        inline Component* AddComponent(Ts&&... args) {
+        EDEN_API inline Component* AddComponent(Ts&&... args) {
             
             Component* c = new T(args...);
             _components.emplace(T::GetID(), c);
@@ -73,56 +73,56 @@ namespace eden_ec {
 
         /// @brief Aniade un componente segun la informacion leida en un mapa. 
         /// @param info Informacion leida desde un mapa .lua.
-        Component* AddComponentByRead(eden_script::ComponentArguments* info);
+        EDEN_API Component* AddComponentByRead(eden_script::ComponentArguments* info);
 
         /// @brief Crea todos los componentes de la entidad
         /// @param info Struct que da valor al nombre y a los componentes de una entidad. Se construye a traves
         /// de la lectura de archivos .lua. Ver el proyecto de EDEN_Script para m�s informacion (ScriptManager.h)
-        void AddComponents(eden_script::EntityInfo* info);
+        EDEN_API void AddComponents(eden_script::EntityInfo* info);
 
         /// @brief Llama al m�todo Start de todos los componentes
         /// Llamado al final del frame donde la entidad ha sido creada
-        void AwakeComponents();
+        EDEN_API void AwakeComponents();
 
         /// @brief Llama al m�todo Start de todos los componentes
         /// Se llama al inicializar las entidades en la escena, durante el primer instante del frame siguiente al que han sido creadas, que es cuando
         /// las entidades comienzan a formar parte del loop 
-        void StartComponents();
+        EDEN_API void StartComponents();
 
         /// @brief Nos devuelve un componente asociado a una entidad dada su ID
         /// @param T Tipo del componente
         /// @return Puntero a la instancia del componente asociada a la entidad
-        Component* GetComponent(std::string id);
+        EDEN_API Component* GetComponent(std::string id);
         
         /// @brief Devuelve el ID de la escena a la que pertenece
         /// @return Devuelve el ID de la escena a la que pertenece
-        std::string GetSceneID();
+        EDEN_API std::string GetSceneID();
 
         /// @brief Nos devuelve un componente asociado a una entidad dado su tipo
         /// @param T Tipo del componente
         /// @return Puntero a la instancia del componente asociada a la entidad
         template<typename T>
-        T* GetComponent() {
+        EDEN_API T* GetComponent() {
             return static_cast<T*>(GetComponent(T::GetID()));
         };
 
         /// @brief Comprueba si una entidad tiene cierto componente dada su ID
         /// @return Un booleano indicando si la entidad tiene o no el componente pedido
-        bool HasComponent(std::string id);
+        EDEN_API bool HasComponent(std::string id);
 
         /// @brief Comprueba si una entidad tiene cierto componente dado su tipo
         /// @param T Tipo del componente
         /// @return Un booleano indicando si la entidad tiene o no el componente pedido
         template<typename T>
-        bool HasComponent() {
+        EDEN_API bool HasComponent() {
             return HasComponent(T::GetID());
         };
 
         /// @brief Llama al update de todos los componentes de una entidad
-        void Update(float t);
+        EDEN_API void Update(float t);
 
         /// @brief Llama al handleInput de todos los componentes de una entidad
-        void HandleInput();
+        EDEN_API void HandleInput();
 
     private:
         /// @brief Variable que indica si una entidad esta viva o no. En caso de no estarlo, debera

@@ -17,59 +17,59 @@ namespace eden_utils {
 namespace eden_ec {
 	/// @brief Componente de camara.
 	class CTransform;
-	class EDEN_API CCamera : public Component {
+	class CCamera : public Component {
 	public:
 		/// @brief Constructora por defecto de la camara
-		CCamera() = default;
+		EDEN_API CCamera() = default;
 
 		/// @brief Destructora de la camara
-		~CCamera();
+		EDEN_API ~CCamera();
 		
 		/// @brief Necesario para evitar que sea una clase abstracta. No usado
-		void Init(eden_script::ComponentArguments* args) override {};
+		EDEN_API void Init(eden_script::ComponentArguments* args) override {};
 
 		/// @brief Da valor al _cameraWrapper
-		void Awake() override;
+		EDEN_API void Awake() override;
 
 		/// @brief Guarda la referencia al transform, crea el CameraWrapper y a�ade la entidad al RenderManager
-		void Start() override;
+		EDEN_API void Start() override;
 
 		/// @brief Metodo que se ejecutara cada frame y actualizara constantemente la posicion de la camara en caso de que la entidad
 		/// a la que este enganchada se mueva
 		/// @param dt Tiempo transcurrido desde el ultimo frame
-		void Update(float dt) override;
+		EDEN_API void Update(float dt) override;
 
 		/// @brief Establece la distancia del plano mas cercano en el frustrum de la camara
 		/// @param distance Distancia en numero decimal
-		void SetNearClipDistance(float distance);
+		EDEN_API void SetNearClipDistance(float distance);
 
 		/// @brief Establece la distancia del plano mas lejano en el frustrum de la camara
 		/// @param distance Distancia en numero decimal
-		void SetFarClipDistance(float distance);
+		EDEN_API void SetFarClipDistance(float distance);
 
 		/// @brief Establece el color de fondo de renderizado de la camara, en escala RGBA
 		/// @param r Porcentaje de rojo en escala RGBA
 		/// @param g Porcentaje de verde en escala RGBA
 		/// @param b Porcentaje de azul en escala RGBA
 		/// @param a Porcentaje de transparencia (valor alfa) de la escala RGBA. Por defecto, establecido en 1.0f (opaco).
-		void SetBackgroundColor(float r, float g, float b, float a = 1.0f);
+		EDEN_API void SetBackgroundColor(float r, float g, float b, float a = 1.0f);
 
 		/// @brief Establece si se puede recalcular automaticamente la relacion de aspecto de la camara. Deberia estar siempre en true, o si no, algunas
 		/// camaras pueden verse mal. Mas info en el wrapper de la camara.
 		/// @param set Booleano indicando si se setea que la relacion de aspecto se recalcule automaticamente.
-		void SetAutoAspectRatio(bool set);
+		EDEN_API void SetAutoAspectRatio(bool set);
 
 
 		/// @brief Establece la direccion en la que se quiere que apunte la camara
 		/// @param lookat Vector3 con la direccion en la que se quiere que apunte la camara
-		void LookAt(eden_utils::Vector3 lookat);
+		EDEN_API void LookAt(eden_utils::Vector3 lookat);
 
 		/// @brief Devuelve la posicion de la camara
 		/// @return Vector3 con la posicion de la camara
-		eden_utils::Vector3 GetCameraPosition() const;
+		EDEN_API eden_utils::Vector3 GetCameraPosition() const;
 
 		/// @brief Definici�n de m�todo est�tico GetID necesario para construcci�n de componentes
-		inline static std::string GetID() { return "CAMERA"; }
+		EDEN_API inline static std::string GetID() { return "CAMERA"; }
 
 	private:
 		/// @brief Puntero al wrapper de la camara, que contendra la camara en si y sobre el que se aplicaran todos los metodos de arriba

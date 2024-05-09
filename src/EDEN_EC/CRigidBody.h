@@ -26,131 +26,131 @@ namespace physics_wrapper{
 
 namespace eden_ec {
 	class CLuaBehaviour;
-	class EDEN_API CRigidBody : public Component
+	class CRigidBody : public Component
 	{
 
 		friend physics_manager::PhysicsManager;
 	public:
 		/// @brief Constructora por defecto. No usar
-		CRigidBody() = default;
+		EDEN_API CRigidBody() = default;
 
 		/// @brief Funcion para inicializar el componente con los scripts de lua
 		/// @param args Argumentos leidos del script de lua
-		void Init(eden_script::ComponentArguments* args) override;
+		EDEN_API void Init(eden_script::ComponentArguments* args) override;
 
 		/// @brief No usado
-		void Awake() override;
+		EDEN_API void Awake() override;
 
 		/// @brief Inicializa el componente para coger referencias a otros componentes de su entidad
-		void Start() override;
+		EDEN_API void Start() override;
 
 		/// @brief Metodo ejecutado cada frame
 		/// @param t Tiempo transcurrido desde el ultimo frame
-		void Update(float t) override;
+		EDEN_API void Update(float t) override;
 
 		/// @brief Se encarga de la entrada de input
-		void HandleInput() override;
+		EDEN_API void HandleInput() override;
 
 		/// @brief Los rigidbodies por defecto desactivan su simulación pasado un tiempo para evitar problemas de 
 		/// optimización. Esto también sucede si nuestro personaje recibe un input y deja de recibirlo después durante
 		/// un pequeño periodo de tiempo. Con este método podremos activar o desactivar esa opción.
 		/// @param input True = Se desactiva la desactivación | False = Se activa
-		void SetTemporalDeactivation(bool input);
+		EDEN_API void SetTemporalDeactivation(bool input);
 
 		/// @brief Destructora
-		~CRigidBody() override;
+		EDEN_API ~CRigidBody() override;
 
 		/// @brief Devuelve la velocididad lineal del RigidBody de Bullet
 		/// @return Vector de velocidad lineal
-		eden_utils::Vector3 GetLinearVelocity();
+		EDEN_API eden_utils::Vector3 GetLinearVelocity();
 
 		/// @brief Establece la velocidad lineal del RigidBody
 		/// @param velocity Vector de velocidad a la que quieres establecer
-		void SetLinealVelocity(eden_utils::Vector3 velocity);
+		EDEN_API void SetLinealVelocity(eden_utils::Vector3 velocity);
 
 		/// @brief Annade velocidad lineal al RigidBody
 		/// @param velocity Vector de velocidad que quieres sumar
-		void AddLinearVelocity(eden_utils::Vector3 velocity);
+		EDEN_API void AddLinearVelocity(eden_utils::Vector3 velocity);
 
 		/// @brief Devuelve la velocidad angular del RigidBody de Bullet
 		/// @return Vector de velocidad angular
-		eden_utils::Vector3 GetAngularVelocity();
+		EDEN_API eden_utils::Vector3 GetAngularVelocity();
 
 		/// @brief Establece la velocidad angular del RigidBody
 		/// @param velocity Vector de angular a la que quieres establecer
-		void SetAngularVelocity(eden_utils::Vector3 velocity);
+		EDEN_API void SetAngularVelocity(eden_utils::Vector3 velocity);
 
 		/// @brief Annade velocidad angular al RigidBody
 		/// @param velocity Vector de velocidad que quieres sumar
-		void AddAngularVelocity(eden_utils::Vector3 velocity);
+		EDEN_API void AddAngularVelocity(eden_utils::Vector3 velocity);
 
 		/// @brief Devuelve la masa del RigidBody
 		/// @return Masa del RigidBody
-		float GetMass();
+		EDEN_API float GetMass();
 
 		/// @brief Establece la masa del RigidBody
 		/// @param mass Masa a la que quieres establecer
-		void SetMass(float mass);
+		EDEN_API void SetMass(float mass);
 
 		/// @brief Devuelve la gravedad a la que esta sujeta el RigidBody
 		/// @return Vector de gravedad
-		eden_utils::Vector3 GetGravity();
+		EDEN_API eden_utils::Vector3 GetGravity();
 
 		/// @brief Establece la gravedada a la que esta sujeta el RigidBody
 		/// @param gravity Vector de gravedad que quieres establecer
-		void SetGravity(eden_utils::Vector3 gravity);
+		EDEN_API void SetGravity(eden_utils::Vector3 gravity);
 
 		/// @brief Devuelve el damping al que esta sujeto el RigidBody
 		/// @return Valor del damping
-		float GetDamping();
+		EDEN_API float GetDamping();
 
 		/// @brief Establece el damping al que esta sujeto el RigidBody
 		/// @param damping Valor de damping que quieres establecer
-		void SetDamping(float damping);
+		EDEN_API void SetDamping(float damping);
 
 		/// @brief Annade una fuerza al RigidBody
 		/// @param force Vector de fuerza que quieres aplicar
-		void ApplyForce(eden_utils::Vector3 force);
+		EDEN_API void ApplyForce(eden_utils::Vector3 force);
 
 		/// @brief Annade torquue al RigidBody
 		/// @param torque Vector de torque que quieres aplicar
-		void ApplyTorque(eden_utils::Vector3 torque);
+		EDEN_API void ApplyTorque(eden_utils::Vector3 torque);
 
 		/// @brief Quita las fuerzas que se aplican sobre el RigidBody
-		void ClearForce();
+		EDEN_API void ClearForce();
 
 		/// @brief Se llama cuando un rigidBody empieza a colisionar con el rigidBody
 		/// @param Entidad que colisiona
-		void OnCollisionEnter(eden_ec::Entity* other);
+		EDEN_API void OnCollisionEnter(eden_ec::Entity* other);
 
 		/// @brief Se llama cada vez que haya una colision despues de que se haya llamado el OnCollisionEnter
 		/// @param Entidad que colisiona
-		void OnCollisionStay(eden_ec::Entity* other);
+		EDEN_API void OnCollisionStay(eden_ec::Entity* other);
 		
 		/// @brief Se llama cuando un rogidBody acaba de terminar la colision con el RigidBody
 		/// @param Entidad que colisiona
-		void OnCollisionExit(eden_ec::Entity* other);
+		EDEN_API void OnCollisionExit(eden_ec::Entity* other);
 
 		/// @brief Devuelve la propiedad de rebote
 		/// @return Devuelve la propiedad de rebote 
-		float GetBounciness();
+		EDEN_API float GetBounciness();
 
 		/// @brief Devuelve la propiedad de friccion
 		/// @return Devuelve la propiedad de friccion 
-		float GetFriction();
+		EDEN_API float GetFriction();
 
 		/// @brief Definicion de metodo estatico GetID necesario para construccion de componentes
-		static std::string GetID() { return "RIGIDBODY"; }
+		EDEN_API static std::string GetID() { return "RIGIDBODY"; }
 
 		/// @brief Devuelve la capa de colision del objeto
 		/// @return Devuelve la capa de colision del objeto 
-		physics_wrapper::CollisionLayer* GetCollisionLayer();
+		EDEN_API physics_wrapper::CollisionLayer* GetCollisionLayer();
 
 		/// @brief Devuelve el nombre de la capa de colision del objeto
 		/// @return Devuelve el nombre de la capa de colision del objeto 
-		std::string GetCollisionLayerName();
+		EDEN_API std::string GetCollisionLayerName();
 
-		physics_wrapper::RigidBody* GetWrapperRigidBody();
+		EDEN_API physics_wrapper::RigidBody* GetWrapperRigidBody();
 
 	protected:
 		const static std::string _id;

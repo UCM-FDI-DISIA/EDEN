@@ -19,56 +19,56 @@ namespace render_wrapper {
 }
 
 namespace eden_ec {
-	class EDEN_API CParticleEmitter : public Component
+	class CParticleEmitter : public Component
 	{
 	public:
 		/// @brief Constructora por defecto del componente ParticleEmitter
-		CParticleEmitter();
+		EDEN_API CParticleEmitter();
 
 		/// @brief Constructora con parametros del componente ParticleEmitter
 		/// @param system Nombre del ParticleSystem en un script .particle
-		CParticleEmitter(std::string system);
+		EDEN_API CParticleEmitter(std::string system);
 
 		/// @brief Destructora del ParticleEmitter
-		~CParticleEmitter() override;
+		EDEN_API ~CParticleEmitter() override;
 
 		/// @brief Construye el componente dado unos argumentos. Se obtendran de una lectura de un .lua
 		/// @param args Argumentos leidos de .lua
-		void Init(eden_script::ComponentArguments* args) override;
+		EDEN_API void Init(eden_script::ComponentArguments* args) override;
 
 		/// @brief No usado
-		void Awake() override {};
+		EDEN_API void Awake() override {};
 
 		/// @brief Se usa para coger referencias a otros componentes
 		/// En este caso no se necesita
-		void Start() override {}
+		EDEN_API void Start() override {}
 
 		/// @brief Metodo update heredado de component 
 		/// @param t Tiempo entre updates
-		void Update(float t) override;
+		EDEN_API void Update(float t) override;
 
 		/// @brief Devuelve el identificador del componente
-		static std::string GetID() { return "PARTICLE_EMITTER"; }
+		EDEN_API static std::string GetID() { return "PARTICLE_EMITTER"; }
 
 		/// @brief Indica si esta activo o no
 		/// @return True: El sistema de particulas esta activo, false: El sistema no esta activo
-		bool IsActive();
+		EDEN_API bool IsActive();
 
 		/// @brief Establece si el sistema de particulas esta activo o no
 		/// @param active Booleano que establece si está activo
-		void SetActive(bool active, bool sceneChanged = false);
+		EDEN_API void SetActive(bool active, bool sceneChanged = false);
 
 		/// @brief 
 		/// @param visibility 
 		/// @param sceneChanged 
-		void SetVisible(bool visibility, bool sceneChanged = false);
+		EDEN_API void SetVisible(bool visibility, bool sceneChanged = false);
 
 		/// @brief Cambias el material de las particulas
 		/// @param material Material al que quieres cambiar
-		void SetMaterial(const std::string material);
+		EDEN_API void SetMaterial(const std::string material);
 
 		/// @brief Resetea el sistema de particulas (si esta en modo loop no hace nada)
-		void Reset();
+		EDEN_API void Reset();
 
 	private:
 		/// @brief Wrapper del particle system de ogre

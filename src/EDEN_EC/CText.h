@@ -13,41 +13,41 @@ namespace Ogre {
 
 namespace eden_ec {
 	/// @brief Clase que representa un texto en la UI
-	class EDEN_API CText : public eden_ec::UIComponent {
+	class CText : public eden_ec::UIComponent {
 	public:
 		/// @brief Constructora de la clase Texto
-		CText() = default;
+		EDEN_API CText() = default;
 
 		/// @brief Constructora de la clase Texto
-		CText(std::string overlayName, float xPos, float yPos, float tam,
+		EDEN_API CText(std::string overlayName, float xPos, float yPos, float tam,
 			std::string text, std::string font, float rColor,float gColor, float bColor, int depth = 0);
 
 		/// @brief Destructora de la clase Texto
-		~CText();
+		EDEN_API ~CText();
 
 		/// @brief Metodo que crea Texto
-		void Create(std::string overlayName, float xPos, float yPos, float tam,
+		EDEN_API void Create(std::string overlayName, float xPos, float yPos, float tam,
 			std::string text, std::string font, float rColor, float gColor, float bColor, int depth = 0);
 
 		/// @brief Construye el componente dado unos argumentos. Se obtendran de una lectura de un .lua
 		/// @param args Argumentos leidos de .lua
-		void Init(eden_script::ComponentArguments* args) override;
+		EDEN_API void Init(eden_script::ComponentArguments* args) override;
 
 		/// @brief No usado
-		void Awake() override {};
+		EDEN_API void Awake() override {};
 
 		/// @brief Se usa para coger referencias a otros componentes
 		/// En este caso no se necesita
-		void Start() override {}
+		EDEN_API void Start() override {}
 
 		/// @brief Devuelve el texto actual
-		std::string GetCurrentText();
+		EDEN_API std::string GetCurrentText();
 
 		/// @brief Cambia el texto actual
-		void SetNewText(const std::string& text, bool resize = true);
+		EDEN_API void SetNewText(const std::string& text, bool resize = true);
 
 		/// @brief Definici�n de m�todo est�tico GetID necesario para construcci�n de componentes
-		static std::string GetID() { return "TEXT"; }
+		EDEN_API static std::string GetID() { return "TEXT"; }
 	};
 } 
 

@@ -16,32 +16,32 @@ namespace eden_input {
 namespace eden_ec {
 	class CImage;
 	/// @brief Clase que representa el cursor
-	class EDEN_API CCursor: public Component {
+	class CCursor: public Component {
 	public:
 		/// @brief Constructora de la clase Cursor
-		CCursor() = default;
+		EDEN_API CCursor() = default;
 
 		/// @brief Constructora de la clase Cursor
-		CCursor(float width,float height, std::string texture, int depth = 0);
+		EDEN_API CCursor(float width,float height, std::string texture, int depth = 0);
 
 		/// @brief Destructora de la clase Cursor
-		~CCursor();
+		EDEN_API ~CCursor();
 
 		/// @brief Construye el componente dado unos argumentos. Se obtendran de una lectura de un .lua
 		/// @param args Argumentos leidos de .lua
-		void Init(eden_script::ComponentArguments* args) override;
+		EDEN_API void Init(eden_script::ComponentArguments* args) override;
 
 		/// @brief No usado
-		void Awake() override {};
+		EDEN_API void Awake() override {};
 
 		/// @brief Se usa para coger referencias a otros componentes
-		void Start() override;
+		EDEN_API void Start() override;
 
 		/// @brief Metodo update heredado de component 
-		void Update(float deltaTime) override;
+		EDEN_API void Update(float deltaTime) override;
 
 		/// @brief Definici�n de m�todo est�tico GetID necesario para construcci�n de componentes
-		static std::string GetID() { return "CURSOR"; }
+		EDEN_API static std::string GetID() { return "CURSOR"; }
 
 	private:
 		/// @brief Puntero a la imagen que representa el cursor

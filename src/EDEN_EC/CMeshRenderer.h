@@ -27,40 +27,40 @@ namespace render_wrapper
 
 namespace eden_ec {
 	class CAnimator;
-	class EDEN_API CMeshRenderer : public Component
+	class CMeshRenderer : public Component
 	{
 		friend eden_ec::CAnimator;
 	public:
 		/// @brief Constructora por defecto del CMeshRenderer
-		CMeshRenderer() = default;
+		EDEN_API CMeshRenderer() = default;
 
 		/// @brief Constructora con parametros
 		/// @param mesh Nombre del archivo de la malla .mesh
-		CMeshRenderer(std::string mesh);
+		EDEN_API CMeshRenderer(std::string mesh);
 
 		/// @brief Construye el componente dado unos argumentos. Se obtendran de una lectura de un .lua
 		/// @param args Argumentos leidos de .lua
-		void Init(eden_script::ComponentArguments* args) override;
+		EDEN_API void Init(eden_script::ComponentArguments* args) override;
 
 		/// @brief Crea el wrapper de meshRenderer
-		void Awake() override;
+		EDEN_API void Awake() override;
 
 		/// @brief Se usa para coger referencias a otros componentes
 		/// En este caso no se necesita
-		void Start() override {}
+		EDEN_API void Start() override {}
 
-		~CMeshRenderer() override;
+		EDEN_API ~CMeshRenderer() override;
 
 		/// @brief Pone un material a la malla
 		/// @param material Nombre del archivo del material
-		inline void SetMaterial(const std::string material);
+		EDEN_API inline void SetMaterial(const std::string material);
 
 		/// @brief Setea la la visibilidad de la malla
 		/// @param visibility True -> Visible, False -> No visible
-		inline void SetInvisible(bool visibility, bool sceneChanged = false);
+		EDEN_API inline void SetInvisible(bool visibility, bool sceneChanged = false);
 
 		/// @brief Devuelve el identificador del componente
-		static std::string GetID() { return "MESH_RENDERER"; }
+		EDEN_API static std::string GetID() { return "MESH_RENDERER"; }
 
 	private:
 		/// @brief Inicializa el Wrapper de MeshRenderer

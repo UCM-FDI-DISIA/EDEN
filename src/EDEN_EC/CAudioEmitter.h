@@ -19,110 +19,109 @@ namespace eden_ec {
 	class CTransform;
 	/// @brief Componente que se encargara de emitir audio tanto en 2D como en 3D y controlarlo. Para el audio en 3D es necesario que haya un listener
 	/// en la misma escena.
-	class EDEN_API CAudioEmitter : public eden_ec::Component {
+	class CAudioEmitter : public eden_ec::Component {
 		friend class eden_audio::AudioManager;
 	public:
 		/// @brief Constructora por defecto del emisor de audio
-		CAudioEmitter() = default;
-
+		EDEN_API CAudioEmitter() = default;
 
 		/// @brief Constructora por defecto del emisor de audio
 		/// @param name Nombre del fichero de sonido
 		/// @param is3D Si el sonido es o no es espacial/tridimensional
-		CAudioEmitter(std::string name, bool is3D);
+		EDEN_API CAudioEmitter(std::string name, bool is3D);
 
 		/// @brief Destructora por defecto del emisor de audio
-		~CAudioEmitter() override;
+		EDEN_API ~CAudioEmitter() override;
 
 		/// @brief Construye el componente dado unos argumentos. Se obtendr�n de una lectura de un .lua
 		/// @param args Argumentos le�dos de .lua
-		void Init(eden_script::ComponentArguments* args) override;
+		EDEN_API void Init(eden_script::ComponentArguments* args) override;
 
 		/// @brief No usado
-		void Awake() override;
+		EDEN_API void Awake() override;
 
 		/// @brief Usaremos este m�todo para a�adir referencias de otros componentes
-		void Start() override;
+		EDEN_API void Start() override;
 
 		/// @brief Metodo ejecutado cada frame
 		/// @param t Tiempo transcurrido desde el ultimo frame
-		void Update(float t) override;
+		EDEN_API void Update(float t) override;
 
 		/// @brief Reproduce un sonido tanto en 2D como en 3D. La deteccion 2D/3D se hace automatica y desde la constructora del emisor de sonido,
 		/// ya que no tiene mucho sentido poder cambiar un emisor de no espacial a espacial.
-		void Play();
+		EDEN_API void Play();
 
 		/// @brief Pausa un sonido
-		void Pause();
+		EDEN_API void Pause();
 
 		/// @brief Reanuda un sonido
-		void Resume();
+		EDEN_API void Resume();
 
 		/// @brief Para completamente la emision de un sonido
-		void Stop();
+		EDEN_API void Stop();
 
 		/// @brief Reinicia la emision de un sonido
-		void Restart();
+		EDEN_API void Restart();
 
 		/// Devuelve si el sonido esta o no pausado
 		/// @return Booleano que indica si el sonido esta o no pausado
-		bool IsPaused() const;
+		EDEN_API bool IsPaused() const;
 
 		/// Devuelve si el sonido ha terminado o no
 		/// @return Booleano que indica si el sonido ha terminado o no
-		bool HasEnded() const;
+		EDEN_API bool HasEnded() const;
 
 		/// Establece si un sonido esta en bucle o no
 		/// @param loop Booleano para establecer si el sonido se reproduce en bucle (true) o no (false)
-		void SetLoop(bool loop);
+		EDEN_API void SetLoop(bool loop);
 
 		/// Devuelve si el sonido esta siendo reproducido en bucle o no
 		/// @return Booleano que indica si el sonido esta siendo reproducido en bucle o no
-		bool IsLooped() const;
+		EDEN_API bool IsLooped() const;
 
 		/// Establece el paneo (distrubicion por los altavoces izquierdo y derecho en un sistema estereo)
 		/// @param pan Un float indicando el paneo. 1 es derecha, 0 es el centro (ambos altavoces) y -1 la izquierda.
-		void SetPan(float pan);
+		EDEN_API void SetPan(float pan);
 
 		/// Devuelve la distribucion del paneo del sonido
 		/// @return Float con la distribucion del paneo del sonido
-		float GetPan() const;
+		EDEN_API float GetPan() const;
 
 		/// Establece la posicion desde donde se emite el sonido
 		/// @param position Posicion desde donde se emite el sonido
-		void SetPosition(eden_utils::Vector3 position);
+		EDEN_API void SetPosition(eden_utils::Vector3 position);
 
 		/// Devuelve la posicion desde donde se emite el sonido
 		/// @return Vector con la posicion desde donde se emite el sonido
-		eden_utils::Vector3 GetPlayingPosition() const;
+		EDEN_API eden_utils::Vector3 GetPlayingPosition() const;
 
 		/// Cambia el volumen del sonido desde 0 (silencio) hasta 1 (volumen completo)
 		/// @param volume Valor en punto flotante desde 0 hasta 1
-		void SetVolume(float volume);
+		EDEN_API void SetVolume(float volume);
 
 		/// Devuelve el volumen del sonido
 		/// @return Valor en punto flotante con el volumen actual del sonido
-		float GetVolume() const;
+		EDEN_API float GetVolume() const;
 
 		/// @brief Cambia el valor de la velocidad de reproduccion del sonido (cambiando asi la frecuencia junto con el pitch (altura del sonido)). A mayor sea el valor, sonara el doble de rapido que sera
 		/// mas agudo. A menor el valor, mas lento y mas grave. Valores solo entre algo mas que 0 (0 nunca reproduciria el sonido) e infinito, 1 por defecto.
 		/// @param pitch Valor del pitch. 1 por defecto. 2 seria el doble de velocidad, mas agudo; 0.5 la mitad de velocidad, mas grave.
-		void SetPitch(float pitch);
+		EDEN_API void SetPitch(float pitch);
 
 		/// @brief Devuelve el pitch del sonido
 		/// @return Valor en punto flotante del pitch del sonido
-		float GetPitch() const;
+		EDEN_API float GetPitch() const;
 
 		/// @brief Devuelve el nombre del archivo de sonido
 		/// @return String con el nombre del archivo de sonido
-		std::string GetFilename() const;
+		EDEN_API std::string GetFilename() const;
 
 		/// @brief Permite cambiar el clip de sonido del emisor
 		/// @param name String con el nombre del archivo de sonido al que se desea cambiar
-		void ChangeClip(std::string name);
+		EDEN_API void ChangeClip(std::string name);
 
 		/// @brief Definici�n de m�todo est�tico GetID necesario para construcci�n de componentes
-		inline static std::string GetID() { return "AUDIO_EMITTER"; }
+		EDEN_API inline static std::string GetID() { return "AUDIO_EMITTER"; }
 
 	private:
 

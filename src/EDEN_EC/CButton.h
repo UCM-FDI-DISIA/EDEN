@@ -15,57 +15,46 @@ namespace eden_ec {
 	
 	class CLuaBehaviour;
 
-	/// @brief Parametros del boton
-	struct EDEN_API ButtonParams {
-		std::string overlayName = std::string();
-		float xPos = 0, yPos = 0;
-		int depth = 0;
-		float width = 0, height = 0;
-		std::string iniTex = std::string();
-		std::string hoverTex = std::string();
-		std::string clickedTex = std::string();
-	};
-
 	/// @brief Clase que representa un boton en la UI
-	class EDEN_API CButton : public eden_ec::UIComponent {
+	class CButton : public eden_ec::UIComponent {
 	public:
 
 		/// @brief Constructora vacia
-		CButton() = default;
+		EDEN_API CButton() = default;
 
 		/// @brief Constructora de la clase 
-		CButton(std::string overlayName, float xPos, float yPos, float width, float height, std::string iniTex, std::string hoverTex, std::string clickedTex, int depth);
+		EDEN_API CButton(std::string overlayName, float xPos, float yPos, float width, float height, std::string iniTex, std::string hoverTex, std::string clickedTex, int depth);
 
 		/// @brief Metodo update heredado de component
-		void Update(float deltaTime) override;
+		EDEN_API void Update(float deltaTime) override;
 		/// @brief No usado
-		void Awake() override {};
+		EDEN_API void Awake() override {};
 
 		/// @brief Se usa para coger referencias a otros componentes
-		void Start() override;
+		EDEN_API void Start() override;
 
 		/// @brief Metodo que crea el boton
-		void CreateButton(ButtonParams& params);
+		EDEN_API void CreateButton(std::string overlayName, float xPos, float yPos, float width, float height, std::string iniTex, std::string hoverTex, std::string clickedTex, int depth);
 
 		/// @brief Destructora
-		~CButton() = default;
+		EDEN_API ~CButton() = default;
 
 		/// @brief Cambia la textura principal del boton
-		void ChangeButtonTexture(const std::string& textureName);
+		EDEN_API void ChangeButtonTexture(const std::string& textureName);
 
 		/// @brief Cambia todas las texturas del boton
-		void ChangeTextures(const std::string& iniTex,
+		EDEN_API void ChangeTextures(const std::string& iniTex,
 			const std::string& hoverTex,
 			const std::string& clickedTex);
 
 		/// @brief Construye el componente dado unos argumentos. Se obtendran de una lectura de un .lua
 		/// @param args Argumentos leidos de .lua
-		void Init(eden_script::ComponentArguments* args) override;
+		EDEN_API void Init(eden_script::ComponentArguments* args) override;
 
 		/// @brief Definici�n de m�todo est�tico GetID necesario para construcci�n de componentes
-		static std::string GetID() { return "BUTTON"; }
+		EDEN_API static std::string GetID() { return "BUTTON"; }
 
-		void SetCallBack();
+		EDEN_API void SetCallBack();
 
 	private:
 

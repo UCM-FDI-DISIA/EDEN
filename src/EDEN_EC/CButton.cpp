@@ -10,66 +10,55 @@
 
 eden_ec::CButton::CButton(std::string overlayName, float xPos, float yPos, float width, float height, std::string iniTex, std::string hoverTex, std::string clickedTex, int depth) : UIComponent() {
 	if (_ent != nullptr)Register(_ent->GetSceneID());
-	ButtonParams params;
-	params.overlayName = overlayName;
-	params.xPos = xPos;
-	params.yPos = yPos;
-	params.width = width;
-	params.height = height;
-	params.iniTex = iniTex;
-	params.hoverTex = hoverTex;
-	params.clickedTex = clickedTex;
-	params.depth = depth;
-	CreateButton(params);
+	CreateButton(overlayName,xPos,yPos,width,height,iniTex,hoverTex,clickedTex,depth);
 }
 
-void eden_ec::CButton::CreateButton(ButtonParams& params) {
-
+void eden_ec::CButton::CreateButton(std::string overlayName, float xPos, float yPos, float width, float height, std::string iniTex, std::string hoverTex, std::string clickedTex, int depth) {
 	
-
 	auto renderManager = eden_render::RenderManager::Instance();
 	int w = renderManager->GetWindowWidth();
 	int h = renderManager->GetWindowHeight();
 
 
-	if (params.width > 100)params.width = 100;
-	else if (params.width < 0)params.width = 0;
-	params.width = w * (params.width / 100);
+	if (width > 100)width = 100;
+	else if (width < 0)width = 0;
+	width = w * (width / 100);
 
-	if (params.height > 100)params.height = 100;
-	else if (params.height < 0)params.height = 0;
-	params.height = h * (params.height / 100);
+	if (height > 100)height = 100;
+	else if (height < 0)height = 0;
+	height = h * (height / 100);
 
-	if (params.xPos > 100)params.xPos = 100;
-	else if (params.xPos < 0)params.xPos = 0;
-	int xx = w * (params.xPos / 100);
+	if (xPos > 100)xPos = 100;
+	else if (xPos < 0)xPos = 0;
+	int xx = w * (xPos / 100);
 
-	if (params.yPos > 100)params.yPos = 100;
-	else if (params.yPos < 0)params.yPos = 0;
-	int yy = h * (params.yPos / 100);
+	if (yPos > 100)yPos = 100;
+	else if (yPos < 0)yPos = 0;
+	int yy = h * (yPos / 100);
 
-	params.xPos = xx - (params.width / 2);
-	params.yPos = yy - (params.height / 2);
+	xPos = xx - (width / 2);
+	yPos = yy - (height / 2);
 
-	_iniTex = params.iniTex;
-	_hoverTex = params.hoverTex;
-	_clickedTex = params.clickedTex;
+	_iniTex = iniTex;
+	_hoverTex = hoverTex;
+	_clickedTex = clickedTex;
 
-	CreateImage(params.overlayName, params.xPos, params.yPos,
-		params.width, params.height, params.iniTex, params.depth);
+	CreateImage(overlayName, xPos, yPos,
+		width, height, iniTex, depth);
+
 	// Posiciones necesarias para el input de raton
 	// top + height
-	_topPosition = (int)params.yPos;
-	_bottomPosition = _topPosition + (int)params.height;
+	_topPosition = (int)yPos;
+	_bottomPosition = _topPosition + (int)height;
 	// left + width
-	_leftPosition = (int)params.xPos;
-	_rightPosition = _leftPosition + (int)params.width;
+	_leftPosition = (int)xPos;
+	_rightPosition = _leftPosition + (int)width;
 
-	_oldScale.first = params.width;
-	_oldScale.second = params.height;
+	_oldScale.first = width;
+	_oldScale.second = height;
 
-	_oldPos.first = params.xPos;
-	_oldPos.second = params.yPos;
+	_oldPos.first = xPos;
+	_oldPos.second = yPos;
 }
 
 void eden_ec::CButton::Start() {
@@ -78,22 +67,20 @@ void eden_ec::CButton::Start() {
 
 void eden_ec::CButton::Init(eden_script::ComponentArguments* args) {
 
-	ButtonParams params;
+	float xPos = args->GetValueToInt("XPos");
+	float yPos = args->GetValueToInt("YPos");
 
-	params.xPos = args->GetValueToInt("XPos");
-	params.yPos = args->GetValueToInt("YPos");
+	float width = args->GetValueToInt("Width");
+	float height = args->GetValueToInt("Height");
 
-	params.width = args->GetValueToInt("Width");
-	params.height = args->GetValueToInt("Height");
+	std::string iniTex = args->GetValueToString("Texture1");
+	std::string hoverTex = args->GetValueToString("Texture2");
+	std::string clickedTex = args->GetValueToString("Texture3");
 
-	params.iniTex = args->GetValueToString("Texture1");
-	params.hoverTex = args->GetValueToString("Texture2");
-	params.clickedTex = args->GetValueToString("Texture3");
+	std::string overlayName = args->GetValueToString("OverlayName");
+	int depth = args->GetValueToInt("Depth");
 
-	params.overlayName = args->GetValueToString("OverlayName");
-	params.depth = args->GetValueToInt("Depth");
-
-	CreateButton(params);
+	CreateButton(overlayName, xPos, yPos, width, height, iniTex, hoverTex, clickedTex, depth);
 	Register(_ent->GetSceneID());
 }
 

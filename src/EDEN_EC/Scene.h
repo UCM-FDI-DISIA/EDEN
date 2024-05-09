@@ -22,56 +22,56 @@ namespace eden {
 
 	/// @brief Clase que define una escena de juego. Tendra un render, un update y todos los metodos que se encarguen del manejo de los gameobjects que
 	/// la componen.
-	class EDEN_API Scene
+	class Scene
 	{
 		friend SceneManager;
 	public:
-		Scene(const std::string& ID, bool setDebugLog = false);
-		~Scene();
+		EDEN_API Scene(const std::string& ID, bool setDebugLog = false);
+		EDEN_API ~Scene();
 
 		/// @brief Metodo que devuelve el nombre identificativo de la escena
-		inline std::string GetSceneID() { return _ID; }
+		EDEN_API inline std::string GetSceneID() { return _ID; }
 
 		/// @brief Llama al render de todas las entidades de la escena
-		void Render();
+		EDEN_API void Render();
 
 		/// @brief Llama al update de todas las entidades de la escena
-		void Update(float dt);
+		EDEN_API void Update(float dt);
 
 		/// @brief Instancia una serie de entidades en la escena
 		/// @param info Informacion de las entidades a instanciar
-		void Instantiate(std::vector<eden_script::EntityInfo*> info);
+		EDEN_API void Instantiate(std::vector<eden_script::EntityInfo*> info);
 
 		/// @brief Al principio la ejecucion del juego, anade una entidad nueva al mapa de entidades 
 		/// @param id id Nombre de la entidad que se va a crear nueva
-		void AddNewGameObject(eden_ec::Entity* _ent);
+		EDEN_API void AddNewGameObject(eden_ec::Entity* _ent);
 
 		/// @brief Durante la ejecucion del juego, anade una entidad nueva al mapa de entidades 
 		/// @param id id Nombre de la entidad que se va a crear nueva
-		bool AddExistingGameObject(eden_ec::Entity* _ent);
+		EDEN_API bool AddExistingGameObject(eden_ec::Entity* _ent);
 
 		/// @brief Durante la ejecucion del juego, borra una entidad del mapa de entidades 
 		/// @param id id Nombre de la entidad que se va a borrar
-		bool RemoveGameObject(eden_ec::Entity* _ent);
+		EDEN_API bool RemoveGameObject(eden_ec::Entity* _ent);
 
 		/// @brief Devuleve una referencia a la camara actual 
-		inline eden_ec::Entity* GetCurrentCamara() { return _currentCamera; }
+		EDEN_API inline eden_ec::Entity* GetCurrentCamara() { return _currentCamera; }
 
 		/// @brief Cambia la referencia de la variable que indica cual es la camara actual  
 		/// @param cam Referencia a la nueva camara actual
-		inline void SetCurrentCamara(eden_ec::Entity* cam) { _currentCamera = cam; }
+		EDEN_API inline void SetCurrentCamara(eden_ec::Entity* cam) { _currentCamera = cam; }
 
 		/// @brief Aniade un componente a la entidad dado su tipo y los argumentos que requiera el
 		/// @tparam id Nombre de la entidad a la que queremos acceder
 		/// @return Componente creado
-		eden_ec::Entity* GetEntityByID(const std::string& ID);
+		EDEN_API eden_ec::Entity* GetEntityByID(const std::string& ID);
 
 		/// @brief Indica si la escena quiere renderizar sus elementos
-		inline void SetToRender(bool render) { _isRendering = render; }
+		EDEN_API inline void SetToRender(bool render) { _isRendering = render; }
 
 		/// @brief Devuelve la variable que indica si la escena se va a renderizar
 		/// @return _isRendering True = se renderiza | _isRendering = no se renderiza
-		inline bool GetToRender() { return _isRendering; }
+		EDEN_API inline bool GetToRender() { return _isRendering; }
 
 		/// @brief Instancia una entidad en la escena. Puede cambiarse su posicion y rotacion
 		/// @param info Informacion de una entidad 
@@ -79,10 +79,10 @@ namespace eden {
 		/// @param rot Nueva orientacion para entidad
 		/// @return Nueva entidad creada
 		/// @warning No se aplicaran cambios de posicion ni rotacion si la entidad NO tiene CTransform. NO se le pondra uno automaticamente.
-		eden_ec::Entity* Instantiate(eden_script::EntityInfo* info, eden_utils::Vector3 pos, eden_utils::Quaternion rot);
-		eden_ec::Entity* Instantiate(eden_script::EntityInfo* info, eden_utils::Vector3 pos);
-		eden_ec::Entity* Instantiate(eden_script::EntityInfo* info, eden_utils::Quaternion rot);
-		eden_ec::Entity* Instantiate(eden_script::EntityInfo* info);
+		EDEN_API eden_ec::Entity* Instantiate(eden_script::EntityInfo* info, eden_utils::Vector3 pos, eden_utils::Quaternion rot);
+		EDEN_API eden_ec::Entity* Instantiate(eden_script::EntityInfo* info, eden_utils::Vector3 pos);
+		EDEN_API eden_ec::Entity* Instantiate(eden_script::EntityInfo* info, eden_utils::Quaternion rot);
+		EDEN_API eden_ec::Entity* Instantiate(eden_script::EntityInfo* info);
 	private:
 		/// @brief Crea entidades con la informacion dada
 		/// @param info Informacion de las entidades que estan en la escena

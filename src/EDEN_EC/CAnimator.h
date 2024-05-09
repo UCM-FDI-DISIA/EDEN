@@ -21,48 +21,48 @@ namespace eden_ec {
 	class CMeshRenderer;
 	/// @brief El coponente CAnimator se encarga de manejar las animaciones, ademas de crear
 	/// e inicializar el Animator Wrapper y llamar a sus metodos
-	class EDEN_API CAnimator : public Component
+	class CAnimator : public Component
 	{
 	public:
 
-		CAnimator() = default;
-		~CAnimator() override;
+		EDEN_API CAnimator() = default;
+		EDEN_API ~CAnimator() override;
 
 		/// @brief Inicializa el componente, guardando los argumentos recibidos desde lua
 		/// @param args los argumentos que contienen informacion sobre las animaciones
-		void Init(eden_script::ComponentArguments* args) override;
+		EDEN_API void Init(eden_script::ComponentArguments* args) override;
 		/// @brief Actualiza las animaciones
 		/// @param dt El tiempo transcurrido desde el ultimo frame
-		void Update(float dt) override;
+		EDEN_API void Update(float dt) override;
 
 		/// @brief Se usa para guardar la referencia al CMeshRenderer y registrar las animaciones
-		void Awake() override;
+		EDEN_API void Awake() override;
 
 		/// @brief No usado
-		void Start() override {};
+		EDEN_API void Start() override {};
 		/// @brief Devuelve el identificador del componente
 		/// @return Identificador del componente
-		static std::string GetID() { return "ANIMATOR"; }
+		EDEN_API static std::string GetID() { return "ANIMATOR"; }
 
 		/// @brief Permite reproducir una animacion
 		/// @param ID Identificador de la animacion que se quiera reproducir
-		void PlayAnim(std::string ID);
+		EDEN_API void PlayAnim(std::string ID);
 		/// @brief Detiene la animacion que se estuviera reproduciendo
-		void StopAnim();
+		EDEN_API void StopAnim();
 		/// @brief Se llama al acabar una animacion y reproduce la animacion que se haya indicado en 
 		/// los argumentos
-		void OnAnimEnd();
+		EDEN_API void OnAnimEnd();
 		/// @brief Permite guardar la animacion que queremos que se reproduzca cuando otra acabe
 		/// @param animID La animacion indicada
 		/// @param endAnimID La animacion final
-		void SetOnAnimEnd(std::string animID, std::string endAnimID);
+		EDEN_API void SetOnAnimEnd(std::string animID, std::string endAnimID);
 		/// @brief Devuelve la animacion que se este reproduciendo actualmente
 		/// @return Identificador de la animacion actual
-		std::string GetCurrentAnim();
+		EDEN_API std::string GetCurrentAnim();
 		/// @brief Permite saber si ha acabado la animacion
 		/// @param animID Identificador de la animacion indicada 
 		/// @return bool que indica si la animacion actual se esta reproduciendo o ha acabado
-		bool IsPlaying(std::string animID);
+		EDEN_API bool IsPlaying(std::string animID);
 
 	private:
 		/// @brief Inicializa el Wrapper de animaciones y el CMeshRenderer si por alguna 

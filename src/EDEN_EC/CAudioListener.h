@@ -10,30 +10,30 @@ namespace eden_ec {
     class CTransform;
     /// Clase que se encargara de proporcionar funcionalidad a un listener. El listener es necesario para audio en 3D, y necesitara de un AudioEmitter para poder escuchar audio.
     /// Solo se podra tener un AudioListener por escena, ya que no hay soporte para multiples listeners.
-    class EDEN_API CAudioListener : public eden_ec::Component {
+    class CAudioListener : public eden_ec::Component {
     public:
         /// @brief Constructora por defecto del listener de audio
-        CAudioListener() = default;
+        EDEN_API CAudioListener() = default;
         
         /// @brief Destructora por defecto del listener de audio
-        ~CAudioListener() = default;
+        EDEN_API ~CAudioListener() = default;
 
         /// @brief Construye el componente dado unos argumentos. Se obtendr�n de una lectura de un .lua
         /// @param args Argumentos le�dos de .lua
-        void Init(eden_script::ComponentArguments* args) override {};
+        EDEN_API void Init(eden_script::ComponentArguments* args) override {};
         
         /// @brief No usado
-        void Awake() override {};
+        EDEN_API void Awake() override {};
 
         /// @brief Usaremos este metodo para aniadir referencias de otros componentes
-        void Start() override;
+        EDEN_API void Start() override;
 
         /// @brief Metodo ejecutado cada frame
         /// @param t Tiempo transcurrido desde el ultimo frame
-        void Update(float t) override;
+        EDEN_API void Update(float t) override;
 
         /// @brief Definici�n de m�todo est�tico GetID necesario para construcci�n de componentes
-        inline static std::string GetID() { return "AUDIO_LISTENER"; }
+        EDEN_API inline static std::string GetID() { return "AUDIO_LISTENER"; }
     private:
 
         /// @brief Transform de la entidad sobre la que se engancha el listener

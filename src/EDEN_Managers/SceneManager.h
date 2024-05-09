@@ -75,6 +75,11 @@ public:
 	/// @return Devuelve el puntero a una entidad, devolverá nullptr si la entidad no existe en la escena
 	EDEN_API eden_ec::Entity* FindEntity(std::string ID);
 
+	/// @brief Busca todas las entidades con un componente dado y las devuelve
+	/// @param componentID Componente a buscar
+	/// @return Vector con todas las entidades que contengan ese component
+	EDEN_API std::vector<eden_ec::Entity*> GetEntitiesWithComponent(std::string componentID);
+
 	/// @brief Crea una instancia de un blueprint en la escena. Puede cambiarse su posición y rotación
 	/// @param blueprintID el ID del blueprint a instanciar en la escena.
 	/// @param pos Nueva posición para entidad

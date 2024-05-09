@@ -18,6 +18,19 @@ namespace eden {
 		_ID = ID;
 	}
 
+	std::vector<eden_ec::Entity*> Scene::GetEntitiesWithComponent(std::string componentID) {
+		std::vector<eden_ec::Entity*> vec = std::vector<eden_ec::Entity*>();
+		for (auto it : _gameEntitiesList) {
+			if (it.second.first->HasComponent(componentID)) vec.push_back(it.second.first);
+		}
+
+		for (auto it : _newEntities[_currentIteration]) {
+			if (it.second->HasComponent(componentID)) vec.push_back(it.second);
+		}
+
+		return vec;
+	}
+
 	eden_ec::Entity* Scene::Instantiate(eden_script::EntityInfo* info) {
 		// Decimos que estamos leyendo por consola
 #ifdef _DEBUG

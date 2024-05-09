@@ -95,6 +95,8 @@ namespace eden {
 		/// @brief Llama al Start de las entidades que van a aniadirse a la escena. Se hace al principio de cada frame si nuevas entidades se añadieron a la escena en el frame anterior
 		void StartEntities();
 
+		std::vector<eden_ec::Entity*> GetEntitiesWithComponent(std::string componentID);
+
 		///@brief identificador de escena
 		std::string _ID;
 

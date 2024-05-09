@@ -115,8 +115,8 @@ namespace eden_ec {
         /// @param T Tipo del componente
         /// @return Un booleano indicando si la entidad tiene o no el componente pedido
         template<typename T>
-        Component* HasComponent() {
-            return hasComponent(T::GetID());
+        bool HasComponent() {
+            return HasComponent(T::GetID());
         };
 
         /// @brief Llama al update de todos los componentes de una entidad

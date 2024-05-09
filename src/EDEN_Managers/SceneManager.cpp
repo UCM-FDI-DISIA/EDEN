@@ -35,6 +35,19 @@ namespace eden {
 		return e;
 	}
 
+	std::vector<eden_ec::Entity*> SceneManager::GetEntitiesWithComponent(std::string componentID)
+	{
+		std::vector<eden_ec::Entity*> vec1 = GetCurrentScene()->GetEntitiesWithComponent(componentID);
+		std::vector<eden_ec::Entity*> vec2 = _dontDestroyOnLoadScene->GetEntitiesWithComponent(componentID);
+
+		std::vector<eden_ec::Entity*> result;
+		result.reserve(vec1.size() + vec2.size());
+		result.insert(result.end(), vec1.begin(), vec1.end());
+		result.insert(result.end(), vec2.begin(), vec2.end());
+		
+		return result;
+	}
+
 	SceneManager::SceneManager() {
 		eden_script::ScriptManager* scriptManager = eden_script::ScriptManager::Instance();
 		std::vector<eden_script::EntityInfo*> blueprints;

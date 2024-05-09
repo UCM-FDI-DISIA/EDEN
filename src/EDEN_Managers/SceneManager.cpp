@@ -84,7 +84,7 @@ namespace eden {
 		eden_render::RenderManager::Instance()->CreateRenderScene(ID);
 		physics_manager::PhysicsManager::Instance()->CreatePhysicsScene(ID);
 		eden_audio::AudioManager::Instance()->CreateAudioScene(ID);
-		Scene* newSc = new Scene(ID);
+		Scene* newSc = new Scene(ID, _debugLog);
 		try {
 			newSc->InitScene(info, collisionInfo);
 		}

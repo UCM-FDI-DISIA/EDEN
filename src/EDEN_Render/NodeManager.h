@@ -126,8 +126,10 @@ namespace render_wrapper {
 		/// @brief Metodo privado para asegurarnos que nadie tenga acceso a los nodos de Ogre
 		/// Busca en el unordered_map el nodo asociado a la ID de una entidad
 		/// @param id Identificador de la Entidad asociada para buscar su nodo
+		/// @param sceneID Identificador de la escena asociada para buscar su nodo
+		/// @param showWarnings Booleano para mostrar warnings de error en caso de no encontrar el nodo
 		/// @return Devuelve el nodo para poder realizar cualquier accion sobre el
-		Ogre::SceneNode* FindNode(const std::string id, const std::string sceneID);
+		Ogre::SceneNode* FindNode(const std::string id, const std::string sceneID, bool showWarnings = true);
 
 		/// @brief Metodos para poder convertir los vectores y cuaterniones de Ogre en los nuestros propios de EDEN
 		eden_utils::Vector3 ConvertToEdenVector(const Ogre::Vector3 ogreVector);

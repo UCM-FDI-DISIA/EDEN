@@ -1,6 +1,6 @@
 #include "Export.h"
 #include <iostream>
-#define _DEBUG
+
 int main(int argc, char* argv[]) {
 	// Memory Leaks Check
 #ifdef _MSC_VER

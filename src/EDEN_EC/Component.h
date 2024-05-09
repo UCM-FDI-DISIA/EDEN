@@ -34,6 +34,18 @@ namespace eden_ec {
         /// @brief Maneja la entrada del usuario
         virtual void HandleInput() {}
 
+        /// @brief Metodo que desactiva el componente (No se llama su update)
+        /// @param active Booleano para activar o desactivar el componente
+        inline void SetActive(bool active) {
+            _active = active;
+        }
+
+        /// @brief Comprueba si el componente esta activo
+        /// @return True si el componente esta activo, false en caso contrario
+        inline bool IsActive() {
+            return _active;
+        }
+
     protected:
         /// @brief Referencia a la entidad que contiene este componente
         Entity* _ent = nullptr;
@@ -56,6 +68,8 @@ namespace eden_ec {
         /// @brief Usaremos este método para añadir referencias de otros componentes
         virtual void Start() = 0;
 
+        /// @brief Booleano para saber si el componente esta activo
+        bool _active = true;
 	};
 }
 #endif // COMPONENT_H

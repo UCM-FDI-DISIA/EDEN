@@ -23,8 +23,11 @@ namespace eden_debug {
 	class EDEN_API DebugDrawer : public btIDebugDraw
 	{
 	public:
-
+		/// @brief Constructora publica de la clase
+		/// @param id Identificador de la instancia
+		/// @param sceneID Identificador de la escena
 		DebugDrawer(std::string id, std::string sceneID);
+		/// @brief Destructora publica de la clase
 		~DebugDrawer() override;
 
 		/// @brief Elimina todas las lineas dibujadas hasta el momento
@@ -41,7 +44,7 @@ namespace eden_debug {
 		/// @param color Color de las lineas que se van a dibujar
 		void drawRigidBody(btRigidBody* rb, const btVector3& color);
 
-		/// @brief No se usa
+		/// @brief Necesario para override
 		/// @param PointOnB 
 		/// @param normalOnB 
 		/// @param distance 
@@ -50,11 +53,11 @@ namespace eden_debug {
 		void drawContactPoint(const btVector3& PointOnB, const btVector3& normalOnB, btScalar distance, int lifeTime,
 			const btVector3& color) override;
 
-		/// @brief No se usa
+		/// @brief Necesario para override
 		/// @param warningString Tipo de error recogido como cadena de caracteres
 		void reportErrorWarning(const char* warningString) override;
 
-		/// @brief Dibuja texto en 3d (No se usa)
+		/// @brief Necesario para override
 		/// @param location Lugar del mundo donde se quiere posicionar
 		/// @param textString Texto que se quiere escribir
 		void draw3dText(const btVector3& location, const char* textString) override;
@@ -73,10 +76,10 @@ namespace eden_debug {
 
 		/// @brief Vector con todas las aristas que se vayan a dibujar
 		std::vector<Ogre::MovableObject*> _lines;
-
-		std::string _id;
-
-		std::string _sceneID;
+		/// @brief Id propia de cada instancia de la clase
+		std::string _id = " ";
+		/// @brief ID de la escena
+		std::string _sceneID = " ";
 	};
 
 }

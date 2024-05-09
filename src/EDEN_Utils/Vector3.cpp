@@ -133,15 +133,15 @@ std::array<std::array<float, 3>, 3> eden_utils::Vector3::GetRotationMatrix(Vecto
 	float u = axisNormalized.GetX(), v = axisNormalized.GetY(), w = axisNormalized.GetZ();
 
 	std::array<std::array<float, 3>, 3> rotMat;
-	rotMat[0][0] = cos(angle) + ((u * u) * (1 - cos(angle)));
-	rotMat[0][1] = (u * v + (1 - cos(angle)) - w * sin(angle));
-	rotMat[0][2] = (u * w * (1 - cos(angle)) + v * sin(angle));
-	rotMat[1][0] = (u * v * (1 - cos(angle)) + w * sin(angle));
-	rotMat[1][1] = cos(angle) + ((v * v) * (1 - cos(angle)));
-	rotMat[1][2] = (v * w * (1 - cos(angle)) - u * sin(angle));
-	rotMat[2][0] = (u * w * (1 - cos(angle)) - v * sin(angle));
-	rotMat[2][1] = (v * w * (1 - cos(angle)) + u * sin(angle));
-	rotMat[2][2] = cos(angle) + ((w * w) * (1 - cos(angle)));
+	rotMat[0][0] = (float)(cos(angle) + ((u * u) * (1 - cos(angle))));
+	rotMat[0][1] = (float)((u * v + (1 - cos(angle)) - w * sin(angle)));
+	rotMat[0][2] = (float)((u * w * (1 - cos(angle)) + v * sin(angle)));
+	rotMat[1][0] = (float)((u * v * (1 - cos(angle)) + w * sin(angle)));
+	rotMat[1][1] = (float)(cos(angle) + ((v * v) * (1 - cos(angle))));
+	rotMat[1][2] = (float)((v * w * (1 - cos(angle)) - u * sin(angle)));
+	rotMat[2][0] = (float)((u * w * (1 - cos(angle)) - v * sin(angle)));
+	rotMat[2][1] = (float)((v * w * (1 - cos(angle)) + u * sin(angle)));
+	rotMat[2][2] = (float)(cos(angle) + ((w * w) * (1 - cos(angle))));
 
 	return rotMat;
 }

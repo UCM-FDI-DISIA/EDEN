@@ -30,8 +30,12 @@ namespace eden_debug {
 	class __declspec(dllexport) Debug
 	{
 	public:
+		/// @brief Constructora publica de la clase
+		/// @param id Nombre del nodo de Ogre
+		/// @param sceneID Identificador de la escena
 		Debug(std::string id, std::string sceneID);
 
+		/// @brief Destructora publica de la clase
 		~Debug();
 
 		/// @brief Borrar las lineas actuales en pantalla
@@ -47,6 +51,9 @@ namespace eden_debug {
 		/// @param mode Modo pasado como int
 		void SetDebugMode(int mode);
 
+		/// @brief Dibuja el RigidBody (del color que se le indique)
+		/// @param rb El RigidBody a dibujar
+		/// @param color El color del que queramos que se pinte el RigidBody
 		void DrawRigidBody(eden_ec::CRigidBody* rb, const eden_utils::Vector3& color);
 
 		/// @brief Obtiene el modo de debug actual
@@ -58,7 +65,7 @@ namespace eden_debug {
 		DebugDrawer* _debugDrawer;
 
 		/// @brief Id propia de cada instancia de la clase
-		std::string _id;
+		std::string _id = " ";
 
 		/// @brief Traduce un vector del motor a vector de Bullet
 		/// @param vector Vector del motor que quieres traducir

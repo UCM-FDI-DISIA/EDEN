@@ -23,10 +23,10 @@ namespace audio_wrapper {
 	class AudioEngine : public Singleton<AudioEngine> {
 		friend Singleton<AudioEngine>;
 	public:
-		/// Destructora por defecto del wrapper del motor de sonido
+		/// @brief Destructora por defecto del wrapper del motor de sonido
 		~AudioEngine() override;
 
-		/// Metodo para crear una fuente de sonido a partir de un archivo mp3, ogg o wav
+		/// @brief Metodo para crear una fuente de sonido a partir de un archivo mp3, ogg o wav
 		/// @param file Ruta del archivo
 		/// @return Un puntero a una fuente de sonido propia de Irrklang
 		irrklang::ISoundSource* CreateSoundSource(std::string file);
@@ -35,14 +35,14 @@ namespace audio_wrapper {
 		/// @param source Un puntero a una fuente de sonido propia de irrklang
 		void RemoveSoundSource(irrklang::ISoundSource* source);
 
-		/// Metodo para reproducir un sonido en un espacio bidimensional o en su defecto en toda
+		/// @brief Metodo para reproducir un sonido en un espacio bidimensional o en su defecto en toda
 		/// una escena, esto es, que no va por coordenadas
 		/// @param soundSource Fuente del sonido a reproducir
 		/// @param loop Si el sonido se quiere reproducir en bucle se pondra en true, si no, en false (false por defecto)
 		/// @return Un puntero a un sonido de Irrklang, el cual sirve para poder trackearlo en caso de que se necesite
 		irrklang::ISound* Play(irrklang::ISoundSource* soundSource, bool loop = false);
 
-		/// Metodo para reproducir un sonido en un espacio tridimensional, esto es, que necesita unas coordenadas
+		/// @brief Metodo para reproducir un sonido en un espacio tridimensional, esto es, que necesita unas coordenadas
 		/// donde se pueda reproducir
 		/// @param soundSource Fuente del sonido a reproducir
 		/// @param position Posicion desde donde se quiere emitir el sonido
@@ -67,10 +67,10 @@ namespace audio_wrapper {
 		/// @return Vector de Irrklang
 		static irrklang::vec3df EdenVecToIrrklangVec(eden_utils::Vector3 vector);
 	private:
-		/// Constructora por defecto de la clase AudioWrapper. Privada ya que es un singleton.
+		/// @brief Constructora por defecto de la clase AudioWrapper. Privada ya que es un singleton.
 		AudioEngine();
 
-		/// Puntero al motor de sonido de Irrklang desde el que se crearan todos los sonidos
+		/// @brief Puntero al motor de sonido de Irrklang desde el que se crearan todos los sonidos
 		irrklang::ISoundEngine* _soundEngine = nullptr;
 	};
 }

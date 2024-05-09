@@ -27,11 +27,11 @@ void eden_ec::CText::Create(std::string overlayName, float xPos, float yPos, flo
 
 	if (xPos > 100)xPos = 100;
 	else if (xPos < 0)xPos = 0;
-	int xx = w * (xPos / 100);
+	int xx = w * (int)(xPos / 100);
 
 	if (yPos > 100)yPos = 100;
 	else if (yPos < 0)yPos = 0;
-	int yy = h * (yPos / 100);
+	int yy = h * (int)(yPos / 100);
 
 
 	xPos = xx - (tam * text.length() / 2);

@@ -67,11 +67,11 @@ void eden_ec::CButton::Start() {
 
 void eden_ec::CButton::Init(eden_script::ComponentArguments* args) {
 
-	float xPos = args->GetValueToInt("XPos");
-	float yPos = args->GetValueToInt("YPos");
+	float xPos = args->GetValueToFloat("XPos");
+	float yPos = args->GetValueToFloat("YPos");
 
-	float width = args->GetValueToInt("Width");
-	float height = args->GetValueToInt("Height");
+	float width = args->GetValueToFloat("Width");
+	float height = args->GetValueToFloat("Height");
 
 	std::string iniTex = args->GetValueToString("Texture1");
 	std::string hoverTex = args->GetValueToString("Texture2");

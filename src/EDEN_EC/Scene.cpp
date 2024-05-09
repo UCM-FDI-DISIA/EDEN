@@ -99,6 +99,7 @@ namespace eden {
 			AddNewGameObject(ent);
 			return ent;
 		}
+		return nullptr;
 	}
 
 	void Scene::InitScene(std::vector<eden_script::EntityInfo*>& info, std::unordered_map<std::string, std::vector<std::string>>& collisionInfo)

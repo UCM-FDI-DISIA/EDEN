@@ -410,9 +410,9 @@ void eden_render::RenderManager::SetResolutions(std::vector<std::pair<int, int>>
 
 	std::pair<int, int> res;
 	for (int i = 0; i < resolutions.size(); i++) {
-		if (resolutions[i].first < _fullW && resolutions[i].second < _fullH) {
+		if (resolutions[i].first < _fullW && resolutions[i].second < (int)_fullH) {
 			res = { resolutions[i].first,resolutions[i].second };
-			aux[res.first + (sqrt(res.first * res.first + res.second * res.second))] = res;
+			aux[res.first + (int)(sqrt(res.first * res.first + res.second * res.second))] = res;
 		}
 	}
 	_resolutions.clear();
@@ -447,7 +447,7 @@ void eden_render::RenderManager::PreviousResolution()
 {
 	if (!_isFullScreen) {
 		_currRes--;
-		if (_currRes < 0)_currRes = _resolutions.size() - 1;
+		if (_currRes < 0)_currRes = (int)(_resolutions.size() - 1);
 	}
 }
 

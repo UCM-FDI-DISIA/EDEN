@@ -57,6 +57,8 @@ namespace render_wrapper {
 namespace eden_render
 {
 	class InfoRenderWorld;
+	/// @brief Se encarga de inicializar el sistema de renderizado y renderizar en cada frame
+	/// los objetos de la escena
 	class RenderManager : public Singleton<RenderManager>
 	{
 	public:
@@ -99,6 +101,8 @@ namespace eden_render
 		/// @param grab Activa o desactiva la funcionalidad del metodo
 		EDEN_API void SetWindowGrab(bool grab);
 
+		/// @brief Setea la posicion del raton como relativa a la posicion anterior o al centro de la pantalla
+		/// @param relative Booleano que indica el modo del raton
 		EDEN_API void SetRelativeMouseMode(bool relative);
 
 		/// @brief Actualiza todas las posiciones de la escena con su componente Transform
@@ -230,37 +234,37 @@ namespace eden_render
 		bool CheckPlugins(std::string& path);
 
 		/// @brief Raiz de Ogre
-		Ogre::Root* _root;
+		Ogre::Root* _root = nullptr;
 
 		/// @brief Sistema de Overlay
-		Ogre::OverlaySystem* _overlaySys;
+		Ogre::OverlaySystem* _overlaySys = nullptr;
 
 		/// @brief Gestor de escenas
 		std::unordered_map<std::string, InfoRenderWorld*> _renderScenes;
 
 		/// @brief Escena actual de render
-		InfoRenderWorld* _currentRenderScene;
+		InfoRenderWorld* _currentRenderScene = nullptr;
 
 		/// @brief Ventana principal
 		NativeWindowPair _window;
 
 		/// @brief Capa de abstraccion del sistema de archivos
-		Ogre::FileSystemLayer* _fsLayer;
+		Ogre::FileSystemLayer* _fsLayer = nullptr;
 
 		/// @brief Nombre de la ventana
-		std::string _appName;
+		std::string _appName = " ";
 
 		/// @brief Localizacion de recursos de Ogre
-		std::string _solutionPath;
+		std::string _solutionPath = " ";
 
 		/// @brief Localizacion de recursos de la aplicacion
 		const std::string _resourcesPath = "assets\\";
 
 		/// @brief Localizacion de libreria del RTShader
-		std::string _rtShaderLibPath;
+		std::string _rtShaderLibPath = " ";
 
 		/// @brief Instancia de generador de sombreado
-		Ogre::RTShader::ShaderGenerator* _shaderGenerator;
+		Ogre::RTShader::ShaderGenerator* _shaderGenerator = nullptr;
 
 		/// @brief Flag para saber si se ha podido inicializar el manager
 		bool _initialized = true;
@@ -304,22 +308,22 @@ namespace eden_render
 		~InfoRenderWorld();
 
 		/// @brief Manager de Ogre
-		Ogre::SceneManager* _renderScene;
+		Ogre::SceneManager* _renderScene = nullptr;
 
 		/// @brief ID de la escena
-		std::string _sceneID;
+		std::string _sceneID = " ";
 
 		/// @brief Conjunto de entidades para actualizar su posicion
 		std::unordered_set<eden_ec::Entity*> _entities;
 
 		/// @brief Sistema de overlay
-		Ogre::OverlaySystem* _overlaySystem;
+		Ogre::OverlaySystem* _overlaySystem = nullptr;
 
 		/// @brief Raiz de Ogre
-		Ogre::Root* _root;
+		Ogre::Root* _root = nullptr;
 
 		/// @brief Wrapper de la camara de la escena
-		render_wrapper::CameraWrapper* _cameraWrapper;
+		render_wrapper::CameraWrapper* _cameraWrapper = nullptr;
 
 		/// @brief Manager de la escena
 		/// @return Manager de la escena 

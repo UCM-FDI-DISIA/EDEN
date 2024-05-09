@@ -31,7 +31,7 @@ namespace audio_wrapper {
 		irrklang::ISoundSource* _soundSource = nullptr;
 
 		/// @brief Nombre del archivo de sonido
-		std::string _filename;
+		std::string _filename = " ";
 	};
 }
 

@@ -55,12 +55,16 @@ namespace eden_audio {
         /// @return Float con el volumen general del motor
         EDEN_API float GetGlobalVolume() const;
 
+        /// @brief Devuelve una instancia al AudioManager
+        /// @return Una referencia a la instancia de AudioManager
         EDEN_API static AudioManager* GetInstance();
 
         /// @brief Metodo que actualiza el estado de los sonidos de la escena actual, parandolos si han acabado.
         /// @param dt Delta time
         EDEN_API void Update(float dt);
 
+        /// @brief Anyade una entidad con componente de audio a una escena que no se destruye al cambiar escenas
+        /// @param e La referencia a la entidad
         EDEN_API void AddAudioEntityToDontDestroyOnLoad(eden_ec::Entity* e);
 
     private:

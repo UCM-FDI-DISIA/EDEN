@@ -36,19 +36,19 @@ namespace audio_wrapper {
         irrklang::ISound* _sound = nullptr;
 
         /// Nombre del archivo asociado al sonido
-        std::string _filename;
+        std::string _filename = " ";
 
         /// Booleano que indica si el sonido es o no es tridimensional
-        bool _threeDimensional;
+        bool _threeDimensional = false;
 
         /// @brief Volumen sin haber sido multiplicado por el volumen general
-        float _volumeWithoutGeneralMixing;
+        float _volumeWithoutGeneralMixing = 0.0f;
 
         /// @brief Volumen habiendose multiplicado por el volumen general
-        float _volumeWithGeneralMixing;
+        float _volumeWithGeneralMixing = 0.0f;
 
         /// @brief Booleano que indica si el volumen del sonido está siendo afectado por el volumen general o no
-        bool _isBeingMixed;
+        bool _isBeingMixed = false;
 
         /// Reproduce un sonido en un espacio 2D, sin coordenadas, por toda la escena o el espacio.
         /// @param loop Si el sonido se quiere reproducir en bucle se pondra en true, si no, en false (false por defecto)

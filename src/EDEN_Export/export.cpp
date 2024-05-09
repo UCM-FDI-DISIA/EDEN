@@ -39,6 +39,7 @@
 #include "CCamera.h"
 #include "CParticleEmitter.h"
 #include "CLight.h"
+#include "CEDENScene.h"
 
 /// Engine Physics
 #include "CRigidBody.h"
@@ -78,6 +79,7 @@ void RegisterEngineComponents() {
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CParticleEmitter>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CAudioEmitter>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CAudioListener>();
+	//eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CEDENScene>();
 }
 
 void eden_export::RunEDEN()
@@ -109,8 +111,7 @@ void eden_export::RunEDEN()
 			typedef void (*CompFunc)();
 			CompFunc RegisterGameComponents = reinterpret_cast<CompFunc>(GetProcAddress(game, "RegisterComponents"));
 
-			typedef void (*SceneFunc)();
-			SceneFunc LoadScene = reinterpret_cast<SceneFunc>(GetProcAddress(game, "LoadScene"));
+			LoadScene = reinterpret_cast<SceneFunc>(GetProcAddress(game, "LoadScene"));
 
 			if (LoadScene == NULL) {
 				throw std::domain_error("no existe la funcion de carga de escena");
@@ -130,6 +131,7 @@ void eden_export::RunEDEN()
 				scnManager = eden::SceneManager::Instance(); // creaci�n instancia de gestor de escenas
 				eden_input::InputManager::Instance();
 				LoadScene(); // carga de escena del juego
+				//scnManager->PushScene("EDENScene");
 				master->Loop(); // bucle de juego
 			}
 		}
@@ -145,4 +147,8 @@ void eden_export::StopEDEN()
 	master->Close();
 	FreeLibrary(game); // liberaci�n de memoria de la .dll del juego
 	errorHandler->Close();
+}
+
+SceneFunc eden_export::GetLoadScene() {
+	return LoadScene;
 }

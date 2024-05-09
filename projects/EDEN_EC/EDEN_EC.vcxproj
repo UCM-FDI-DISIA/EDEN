@@ -18,6 +18,7 @@
     <ClInclude Include="..\..\src\EDEN_EC\CButton.h" />
     <ClInclude Include="..\..\src\EDEN_EC\CCamera.h" />
     <ClInclude Include="..\..\src\EDEN_EC\CCursor.h" />
+    <ClInclude Include="..\..\src\EDEN_EC\CEDENScene.h" />
     <ClInclude Include="..\..\src\EDEN_EC\CImage.h" />
     <ClInclude Include="..\..\src\EDEN_EC\CLight.h" />
     <ClInclude Include="..\..\src\EDEN_EC\CLuaBehaviour.h" />
@@ -38,6 +39,7 @@
     <ClCompile Include="..\..\src\EDEN_EC\CButton.cpp" />
     <ClCompile Include="..\..\src\EDEN_EC\CCamera.cpp" />
     <ClCompile Include="..\..\src\EDEN_EC\CCursor.cpp" />
+    <ClCompile Include="..\..\src\EDEN_EC\CEDENScene.cpp" />
     <ClCompile Include="..\..\src\EDEN_EC\CImage.cpp" />
     <ClCompile Include="..\..\src\EDEN_EC\CLight.cpp" />
     <ClCompile Include="..\..\src\EDEN_EC\CLuaBehaviour.cpp" />

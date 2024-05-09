@@ -474,8 +474,8 @@ void eden_render::RenderManager::SetWindowIcon(std::string filename) {
 			SDL_SetWindowIcon(_window.native, srfc);
 			SDL_FreeSurface(srfc);
 			srfc = nullptr;
-			_rm = nullptr;
 		}
+		_rm = nullptr;
 	}
 }
 

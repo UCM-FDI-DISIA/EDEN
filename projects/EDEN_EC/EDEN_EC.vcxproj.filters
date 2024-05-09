@@ -36,7 +36,7 @@
     <ClInclude Include="..\..\src\EDEN_EC\CCursor.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\EDEN_EC\CIMage.h">
+    <ClInclude Include="..\..\src\EDEN_EC\CImage.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\EDEN_EC\CLight.h">
@@ -95,7 +95,7 @@
     <ClCompile Include="..\..\src\EDEN_EC\CCursor.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\EDEN_EC\CIMage.cpp">
+    <ClCompile Include="..\..\src\EDEN_EC\CImage.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\EDEN_EC\CLight.cpp">

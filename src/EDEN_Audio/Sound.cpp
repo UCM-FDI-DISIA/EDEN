@@ -1,4 +1,3 @@
-#define _CRTDBG_MAP_ALLOC
 #include <irrKlang.h>
 
 #include "Sound.h"

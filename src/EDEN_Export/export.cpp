@@ -1,5 +1,3 @@
-// Memory Leaks Check
-#define _CRTDBG_MAP_ALLOC
 #include <stdlib.h>
 #ifdef _MSC_VER
 #include <crtdbg.h>

@@ -1,4 +1,3 @@
-#define _CRTDBG_MAP_ALLOC
 #ifndef EDEN_CANVAS_H
 #define EDEN_CANVAS_H
 

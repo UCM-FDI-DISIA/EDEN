@@ -1,4 +1,3 @@
-#define _CRTDBG_MAP_ALLOC
 #include "CBar.h"
 #include <RenderManager.h>
 #include <ScriptManager.h>

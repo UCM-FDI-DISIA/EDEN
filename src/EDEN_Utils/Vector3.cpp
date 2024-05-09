@@ -1,4 +1,3 @@
-#define _CRTDBG_MAP_ALLOC
 #include <math.h>
 #include <assert.h>
 

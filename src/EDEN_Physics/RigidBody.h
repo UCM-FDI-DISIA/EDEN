@@ -1,4 +1,3 @@
-#define _CRTDBG_MAP_ALLOC
 #ifndef EDEN_RIGIDBODYWRAPPER_H
 #define EDEN_RIGIDBODYWRAPPER_H
 #include <string>

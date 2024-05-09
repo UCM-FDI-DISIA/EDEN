@@ -1,4 +1,3 @@
-#define _CRTDBG_MAP_ALLOC
 #ifdef _DEBUG
 #include <iostream>
 #endif

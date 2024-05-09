@@ -1,4 +1,3 @@
-#define _CRTDBG_MAP_ALLOC
 #ifndef PARTICLE_SYSTEM_H
 #define PARTICLE_SYSTEM_H
 

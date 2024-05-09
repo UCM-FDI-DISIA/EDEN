@@ -1,4 +1,3 @@
-#define _CRTDBG_MAP_ALLOC
 #ifndef EDEN_INPUT_WRAPPER_H
 #define EDEN_INPUT_WRAPPER_H
 

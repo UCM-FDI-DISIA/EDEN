@@ -1,4 +1,3 @@
-#define _CRTDBG_MAP_ALLOC
 #pragma warning(push)
 #pragma warning(disable : 26495)
 #include <BulletCollision/CollisionShapes/btBoxShape.h>

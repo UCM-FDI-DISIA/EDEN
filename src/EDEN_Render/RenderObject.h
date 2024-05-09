@@ -1,4 +1,3 @@
-#define _CRTDBG_MAP_ALLOC
 #ifndef EDEN_RENDER_OBJECT_H
 #define EDEN_RENDER_OBJECT_H
 

@@ -1,4 +1,3 @@
-#define _CRTDBG_MAP_ALLOC
 #ifndef EDEN_SCENE_MANAGER_H
 #define EDEN_SCENE_MANAGER_H
 

@@ -1,4 +1,3 @@
-#define _CRTDBG_MAP_ALLOC
 #include "CMeshRenderer.h"
 #include <RenderManager.h>
 #include <ComponentArguments.h>

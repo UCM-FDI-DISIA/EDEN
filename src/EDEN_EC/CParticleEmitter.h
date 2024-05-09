@@ -1,5 +1,4 @@
-﻿#define _CRTDBG_MAP_ALLOC
-#ifndef CPARTICLE_SYSTEM_H
+﻿#ifndef CPARTICLE_SYSTEM_H
 #define CPARTICLE_SYSTEM_H
 
 #ifdef _MSC_VER

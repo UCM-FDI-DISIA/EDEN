@@ -1,4 +1,3 @@
-#define _CRTDBG_MAP_ALLOC
 #ifndef EDEN_LIGHT_H
 #define EDEN_LIGHT_H
 

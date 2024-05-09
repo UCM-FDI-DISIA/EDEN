@@ -1,4 +1,3 @@
-#define _CRTDBG_MAP_ALLOC
 #ifndef EDEN_C_RIGIDBODY_H
 #define EDEN_C_RIGIDBODY_H
 

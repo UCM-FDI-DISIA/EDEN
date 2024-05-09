@@ -91,9 +91,9 @@ void eden_ec::UIComponent::SetMaterial(std::string const& matName) {
 	eden_resources::ResourcesManager::Resources res = eden_resources::ResourcesManager::UI;
 	if (material == "default.png") res = eden_resources::ResourcesManager::Default;
 	if (!eden_resources::ResourcesManager::Instance()->FileExist(material, res)) {
-		if (material == "default.png")eden_error::ErrorHandler::Instance()->Exception("[SPY ERROR]:Load Material Error", "Failed to load Texture: " + matName);
+		if (material == "default.png")eden_error::ErrorHandler::Instance()->Exception("Texture not found", "UIComponent ERROR in line 93, texture not found: " + matName);
 		else { 
-			eden_error::ErrorHandler::Instance()->Warning("No se ha encontrado el material: "+ material);
+			eden_error::ErrorHandler::Instance()->Warning("Material not found: "+ material);
 			material = "default.png"; 
 			SetMaterial("default.png");
 		}
@@ -104,12 +104,12 @@ void eden_ec::UIComponent::SetMaterial(std::string const& matName) {
 		}
 		catch (std::exception e) {
 			if (material != "default.png") {
-				eden_error::ErrorHandler::Instance()->Warning("No se ha podido cargar el material: " + material);
+				eden_error::ErrorHandler::Instance()->Warning("Material could not be loaded: " + material);
 				SetMaterial("default.png");
 			}
 			else {
-				if (material != "default.png")eden_error::ErrorHandler::Instance()->Exception("[SPY ERROR]:Load Material Error", "Failed to load file of Material in UI_MATERIALS folder: " + material);
-				else eden_error::ErrorHandler::Instance()->Exception("[SPY ERROR]:Load Material Error", "Failed to load file of Material in Default.material: " + material);
+				if (material != "default.png")eden_error::ErrorHandler::Instance()->Exception("Material could not be loaded", "UIComponent ERROR in line 103, failed to load file of Material in UI_MATERIALS folder: " + material);
+				else eden_error::ErrorHandler::Instance()->Exception("Material could not be loaded", "UIComponent ERROR in line 103, failed to load file of Material in UI_MATERIALS folder: " + material);
 			}
 		}
 	}
@@ -152,7 +152,7 @@ void eden_ec::UIComponent::CreateImage(std::string overlayName, float xPos, floa
 	float width, float height, std::string texture,	int depth) 
 {
 	if (!eden_resources::ResourcesManager::Instance()->FileExist("UI_MATERIALS.material", eden_resources::ResourcesManager::Materials))
-		eden_error::ErrorHandler::Instance()->Exception("[SPY ERROR]:Load Material Error", "Failed to load the file with all UI Materials: UI_MATERIALS.material");
+		eden_error::ErrorHandler::Instance()->Exception("Material file was not found", "UIComponent ERROR in line 154, UI_MATERIALS.material was not found");
 
 
 	_texture = texture;
@@ -174,7 +174,7 @@ void eden_ec::UIComponent::LoadFont(std::string font) {
 		mFont->load();
 	}
 	catch (std::exception e) {
-		if(font == "default.ttf")eden_error::ErrorHandler::Instance()->Exception("[SPY ERROR] Load Font Error:", "Failed to load the font: " + font);
+		if(font == "default.ttf")eden_error::ErrorHandler::Instance()->Exception("Default font could not be loaded", "UIComponent ERROR in line 174, failed to load the font: " + font);
 		else {
 			eden_error::ErrorHandler::Instance()->Warning("Failed to load the font: " + font);
 		}
@@ -192,7 +192,7 @@ void eden_ec::UIComponent::CreateText(std::string overlayName, float xPos, float
 			font = "default.ttf";
 			if (!Ogre::FontManager::getSingleton().resourceExists("default.ttf"))LoadFont("default.ttf");
 		}
-		else eden_error::ErrorHandler::Instance()->Exception("[SPY ERROR] Load Font Error:", "Failed to load the font: default.ttf");
+		else eden_error::ErrorHandler::Instance()->Exception("Font could not be loaded", "UIComponent ERROR in line 192, failed to load the font: default.ttf");
 	}
 	
 	SetOverlayContainer(overlayName, xPos, yPos, tam *text.length(), tam);

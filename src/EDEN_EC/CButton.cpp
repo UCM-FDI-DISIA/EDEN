@@ -57,7 +57,6 @@ void eden_ec::CButton::CreateButton(ButtonParams& params) {
 
 	CreateImage(params.overlayName, params.xPos, params.yPos,
 		params.width, params.height, params.iniTex, params.depth);
-
 	// Posiciones necesarias para el input de raton
 	// top + height
 	_topPosition = (int)params.yPos;

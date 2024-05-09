@@ -8,7 +8,6 @@
 #include "Vector3.h"
 
 #include "defs.h"
-#include <vector>
 
 namespace Ogre {
 	class OverlayManager;
@@ -17,7 +16,6 @@ namespace Ogre {
 	enum GuiMetricsMode : unsigned int;
 	enum GuiHorizontalAlignment : unsigned int;
 	enum GuiVerticalAlignment : unsigned int;
-	class Image;
 
 	class TextAreaOverlayElement;
 }  // namespace Ogre
@@ -144,7 +142,7 @@ namespace eden_ec {
 		std::pair <int, int> _screenSize;
 
 		/// @brief Textura de la imagen 
-		std::string _texture; 
+		std::string _texture;
 
 		/// @brief Metodo encargado de crear una Imagen
 		void CreateImage(std::string overlayName, float xPos, float yPos,
@@ -171,8 +169,6 @@ namespace eden_ec {
 		Ogre::OverlayContainer* _overlayContainer = nullptr;
 		///@ brief Area de texto 
 		Ogre::TextAreaOverlayElement* _text = nullptr;
-
-		Ogre::Image* _img=nullptr;
 
 		/// @brief Metodo encargado de crear el overlayContainer
 		void SetOverlayContainer(std::string overlayName, float xPos, float yPos,float width, float height);

@@ -10,9 +10,6 @@
 #include <OgreTextAreaOverlayElement.h>
 #include <OgreOverlayElement.h>
 #include <OgreFontManager.h>
-#include <OgreTextureManager.h>
-#include <OgreMaterialManager.h>
-#include <OgreTechnique.h>
 #pragma warning(pop)
 
 #include "UIComponent.h"
@@ -36,7 +33,6 @@ eden_ec::UIComponent::UIComponent() {
 	_rHeight = 0;
 	_rWidth = 0;
 	_screenSize = eden_render::RenderManager::Instance()->GetResolution();
-	 _img = new Ogre::Image();
 }
 
 
@@ -48,8 +44,6 @@ eden_ec::UIComponent::~UIComponent() {
 	_overlayElement = nullptr;
 	_overlayManager = nullptr;
 	_text = nullptr;
-	_img->freeMemory();
-	delete _img;
 }
 
 void eden_ec::UIComponent::Show(bool changedFromCanvas) { if(!changedFromCanvas || (changedFromCanvas && canvasVisible)) _overlayElement->show(); if(!changedFromCanvas) canvasVisible = true; }
@@ -98,28 +92,14 @@ void eden_ec::UIComponent::SetMaterial(std::string const& matName) {
 	if (material == "default.png") res = eden_resources::ResourcesManager::Default;
 	if (!eden_resources::ResourcesManager::Instance()->FileExist(material, res)) {
 		if (material == "default.png")eden_error::ErrorHandler::Instance()->Exception("[SPY ERROR]:Load Material Error", "Failed to load Texture: " + matName);
-		else {
-			eden_error::ErrorHandler::Instance()->Warning("No se ha encontrado el material: " + material);
-			material = "default.png";
+		else { 
+			eden_error::ErrorHandler::Instance()->Warning("No se ha encontrado el material: "+ material);
+			material = "default.png"; 
 			SetMaterial("default.png");
 		}
 	}
 	else {
 		try {
-			if (!Ogre::TextureManager::getSingleton().resourceExists(matName)) {
-				_texture = matName;
-				_img->load(_texture, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
-
-				// Cargar textura a partir de la imagen
-				Ogre::TextureManager* textureManager = Ogre::TextureManager::getSingletonPtr();
-				textureManager->create(_texture, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
-
-				// Cargar material a partir de la textura
-				Ogre::MaterialManager* matManager = Ogre::MaterialManager::getSingletonPtr();
-				Ogre::MaterialPtr mat = matManager->create(_texture, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
-				mat->getTechnique(0)->getPass(0)->createTextureUnitState(_texture);
-				mat->getTechnique(0)->getPass(0)->setSceneBlending(Ogre::SBT_TRANSPARENT_ALPHA);
-			}
 			_overlayContainer->setMaterialName(material);
 		}
 		catch (std::exception e) {
@@ -128,12 +108,11 @@ void eden_ec::UIComponent::SetMaterial(std::string const& matName) {
 				SetMaterial("default.png");
 			}
 			else {
-				if (material != "default.png")eden_error::ErrorHandler::Instance()->Exception("[SPY ERROR]:Load Material Error", "Failed to load file of Material: " + material);
+				if (material != "default.png")eden_error::ErrorHandler::Instance()->Exception("[SPY ERROR]:Load Material Error", "Failed to load file of Material in UI_MATERIALS folder: " + material);
 				else eden_error::ErrorHandler::Instance()->Exception("[SPY ERROR]:Load Material Error", "Failed to load file of Material in Default.material: " + material);
 			}
 		}
 	}
-	
 }
 
 void eden_ec::UIComponent::SetOverlayVisible(bool vis) {
@@ -172,6 +151,10 @@ std::string const& eden_ec::UIComponent::GetMaterialName() {
 void eden_ec::UIComponent::CreateImage(std::string overlayName, float xPos, float yPos,
 	float width, float height, std::string texture,	int depth) 
 {
+	if (!eden_resources::ResourcesManager::Instance()->FileExist("UI_MATERIALS.material", eden_resources::ResourcesManager::Materials))
+		eden_error::ErrorHandler::Instance()->Exception("[SPY ERROR]:Load Material Error", "Failed to load the file with all UI Materials: UI_MATERIALS.material");
+
+
 	_texture = texture;
 	SetOverlayContainer(overlayName, xPos, yPos, width, height);
 	SetMaterial(_texture);

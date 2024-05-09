@@ -227,8 +227,8 @@ NativeWindowPair eden_render::RenderManager::CreateNewWindow(const std::string& 
 	GetWindowRect(hDesktop, &desktop);
 	_fullW = desktop.right;
 	_fullH = desktop.bottom;
-	w = _defWindowSize.first;
-	h = _defWindowSize.second;
+	w = _fullW;
+	h = _fullH *0.95;
 	_isFullScreen = false;
 
 	if (!SDL_WasInit(SDL_INIT_EVERYTHING)) SDL_InitSubSystem(SDL_INIT_EVERYTHING);

@@ -137,19 +137,19 @@ namespace eden_ec {
 		const static std::string _id;
 
 		/// @brief Clip de sonido asociado al emisor
-		audio_wrapper::SoundClip* _soundClip;
+		audio_wrapper::SoundClip* _soundClip = nullptr;
 
 		/// @brief Sonido asociado al emisor creado a partir del clip de sonido
-		audio_wrapper::Sound* _sound;
+		audio_wrapper::Sound* _sound = nullptr;
 
 		/// @brief Identifica si el sonido es espacial o no
-		bool _3D;
+		bool _3D = false;
 		
 		/// @brief Identifica si el sonido esta en bucle o no
-		bool _loop;
+		bool _loop = false;
 
 		/// @brief Transform de la entidad sobre la que se engancha el listener
-		eden_ec::CTransform* _transform;
+		eden_ec::CTransform* _transform = nullptr;
 
 		/// @brief Estado actual del sonido, por defecto parado
 		SoundState _currentState = SoundState::STOPPED;

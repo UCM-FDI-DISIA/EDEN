@@ -33,6 +33,7 @@ namespace eden
 		friend Singleton<Master>;
 
 	public:
+		/// @brief Metodo que devuelve si la clase esta inicializada
 		static bool isInitialized() { return _initialized; }
 
 		/// @brief Booleano de salida del bucle principal
@@ -46,16 +47,16 @@ namespace eden
 		/// @brief Destructora por defecto de EdenMaster
 		EDEN_API ~Master() override;
 
+		/// @brief Devuelve la instancia de la clase
 		EDEN_API static Master* getInstance();
 	private:
-
+		/// @brief Booleano que indica si la clase esta inicializada
 		static bool _initialized;
 
-		// static bool _initialized;
 		/// @brief El tiempo entre frames en segundos
 		float _deltaTime = 0;
 
-		/// @brief El intervalo de tiempo (en segundos) que pasa entre dos actualizaciones físicas
+		/// @brief El intervalo de tiempo (en segundos) que pasa entre dos actualizaciones fisicas
 		const float _physicsUpdateTimeInterval = 1.0f / 60.0f;
 		
 		/// @brief El tiempo transcurrido desde el inicio del bucle en segundos

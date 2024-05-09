@@ -32,7 +32,7 @@ namespace eden_resources {
     class ResourcesManager : public Singleton<ResourcesManager> {
         friend Singleton<ResourcesManager>;
     public:
-
+        /// @brief Enumerado de recursos
         enum Resources {
             Mesh,
             Materials,
@@ -51,27 +51,37 @@ namespace eden_resources {
         /// @brief Metodo que comprueba si un archivo existe
         EDEN_API bool FileExist(std::string name, Resources res);
         
+        /// @brief Devuelve el nombre de las mallas
         EDEN_API std::set<std::string> GetMeshes();
 
-
+        /// @brief Devuelve el nombre de los materiales
         EDEN_API std::set<std::string> GetMaterials();
 
+        /// @brief Devuelve el nombre de los elementos de UI
         EDEN_API std::set<std::string> GetUIElements();
 
+        /// @brief Devuelve el nombre de los audios
         EDEN_API std::set<std::string> GetAudios();
 
+        /// @brief Devuelve las fuentes
         EDEN_API std::set<std::string> GetFonts();
         
+        /// @brief Devuelve las rutas a las mallas
         EDEN_API std::set<std::string> GetRoutesMeshes();
 
+        /// @brief Devuelve las rutas a los materiales
         EDEN_API std::set<std::string> GetRoutesMaterials();
 
+        /// @brief Devuelve las rutas a los elementos de UI
         EDEN_API std::set<std::string> GetRoutesUIElements();
 
+        /// @brief Devuelve las rutas a los audios
         EDEN_API std::set<std::string> GetRoutesAudios();
 
+        /// @brief Devuelve las rutas a las fuetnes
         EDEN_API std::set<std::string> GetRoutesFonts();
 
+        /// @brief Devuelve la instancia del ResourcesManager
         EDEN_API static ResourcesManager* getInstance();
 
         /// @brief Metodo que guarda todos los archivos existentes de unas direcciones concretas

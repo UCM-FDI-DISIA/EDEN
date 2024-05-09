@@ -53,6 +53,7 @@ namespace eden_ec {
 		/// @return Componente creado
 		EDEN_API Component* CreateComponentByName(std::string id);
 
+		/// @brief Devuelve la instancia de la Factoria
 		EDEN_API static ComponentFactory* getInstance();
 
 	private:
@@ -61,7 +62,7 @@ namespace eden_ec {
 		/// Estas constructoras por defecto no son capaces de tomar argumentos, pues los metodos
 		/// con templates no pueden ser virtuales (usaramos templates para no definir una cantidad 
 		/// concreta de argumentos en sus constructoras).
-		/// M�s informacion en 'Component.h'
+		/// Mas informacion en 'Component.h'
 		std::unordered_map<std::string, Component* (*)()> _currentComponents;
 
 		/// @brief Constructor por defecto

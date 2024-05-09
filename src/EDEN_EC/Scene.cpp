@@ -13,78 +13,80 @@
 #include "ErrorHandler.h"
 
 namespace eden {
-	Scene::Scene(const std::string& ID)
+	Scene::Scene(const std::string& ID, bool setDebugLog)
 	{
 		_ID = ID;
+		_debugLog = setDebugLog;
 	}
 
 	eden_ec::Entity* Scene::Instantiate(eden_script::EntityInfo* info) {
-		// Decimos que estamos leyendo por consola
-#ifdef _DEBUG
-		std::cout << "\n\nEntity: " << info->name << '\n';
-		std::cout << "Components:\n--------\n";
-#endif
+		if (!_newEntities[_currentIteration].count(info->name)) {
 
-		eden_ec::Entity* ent;
-		if (info->isBlueprint) {
-#ifdef _DEBUG
-			std::cout << "THIS IS A BLUEPRINT!!!\n";
-#endif
-			// ModifyEntity() with BlueprintInfo
-			std::unordered_map<std::string, eden_script::ComponentArguments> entityComponents;
+			// Decimos que estamos leyendo por consola
+			if (_debugLog) {
+				std::cout << "\n\nEntity: " << info->name << '\n';
+				std::cout << "Components:\n--------\n";
+			}
+			eden_ec::Entity* ent;
+			if (info->isBlueprint) {
+				if(_debugLog) std::cout << "THIS IS A BLUEPRINT!!!\n";
+				// ModifyEntity() with BlueprintInfo
+				std::unordered_map<std::string, eden_script::ComponentArguments> entityComponents;
 
-			for (int i = 0; i < info->components.size(); ++i) {
-				entityComponents.insert({ info->components[i].GetID(), info->components[i] });
+				for (int i = 0; i < info->components.size(); ++i) {
+					entityComponents.insert({ info->components[i].GetID(), info->components[i] });
+				}
+
+				SceneManager* scnMngr = SceneManager::getInstance();
+				auto bInfo = scnMngr->GetBlueprintComponents(info->name);
+				std::unordered_map<std::string, eden_script::ComponentArguments> blueprintComponents;
+				for (int i = 0; i < bInfo.size(); ++i) {
+					blueprintComponents.insert({ bInfo[i].GetID(), bInfo[i] });
+				}
+
+				for (auto it : blueprintComponents) {
+					auto component = entityComponents.find(it.first);
+					if (component == entityComponents.end()) {
+						info->components.push_back(it.second);
+					}
+				}
+
+				ent = new eden_ec::Entity(info->name + "_" + std::to_string(scnMngr->GetBlueprintNumInstances(info->name)), _ID);
+				scnMngr->IncreaseBlueprintNumInstances(info->name);
+			}
+			else {
+			   ent = new eden_ec::Entity(info->name, _ID);
+			}
+			// Cremoas una nueva entidad seg�n el nombre que hayamos recibido en 'info' al leer el .lua
+			// Creamos sus componentes seg�n la info le�da
+			try {
+				ent->AddComponents(info);
+			}
+			catch (std::exception e) {
+				delete ent;
+				eden_error::ErrorHandler::Instance()->Exception("Scene ERROR in line 62", "could not create entity" + info->name + "\n" + e.what() + "\n");
 			}
 
-			SceneManager* scnMngr = SceneManager::getInstance();
-			auto bInfo = scnMngr->GetBlueprintComponents(info->name);
-			std::unordered_map<std::string, eden_script::ComponentArguments> blueprintComponents;
-			for (int i = 0; i < bInfo.size(); ++i) {
-				blueprintComponents.insert({ bInfo[i].GetID(), bInfo[i] });
-			}
+			if (_debugLog) {
+				for (auto ot : info->components) {
 
-			for (auto it : blueprintComponents) {
-				auto component = entityComponents.find(it.first);
-				if (component == entityComponents.end()) {
-					info->components.push_back(it.second);
+					// Esto es puro Debug, no tiene impacto en la logica
+					std::cout << "\tid: " << ot.GetID() << '\n';
+					std::cout << "\tArguments: \n";
+					for (auto ut : ot.GetArgs()) {
+						std::cout << "\t\t" << ut.first << " ";
+						for (auto at : ut.second) {
+							std::cout << at << ' ';
+						}
+						std::cout << '\n';
+					}
+					std::cout << "--------\n";
 				}
 			}
 
-			ent = new eden_ec::Entity(info->name + "_" + std::to_string(scnMngr->GetBlueprintNumInstances(info->name)), _ID);
-			scnMngr->IncreaseBlueprintNumInstances(info->name);
+			AddNewGameObject(ent);
+			return ent;
 		}
-		else {
-		   ent = new eden_ec::Entity(info->name, _ID);
-		}
-		// Cremoas una nueva entidad seg�n el nombre que hayamos recibido en 'info' al leer el .lua
-		// Creamos sus componentes seg�n la info le�da
-		try {
-			ent->AddComponents(info);
-		}
-		catch (std::exception e) {
-			delete ent;
-			eden_error::ErrorHandler::Instance()->Exception("Scene ERROR in line 62", "could not create entity" + info->name + "\n" + e.what() + "\n");
-		}
-
-#ifdef _DEBUG
-		for (auto ot : info->components) {
-
-			// Esto es puro Debug, no tiene impacto en la logica
-			std::cout << "\tid: " << ot.GetID() << '\n';
-			std::cout << "\tArguments: \n";
-			for (auto ut : ot.GetArgs()) {
-				std::cout << "\t\t" << ut.first << " ";
-				for (auto at : ut.second) {
-					std::cout << at << ' ';
-				}
-				std::cout << '\n';
-			}
-			std::cout << "--------\n";
-		}
-#endif
-		AddNewGameObject(ent);
-		return ent;
 	}
 
 	void Scene::InitScene(std::vector<eden_script::EntityInfo*>& info, std::unordered_map<std::string, std::vector<std::string>>& collisionInfo)

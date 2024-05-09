@@ -52,22 +52,25 @@ Ogre::Quaternion render_wrapper::NodeManager::ConvertToOgreQuaternion(const eden
 }
 
 bool render_wrapper::NodeManager::HasNode(const std::string id, const std::string sceneID) {
-	return FindNode(id, sceneID) != nullptr;
+	return FindNode(id, sceneID, false) != nullptr;
 }
 
-Ogre::SceneNode* render_wrapper::NodeManager::FindNode(const std::string id, const std::string sceneID) {
+Ogre::SceneNode* render_wrapper::NodeManager::FindNode(const std::string id, const std::string sceneID, bool showWarnings) {
 	auto aux = _sceneObjectsMap.find(sceneID);
 	if (aux == _sceneObjectsMap.end()) {
-		std::string message = "NodeManager ERROR in line 60 could not find scene: " + sceneID + "\n";
+		if (showWarnings) {
+			std::string message = "NodeManager ERROR in line 60 could not find scene: " + sceneID + "\n";
 
-		eden_error::ErrorHandler::Instance()->Warning(message.c_str());
+			eden_error::ErrorHandler::Instance()->Warning(message.c_str());
+		}
+
 		return nullptr;
 	}
 
 	auto auxNode = aux->second.find(id);
 	if (auxNode == aux->second.end()) {
 		
-		eden_error::ErrorHandler::Instance()->Warning("WARNING: scene node with id: " + id + " not found in  the scene objects map\n");
+		if(showWarnings) eden_error::ErrorHandler::Instance()->Warning("WARNING: scene node with id: " + id + " not found in  the scene objects map\n");
 
 		// TRATAMIENTO DE ERRORES DE LUA AQUI --------
 		// Se devuelve nullptr para que el wrapper que necesite el nodo sepa que no existe 
@@ -135,7 +138,6 @@ void render_wrapper::NodeManager::SetPosition(const eden_utils::Vector3 pos, con
 
 void render_wrapper::NodeManager::SetOrientation(const eden_utils::Quaternion quat, const std::string id, const std::string sceneID) {
 	FindNode(id, sceneID)->setOrientation(ConvertToOgreQuaternion(quat));
-	//std::cout << FindNode(id)->getOrientation().w << " " << FindNode(id)->getOrientation().x << " " << FindNode(id)->getOrientation().y << " " << FindNode(id)->getOrientation().z << std::endl;
 }
 
 void render_wrapper::NodeManager::ShowBoundingBox(bool active, const std::string id, const std::string sceneID) {

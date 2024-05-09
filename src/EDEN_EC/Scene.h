@@ -27,7 +27,7 @@ namespace eden {
 	{
 		friend SceneManager;
 	public:
-		Scene(const std::string& ID);
+		Scene(const std::string& ID, bool setDebugLog = false);
 		~Scene();
 
 		/// @brief Metodo que devuelve el nombre identificativo de la escena
@@ -112,6 +112,8 @@ namespace eden {
 
 		/// @brief Vector que tiene las entidades que se añadirán al final del frame
 		std::unordered_map<int, std::unordered_map<std::string, eden_ec::Entity*>> _newEntities;
+
+		bool _debugLog = false;
 	};
 }
 #endif // SCENE_H

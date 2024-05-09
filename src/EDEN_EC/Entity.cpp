@@ -58,7 +58,7 @@ bool eden_ec::Entity::HasComponent(std::string id) {
 void eden_ec::Entity::Update(float t) {
     if (_active) {
         for (auto it = _components.begin(); it != _components.end(); ++it) {
-            it->second->Update(t);
+            if(it->second->IsActive()) it->second->Update(t);
         }
     }
 }

@@ -36,13 +36,13 @@ void physics_manager::PhysicsManager::updateSimulation(float deltaTime, std::str
 	std::unordered_set<eden_ec::Entity*>* currentEnts = &_physicsScenes[sceneID]->_entitiesSet;
 	
 	for (auto ent : (*currentEnts)) {
+		_rb = ent->GetComponent<eden_ec::CRigidBody>()->_rb;
+		_currentPhysicScene->contactTest(_rb->getBulletRigidBody(), *_rb->_collisionCallback);
 #ifdef _DEBUG
 		//info->GetDebug()->ClearLines();
 		//info->GetDebug()->DrawRigidBody(ent->GetComponent<eden_ec::CRigidBody>(), { 1,0,0 });
 		//info->GetDebug()->DrawLine(_rb->GetPosition(), {100,0,100}, {1,1,1});
 #endif
-		_rb = ent->GetComponent<eden_ec::CRigidBody>()->_rb;
-		_currentPhysicScene->contactTest(_rb->getBulletRigidBody(), *_rb->_collisionCallback);
 	}
 }
 

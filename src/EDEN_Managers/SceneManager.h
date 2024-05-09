@@ -87,6 +87,12 @@ public:
 	EDEN_API eden_ec::Entity* InstantiateBlueprint(std::string blueprintID);
 	EDEN_API bool AddEntityToDontDestroyOnLoad(eden_ec::Entity* ent, bool isAudio=false);
 	EDEN_API inline std::string GetDontDestroyOnLoadID() { return _dontDestroyOnLoadID; }
+
+	EDEN_API inline void SetDebugLog(bool debug) {
+#ifdef _DEBUG
+		_debugLog = debug;
+#endif // _DEBUG
+	}
 private:
 
 	bool _dontDestroySceneCreated = false;
@@ -140,6 +146,8 @@ private:
 	/// @brief Crea una escena
 	/// @param ID Identificador de la escena que se quiere crear
 	void CreateScene(std::string& ID);
+
+	bool _debugLog = false;
 };
 }
 

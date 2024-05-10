@@ -122,30 +122,34 @@ std::unordered_map<std::string, std::vector<std::string>> eden_script::ScriptMan
 	lua_pushnil(_l);
 
 	std::unordered_map<std::string, std::vector<std::string>> table;
-	while (lua_next(_l, tableIndex - 1) != 0)
-	{
-		// Al hacer lua_next() se pushea primero una key y luego su valor. Los parseamos a string de c++
-		std::string key = ParseString(-2);
-		std::string value = ParseString(-1);
+	try {
+		while (lua_next(_l, tableIndex - 1) != 0)
+		{
+			// Al hacer lua_next() se pushea primero una key y luego su valor. Los parseamos a string de c++
+			std::string key = ParseString(-2);
+			std::string value = ParseString(-1);
 
-		std::string temp = "";
-		// Si un valor necesita varios argumentos para construirse, estos se separan con '|'
-		// Por ejemplo, al construir un Vector3 'Position' se haria de la siguiente forma: "Position = x|y|z"
-		for (int i = 0; i < value.size(); ++i) {
-			if (value[i] == '|') {
-				table[key].push_back(temp);
-				temp = "";
+			std::string temp = "";
+			// Si un valor necesita varios argumentos para construirse, estos se separan con '|'
+			// Por ejemplo, al construir un Vector3 'Position' se haria de la siguiente forma: "Position = x|y|z"
+			for (int i = 0; i < value.size(); ++i) {
+				if (value[i] == '|') {
+					table[key].push_back(temp);
+					temp = "";
+				}
+				else {
+					temp.push_back(value[i]);
+				}
 			}
-			else {
-				temp.push_back(value[i]);
-			}
+			table[key].push_back(temp);
+
+			// Quitamos del stack el valor. La key se queda para poder ejecutra lua_next.
+			lua_pop(_l, 1);
 		}
-		table[key].push_back(temp);
-
-		// Quitamos del stack el valor. La key se queda para poder ejecutra lua_next.
-		lua_pop(_l, 1);
 	}
-
+	catch (...) {
+		eden_error::ErrorHandler::Instance()->Exception("ERROR reading lua table", "ERROR reading parsed information in Lua file\n");
+	}
 	// Finalmente la ultima key se popea al hacer lua_next y que este sea == 0
 
 	// Devolvemos el mapa parseado al tipo que nos interesa para los componentes

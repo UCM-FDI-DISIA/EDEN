@@ -4,6 +4,7 @@
 #include "Singleton.h"
 
 #include "defs.h"
+typedef void (*SceneFunc)();
 
 namespace Ogre {
 	class Root;
@@ -49,6 +50,11 @@ namespace eden
 
 		/// @brief Devuelve la instancia de la clase
 		EDEN_API static Master* getInstance();
+
+		inline SceneFunc GetLoadScene() const { return _loadDLLScene; }
+
+		inline void SetLoadScene(SceneFunc loadSceneFunc) { _loadDLLScene = loadSceneFunc; }
+
 	private:
 		/// @brief Booleano que indica si la clase esta inicializada
 		static bool _initialized;
@@ -61,6 +67,8 @@ namespace eden
 		
 		/// @brief El tiempo transcurrido desde el inicio del bucle en segundos
 		float _elapsedTime = 0;
+
+		SceneFunc _loadDLLScene;
 
 		/// @brief Referencia a al InputManager
 		eden_input::InputManager* _inputManager;

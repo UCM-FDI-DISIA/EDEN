@@ -79,7 +79,7 @@ void RegisterEngineComponents() {
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CParticleEmitter>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CAudioEmitter>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CAudioListener>();
-	//eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CEDENScene>();
+	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CEDENScene>();
 }
 
 void eden_export::RunEDEN()
@@ -130,8 +130,9 @@ void eden_export::RunEDEN()
 				master = eden::Master::Instance(); // creaci�n instancia master
 				scnManager = eden::SceneManager::Instance(); // creaci�n instancia de gestor de escenas
 				eden_input::InputManager::Instance();
-				LoadScene(); // carga de escena del juego
-				//scnManager->PushScene("EDENScene");
+				//LoadScene(); // carga de escena del juego
+				master->SetLoadScene(LoadScene);
+				scnManager->PushScene("EDENScene");
 				master->Loop(); // bucle de juego
 			}
 		}

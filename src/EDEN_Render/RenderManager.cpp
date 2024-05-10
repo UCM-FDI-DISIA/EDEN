@@ -228,7 +228,7 @@ NativeWindowPair eden_render::RenderManager::CreateNewWindow(const std::string& 
 	_fullW = desktop.right;
 	_fullH = desktop.bottom;
 	w = _fullW;
-	h = _fullH *0.95;
+	h = (uint32_t) (_fullH * (0.95));
 	_isFullScreen = false;
 
 	if (!SDL_WasInit(SDL_INIT_EVERYTHING)) SDL_InitSubSystem(SDL_INIT_EVERYTHING);
@@ -410,7 +410,7 @@ void eden_render::RenderManager::SetResolutions(std::vector<std::pair<int, int>>
 
 	std::pair<int, int> res;
 	for (int i = 0; i < resolutions.size(); i++) {
-		if (resolutions[i].first < _fullW && resolutions[i].second < (int)_fullH) {
+		if ((uint32_t)(resolutions[i].first) < _fullW && (uint32_t)(resolutions[i].second) < (int)_fullH) {
 			res = { resolutions[i].first,resolutions[i].second };
 			aux[res.first + (int)(sqrt(res.first * res.first + res.second * res.second))] = res;
 		}

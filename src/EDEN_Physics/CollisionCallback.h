@@ -20,7 +20,7 @@ namespace physics_wrapper {
 	class RigidBody;
 
 	/// @brief Clase para hacer callbacks de colisiones
-	class EDEN_API CollisionCallback : public btCollisionWorld::ContactResultCallback
+	class CollisionCallback : public btCollisionWorld::ContactResultCallback
 	{
 	public:
 		CollisionCallback(RigidBody* rigidBody);

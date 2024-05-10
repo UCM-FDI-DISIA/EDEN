@@ -12,7 +12,7 @@ namespace physics_manager {
 }
 
 namespace physics_wrapper {
-	class EDEN_API CollisionLayer
+	class CollisionLayer
 	{
 		friend physics_manager::PhysicsManager;
 	private:
@@ -32,22 +32,22 @@ namespace physics_wrapper {
 		const std::string _layerName;
 		
 		/// @brief Representacion numerica de la capa
-		int _layer;
+		int _layer = 0;
 		
 		/// @brief Mascara de colision (define con que objetos colisiona)
 		int _collisionMask = 0xffffff;
 	public:
 		/// @brief Devuelve el nombre de la capa
 		/// @return Devuelve el nombre de la capa
-		std::string GetName();
+		EDEN_API std::string GetName();
 
 		/// @brief Devuelve el numero asociado a la capa
 		/// @return Devuelve el numero asociado a la capa
-		int GetLayer();
+		EDEN_API int GetLayer();
 		
 		/// @brief Devuelve la mascara de colision asociada a la capa
 		/// @return Devuelve la mascara de colision asociada a la capa
-		int GetCollisionMask();
+		EDEN_API int GetCollisionMask();
 	};
 }
 #endif

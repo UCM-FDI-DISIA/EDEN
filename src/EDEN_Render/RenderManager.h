@@ -76,14 +76,14 @@ namespace eden_render
 		friend eden::SceneManager;
 		
 		/// @brief Destructora
-		EDEN_API ~RenderManager() override;
+		~RenderManager() override;
 		
 		/// @brief Ejecuta un ciclo de renderizado (ventana y raiz)
-		EDEN_API void Update();
+		void Update();
 
 		/// @brief Comprueba si ha habido errores en la inicializacion
 		/// @return True si se ha inicializado bien, False en caso contrario
-		EDEN_API inline bool couldInitialize() { return _initialized; }
+		inline bool couldInitialize() { return _initialized; }
 
 		/// @brief Devuelve el ancho de la ventana
 		/// @return Devuelve el ancho de la ventana 
@@ -107,16 +107,16 @@ namespace eden_render
 
 		/// @brief Actualiza todas las posiciones de la escena con su componente Transform
 		/// @param sceneID Identificador de la escena
-		EDEN_API void UpdatePositions(std::string sceneID);
+		void UpdatePositions(std::string sceneID);
 
 		/// @brief Aniade una entidad que tenga componentes de renderizado (CMeshRenderer, CCamera, ...) a una escena en concreto
 		/// para actualizar su posicion
 		/// @param ent Entidad cuya posicion va a actualizarse
-		EDEN_API void AddRenderEntity(eden_ec::Entity* ent);
+		void AddRenderEntity(eden_ec::Entity* ent);
 
 		/// @brief Quita una entidad de una escena para dejar de actualizar su posicion
 		/// @param ent Entidad que se va a quitar
-		EDEN_API void RemoveRenderEntity(eden_ec::Entity* ent);
+		void RemoveRenderEntity(eden_ec::Entity* ent);
 
 		/// @brief Funcion que deberia llamarse en el momento en el que la ventana cambia de tamanio
 		EDEN_API void ResizedWindow();
@@ -293,7 +293,7 @@ namespace eden_render
 		std::pair<int, int> _defWindowSize = {640,480};
 	};
 
-	class __declspec(dllexport) InfoRenderWorld
+	class InfoRenderWorld
 	{
 		friend RenderManager;
 		friend render_wrapper::NodeManager;

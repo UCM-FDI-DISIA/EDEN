@@ -4,6 +4,7 @@
 
 #include <string>
 
+
 #pragma warning(push)
 #pragma warning(disable : 26495)
 #include <btBulletDynamicsCommon.h>
@@ -27,7 +28,7 @@ namespace eden_debug {
 
 	class DebugDrawer;
 
-	class __declspec(dllexport) Debug
+	class Debug
 	{
 	public:
 		/// @brief Constructora publica de la clase

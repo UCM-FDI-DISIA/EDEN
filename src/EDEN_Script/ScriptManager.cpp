@@ -119,12 +119,7 @@ void eden_script::ScriptManager::PushTableElement(int elementIndex, int tableInd
 
 std::unordered_map<std::string, std::vector<std::string>> eden_script::ScriptManager::ParseTableToStringMap(int tableIndex) {
 	// Recorremos la tabla de tipo key - value y la parseamos a un mapa
-
 	lua_pushnil(_l);
-
-	if (!lua_isstring(_l, tableIndex)) {
-		eden_error::ErrorHandler::Instance()->Exception("ERROR reading lua table", "ERROR Reading property from Lua file\n");
-	}
 
 	std::unordered_map<std::string, std::vector<std::string>> table;
 	while (lua_next(_l, tableIndex - 1) != 0)

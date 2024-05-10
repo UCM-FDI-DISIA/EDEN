@@ -1,5 +1,5 @@
 Entity1 = {
-	Name = "Camera",
+	Name = "CameraEDENSCENE",
 	Components = {
 		{
 			Name = "TRANSFORM",

@@ -41,11 +41,6 @@ void eden_ec::CRigidBody::Update(float t)
 	_rb->Update();
 }
 
-void eden_ec::CRigidBody::HandleInput()
-{
-
-}
-
 void eden_ec::CRigidBody::Init(eden_script::ComponentArguments* args) {
 	
 	_mass = args->GetValueToFloat("Mass");

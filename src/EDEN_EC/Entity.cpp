@@ -62,15 +62,6 @@ void eden_ec::Entity::Update(float t) {
     }
 }
 
-void eden_ec::Entity::HandleInput() {
-    if (_active) {
-        //auto n = _components.size();
-        for (auto it = _components.begin(); it != _components.end(); ++it) {
-            it->second->HandleInput();
-        }
-    }
-}
-
 eden_ec::Entity::~Entity()
 {
     for (auto it = _components.begin(); it != _components.end(); ) {

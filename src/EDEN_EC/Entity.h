@@ -56,6 +56,11 @@ namespace eden_ec {
         /// @param id El ID del componente a quitar
         EDEN_API inline void RemoveComponent(std::string id);
 
+        template <typename T, typename... Ts>
+        inline void RemoveComponent(Ts&&... args) {
+            RemoveComponent(T::GetID());
+        }
+
         /// @brief Aniade un componente a la entidad dado su tipo y los argumentos que requiera el
         /// componente dado
         /// @tparam ...Ts Tipos de los argumentos que se requieren para la creacion del componente
@@ -120,9 +125,6 @@ namespace eden_ec {
 
         /// @brief Llama al update de todos los componentes de una entidad
         EDEN_API void Update(float t);
-
-        /// @brief Llama al handleInput de todos los componentes de una entidad
-        EDEN_API void HandleInput();
 
     private:
         /// @brief Variable que indica si una entidad esta viva o no. En caso de no estarlo, debera

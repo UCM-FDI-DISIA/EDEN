@@ -48,13 +48,10 @@ namespace eden_ec {
 		/// @param t Tiempo transcurrido desde el ultimo frame
 		EDEN_API void Update(float t) override;
 
-		/// @brief Se encarga de la entrada de input
-		EDEN_API void HandleInput() override;
-
-		/// @brief Los rigidbodies por defecto desactivan su simulación pasado un tiempo para evitar problemas de 
-		/// optimización. Esto también sucede si nuestro personaje recibe un input y deja de recibirlo después durante
-		/// un pequeño periodo de tiempo. Con este método podremos activar o desactivar esa opción.
-		/// @param input True = Se desactiva la desactivación | False = Se activa
+		/// @brief Los rigidbodies por defecto desactivan su simulaciï¿½n pasado un tiempo para evitar problemas de 
+		/// optimizaciï¿½n. Esto tambiï¿½n sucede si nuestro personaje recibe un input y deja de recibirlo despuï¿½s durante
+		/// un pequeï¿½o periodo de tiempo. Con este mï¿½todo podremos activar o desactivar esa opciï¿½n.
+		/// @param input True = Se desactiva la desactivaciï¿½n | False = Se activa
 		EDEN_API void SetTemporalDeactivation(bool input);
 
 		/// @brief Destructora

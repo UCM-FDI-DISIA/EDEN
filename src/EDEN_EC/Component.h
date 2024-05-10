@@ -30,9 +30,6 @@ namespace eden_ec {
         /// @param t Tiempo transcurrido desde el ultimo frame
         EDEN_API virtual void Update(float t) {}
 
-        /// @brief Maneja la entrada del usuario
-        EDEN_API virtual void HandleInput() {}
-
         /// @brief Metodo que desactiva el componente (No se llama su update)
         /// @param active Booleano para activar o desactivar el componente
         EDEN_API inline void SetActive(bool active) {
@@ -60,11 +57,11 @@ namespace eden_ec {
         /// @param args Argumentos leidos desde un fichero .lua
         virtual void Init(eden_script::ComponentArguments* args) = 0;
         
-        /// @brief Llamado después de la creación de un componente, usado para inicilizar objetos importantes para el funcionamiento de este componente,
+        /// @brief Llamado despuï¿½s de la creaciï¿½n de un componente, usado para inicilizar objetos importantes para el funcionamiento de este componente,
         /// y que puedan ser llamados desde otro componente en su Start.
         virtual void Awake() = 0;
 
-        /// @brief Usaremos este método para añadir referencias de otros componentes
+        /// @brief Usaremos este mï¿½todo para aï¿½adir referencias de otros componentes
         virtual void Start() = 0;
 
         /// @brief Booleano para saber si el componente esta activo

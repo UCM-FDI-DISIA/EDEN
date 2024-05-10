@@ -58,6 +58,10 @@ bool eden_script::ScriptManager::CheckLua(int err, std::string errorTitle) {
 }
 	
 void eden_script::ScriptManager::PushStringToTable(std::string push, int tableIndex) {
+
+	if (!lua_isstring(_l, tableIndex)) {
+		eden_error::ErrorHandler::Instance()->Exception("ERROR reading lua table", "ERROR reading property from Lua file\n");
+	}
 	// Pushear la string que queremos leer al Stack
 	lua_pushstring(_l, push.c_str());
 	// Pushear a -1 el elemento de la table con key 'push'

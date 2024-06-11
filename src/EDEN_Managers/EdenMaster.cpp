@@ -84,6 +84,7 @@ void eden::Master::Loop()
 	float lastPhysicsUpdateTime = 0;
 	
 	while (!exit) {
+		frameStartTime = std::chrono::high_resolution_clock::now();
 		int numPU = (int) ((_elapsedTime - lastPhysicsUpdateTime) / (_physicsUpdateTimeInterval));
 		if (numPU > 0) {
 			std::string sceneID = _scnManager->GetCurrentScene()->GetSceneID();
@@ -95,7 +96,6 @@ void eden::Master::Loop()
 		}
 		lastPhysicsUpdateTime = lastPhysicsUpdateTime + (numPU * _physicsUpdateTimeInterval);
 
-		frameStartTime = std::chrono::high_resolution_clock::now();
 
 		_inputManager->Update();
 		_scnManager->Update(_deltaTime);

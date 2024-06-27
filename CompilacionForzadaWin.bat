@@ -25,6 +25,9 @@ cd ..\Lua\
 del %CHKBUILD%
 rd /s /q .\build\
 
+cd ..\SDL_net\
+del %CHKBUILD%
+
 cd ..\..
 
 call CompilacionWinVS.bat

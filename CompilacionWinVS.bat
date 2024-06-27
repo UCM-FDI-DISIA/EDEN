@@ -23,6 +23,9 @@ call %BAT%
 cd ..\irrKlang\
 call %BAT%
 
+cd ..\SDL_net\
+call %BAT%
+
 cd ..\..
 
 call CompilarMotor.bat

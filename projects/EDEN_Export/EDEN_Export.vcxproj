@@ -21,13 +21,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -65,14 +65,14 @@
       <PreprocessorDefinitions>EDEN_EXPORTS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\src\EDEN_Audio\;$(ProjectDir)..\..\src\EDEN_Debug\;$(ProjectDir)..\..\src\EDEN_EC\;$(ProjectDir)..\..\src\EDEN_Input\;$(ProjectDir)..\..\src\EDEN_Managers\;$(ProjectDir)..\..\src\EDEN_Physics\;$(ProjectDir)..\..\src\EDEN_Render\;$(ProjectDir)..\..\src\EDEN_Script\;$(ProjectDir)..\..\src\EDEN_Utils\;$(ProjectDir)..\..\dependencies\Lua\src\src\;$(ProjectDir)..\..\dependencies\LuaBridge\Source\LuaBridge\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\src\EDEN_Audio\;$(ProjectDir)..\..\src\EDEN_Debug\;$(ProjectDir)..\..\src\EDEN_EC\;$(ProjectDir)..\..\src\EDEN_Input\;$(ProjectDir)..\..\src\EDEN_Managers\;$(ProjectDir)..\..\src\EDEN_Physics\;$(ProjectDir)..\..\src\EDEN_Render\;$(ProjectDir)..\..\src\EDEN_Script\;$(ProjectDir)..\..\src\EDEN_Net\;$(ProjectDir)..\..\src\EDEN_Utils\;$(ProjectDir)..\..\dependencies\Lua\src\src\;$(ProjectDir)..\..\dependencies\LuaBridge\Source\LuaBridge\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>EDEN_Audio_d.lib;EDEN_Debug_d.lib;EDEN_EC_d.lib;EDEN_Input_d.lib;EDEN_Managers_d.lib;EDEN_Physics_d.lib;EDEN_Render_d.lib;EDEN_Script_d.lib;EDEN_Utils_d.lib;OgreMain_d.lib;OgreOverlay_d.lib;SDL2d.lib;SDL2maind.lib;OgreRTShaderSystem_d.lib;BulletDynamics_Debug.lib;BulletCollision_Debug.lib;LinearMath_Debug.lib;Bullet3Common_Debug.lib;Bullet3Dynamics_Debug.lib;irrKlang.lib;lua.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\..\lib\$(Configuration)\;$(ProjectDir)..\..\dependencies\Bullet\build\$(Platform)\lib\$(Configuration)\;$(ProjectDir)..\..\dependencies\SDL\build\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\dependencies\Ogre\build\$(Platform)\lib\$(Configuration)\;$(ProjectDir)..\..\dependencies\Lua\build\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\dependencies\irrKlang\build\$(Platform)\;$(SolutionDir)bin\</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\..\lib\$(Configuration)\;$(ProjectDir)..\..\dependencies\Bullet\build\$(Platform)\lib\$(Configuration)\;$(ProjectDir)..\..\dependencies\SDL_Net\build\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\dependencies\SDL\build\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\dependencies\Ogre\build\$(Platform)\lib\$(Configuration)\;$(ProjectDir)..\..\dependencies\Lua\build\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\dependencies\irrKlang\build\$(Platform)\;$(SolutionDir)bin\</AdditionalLibraryDirectories>
     </Link>
     <Lib>
       <AdditionalDependencies>
@@ -89,14 +89,14 @@
       <PreprocessorDefinitions>EDEN_EXPORTS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\src\EDEN_Audio\;$(ProjectDir)..\..\src\EDEN_Debug\;$(ProjectDir)..\..\src\EDEN_EC\;$(ProjectDir)..\..\src\EDEN_Input\;$(ProjectDir)..\..\src\EDEN_Managers\;$(ProjectDir)..\..\src\EDEN_Physics\;$(ProjectDir)..\..\src\EDEN_Render\;$(ProjectDir)..\..\src\EDEN_Script\;$(ProjectDir)..\..\src\EDEN_Utils\;$(ProjectDir)..\..\dependencies\Lua\src\src\;$(ProjectDir)..\..\dependencies\LuaBridge\Source\LuaBridge\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\src\EDEN_Audio\;$(ProjectDir)..\..\src\EDEN_Debug\;$(ProjectDir)..\..\src\EDEN_EC\;$(ProjectDir)..\..\src\EDEN_Input\;$(ProjectDir)..\..\src\EDEN_Managers\;$(ProjectDir)..\..\src\EDEN_Physics\;$(ProjectDir)..\..\src\EDEN_Render\;$(ProjectDir)..\..\src\EDEN_Script\;$(ProjectDir)..\..\src\EDEN_Net\;$(ProjectDir)..\..\src\EDEN_Utils\;$(ProjectDir)..\..\dependencies\Lua\src\src\;$(ProjectDir)..\..\dependencies\LuaBridge\Source\LuaBridge\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\..\lib\$(Configuration)\;$(ProjectDir)..\..\dependencies\Bullet\build\$(Platform)\lib\$(Configuration)\;$(ProjectDir)..\..\dependencies\SDL\build\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\dependencies\Ogre\build\$(Platform)\lib\$(Configuration)\;$(ProjectDir)..\..\dependencies\Lua\build\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\dependencies\irrKlang\build\$(Platform)\</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\..\lib\$(Configuration)\;$(ProjectDir)..\..\dependencies\Bullet\build\$(Platform)\lib\$(Configuration)\;$(ProjectDir)..\..\dependencies\SDL_Net\build\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\dependencies\SDL\build\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\dependencies\Ogre\build\$(Platform)\lib\$(Configuration)\;$(ProjectDir)..\..\dependencies\Lua\build\$(Platform)\$(Configuration)\;$(ProjectDir)..\..\dependencies\irrKlang\build\$(Platform)\;</AdditionalLibraryDirectories>
       <AdditionalDependencies>EDEN_Audio.lib;EDEN_Debug.lib;EDEN_EC.lib;EDEN_Input.lib;EDEN_Managers.lib;EDEN_Physics.lib;EDEN_Render.lib;EDEN_Script.lib;EDEN_Utils.lib;OgreMain.lib;OgreOverlay.lib;SDL2.lib;SDL2main.lib;OgreRTShaderSystem.lib;BulletDynamics.lib;BulletCollision.lib;LinearMath.lib;Bullet3Common.lib;Bullet3Dynamics.lib;irrKlang.lib;lua.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>

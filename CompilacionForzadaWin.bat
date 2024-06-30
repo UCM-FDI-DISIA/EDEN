@@ -27,6 +27,7 @@ rd /s /q .\build\
 
 cd ..\SDL_net\
 del %CHKBUILD%
+rd /s /q .\build\
 
 cd ..\..
 

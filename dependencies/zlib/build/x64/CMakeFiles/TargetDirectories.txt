@@ -1,0 +1,6 @@
+C:/Users/ilige/OneDrive/Documentos/GDV/Tercero/P3/CrossthePath/EDEN/dependencies/zlib/build/x64/CMakeFiles/zlib.dir
+C:/Users/ilige/OneDrive/Documentos/GDV/Tercero/P3/CrossthePath/EDEN/dependencies/zlib/build/x64/CMakeFiles/zlibstatic.dir
+C:/Users/ilige/OneDrive/Documentos/GDV/Tercero/P3/CrossthePath/EDEN/dependencies/zlib/build/x64/CMakeFiles/RUN_TESTS.dir
+C:/Users/ilige/OneDrive/Documentos/GDV/Tercero/P3/CrossthePath/EDEN/dependencies/zlib/build/x64/CMakeFiles/INSTALL.dir
+C:/Users/ilige/OneDrive/Documentos/GDV/Tercero/P3/CrossthePath/EDEN/dependencies/zlib/build/x64/CMakeFiles/ALL_BUILD.dir
+C:/Users/ilige/OneDrive/Documentos/GDV/Tercero/P3/CrossthePath/EDEN/dependencies/zlib/build/x64/CMakeFiles/ZERO_CHECK.dir

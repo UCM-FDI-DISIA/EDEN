@@ -54,6 +54,9 @@
 #include "CAudioEmitter.h"
 #include "CAudioListener.h"
 
+// Engine Network
+#include "CNetwork.h"
+
 #include "CAnimator.h"
 
 #include "RenderManager.h"
@@ -80,6 +83,7 @@ void RegisterEngineComponents() {
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CAudioEmitter>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CAudioListener>();
 	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CEDENScene>();
+	eden_ec::ComponentFactory::Instance()->RegisterComponent<eden_ec::CNetwork>();
 }
 
 void eden_export::RunEDEN()

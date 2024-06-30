@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\ilige\OneDrive\Documentos\GDV\Tercero\P3\CrossthePath\EDEN\dependencies\zlib\src\adler32.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\ilige\OneDrive\Documentos\GDV\Tercero\P3\CrossthePath\EDEN\dependencies\zlib\src\compress.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\ilige\OneDrive\Documentos\GDV\Tercero\P3\CrossthePath\EDEN\dependencies\zlib\src\crc32.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\ilige\OneDrive\Documentos\GDV\Tercero\P3\CrossthePath\EDEN\dependencies\zlib\src\deflate.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\ilige\OneDrive\Documentos\GDV\Tercero\P3\CrossthePath\EDEN\dependencies\zlib\src\gzclose.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\ilige\OneDrive\Documentos\GDV\Tercero\P3\CrossthePath\EDEN\dependencies\zlib\src\gzlib.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\ilige\OneDrive\Documentos\GDV\Tercero\P3\CrossthePath\EDEN\dependencies\zlib\src\gzread.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\ilige\OneDrive\Documentos\GDV\Tercero\P3\CrossthePath\EDEN\dependencies\zlib\src\gzwrite.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\ilige\OneDrive\Documentos\GDV\Tercero\P3\CrossthePath\EDEN\dependencies\zlib\src\inflate.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\ilige\OneDrive\Documentos\GDV\Tercero\P3\CrossthePath\EDEN\dependencies\zlib\src\infback.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\ilige\OneDrive\Documentos\GDV\Tercero\P3\CrossthePath\EDEN\dependencies\zlib\src\inftrees.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\ilige\OneDrive\Documentos\GDV\Tercero\P3\CrossthePath\EDEN\dependencies\zlib\src\inffast.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\ilige\OneDrive\Documentos\GDV\Tercero\P3\CrossthePath\EDEN\dependencies\zlib\src\trees.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\ilige\OneDrive\Documentos\GDV\Tercero\P3\CrossthePath\EDEN\dependencies\zlib\src\uncompr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\ilige\OneDrive\Documentos\GDV\Tercero\P3\CrossthePath\EDEN\dependencies\zlib\src\zutil.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\ilige\OneDrive\Documentos\GDV\Tercero\P3\CrossthePath\EDEN\dependencies\zlib\build\x64\zconf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\ilige\OneDrive\Documentos\GDV\Tercero\P3\CrossthePath\EDEN\dependencies\zlib\src\zlib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\ilige\OneDrive\Documentos\GDV\Tercero\P3\CrossthePath\EDEN\dependencies\zlib\src\crc32.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\ilige\OneDrive\Documentos\GDV\Tercero\P3\CrossthePath\EDEN\dependencies\zlib\src\deflate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\ilige\OneDrive\Documentos\GDV\Tercero\P3\CrossthePath\EDEN\dependencies\zlib\src\gzguts.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\ilige\OneDrive\Documentos\GDV\Tercero\P3\CrossthePath\EDEN\dependencies\zlib\src\inffast.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\ilige\OneDrive\Documentos\GDV\Tercero\P3\CrossthePath\EDEN\dependencies\zlib\src\inffixed.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\ilige\OneDrive\Documentos\GDV\Tercero\P3\CrossthePath\EDEN\dependencies\zlib\src\inflate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\ilige\OneDrive\Documentos\GDV\Tercero\P3\CrossthePath\EDEN\dependencies\zlib\src\inftrees.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\ilige\OneDrive\Documentos\GDV\Tercero\P3\CrossthePath\EDEN\dependencies\zlib\src\trees.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\ilige\OneDrive\Documentos\GDV\Tercero\P3\CrossthePath\EDEN\dependencies\zlib\src\zutil.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\ilige\OneDrive\Documentos\GDV\Tercero\P3\CrossthePath\EDEN\dependencies\zlib\src\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="C:\Users\ilige\OneDrive\Documentos\GDV\Tercero\P3\CrossthePath\EDEN\dependencies\zlib\src\win32\zlib1.rc">
+      <Filter>Source Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{121001D9-BA4D-3DF7-964E-9176C5D4CC41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{01042779-D424-3B54-B012-0303AF509857}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

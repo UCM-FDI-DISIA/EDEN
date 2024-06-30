@@ -26,6 +26,9 @@ call %BAT%
 cd ..\SDL_net\
 call %BAT%
 
+cd ..\zlib\
+call %BAT%
+
 cd ..\..
 
 call CompilarMotor.bat

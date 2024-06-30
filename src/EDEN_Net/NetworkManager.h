@@ -6,7 +6,8 @@
 #include <memory>
 #include <unordered_map>
 
-class Entity;
+#include "Singleton.h"
+#include "defs.h"
 
 enum class NetworkMode {
     TCP,
@@ -14,22 +15,24 @@ enum class NetworkMode {
 };
 
 namespace eden_net {
-    class NetworkManager {
+    class NetworkManager : public Singleton<NetworkManager> {
+        friend Singleton<NetworkManager>;
     public:
-        NetworkManager(NetworkMode mode);
-        ~NetworkManager();
+        bool InitNetwork(uint16_t port);
+        void ShutdownNetwork();
+        void ProcessIncomingPackets();
+        void SendPacket(const std::string& data, const IPaddress& dest);
+        bool ConnectToHost(const std::string& hostIP, uint16_t port);
 
-        bool initNetwork(uint16_t port);
-        void shutdownNetwork();
-        void processIncomingPackets();
-        void sendPacket(const std::string& data, const IPaddress& dest);
-
+        ~NetworkManager() override;
     private:
-        NetworkMode mode;
-        IPaddress ip;
-        TCPsocket tcpSocket;
-        UDPsocket udpSocket;
-        UDPpacket* udpPacket;
+        NetworkManager(NetworkMode mode);
+
+        NetworkMode _mode;
+        IPaddress _ip;
+        TCPsocket _tcpSocket;
+        UDPsocket _udpSocket;
+        UDPpacket* _udpPacket;
     };
 }
 

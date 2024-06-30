@@ -29,6 +29,10 @@ cd ..\SDL_net\
 del %CHKBUILD%
 rd /s /q .\build\
 
+cd ..\zlib\
+del %CHKBUILD%
+rd /s /q .\build\
+
 cd ..\..
 
 call CompilacionWinVS.bat

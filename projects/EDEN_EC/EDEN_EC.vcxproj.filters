@@ -72,6 +72,9 @@
     <ClInclude Include="..\..\src\EDEN_EC\CEDENScene.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\EDEN_EC\CNetwork.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\EDEN_EC\Scene.cpp">
@@ -129,6 +132,9 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\EDEN_EC\CEDENScene.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\EDEN_EC\CNetwork.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>

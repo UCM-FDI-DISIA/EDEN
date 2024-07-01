@@ -60,7 +60,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>EDEN_EXPORTS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\src\EDEN_Utils\;$(ProjectDir)..\..\src\EDEN_Export\;$(ProjectDir)..\..\src\EDEN_Script\;$(ProjectDir)..\..\src\EDEN_EC\;$(ProjectDir)..\..\src\EDEN_Render\;$(ProjectDir)..\..\src\EDEN_Physics\;$(ProjectDir)..\..\src\EDEN_Audio\;$(ProjectDir)..\..\src\EDEN_Input\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\src\EDEN_Utils\;$(ProjectDir)..\..\src\EDEN_Export\;$(ProjectDir)..\..\src\EDEN_Script\;$(ProjectDir)..\..\src\EDEN_EC\;$(ProjectDir)..\..\src\EDEN_Render\;$(ProjectDir)..\..\src\EDEN_Physics\;$(ProjectDir)..\..\src\EDEN_Audio\;$(ProjectDir)..\..\src\EDEN_Input\;$(ProjectDir)..\..\src\EDEN_Net\;$(ProjectDir)..\..\dependencies\SDL_Net\src\;$(ProjectDir)..\..\dependencies\SDL\build\$(Platform)\include\;$(ProjectDir)..\..\dependencies\SDL\src\include\;</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -76,7 +76,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>EDEN_EXPORTS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\src\EDEN_Utils\;$(ProjectDir)..\..\src\EDEN_Export\;$(ProjectDir)..\..\src\EDEN_Script\;$(ProjectDir)..\..\src\EDEN_EC\;$(ProjectDir)..\..\src\EDEN_Render\;$(ProjectDir)..\..\src\EDEN_Physics\;$(ProjectDir)..\..\src\EDEN_Audio\;$(ProjectDir)..\..\src\EDEN_Input\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\src\EDEN_Utils\;$(ProjectDir)..\..\src\EDEN_Export\;$(ProjectDir)..\..\src\EDEN_Script\;$(ProjectDir)..\..\src\EDEN_EC\;$(ProjectDir)..\..\src\EDEN_Render\;$(ProjectDir)..\..\src\EDEN_Physics\;$(ProjectDir)..\..\src\EDEN_Audio\;$(ProjectDir)..\..\src\EDEN_Input\;$(ProjectDir)..\..\src\EDEN_Net\;$(ProjectDir)..\..\dependencies\SDL_Net\src\;$(ProjectDir)..\..\dependencies\SDL\build\$(Platform)\include\;$(ProjectDir)..\..\dependencies\SDL\src\include\;</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>

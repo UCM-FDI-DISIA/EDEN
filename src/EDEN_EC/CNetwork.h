@@ -2,9 +2,10 @@
 #define EDEN_C_NETWORK_H_
 
 #include <string>
-#include "NetworkManager.h"
 
-#include "Component.h"  // Asumiendo que tienes una clase base de entidad.
+#include "Component.h"
+
+#include "defs.h"
 
 namespace eden_ec {
     class CNetwork : public Component {
@@ -28,16 +29,15 @@ namespace eden_ec {
         /// @return Identificador del componente
         EDEN_API static std::string GetID() { return "NETWORK"; }
 
-        EDEN_API void Serialize(std::ostream& out) const;
-        EDEN_API void Deserialize(std::istream& in);
-        EDEN_API void SendState();
-        EDEN_API void ReceiveState();
+        // EDEN_API void Serialize(std::ostream& out) const;
+        // EDEN_API void Deserialize(std::istream& in);
+        // EDEN_API void SendState();
+        // EDEN_API void ReceiveState();
 
-        uint32_t getNetworkID() const { return networkID; }
+        // uint32_t getNetworkID() const { return networkID; }
     private:
-        eden_net::NetworkManager* networkManager;
-        uint32_t networkID;  // Unique identifier for network purposes.
-        std::string stateData;  // Serialized state data.
+        // uint32_t networkID;  // Unique identifier for network purposes.
+        // std::string stateData;  // Serialized state data.
     };
 }
 

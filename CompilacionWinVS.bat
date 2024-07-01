@@ -14,6 +14,12 @@ call %BAT%
 cd ..\SDL\
 call %BAT%
 
+cd ..\SDL_net\
+call %BAT%
+
+cd ..\zlib\
+call %BAT%
+
 cd ..\Bullet\
 call %BAT%
 
@@ -21,12 +27,6 @@ cd ..\Lua\
 call %BAT%
 
 cd ..\irrKlang\
-call %BAT%
-
-cd ..\SDL_net\
-call %BAT%
-
-cd ..\zlib\
 call %BAT%
 
 cd ..\..

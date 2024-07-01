@@ -1,5 +1,4 @@
 #include "NetworkUtilities.h"
-#include <zlib.h>
 
 std::vector<char> eden_net::NetworkUtilities::compressData(const std::vector<char>& data) {
     // Implementación de compresión usando zlib u otra biblioteca

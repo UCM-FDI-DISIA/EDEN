@@ -24,6 +24,10 @@ namespace eden_audio {
 	class AudioManager;
 }
 
+namespace eden_net {
+	class NetworkManager;
+}
+
 namespace eden 
 {
 	class SceneManager;
@@ -84,6 +88,9 @@ namespace eden
 
 		/// @brief Referencia al AudioManager
 		eden_audio::AudioManager* _audioManager;
+
+		/// @brief Referencia al NetworkManager
+		eden_net::NetworkManager* _networkManager;
 
 		/// @brief Constructora por defecto de EdenMaster
 		EDEN_API Master();

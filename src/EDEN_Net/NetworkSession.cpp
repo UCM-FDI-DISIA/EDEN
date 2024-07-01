@@ -1,7 +1,9 @@
 #include "NetworkSession.h"
 #include <iostream>
 
-eden_net::NetworkSession::NetworkSession() : networkManager(new NetworkManager(NetworkMode::UDP)), isHost(false) {}
+eden_net::NetworkSession::NetworkSession() : networkManager(eden_net::NetworkManager::Instance()), isHost(false) {
+    networkManager->Init(NetworkMode::UDP);
+}
 
 eden_net::NetworkSession::~NetworkSession() {
     closeSession();

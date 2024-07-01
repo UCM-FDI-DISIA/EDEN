@@ -106,7 +106,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>EDEN_EXPORTS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\src\EDEN_Input\;$(ProjectDir)..\..\src\EDEN_Net\;$(ProjectDir)..\..\src\EDEN_Export\;$(ProjectDir)..\..\src\EDEN_Utils\;$(ProjectDir)..\..\src\EDEN_Managers\;$(ProjectDir)..\..\src\EDEN_Script\;$(ProjectDir)..\..\src\EDEN_Render\;$(ProjectDir)..\..\src\EDEN_Physics\;$(ProjectDir)..\..\src\EDEN_Audio\;$(ProjectDir)..\..\dependencies\Lua\src\src\;$(ProjectDir)..\..\dependencies\LuaBridge\Source\LuaBridge\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\src\EDEN_Input\;$(ProjectDir)..\..\src\EDEN_Net\;$(ProjectDir)..\..\src\EDEN_Export\;$(ProjectDir)..\..\src\EDEN_Utils\;$(ProjectDir)..\..\src\EDEN_Managers\;$(ProjectDir)..\..\src\EDEN_Script\;$(ProjectDir)..\..\src\EDEN_Render\;$(ProjectDir)..\..\src\EDEN_Physics\;$(ProjectDir)..\..\src\EDEN_Audio\;$(ProjectDir)..\..\dependencies\Lua\src\src\;$(ProjectDir)..\..\dependencies\LuaBridge\Source\LuaBridge\;$(ProjectDir)..\..\dependencies\SDL_Net\src\;$(ProjectDir)..\..\dependencies\SDL\src\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -122,7 +122,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>EDEN_EXPORTS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\src\EDEN_Input\;$(ProjectDir)..\..\src\EDEN_Net\;$(ProjectDir)..\..\src\EDEN_Export\;$(ProjectDir)..\..\src\EDEN_Utils\;$(ProjectDir)..\..\src\EDEN_Managers\;$(ProjectDir)..\..\src\EDEN_Script\;$(ProjectDir)..\..\src\EDEN_Render\;$(ProjectDir)..\..\src\EDEN_Physics\;$(ProjectDir)..\..\src\EDEN_Audio\;$(ProjectDir)..\..\dependencies\Lua\src\src\;$(ProjectDir)..\..\dependencies\LuaBridge\Source\LuaBridge\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\src\EDEN_Input\;$(ProjectDir)..\..\src\EDEN_Net\;$(ProjectDir)..\..\src\EDEN_Export\;$(ProjectDir)..\..\src\EDEN_Utils\;$(ProjectDir)..\..\src\EDEN_Managers\;$(ProjectDir)..\..\src\EDEN_Script\;$(ProjectDir)..\..\src\EDEN_Render\;$(ProjectDir)..\..\src\EDEN_Physics\;$(ProjectDir)..\..\src\EDEN_Audio\;$(ProjectDir)..\..\dependencies\Lua\src\src\;$(ProjectDir)..\..\dependencies\LuaBridge\Source\LuaBridge\;$(ProjectDir)..\..\dependencies\SDL_Net\src\;$(ProjectDir)..\..\dependencies\SDL\src\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>

@@ -58,10 +58,10 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>EDEN_EXPORTS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\dependencies\SDL\build\$(Platform)\include\;$(ProjectDir)..\..\dependencies\SDL\src\include\;$(ProjectDir)..\..\dependencies\SDL_Net\src\;$(ProjectDir)..\..\src\EDEN_Managers\;$(ProjectDir)..\..\src\EDEN_Export\;$(ProjectDir)..\..\src\EDEN_Utils\;$(ProjectDir)..\..\src\EDEN_Script\;$(ProjectDir)..\..\dependencies\Lua\src\src\;$(ProjectDir)..\..\dependencies\zlib\src\;$(ProjectDir)..\..\dependencies\LuaBridge\Source\LuaBridge\;$(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\dependencies\SDL\build\$(Platform)\include\;$(ProjectDir)..\..\dependencies\SDL\src\include\;$(ProjectDir)..\..\dependencies\SDL_Net\src\;$(ProjectDir)..\..\src\EDEN_Export\;$(ProjectDir)..\..\src\EDEN_Utils\;$(ProjectDir)..\..\dependencies\Lua\src\src\;$(ProjectDir)..\..\dependencies\zlib\src\;$(ProjectDir)..\..\dependencies\LuaBridge\Source\LuaBridge\;$(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -74,9 +74,10 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>EDEN_EXPORTS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\dependencies\SDL\build\$(Platform)\include\;$(ProjectDir)..\..\dependencies\SDL\src\include\;$(ProjectDir)..\..\dependencies\SDL_Net\src\;$(ProjectDir)..\..\src\EDEN_Managers\;$(ProjectDir)..\..\src\EDEN_Export\;$(ProjectDir)..\..\src\EDEN_Utils\;$(ProjectDir)..\..\src\EDEN_Script\;$(ProjectDir)..\..\dependencies\Lua\src\src\;$(ProjectDir)..\..\dependencies\zlib\src\;$(ProjectDir)..\..\dependencies\LuaBridge\Source\LuaBridge\;$(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\dependencies\SDL\build\$(Platform)\include\;$(ProjectDir)..\..\dependencies\SDL\src\include\;$(ProjectDir)..\..\dependencies\SDL_Net\src\;$(ProjectDir)..\..\src\EDEN_Export\;$(ProjectDir)..\..\src\EDEN_Utils\;$(ProjectDir)..\..\dependencies\Lua\src\src\;$(ProjectDir)..\..\dependencies\zlib\src\;$(ProjectDir)..\..\dependencies\LuaBridge\Source\LuaBridge\;$(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -86,8 +87,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\EDEN_Net\NetworkSession.h" />
     <ClInclude Include="..\..\src\EDEN_Net\NetworkManager.h" />
+    <ClInclude Include="..\..\src\EDEN_Net\NetworkSession.h" />
     <ClInclude Include="..\..\src\EDEN_Net\NetworkUtilities.h" />
   </ItemGroup>
   <ItemGroup>

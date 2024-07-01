@@ -1,13 +1,17 @@
 #include "NetworkManager.h"
 #include <iostream>
 
-eden_net::NetworkManager::NetworkManager(NetworkMode mode) : _mode(mode), _tcpSocket(nullptr), _udpSocket(nullptr), _udpPacket(nullptr) {
+eden_net::NetworkManager::NetworkManager() : _tcpSocket(nullptr), _udpSocket(nullptr), _udpPacket(nullptr) {
     SDLNet_Init();
 }
 
 eden_net::NetworkManager::~NetworkManager() {
     ShutdownNetwork();
     SDLNet_Quit();
+}
+
+void eden_net::NetworkManager::Init(NetworkMode mode) {
+    _mode = mode;
 }
 
 bool eden_net::NetworkManager::InitNetwork(uint16_t port) {

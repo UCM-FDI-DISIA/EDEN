@@ -19,6 +19,7 @@
 #include "AudioManager.h"
 #include "ScriptManager.h"
 #include "ResourcesManager.h"
+#include "NetworkManager.h"
 
 bool eden::Master::_initialized = false;
 
@@ -50,6 +51,7 @@ eden::Master::Master()
 	_scnManager = SceneManager::Instance();
 	_physicsManager = physics_manager::PhysicsManager::Instance();
 	_audioManager = eden_audio::AudioManager::Instance();
+	_networkManager = eden_net::NetworkManager::Instance();
 
 	_initialized = true;
 }
@@ -66,6 +68,7 @@ eden::Master::~Master()
 	_inputManager->Close();
 	_audioManager->Close();
 	eden_script::ScriptManager::Instance()->Close();
+	_networkManager->Close();
 
 	if (_renderManager != nullptr && _renderManager->couldInitialize()) {
 

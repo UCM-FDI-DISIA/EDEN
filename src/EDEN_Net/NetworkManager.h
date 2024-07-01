@@ -7,7 +7,6 @@
 #include <unordered_map>
 
 #include "Singleton.h"
-#include "defs.h"
 
 enum class NetworkMode {
     TCP,
@@ -18,15 +17,16 @@ namespace eden_net {
     class NetworkManager : public Singleton<NetworkManager> {
         friend Singleton<NetworkManager>;
     public:
-        bool InitNetwork(uint16_t port);
-        void ShutdownNetwork();
-        void ProcessIncomingPackets();
-        void SendPacket(const std::string& data, const IPaddress& dest);
-        bool ConnectToHost(const std::string& hostIP, uint16_t port);
+        EDEN_API void Init(NetworkMode mode);
+        EDEN_API bool InitNetwork(uint16_t port);
+        EDEN_API void ShutdownNetwork();
+        EDEN_API void ProcessIncomingPackets();
+        EDEN_API void SendPacket(const std::string& data, const IPaddress& dest);
+        EDEN_API bool ConnectToHost(const std::string& hostIP, uint16_t port);
 
         ~NetworkManager() override;
     private:
-        NetworkManager(NetworkMode mode);
+        NetworkManager();
 
         NetworkMode _mode;
         IPaddress _ip;

@@ -9,9 +9,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\EDEN_Net\NetworkSession.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\EDEN_Net\NetworkUtilities.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
@@ -21,9 +18,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\EDEN_Net\NetworkUtilities.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\EDEN_Net\NetworkSession.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\EDEN_Net\NetworkManager.cpp">

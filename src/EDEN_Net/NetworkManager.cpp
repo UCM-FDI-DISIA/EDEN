@@ -1,7 +1,7 @@
 #include "NetworkManager.h"
 #include <iostream>
 
-eden_net::NetworkManager::NetworkManager() : _tcpSocket(nullptr), _udpSocket(nullptr), _udpPacket(nullptr) {
+eden_net::NetworkManager::NetworkManager() : _masterSocket(nullptr) {
     SDLNet_Init();
 }
 
@@ -10,93 +10,113 @@ eden_net::NetworkManager::~NetworkManager() {
     SDLNet_Quit();
 }
 
-void eden_net::NetworkManager::Init(NetworkMode mode) {
-    _mode = mode;
+bool eden_net::NetworkManager::InitNetwork(uint16_t port, const std::string& hostIP = "") {
+    char buffer[256];
+
+    if (hostIP.empty()) { // Actúa como servidor
+        host = true;
+        SDLNet_ResolveHost(&_ip, nullptr, port);
+        _masterSocket = SDLNet_TCP_Open(&_ip);
+        if (!_masterSocket) {
+            std::cerr << "Error al abrir socket-servidor TCP: " << SDLNet_GetError() << std::endl;
+            return false;
+        }
+        _socketSet = SDLNet_AllocSocketSet(NUM_SOCKETS + 1);
+        SDLNet_TCP_AddSocket(_socketSet, _masterSocket);
+        for (int i = 0; i < NUM_SOCKETS; ++i) { _socket[i] = nullptr; }
+        std::cout << "Esperando al otro jugador..." << std::endl;
+        while (_socket[NUM_SOCKETS - 1] == nullptr) {
+            if (SDLNet_CheckSockets(_socketSet, SDL_MAX_UINT32) > 0) {
+                TCPsocket client = SDLNet_TCP_Accept(_masterSocket);
+                int j = 0;
+                while (j < NUM_SOCKETS && _socket[j] != nullptr) ++j;
+                if (j < NUM_SOCKETS) {
+                    _socket[j] = client;
+                    SDLNet_TCP_AddSocket(_socketSet, client);
+                    buffer[0] = 0;
+                    SDLNet_TCP_Send(client, buffer, 1);
+                }
+                else {
+                    buffer[0] = 1;
+                    SDLNet_TCP_Send(client, buffer, 1);
+                    SDLNet_TCP_Close(client);
+                }
+            }
+        }
+    }
+    else { // Actúa como cliente
+        bool done;
+        host = false;
+
+        _socketSet = SDLNet_AllocSocketSet(NUM_SOCKETS);
+
+        if (SDLNet_ResolveHost(&_ip, hostIP.c_str(), port) < 0) { std::cout << "error\n"; }
+        TCPsocket conn = SDLNet_TCP_Open(&_ip);
+        if (!conn) { std::cout << "error\n"; }
+
+        // TODO I: WAIT FOR CONFIRMATION MESSAGE
+        int result = SDLNet_TCP_Recv(conn, buffer, 1);
+        if (result < 0) {
+            std::cout << "error\n";
+        }
+        else if (result == 0) {
+            std::cout << "El servidor ha cerrado la conexión..." << std::endl;
+        }
+        else {
+            if (buffer[0] == 0) {
+                std::cout << "¡Conectado!" << std::endl;
+                _socket[USERNAME] = conn;
+                done = false;
+            }
+            else {
+                std::cout << "¡Conexión rechazada!" << std::endl;
+                done = true;
+            }
+        }
+
+        for (int i = 1; i < NUM_SOCKETS; ++i) {
+            _socket[i] = SDLNet_TCP_Open(&_ip);
+            SDLNet_TCP_AddSocket(_socketSet, _socket[i]);
+        }
+    }
+
+    active = true;
+
+    return true;
 }
 
-bool eden_net::NetworkManager::InitNetwork(uint16_t port) {
-    if (_mode == NetworkMode::TCP) {
-        // Configuración TCP
-        SDLNet_ResolveHost(&_ip, nullptr, port); // nullptr para el host indica "escuchar"
-        _tcpSocket = SDLNet_TCP_Open(&_ip);
-        if (!_tcpSocket) {
-            std::cerr << "Error al abrir conexión TCP\n";
-            return false;
+void eden_net::NetworkManager::Update()
+{
+    char buffer[256];
+
+    if (active && SDLNet_CheckSockets(_socketSet, SDL_MAX_UINT32) > 0) {
+        int result = 0;
+        // TODO II: PROCESS DATA on client sockets
+        for (int i = 0; i < NUM_SOCKETS; i++) {
+            if (_socket[i] != nullptr && SDLNet_SocketReady(_socket[i])) {
+                result = SDLNet_TCP_Recv(_socket[i], buffer, 255);
+                if (result <= 0) {
+                    SDLNet_TCP_Close(_socket[i]);
+                    SDLNet_TCP_DelSocket(_socketSet, _socket[i]);
+                    _socket[i] = nullptr;
+                }
+            }
         }
     }
-    else if (_mode == NetworkMode::UDP) {
-        // Configuración UDP
-        _udpSocket = SDLNet_UDP_Open(port);
-        if (!_udpSocket) {
-            std::cerr << "Error al abrir conexión UDP\n";
-            return false;
-        }
-        _udpPacket = SDLNet_AllocPacket(512); // Asumiendo un tamaño de paquete
-        if (!_udpPacket) {
-            std::cerr << "Error al asignar paquete UDP\n";
-            return false;
-        }
-    }
-    return true;
 }
 
 void eden_net::NetworkManager::ShutdownNetwork() {
-    if (_tcpSocket) {
-        SDLNet_TCP_Close(_tcpSocket);
-        _tcpSocket = nullptr;
-    }
-    if (_udpSocket) {
-        SDLNet_UDP_Close(_udpSocket);
-        _udpSocket = nullptr;
-        SDLNet_FreePacket(_udpPacket);
-        _udpPacket = nullptr;
-    }
-}
+    if (active) {
+        if (host) {
+            SDLNet_TCP_Close(_masterSocket);
+            SDLNet_TCP_DelSocket(_socketSet, _masterSocket);
+            _masterSocket = nullptr;
+        }
 
-void eden_net::NetworkManager::ProcessIncomingPackets() {
-    if (_mode == NetworkMode::TCP) {
-        // Procesamiento de paquetes TCP
-    }
-    else if (_mode == NetworkMode::UDP) {
-        // Procesamiento de paquetes UDP
-        if (SDLNet_UDP_Recv(_udpSocket, _udpPacket)) {
-            // Hacer algo con _udpPacket->data
+        for (int i = 0; i < NUM_SOCKETS; ++i) {
+            SDLNet_TCP_Close(_socket[i]);
+            SDLNet_TCP_DelSocket(_socketSet, _socket[i]);
+            _socket[i] = nullptr;
         }
     }
-}
-
-void eden_net::NetworkManager::SendPacket(const std::string& data, const IPaddress& dest) {
-    if (_mode == NetworkMode::TCP) {
-        // Envío de datos TCP
-    }
-    else if (_mode == NetworkMode::UDP) {
-        // Envío de datos UDP
-        memcpy(_udpPacket->data, data.data(), data.size());
-        _udpPacket->len = data.size();
-        _udpPacket->address = dest;
-        SDLNet_UDP_Send(_udpSocket, -1, _udpPacket); // -1 significa enviar a cualquier canal
-    }
-}
-
-bool eden_net::NetworkManager::ConnectToHost(const std::string& hostIP, uint16_t port) {
-    if (_mode == NetworkMode::TCP) {
-        IPaddress hostIPaddress;
-        SDLNet_ResolveHost(&hostIPaddress, hostIP.c_str(), port);
-        _tcpSocket = SDLNet_TCP_Open(&hostIPaddress);
-        if (!_tcpSocket) {
-            std::cerr << "Failed to connect to host: " << SDLNet_GetError() << std::endl;
-            return false;
-        }
-    }
-    else if (_mode == NetworkMode::UDP) {
-        // Para UDP, configuramos el socket para enviar paquetes al host especificado
-        _udpSocket = SDLNet_UDP_Open(0);  // 0 para que SDL_net elija un puerto
-        if (!_udpSocket) {
-            std::cerr << "Failed to open UDP socket: " << SDLNet_GetError() << std::endl;
-            return false;
-        }
-        SDLNet_ResolveHost(&_ip, hostIP.c_str(), port);
-        _udpPacket->address = _ip;  // Configura la dirección del paquete UDP
-    }
-    return true;
 }

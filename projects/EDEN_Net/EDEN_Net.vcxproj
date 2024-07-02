@@ -88,12 +88,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\EDEN_Net\NetworkManager.h" />
-    <ClInclude Include="..\..\src\EDEN_Net\NetworkSession.h" />
     <ClInclude Include="..\..\src\EDEN_Net\NetworkUtilities.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\EDEN_Net\NetworkManager.cpp" />
-    <ClCompile Include="..\..\src\EDEN_Net\NetworkSession.cpp" />
     <ClCompile Include="..\..\src\EDEN_Net\NetworkUtilities.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

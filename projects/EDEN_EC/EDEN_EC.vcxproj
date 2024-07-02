@@ -23,7 +23,6 @@
     <ClInclude Include="..\..\src\EDEN_EC\CLight.h" />
     <ClInclude Include="..\..\src\EDEN_EC\CLuaBehaviour.h" />
     <ClInclude Include="..\..\src\EDEN_EC\CMeshRenderer.h" />
-    <ClInclude Include="..\..\src\EDEN_EC\CNetwork.h" />
     <ClInclude Include="..\..\src\EDEN_EC\Component.h" />
     <ClInclude Include="..\..\src\EDEN_EC\CParticleEmitter.h" />
     <ClInclude Include="..\..\src\EDEN_EC\CRigidBody.h" />
@@ -45,7 +44,6 @@
     <ClCompile Include="..\..\src\EDEN_EC\CLight.cpp" />
     <ClCompile Include="..\..\src\EDEN_EC\CLuaBehaviour.cpp" />
     <ClCompile Include="..\..\src\EDEN_EC\CMeshRenderer.cpp" />
-    <ClCompile Include="..\..\src\EDEN_EC\CNetwork.cpp" />
     <ClCompile Include="..\..\src\EDEN_EC\Component.cpp" />
     <ClCompile Include="..\..\src\EDEN_EC\CParticleEmitter.cpp" />
     <ClCompile Include="..\..\src\EDEN_EC\CRigidBody.cpp" />

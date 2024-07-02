@@ -8,31 +8,30 @@
 
 #include "Singleton.h"
 
-enum class NetworkMode {
-    TCP,
-    UDP
-};
+const int NUM_SOCKETS = 4;
+
+enum typeOfSocket { USERNAME, VECTOR };
 
 namespace eden_net {
     class NetworkManager : public Singleton<NetworkManager> {
         friend Singleton<NetworkManager>;
     public:
-        EDEN_API void Init(NetworkMode mode);
-        EDEN_API bool InitNetwork(uint16_t port);
+        EDEN_API bool InitNetwork(uint16_t port, const std::string& hostIP);
+        EDEN_API void Update();
         EDEN_API void ShutdownNetwork();
-        EDEN_API void ProcessIncomingPackets();
-        EDEN_API void SendPacket(const std::string& data, const IPaddress& dest);
-        EDEN_API bool ConnectToHost(const std::string& hostIP, uint16_t port);
 
         ~NetworkManager() override;
     private:
         NetworkManager();
 
-        NetworkMode _mode;
         IPaddress _ip;
-        TCPsocket _tcpSocket;
-        UDPsocket _udpSocket;
-        UDPpacket* _udpPacket;
+        TCPsocket _masterSocket;
+
+        SDLNet_SocketSet _socketSet;
+        TCPsocket _socket[NUM_SOCKETS];
+
+        bool host;
+        bool active = false;
     };
 }
 

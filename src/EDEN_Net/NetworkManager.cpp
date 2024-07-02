@@ -12,6 +12,7 @@ eden_net::NetworkManager::~NetworkManager() {
 
 bool eden_net::NetworkManager::InitNetwork(uint16_t port, const std::string& hostIP = "") {
     char buffer[256];
+    int result = 0;
 
     if (hostIP.empty()) { // Actúa como servidor
         host = true;
@@ -42,6 +43,22 @@ bool eden_net::NetworkManager::InitNetwork(uint16_t port, const std::string& hos
                     SDLNet_TCP_Close(client);
                 }
             }
+
+            for (int i = 0; i < NUM_SOCKETS; i++) {
+                if (_socket[i] != nullptr && SDLNet_SocketReady(_socket[i])) {
+                    result = SDLNet_TCP_Recv(_socket[i], buffer, 255);
+
+                    if (result <= 0) {
+                        SDLNet_TCP_Close(_socket[i]);
+                        SDLNet_TCP_DelSocket(_socketSet, _socket[i]);
+                        _socket[i] = nullptr;
+                    }
+                    else {
+                        std::cout << "Client " << i << " says: " << buffer << std::endl;
+                        SDLNet_TCP_Send(_socket[i], "Received!", 10);
+                    }
+                }
+            }
         }
     }
     else { // Actúa como cliente
@@ -65,7 +82,7 @@ bool eden_net::NetworkManager::InitNetwork(uint16_t port, const std::string& hos
         else {
             if (buffer[0] == 0) {
                 std::cout << "¡Conectado!" << std::endl;
-                _socket[USERNAME] = conn;
+                _socket[0] = conn;
                 done = false;
             }
             else {
@@ -85,24 +102,14 @@ bool eden_net::NetworkManager::InitNetwork(uint16_t port, const std::string& hos
     return true;
 }
 
-void eden_net::NetworkManager::Update()
+TCPsocket eden_net::NetworkManager::GetSocket(int _type)
 {
-    char buffer[256];
+    return _socket[_type];
+}
 
-    if (active && SDLNet_CheckSockets(_socketSet, SDL_MAX_UINT32) > 0) {
-        int result = 0;
-        // TODO II: PROCESS DATA on client sockets
-        for (int i = 0; i < NUM_SOCKETS; i++) {
-            if (_socket[i] != nullptr && SDLNet_SocketReady(_socket[i])) {
-                result = SDLNet_TCP_Recv(_socket[i], buffer, 255);
-                if (result <= 0) {
-                    SDLNet_TCP_Close(_socket[i]);
-                    SDLNet_TCP_DelSocket(_socketSet, _socket[i]);
-                    _socket[i] = nullptr;
-                }
-            }
-        }
-    }
+SDLNet_SocketSet eden_net::NetworkManager::GetSocketSet()
+{
+    return _socketSet;
 }
 
 void eden_net::NetworkManager::ShutdownNetwork() {

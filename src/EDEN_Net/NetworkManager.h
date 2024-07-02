@@ -10,19 +10,18 @@
 
 const int NUM_SOCKETS = 4;
 
-enum typeOfSocket { USERNAME, VECTOR };
-
 namespace eden_net {
     class NetworkManager : public Singleton<NetworkManager> {
         friend Singleton<NetworkManager>;
     public:
         EDEN_API bool InitNetwork(uint16_t port, const std::string& hostIP);
-        EDEN_API void Update();
+        EDEN_API TCPsocket GetSocket(int _type);
+        EDEN_API SDLNet_SocketSet GetSocketSet();
         EDEN_API void ShutdownNetwork();
 
-        ~NetworkManager() override;
+        EDEN_API ~NetworkManager() override;
     private:
-        NetworkManager();
+        EDEN_API NetworkManager();
 
         IPaddress _ip;
         TCPsocket _masterSocket;

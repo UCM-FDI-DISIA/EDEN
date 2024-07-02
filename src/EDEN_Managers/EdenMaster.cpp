@@ -105,7 +105,6 @@ void eden::Master::Loop()
 		_renderManager->UpdatePositions(_scnManager->GetCurrentScene()->GetSceneID());
 		_renderManager->Update();
 		_audioManager->Update(_deltaTime);
-		_networkManager->Update();
 		exit = _inputManager->CloseWindowEvent();
 		if (_inputManager->ResizedWindowEvent()) {
 			_renderManager->ResizedWindow();
